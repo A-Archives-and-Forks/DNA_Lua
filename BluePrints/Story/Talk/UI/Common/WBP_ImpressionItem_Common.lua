@@ -105,7 +105,7 @@ function WBP_ImpressionItem_Common:Clear()
 end
 
 function WBP_ImpressionItem_Common:ClearByPlatform()
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_ImpressionItem_Common:ClearByPlatform")
+  DebugPrint("Error: 未实现的函数WBP_ImpressionItem_Common:ClearByPlatform")
 end
 
 function WBP_ImpressionItem_Common:TryFireOnItemHandleEndDelegate(FinishType)
@@ -133,7 +133,7 @@ function WBP_ImpressionItem_Common:InitImpressionData()
 end
 
 function WBP_ImpressionItem_Common:AdaptPlatform()
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_ImpressionItem_Common:AdaptPlatform")
+  DebugPrint("Error: 未实现的函数WBP_ImpressionItem_Common:AdaptPlatform")
 end
 
 function WBP_ImpressionItem_Common:SetOnBeginShowCheckOrPlusUI(Delegate)
@@ -312,7 +312,7 @@ function WBP_ImpressionItem_Common:HandleCheck()
 end
 
 function WBP_ImpressionItem_Common:OnImpressionTimeout(DialogueChain)
-  local Title = "\229\141\176\232\177\161\229\138\160\229\128\188\232\182\133\230\151\182"
+  local Title = "印象加值超时"
   local DialogueChainStr = ""
   local DialogueId
   DialogueChain = DialogueChain or {}
@@ -323,7 +323,7 @@ function WBP_ImpressionItem_Common:OnImpressionTimeout(DialogueChain)
     DialogueId = dialogueId
     DialogueChainStr = DialogueChainStr .. tostring(DialogueId)
   end
-  local Message = string.format("\229\141\176\232\177\161\229\138\160\229\128\188\230\156\170\230\148\182\229\136\176\230\156\141\229\138\161\229\153\168\229\155\158\232\176\131\239\188\140\229\189\147\229\137\141\233\128\137\233\161\185Id: %s\239\188\140\229\175\185\232\175\157\233\147\190:\n%s", DialogueId and tostring(DialogueId) or "\230\151\160", DialogueChainStr)
+  local Message = string.format("印象加值未收到服务器回调，当前选项Id: %s，对话链:\n%s", DialogueId and tostring(DialogueId) or "无", DialogueChainStr)
   UStoryLogUtils.PrintToFeiShu(self, Title, Message)
   local Avatar = GWorld:GetAvatar()
   if Avatar then
@@ -367,10 +367,10 @@ function WBP_ImpressionItem_Common:OnImpressionHandled(...)
   self.bIsHandled = true
   local Error, DialogueChain = ...
   if not ErrorCode:Check(Error) then
-    local ErrorCodeMessage = "\233\148\153\232\175\175\231\160\129\228\184\141\229\173\152\229\156\168"
+    local ErrorCodeMessage = "错误码不存在"
     local ErrorCodeData = DataMgr.ErrorCode[Error]
     if ErrorCodeData then
-      ErrorCodeMessage = ErrorCodeData.ErrorCodeContent or "\233\148\153\232\175\175\231\160\129\228\184\141\229\173\152\229\156\168\232\175\180\230\152\142\229\134\133\229\174\185"
+      ErrorCodeMessage = ErrorCodeData.ErrorCodeContent or "错误码不存在说明内容"
     end
     local DialogueChainStr = ""
     DialogueChain = DialogueChain or {}
@@ -380,8 +380,8 @@ function WBP_ImpressionItem_Common:OnImpressionHandled(...)
       end
       DialogueChainStr = DialogueChainStr .. tostring(DialogueId)
     end
-    local Title = "\229\141\176\232\177\161\231\179\187\231\187\159\233\148\153\232\175\175"
-    local Message = string.format("ErrorCode: %d\n%s\239\188\140\229\175\185\232\175\157\233\147\190:\n%s", Error, ErrorCodeMessage, DialogueChainStr)
+    local Title = "印象系统错误"
+    local Message = string.format("ErrorCode: %d\n%s，对话链:\n%s", Error, ErrorCodeMessage, DialogueChainStr)
     UStoryLogUtils.PrintToFeiShu(self, Title, Message)
     self.ImpressionUI:StopStoryLine()
     return
@@ -581,11 +581,11 @@ function WBP_ImpressionItem_Common:GetServerHandledInfo()
 end
 
 function WBP_ImpressionItem_Common:OnSelectedByPlatform(bIsSelect)
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_ImpressionItem_Common:OnSelectByPlatform", bIsSelect)
+  DebugPrint("Error: 未实现的函数WBP_ImpressionItem_Common:OnSelectByPlatform", bIsSelect)
 end
 
 function WBP_ImpressionItem_Common:OnReleasedByPlatform()
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_ImpressionItem_Common:OnReleasedByPlatform")
+  DebugPrint("Error: 未实现的函数WBP_ImpressionItem_Common:OnReleasedByPlatform")
 end
 
 return WBP_ImpressionItem_Common

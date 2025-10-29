@@ -34,13 +34,13 @@ end
 
 function M:GetCurrencyType()
   local RegionCode = self:GetRegionCode()
-  assert(DataMgr.CountryRegionCode[RegionCode], "\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\229\156\176\229\140\186:" .. RegionCode)
+  assert(DataMgr.CountryRegionCode[RegionCode], "未找到对应地区:" .. RegionCode)
   return DataMgr.CountryRegionCode[RegionCode].MoneySymbol
 end
 
 function M:GetCurrencyPrice()
   local RegionCode = self:GetRegionCode()
-  assert(DataMgr.CountryRegionCode[RegionCode], "\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\229\156\176\229\140\186:" .. RegionCode)
+  assert(DataMgr.CountryRegionCode[RegionCode], "未找到对应地区:" .. RegionCode)
   return "Price" .. DataMgr.CountryRegionCode[RegionCode].MoneyCode
 end
 
@@ -48,7 +48,7 @@ function M:HasFreeShop(ShopType)
   local ItemIds = {}
   for _, MainTabId in pairs(DataMgr.Shop[ShopType].MainTabId) do
     local Data = DataMgr.ShopItem2ShopTab[MainTabId]
-    assert(Data, "\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\229\149\134\229\159\142\228\184\187\233\161\181\231\173\190:" .. MainTabId)
+    assert(Data, "未找到对应商城主页签:" .. MainTabId)
     for _, ShopItemData in pairs(Data) do
       for _, ItemId in pairs(ShopItemData) do
         if self:IsFree(ItemId) then
@@ -68,7 +68,7 @@ function M:HasNewShop(ShopType)
   end
   for _, MainTabId in pairs(DataMgr.Shop[ShopType].MainTabId) do
     local Data = DataMgr.ShopItem2ShopTab[MainTabId]
-    assert(Data, "\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\229\149\134\229\159\142\228\184\187\233\161\181\231\173\190:" .. MainTabId)
+    assert(Data, "未找到对应商城主页签:" .. MainTabId)
     for _, ShopItemData in pairs(Data) do
       for _, ItemId in pairs(ShopItemData) do
         if Avatar:CheckShopItemEnhanceRedDot(ItemId) then
@@ -106,10 +106,10 @@ end
 
 function M:GetShopItemPrice(ShopItemId)
   local ShopItemData = DataMgr.ShopItem[ShopItemId]
-  assert(ShopItemData, "\229\149\134\229\147\129\228\184\141\229\173\152\229\156\168\239\188\154" .. ShopItemId)
+  assert(ShopItemData, "商品不存在：" .. ShopItemId)
   if DataMgr.ShopItem2PayGoods[ShopItemId] then
     local PayGoodData = DataMgr.PayGoods[DataMgr.ShopItem2PayGoods[ShopItemId]]
-    assert(PayGoodData, "\229\133\133\229\128\188\229\149\134\229\147\129\229\175\185\229\186\148\228\191\161\230\129\175\228\184\141\229\173\152\229\156\168:" .. DataMgr.ShopItem2PayGoods[ShopItemId])
+    assert(PayGoodData, "充值商品对应信息不存在:" .. DataMgr.ShopItem2PayGoods[ShopItemId])
     local PriceType = self:GetCurrencyPrice()
     local Price = PayGoodData[PriceType]
     return Price
@@ -141,7 +141,7 @@ function M:GetShopItemPurchaseLimit(ShopItemId)
 end
 
 function M:GetShopItemCanShow(ShopItemId)
-  assert(DataMgr.ShopItem[ShopItemId], "\229\149\134\229\147\129\228\184\141\229\173\152\229\156\168\239\188\154" .. ShopItemId)
+  assert(DataMgr.ShopItem[ShopItemId], "商品不存在：" .. ShopItemId)
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
     return

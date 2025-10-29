@@ -190,7 +190,7 @@ function BP_NewBreakableItem_C:PlayBreakSound()
   if self.SoundEvent then
     AudioManager(self):PlayFMODSound(self, nil, self.SoundEvent)
   else
-    print(_G.LogTag, "\231\160\180\231\162\142\231\137\169" .. self:GetName() .. "\230\151\160\229\175\185\229\186\148\230\146\173\230\148\190\231\154\132\233\159\179\230\149\136")
+    print(_G.LogTag, "破碎物" .. self:GetName() .. "无对应播放的音效")
   end
 end
 

@@ -5,21 +5,21 @@ local ReadOnly = (DataMgr or {}).ReadOnly or function(n, x)
 end
 return ReadOnly("MonsterRushDungeon", {
   [40201] = {
-    Description = "\230\151\160\229\133\179\229\141\161\230\149\136\230\158\156",
+    Description = "无关卡效果",
     LevelId = 40201,
     MonsterList = {4020101, 4020102},
     StaticCreatorList = {851500101},
     TargetNum = 100
   },
   [40202] = {
-    Description = "\230\151\160\229\133\179\229\141\161\230\149\136\230\158\156",
+    Description = "无关卡效果",
     LevelId = 40202,
     MonsterList = {4020201, 4020202},
     StaticCreatorList = {850100101},
     TargetNum = 100
   },
   [40203] = {
-    Description = "\230\151\160\229\133\179\229\141\161\230\149\136\230\158\156",
+    Description = "无关卡效果",
     LevelId = 40203,
     MonsterList = {4020301, 4020302},
     StaticCreatorList = {851300101},

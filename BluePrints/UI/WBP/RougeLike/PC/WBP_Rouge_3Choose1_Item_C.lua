@@ -69,7 +69,7 @@ function M:OnLoaded(...)
       self.Rouge_SuitSign.Text_SuitTitle:SetText(Text)
       if ItemInfo.Icon then
         local IconObj = LoadObject(ItemInfo.Icon)
-        assert(IconObj, "\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148TreasureGroup\231\154\132Icon:" .. DataMgr.RougeLikeTreasure[self.AwardId].TreasureGroup)
+        assert(IconObj, "未找到对应TreasureGroup的Icon:" .. DataMgr.RougeLikeTreasure[self.AwardId].TreasureGroup)
         self.Rouge_SuitSign.Image_TitleIcon:SetBrushResourceObject(IconObj)
       else
         self.Rouge_SuitSign.Image_TitleIcon:SetVisibility(UIConst.VisibilityOp.Collapsed)
@@ -101,7 +101,7 @@ function M:OnLoaded(...)
           }
           self.Rouge_SuitSign.ItemDetails_MenuAnchor:OpenItemDetailsWidget(false, Content)
         else
-          DebugPrint("@@@ Rouge\230\178\161\230\137\190\229\136\176TreasureGroupId")
+          DebugPrint("@@@ Rouge没找到TreasureGroupId")
         end
       end
     })
@@ -180,7 +180,7 @@ function M:OnBtn_DescClicked()
 end
 
 function M:SelectItem()
-  DebugPrint("\230\163\128\230\181\139\229\136\176\232\162\171\233\128\137\228\184\173")
+  DebugPrint("检测到被选中")
   if self:IsAnimationPlaying(self.Hover) then
     self:StopAnimation(self.Hover)
   end
@@ -202,7 +202,7 @@ end
 
 function M:OnBtn_ConfirmClicked()
   self.CurrentTime = UE4.UGameplayStatics.GetRealTimeSeconds(self)
-  DebugPrint("\230\163\128\230\181\139\229\136\176\230\140\137\233\148\174\230\140\137\228\184\139")
+  DebugPrint("检测到按键按下")
   if self.CurrentTime - self.StartTime < self.BtnCD then
     self:PlayAnimationForward(self.Normal)
     return
@@ -231,7 +231,7 @@ function M:SwitchDesc(IsSimple)
     end
   end
   if nil == AwardDesc then
-    Battle(self):ShowBattleError("\232\130\137\233\184\189" + self.AwardType + "\232\161\168\228\184\173Id\228\184\186" + tostring(self.AwardId)("\231\154\132\230\143\143\232\191\176\228\184\186\231\169\186"))
+    Battle(self):ShowBattleError("肉鸽" + self.AwardType + "表中Id为" + tostring(self.AwardId)("的描述为空"))
   end
   if nil ~= self.ExplanationId and #self.ExplanationId > 0 then
     AwardDesc = UIUtils.GenRougeCombatTermDesc(AwardDesc, self.ExplanationId)

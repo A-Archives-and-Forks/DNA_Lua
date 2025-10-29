@@ -41,9 +41,9 @@ end
 
 function M:UpdateDetails(Type, ItemId, ShopId, Price, IsSoldOut, IsCanLevelUp)
   self.RougeLikeManager = GWorld.RougeLikeManager
-  assert(self.RougeLikeManager, "RougeLikeManager\230\156\170\230\137\190\229\136\176")
+  assert(self.RougeLikeManager, "RougeLikeManager未找到")
   local ItemData = DataMgr["RougeLike" .. Type][ItemId]
-  assert(ItemData, "\232\130\137\233\184\189\229\149\134\229\159\142\230\156\170\230\137\190\229\136\176\232\175\165\229\149\134\229\147\129\228\191\161\230\129\175: Type:" .. Type .. " Id:" .. ItemId)
+  assert(ItemData, "肉鸽商城未找到该商品信息: Type:" .. Type .. " Id:" .. ItemId)
   self.Type = Type
   self.ItemId = ItemId
   self.ShopId = ShopId
@@ -73,7 +73,7 @@ function M:UpdateDetails(Type, ItemId, ShopId, Price, IsSoldOut, IsCanLevelUp)
   self:SetDesc()
   self:SetSuit()
   local RougeLikeShop = UIManager(self):GetUIObj("RougeShop")
-  assert(RougeLikeShop, "\232\130\137\233\184\189\229\149\134\229\159\142\228\184\141\229\173\152\229\156\168")
+  assert(RougeLikeShop, "肉鸽商城不存在")
   EMUIAnimationSubsystem:EMPlayAnimation(RougeLikeShop, RougeLikeShop.Switch)
 end
 
@@ -92,7 +92,7 @@ function M:SetRarity(Rarity)
     TitleRarityTexture = self.TitleQuality_Yellow
     EMUIAnimationSubsystem:EMPlayAnimation(self, self.Yellow)
   else
-    DebugPrint("ZDX_\232\130\137\233\184\189\229\149\134\229\159\142\229\149\134\229\147\129\231\168\128\230\156\137\229\186\166\233\148\153\232\175\175")
+    DebugPrint("ZDX_肉鸽商城商品稀有度错误")
     return
   end
   self.Image_ShopItemType:SetBrushFromTexture(BgRarityTexture)
@@ -139,7 +139,7 @@ function M:SetDesc()
     end
     if self.IsCanLevelUp and not self.IsSoldOut then
       if 0 == Level and not self.IsSoldOut then
-        DebugPrint("ZDX_\232\130\137\233\184\189\229\149\134\229\159\142\231\165\157\231\166\143\231\173\137\231\186\167\233\148\153\232\175\175:" .. self.ItemId)
+        DebugPrint("ZDX_肉鸽商城祝福等级错误:" .. self.ItemId)
       else
         ItemDesc = UIUtils.GenRougeBlessingDesc(self.ItemId, Level - 1, Level)
       end
@@ -147,9 +147,9 @@ function M:SetDesc()
       ItemDesc = UIUtils.GenRougeBlessingDesc(self.ItemId, Level)
     end
     self.GroupId = DataMgr.RougeLikeBlessing[self.ItemId].BlessingGroup
-    assert(self.GroupId, "\230\156\170\230\137\190\229\136\176\231\165\157\231\166\143\229\175\185\229\186\148\229\165\151\232\163\133Id\239\188\154" .. self.GroupId)
+    assert(self.GroupId, "未找到祝福对应套装Id：" .. self.GroupId)
     local GroupData = DataMgr.BlessingGroup[self.GroupId]
-    assert(GroupData, "\230\156\170\230\137\190\229\136\176\229\165\151\232\163\133\230\149\176\230\141\174\239\188\154" .. self.GroupId)
+    assert(GroupData, "未找到套装数据：" .. self.GroupId)
   elseif self.Type == "Treasure" then
     ItemDesc = UIUtils.GenRougeTreasureDesc(self.ItemId)
     self.GroupId = DataMgr.RougeLikeTreasure[self.ItemId].TreasureGroup

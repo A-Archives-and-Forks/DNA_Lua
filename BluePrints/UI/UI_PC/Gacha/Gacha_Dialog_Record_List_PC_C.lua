@@ -17,7 +17,7 @@ function G:OnListItemObjectSet(Content)
     RarityText = GachaCommon.ItemRarityName[TargetRarity]
   end
   if Content.Count > 1 then
-    TargetName = GText(TargetName) .. "\195\151" .. Content.Count
+    TargetName = GText(TargetName) .. "×" .. Content.Count
   end
   self.Text_Designation:SetText(GText(TargetName))
   self.Text_Quality:SetText(GText(RarityText))

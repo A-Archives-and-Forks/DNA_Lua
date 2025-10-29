@@ -30,7 +30,7 @@ end
 function M:PlayConvertAnim()
   if self.bConvert then
     local ItemData = DataMgr[self.Content.ItemType][self.Content.Id]
-    assert(ItemData, "\230\138\189\229\141\161\231\187\147\230\158\156\233\129\147\229\133\183\228\184\141\229\173\152\229\156\168")
+    assert(ItemData, "抽卡结果道具不存在")
     if ItemData.RegainItemId then
       self.ItemIcon:Init({
         Id = ItemData.RegainItemId,
@@ -40,7 +40,7 @@ function M:PlayConvertAnim()
         IsShowDetails = true,
         MenuPlacement = EMenuPlacement.MenuPlacement_MenuRight
       })
-      self.Text_ItemNum:SetText("\195\151" .. ItemData.RegainItemNum)
+      self.Text_ItemNum:SetText("×" .. ItemData.RegainItemNum)
     end
     AudioManager(self):PlayUISound(self, "event:/ui/common/gacha_trans_to_coin", nil, nil)
     self:PlayAnimation(self.Convert)

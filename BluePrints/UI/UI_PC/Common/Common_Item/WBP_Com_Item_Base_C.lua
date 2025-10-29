@@ -134,7 +134,7 @@ function M:SetIcon(IconPath)
     self:LoadTextureAsync(IconPath, function(Texture)
       if not Texture then
         Texture = LoadObject("Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Monster/T_Head_Empty.T_Head_Empty'")
-        DebugPrint(ErrorTag, string.format("\231\148\168\233\148\153\229\155\190\230\160\135\232\183\175\229\190\132\228\186\134\239\188\129\239\188\129\239\188\129\232\191\153\233\135\140\231\148\168\233\187\152\232\174\164\231\154\132\229\155\190\230\160\135\233\161\182\228\184\128\228\184\139\n \233\148\153\232\175\175\231\154\132\232\183\175\229\190\132\230\152\175\239\188\154%s", IconPath))
+        DebugPrint(ErrorTag, string.format("用错图标路径了！！！这里用默认的图标顶一下\n 错误的路径是：%s", IconPath))
       end
       if Texture then
         local __IconDynaMaterial = self.Item.Item_BG:GetDynamicMaterial()
@@ -147,11 +147,11 @@ function M:SetIcon(IconPath)
     local Icon = LoadObject(IconPath)
     if not Icon then
       Icon = LoadObject("Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Monster/T_Head_Empty.T_Head_Empty'")
-      DebugPrint(ErrorTag, string.format("\231\148\168\233\148\153\229\155\190\230\160\135\232\183\175\229\190\132\228\186\134\239\188\129\239\188\129\239\188\129\232\191\153\233\135\140\231\148\168\233\187\152\232\174\164\231\154\132\229\155\190\230\160\135\233\161\182\228\184\128\228\184\139\n \233\148\153\232\175\175\231\154\132\232\183\175\229\190\132\230\152\175\239\188\154%s", IconPath))
+      DebugPrint(ErrorTag, string.format("用错图标路径了！！！这里用默认的图标顶一下\n 错误的路径是：%s", IconPath))
     end
     local DynamicMaterial = self.Item.Item_BG:GetDynamicMaterial()
     if not IsValid(DynamicMaterial) then
-      DebugPrint("ZDX_DynamicMaterial\228\184\141\229\144\136\230\179\149")
+      DebugPrint("ZDX_DynamicMaterial不合法")
     end
     DynamicMaterial:SetTextureParameterValue("IconMap", Icon)
   end
@@ -195,7 +195,7 @@ function M:SetRarity(Rarity)
   local DynamicMaterial = self.Item.Item_BG:GetDynamicMaterial()
   DynamicMaterial:SetScalarParameterValue("IconOpacity", 1)
   if not IsValid(DynamicMaterial) then
-    DebugPrint("ZDX_DynamicMaterial\228\184\141\229\144\136\230\179\149")
+    DebugPrint("ZDX_DynamicMaterial不合法")
   end
   if not Rarity or Rarity < 1 or Rarity > 6 then
     DynamicMaterial:SetScalarParameterValue("Index", 0)
@@ -1144,7 +1144,7 @@ end
 function M:SetPetPremium(bPremium)
   local function Callback(CoroutineObj)
     if not self.Item then
-      DebugPrint(ErrorTag, "SetPetPremium::\230\178\161\230\156\137Item\230\142\167\228\187\182\228\184\141\231\172\166\229\144\136\233\128\154\231\148\168\233\129\147\229\133\183\230\161\134\231\187\147\230\158\132")
+      DebugPrint(ErrorTag, "SetPetPremium::没有Item控件不符合通用道具框结构")
       
       return
     end
@@ -1232,7 +1232,7 @@ end
 function M:SetPetStarLevel(PetStarLevel)
   local function Callback(CoroutineObj)
     if not self.Item then
-      DebugPrint(ErrorTag, "SetPetStarLevel::\230\178\161\230\156\137Item\230\142\167\228\187\182\228\184\141\231\172\166\229\144\136\233\128\154\231\148\168\233\129\147\229\133\183\230\161\134\231\187\147\230\158\132")
+      DebugPrint(ErrorTag, "SetPetStarLevel::没有Item控件不符合通用道具框结构")
       
       return
     end
@@ -1380,16 +1380,16 @@ function M:AdjustBackGroundHeight(TextWidget, Reason)
   if not IsValid(TextWidget) then
     return
   end
-  DebugPrint(WarningTag, "AdjustBackGroundHeight::\231\156\139\231\156\139\229\142\159\229\155\160", Reason)
+  DebugPrint(WarningTag, "AdjustBackGroundHeight::看看原因", Reason)
   if 1 == TextWidget:GetVisibility() or 2 == TextWidget:GetVisibility() then
     return
   end
   if not TextWidget.GetTextWidget and not TextWidget.GetDesireWidget then
-    DebugPrint(ErrorTag, "AdjustBackGroundHeight::\228\188\160\229\133\165\231\154\132TextWidget\229\191\133\233\161\187\232\166\129\230\156\137GetTextWidget\229\146\140GetDesireWidget\230\142\165\229\143\163")
+    DebugPrint(ErrorTag, "AdjustBackGroundHeight::传入的TextWidget必须要有GetTextWidget和GetDesireWidget接口")
     return
   end
   if not self.Item then
-    DebugPrint(ErrorTag, "AdjustBackGroundHeight::\230\178\161\230\156\137Item\230\142\167\228\187\182\228\184\141\231\172\166\229\144\136\233\128\154\231\148\168\233\129\147\229\133\183\230\161\134\231\187\147\230\158\132")
+    DebugPrint(ErrorTag, "AdjustBackGroundHeight::没有Item控件不符合通用道具框结构")
     return
   end
   if self:IsExistTimer(self.AdjustBGTimer) then
@@ -1409,7 +1409,7 @@ function M:AdjustBackGroundHeight(TextWidget, Reason)
     local Text = TextWidget:GetTextWidget()
     local Layout = TextWidget:GetDesireWidget()
     if not Text or not Layout then
-      DebugPrint(ErrorTag, "AdjustBackGroundHeight::GetTextWidget\229\146\140GetDesireWidget\230\142\165\229\143\163\228\184\141\232\131\189\232\191\148\229\155\158\231\169\186\231\154\132\229\128\188")
+      DebugPrint(ErrorTag, "AdjustBackGroundHeight::GetTextWidget和GetDesireWidget接口不能返回空的值")
       return
     end
     local DynamicMat = self.Item.Item_BG:GetDynamicMaterial()
@@ -1420,7 +1420,7 @@ function M:AdjustBackGroundHeight(TextWidget, Reason)
       DesireHeight = Layout:GetDesiredSize().Y
     end
     if 0 == DesireHeight then
-      DebugPrint(ErrorTag, "AdjustBackGroundHeight::\230\150\135\230\156\172\230\152\190\231\164\186\229\140\186\229\159\159\231\154\132\233\171\152\229\186\166\228\184\1860,\228\184\141\229\186\148\232\175\165\229\134\141\232\176\131\230\149\180\232\131\140\230\153\175\228\186\134")
+      DebugPrint(ErrorTag, "AdjustBackGroundHeight::文本显示区域的高度为0,不应该再调整背景了")
       self:ClearBackGroundHeight()
       return
     end
@@ -1436,11 +1436,11 @@ end
 
 function M:DefaultBackGroundHeight()
   if not self.Item then
-    DebugPrint(ErrorTag, "DefaultBackGroundHeight::\230\178\161\230\156\137Item\230\142\167\228\187\182\228\184\141\231\172\166\229\144\136\233\128\154\231\148\168\233\129\147\229\133\183\230\161\134\231\187\147\230\158\132")
+    DebugPrint(ErrorTag, "DefaultBackGroundHeight::没有Item控件不符合通用道具框结构")
     return
   end
   if not self.Item.ComItemType then
-    DebugPrint(ErrorTag, Traceback(ErrorTag, "DefaultBackGroundHeight::Item\230\142\167\228\187\182\230\178\161\230\156\137ComItemType\229\143\152\233\135\143\230\158\154\228\184\190\230\157\165\230\143\143\232\191\176\233\129\147\229\133\183\230\161\134\231\177\187\229\158\139\239\188\140\233\156\128\232\166\129\230\137\190\232\147\157\229\155\190\229\138\160\228\184\128\228\184\170", true))
+    DebugPrint(ErrorTag, Traceback(ErrorTag, "DefaultBackGroundHeight::Item控件没有ComItemType变量枚举来描述道具框类型，需要找蓝图加一个", true))
     return
   end
   local DynamicMat = self.Item.Item_BG:GetDynamicMaterial()
@@ -1455,7 +1455,7 @@ end
 
 function M:ClearBackGroundHeight(bForce)
   if not self.Item then
-    DebugPrint(ErrorTag, "ClearBackGroundHeight::\230\178\161\230\156\137Item\230\142\167\228\187\182\228\184\141\231\172\166\229\144\136\233\128\154\231\148\168\233\129\147\229\133\183\230\161\134\231\187\147\230\158\132")
+    DebugPrint(ErrorTag, "ClearBackGroundHeight::没有Item控件不符合通用道具框结构")
     return
   end
   if not self.bMaxHeight and not bForce then

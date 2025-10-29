@@ -18,7 +18,7 @@ function M:AdaptPlatform()
   if Tex then
     self.Icon:SetBrushFromTexture(Tex)
   else
-    Utils.ScreenPrint("QTE\230\137\139\230\156\186\231\171\175\230\140\137\233\146\174\229\155\190\230\160\135\232\183\175\229\190\132\233\148\153\232\175\175\239\188\140\232\175\183\230\163\128\230\159\165\239\188\154", ButtonIconPath)
+    Utils.ScreenPrint("QTE手机端按钮图标路径错误，请检查：", ButtonIconPath)
   end
 end
 

@@ -46,7 +46,7 @@ return {
       isStoryNode = true,
       key = "173770552053617957872",
       type = "StoryNode",
-      name = "Linen\230\148\190\231\189\174",
+      name = "Linen放置",
       pos = {x = 1757.0434782608693, y = 309.5652173913043},
       propsData = {
         QuestId = 0,
@@ -113,7 +113,7 @@ return {
           ["173770552053617957876"] = {
             key = "173770552053617957876",
             type = "TalkNode",
-            name = "\229\175\185\232\175\157\232\138\130\231\130\185",
+            name = "对话节点",
             pos = {x = 1105.6363636363635, y = 287.909090909091},
             propsData = {
               IsNpcNode = false,

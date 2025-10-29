@@ -10,8 +10,8 @@ end
 function SimplePostProcessNode:Start(Context)
   local Player = UGameplayStatics.GetPlayerCharacter(GWorld.GameInstance, 0)
   if not IsValid(Player) then
-    local Message = "\232\174\190\231\189\174\231\155\184\230\156\186\229\144\142\229\164\132\231\144\134\230\149\136\230\158\156\230\151\182\239\188\140\231\142\169\229\174\182PlayerCharacter\230\151\160\230\149\136\n"
-    local Title = "\229\144\142\229\164\132\231\144\134\232\138\130\231\130\185\233\148\153\232\175\175"
+    local Message = "设置相机后处理效果时，玩家PlayerCharacter无效\n"
+    local Title = "后处理节点错误"
     UStoryLogUtils.PrintToFeiShu(self, Title, Message)
     self:FinishAction()
     return
@@ -19,8 +19,8 @@ function SimplePostProcessNode:Start(Context)
   self.Player = Player
   if self.bEnablePP then
     if not self.PPEnum or type(self.PPEnum) ~= "number" then
-      local Message = "\229\144\142\229\164\132\231\144\134\230\149\136\230\158\156\230\158\154\228\184\190\229\128\188\230\151\160\230\149\136:" .. "\n" .. tostring(self.PPEnum or "")
-      local Title = "\229\144\142\229\164\132\231\144\134\232\138\130\231\130\185\233\148\153\232\175\175"
+      local Message = "后处理效果枚举值无效:" .. "\n" .. tostring(self.PPEnum or "")
+      local Title = "后处理节点错误"
       UStoryLogUtils.PrintToFeiShu(self, Title, Message)
       self:FinishAction()
       return

@@ -10,7 +10,7 @@ function Component:RegisterGameModeEvent(GameModeEvent, Owner, Func)
   end
   local FunctionName = "RegisterGameMode" .. GameModeEvent
   if nil ~= self[FunctionName] then
-    DebugPrint("GameModeInterface \230\179\168\229\134\140\228\186\139\228\187\182\239\188\154", GameModeEvent)
+    DebugPrint("GameModeInterface 注册事件：", GameModeEvent)
     self[FunctionName](self, GameMode, Owner, Func)
   end
 end
@@ -25,7 +25,7 @@ function Component:RemoveGameModeEvent(GameModeEvent, Owner, Func)
   end
   local FunctionName = "RemoveGameMode" .. GameModeEvent
   if nil ~= self[FunctionName] then
-    DebugPrint("GameModeInterface \231\167\187\233\153\164\228\186\139\228\187\182\239\188\154", GameModeEvent)
+    DebugPrint("GameModeInterface 移除事件：", GameModeEvent)
     self[FunctionName](self, GameMode, Owner, Func)
   end
 end

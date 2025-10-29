@@ -181,11 +181,11 @@ function WBP_Impression_Common:InitOptions(OptionData, TalkTriggerId, Impression
 end
 
 function WBP_Impression_Common:InitPlayKey()
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_Impression_Common:InitPlayKey")
+  DebugPrint("Error: 未实现的函数WBP_Impression_Common:InitPlayKey")
 end
 
 function WBP_Impression_Common:InitAutoPlay()
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_Impression_Common:InitAutoPlay")
+  DebugPrint("Error: 未实现的函数WBP_Impression_Common:InitAutoPlay")
 end
 
 function WBP_Impression_Common:SwitchBindExitButtonEvents(bBind)
@@ -585,8 +585,8 @@ function WBP_Impression_Common:GetOptionImpressionAreaId(OptionData)
     if PlusData then
       ImpressionAreaId = PlusData.RegionId
     else
-      local Title = "\229\141\176\232\177\161\229\138\160\229\128\188Id\228\184\141\229\173\152\229\156\168"
-      local Message = string.format("\229\138\160\229\128\188Id: %s \229\156\168ImpressionPlus\232\161\168\228\184\173\228\184\141\229\173\152\229\156\168\239\188\140\232\175\183\230\163\128\230\159\165\233\133\141\231\189\174", tostring(PlusId))
+      local Title = "印象加值Id不存在"
+      local Message = string.format("加值Id: %s 在ImpressionPlus表中不存在，请检查配置", tostring(PlusId))
       UStoryLogUtils.PrintToFeiShu(self, Title, Message)
       return nil, false
     end
@@ -596,8 +596,8 @@ function WBP_Impression_Common:GetOptionImpressionAreaId(OptionData)
     if CheckData then
       ImpressionAreaId = CheckData.RegionId
     else
-      local Title = "\229\141\176\232\177\161\230\163\128\229\174\154Id\228\184\141\229\173\152\229\156\168"
-      local Message = string.format("\230\163\128\229\174\154Id: %s \229\156\168ImpressionCheck\232\161\168\228\184\173\228\184\141\229\173\152\229\156\168\239\188\140\232\175\183\230\163\128\230\159\165\233\133\141\231\189\174", tostring(CheckId))
+      local Title = "印象检定Id不存在"
+      local Message = string.format("检定Id: %s 在ImpressionCheck表中不存在，请检查配置", tostring(CheckId))
       UStoryLogUtils.PrintToFeiShu(self, Title, Message)
       return nil, false
     end
@@ -1042,27 +1042,27 @@ function WBP_Impression_Common:SwitchHideDialoguePanel(bHide)
 end
 
 function WBP_Impression_Common:AdaptPlatform()
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_Impression_Common:AdaptPlatform")
+  DebugPrint("Error: 未实现的函数WBP_Impression_Common:AdaptPlatform")
 end
 
 function WBP_Impression_Common:OnExitButtonSelectedPlatform(bIsSelect)
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_Impression_Common:OnExitButtonSelectedPlatform", bIsSelect)
+  DebugPrint("Error: 未实现的函数WBP_Impression_Common:OnExitButtonSelectedPlatform", bIsSelect)
 end
 
 function WBP_Impression_Common:OnExitButtonReleasedByPlatform()
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_Impression_Common:OnExitButtonReleasedByPlatform")
+  DebugPrint("Error: 未实现的函数WBP_Impression_Common:OnExitButtonReleasedByPlatform")
 end
 
 function WBP_Impression_Common:PlayExitButtonHoveredPerformanceByPlatform()
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_Impression_Common:PlayExitButtonHoveredPerformanceByPlatform")
+  DebugPrint("Error: 未实现的函数WBP_Impression_Common:PlayExitButtonHoveredPerformanceByPlatform")
 end
 
 function WBP_Impression_Common:PlayExitButtonUnhoveredPerformanceByPlatform()
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_Impression_Common:PlayExitButtonUnhoveredPerformanceByPlatform")
+  DebugPrint("Error: 未实现的函数WBP_Impression_Common:PlayExitButtonUnhoveredPerformanceByPlatform")
 end
 
 function WBP_Impression_Common:ChangeImgMouseVisibility(OptionData)
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_Impression_Common:ChangeImgMouseVisibility")
+  DebugPrint("Error: 未实现的函数WBP_Impression_Common:ChangeImgMouseVisibility")
 end
 
 return WBP_Impression_Common

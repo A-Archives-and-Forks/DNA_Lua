@@ -34,7 +34,7 @@ function BP_PartyComponent_C:TriggerPartyExitMechanismOverlap(PlayerCharacter)
   if not self.PlayerRemainTime[Eid] then
     local Time = self:GetPartyRemainTime()
     self.PlayerRemainTime[Eid] = Time
-    DebugPrint("BP_PartyComponent_C:\230\156\137\231\142\169\229\174\182\229\136\176\232\190\190\231\187\136\231\130\185\239\188\140Eid", Eid, "\229\137\169\228\189\153\230\151\182\233\151\180", Time)
+    DebugPrint("BP_PartyComponent_C:有玩家到达终点，Eid", Eid, "剩余时间", Time)
     self.GameMode:OnPlayerComplete(Eid, self:GetPartyTime())
     self.GameMode:TriggerGameModeEvent("OnPlayerReachPartyExit", Eid, Time)
   end
@@ -56,7 +56,7 @@ function BP_PartyComponent_C:GetPlayerStar(AvatarStr)
     Eid = self.GameMode:GetPlayerEidByAvatarEidStr(AvatarStr)
   end
   if not Eid or 0 == Eid then
-    ScreenPrint("BP_PartyComponent_C:AvatarStr\232\142\183\229\143\150Eid\229\164\177\232\180\165! AvatarStr" .. AvatarStr)
+    ScreenPrint("BP_PartyComponent_C:AvatarStr获取Eid失败! AvatarStr" .. AvatarStr)
     return 0
   end
   local RemainTime = self.PlayerRemainTime[Eid] or -1
@@ -68,7 +68,7 @@ function BP_PartyComponent_C:GetPlayerStar(AvatarStr)
       break
     end
   end
-  DebugPrint("BP_PartyComponent_C:\231\142\169\229\174\182\231\187\147\231\174\151\230\152\159\231\186\167 AvatrStr", AvatarStr, "Eid", Eid, "\230\152\159\231\186\167", Star)
+  DebugPrint("BP_PartyComponent_C:玩家结算星级 AvatrStr", AvatarStr, "Eid", Eid, "星级", Star)
   return Star
 end
 
@@ -85,7 +85,7 @@ function BP_PartyComponent_C:OnPlayerTriggerArchivePointMulti(ArchivePointMultiI
   DebugPrint("PartyComponent:OnPlayerTriggerArchivePointMulti", ArchivePointMultiId, PlayerEid)
   self.PlayerToArchivePointMultiInfo[PlayerEid] = ArchivePointMultiId
   if self.ArchivePointMultiInfo[ArchivePointMultiId] and self.ArchivePointMultiInfo[ArchivePointMultiId][PlayerEid] then
-    DebugPrint("PartyComponent: \229\183\178\232\167\166\229\143\145\232\191\135", ArchivePointMultiId, PlayerEid)
+    DebugPrint("PartyComponent: 已触发过", ArchivePointMultiId, PlayerEid)
     return
   end
   if self.ArchivePointMultiInfo[ArchivePointMultiId] == nil then
@@ -94,14 +94,14 @@ function BP_PartyComponent_C:OnPlayerTriggerArchivePointMulti(ArchivePointMultiI
   end
   self.ArchivePointMultiInfo[ArchivePointMultiId][PlayerEid] = true
   self.ArchivePointMultiInfo[ArchivePointMultiId].count = self.ArchivePointMultiInfo[ArchivePointMultiId].count + 1
-  DebugPrint("PartyComponent: \232\167\166\229\143\145GameMode\232\147\157\229\155\190", ArchivePointMultiId, self.ArchivePointMultiInfo[ArchivePointMultiId].count)
+  DebugPrint("PartyComponent: 触发GameMode蓝图", ArchivePointMultiId, self.ArchivePointMultiInfo[ArchivePointMultiId].count)
   self.GameMode:TriggerGameModeEvent("OnArchivePointMultiTriggered", ArchivePointMultiId, self.ArchivePointMultiInfo[ArchivePointMultiId].count)
 end
 
 function BP_PartyComponent_C:WaitPlayerEnter()
   self.IsAllPlayerReadyEventTriggered = false
   if 1 == self.GameMode:GetTargetPlayerNum() then
-    DebugPrint("PartyComponent: \229\141\149\228\186\186\232\191\155\229\133\165\239\188\140\228\184\141\228\188\154\232\181\176\229\128\146\232\174\161\230\151\182\239\188\129")
+    DebugPrint("PartyComponent: 单人进入，不会走倒计时！")
     self.GameMode:TriggerGameModeEvent("OnAllPlayersReady")
     self:AddTimer(0.1, function()
       self:BpOnTimerEnd_PartyWaitPlayerEnter()
@@ -132,7 +132,7 @@ function BP_PartyComponent_C:BpOnTimerEnd_PartyWaitPlayerEnter()
     return
   end
   self.IsAllPlayerReadyEventTriggered = true
-  DebugPrint("BP_PartyComponent_C: \232\167\166\229\143\145GameMode\232\147\157\229\155\190 OnEnterCountDownEnd")
+  DebugPrint("BP_PartyComponent_C: 触发GameMode蓝图 OnEnterCountDownEnd")
   self.GameMode:TriggerGameModeEvent("OnEnterCountDownEnd")
   self:InitPlayerOrdinal()
   self:AddTimer(1, self.UpdatePlayerOrdinal, true, 0, "UpdatePlayerOrdinal")
@@ -141,7 +141,7 @@ end
 function BP_PartyComponent_C:SetPlayersToPartyStagePoints(Index)
   DebugPrint("BP_PartyComponent_C: SetPlayersToPartyStagePoints index", Index)
   local TargetStagePoint = self.PartyStagePoints[Index]
-  assert(IsValid(TargetStagePoint), "BP_PartyComponent_C: \229\156\186\228\184\138\228\184\141\229\173\152\229\156\168StageId\228\184\186" .. Index .. "\231\154\132PartyStagePoint\239\188\129\228\184\141\228\188\154\230\137\167\232\161\140\231\167\187\229\138\168\231\142\169\229\174\182\228\189\141\231\189\174\231\154\132\233\128\187\232\190\145")
+  assert(IsValid(TargetStagePoint), "BP_PartyComponent_C: 场上不存在StageId为" .. Index .. "的PartyStagePoint！不会执行移动玩家位置的逻辑")
   for Index, Player in pairs(self.GameMode:GetAllPlayer()) do
     if IsValid(Player) then
       local TargetTransform = TargetStagePoint:GetTransformByIndex(Index)

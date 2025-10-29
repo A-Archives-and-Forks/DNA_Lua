@@ -138,7 +138,7 @@ function ProgressSnapShotComponent:RecordProgressData()
   for _, CombatItem in pairs(self.EMGameState.CombatItemMap) do
     if IsValid(CombatItem) then
       if CombatItem.CanDungeonSave and not CombatItem:CanDungeonSave() then
-        DebugPrint("ProgressSnapShotComponent: CombatItem \229\141\179\229\176\134\233\148\128\230\175\129, \228\184\141\229\173\152\229\130\168", CombatItem:GetName(), CombatItem.Eid, CombatItem.CreatorId, CombatItem.UnitType)
+        DebugPrint("ProgressSnapShotComponent: CombatItem 即将销毁, 不存储", CombatItem:GetName(), CombatItem.Eid, CombatItem.CreatorId, CombatItem.UnitType)
       elseif 0 ~= CombatItem.RandomCreatorId then
         local TmpData = {
           RandomRuleId = CombatItem.RandomRuleId,
@@ -272,7 +272,7 @@ function ProgressSnapShotComponent:RecoverProgressData()
         Creator:RealActiveStaticCreator()
       end
     else
-      DebugPrint("ProgressSnapShotComponent: \230\137\190\228\184\141\229\136\176\233\157\153\230\128\129\231\130\185,, StaticCreatorId", Data.StaticCreatorId, "PrivateEnable", Data.PrivateEnable, "LevelName", Data.LevelName)
+      DebugPrint("ProgressSnapShotComponent: 找不到静态点,, StaticCreatorId", Data.StaticCreatorId, "PrivateEnable", Data.PrivateEnable, "LevelName", Data.LevelName)
     end
   end
   for i, RandomData in pairs(ProgressData.RandomCreatorData) do
@@ -285,7 +285,7 @@ function ProgressSnapShotComponent:RecoverProgressData()
     if SubGameMode then
       SubGameMode.GameModeFirstActiveEnable = FirstActiveEnable
     else
-      DebugPrint("ProgressSnapShot \229\173\144GameMode\228\184\141\229\173\152\229\156\168\239\188\140LevelName\239\188\154", LevelName)
+      DebugPrint("ProgressSnapShot 子GameMode不存在，LevelName：", LevelName)
     end
   end
   self.EMGameState.DungeonUIInfo.TexturePath = ProgressData.DungeonUIInfoData.TexturePath
@@ -305,16 +305,16 @@ end
 
 function ProgressSnapShotComponent:RougeRecordProgressData(PassRoomExtraInfo)
   if self:IsAllRoomPassed() then
-    DebugPrint("ProgressSnapShotComponent: \230\137\128\230\156\137\230\136\191\233\151\180\229\183\178\233\128\154\229\133\179\229\144\142\228\184\141\229\133\129\232\174\184\229\173\152\229\130\168")
+    DebugPrint("ProgressSnapShotComponent: 所有房间已通关后不允许存储")
     return
   end
   if self:IsDungeonInSettlement() then
-    DebugPrint("ProgressSnapShotComponent: \229\137\175\230\156\172\229\183\178\231\187\147\231\174\151\229\144\142\228\184\141\229\133\129\232\174\184\229\173\152\229\130\168")
+    DebugPrint("ProgressSnapShotComponent: 副本已结算后不允许存储")
     return
   end
   local IsCurRoomClear = GWorld.RougeLikeManager:IsCurRougeLikeRoomClear()
   local IsInEvent = GWorld.RougeLikeManager.IsListeningDealRewardEvent or false
-  DebugPrint("ProgressSnapShotComponent: RougeRecordProgressData \229\189\147\229\137\141\230\136\191\233\151\180\230\152\175\229\144\166\233\128\154\229\133\179\239\188\154", IsCurRoomClear, "\230\152\175\229\144\166\230\173\163\229\164\132\228\186\142\228\186\139\228\187\182\229\133\179\231\154\132\228\186\139\228\187\182\228\184\173", IsInEvent)
+  DebugPrint("ProgressSnapShotComponent: RougeRecordProgressData 当前房间是否通关：", IsCurRoomClear, "是否正处于事件关的事件中", IsInEvent)
   local PlayerController = UE.UGameplayStatics.GetPlayerController(GWorld.GameInstance, 0)
   local PlayerState = PlayerController.PlayerState
   local RecoveryCountInfo = {}
@@ -324,7 +324,7 @@ function ProgressSnapShotComponent:RougeRecordProgressData(PassRoomExtraInfo)
   if Player and Player:IsDead() and RecoveryCountInfo.RecoveryCount then
     RecoveryCountInfo.RecoveryCount = RecoveryCountInfo.RecoveryCount + 1
   end
-  DebugPrint("Tianyi@ \229\188\128\229\167\139\230\154\130\229\173\152\232\130\137\233\184\189Buff")
+  DebugPrint("Tianyi@ 开始暂存肉鸽Buff")
   local BuffsSnapshot = {}
   local BuffManager = Player.BuffManager
   if BuffManager then
@@ -413,7 +413,7 @@ function ProgressSnapShotComponent:RougeRecoverProgressData()
   end
   local IsCurRoomClear = GWorld.RougeLikeManager:IsCurRougeLikeRoomClear()
   local IsInEvent = ProgressData.IsListeningDealRewardEvent or false
-  DebugPrint("ProgressSnapShotComponent: RougeRecoverProgressData \229\189\147\229\137\141\230\136\191\233\151\180\230\152\175\229\144\166\233\128\154\229\133\179\239\188\154", IsCurRoomClear, "\230\152\175\229\144\166\230\173\163\229\164\132\228\186\142\228\186\139\228\187\182\229\133\179\231\154\132\228\186\139\228\187\182\228\184\173", IsInEvent)
+  DebugPrint("ProgressSnapShotComponent: RougeRecoverProgressData 当前房间是否通关：", IsCurRoomClear, "是否正处于事件关的事件中", IsInEvent)
   PrintTable(ProgressData, 6)
   UE4.UGameplayStatics.GetGameInstance(self):ClearProgressData()
   local PlayerController = UE.UGameplayStatics.GetPlayerController(GWorld.GameInstance, 0)
@@ -423,12 +423,12 @@ function ProgressSnapShotComponent:RougeRecoverProgressData()
   PlayerState:SetRecoveryMaxCount(ProgressData.RecoveryCountInfo.RecoveryMaxCount)
   local BuffsSnapshot = ProgressData.BuffsSnapshot
   local RecoveredBuffsNum = 0
-  DebugPrint("Tianyi@ \229\188\128\229\167\139\230\129\162\229\164\141Buff")
+  DebugPrint("Tianyi@ 开始恢复Buff")
   for _, BuffSnapshot in ipairs(BuffsSnapshot) do
     local BuffId = BuffSnapshot.BuffId
     local BuffConfig = DataMgr.Buff[BuffId]
     if not BuffConfig then
-      DebugPrint("Tianyi@ Buff\230\129\162\229\164\141\229\164\177\232\180\165, \229\173\152\229\156\168\233\157\158\230\179\149BuffId: ", BuffId)
+      DebugPrint("Tianyi@ Buff恢复失败, 存在非法BuffId: ", BuffId)
     else
       local MergeRule2 = BuffConfig.MergeRule2
       if "Merge" == MergeRule2 then
@@ -462,9 +462,9 @@ function ProgressSnapShotComponent:RougeRecoverProgressData()
   if #BuffsSnapshot > 0 then
     Player:RefreshBuff()
     if RecoveredBuffsNum == #BuffsSnapshot then
-      DebugPrint("Tianyi@ Buff\230\129\162\229\164\141\230\136\144\229\138\159")
+      DebugPrint("Tianyi@ Buff恢复成功")
     else
-      DebugPrint("Tianyi@ Buff\230\129\162\229\164\141\229\164\177\232\180\165, \230\129\162\229\164\141\228\186\134" .. tostring(RecoveredBuffsNum) .. "\228\184\170Buff, \228\189\134\230\128\187\229\133\177\230\156\137" .. tostring(#BuffsSnapshot) .. "\228\184\170Buff")
+      DebugPrint("Tianyi@ Buff恢复失败, 恢复了" .. tostring(RecoveredBuffsNum) .. "个Buff, 但总共有" .. tostring(#BuffsSnapshot) .. "个Buff")
     end
   end
   local DataSetObjInfo = ProgressData.DataSetObjInfo
@@ -505,7 +505,7 @@ function ProgressSnapShotComponent:RougeRecoverProgressData()
   for FuncName, MapName in pairs(DataSetObjInfo) do
     for key, value in pairs(MapName) do
       DataSetObj[FuncName](DataSetObj, key, value)
-      DebugPrint("Tianyi@ \230\129\162\229\164\141\228\186\134\232\147\157\229\155\190\230\149\176\230\141\174: ", key, value)
+      DebugPrint("Tianyi@ 恢复了蓝图数据: ", key, value)
     end
   end
   Battle(self):TriggerBattleEvent(BattleEventName.RougeParamRecover, Player, GWorld.RougeLikeManager)
@@ -523,7 +523,7 @@ function ProgressSnapShotComponent:RougeRecoverProgressData()
             Creator:RealActiveStaticCreator()
           end
         else
-          DebugPrint("\230\137\190\228\184\141\229\136\176\233\157\153\230\128\129\231\130\185,, StaticCreatorId", Data.StaticCreatorId, "PrivateEnable", Data.PrivateEnable, "LevelName", Data.LevelName)
+          DebugPrint("找不到静态点,, StaticCreatorId", Data.StaticCreatorId, "PrivateEnable", Data.PrivateEnable, "LevelName", Data.LevelName)
         end
       end
     end
@@ -535,7 +535,7 @@ function ProgressSnapShotComponent:RougeRecoverProgressData()
   if IsInEvent or IsCurRoomClear then
     for LevelName, SubGameMode in pairs(self.LevelGameMode.SubGameModeInfo) do
       SubGameMode.GameModeFirstActiveEnable = false
-      DebugPrint("ProgressSnapShotComponent: SubGameMode", LevelName, SubGameMode:GetName(), "\229\133\179\233\151\173OnFirstActive")
+      DebugPrint("ProgressSnapShotComponent: SubGameMode", LevelName, SubGameMode:GetName(), "关闭OnFirstActive")
     end
   end
   if (IsInEvent or IsCurRoomClear) and ProgressData.DungeonUIInfoData.TextMap and ProgressData.DungeonUIInfoData.TextMap ~= "" then
@@ -566,16 +566,16 @@ function ProgressSnapShotComponent:RougeRecoverProgressData()
     GWorld.RougeLikeManager:OnPassRoom(RecoveryFlag)
   end
   local CurrentEventId = GWorld.RougeLikeManager.EventId
-  DebugPrint("ProgressSnapShotComponent \229\189\147\229\137\141\228\186\139\228\187\182ID\228\184\186\239\188\154", CurrentEventId)
+  DebugPrint("ProgressSnapShotComponent 当前事件ID为：", CurrentEventId)
   if CurrentEventId > 0 then
     local GameModeEvent = DataMgr.RougeLikeEventSelect[CurrentEventId].GameModeEvent
     if GameModeEvent then
-      DebugPrint("ProgressSnapShotComponent: \230\129\162\229\164\141\232\167\166\229\143\145\228\186\139\228\187\182\229\133\179\228\186\139\228\187\182", GameModeEvent)
+      DebugPrint("ProgressSnapShotComponent: 恢复触发事件关事件", GameModeEvent)
       self:PostCustomEvent(GameModeEvent)
     end
   end
   if ProgressData.PassRoomExtraInfo.IsRougeFinished and 0 ~= GWorld.RougeLikeManager.StoryId then
-    DebugPrint("ProgressSnapShotComponent: \230\129\162\229\164\141\232\167\166\229\143\145\233\128\154\229\133\179Story", GWorld.RougeLikeManager.StoryId, "\230\152\175\229\144\166\233\128\154\229\133\179:", ProgressData.PassRoomExtraInfo.IsWin)
+    DebugPrint("ProgressSnapShotComponent: 恢复触发通关Story", GWorld.RougeLikeManager.StoryId, "是否通关:", ProgressData.PassRoomExtraInfo.IsWin)
     self:ShowFinishRougeStory(ProgressData.PassRoomExtraInfo.IsWin)
   end
 end

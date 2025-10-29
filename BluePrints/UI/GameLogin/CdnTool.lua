@@ -141,38 +141,38 @@ end
 function CdnTool:GetCdnHideData(HostId)
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    GWorld.logger.error("\230\137\167\232\161\140GetCdnHideData\229\135\186\233\148\153\239\188\140Avatar\228\184\141\229\173\152\229\156\168!!!")
+    GWorld.logger.error("执行GetCdnHideData出错，Avatar不存在!!!")
     return
   end
   local HideDataPath = CdnPath:GetHideUICtrl(HostId)
-  print("[CdnTool] \229\188\128\229\167\139\230\137\167\232\161\140GetCdnHideData, Url:", HideDataPath)
+  print("[CdnTool] 开始执行GetCdnHideData, Url:", HideDataPath)
   Private.CdnGetJson(CdnPath:CdnUrl(HostId), HideDataPath, function(Infos)
     try({
       exec = function()
         if not Infos then
-          print("\230\137\167\232\161\140GetCdnHideData\229\135\186\233\148\153\239\188\140\230\178\161\229\143\150\229\136\176CdnData,CdnPath:" .. tostring(CdnPath:CdnUrl(HostId)) .. HideDataPath)
+          print("执行GetCdnHideData出错，没取到CdnData,CdnPath:" .. tostring(CdnPath:CdnUrl(HostId)) .. HideDataPath)
           return
         end
         local Avatar = GWorld:GetAvatar()
         if not Avatar then
-          GWorld.logger.error("\230\137\167\232\161\140GetCdnHideData\229\135\186\233\148\153\239\188\140json\232\167\163\230\158\144\229\164\177\232\180\165!!!")
+          GWorld.logger.error("执行GetCdnHideData出错，json解析失败!!!")
           return
         end
         local ChanelProvider = GWorld.ServerListMgr:GetChanelProvider()
         if not ChanelProvider then
-          print("\230\137\167\232\161\140GetCdnHideData\229\135\186\233\148\153\239\188\140ChannelProvider\228\184\186\231\169\186,CdnPath:" .. tostring(CdnPath:CdnUrl(HostId)) .. HideDataPath)
+          print("执行GetCdnHideData出错，ChannelProvider为空,CdnPath:" .. tostring(CdnPath:CdnUrl(HostId)) .. HideDataPath)
           return
         end
         if not Infos[ChanelProvider] then
-          print("\230\137\167\232\161\140GetCdnHideData\229\135\186\233\148\153\239\188\140\230\148\182\229\136\176\231\154\132\230\149\176\230\141\174\228\184\173\230\178\161\230\156\137\229\175\185\229\186\148\230\184\160\233\129\147\231\154\132\230\149\176\230\141\174,CdnPath:" .. tostring(CdnPath:CdnUrl(HostId)) .. HideDataPath, "\229\189\147\229\137\141\230\184\160\233\129\147:" .. ChanelProvider)
+          print("执行GetCdnHideData出错，收到的数据中没有对应渠道的数据,CdnPath:" .. tostring(CdnPath:CdnUrl(HostId)) .. HideDataPath, "当前渠道:" .. ChanelProvider)
           return
         end
         Avatar.CdnHideData = Infos[ChanelProvider]
         PrintTable(Avatar.CdnHideData, 10, "CdnHideData")
-        print("[CdnTool] \230\137\167\232\161\140GetCdnHideData\230\136\144\229\138\159, Url:", HideDataPath, ",\229\143\175\228\187\165\233\128\154\232\191\135gm PrintTable(A.CdnHideData)\230\159\165\231\156\139\232\175\166\231\187\134\230\149\176\230\141\174\227\128\130")
+        print("[CdnTool] 执行GetCdnHideData成功, Url:", HideDataPath, ",可以通过gm PrintTable(A.CdnHideData)查看详细数据。")
       end,
       catch = function(e)
-        GWorld.logger.error("\230\137\167\232\161\140GetCdnHideData\229\135\186\233\148\153\239\188\140\230\156\170\231\159\165\233\148\153\232\175\175\n" .. tostring(e))
+        GWorld.logger.error("执行GetCdnHideData出错，未知错误\n" .. tostring(e))
       end,
       final = function()
       end

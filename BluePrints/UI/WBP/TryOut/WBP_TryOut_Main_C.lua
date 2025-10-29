@@ -58,16 +58,16 @@ function M:InitItems()
           local SkinId = DataMgr.CharCostumeTemplate[CharCostumeId].SkinId
           BigIcon = DataMgr.Skin[SkinId].BigIcon
         else
-          DebugPrint("ljh@\232\175\149\231\142\169Icon\232\175\187\229\143\150\229\164\177\232\180\165\239\188\140CharCostumeId\228\184\186\231\169\186,CharTrialId\228\184\186:" .. tostring(GameMode.PreInitInfo.CharTrialId))
+          DebugPrint("ljh@试玩Icon读取失败，CharCostumeId为空,CharTrialId为:" .. tostring(GameMode.PreInitInfo.CharTrialId))
         end
       else
-        DebugPrint("ljh@\232\175\149\231\142\169Icon\232\175\187\229\143\150\229\164\177\232\180\165\239\188\140CharTemplateId\228\184\186\231\169\186,CharTrialId\228\184\186:" .. tostring(GameMode.PreInitInfo.CharTrialId))
+        DebugPrint("ljh@试玩Icon读取失败，CharTemplateId为空,CharTrialId为:" .. tostring(GameMode.PreInitInfo.CharTrialId))
       end
     else
-      DebugPrint("ljh@\232\175\149\231\142\169Icon\232\175\187\229\143\150\229\164\177\232\180\165\239\188\140QuestRoleId\228\184\186\231\169\186,CharTrialId\228\184\186:" .. tostring(GameMode.PreInitInfo.CharTrialId))
+      DebugPrint("ljh@试玩Icon读取失败，QuestRoleId为空,CharTrialId为:" .. tostring(GameMode.PreInitInfo.CharTrialId))
     end
   else
-    DebugPrint("ljh@\232\175\149\231\142\169Icon\232\175\187\229\143\150\229\164\177\232\180\165\239\188\140CharTrialId\228\184\186\231\169\186")
+    DebugPrint("ljh@试玩Icon读取失败，CharTrialId为空")
   end
   local AttrName = Char.Attribute
   self.Text_Name:SetText(GText(Char.CharName))
@@ -89,7 +89,7 @@ function M:InitItems()
       end
     end
   else
-    DebugPrint("ljh@\232\175\149\231\142\169Icon\232\175\187\229\143\150\229\164\177\232\180\165IconPath\228\184\186\231\169\186")
+    DebugPrint("ljh@试玩Icon读取失败IconPath为空")
   end
   self.Image_Element:SetBrushResourceObject(AttributeIcon or LoadObject("/Game/UI/Texture/Dynamic/Atlas/Armory/T_Armory_Default.T_Armory_Default"))
   self.List_Item:ClearListItems()
@@ -163,7 +163,7 @@ function M:UpdateUIVisibility(IsUseKeyAndMouse)
       KeyInfoList = {
         {Type = "Img", ImgShortPath = "RS"}
       },
-      Desc = GText("\230\187\145\229\138\168\229\136\151\232\161\168")
+      Desc = GText("滑动列表")
     })
     self.Gamepad_Shortcut02:CreateCommonKey({
       KeyInfoList = {

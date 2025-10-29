@@ -22,7 +22,7 @@ end
 
 function M:InitRechargeInfo(RechargeInfo)
   for i = 1, 6 do
-    assert(RechargeInfo[i], "\229\149\134\229\159\142\229\133\133\229\128\188\233\161\181\233\157\162\229\149\134\229\147\129\230\149\176\231\155\174\233\148\153\232\175\175\239\188\140\230\156\170\230\137\190\229\136\176\231\172\172" .. i .. "\228\184\170\229\149\134\229\147\129")
+    assert(RechargeInfo[i], "商城充值页面商品数目错误，未找到第" .. i .. "个商品")
     local Widget = self["Recharge_Item_" .. i]
     local PriceType = ShopUtils:GetCurrencyPrice()
     local Price = DataMgr.PayGoods[DataMgr.ShopItem2PayGoods[RechargeInfo[i].ItemId]][PriceType]

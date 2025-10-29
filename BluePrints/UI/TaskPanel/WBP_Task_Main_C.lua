@@ -360,8 +360,8 @@ function WBP_Task_Main:GetQuestData(TabId)
           table.insert(Result[QuestChainType], Data)
         end
       else
-        local Message = string.format("\228\187\187\229\138\161\233\157\162\230\157\191\228\184\141\230\152\190\231\164\186\228\187\187\229\138\161\239\188\154 %s", QuestChainId)
-        UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\180\166\229\143\183\229\183\178\230\156\137\228\187\187\229\138\161\230\156\141\229\138\161\229\153\168\230\149\176\230\141\174\239\188\140\228\189\134\228\187\187\229\138\161\232\161\168\229\134\133\230\149\176\230\141\174\229\183\178\228\184\141\229\173\152\229\156\168", Message)
+        local Message = string.format("任务面板不显示任务： %s", QuestChainId)
+        UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "账号已有任务服务器数据，但任务表内数据已不存在", Message)
       end
     end
   else
@@ -374,8 +374,8 @@ function WBP_Task_Main:GetQuestData(TabId)
           table.insert(Result[QuestChainType], Data)
         end
       else
-        local Message = string.format("\228\187\187\229\138\161\233\157\162\230\157\191\228\184\141\230\152\190\231\164\186\228\187\187\229\138\161: %s", QuestChainId)
-        UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\180\166\229\143\183\229\183\178\230\156\137\228\187\187\229\138\161\230\156\141\229\138\161\229\153\168\230\149\176\230\141\174\239\188\140\228\189\134\228\187\187\229\138\161\232\161\168\229\134\133\230\149\176\230\141\174\229\183\178\228\184\141\229\173\152\229\156\168", Message)
+        local Message = string.format("任务面板不显示任务: %s", QuestChainId)
+        UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "账号已有任务服务器数据，但任务表内数据已不存在", Message)
       end
     end
   end
@@ -1150,7 +1150,7 @@ function WBP_Task_Main:ConditionJumpQuestChain(QuestChainId)
     end
   end
   if not IsExisted and not IsExistedInMap then
-    DebugPrint("ERROR::", "\228\187\187\229\138\161:" .. QuestChainId .. "\229\156\168\228\187\187\229\138\161\233\157\162\230\157\191\229\146\140\229\156\176\229\155\190\228\184\173\233\131\189\228\184\141\229\173\152\229\156\168")
+    DebugPrint("ERROR::", "任务:" .. QuestChainId .. "在任务面板和地图中都不存在")
   elseif IsExisted then
     local function AfterDisplayQuestWidget()
       local AllDisplayWidget = self.RootWidget.List_Task:GetDisplayedEntryWidgets():ToTable() or {}

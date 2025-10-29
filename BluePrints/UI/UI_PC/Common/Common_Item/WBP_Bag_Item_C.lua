@@ -61,7 +61,7 @@ function M:InitCompView()
   if self.ItemType == CommonConst.DataType.Resource and ItemConf and ItemConf.ResourceSType == "TreasureMap" then
     local Conf = DataMgr.Explore_Treasure[self.Content.StuffId]
     if not Conf then
-      DebugPrint(ErrorTag, "\232\151\143\229\174\157\229\155\190\233\129\147\229\133\183\230\178\161\230\156\137\228\184\142\230\142\162\231\180\162\231\187\132\229\133\179\232\129\148\239\188\129\239\188\129\239\188\129 \233\129\147\229\133\183ID: ", self.Content.StuffId)
+      DebugPrint(ErrorTag, "藏宝图道具没有与探索组关联！！！ 道具ID: ", self.Content.StuffId)
     else
       self.RarelyId = Conf.ExploreGroupId
       local Explore = GWorld:GetAvatar().Explores[self.RarelyId]
@@ -298,7 +298,7 @@ end
 
 function M:SetTreasureMapDigable(bShow, bDigable)
   if not self.Item then
-    DebugPrint(ErrorTag, "SetTreasureMapDigable::\230\178\161\230\156\137Item\230\142\167\228\187\182\228\184\141\231\172\166\229\144\136\233\128\154\231\148\168\233\129\147\229\133\183\230\161\134\231\187\147\230\158\132")
+    DebugPrint(ErrorTag, "SetTreasureMapDigable::没有Item控件不符合通用道具框结构")
     return
   end
   if bShow then
@@ -462,7 +462,7 @@ function M:UpdateModItem()
   end
   local ModDataInfo = DataMgr.Mod[ModId]
   if not ModDataInfo then
-    DebugPrint("\232\175\165ModId\232\162\171\231\173\150\229\136\146\229\136\160\228\186\134...", ModId)
+    DebugPrint("该ModId被策划删了...", ModId)
     return
   end
   local ModCost, Mod

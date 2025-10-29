@@ -60,7 +60,7 @@ function M:InitUIInfo(Name, IsInUIMode, EventList, ...)
   if Param[5] then
     self.HideResourceBar = Param[5]
   end
-  DebugPrint(self.RoomId, "\230\136\191\233\151\180ID")
+  DebugPrint(self.RoomId, "房间ID")
   self:SetFocus()
   self:InitListenEvent()
   if self.StoryId then
@@ -68,7 +68,7 @@ function M:InitUIInfo(Name, IsInUIMode, EventList, ...)
   else
     self.StoryPath = DataMgr.RougeLikeRoom[self.RoomId].EventStoryline
   end
-  DebugPrint("\232\175\187\229\143\150\231\154\132StoryPath", self.StoryPath)
+  DebugPrint("读取的StoryPath", self.StoryPath)
   self:InitBagBtn()
   self:InitSkipBtn()
   self:InitResourceBar()
@@ -449,7 +449,7 @@ function M:OnRougeDisplayDialogue(DialogueData)
     TalkActorName = self:GetDialogueSpeakerName(DialogueData)
   end
   local CurrentTalkType = DataMgr.Dialogue[DialogueId].RougeTalkActorType
-  DebugPrint("\229\155\158\232\176\131OnRougeDisplayDialogue", "\232\175\180\232\175\157\232\128\133\228\191\161\230\129\175\239\188\154", TalkActorName, TalkActorId, CurrentTalkType, "\232\175\180\232\175\157\229\134\133\229\174\185:", DialogueData.Content)
+  DebugPrint("回调OnRougeDisplayDialogue", "说话者信息：", TalkActorName, TalkActorId, CurrentTalkType, "说话内容:", DialogueData.Content)
   local RougeDialogueMainIcon = DataMgr.Dialogue[DialogueId].RougeDialogueMainIcon
   if RougeDialogueMainIcon then
     self.RougeDialogueMainIcon = RougeDialogueMainIcon
@@ -579,7 +579,7 @@ function M:OnIteratorDialogue()
   if self.LastChatItem then
     self.LastChatItem:SetRenderOpacity(0.5)
   end
-  DebugPrint("Iterator\232\162\171\231\130\185\229\135\187")
+  DebugPrint("Iterator被点击")
   EventManager:FireEvent(EventID.OnRougeIteratorDialogue)
 end
 
@@ -691,10 +691,10 @@ function M:ReplayThisEvent()
 end
 
 function M:ChooseItem(SelectIndex, IsKeyOption, DialogueId, Content)
-  DebugPrint("\230\137\128\233\128\137\229\186\143\229\143\183:", SelectIndex)
-  assert(GWorld:GetAvatar(), "\230\151\160\230\179\149\229\143\150\229\190\151Avatar")
+  DebugPrint("所选序号:", SelectIndex)
+  assert(GWorld:GetAvatar(), "无法取得Avatar")
   local GameMode = UE4.UGameplayStatics.GetGameMode(GWorld.GameInstance)
-  assert(GameMode, "GameMode\228\184\141\229\173\152\229\156\168")
+  assert(GameMode, "GameMode不存在")
   self.CanInteractChoices = false
   local CurrentTalkType = DataMgr.Dialogue[DialogueId].RougeTalkActorType
   local TalkActorId = DataMgr.Dialogue[DialogueId].SpeakNpcId
@@ -731,7 +731,7 @@ function M:ChooseItem(SelectIndex, IsKeyOption, DialogueId, Content)
       self.CanInteractChoices = true
       self.IsDelayDialogue = true
       local CurrentEventId = GWorld.RougeLikeManager.EventId
-      DebugPrint("\229\189\147\229\137\141\228\186\139\228\187\182ID\228\184\186\239\188\154", CurrentEventId)
+      DebugPrint("当前事件ID为：", CurrentEventId)
       if CurrentEventId > 0 then
         local GameModeEvent = DataMgr.RougeLikeEventSelect[CurrentEventId].GameModeEvent
         if GameModeEvent then
@@ -783,7 +783,7 @@ function M:CloseExcept(OptionIndex)
 end
 
 function M:OnUpdateUIStyleByInputTypeChange(CurInputType, CurGamepadName)
-  DebugPrint("@zyh \230\137\167\232\161\140OnUpdateUIStyleByInputTypeChange")
+  DebugPrint("@zyh 执行OnUpdateUIStyleByInputTypeChange")
   self.Super.OnUpdateUIStyleByInputTypeChange(self, CurInputType, CurGamepadName)
   self:UpdateBottomKeyInfo()
   if CurInputType == ECommonInputType.Gamepad then
@@ -820,7 +820,7 @@ function M:Close()
   self:StopAnimation(self.Loop)
   self.Event:StopAnimation(self.Event.Loop)
   if self.IsStoryEvent then
-    DebugPrint("@zyh \230\152\175\229\137\167\230\131\133\228\186\139\228\187\182 \229\143\145\233\128\129\228\186\139\228\187\182OnRougeLikeStoryEventEnd")
+    DebugPrint("@zyh 是剧情事件 发送事件OnRougeLikeStoryEventEnd")
     EventManager:FireEvent(EventID.OnRougeLikeStoryEventEnd)
   end
   if self.ArchiveInfo then
@@ -841,7 +841,7 @@ function M:GetDialogueSpeakerName(DialogueData)
     Name = DialogueData.TalkActorName
   else
     local TalkActorData = DialogueData.TalkActorData
-    DebugPrint("@zyh\231\177\187\229\158\139", DialogueData.TalkActorId)
+    DebugPrint("@zyh类型", DialogueData.TalkActorId)
     if not TalkActorData then
       Name = TalkUtils:GetTalkActorName("Npc", DialogueData.TalkActorId)
     else

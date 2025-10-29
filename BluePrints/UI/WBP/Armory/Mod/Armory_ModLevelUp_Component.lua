@@ -92,7 +92,7 @@ function Component:UpdateResourceUI(bEmpty)
     for ResourceId, ResCount in pairs(ResourceUse) do
       if Count >= MaxCount then
         self.LevelUpWidget:ForbidIncBtn(true)
-        DebugPrint(ErrorTag, LXYTag, "\230\137\128\233\156\128\229\141\135\231\186\167\233\129\147\229\133\183\231\154\132\231\167\141\231\177\187\229\183\178\231\187\143\232\182\133\232\191\135\228\184\138\233\153\144\228\186\134\239\188\129\239\188\129\239\188\129")
+        DebugPrint(ErrorTag, LXYTag, "所需升级道具的种类已经超过上限了！！！")
         break
       end
       Count = Count + 1

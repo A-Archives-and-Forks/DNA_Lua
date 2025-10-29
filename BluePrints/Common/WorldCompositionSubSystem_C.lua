@@ -72,15 +72,15 @@ function M:ShowRegionError_Lua(Text)
   local Space = "=========================================================\n"
   local ct = {
     Space,
-    "\230\138\165\233\148\153\230\150\135\230\156\172:\n\r",
+    "报错文本:\n\r",
     tostring(Text),
     "\n"
   }
   local FinalMsg = table.concat(ct)
   if UE4.URuntimeCommonFunctionLibrary.IsPlayInEditor(self) then
-    ScreenPrint("\229\140\186\229\159\159\230\138\165\233\148\153:\n" .. FinalMsg)
+    ScreenPrint("区域报错:\n" .. FinalMsg)
   end
-  Avatar:SendToFeiShuForRegionMgr(FinalMsg, "\229\140\186\229\159\159\230\138\165\233\148\153 | " .. Avatar.CurrentRegionId)
+  Avatar:SendToFeiShuForRegionMgr(FinalMsg, "区域报错 | " .. Avatar.CurrentRegionId)
 end
 
 function M:OnWaitForDataIdle_Lua()

@@ -190,7 +190,7 @@ function M:UpdateButtonInTimer()
 end
 
 function M:UpdateRangeWeaponButton()
-  DebugPrint("\229\176\132\229\135\187\233\148\174\229\189\147\229\137\141\231\138\182\230\128\129", self.CurButtonState)
+  DebugPrint("射击键当前状态", self.CurButtonState)
   if not self.RangedWeapon then
     return
   end

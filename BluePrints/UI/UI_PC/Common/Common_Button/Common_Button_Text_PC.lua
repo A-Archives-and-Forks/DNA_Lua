@@ -148,7 +148,7 @@ function Common_Button_Text_PC:SetReddot(IsNew, Upgradeable, OhterReddot)
 end
 
 function Common_Button_Text_PC:SwitchNormalAnimation()
-  DebugPrint(LXYTag, "\232\166\134\231\155\150\230\142\137\232\147\157\229\155\190\231\154\132SwitchNormalAnimation")
+  DebugPrint(LXYTag, "覆盖掉蓝图的SwitchNormalAnimation")
   self:StopAllAnimations()
   self:PlayAnimation(self.Normal)
 end

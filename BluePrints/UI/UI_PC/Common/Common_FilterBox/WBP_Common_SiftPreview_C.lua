@@ -28,11 +28,11 @@ function M:Init(Owner, ItemUI, SelectedItems, ItemDatas)
           table.insert(processedItems, GText(text))
         end
       end
-      local groupText = table.concat(processedItems, GText("\227\128\129"))
+      local groupText = table.concat(processedItems, GText("、"))
       table.insert(previewTexts, groupText)
     end
   end
-  local previewText = table.concat(previewTexts, GText("\227\128\129"))
+  local previewText = table.concat(previewTexts, GText("、"))
   self.Text_Preview:SetText(GText(previewText))
   self.FocusKeyName = "RH"
   self:SetGamepadKey(self.FocusKeyName)

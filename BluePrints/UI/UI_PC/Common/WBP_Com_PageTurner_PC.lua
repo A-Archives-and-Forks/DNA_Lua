@@ -19,14 +19,14 @@ function WBP_Com_PageTurner_PC:SwtichPagePointAnimation(CurrentPageIndex)
   self.CurrentPageIndex = CurrentPageIndex
   local PagePoint = self.Root:GetChildAt(self.PrePageIndex - 1)
   if not PagePoint then
-    Utils.ScreenPrintScreenPirnt("\231\191\187\233\161\181\229\153\168\231\180\162\229\188\149\232\142\183\229\143\150PagePoint\229\188\130\229\184\184\239\188\140\229\187\186\232\174\174\230\163\128\230\159\165\228\184\139\230\150\185\230\179\149InitPageTurner\228\188\160\229\133\165\231\154\132\229\143\130\230\149\176GuideMessageNum\239\188\140\230\136\150\232\128\133\230\163\128\230\159\165\228\184\139\232\176\131\231\148\168\231\187\132\228\187\182\230\152\190\231\164\186\228\191\161\230\129\175\231\154\132Excel\233\133\141\231\189\174\232\161\168")
+    Utils.ScreenPrintScreenPirnt("翻页器索引获取PagePoint异常，建议检查下方法InitPageTurner传入的参数GuideMessageNum，或者检查下调用组件显示信息的Excel配置表")
     return
   end
   PagePoint:StopAllAnimations()
   PagePoint:PlayAnimation(PagePoint.Normal)
   PagePoint = self.Root:GetChildAt(self.CurrentPageIndex - 1)
   if not PagePoint then
-    Utils.ScreenPrintScreenPirnt("\231\191\187\233\161\181\229\153\168\231\180\162\229\188\149\232\142\183\229\143\150PagePoint\229\188\130\229\184\184\239\188\140\229\187\186\232\174\174\230\163\128\230\159\165\228\184\139\230\150\185\230\179\149InitPageTurner\228\188\160\229\133\165\231\154\132\229\143\130\230\149\176GuideMessageNum\239\188\140\230\136\150\232\128\133\230\163\128\230\159\165\228\184\139\232\176\131\231\148\168\231\187\132\228\187\182\230\152\190\231\164\186\228\191\161\230\129\175\231\154\132Excel\233\133\141\231\189\174\232\161\168")
+    Utils.ScreenPrintScreenPirnt("翻页器索引获取PagePoint异常，建议检查下方法InitPageTurner传入的参数GuideMessageNum，或者检查下调用组件显示信息的Excel配置表")
     return
   end
   PagePoint:StopAllAnimations()
@@ -121,7 +121,7 @@ function WBP_Com_PageTurner_PC:InitPagePoint()
   for i = 1, self.EndPageIndex do
     local NowPoint = UIManager(self):_CreateWidgetNew("PagePoint")
     if not NowPoint then
-      Utils.ScreenPrintScreenPirnt("\231\191\187\233\161\181\231\130\185\229\136\155\229\187\186\229\188\130\229\184\184\239\188\140\232\175\183\230\163\128\230\159\165WidgetUI\233\133\141\231\189\174\232\161\168\228\184\173\231\154\132PagePoint\231\154\132\233\133\141\231\189\174\228\191\161\230\129\175\230\152\175\229\144\166\230\173\163\231\161\174")
+      Utils.ScreenPrintScreenPirnt("翻页点创建异常，请检查WidgetUI配置表中的PagePoint的配置信息是否正确")
       return
     end
     NowPoint.Button_Area.OnClicked:Add(self, function()
@@ -141,7 +141,7 @@ function WBP_Com_PageTurner_PC:InitPagePoint()
   end
   local CurPoint = self.Root:GetChildAt(self.CurrentPageIndex - 1)
   if not CurPoint then
-    Utils.ScreenPrint("\231\191\187\233\161\181\229\153\168\231\180\162\229\188\149\232\142\183\229\143\150PagePoint\229\188\130\229\184\184\239\188\140\229\187\186\232\174\174\230\163\128\230\159\165\228\184\139\230\150\185\230\179\149InitPageTurner\228\188\160\229\133\165\231\154\132\229\143\130\230\149\176GuideMessageNum\239\188\140\230\136\150\232\128\133\230\163\128\230\159\165\228\184\139\232\176\131\231\148\168\231\187\132\228\187\182\230\152\190\231\164\186\228\191\161\230\129\175\231\154\132Excel\233\133\141\231\189\174\232\161\168")
+    Utils.ScreenPrint("翻页器索引获取PagePoint异常，建议检查下方法InitPageTurner传入的参数GuideMessageNum，或者检查下调用组件显示信息的Excel配置表")
     return
   end
   self:AddDelayFrameFunc(function()

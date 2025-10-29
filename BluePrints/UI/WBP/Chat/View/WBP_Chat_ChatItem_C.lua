@@ -183,18 +183,18 @@ function M:_ParseEmoji(MsgWrap)
       local EmojiWidth = EmojiHeight
       local Deco = self.TextDialog.InstanceDecorators:GetRef(1)
       if not IsValid(Deco) then
-        Utils.Traceback(ErrorTag, "\230\137\190\232\147\157\229\155\190\231\156\139\231\156\139\239\188\140\232\129\138\229\164\169\230\176\148\230\179\161\230\150\135\230\156\172\230\161\134\231\154\132\229\175\140\230\150\135\230\156\172\232\163\133\233\165\176\229\153\168\228\184\162\229\164\177")
+        Utils.Traceback(ErrorTag, "找蓝图看看，聊天气泡文本框的富文本装饰器丢失")
         return
       end
       local TableRow = FRichImageRow()
       local Res = UDataTableFunctionLibrary.GetDataTableRowFromName(Deco.ImageSet, EmojiInfo.Id, TableRow)
       if not Res then
-        Utils.Traceback(ErrorTag, "\230\137\190\231\173\150\229\136\146\231\156\139\231\156\139\239\188\140\232\161\168\230\131\133\229\140\133\229\175\140\230\150\135\230\156\172\231\154\132DataTable\230\137\190\228\184\141\229\136\176\232\191\153\228\184\170Key :" .. EmojiInfo.Id)
+        Utils.Traceback(ErrorTag, "找策划看看，表情包富文本的DataTable找不到这个Key :" .. EmojiInfo.Id)
         return
       end
       local Img = TableRow.Brush.ResourceObject
       if not IsValid(Img) then
-        Utils.Traceback(ErrorTag, "\230\137\190\231\173\150\229\136\146\231\156\139\231\156\139\239\188\140\232\161\168\230\131\133\229\140\133\229\175\140\230\150\135\230\156\172\231\154\132DataTable\230\178\161\230\156\137\233\133\141\231\189\174\232\161\168\230\131\133\232\180\180\229\155\190\239\188\140Key :" .. EmojiInfo.Id)
+        Utils.Traceback(ErrorTag, "找策划看看，表情包富文本的DataTable没有配置表情贴图，Key :" .. EmojiInfo.Id)
         return
       end
       local Scale = Img:Blueprint_GetSizeX() / Img:Blueprint_GetSizeY()

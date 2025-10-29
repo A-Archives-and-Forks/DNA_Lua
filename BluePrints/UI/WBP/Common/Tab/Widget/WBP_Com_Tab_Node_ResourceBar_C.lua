@@ -130,7 +130,7 @@ function M:SetResourceBarVisibility(ResourceId, bIsVisible)
   if self.ResourceBarWidget[ResourceId] then
     self.ResourceBarWidget[ResourceId]:SetAddVisibilty(bIsVisible)
   else
-    ScreenPrint("\230\151\160\230\149\136\232\181\132\230\186\144Id:" .. ResourceId or "nil")
+    ScreenPrint("无效资源Id:" .. ResourceId or "nil")
   end
 end
 
@@ -139,7 +139,7 @@ function M:SetResourceBarVisibilityByIndex(Index, bIsVisible)
   if IsValid(widget) then
     widget:SetAddVisibilty(bIsVisible)
   else
-    ScreenPrint("\230\151\160\230\149\136\232\181\132\230\186\144\231\180\162\229\188\149:" .. Index or nil .. "\231\180\162\229\188\149\228\187\142\229\183\166\229\136\176\229\143\1791\229\188\128\229\167\139\239\188\140\229\166\130\230\158\156\230\156\137\233\154\144\232\151\143\231\154\132tab\228\185\159\231\174\151\228\184\138")
+    ScreenPrint("无效资源索引:" .. Index or nil .. "索引从左到右1开始，如果有隐藏的tab也算上")
   end
 end
 

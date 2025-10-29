@@ -153,7 +153,7 @@ function RegionDataMgrSubsystem_C:GetUnitRegionCacheDataByActor(TargetActor)
   local TypeRegionDatas = self.DataLibrary:GetRegionCacheDatasByIdType(RegionDataType)
   local UnitRegionData = self.DataLibrary:GetUnitRegionCacheData(TypeRegionDatas, TargetActor.SubRegionId, TargetActor.LevelName, TargetActor.WorldRegionEid)
   if not UnitRegionData then
-    GWorld.logger.error("\229\156\168RegionDatas[Type:" .. tostring(RegionDataType) .. "]\228\184\173\230\137\190\228\184\141\229\136\176" .. tostring(UE4.UKismetSystemLibrary.GetDisplayName(TargetActor)) .. "\231\154\132\230\149\176\230\141\174")
+    GWorld.logger.error("在RegionDatas[Type:" .. tostring(RegionDataType) .. "]中找不到" .. tostring(UE4.UKismetSystemLibrary.GetDisplayName(TargetActor)) .. "的数据")
   end
   return UnitRegionData
 end
@@ -199,7 +199,7 @@ function RegionDataMgrSubsystem_C:PostActorCreated(Actor)
   local WCSubsystem = GameMode:GetWCSubSystem()
   local SSDatasExist = self.DataLibrary:RemoveRegionSSDatas(GameMode:GetActorLevelName(Actor), Actor.WorldRegionEid)
   if not SSDatasExist and not Actor.BpBorn and (not Actor.UnitType or not Actor.UnitType == "Drop") then
-    GWorld.logger.error("ERROR @fanyuxiao \231\148\159\230\136\144\228\186\134\228\184\128\228\184\170SSData\233\135\140\233\157\162\230\178\161\230\156\137\231\154\132Actor" .. Actor:GetName() .. "_" .. Actor.UnitId .. "_" .. Actor.WorldRegionEid)
+    GWorld.logger.error("ERROR @fanyuxiao 生成了一个SSData里面没有的Actor" .. Actor:GetName() .. "_" .. Actor.UnitId .. "_" .. Actor.WorldRegionEid)
     self.DataLibrary:RemoveRegionSSDatas(GameMode:GetActorLevelName(Actor), Actor.WorldRegionEid)
   end
 end
@@ -316,7 +316,7 @@ function RegionDataMgrSubsystem_C:ResetRarelyStaticCreator(StaticCreatorId, Priv
   end
   local WorldRegionEids = {}
   if not self:IsCretorIdControlByCacheNew(StaticCreatorId) then
-    GWorld.logger.error("\233\135\141\229\136\183\233\157\153\230\128\129\231\130\185\233\148\153\232\175\175\239\188\140\233\157\153\230\128\129\231\130\185\230\156\170\230\191\128\230\180\187! StaticCreatorId:" .. StaticCreatorId)
+    GWorld.logger.error("重刷静态点错误，静态点未激活! StaticCreatorId:" .. StaticCreatorId)
     return
   end
   WorldRegionEids = self:GetControlWorldRegionEidByCreatorId(StaticCreatorId):ToTable()
@@ -326,11 +326,11 @@ function RegionDataMgrSubsystem_C:ResetRarelyStaticCreator(StaticCreatorId, Priv
       self.DataLibrary:RemoveRegionSSDatas(CacheData.LevelName, WorldRegionEid)
       self.DataLibrary:RemoveUnitRegionCacheData(WorldRegionEid)
     elseif not CacheData then
-      GWorld.logger.error("\233\135\141\229\136\183\233\157\153\230\128\129\231\130\185\233\148\153\232\175\175\239\188\140\233\157\153\230\128\129\231\130\185\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168 StaticCreatorId:" .. StaticCreatorId .. " WorldRegionEid:" .. WorldRegionEid)
+      GWorld.logger.error("重刷静态点错误，静态点数据不存在 StaticCreatorId:" .. StaticCreatorId .. " WorldRegionEid:" .. WorldRegionEid)
     elseif not CacheData.RarelyId or CacheData.RarelyId <= 0 then
-      GWorld.logger.error("\233\135\141\229\136\183\233\157\153\230\128\129\231\130\185\233\148\153\232\175\175\239\188\140\233\157\153\230\128\129\231\130\185\230\149\176\230\141\174RarelyId\233\148\153\232\175\175 StaticCreatorId:" .. StaticCreatorId, " WorldRegionEid:" .. WorldRegionEid)
+      GWorld.logger.error("重刷静态点错误，静态点数据RarelyId错误 StaticCreatorId:" .. StaticCreatorId, " WorldRegionEid:" .. WorldRegionEid)
     elseif CacheData.RegionDataType ~= ERegionDataType.RDT_RarelyData then
-      GWorld.logger.error("\233\135\141\229\136\183\233\157\153\230\128\129\231\130\185\233\148\153\232\175\175\239\188\140\233\157\153\230\128\129\231\130\185\230\149\176\230\141\174RegionDataType\233\148\153\232\175\175 StaticCreatorId:" .. StaticCreatorId, " WorldRegionEid:" .. WorldRegionEid, " RegionDataType:" .. CacheData.RegionDataType)
+      GWorld.logger.error("重刷静态点错误，静态点数据RegionDataType错误 StaticCreatorId:" .. StaticCreatorId, " WorldRegionEid:" .. WorldRegionEid, " RegionDataType:" .. CacheData.RegionDataType)
     end
   end
   self:RemoveCretorIdContollerByCacheNew(StaticCreatorId)
@@ -398,10 +398,10 @@ end
 
 function RegionDataMgrSubsystem_C:AddCretorActiveCache(UnitData)
   if UnitData.CreatorId and (not UnitData.RandomCreatorId or 0 == UnitData.RandomCreatorId) then
-    DebugPrint("RegionDataMgr: AddCretorActiveCache \230\150\176\231\154\132\230\142\165\229\143\163\230\129\162\229\164\141\233\157\153\230\128\129\231\130\185controlcache ", UnitData.CreatorId, UnitData.RandomCreatorId)
+    DebugPrint("RegionDataMgr: AddCretorActiveCache 新的接口恢复静态点controlcache ", UnitData.CreatorId, UnitData.RandomCreatorId)
     self:AddStaticCreatorId(UnitData.CreatorId, UnitData.WorldRegionEid, UnitData.SubRegionId)
   elseif UnitData.RandomCreatorId and 0 ~= UnitData.RandomCreatorId then
-    DebugPrint("RegionDataMgr: AddCretorActiveCache \230\150\176\231\154\132\230\142\165\229\143\163\230\129\162\229\164\141\233\154\143\230\156\186\231\130\185controlcache ", UnitData.CreatorId, UnitData.RandomCreatorId)
+    DebugPrint("RegionDataMgr: AddCretorActiveCache 新的接口恢复随机点controlcache ", UnitData.CreatorId, UnitData.RandomCreatorId)
     self:AddRandomStaticCreatorId(UnitData.RandomRuleId, UnitData.RandomCreatorId, UnitData.WorldRegionEid, UnitData.SubRegionId)
   end
 end
@@ -527,7 +527,7 @@ function RegionDataMgrSubsystem_C:TryActiveDefaultDeliver()
   end
   if not Res and Data then
     local function callback(Ret)
-      self.logger.debug("\232\167\163\233\148\129\233\187\152\232\174\164\228\188\160\233\128\129\231\130\185", Ret, Data.WorldRegionEid)
+      self.logger.debug("解锁默认传送点", Ret, Data.WorldRegionEid)
     end
     
     Avatar:UpdateRegionDataStateByCreatorId(Data.CreatorId, {OpenState = true, StateId = 901002})
@@ -786,7 +786,7 @@ function RegionDataMgrSubsystem_C:OnWorldCompositionLevelLoaded_Lua(ProxyInfo)
         local TmpSSData = self.DataLibrary:GetLevelRegionSSDatas(LevelName)
         if nil ~= TmpSSData then
           for WorldRegionEid, UnitRegionData in pairs(TmpSSData) do
-            DebugPrint("RegionDataMgr: OnWorldCompositionLevelLoaded_Lua \233\129\141\229\142\134RegionSSDatas", WorldRegionEid, LevelName)
+            DebugPrint("RegionDataMgr: OnWorldCompositionLevelLoaded_Lua 遍历RegionSSDatas", WorldRegionEid, LevelName)
             if not UnitRegionData.bIsCreating and self.DataLibrary:CheckCanCreateWhileSpecialQuest(UnitRegionData) then
               self:WCRecoverActor(UnitRegionData)
             end
@@ -799,7 +799,7 @@ function RegionDataMgrSubsystem_C:OnWorldCompositionLevelLoaded_Lua(ProxyInfo)
 end
 
 function RegionDataMgrSubsystem_C:CommonSpwanRecoverSpawnInfo(RegionBaseData)
-  DebugPrint("RegionDataMgr: WCRecoverActor \230\151\162\233\157\158\233\157\153\230\128\129\231\130\185\229\143\136\233\157\158\233\154\143\230\156\186\231\130\185", RegionBaseData.WorldRegionEid)
+  DebugPrint("RegionDataMgr: WCRecoverActor 既非静态点又非随机点", RegionBaseData.WorldRegionEid)
   local Info = {}
   Info.UnitId = RegionBaseData.UnitId
   Info.UnitType = RegionBaseData.UnitType
@@ -828,7 +828,7 @@ function RegionDataMgrSubsystem_C:RandomCreatorRecoverSpawnInfo(RegionBaseData)
   if not Avatar then
     return
   end
-  DebugPrint("RegionDataMgr: WCRecoverActor \233\154\143\230\156\186\231\130\185\230\129\162\229\164\141 ", RegionBaseData.WorldRegionEid, RegionBaseData.RandomRuleId, RegionBaseData.RandomCreatorId)
+  DebugPrint("RegionDataMgr: WCRecoverActor 随机点恢复 ", RegionBaseData.WorldRegionEid, RegionBaseData.RandomRuleId, RegionBaseData.RandomCreatorId)
   if not RegionBaseData.RandomRuleId then
     DebugPrint("RandomCreatorRecoverSpawnInfo, No RandomRuleId")
     return {}
@@ -866,11 +866,11 @@ function RegionDataMgrSubsystem_C:RandomCreatorRecoverSpawnInfo(RegionBaseData)
 end
 
 function RegionDataMgrSubsystem_C:StaticCreatorRecoverSpawnInfo(RegionBaseData)
-  DebugPrint("RegionDataMgr: WCRecoverActor \233\157\153\230\128\129\231\130\185\230\129\162\229\164\141", RegionBaseData.WorldRegionEid)
+  DebugPrint("RegionDataMgr: WCRecoverActor 静态点恢复", RegionBaseData.WorldRegionEid)
   local GameMode = UE4.UGameplayStatics.GetGameMode(GWorld.GameInstance)
   local Creator = GameMode.EMGameState.StaticCreatorMap:Find(RegionBaseData.CreatorId)
   if not IsValid(Creator) then
-    DebugPrint("RegionDataMgr: Error WCRecoverActor \230\137\190\228\184\141\229\136\176\233\157\153\230\128\129\231\130\185\239\188\129", RegionBaseData.CreatorId, RegionBaseData.RandomCreatorId)
+    DebugPrint("RegionDataMgr: Error WCRecoverActor 找不到静态点！", RegionBaseData.CreatorId, RegionBaseData.RandomCreatorId)
     return {}
   end
   local Info = {}

@@ -70,12 +70,12 @@ end
 function M:InitUnLockWidget()
   local Data = DataMgr.Fish[self.FishId]
   if not Data or not Data.ResourceId then
-    GWorld.logger.error("\233\177\188" .. self.FishId .. "\230\178\161\230\156\137\230\149\176\230\141\174\230\136\150\232\181\132\230\186\144id")
+    GWorld.logger.error("鱼" .. self.FishId .. "没有数据或资源id")
     return
   end
   local ResourceData = DataMgr.Resource[Data.ResourceId]
   if not ResourceData then
-    GWorld.logger.error("\233\177\188\232\181\132\230\186\144" .. Data.ResourceId .. "\230\178\161\230\156\137\232\181\132\230\186\144\230\149\176\230\141\174")
+    GWorld.logger.error("鱼资源" .. Data.ResourceId .. "没有资源数据")
     return
   end
   local IconPath = DataMgr.Fish[self.FishId].IconPath
@@ -142,7 +142,7 @@ end
 function M:GetPlace()
   local Data = DataMgr.Fish2FishingSpot[self.FishId]
   if not Data then
-    return "\230\137\190\228\184\141\229\136\176\233\146\147\233\177\188\231\130\185"
+    return "找不到钓鱼点"
   end
   for SpotId, Weight in pairs(Data) do
     local SpotData = DataMgr.FishingSpot[SpotId]
@@ -151,7 +151,7 @@ function M:GetPlace()
       return Name
     end
   end
-  return "\230\137\128\230\156\137\233\146\147\233\177\188\231\130\185\233\131\189\230\178\161\230\156\137\229\144\141\229\173\151"
+  return "所有钓鱼点都没有名字"
 end
 
 function M:GetWeather()

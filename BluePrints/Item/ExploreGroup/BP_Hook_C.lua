@@ -142,7 +142,7 @@ end
 
 function M:DisplayInteractiveBtn(PlayerActor)
   if not self.HookGameModeComp then
-    print(_G.LogTag, "Error: GameMode\231\188\186\229\176\145\233\146\169\233\148\129\231\187\132\228\187\182")
+    print(_G.LogTag, "Error: GameMode缺少钩锁组件")
     return
   end
   self.HookGameModeComp:AddInteractiveHook(self)
@@ -151,7 +151,7 @@ end
 
 function M:RefreshInteractiveBtn(PlayerActor)
   if not self.HookGameModeComp then
-    print(_G.LogTag, "Error: GameMode\231\188\186\229\176\145\233\146\169\233\148\129\231\187\132\228\187\182")
+    print(_G.LogTag, "Error: GameMode缺少钩锁组件")
     return
   end
   local ValidHook = self.HookGameModeComp:GetValidHook(PlayerActor, self.TargetLoc)
@@ -182,7 +182,7 @@ end
 
 function M:NotDisplayInteractiveBtn(PlayerActor)
   if not self.HookGameModeComp then
-    print(_G.LogTag, "Error: GameMode\231\188\186\229\176\145\233\146\169\233\148\129\231\187\132\228\187\182")
+    print(_G.LogTag, "Error: GameMode缺少钩锁组件")
     return
   end
   self:SetBtnDisplay(false)

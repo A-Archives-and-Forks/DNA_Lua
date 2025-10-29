@@ -24,7 +24,7 @@ function M:UpdateModItem(Content)
   end
   local ModDataInfo = DataMgr.Mod[ModId]
   if not ModDataInfo then
-    DebugPrint(ErrorTag, LXYTag, "\230\141\162\228\184\170\229\143\183\229\144\167\239\188\140\230\156\137\228\186\155ModId\232\162\171\231\173\150\229\136\146\229\136\160\228\186\134...", ModId)
+    DebugPrint(ErrorTag, LXYTag, "换个号吧，有些ModId被策划删了...", ModId)
     return
   end
   local ModCost, Mod

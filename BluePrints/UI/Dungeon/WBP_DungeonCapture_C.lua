@@ -237,7 +237,7 @@ function WBP_DungeonCapture_C:ClosePartyWaitUI()
 end
 
 function WBP_DungeonCapture_C:InitClientTimerByHandleName(TimerHandleName, DisplayText, TurnRedTime)
-  assert(TimerHandleName, "\229\191\133\233\161\187\228\188\160\229\133\165TimerHandleName\239\188\129\239\188\129")
+  assert(TimerHandleName, "必须传入TimerHandleName！！")
   self.CurTimerHandleName = TimerHandleName
   self.CurTurnRedTime = TurnRedTime or 0
   self.LastRemainTime = nil

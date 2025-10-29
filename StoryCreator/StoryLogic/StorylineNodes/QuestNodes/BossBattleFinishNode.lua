@@ -7,7 +7,7 @@ end
 
 function BossBattleFinishNode:Execute(CallBack)
   self.IsWaitForCallback = self.FinishCondition ~= ""
-  DebugPrint("----- Init BossBattleFinishNode   SendMessage:", self.SendMessage, "FinishCondition:", self.FinishCondition, " \230\152\175\229\144\166\231\173\137\229\190\133\229\155\158\232\176\131", self.IsWaitForCallback, "----")
+  DebugPrint("----- Init BossBattleFinishNode   SendMessage:", self.SendMessage, "FinishCondition:", self.FinishCondition, " 是否等待回调", self.IsWaitForCallback, "----")
   local GameInstance = GWorld.GameInstance
   local GameMode = UE4.UGameplayStatics.GetGameMode(GameInstance)
   if self.IsWaitForCallback then

@@ -90,8 +90,8 @@ function M:OnDialogueFinish(DialogueId)
   if DialogueData and DialogueData.DialogueId == DialogueId then
     self:IterForward()
   else
-    local Message = string.format("\229\189\147\229\137\141Dialogue\232\138\130\231\130\185OnDialogueFinish\230\151\182 DialogueId %d \228\184\142\229\155\158\232\176\131 %d\228\184\141\229\144\140\239\188\140\232\175\183\230\163\128\230\159\165 self.Index: %d, Dialogue Num: %d", DialogueData and DialogueData.DialogueId or 0, DialogueId or 0, self.Index, self.DialogueTables and #self.DialogueTables or -1)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157FLowNode\229\135\186\233\148\153", Message)
+    local Message = string.format("当前Dialogue节点OnDialogueFinish时 DialogueId %d 与回调 %d不同，请检查 self.Index: %d, Dialogue Num: %d", DialogueData and DialogueData.DialogueId or 0, DialogueId or 0, self.Index, self.DialogueTables and #self.DialogueTables or -1)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话FLowNode出错", Message)
   end
 end
 
@@ -104,8 +104,8 @@ function M:OnDialogueForceToEnd(DialogueId)
       self.SequencePlayer:Pause()
     end
   else
-    local Message = string.format("\229\189\147\229\137\141Dialogue\232\138\130\231\130\185OnDialogueFinish\230\151\182 DialogueId %d \228\184\142\229\155\158\232\176\131 %d\228\184\141\229\144\140\239\188\140\232\175\183\230\163\128\230\159\165 self.Index: %d, Dialogue Num: %d", DialogueData and DialogueData.DialogueId or 0, DialogueId or 0, self.Index, self.DialogueTables and #self.DialogueTables or -1)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157FLowNode\229\135\186\233\148\153", Message)
+    local Message = string.format("当前Dialogue节点OnDialogueFinish时 DialogueId %d 与回调 %d不同，请检查 self.Index: %d, Dialogue Num: %d", DialogueData and DialogueData.DialogueId or 0, DialogueId or 0, self.Index, self.DialogueTables and #self.DialogueTables or -1)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话FLowNode出错", Message)
   end
 end
 
@@ -154,14 +154,14 @@ end
 function M:Start()
   local DialogueFlowGraphComponent = self:TryGetFlowGraphComponent()
   if not DialogueFlowGraphComponent then
-    local Message = string.format("\229\189\147\229\137\141Dialogue\232\138\130\231\130\185\239\188\140\230\179\168\229\134\140\231\154\132Task\228\184\141\229\173\152\229\156\168 DialogueFlowGraphComponent\239\188\140\232\175\183\230\179\168\229\134\140")
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157FLowNode\229\135\186\233\148\153", Message)
+    local Message = string.format("当前Dialogue节点，注册的Task不存在 DialogueFlowGraphComponent，请注册")
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话FLowNode出错", Message)
     return
   end
   local DialogueRecordComponent = self:TryGetRecordComponent()
   if not DialogueRecordComponent then
-    local Message = string.format("\229\189\147\229\137\141Dialogue\232\138\130\231\130\185\239\188\140\230\179\168\229\134\140\231\154\132Task\228\184\141\229\173\152\229\156\168 DialogueRecordComponent\239\188\140\232\175\183\230\179\168\229\134\140")
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157FLowNode\229\135\186\233\148\153", Message)
+    local Message = string.format("当前Dialogue节点，注册的Task不存在 DialogueRecordComponent，请注册")
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话FLowNode出错", Message)
     return
   end
   self.DialogueSettingsTable = self.DialogueSetting:ToTable()
@@ -210,8 +210,8 @@ end
 
 function M:SequenceIterForward(Section)
   if self.IterSection then
-    local Message = string.format("\229\189\147\229\137\141Dialogue\232\138\130\231\130\185\239\188\140Sequence \228\184\138\229\143\165\229\143\176\230\156\172\229\176\154\230\156\170\231\187\147\230\157\159 %d\239\188\140\229\176\177\232\166\129\230\146\173\230\148\190\228\184\139\228\184\128\229\143\165\229\143\176\230\156\172 %d", self.IterSection.DialogueId, Section.DialogueId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157FLowNode\229\135\186\233\148\153", Message)
+    local Message = string.format("当前Dialogue节点，Sequence 上句台本尚未结束 %d，就要播放下一句台本 %d", self.IterSection.DialogueId, Section.DialogueId)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话FLowNode出错", Message)
   end
   DebugPrint("SequenceIterForward", Section.DialogueId)
   self.IterSection = Section

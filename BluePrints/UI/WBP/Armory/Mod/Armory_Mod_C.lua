@@ -1636,7 +1636,7 @@ function M:OnKeyUp(MyGeometry, InKeyEvent)
   if ModCommon.DebugMode and "Enter" == InKeyName then
     local SelectMod = ModModel:GetCurrSelectMod()
     if SelectMod then
-      PrintTable(SelectMod, 3, "\231\156\139\231\156\139\233\128\137\228\184\173\231\154\132Mod\230\149\176\230\141\174")
+      PrintTable(SelectMod, 3, "看看选中的Mod数据")
     end
   end
   M.Super.OnKeyDown(self, MyGeometry, InKeyEvent)

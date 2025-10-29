@@ -24,7 +24,7 @@ function M:GetAvatar()
 end
 
 function M:GetGachaAvatarInfo(GachaId)
-  assert(GachaId, "GetGachaAvatarInfo\228\188\160\229\133\165\228\186\134\231\169\186\231\154\132GachaId")
+  assert(GachaId, "GetGachaAvatarInfo传入了空的GachaId")
   local Avatar = self:GetAvatar()
   local GachaLst = Avatar.SkinGachaPool
   if not GachaLst[GachaId] or not GachaLst[GachaId].Usable then
@@ -79,7 +79,7 @@ end
 
 function M:CheckGachaEffective(GachaId)
   local GachaData = DataMgr.SkinGacha[GachaId]
-  assert(GachaData, "\230\138\189\229\141\161\228\191\161\230\129\175\228\184\141\229\173\152\229\156\168:" .. GachaId)
+  assert(GachaData, "抽卡信息不存在:" .. GachaId)
   if GachaData.GachaStartTime < TimeUtils.NowTime() and GachaData.GachaEndTime > TimeUtils.NowTime() then
     return true
   end
@@ -89,7 +89,7 @@ end
 function M:GetSkinGachaItemLst(SkinGachaItemId)
   local SkinGachaItemData = DataMgr.SkinGachaItem[SkinGachaItemId]
   local Res = {}
-  assert(SkinGachaItemData, "\230\138\189\229\141\161\229\165\150\229\138\177\228\191\161\230\129\175\228\184\141\229\173\152\229\156\168:" .. SkinGachaItemId)
+  assert(SkinGachaItemData, "抽卡奖励信息不存在:" .. SkinGachaItemId)
   for i = 1, #SkinGachaItemData.Type do
     local Content = {}
     Content.Type = SkinGachaItemData.Type[i]
@@ -103,7 +103,7 @@ end
 
 function M:GetSkinGachaUpInfo(GachaId)
   local GachaInfo = DataMgr.SkinGacha[GachaId]
-  assert(GachaInfo, "\230\138\189\229\141\161\228\191\161\230\129\175\228\184\141\229\173\152\229\156\168:" .. GachaId)
+  assert(GachaInfo, "抽卡信息不存在:" .. GachaId)
   local UpItemId, UpItemType, Probaility
   if GachaInfo.RewardUpId then
     UpItemType = GachaCommon.GachaItemTypeMap[GachaInfo.RewardUpType]
@@ -118,7 +118,7 @@ end
 
 function M:GetSkinGachaCumulativeInfo(GahcaId)
   local GachaCumulativeData = DataMgr.SkinGachaCumulative[GahcaId]
-  assert(GachaCumulativeData, "\230\138\189\229\141\161\228\191\161\230\129\175\228\184\141\229\173\152\229\156\168:" .. GahcaId)
+  assert(GachaCumulativeData, "抽卡信息不存在:" .. GahcaId)
   local Res = {}
   for i = 1, #GachaCumulativeData.RewardTarget do
     local Content = {}
@@ -131,7 +131,7 @@ end
 
 function M:GetSkinGachaCurrentCumulativeInfo(GachaId)
   local GachaData = self:GetGachaAvatarInfo(GachaId)
-  assert(GachaData, "GetSkinGachaCurrentCumulativeInfo\229\189\147\229\137\141\229\141\161\230\177\160\230\151\160\230\149\136\239\188\154" .. GachaId)
+  assert(GachaData, "GetSkinGachaCurrentCumulativeInfo当前卡池无效：" .. GachaId)
   local GachaCumulativeData = DataMgr.SkinGachaCumulative[GachaData.GachaId]
   local Res, NeedCount = nil, 0
   local LastReward
@@ -188,7 +188,7 @@ function M:CheckCanGacha(GachaId, GachaCounts, bShowError)
     return -1
   end
   local GachaInfo = DataMgr.SkinGacha[GachaId]
-  assert(GachaInfo, "CheckCanGacha\228\188\160\229\133\165\228\186\134\230\151\160\230\149\136\231\154\132GachaId\239\188\154" .. GachaId)
+  assert(GachaInfo, "CheckCanGacha传入了无效的GachaId：" .. GachaId)
   if not ConditionUtils.CheckCondition(Avatar, GachaInfo.ConditionId, false) then
     return 2
   end

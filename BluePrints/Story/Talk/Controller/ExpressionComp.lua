@@ -1,6 +1,6 @@
 local ExpressionComp_C = {}
 local Utils = require("Utils")
-local FeishuErrorTitle = "\230\146\173\230\148\190\232\161\168\230\131\133\229\135\186\233\148\153(\232\181\132\230\186\144\231\188\186\229\164\177/\229\161\171\232\161\168\233\148\153\232\175\175)"
+local FeishuErrorTitle = "播放表情出错(资源缺失/填表错误)"
 
 function ExpressionComp_C.New(bResumeOnTalkEnd)
   if nil == bResumeOnTalkEnd then
@@ -13,7 +13,7 @@ function ExpressionComp_C.New(bResumeOnTalkEnd)
 end
 
 function ExpressionComp_C:PrintErrorToFeishu(TalkActor, ExpressionId, MontagePath)
-  local Message = "\230\137\190\228\184\141Montage\232\181\132\230\186\144" .. "\nNpc\229\144\141\229\173\151:" .. TalkActor:GetName() .. "\n\232\161\168\230\131\133Id(FacialId):" .. ExpressionId .. "\nMontage\232\183\175\229\190\132:" .. MontagePath
+  local Message = "找不Montage资源" .. "\nNpc名字:" .. TalkActor:GetName() .. "\n表情Id(FacialId):" .. ExpressionId .. "\nMontage路径:" .. MontagePath
   UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, FeishuErrorTitle, Message)
 end
 

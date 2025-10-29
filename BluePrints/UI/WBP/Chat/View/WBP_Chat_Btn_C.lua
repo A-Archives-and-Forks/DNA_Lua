@@ -70,7 +70,7 @@ function M:SetForbidden()
   if self.bForbidden then
     return
   end
-  Utils.Traceback(LXYTag, "\232\129\138\229\164\169\230\140\137\233\146\174\231\166\129\231\148\168")
+  Utils.Traceback(LXYTag, "聊天按钮禁用")
   self.bForbidden = true
   self.Button_Area:SetForbidden(true)
 end
@@ -79,7 +79,7 @@ function M:SetNormal()
   if not self.bForbidden then
     return
   end
-  Utils.Traceback(LXYTag, "\232\129\138\229\164\169\230\140\137\233\146\174\229\144\175\231\148\168")
+  Utils.Traceback(LXYTag, "聊天按钮启用")
   self.bForbidden = false
   self.Button_Area:SetForbidden(false)
 end

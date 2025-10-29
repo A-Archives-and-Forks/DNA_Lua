@@ -12,7 +12,7 @@ function Utils.IsValid(Object)
     return false
   end
   if not Object.IsValid then
-    Traceback(WarningTag, "Utils.IsValid\230\156\172\230\132\143\230\152\175\231\187\153UObject\229\136\164\230\150\173\230\156\137\230\149\136\230\128\167\231\154\132\239\188\140\228\184\141\229\187\186\232\174\174\228\188\160luaTable\232\191\155\230\157\165")
+    Traceback(WarningTag, "Utils.IsValid本意是给UObject判断有效性的，不建议传luaTable进来")
     return true
   end
   return IsValid(Object)
@@ -146,7 +146,7 @@ function Utils.IsActorValid(Actor)
     return false
   end
   if not IsActorValidInGame then
-    Utils.Traceback(ErrorTag, "Utils.IsActorValid\230\156\172\230\132\143\230\152\175\231\187\153Actor\229\136\164\230\150\173\230\156\137\230\149\136\230\128\167\231\154\132\239\188\140\228\184\141\229\187\186\232\174\174\228\188\160\229\133\182\228\187\150\231\177\187\229\158\139\229\175\185\232\177\161\232\191\155\230\157\165")
+    Utils.Traceback(ErrorTag, "Utils.IsActorValid本意是给Actor判断有效性的，不建议传其他类型对象进来")
     return true
   end
   return IsActorValidInGame(Actor)

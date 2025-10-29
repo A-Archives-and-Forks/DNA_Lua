@@ -46,7 +46,7 @@ function G:Init(Result, RebateData)
   end
   local path = CommonConst[VideoPathInd]
   local VideoObj = LoadObject(path)
-  assert(VideoObj, "\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\231\154\132\232\167\134\233\162\145\232\181\132\230\186\144:" .. path)
+  assert(VideoObj, "未找到对应的视频资源:" .. path)
   self.WBP_VideoPlayer:SetUrlByMediaSource(VideoObj)
   self.CanSkip = true
   local GuideGachaId = DataMgr.GlobalConstant.GuideGachaId.ConstantValue

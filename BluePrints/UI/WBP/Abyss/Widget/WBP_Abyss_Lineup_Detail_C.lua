@@ -105,17 +105,17 @@ function WBP_Abyss_Lineup_Detail:SetProgressAndAttribute()
   local AbyssId, LevelIndex = self.LineupPage.AbyssId, self.LineupPage.LevelIndex
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("WBP_Abyss_Lineup_DetailL:SetProgressText, \233\133\141\231\189\174\233\157\162\230\157\191\229\136\157\229\167\139\229\140\150\229\164\177\232\180\165\239\188\140Avatar\230\151\160\230\149\136")
+    DebugPrint("WBP_Abyss_Lineup_DetailL:SetProgressText, 配置面板初始化失败，Avatar无效")
     return
   end
   local AbyssInfo = Avatar.Abysses[AbyssId]
   if not AbyssInfo then
-    DebugPrint("lhr@WBP_Abyss_Select_C:InitLevelInfo, AbyssId", AbyssId, "\229\175\185\229\186\148\231\154\132\232\181\155\229\173\163\228\184\141\229\173\152\229\156\168")
+    DebugPrint("lhr@WBP_Abyss_Select_C:InitLevelInfo, AbyssId", AbyssId, "对应的赛季不存在")
     return
   end
   local LevelInfo = AbyssInfo.AbyssLevelList[LevelIndex]
   if not LevelInfo then
-    DebugPrint("lhr@WBP_Abyss_Select_C:InitLevelInfo, LevelIndex", LevelIndex, "\229\175\185\229\186\148\231\154\132\229\133\179\229\141\161\228\184\141\229\173\152\229\156\168")
+    DebugPrint("lhr@WBP_Abyss_Select_C:InitLevelInfo, LevelIndex", LevelIndex, "对应的关卡不存在")
     return
   end
   self.AbyssId = AbyssId
@@ -151,7 +151,7 @@ end
 function WBP_Abyss_Lineup_Detail:InitDungeonInfo(DungeonId)
   local DungeonInfo = DataMgr.AbyssDungeon[DungeonId]
   if not DungeonInfo then
-    DebugPrint("lhr@WBP_Abyss_Lineup_Detail:InitDungeonInfo\229\164\177\232\180\165\239\188\140 DungeonIndex\229\175\185\229\186\148\231\154\132\229\164\167\231\167\152\229\162\131\229\137\175\230\156\172\228\191\161\230\129\175\228\184\141\229\173\152\229\156\168")
+    DebugPrint("lhr@WBP_Abyss_Lineup_Detail:InitDungeonInfo失败， DungeonIndex对应的大秘境副本信息不存在")
     return
   end
   self.DungeonInfo = DungeonInfo
@@ -162,7 +162,7 @@ function WBP_Abyss_Lineup_Detail:InitListEntry()
   local AbyssBuffs = DataMgr.AbyssBuff
   local DungeonEntries = self.DungeonInfo.AbyssBuffID
   if not DungeonEntries then
-    DebugPrint("lhr@WBP_Abyss_Lineup_Detail:InitListEntry \229\164\167\231\167\152\229\162\131\229\137\175\230\156\172\231\154\132\232\175\141\230\157\161\229\136\151\232\161\168\228\184\141\229\173\152\229\156\168")
+    DebugPrint("lhr@WBP_Abyss_Lineup_Detail:InitListEntry 大秘境副本的词条列表不存在")
     return
   end
   for _, EntryId in pairs(DungeonEntries) do
@@ -205,7 +205,7 @@ function WBP_Abyss_Lineup_Detail:SelectSlot(SlotName, bPlaySound, bNotToList)
     if SlotName == ESlotName.Null then
       return
     end
-    DebugPrint("lhr@WBP_Abyss_Lineup_Detail:SelectSlot, SlotName\229\175\185\229\186\148\231\154\132\230\167\189\228\189\141\228\184\141\229\173\152\229\156\168")
+    DebugPrint("lhr@WBP_Abyss_Lineup_Detail:SelectSlot, SlotName对应的槽位不存在")
   end
 end
 
@@ -227,7 +227,7 @@ function WBP_Abyss_Lineup_Detail:ClearAllSlots(bInit)
       self.LineupPage:RemoveTeamIcons(self.DungeonIndex)
     end
   else
-    DebugPrint("lhr@WBP_Abyss_Lineup_Detail:ClearAllSlots, \233\152\181\229\174\185\233\157\162\230\157\191\229\164\177\230\149\136")
+    DebugPrint("lhr@WBP_Abyss_Lineup_Detail:ClearAllSlots, 阵容面板失效")
     return nil
   end
   local ret = false
@@ -305,7 +305,7 @@ function WBP_Abyss_Lineup_Detail:ExpandPanel()
   if self.LineupPage then
     self.LineupPage:SetDetailPanelLocation(self.DungeonIndex, false)
   else
-    DebugPrint("lhr@WBP_Abyss_Lineup_Detail:ExpandPanel, \233\152\181\229\174\185\233\157\162\230\157\191\229\164\177\230\149\136")
+    DebugPrint("lhr@WBP_Abyss_Lineup_Detail:ExpandPanel, 阵容面板失效")
   end
   for _, Slot in pairs(self.Slots) do
     Slot:Expand()
@@ -446,7 +446,7 @@ function WBP_Abyss_Lineup_Detail:OnPreviewButtonClicked()
   if self.LineupPage then
     self.LineupPage:SelectDungeon(self.DungeonIndex, false)
   else
-    DebugPrint("lhr@WBP_Abyss_Lineup_Detail:OnPreviewButtonClicked, \233\152\181\229\174\185\233\157\162\230\157\191\229\164\177\230\149\136")
+    DebugPrint("lhr@WBP_Abyss_Lineup_Detail:OnPreviewButtonClicked, 阵容面板失效")
   end
 end
 

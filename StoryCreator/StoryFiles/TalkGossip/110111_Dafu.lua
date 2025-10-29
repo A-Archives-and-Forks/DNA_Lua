@@ -1,5 +1,5 @@
 return {
-  storyName = "\230\156\170\229\145\189\229\144\141\228\187\187\229\138\161",
+  storyName = "未命名任务",
   storyDescription = "",
   lineData = {
     {
@@ -46,7 +46,7 @@ return {
       isStoryNode = true,
       key = "story_16842233105008158",
       type = "StoryNode",
-      name = "\230\156\170\229\145\189\229\144\141\228\187\187\229\138\161",
+      name = "未命名任务",
       pos = {x = 454.39130434782606, y = 143},
       propsData = {
         QuestId = 0,
@@ -113,7 +113,7 @@ return {
           quest_16842233105008170 = {
             key = "quest_16842233105008170",
             type = "TalkNode",
-            name = "\229\175\185\232\175\157\232\138\130\231\130\185",
+            name = "对话节点",
             pos = {x = 289.6811594202899, y = 149.42105263157896},
             propsData = {
               IsNpcNode = false,
@@ -335,7 +335,7 @@ return {
           quest_168959098148674 = {
             key = "quest_168959098148674",
             type = "SetNpcPoseNode",
-            name = "\232\174\190\231\189\174Npc\229\167\191\230\128\129",
+            name = "设置Npc姿态",
             pos = {x = 29.34782608695652, y = 367.2608695652174},
             propsData = {
               NpcInfos = {

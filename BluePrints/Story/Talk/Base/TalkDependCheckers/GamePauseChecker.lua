@@ -6,12 +6,12 @@ function GamePauseChecker_C:Init()
 end
 
 function GamePauseChecker_C:OnEnabled()
-  DebugPrint("@@@ \229\144\175\231\148\168\229\175\185\232\175\157\230\184\184\230\136\143\230\154\130\229\129\156Checker")
+  DebugPrint("@@@ 启用对话游戏暂停Checker")
   self:ListeningGamePauseChanged()
 end
 
 function GamePauseChecker_C:OnDisabled()
-  DebugPrint("@@@ \229\133\179\233\151\173\229\175\185\232\175\157\230\184\184\230\136\143\230\154\130\229\129\156Checker")
+  DebugPrint("@@@ 关闭对话游戏暂停Checker")
 end
 
 function GamePauseChecker_C:Clear()
@@ -33,7 +33,7 @@ function GamePauseChecker_C:OnGamePauseChanged()
 end
 
 function GamePauseChecker_C:ListeningGamePauseChanged()
-  DebugPrint("@@@ ListeningGamePauseChanged \231\155\145\229\144\172\230\184\184\230\136\143\230\154\130\229\129\156\231\138\182\230\128\129\230\155\180\230\148\185", self.bHasListen)
+  DebugPrint("@@@ ListeningGamePauseChanged 监听游戏暂停状态更改", self.bHasListen)
   if self.bHasListen then
     return
   end
@@ -45,7 +45,7 @@ function GamePauseChecker_C:ListeningGamePauseChanged()
 end
 
 function GamePauseChecker_C:UnlisteningGamePauseChanged()
-  DebugPrint("@@@ UnlisteningGamePauseChanged \229\143\150\230\182\136\231\155\145\229\144\172\230\184\184\230\136\143\230\154\130\229\129\156\231\138\182\230\128\129\230\155\180\230\148\185")
+  DebugPrint("@@@ UnlisteningGamePauseChanged 取消监听游戏暂停状态更改")
   self.bHasListen = false
   local GameMode = UE4.UGameplayStatics.GetGameMode(GWorld.GameInstance)
   if GameMode and GameMode.OnGamePauseChanged then

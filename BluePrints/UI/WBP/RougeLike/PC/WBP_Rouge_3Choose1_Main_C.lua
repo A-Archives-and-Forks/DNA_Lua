@@ -411,7 +411,7 @@ function M:ShowNextAward()
     end
   end
   for i = 1, 3 do
-    assert(self[self.AwardType .. "Widgets"][i], "\230\178\161\230\137\190\229\136\176AwardWidgets")
+    assert(self[self.AwardType .. "Widgets"][i], "没找到AwardWidgets")
     if InfoList[i] then
       self[self.AwardType .. "Widgets"][i]:OnLoaded({
         AwardType = self.AwardType,
@@ -427,9 +427,9 @@ end
 
 function M:ChooseItem(AwardId)
   local Avatar = GWorld:GetAvatar()
-  assert(Avatar, "Avatar\228\184\141\229\173\152\229\156\168")
+  assert(Avatar, "Avatar不存在")
   local GameMode = UE4.UGameplayStatics.GetGameMode(GWorld.GameInstance)
-  assert(GameMode, "GameMode\228\184\141\229\173\152\229\156\168")
+  assert(GameMode, "GameMode不存在")
   self.AwardId = AwardId
   GWorld.RougeLikeManager.Last3Choose1AwardId = AwardId
   if self.AwardType == "Blessing" then
@@ -504,9 +504,9 @@ function M:SelectItem(AwardId, SelectWidget)
 end
 
 function M:OnConfirmBtnClicked()
-  DebugPrint("\230\163\128\230\181\139\229\136\176\231\161\174\232\174\164\230\140\137\233\148\174\230\140\137\228\184\139")
+  DebugPrint("检测到确认按键按下")
   if not self.IsInit then
-    DebugPrint("\232\191\152\230\156\170\229\136\157\229\167\139\229\140\150\229\174\140\230\136\144\239\188\140\228\184\141\229\133\129\232\174\184\233\128\137\230\139\169\229\165\150\229\138\177")
+    DebugPrint("还未初始化完成，不允许选择奖励")
     return
   end
   if not self.CurrentSelectId then

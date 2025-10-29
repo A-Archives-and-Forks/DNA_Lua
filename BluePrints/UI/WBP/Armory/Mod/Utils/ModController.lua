@@ -60,11 +60,11 @@ function M:OpenModIntensify()
   local SelectedMod = ModModel:GetCurrSelectMod()
   local SelectStuff = ModModel:GetSelectStuff()
   if not SelectedMod or not SelectStuff then
-    DebugPrint(ErrorTag, LXYTag, "\230\178\161\230\156\137Mod\232\162\171\233\128\137\228\184\173\239\188\140\230\151\160\230\179\149\230\137\147\229\188\128\229\141\135\231\186\167\231\149\140\233\157\162")
+    DebugPrint(ErrorTag, LXYTag, "没有Mod被选中，无法打开升级界面")
     return
   end
   if SelectedMod:IsFinalMaxLevel() then
-    DebugPrint(ErrorTag, LXYTag, "Mod\230\187\161\231\186\167\228\186\134\239\188\140\230\151\160\230\179\149\230\137\147\229\188\128\229\141\135\231\186\167\231\149\140\233\157\162")
+    DebugPrint(ErrorTag, LXYTag, "Mod满级了，无法打开升级界面")
     return
   end
   local Params = {
@@ -174,11 +174,11 @@ function M:_RecvCommon(Ret, TargetUuid, SuitIndex)
   end
   local Target = ModModel:GetTarget()
   if not Target then
-    Utils.Traceback(ErrorTag, "\232\191\153\228\184\170\230\151\182\229\128\153\231\154\132Target\228\184\141\229\143\175\232\131\189\228\184\186\231\169\186")
+    Utils.Traceback(ErrorTag, "这个时候的Target不可能为空")
     return false
   end
   if Target.Uuid ~= TargetUuid then
-    Utils.Traceback(ErrorTag, "\229\155\158\232\176\131\231\154\132Uuid\229\146\140\229\189\147\229\137\141Target\228\184\141\228\184\128\232\135\180")
+    Utils.Traceback(ErrorTag, "回调的Uuid和当前Target不一致")
     return false
   end
   self:SyncTarget(TargetUuid, SuitIndex)
@@ -348,7 +348,7 @@ end
 
 function M:SendPolarityEdit(Target)
   if not ModModel:IsInPolarityEditMode() then
-    DebugPrint(ErrorTag, "SendPolarityEdit \230\178\161\230\156\137\230\158\129\230\128\167\231\188\150\232\190\145\230\149\176\230\141\174\230\151\182\228\184\141\230\137\167\232\161\140\232\175\165\230\147\141\228\189\156")
+    DebugPrint(ErrorTag, "SendPolarityEdit 没有极性编辑数据时不执行该操作")
     return
   end
   local ModSlotList, PolarityList = {}, {}
@@ -671,7 +671,7 @@ function M:CheckModRepeat(ModUuid, bWarning)
     local ConflictSlotIds = {}
     for _, ConflictUuid in ipairs(Mod.ConflictUuids) do
       local ConflictMod = ModModel:GetMod(ConflictUuid)
-      assert(ConflictMod, "ModController:CheckModRepeat \229\143\145\231\142\176\228\186\134\228\184\128\228\184\170\232\135\180\229\145\189\233\148\153\232\175\175", ConflictUuid)
+      assert(ConflictMod, "ModController:CheckModRepeat 发现了一个致命错误", ConflictUuid)
       local Name = string.format("<H>%s</>", GText(ConflictMod:Data().Name))
       ModNames[Name] = 1
       local SlotIds = ModModel:GetSlotIdsWhichEquiped(ConflictUuid) or {}
@@ -740,7 +740,7 @@ end
 function M:_SyncTargetImpl(OldTarget, NewTarget, SuitIndex)
   if OldTarget and OldTarget.Uuid == NewTarget.Uuid then
     if SuitIndex and NewTarget.ModSuitIndex ~= SuitIndex then
-      DebugPrint(ErrorTag, LXYTag, "ModTarget\231\154\132ModSuitIndex\228\184\141\228\184\128\232\135\180\239\188\140\230\136\145\232\174\164\228\184\186\232\191\153\230\152\175\230\156\141\229\138\161\231\171\175bug\239\188\140\230\137\147\229\141\176\228\184\128\228\184\170\230\138\165\233\148\153\230\151\165\229\191\151\228\191\157\231\149\153\231\142\176\229\156\186")
+      DebugPrint(ErrorTag, LXYTag, "ModTarget的ModSuitIndex不一致，我认为这是服务端bug，打印一个报错日志保留现场")
     end
     NewTarget.ModSuitsCostMap = OldTarget.ModSuitsCostMap
     NewTarget.ModSuitIndex = SuitIndex or OldTarget.ModSuitIndex

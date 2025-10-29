@@ -131,7 +131,7 @@ end
 
 function Menu_Portrait_List_PC_C:SetHeadFrameInfo(Id)
   if -1 == Id then
-    self.Text_RoleName:SetText("\228\184\141\228\189\169\230\136\180")
+    self.Text_RoleName:SetText("不佩戴")
     self.Head_Frame:SetVisibility(uiconst.VisibilityOp.Collapsed)
   else
     local Path = DataMgr.HeadFrame[Id].SmallIcon

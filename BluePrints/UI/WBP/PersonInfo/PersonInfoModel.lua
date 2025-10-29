@@ -205,13 +205,13 @@ end
 
 function M:GetCharSuitIndex(index)
   if -1 == index or nil == index then
-    DebugPrint("index \228\184\141\232\131\189\228\184\186-1\230\136\1500")
+    DebugPrint("index 不能为-1或0")
     return
   end
   local Uuid = self._DisplayPlan.CharDisplayPlans[index].CharId
   local suitindex = self._DisplayPlan.CharDisplayPlans[index].AppearancePlan
   if -1 == suitindex or 0 == suitindex then
-    DebugPrint("\229\164\150\232\167\130\230\150\185\230\161\136\228\184\186-1\230\136\1500")
+    DebugPrint("外观方案为-1或0")
   end
   return Uuid, suitindex
 end
@@ -254,7 +254,7 @@ function M:GetShowCharData(index)
         return Char
       end
     end
-    ScreenPrint("\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\231\154\132\230\173\166\229\153\168\230\149\176\230\141\174" .. debug.traceback())
+    ScreenPrint("未找到对应的武器数据" .. debug.traceback())
     return self._fakeAvatar.Chars[index]
   end
 end
@@ -272,7 +272,7 @@ function M:GetShowWeaponData(index)
         return weapon
       end
     end
-    ScreenPrint("\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\231\154\132\230\173\166\229\153\168\230\149\176\230\141\174" .. debug.traceback())
+    ScreenPrint("未找到对应的武器数据" .. debug.traceback())
   end
 end
 
@@ -760,7 +760,7 @@ end
 
 function M:GetDataPageVisibility()
   if self:IsOwener() then
-    ScreenPrint("\228\184\141\229\186\148\232\175\165\232\142\183\229\143\150\232\135\170\229\183\177\231\149\140\233\157\162\231\154\132\229\143\175\232\167\129\230\128\167")
+    ScreenPrint("不应该获取自己界面的可见性")
   else
     return self.OtherPersonInfo.Visible
   end

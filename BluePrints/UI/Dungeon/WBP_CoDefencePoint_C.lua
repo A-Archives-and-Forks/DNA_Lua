@@ -52,7 +52,7 @@ end
 
 function WBP_CoDefencePoint_C:SetPointState(StateStr, TimerHandleName, CountDownTextmap)
   if not StateStr then
-    DebugPrint("thy    StateStr \230\152\175 nil\239\188\140\230\163\128\230\159\165\232\147\157\229\155\190\228\188\160\229\133\165\231\154\132\231\138\182\230\128\129\231\180\162\229\188\149")
+    DebugPrint("thy    StateStr 是 nil，检查蓝图传入的状态索引")
     return
   end
   if self.CurState == StateStr then

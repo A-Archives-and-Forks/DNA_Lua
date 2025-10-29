@@ -281,7 +281,7 @@ function WBP_GuideTextFloat_C:SetCommonKey(KeyInfo, TableIndex)
     return
   end
   if not Key or not KeyType then
-    print(_G.LogTag, "Error: Wrong Action Name, cannot find this Action's Key\239\188\154", ActionName)
+    print(_G.LogTag, "Error: Wrong Action Name, cannot find this Action's Key：", ActionName)
     self:DeleteGuideMessage()
     return
   end
@@ -577,7 +577,7 @@ end
 
 function WBP_GuideTextFloat_C:SetInfoAboutGuide_Enum(Actions, IsForceTouch, IsTimeDilation, ForbidSuccessAnim, IsNotForceRelease)
   if self.LastTime < 0 and (IsForceTouch or IsTimeDilation) and 0 == #Actions then
-    print(_G.LogTag, "Error: WBP_GuideTextFloat_C \229\188\186\229\136\182\232\190\147\229\133\165/\230\151\182\233\151\180\232\134\168\232\131\128, \230\140\129\231\187\173\230\151\182\233\151\180\228\184\186-1, \228\189\134\230\152\175\230\178\161\230\156\137\233\156\128\232\166\129\232\191\155\232\161\140\231\154\132\230\147\141\228\189\156, UI\228\184\141\228\188\154\229\133\179\233\151\173, \231\142\169\229\174\182\230\151\160\230\179\149\230\147\141\228\189\156/\230\151\182\233\151\180\228\184\128\231\155\180\232\134\168\232\131\128, \232\161\168\231\142\176\233\148\153\232\175\175")
+    print(_G.LogTag, "Error: WBP_GuideTextFloat_C 强制输入/时间膨胀, 持续时间为-1, 但是没有需要进行的操作, UI不会关闭, 玩家无法操作/时间一直膨胀, 表现错误")
     self:DeleteGuideMessage()
     return
   end

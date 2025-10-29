@@ -366,7 +366,7 @@ function M:SetPlayerTrans()
     return
   end
   if self:HandleQuestChainInitLocation(Avatar, self.EnterRegionType) then
-    GWorld.logger.error("ZJT_ \230\156\172\230\172\161\228\189\141\231\189\174\230\129\162\229\164\141 \232\162\171\228\187\187\229\138\161\230\142\165\231\174\161 \231\148\177\228\187\187\229\138\161\232\174\190\231\189\174\231\142\169\229\174\182\230\137\128\229\156\168\228\189\141\231\189\174 ")
+    GWorld.logger.error("ZJT_ 本次位置恢复 被任务接管 由任务设置玩家所在位置 ")
   end
   DebugPrint("ZJT_ Set Current PlayerLocation ", Avatar.CurrentRegionId, self.enterLoc, self.StartIndex)
   if self.enterLoc and self.enterLoc ~= FVector(0, 0, 0) then
@@ -612,11 +612,11 @@ function M:HandleRecover(Avatar, EnterRegionType)
     local rot = Avatar.LastRegionData:GetRotation()
     self.enterLoc = FVector(loc.X, loc.Y, loc.Z)
     self.enterRot = FRotator(0, rot.Yaw, 0)
-    DebugPrint("ZJT_ HandleRecover \230\136\144\229\138\159 ", self.enterLoc, Avatar.LastRegionData.RegionId)
+    DebugPrint("ZJT_ HandleRecover 成功 ", self.enterLoc, Avatar.LastRegionData.RegionId)
   else
     self.enterLevelID = DataMgr.SubRegion[Avatar.CurrentRegionId].SubRegionLevel
     self.StartIndex = Avatar.StartIndex or 1
-    DebugPrint("ZJT_ HandleRecover \229\164\177\232\180\165 ", self.StartIndex, self.enterLevelID, Avatar:InitRecoverCheck())
+    DebugPrint("ZJT_ HandleRecover 失败 ", self.StartIndex, self.enterLevelID, Avatar:InitRecoverCheck())
   end
 end
 

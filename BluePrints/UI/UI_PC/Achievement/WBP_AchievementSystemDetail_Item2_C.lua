@@ -118,7 +118,7 @@ function M:OnListItemObjectSet(Content)
     end
   end
   if nil == data.AchievementRarity then
-    error("\230\136\144\229\176\177\232\161\168\233\135\140\230\178\161\229\161\171\231\168\128\230\156\137\229\186\166,\233\128\159\229\161\171 ID:" .. self.ID .. GText(data.AchievementName))
+    error("成就表里没填稀有度,速填 ID:" .. self.ID .. GText(data.AchievementName))
   else
     self.WS_AchievementIcon:SetActiveWidgetIndex(data.AchievementRarity - 1)
   end

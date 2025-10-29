@@ -49,14 +49,14 @@ function M:SetHeadFrame(HeadFrameId)
   self.HeadFrameId = HeadFrameId
   if not HeadFrameId or HeadFrameId == CommonConst.DefaultNoHeadFrame then
     if not HeadFrameId then
-      DebugPrint(LXYTag, "\230\156\141\229\138\161\231\171\175\230\178\161\230\156\137\229\144\140\230\173\165\229\164\180\229\131\143\230\161\134\230\149\176\230\141\174\239\188\140\230\154\130\230\151\182\228\184\141\230\152\190\231\164\186\229\164\180\229\131\143\230\161\134")
+      DebugPrint(LXYTag, "服务端没有同步头像框数据，暂时不显示头像框")
     end
     self.Head_Frame:SetVisibility(UIConst.VisibilityOp.Collapsed)
     return
   end
   local Conf = DataMgr.HeadFrame[HeadFrameId]
   if not Conf then
-    DebugPrint(LXYTag, "\230\151\160\230\149\136\231\154\132\229\164\180\229\131\143\230\161\134id")
+    DebugPrint(LXYTag, "无效的头像框id")
     return
   end
   UResourceLibrary.LoadObjectAsync(self, Conf.SmallIcon, {

@@ -352,7 +352,7 @@ function WBP_MapLevelSelect_C:InitPanelTips()
       {Type = "Text", Text = "Tab"}
     },
     bLongPress = false,
-    Desc = "\229\155\158\229\136\176\229\189\147\229\137\141\228\189\141\231\189\174"
+    Desc = "回到当前位置"
   })
   self.Btn_Back:CreateCommonKey({
     KeyInfoList = {

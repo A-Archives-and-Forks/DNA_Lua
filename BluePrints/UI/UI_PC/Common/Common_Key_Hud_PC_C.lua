@@ -92,7 +92,7 @@ end
 function Common_Key_Hud_PC:SetUpImage(Path)
   local Img
   Img = LoadObject(Path)
-  assert(Img, "\231\188\186\229\176\145\229\155\190\231\137\135\232\181\132\230\186\144")
+  assert(Img, "缺少图片资源")
   self.Img_Key:SetBrushFromTexture(Img)
   self.Img_Key:SetVisibility(UE4.ESlateVisibility.Visible)
 end

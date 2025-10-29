@@ -7,7 +7,7 @@ end
 
 function BP_DungeonVoteComponent_C:TriggerDungeonVoteBegin()
   if not self.GameMode.EMGameState:CheckGameModeStateEnable() then
-    DebugPrint("\229\137\175\230\156\172\231\138\182\230\128\129\228\184\141\230\173\163\231\161\174 \232\167\166\229\143\145\228\186\134TriggerDungeonVoteBegin")
+    DebugPrint("副本状态不正确 触发了TriggerDungeonVoteBegin")
     return
   end
   DebugPrint("DungeonVoteComponent:TriggerDungeonVoteBegin")

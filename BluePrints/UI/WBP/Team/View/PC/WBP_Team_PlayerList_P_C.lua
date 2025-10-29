@@ -136,7 +136,7 @@ end
 
 function M:Close()
   local BattleMain = UIManager(self):GetUIObj("BattleMain")
-  Traceback("\229\147\170\233\135\140\232\176\131\231\148\168\228\186\134Close")
+  Traceback("哪里调用了Close")
   BattleMain:PlayAnimation(BattleMain.Team_In)
   local PlayerChar = GWorld:GetMainPlayer()
   if GWorld:IsStandAlone() then
@@ -164,7 +164,7 @@ function M:OnKeyUp(MyGeo, InKeyEvent)
   DebugPrint(DebugTag, LXYTag, "Team_Playerlist_P  OnKeyUp", InKeyName)
   local InputAction = DataMgr.KeyboardMap.ShowTeamInfo
   if InKeyName == InputAction.Key then
-    DebugPrint(DebugTag, LXYTag, "\229\133\179\233\151\173TeamInfoUI")
+    DebugPrint(DebugTag, LXYTag, "关闭TeamInfoUI")
     self:StopAnimation(self.Auto_In)
     self:Close()
   end
@@ -176,7 +176,7 @@ function M:OnPreviewKeyDown(MyGeo, InKeyEvent)
   local InKeyName = UE4.UFormulaFunctionLibrary.Key_GetFName(InKey)
   local InputAction = DataMgr.GamepadMap.ShowTeamInfo
   if InKeyName == "Gamepad_" .. InputAction.GamepadKey[1] then
-    DebugPrint(DebugTag, LXYTag, "\229\133\179\233\151\173TeamInfoUI")
+    DebugPrint(DebugTag, LXYTag, "关闭TeamInfoUI")
     self:StopAnimation(self.Auto_In)
     self:Close()
   end

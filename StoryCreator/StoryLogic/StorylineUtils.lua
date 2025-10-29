@@ -38,10 +38,10 @@ local NodeClassList = {}
 function StorylineUtils._CreateNode(Path, NodeType, Context)
   if not NodeClassList[NodeType] then
     if string.sub(NodeType, -4) ~= "Node" then
-      local Message = "\230\137\128\229\136\155\229\187\186\232\138\130\231\130\185\231\154\132\231\177\187\229\158\139\229\144\141\230\178\161\230\156\137\228\187\165Node\231\187\147\229\176\190" .. [[
+      local Message = "所创建节点的类型名没有以Node结尾" .. [[
 
 NodeType:]] .. NodeType
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\230\137\128\229\136\155\229\187\186\232\138\130\231\130\185\231\154\132\231\177\187\229\158\139\229\144\141\230\178\161\230\156\137\228\187\165Node\231\187\147\229\176\190", Message)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "所创建节点的类型名没有以Node结尾", Message)
       return
     end
     local QuestNodeFileName = string.format("%s.%s", Path, NodeType)
@@ -54,10 +54,10 @@ NodeType:]] .. NodeType
   if NodeClass then
     return NodeClass(Context)
   else
-    local Message = "\229\136\155\229\187\186\232\138\130\231\130\185\230\151\182\239\188\140\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\231\177\187\229\158\139\231\154\132\232\138\130\231\130\185" .. [[
+    local Message = "创建节点时，未找到对应类型的节点" .. [[
 
 NodeType:]] .. NodeType
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\188\128\229\167\139StoryNode\230\151\182\239\188\140\228\187\187\229\138\161\233\147\190\229\183\178\231\187\147\230\157\159", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "开始StoryNode时，任务链已结束", Message)
     return nil
   end
 end

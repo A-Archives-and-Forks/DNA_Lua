@@ -27,12 +27,12 @@ end
 function M:PlayDialogue(bPauseResume)
   local NodeType = self.DialogueIterationComponent:GetCurrentNodeType()
   if NodeType ~= EDialogueNodeType.Dialogue then
-    DebugPrint("lhr@Dialogue Iteration Error: NodeType", NodeType, "\228\184\141\229\144\136\230\179\149")
+    DebugPrint("lhr@Dialogue Iteration Error: NodeType", NodeType, "不合法")
     return
   end
   local CurrentDialogue = self.DialogueIterationComponent:GetDialogue()
   if not CurrentDialogue then
-    DebugPrint("lhr@Dialogue Iteration Error: Dialogue\228\184\186\231\169\186")
+    DebugPrint("lhr@Dialogue Iteration Error: Dialogue为空")
     return
   end
   local Content = TalkUtils:DialogueIdToContent(CurrentDialogue.DialogueId)

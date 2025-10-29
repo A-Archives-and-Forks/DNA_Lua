@@ -92,7 +92,7 @@ function M:Construct()
     end)
   end
   self:AddDispatcher(EventID.CloseLoading, self, function()
-    DebugPrint(LXYTag, "\231\187\132\233\152\159\233\130\128\232\175\183\232\182\133\230\151\182\239\188\140\233\156\128\232\166\129\232\135\170\229\138\168\229\133\179\233\151\173\231\149\140\233\157\162")
+    DebugPrint(LXYTag, "组队邀请超时，需要自动关闭界面")
     if TeamController:GetModel().InviteRecvQueue:IsEmpty() then
       self:Close()
     end

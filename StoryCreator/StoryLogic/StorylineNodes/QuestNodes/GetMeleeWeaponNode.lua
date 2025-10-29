@@ -2,7 +2,7 @@ local GetMeleeWeaponNode = Class("StoryCreator.StoryLogic.StorylineNodes.BaseAsy
 
 function GetMeleeWeaponNode:Execute(Callback)
   if self.Context.CurrentRole then
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "GetMeleeWeaponNode\233\133\141\231\189\174\233\148\153\232\175\175", "\232\175\165\232\138\130\231\130\185\228\190\157\232\181\150\232\167\146\232\137\178\230\152\175\229\134\155\230\162\176\229\186\147\232\167\146\232\137\178")
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "GetMeleeWeaponNode配置错误", "该节点依赖角色是军械库角色")
   end
   local GameInstance = GWorld.GameInstance
   self.ListenTarget = UE4.UGameplayStatics.GetPlayerCharacter(GameInstance, 0)

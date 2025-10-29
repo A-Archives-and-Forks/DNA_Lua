@@ -498,7 +498,7 @@ end
 function CommonTalkTask:SkipOption(DialogueId)
   local DialogueData = DataMgr.Dialogue[DialogueId]
   if not DialogueData then
-    DebugPrint("lhr@Dialogue Iteration Error: \233\128\137\233\161\185\231\154\132DialogueData\228\184\186\231\169\186", DialogueId)
+    DebugPrint("lhr@Dialogue Iteration Error: 选项的DialogueData为空", DialogueId)
     return
   end
   DebugPrint("CommonTalkTask@Skipping Option", DialogueId)
@@ -509,12 +509,12 @@ end
 function CommonTalkTask:SkipDialogue()
   local NodeType = self.DialogueIterationComponent:GetCurrentNodeType()
   if NodeType ~= EDialogueNodeType.Dialogue then
-    DebugPrint("lhr@Dialogue Iteration Error: NodeType 2", NodeType, "\228\184\141\229\144\136\230\179\149")
+    DebugPrint("lhr@Dialogue Iteration Error: NodeType 2", NodeType, "不合法")
     return
   end
   local Dialogue = self.DialogueIterationComponent:GetDialogue()
   if not Dialogue then
-    DebugPrint("lhr@Dialogue Iteration Error: Dialogue\228\184\186\231\169\186")
+    DebugPrint("lhr@Dialogue Iteration Error: Dialogue为空")
     return
   end
   if self.WaitQueue then
@@ -531,12 +531,12 @@ function CommonTalkTask:PlayDialogue(bPauseResume, bSkipping)
   end
   local NodeType = self.DialogueIterationComponent:GetCurrentNodeType()
   if NodeType ~= EDialogueNodeType.Dialogue then
-    DebugPrint("lhr@Dialogue Iteration Error: NodeType", NodeType, "\228\184\141\229\144\136\230\179\149")
+    DebugPrint("lhr@Dialogue Iteration Error: NodeType", NodeType, "不合法")
     return
   end
   local Dialogue = self.DialogueIterationComponent:GetDialogue()
   if not Dialogue then
-    DebugPrint("lhr@Dialogue Iteration Error: Dialogue\228\184\186\231\169\186")
+    DebugPrint("lhr@Dialogue Iteration Error: Dialogue为空")
     return
   end
   UIManager(GWorld.GameInstance):UnLoadUINew("ReasoningCollect")
@@ -920,10 +920,10 @@ function CommonTalkTask:ShowDialogueOptions(OptionIds)
       Type = "plus"
     end
     if "null" ~= DialougeType and Type ~= DialougeType then
-      local Message = "Dialogue\229\144\132\233\128\137\233\161\185\228\185\139\233\151\180\231\177\187\229\158\139\228\184\141\229\144\140\nDialogueId: " .. OptionId
-      local Title = "\229\141\176\232\177\161\231\179\187\231\187\159\233\148\153\232\175\175"
+      local Message = "Dialogue各选项之间类型不同\nDialogueId: " .. OptionId
+      local Title = "印象系统错误"
       UStoryLogUtils.PrintToFeiShu(self, Title, Message)
-      DebugPrint("lhr@Dialogue\229\144\132\233\128\137\233\161\185\228\185\139\233\151\180\231\177\187\229\158\139\228\184\141\229\144\140\nDialogueId:", OptionId)
+      DebugPrint("lhr@Dialogue各选项之间类型不同\nDialogueId:", OptionId)
       return
     end
     DialougeType = Type

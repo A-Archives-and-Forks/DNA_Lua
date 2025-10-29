@@ -54,7 +54,7 @@ function M:InitUIInfo()
   self.CardLevelData = DataMgr.WeaponCardLevel[self.TargetWeaponData.WeaponId]
   self.CardLevelMax = nil
   if not self.CardLevelData then
-    print(_G.ErrorTag, "WeaponCardLevel\232\161\168\230\178\161\230\156\137\232\175\165\230\173\166\229\153\168")
+    print(_G.ErrorTag, "WeaponCardLevel表没有该武器")
     self.CardLevelMax = 5
   else
     self.CardLevelMax = self.CardLevelData.CardLevelMax

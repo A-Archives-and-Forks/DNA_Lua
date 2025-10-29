@@ -31,13 +31,13 @@ function WBP_RankPanel_C:InitTitle()
   self.WBP_RankInfo_Title = UE4.UWidgetBlueprintLibrary.Create(self, self.wbp_rankinfo_class)
   self.ScrollBox_RankInfo:AddChild(self.WBP_RankInfo_Title)
   self.WBP_RankInfo_Title:SetTextByTable({
-    "\230\142\146\229\144\141",
-    "\231\142\169\229\174\182\229\144\141\231\167\176",
-    "\230\142\146\229\186\143\228\190\157\230\141\174",
-    "\232\167\146\232\137\178",
-    "\232\191\145\230\136\152\230\173\166\229\153\168",
-    "\232\191\156\231\168\139\230\173\166\229\153\168",
-    "\228\188\164\229\174\179"
+    "排名",
+    "玩家名称",
+    "排序依据",
+    "角色",
+    "近战武器",
+    "远程武器",
+    "伤害"
   })
 end
 

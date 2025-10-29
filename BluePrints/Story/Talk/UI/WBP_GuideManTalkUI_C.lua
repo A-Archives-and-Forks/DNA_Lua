@@ -76,8 +76,8 @@ end
 function WBP_GuideManTalkUI_C:GetNpcHeadId(DialogueId, NpcId)
   local NpcData = DataMgr.Npc[NpcId]
   if not NpcData then
-    local Message = string.format("\232\142\183\229\143\150\229\188\149\229\175\188\229\164\180\229\131\143\229\164\177\232\180\165\239\188\140Npc\230\149\176\230\141\174\230\151\160\230\149\136\239\188\140\229\143\176\230\156\172\231\188\150\229\143\183\239\188\154%s\239\188\140Npc\231\188\150\229\143\183\239\188\154%s", DialogueId, NpcId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\142\183\229\143\150\229\188\149\229\175\188\229\164\180\229\131\143Id\229\164\177\232\180\165", Message)
+    local Message = string.format("获取引导头像失败，Npc数据无效，台本编号：%s，Npc编号：%s", DialogueId, NpcId)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "获取引导头像Id失败", Message)
     return
   end
   return NpcData.GuideHeadId
@@ -86,36 +86,36 @@ end
 function WBP_GuideManTalkUI_C:GetNpcFacialId(DialogueId, NpcId, FacialId)
   NpcId = self:ChangeNpcInfoByGender(NpcId) or NpcId
   if not NpcId then
-    local Message = string.format("\232\142\183\229\143\150Npc\232\161\168\230\131\133Id\229\164\177\232\180\165\239\188\140NpcId\230\151\160\230\149\136\239\188\140\229\143\141\233\166\136\231\173\150\229\136\146\230\163\128\230\159\165\233\133\141\231\189\174\239\188\140\229\143\176\230\156\172\231\188\150\229\143\183\239\188\154%s\239\188\140NpcId\239\188\154%s", DialogueId, NpcId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\142\183\229\143\150Npc\232\161\168\230\131\133Id\229\164\177\232\180\165", Message)
+    local Message = string.format("获取Npc表情Id失败，NpcId无效，反馈策划检查配置，台本编号：%s，NpcId：%s", DialogueId, NpcId)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "获取Npc表情Id失败", Message)
     return
   end
   if not FacialId then
-    local Message = string.format("\232\142\183\229\143\150Npc\232\161\168\230\131\133Id\229\164\177\232\180\165\239\188\140\232\161\168\230\131\133Id\230\151\160\230\149\136\239\188\140\229\143\141\233\166\136\231\173\150\229\136\146\230\163\128\230\159\165\233\133\141\231\189\174\239\188\140\229\143\176\230\156\172\231\188\150\229\143\183\239\188\154%s\239\188\140\232\161\168\230\131\133Id\239\188\154%s", DialogueId, FacialId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\142\183\229\143\150Npc\232\161\168\230\131\133Id\229\164\177\232\180\165", Message)
+    local Message = string.format("获取Npc表情Id失败，表情Id无效，反馈策划检查配置，台本编号：%s，表情Id：%s", DialogueId, FacialId)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "获取Npc表情Id失败", Message)
     return
   end
   local NpcData = DataMgr.Npc[NpcId]
   if not NpcData then
-    local Message = string.format("\232\142\183\229\143\150Npc\232\161\168\230\131\133Id\229\164\177\232\180\165\239\188\140Npc\230\149\176\230\141\174\230\151\160\230\149\136\239\188\140\229\143\141\233\166\136\231\173\150\229\136\146\230\163\128\230\159\165\233\133\141\231\189\174\239\188\140\229\143\176\230\156\172\231\188\150\229\143\183\239\188\154%s\239\188\140Npc\231\188\150\229\143\183\239\188\154%s", DialogueId, NpcId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\142\183\229\143\150Npc\232\161\168\230\131\133Id\229\164\177\232\180\165", Message)
+    local Message = string.format("获取Npc表情Id失败，Npc数据无效，反馈策划检查配置，台本编号：%s，Npc编号：%s", DialogueId, NpcId)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "获取Npc表情Id失败", Message)
     return
   end
   local ModelId = NpcData.ModelId
   if not ModelId then
-    local Message = string.format("\232\142\183\229\143\150Npc\232\161\168\230\131\133Id\229\164\177\232\180\165\239\188\140\230\168\161\229\158\139Id\230\151\160\230\149\136\239\188\140\229\143\141\233\166\136\231\173\150\229\136\146\230\163\128\230\159\165\233\133\141\231\189\174\239\188\140\229\143\176\230\156\172\231\188\150\229\143\183\239\188\154%s\239\188\140Npc\231\188\150\229\143\183\239\188\154%s", DialogueId, NpcId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\142\183\229\143\150Npc\232\161\168\230\131\133Id\229\164\177\232\180\165", Message)
+    local Message = string.format("获取Npc表情Id失败，模型Id无效，反馈策划检查配置，台本编号：%s，Npc编号：%s", DialogueId, NpcId)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "获取Npc表情Id失败", Message)
     return
   end
   local ModelData = DataMgr.Model[ModelId]
   if not ModelData then
-    local Message = string.format("\232\142\183\229\143\150Npc\232\161\168\230\131\133Id\229\164\177\232\180\165\239\188\140\230\168\161\229\158\139\230\149\176\230\141\174\230\151\160\230\149\136\239\188\140\229\143\141\233\166\136\231\173\150\229\136\146\230\163\128\230\159\165\233\133\141\231\189\174\239\188\140\229\143\176\230\156\172\231\188\150\229\143\183\239\188\154%s\239\188\140Npc\231\188\150\229\143\183\239\188\154%s\239\188\140\230\168\161\229\158\139Id\239\188\154%s", DialogueId, NpcId, ModelId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\142\183\229\143\150Npc\232\161\168\230\131\133Id\229\164\177\232\180\165", Message)
+    local Message = string.format("获取Npc表情Id失败，模型数据无效，反馈策划检查配置，台本编号：%s，Npc编号：%s，模型Id：%s", DialogueId, NpcId, ModelId)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "获取Npc表情Id失败", Message)
     return
   end
   if not ModelData.AvatarExpressionPrefix then
-    local Message = string.format("\232\142\183\229\143\150Npc\232\161\168\230\131\133Id\229\164\177\232\180\165\239\188\140\230\168\161\229\158\139\230\149\176\230\141\174\228\184\173\230\178\161\230\156\137AvatarExpressionPrefix\239\188\140\229\143\141\233\166\136\231\173\150\229\136\146\230\163\128\230\159\165\233\133\141\231\189\174\239\188\140\229\143\176\230\156\172\231\188\150\229\143\183\239\188\154%s\239\188\140Npc\231\188\150\229\143\183\239\188\154%s\239\188\140\230\168\161\229\158\139Id\239\188\154%s", DialogueId, NpcId, ModelId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\142\183\229\143\150Npc\232\161\168\230\131\133Id\229\164\177\232\180\165", Message)
+    local Message = string.format("获取Npc表情Id失败，模型数据中没有AvatarExpressionPrefix，反馈策划检查配置，台本编号：%s，Npc编号：%s，模型Id：%s", DialogueId, NpcId, ModelId)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "获取Npc表情Id失败", Message)
     return
   end
   return string.format("%s%s", ModelData.AvatarExpressionPrefix, FacialId)
@@ -304,8 +304,8 @@ function WBP_GuideManTalkUI_C:SwitchGuideHeadInternal(FacialIdx, DialogueData)
   end
   local Path, X, Y = self:GetGuideHead(FacialIdx)
   if not UResourceLibrary.CheckResourceExistOnDisk(Path) then
-    local Message = string.format("\229\188\149\229\175\188\229\145\152\229\164\180\229\131\143\232\183\175\229\190\132\230\151\160\230\149\136\239\188\140\229\143\141\233\166\136\231\173\150\229\136\146\230\163\128\230\159\165\233\133\141\231\189\174\239\188\140\229\143\176\230\156\172\231\188\150\229\143\183\239\188\154%s\239\188\140\229\164\180\229\131\143Id\239\188\154%s", DialogueData.DialogueId, FacialIdx)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\188\149\229\175\188\229\145\152\229\164\180\229\131\143Id\230\151\160\230\149\136", Message)
+    local Message = string.format("引导员头像路径无效，反馈策划检查配置，台本编号：%s，头像Id：%s", DialogueData.DialogueId, FacialIdx)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "引导员头像Id无效", Message)
     self:SwitchShowImage(false)
     return
   end

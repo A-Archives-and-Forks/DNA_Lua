@@ -227,7 +227,7 @@ function M:InitUIInfo(Name, IsInUIMode, EventList, Params)
         PreviewModeLoadFailed = true
         local trace = debug.traceback()
         err = err or ""
-        DebugPrint("Error: CY@ \233\162\132\232\167\136\230\168\161\229\188\143Avatar\229\136\155\229\187\186\229\164\177\232\180\165!\n" .. err .. "\n" .. trace)
+        DebugPrint("Error: CY@ 预览模式Avatar创建失败!\n" .. err .. "\n" .. trace)
       end
     })
   end

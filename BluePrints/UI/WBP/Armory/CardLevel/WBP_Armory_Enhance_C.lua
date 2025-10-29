@@ -171,12 +171,12 @@ function M:UpdateWeaponGradeLevelInfo()
     if CurrentSkillDesc then
       self.Text_Detail:SetText(CurrentSkillDesc)
     else
-      DebugPrint(ErrorTag, "::PassiveEffectsDesc is nil,\232\175\183\230\163\128\230\159\165WeaponId", self.TargetWeapon.WeaponId)
+      DebugPrint(ErrorTag, "::PassiveEffectsDesc is nil,请检查WeaponId", self.TargetWeapon.WeaponId)
     end
   elseif SkillDesc then
     self.Text_Detail:SetText(GText("UI_Armory_NextStage") .. ": " .. SkillDesc)
   else
-    DebugPrint(ErrorTag, "::PassiveEffectsDesc is nil,\232\175\183\230\163\128\230\159\165WeaponId", self.TargetWeapon.WeaponId)
+    DebugPrint(ErrorTag, "::PassiveEffectsDesc is nil,请检查WeaponId", self.TargetWeapon.WeaponId)
   end
   if self.IsPreviewMode then
     self.Preview:SetVisibility(UIConst.VisibilityOp.SelfHitTestInvisible)

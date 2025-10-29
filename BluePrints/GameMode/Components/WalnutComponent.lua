@@ -18,7 +18,7 @@ function WalnutComponent:TriggerShowWalnutReward()
     self:AddDungeonEvent("ShowWalnutReward")
   elseif IsDedicatedServer(self) then
     if self:IsAllPlayerNotChoosedNextWalnut() then
-      DebugPrint("WalnutComponent: \230\137\128\230\156\137\231\142\169\229\174\182\233\131\189\230\178\161\232\163\133\229\164\135\230\160\184\230\161\131")
+      DebugPrint("WalnutComponent: 所有玩家都没装备核桃")
       self:ExecuteNextStepOfWalnutReward()
       return
     end
@@ -55,7 +55,7 @@ function WalnutComponent:OnClientSelectedWalnutReward_DedicatedServer(AvatarEidS
       self:OnPlayerSelectWalnutReward()
     end
   else
-    self.EMGameState:ShowDungeonError("WalnutComponent:\228\184\128\228\184\170\228\184\141\229\173\152\229\156\168\231\154\132AvatarEidStr\233\128\137\230\139\169\228\186\134\229\165\150\229\138\177 AvatarEidStr " .. (AvatarEidStr or "nil"))
+    self.EMGameState:ShowDungeonError("WalnutComponent:一个不存在的AvatarEidStr选择了奖励 AvatarEidStr " .. (AvatarEidStr or "nil"))
   end
 end
 
@@ -137,7 +137,7 @@ function WalnutComponent:ExecuteNextStepOfWalnutReward()
   self:RemoveTimer("ShowWalnutRewardDebug")
   EventManager:RemoveEvent(EventID.OnSelectWalnutReward, self)
   self:SetGamePaused("WalnutReward", false)
-  DebugPrint("WalnutComponent:ExecuteNextStepOfWalnutReward \230\152\175\230\151\160\229\176\189\229\137\175\230\156\172\229\144\151", self:IsEndlessDungeon())
+  DebugPrint("WalnutComponent:ExecuteNextStepOfWalnutReward 是无尽副本吗", self:IsEndlessDungeon())
   if not self:IsEndlessDungeon() then
     self:TriggerRealDungeFinish(true)
   else
@@ -194,7 +194,7 @@ function WalnutComponent:OnClinetChooseNextWalnut_DedicatedServer(AvatarEidStr, 
     self.EMGameState.NextWalnutPlayer:Add(AvatarEidStr, WalnutId)
     UE.UMapSyncHelper.SyncMap(self.EMGameState, "NextWalnutPlayer")
     if self.IsNextStepTriggered then
-      DebugPrint("WalnutComponent: \229\128\146\232\174\161\230\151\182\229\144\142\230\137\141\230\148\182\229\136\176\231\154\132skynet\228\186\139\228\187\182 AvatarEidStr", AvatarEidStr, "WalnutId", WalnutId)
+      DebugPrint("WalnutComponent: 倒计时后才收到的skynet事件 AvatarEidStr", AvatarEidStr, "WalnutId", WalnutId)
       return
     end
     local NotChoosedPlayers = self:GetNextWalnutNotChoosedPlayers()

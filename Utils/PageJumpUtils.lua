@@ -5,7 +5,7 @@ local PageJumpUtils = {}
 
 function PageJumpUtils:GetItemAccess(ItemWidget, ItemId, ItemType, AccessKey, UIName, ReturnCallBack)
   local AccessData = DataMgr.Access[AccessKey]
-  assert(AccessData, "\230\137\190\228\184\141\229\136\176AccessData\239\188\154" .. AccessKey)
+  assert(AccessData, "找不到AccessData：" .. AccessKey)
   local AccessText = GText(AccessData.AccessText)
   self.UIPageName = nil
   if UIName then
@@ -196,7 +196,7 @@ function PageJumpUtils:ProcessAccessItem(AccessItem, AccessText, UIName, UIUnloc
     local bIsCanOpen, FailedIdIndex = Avatar:CheckSystemUICanOpen(UIUnlockRuleId)
     if bIsCanOpen or bNotCheck then
       if not DataMgr.SystemUI[UIName] then
-        DebugPrint("\228\188\160\229\133\165\231\154\132UIName\230\156\170\229\156\168SystemUI\228\184\173\230\137\190\229\136\176\239\188\154", UIName)
+        DebugPrint("传入的UIName未在SystemUI中找到：", UIName)
       elseif DataMgr.SystemUI[UIName].IsBanAccess then
         function JumpPageFunc()
           UIManager:ShowUITip("CommonToastMain", GText("UI_COMMONPOP_TITLE_100059"))
@@ -320,12 +320,12 @@ function PageJumpUtils:CreateJumpToDungeonAccess(CommonParam, ItemType, ItemId, 
     local DungeonId, MonsterId, DungeonAccessText
     if CommonParam.AccessKey == "Dungeon" then
       DungeonId = Value
-      assert(DungeonInfo[DungeonId], "\230\137\190\228\184\141\229\136\176DungeonInfo[" .. DungeonId .. "]")
+      assert(DungeonInfo[DungeonId], "找不到DungeonInfo[" .. DungeonId .. "]")
       DungeonAccessText = CommonParam.AccessText .. GText(DungeonInfo[DungeonId].DungeonName)
     elseif CommonParam.AccessKey == "MonsterStrong" then
       DungeonId = Value.DungeonId
       MonsterId = Value.MonsterId
-      assert(DungeonInfo[DungeonId], "\230\137\190\228\184\141\229\136\176DungeonInfo[" .. DungeonId .. "]")
+      assert(DungeonInfo[DungeonId], "找不到DungeonInfo[" .. DungeonId .. "]")
       DungeonAccessText = GText(DataMgr.Monster[DataMgr.ModDungeonMonReward[MonsterId].MonsterUnitId].UnitName) .. " Lv." .. DataMgr.Dungeon[DungeonId].DungeonLevel
     end
     
@@ -362,7 +362,7 @@ function PageJumpUtils:CreateJumpToDungeonAccess(CommonParam, ItemType, ItemId, 
 end
 
 function PageJumpUtils:CreateJumpToDungeonModAccess(CommonParam, ItemType, ItemId)
-  assert(DataMgr.ModSelectDungeon[CommonParam.AccessParam], "Mod\229\167\148\230\137\152\230\156\172\233\133\141\231\189\174\229\143\130\230\149\176\233\148\153\232\175\175, ", CommonParam.AccessKey)
+  assert(DataMgr.ModSelectDungeon[CommonParam.AccessParam], "Mod委托本配置参数错误, ", CommonParam.AccessKey)
   local AccessItem = self:CreateAccessItem(CommonParam.ItemWidget, CommonParam.AccessKey)
   local DungeonAccessText = GText(CommonParam.AccessText) .. " Lv." .. GText(CommonParam.AccessParam)
   local JumpToPage
@@ -881,10 +881,10 @@ function PageJumpUtils:JumpToFeinaEvent(CurTabIndex)
 end
 
 function PageJumpUtils:JumpToShopPage(MainTabIdx, SubTabIdx, ShopItemId, ShopType, Callback, CallbackObj)
-  assert(DataMgr.Shop[ShopType], "\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\231\177\187\229\158\139\231\154\132\229\149\134\229\186\151\239\188\140", ShopType)
+  assert(DataMgr.Shop[ShopType], "未找到对应类型的商店，", ShopType)
   local UIName = DataMgr.Shop[ShopType].ShopUIName
   if not UIName then
-    DebugPrint("ZDX_\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\232\183\179\232\189\172\229\149\134\229\186\151\231\154\132UIName", ShopType)
+    DebugPrint("ZDX_未找到对应跳转商店的UIName", ShopType)
     return
   end
   MainTabIdx = tonumber(MainTabIdx)

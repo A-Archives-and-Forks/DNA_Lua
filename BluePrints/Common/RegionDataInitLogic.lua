@@ -96,7 +96,7 @@ function M:InitSSDataFromServer(RegionBaseData)
         self:InitStaticCreatorParams(RegionBaseData.CreatorId, RegionBaseData.QuestChainId, RegionBaseData.ExtraRegionInfo.SpecialQuestId, RegionBaseData.ExtraRegionInfo.DynQuestId)
         self:InitSSDataFromServer_StaticCreator(RegionBaseData.WorldRegionEid, RegionBaseData.LevelName, RegionBaseData.CreatorId)
       else
-        GWorld.logger.error("\229\140\186\229\159\159\230\149\176\230\141\174\229\136\157\229\167\139\229\140\150\230\178\161\230\156\137\230\137\190\229\136\176StaticCreator!! \229\183\178\232\183\179\232\191\135\239\188\154" .. RegionBaseData.CreatorId)
+        GWorld.logger.error("区域数据初始化没有找到StaticCreator!! 已跳过：" .. RegionBaseData.CreatorId)
       end
     end
   elseif RegionBaseData.RandomRuleId and RegionBaseData.RandomRuleId > 0 then
@@ -249,7 +249,7 @@ function M:RecoverRegionBpData(Avatar, SubRegionId)
   local RegionId = Avatar:GetSubRegionId2RegionId(SubRegionId)
   local RegionData = DataMgr.Region[RegionId]
   if not RegionData then
-    DebugPrint("Error! RecoverRegionBpData \230\137\190\228\184\141\229\136\176\229\140\186\229\159\159\230\149\176\230\141\174", RegionId)
+    DebugPrint("Error! RecoverRegionBpData 找不到区域数据", RegionId)
     return
   end
   local StorageRegionDataType = {
@@ -291,14 +291,14 @@ end
 function M:InitSubRegionInfoByData(UnitData)
   local GameMode = UE4.UGameplayStatics.GetGameMode(GWorld.GameInstance)
   if UnitData.ManualItemId and UnitData.ManualItemId > 0 then
-    DebugPrint("RecoverSubRegionDataCache \230\129\162\229\164\141\232\191\153\228\186\155manualitem", UnitData.ManualItemId, UnitData.SubRegionId, UnitData.UnitType, UnitData.UnitId)
+    DebugPrint("RecoverSubRegionDataCache 恢复这些manualitem", UnitData.ManualItemId, UnitData.SubRegionId, UnitData.UnitType, UnitData.UnitId)
     local ManualItemActor = GameMode.BPBornRegionActor:FindRef(UnitData.ManualItemId)
     if ManualItemActor then
       if UnitData.IsDead then
         if ManualItemActor.EMActorDestroy then
           ManualItemActor:EMActorDestroy(EDestroyReason.RecoverSubRegionDataCacheButBpBornHasAlreadyDead)
         else
-          DebugPrint("Error! RecoverSubRegionDataCache \230\173\164ACTOR \232\147\157\229\155\190\231\148\159\230\136\144\239\188\140\228\189\134\230\152\175\230\178\161\230\156\137\233\148\128\230\175\129\230\150\185\230\179\149", ManualItemActor)
+          DebugPrint("Error! RecoverSubRegionDataCache 此ACTOR 蓝图生成，但是没有销毁方法", ManualItemActor)
         end
       else
         local Context = AEventMgr.CreateUnitContext()
@@ -313,7 +313,7 @@ function M:InitSubRegionInfoByData(UnitData)
       end
       self:AddManualDataToCache(UnitData.ManualItemId, UnitData.WorldRegionEid)
     else
-      DebugPrint("Error! \229\140\186\229\159\159\239\188\140\229\173\152\229\156\168\228\184\128\228\184\170\232\147\157\229\155\190\231\148\159\230\136\144\231\154\132actor\239\188\140\228\189\134\230\152\175\229\189\147\229\137\141\229\156\186\230\153\175\229\134\133\230\156\170\230\137\190\229\136\176")
+      DebugPrint("Error! 区域，存在一个蓝图生成的actor，但是当前场景内未找到")
     end
   elseif UnitData.CreatorId then
     local Context = AEventMgr.CreateUnitContext()
@@ -326,7 +326,7 @@ function M:InitSubRegionInfoByData(UnitData)
     local WorldLoader = GameMode:GetLevelLoader()
     local LevelName = WorldLoader:GetLevelIdByLocation(FVector(UnitData.BornLocation.X, UnitData.BornLocation.Y, UnitData.BornLocation.Z))
     if "None" == LevelName or "" == LevelName then
-      DebugPrint("RandomCreator\228\184\173\228\184\141\229\173\152\229\156\168\229\166\130\228\184\139\230\149\176\230\141\174\239\188\154 Location = ", UnitData.BornLocation.X, UnitData.BornLocation.Y, UnitData.BornLocation.Z)
+      DebugPrint("RandomCreator中不存在如下数据： Location = ", UnitData.BornLocation.X, UnitData.BornLocation.Y, UnitData.BornLocation.Z)
     end
     local RandomCreatorId = GameMode.RandomActorManager:GetParamActorId(UnitData.RandomRuleId, LevelName, UnitData.RandomIdxInRule)
     UnitData.RandomCreatorId = RandomCreatorId

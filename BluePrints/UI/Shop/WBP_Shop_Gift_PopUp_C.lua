@@ -102,7 +102,7 @@ function M:OnLoaded(...)
     self.Btn_Confirm.WS_Sign:SetActiveWidgetIndex(1)
     self.Btn_Confirm.Text_ValueSign:SetText(GText(ShopUtils:GetCurrencyType()))
   else
-    assert(ItemData.Icon, "\231\188\186\229\176\145Icon", self.ShopItemData.ItemType, self.ShopItemData.TypeId)
+    assert(ItemData.Icon, "缺少Icon", self.ShopItemData.ItemType, self.ShopItemData.TypeId)
     self.Btn_Confirm.WS_Sign:SetActiveWidgetIndex(0)
     self.Btn_Confirm.Com_ItemIcon:Init({
       Id = self.ShopItemData.PriceType,

@@ -1378,7 +1378,7 @@ function Guide_Touch:GetUICompGamePadInfo()
       if Widget[self.GamePadWidgetName] then
         GamePadWidget = Widget[self.GamePadWidgetName]
       else
-        DebugPrint(self.GamePadWidgetName .. "\230\178\161\230\156\137\229\188\128\230\148\190\229\143\152\233\135\143")
+        DebugPrint(self.GamePadWidgetName .. "没有开放变量")
         return "A"
       end
       if GamePadWidget.KeyInfoList or GamePadWidget.GamePadImgName then
@@ -1407,7 +1407,7 @@ function Guide_Touch:GetUICompGamePadInfo()
         return Key
       end
     else
-      DebugPrint("Stl\232\138\130\231\130\185\231\188\186\229\176\145\230\137\139\230\159\132\230\140\137\233\148\174\233\133\141\231\189\174")
+      DebugPrint("Stl节点缺少手柄按键配置")
       return "A"
     end
   else

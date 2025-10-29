@@ -28,7 +28,7 @@ end
 function SupportSkill_Phone_C:RefreshSupportSkillIcon()
   local BattlePet = self.OwnerPlayer:GetBattlePet()
   if not BattlePet then
-    DebugPrint("BattlePet\228\184\186\231\169\186!!!")
+    DebugPrint("BattlePet为空!!!")
     return
   end
   self.IsInit = true
@@ -86,22 +86,22 @@ end
 
 function SupportSkill_Phone_C:PlayButtonStateAnimation()
   if self.CurButtonState == "InCDTime" then
-    DebugPrint("\232\191\155\229\133\165CD\230\128\129")
+    DebugPrint("进入CD态")
     if not EMUIAnimationSubsystem:EMAnimationIsPlaying(self, self.CD) then
       EMUIAnimationSubsystem:EMPlayAnimation(self, self.CD)
     end
   elseif self.CurButtonState == "InCDTimeSustain" then
-    DebugPrint("\232\191\155\229\133\165CD\230\140\129\231\187\173\230\128\129")
+    DebugPrint("进入CD持续态")
     if not EMUIAnimationSubsystem:EMAnimationIsPlaying(self, self.Sustain_CD) then
       EMUIAnimationSubsystem:EMPlayAnimation(self, self.Sustain_CD)
     end
   elseif self.CurButtonState == "SustainLoop" then
-    DebugPrint("\232\191\155\229\133\165\230\140\129\231\187\173\230\128\129")
+    DebugPrint("进入持续态")
     if not EMUIAnimationSubsystem:EMAnimationIsPlaying(self, self.Sustain_Loop) then
       EMUIAnimationSubsystem:EMPlayAnimation(self, self.Sustain_Loop)
     end
   elseif self.CurButtonState == "Normal" then
-    DebugPrint("\232\191\155\229\133\165\229\184\184\232\167\132\230\128\129")
+    DebugPrint("进入常规态")
     EMUIAnimationSubsystem:EMPlayAnimation(self, self.Normal)
   end
 end

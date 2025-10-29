@@ -91,7 +91,7 @@ function M:InitRewardPanel()
   if self.IsTemple then
     return
   end
-  DebugPrint("DungeonSettlement: Reward\229\136\151\232\161\168\229\133\165\229\156\186")
+  DebugPrint("DungeonSettlement: Reward列表入场")
   PrintTable(self.SpRewards, 3)
   PrintTable(self.Rewards, 3)
   self.SpRewardsArray = {}
@@ -1253,7 +1253,7 @@ function M:SetOnlineDetails()
     if "" == TitleStr then
       TitleStr = GText("UI_STAT_Online_P" .. TeamIndex)
     else
-      TitleStr = TitleStr .. "\227\128\129" .. GText("UI_STAT_Online_P" .. TeamIndex)
+      TitleStr = TitleStr .. "、" .. GText("UI_STAT_Online_P" .. TeamIndex)
     end
   end
   self.Widget_OnlineDetails = self:InitDataContent(GText("UI_STAT_Online"), TitleStr)
@@ -1277,11 +1277,11 @@ function M:SetPhantomAttrsDetails()
   local PhantomNum = self.CombatData.PhantomNum
   local Battle = GWorld.Battle
   if not Battle then
-    DebugPrint("[THY]  Battle\228\184\186nil")
+    DebugPrint("[THY]  Battle为nil")
     return
   end
   if 0 == PhantomNum then
-    DebugPrint("[THY]  \230\178\161\230\156\137\233\173\133\229\189\177")
+    DebugPrint("[THY]  没有魅影")
     return
   end
   local PhantomDetails = {}
@@ -1892,12 +1892,12 @@ function M:CalcTempleInfo()
       StarLevel = self.CombatData.StarLevel
     end
     if StarLevel < 0 or StarLevel > 3 then
-      error("\230\156\172\229\133\179\232\174\190\231\189\174\230\152\159\231\186\167\232\182\133\229\135\186\229\143\175\232\142\183\229\190\151\231\154\132\232\140\131\229\155\180")
+      error("本关设置星级超出可获得的范围")
     end
   elseif 1 == #Ids then
     self.IsStarLevel = false
   else
-    error("\230\156\172\229\133\179\229\165\150\229\138\177\233\133\141\231\189\174\230\156\137\232\175\175\239\188\140\232\175\183\230\173\163\231\161\174\233\133\141\231\189\174\230\152\159\231\186\167\229\165\150\229\138\177\230\136\150\230\151\160\230\152\159\231\186\167\229\165\150\229\138\177")
+    error("本关奖励配置有误，请正确配置星级奖励或无星级奖励")
   end
   local FailReason = ""
   if not self.IsWin then
@@ -2008,12 +2008,12 @@ function M:CalcPartyInfo()
       StarLevel = 0
     end
     if StarLevel < 0 or StarLevel > 3 then
-      error("\230\156\172\229\133\179\232\174\190\231\189\174\230\152\159\231\186\167\232\182\133\229\135\186\229\143\175\232\142\183\229\190\151\231\154\132\232\140\131\229\155\180")
+      error("本关设置星级超出可获得的范围")
     end
   elseif 1 == #Ids then
     self.IsStarLevel = false
   else
-    error("\230\156\172\229\133\179\229\165\150\229\138\177\233\133\141\231\189\174\230\156\137\232\175\175\239\188\140\232\175\183\230\173\163\231\161\174\233\133\141\231\189\174\230\152\159\231\186\167\229\165\150\229\138\177\230\136\150\230\151\160\230\152\159\231\186\167\229\165\150\229\138\177")
+    error("本关奖励配置有误，请正确配置星级奖励或无星级奖励")
   end
   local FailReason = ""
   if not self.IsWin then
@@ -2276,7 +2276,7 @@ function M:RefreshOpInfoByInputDevice(CurInputDevice, CurGamepadName)
     return
   end
   if self.CurInputDeviceType == CurInputDevice then
-    DebugPrint("thy    \229\183\178\231\187\143\230\152\190\231\164\186\231\154\132\230\152\175\232\175\165\232\190\147\229\133\165\230\168\161\229\188\143\239\188\140\228\184\141\233\156\128\232\166\129\232\191\155\232\161\140\229\136\183\230\150\176")
+    DebugPrint("thy    已经显示的是该输入模式，不需要进行刷新")
     return
   end
   self.CurInputDeviceType = CurInputDevice
@@ -2298,7 +2298,7 @@ function M:UpdateMainUI()
     return
   end
   if not self:HasFocusedDescendants() and not self:HasAnyUserFocus() then
-    DebugPrint("ljl@ \229\183\178\232\129\154\231\132\166\232\135\179\228\184\138\231\186\167\231\149\140\233\157\162 \228\184\141\232\129\154\231\132\166\229\136\176\232\175\165\231\149\140\233\157\162")
+    DebugPrint("ljl@ 已聚焦至上级界面 不聚焦到该界面")
     return
   end
   self:SetFocus()

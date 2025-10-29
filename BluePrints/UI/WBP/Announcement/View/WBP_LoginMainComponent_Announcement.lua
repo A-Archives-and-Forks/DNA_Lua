@@ -33,7 +33,7 @@ function Component:OpenAnnouncementOnce(bReset)
     return
   end
   if not self.ServerInfo then
-    Utils.Traceback(ErrorTag, "\229\133\172\229\145\138\232\135\170\229\138\168\229\188\185\229\135\186\229\164\177\232\180\165\239\188\140\231\153\187\229\189\149\230\168\161\229\157\151\230\143\144\228\190\155\231\154\132ServerInfo\230\151\160\230\149\136\239\188\129\239\188\129\239\188\129")
+    Utils.Traceback(ErrorTag, "公告自动弹出失败，登录模块提供的ServerInfo无效！！！")
     return
   end
   local HostId = self.ServerInfo.hostnum
@@ -42,7 +42,7 @@ function Component:OpenAnnouncementOnce(bReset)
   end
   self.Coroutine = nil
   self.Coroutine = coroutine.create(function()
-    DebugPrint("[Laixiaoyang]LoginMain::OpenAnnouncementOnce  \232\135\170\229\138\168\229\188\185\229\135\186\230\184\184\230\136\143\229\133\172\229\145\138")
+    DebugPrint("[Laixiaoyang]LoginMain::OpenAnnouncementOnce  自动弹出游戏公告")
     AnnouncementUtils:TrySetServerAreaNew(HostId)
     if not AnnouncementUtils.bInit then
       AnnouncementUtils:GetAnnouncementDataAsync(AnnounceCommon.ShowTag.InLogin, self.Coroutine, HostId)

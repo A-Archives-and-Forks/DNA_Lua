@@ -171,7 +171,7 @@ function WBP_ForgeItemWidget:OnDraftSetTargetChanged(bIsSelected)
     local TargetDraftsCount = self.Content.GetDataModel():GetTargetDraftCount()
     local MaxTargetDraftCount = DataMgr.GlobalConstant.ForgeTargetMaxNum.ConstantValue or ForgeConst.DefaultForgeTargetMaxNum
     if TargetDraftsCount >= MaxTargetDraftCount then
-      UIManager(self):ShowUITip("CommonToastMain", "\231\155\174\230\160\135\232\174\190\232\174\161\231\168\191\230\149\176\233\135\143\229\183\178\232\190\190\229\136\176\228\184\138\233\153\144")
+      UIManager(self):ShowUITip("CommonToastMain", "目标设计稿数量已达到上限")
       self.Btn_SetTarget:SetCheckedNoNotify(false)
       return
     end

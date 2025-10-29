@@ -10,7 +10,7 @@ end
 
 function M:CommonInitInfo(Info)
   M.Super.CommonInitInfo(self, Info)
-  DebugPrint("zwjkjk CommonInitInfo \229\136\157\229\167\139\231\138\182\230\128\129", self.StateId, self:GetName())
+  DebugPrint("zwjkjk CommonInitInfo 初始状态", self.StateId, self:GetName())
   self.AlertValue = 0.0
   self.MaxAlertValue = 100.0
   self.OverlappingPlayer = nil

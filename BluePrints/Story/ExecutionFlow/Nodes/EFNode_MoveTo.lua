@@ -9,31 +9,31 @@ function M:CreateNode(Flow, TalkTask, Params)
   local TalkContext = GWorld.GameInstance:GetTalkContext()
   if not IsValid(TalkContext) then
     local Message = string.format("MoveTo create failed: TalkContext not found, DialogueId: %d", Flow.DialogueId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local TalkActorData = TalkContext:GetTalkActorData(TalkTask, ActorId)
   if not TalkActorData then
     local Message = string.format("MoveTo create failed: TalkActorData not found, ActorId: %d, DialogueId: %d", ActorId, Flow.DialogueId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local TalkActor = TalkActorData.TalkActor
   if not IsValid(TalkActor) then
     local Message = string.format("MoveTo create failed: TalkActor not found, ActorId: %d, DialogueId: %d", ActorId, Flow.DialogueId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local GameState = UGameplayStatics.GetGameState(Flow)
   if not IsValid(GameState) then
     local Message = string.format("MoveTo create failed: GameState not found, DialogueId: %d", Flow.DialogueId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local TargetPoint = GameState:GetTargetPoint(TargetPointName)
   if not IsValid(TargetPoint) then
     local Message = string.format("MoveTo create failed: TargetPoint not found, PointName: %s, DialogueId: %d", TargetPointName, Flow.DialogueId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local MaxMovingSpeedInfoCache = TalkActor:GetMaxMovingSpeedInfo()
@@ -59,7 +59,7 @@ function M:CreateNode(Flow, TalkTask, Params)
     Node.MoveToProxy = UAIBlueprintHelperLibrary.CreateMoveToProxyObject(Node, TalkActor, TargetPoint:K2_GetActorLocation())
     if not IsValid(Node.MoveToProxy) then
       local Message = string.format("MoveTo start failed: MoveToProxy not created, ActorId: %d, DialogueId: %d", ActorId, Flow.DialogueId)
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
       Node:Finish({
         Node.FinishPin
       })

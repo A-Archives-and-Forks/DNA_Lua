@@ -86,7 +86,7 @@ function M:SetWalnutContent(WalnutId, bPlayAnimation)
       end
       table.insert(self.WalnutRewardList, {ItemType = CurrentType, ItemId = CurrentId})
     else
-      DebugPrint("ERROR::", "Draft\231\154\132Id:" .. CurrentId .. "\228\184\141\229\173\152\229\156\168, \232\175\183\230\163\128\230\159\165\230\160\184\230\161\131\229\165\150\229\138\177\233\133\141\231\189\174")
+      DebugPrint("ERROR::", "Draft的Id:" .. CurrentId .. "不存在, 请检查核桃奖励配置")
     end
   end
   local PerCentGold, PerCentSilver, PerCentBronze = ItemUtils.GetWalnutItemPercent(WalnutId)

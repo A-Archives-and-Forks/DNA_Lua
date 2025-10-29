@@ -479,7 +479,7 @@ function M:OnPetMixEntryDestructed(SelectedPetEntryContent, Pet)
   self.Entry_Pet_Mix.Button_Area:SetFocus()
   local PetData = DataMgr.Pet[Pet.UnitId]
   if self.EffectCreatureId and self.EffectCreatureId == PetData.EffectCreatureId then
-    ScreenPrint("\228\184\141\229\136\155\229\187\186\229\174\160\231\137\169")
+    ScreenPrint("不创建宠物")
     return
   elseif self.EffectCreatureId and self.EffectCreatureId ~= PetData.EffectCreatureId and self.EffectCreature then
     self.EffectCreature:SetActorHiddenInGame(true)
@@ -642,7 +642,7 @@ function M:GetDPIAdjustedMixPetOffset()
   local AdjustedX = OriginalOffset.X * DPIScale * DeviceScale
   local AdjustedY = OriginalOffset.Y * DPIScale * DeviceScale
   local AdjustedZ = OriginalOffset.Z * DPIScale * DeviceScale
-  DebugPrint(string.format("PetMix DPI\232\176\131\230\149\180: \229\142\159\229\167\139\229\129\143\231\167\187(%.2f,%.2f,%.2f) -> \232\176\131\230\149\180\229\144\142(%.2f,%.2f,%.2f), DPI\231\188\169\230\148\190:%.2f, \232\174\190\229\164\135\231\188\169\230\148\190:%.2f", OriginalOffset.X, OriginalOffset.Y, OriginalOffset.Z, AdjustedX, AdjustedY, AdjustedZ, DPIScale, DeviceScale))
+  DebugPrint(string.format("PetMix DPI调整: 原始偏移(%.2f,%.2f,%.2f) -> 调整后(%.2f,%.2f,%.2f), DPI缩放:%.2f, 设备缩放:%.2f", OriginalOffset.X, OriginalOffset.Y, OriginalOffset.Z, AdjustedX, AdjustedY, AdjustedZ, DPIScale, DeviceScale))
   return FVector(AdjustedX, AdjustedY, AdjustedZ)
 end
 

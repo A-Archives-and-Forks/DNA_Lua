@@ -326,7 +326,7 @@ function WBP_ForgeMain_C:OnEnterState_NormalPage_ShowItem()
       CurrentGamepadSelectedEntry:EnterShowItemView()
     end
   else
-    DebugPrint(LogTag.Error, "\232\191\155\229\133\165\232\129\154\231\132\166\230\168\161\229\188\143\229\164\177\232\180\165\239\188\140\230\137\190\228\184\141\229\136\176\233\156\128\232\166\129\232\129\154\231\132\166\231\154\132\233\147\184\233\128\160\230\157\161\231\155\174")
+    DebugPrint(LogTag.Error, "进入聚焦模式失败，找不到需要聚焦的铸造条目")
     self.ControllerFSM:Enter(ForgeConst.ControllerFSMStates.NormalPage_FocusItem)
   end
 end

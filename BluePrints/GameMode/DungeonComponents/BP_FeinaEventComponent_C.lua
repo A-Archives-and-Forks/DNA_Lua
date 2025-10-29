@@ -7,7 +7,7 @@ function BP_FeinaEventComponent_C:InitFeinaEventComponent()
   self.GameMode = self:GetOwner()
   local FeinaEventInfo = DataMgr.FeinaGame[self.GameMode.DungeonId]
   if not FeinaEventInfo then
-    GameState(self):ShowDungeonError("FeinaEventComponent:\229\189\147\229\137\141\229\137\175\230\156\172ID\230\178\161\230\156\137\229\161\171\229\134\153\229\156\168\229\175\185\229\186\148\231\154\132\229\137\175\230\156\172\232\161\168\228\184\173, \232\175\187\232\161\168\229\164\177\232\180\165! \232\175\187\229\133\165Id\239\188\154" .. self.GameMode.DungeonId)
+    GameState(self):ShowDungeonError("FeinaEventComponent:当前副本ID没有填写在对应的副本表中, 读表失败! 读入Id：" .. self.GameMode.DungeonId)
     return
   end
   self.SaveDataManualId = FeinaEventInfo.SaveDataManualId or {}
@@ -173,10 +173,10 @@ end
 
 function BP_FeinaEventComponent_C:OpenOrCloseFog(bOpen, InFogTime, SafeTransform, bAutoClose)
   if 0 == InFogTime then
-    GWorld.logger.error("\232\143\178\229\168\156\230\180\187\229\138\168\231\187\132\228\187\182 OpenOrCloseFog InFogTime\228\184\1860")
+    GWorld.logger.error("菲娜活动组件 OpenOrCloseFog InFogTime为0")
     return
   end
-  print(_G.LogTag, "\232\143\178\229\168\156\230\180\187\229\138\168\231\187\132\228\187\182 OpenOrCloseFog", bOpen, InFogTime, SafeTransform, bAutoClose)
+  print(_G.LogTag, "菲娜活动组件 OpenOrCloseFog", bOpen, InFogTime, SafeTransform, bAutoClose)
   self.InFogTime = InFogTime
   self.SafeTransform = SafeTransform
   self.bAutoClose = bAutoClose

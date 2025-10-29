@@ -149,7 +149,7 @@ function M:UpdateCameraInfo()
   local CameraInfoGame = FishingCameraData[BattleCharTag].CameraInfoGame
   local CameraInfoSelect = FishingCameraData[BattleCharTag].CameraInfoSelect
   if not (CameraInfoMain and CameraInfoGame) or not CameraInfoSelect then
-    GWorld.logger.error("\233\146\147\233\177\188\231\130\185" .. self.FishingSpotName .. "\231\188\186\229\176\145\233\149\156\229\164\180\230\149\176\230\141\174")
+    GWorld.logger.error("钓鱼点" .. self.FishingSpotName .. "缺少镜头数据")
     return
   end
   local CameraInfoMainTrans = CameraInfoMain[1]

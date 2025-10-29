@@ -29,7 +29,7 @@ function M:OnUpdateMaxSp(NewMaxSp)
   if not NewMaxSp then
     return
   end
-  DebugPrint("@zyh \230\156\128\230\150\176MaxSp\230\155\180\230\150\176\228\184\186", NewMaxSp)
+  DebugPrint("@zyh 最新MaxSp更新为", NewMaxSp)
   self.MaxSp = NewMaxSp
   local SpPercent = math.min(math.max(self.NowSp / self.MaxSp, 0), 1)
   self.EnergyBar = self.Bg_BarPercent.SlateMesh.Material

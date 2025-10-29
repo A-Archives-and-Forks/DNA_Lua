@@ -108,7 +108,7 @@ function Component:CheckIsTrackingQuest(CurMapRegionId)
         break
       end
       if Const.EnableTaskPrintError then
-        ScreenPrint(string.format("CheckIsTrackingQuest: \230\140\135\229\188\149\231\130\185\229\140\186\229\159\159\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168, \228\187\187\229\138\161\229\140\186\229\159\159\228\191\161\230\129\175\232\142\183\229\143\150\229\164\177\232\180\165\239\188\140\232\175\183\230\163\128\230\159\165\229\175\188\229\135\186\230\149\176\230\141\174, \230\140\135\229\188\149\231\130\185: %s", v:GetName()))
+        ScreenPrint(string.format("CheckIsTrackingQuest: 指引点区域数据不存在, 任务区域信息获取失败，请检查导出数据, 指引点: %s", v:GetName()))
       end
       break
     end
@@ -246,7 +246,7 @@ function Component:AddTaskMiniMapIndicator(InUIName, Widget)
   end
   if 0 == TrackingQuestId then
     if Const.EnableTaskPrintError then
-      ScreenPrint(string.format("[line:555]\232\191\189\232\184\170\228\187\187\229\138\161\228\184\141\229\173\152\229\156\168\239\188\140\229\176\143\229\156\176\229\155\190\230\140\135\229\188\149\231\130\185\229\138\160\232\189\189\229\164\177\232\180\165, \228\187\187\229\138\161\233\147\190Id: %s", TrackingQuestChainId))
+      ScreenPrint(string.format("[line:555]追踪任务不存在，小地图指引点加载失败, 任务链Id: %s", TrackingQuestChainId))
     end
     return
   end
@@ -275,7 +275,7 @@ function Component:AddTaskMiniMapIndicator(InUIName, Widget)
   end
   if nil == GuidePointLocData[TargetPointKey] then
     if Const.EnableTaskPrintError then
-      ScreenPrint(string.format("[line:577]\228\187\187\229\138\161\229\176\143\229\156\176\229\155\190\229\156\176\229\155\190\230\140\135\229\188\149\231\130\185\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168, \230\140\135\229\188\149\231\130\185\229\144\141\231\167\176\239\188\154%s", IndicatorUI:GetName()))
+      ScreenPrint(string.format("[line:577]任务小地图地图指引点数据不存在, 指引点名称：%s", IndicatorUI:GetName()))
     end
     return
   end
@@ -307,7 +307,7 @@ function Component:AddTaskMiniMapIndicator(InUIName, Widget)
   local TaskWorldMapRegionId = GuidePointLocData[TargetPointKey].SubRegionId
   if not TaskWorldMapRegionId then
     if Const.EnableTaskPrintError then
-      ScreenPrint(string.format("[line:601]\228\187\187\229\138\161\229\176\143\229\156\176\229\155\190\229\156\176\229\155\190\230\140\135\229\188\149\231\130\185\229\140\186\229\159\159\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168, \230\140\135\229\188\149\231\130\185\229\144\141\231\167\176\239\188\154%s", TargetPointKey))
+      ScreenPrint(string.format("[line:601]任务小地图地图指引点区域数据不存在, 指引点名称：%s", TargetPointKey))
     end
     return
   end
@@ -385,7 +385,7 @@ function Component:AddSpecialSideMiniMapIndicator(InUIName, Widget)
   end
   if nil == GuidePointLocData[TargetPointKey] then
     if Const.EnableTaskPrintError then
-      ScreenPrint(string.format("[line:577]\228\187\187\229\138\161\229\176\143\229\156\176\229\155\190\229\156\176\229\155\190\230\140\135\229\188\149\231\130\185\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168, \230\140\135\229\188\149\231\130\185\229\144\141\231\167\176\239\188\154%s", InUIName))
+      ScreenPrint(string.format("[line:577]任务小地图地图指引点数据不存在, 指引点名称：%s", InUIName))
     end
     return
   end
@@ -416,7 +416,7 @@ function Component:AddSpecialSideMiniMapIndicator(InUIName, Widget)
   local TaskWorldMapRegionId = GuidePointLocData[TargetPointKey].SubRegionId
   if not TaskWorldMapRegionId then
     if Const.EnableTaskPrintError then
-      ScreenPrint(string.format("[line:601]\228\187\187\229\138\161\229\176\143\229\156\176\229\155\190\229\156\176\229\155\190\230\140\135\229\188\149\231\130\185\229\140\186\229\159\159\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168, \230\140\135\229\188\149\231\130\185\229\144\141\231\167\176\239\188\154%s", TargetPointKey))
+      ScreenPrint(string.format("[line:601]任务小地图地图指引点区域数据不存在, 指引点名称：%s", TargetPointKey))
     end
     return
   end
@@ -576,7 +576,7 @@ function Component:AddDynamicMiniMapIndicator(InUIName, Widget)
   local Location = GuidePointLocData[TargetPointKey]
   if nil == TargetPointKey or "" == TargetPointKey or nil == GuidePointLocData[TargetPointKey] then
     if Const.EnableTaskPrintError then
-      ScreenPrint(string.format("\229\138\168\230\128\129\228\186\139\228\187\182\229\176\143\229\156\176\229\155\190\230\140\135\229\188\149\231\130\185\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168, \230\140\135\229\188\149\231\130\185\229\144\141\231\167\176 %s:", IndicatorUI:GetName()))
+      ScreenPrint(string.format("动态事件小地图指引点数据不存在, 指引点名称 %s:", IndicatorUI:GetName()))
     end
     return
   end
@@ -859,7 +859,7 @@ function Component:AddMainTaskGuidePointToRegionMap()
     end
     if nil == TargetPointKey or nil == GuidePointLocData[TargetPointKey] then
       if Const.EnableTaskPrintError then
-        ScreenPrint(string.format("[line:782]\229\140\186\229\159\159\229\156\176\229\155\190\228\187\187\229\138\161\230\140\135\229\188\149\231\130\185\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168, TargetPointKey\239\188\154%s", TargetPointKey))
+        ScreenPrint(string.format("[line:782]区域地图任务指引点数据不存在, TargetPointKey：%s", TargetPointKey))
       end
     else
       local TempLocation = GuidePointLocData[TargetPointKey]
@@ -878,11 +878,11 @@ function Component:AddMainTaskGuidePointToRegionMap()
       end
       if not TaskSubRegionId then
         if Const.EnableTaskPrintError then
-          ScreenPrint(string.format("\229\140\186\229\159\159\229\156\176\229\155\190\228\187\187\229\138\161\230\140\135\229\188\149\231\130\185\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168, TargetPointKey\239\188\154%s", TargetPointKey))
+          ScreenPrint(string.format("区域地图任务指引点数据不存在, TargetPointKey：%s", TargetPointKey))
         end
       elseif nil == DataMgr.SubRegion[TaskSubRegionId] or nil == DataMgr.SubRegion[TaskSubRegionId].RegionId then
         if Const.EnableTaskPrintError then
-          ScreenPrint(string.format("SubRegion\232\161\168\229\140\186\229\159\159\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168, SubRegionId\239\188\154%s", TaskSubRegionId))
+          ScreenPrint(string.format("SubRegion表区域数据不存在, SubRegionId：%s", TaskSubRegionId))
         end
       else
         if nil ~= TempLocation then
@@ -991,7 +991,7 @@ function Component:AddMainTaskGuidePointToRegionMapForTrackingQuest(TargetKey)
     local TargetPointKey = TargetKey
     if nil == TargetPointKey or nil == GuidePointLocData[TargetPointKey] then
       if Const.EnableTaskPrintError then
-        ScreenPrint(string.format("[line:782]\229\140\186\229\159\159\229\156\176\229\155\190\228\187\187\229\138\161\230\140\135\229\188\149\231\130\185\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168, TargetPointKey\239\188\154%s", TargetPointKey))
+        ScreenPrint(string.format("[line:782]区域地图任务指引点数据不存在, TargetPointKey：%s", TargetPointKey))
       end
       return
     end
@@ -1005,7 +1005,7 @@ function Component:AddMainTaskGuidePointToRegionMapForTrackingQuest(TargetKey)
     local TaskSubRegionId = GuidePointLocData[TargetPointKey].SubRegionId
     if nil == DataMgr.SubRegion[TaskSubRegionId] or nil == DataMgr.SubRegion[TaskSubRegionId].RegionId then
       if Const.EnableTaskPrintError then
-        ScreenPrint(string.format("SubRegion\232\161\168\229\140\186\229\159\159\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168, SubRegionId\239\188\154%s", TaskSubRegionId))
+        ScreenPrint(string.format("SubRegion表区域数据不存在, SubRegionId：%s", TaskSubRegionId))
       end
       return
     end
@@ -1099,7 +1099,7 @@ function Component:AddDynamicGuidePointToRegionMap()
     end
     if nil == TargetPointKey or "" == TargetPointKey or nil == GuidePointLocData[TargetPointKey] then
       if Const.EnableTaskPrintError then
-        ScreenPrint(string.format("\229\138\168\230\128\129\228\186\139\228\187\182\229\156\176\229\155\190\230\140\135\229\188\149\231\130\185\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168, \230\140\135\229\188\149\231\130\185\229\144\141\231\167\176\239\188\154%s", IndicatorUI:GetName()))
+        ScreenPrint(string.format("动态事件地图指引点数据不存在, 指引点名称：%s", IndicatorUI:GetName()))
       end
     else
       local TempLocation = GuidePointLocData[TargetPointKey]
@@ -1119,7 +1119,7 @@ function Component:AddDynamicGuidePointToRegionMap()
       local TargetSubRegionId = Avatar.CurrentRegionId
       if not TargetSubRegionId or not DataMgr.SubRegion[TargetSubRegionId] then
         if Const.EnableTaskPrintError then
-          ScreenPrint(string.format("\229\138\168\230\128\129\228\186\139\228\187\182\229\156\176\229\155\190\230\140\135\229\188\149\231\130\185\229\140\186\229\159\159\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168, \230\140\135\229\188\149\231\130\185\229\144\141\231\167\176\239\188\154%s", IndicatorUI:GetName()))
+          ScreenPrint(string.format("动态事件地图指引点区域数据不存在, 指引点名称：%s", IndicatorUI:GetName()))
         end
       elseif DataMgr.SubRegion[TargetSubRegionId].RegionId == self.RegionID then
         local Path = "/Game/UI/UI_PC/Common/Common_GuidePoint_PC.Common_GuidePoint_PC_C"

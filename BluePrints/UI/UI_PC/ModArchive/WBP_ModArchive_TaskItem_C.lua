@@ -272,11 +272,11 @@ function WBP_ModArchive_TaskItem_C:OnGamePadSelected()
   self:SetFocus()
   DebugPrint("zwkkk OnGamePadSelected")
   if self.List_Reward:GetChildrenCount() > 0 then
-    DebugPrint("zwkkk \233\173\148\228\185\139\230\165\148Item\232\162\171\232\129\154\231\132\166\228\186\134")
+    DebugPrint("zwkkk 魔之楔Item被聚焦了")
     self.List_Reward:GetChildAt(0):SetFocus()
     self.SelectedModIndex = 0
   else
-    DebugPrint("zwkkk \230\140\137\231\144\134\230\157\165\232\175\180\229\186\148\232\175\165\232\191\155\229\136\176\229\165\150\229\138\177\230\160\143\228\186\134", self.RewardIdSelected)
+    DebugPrint("zwkkk 按理来说应该进到奖励栏了", self.RewardIdSelected)
     self.ListView_Rewards:SetFocus()
     self:OnRewardsAddedToFocusPath()
   end
@@ -295,7 +295,7 @@ function WBP_ModArchive_TaskItem_C:OnEntryInitialized(Item, Widget)
 end
 
 function WBP_ModArchive_TaskItem_C:OnFocusReceived(MyGeometry, InFocusEvent)
-  DebugPrint("zwkkk12 \232\142\183\229\190\151\232\129\154\231\132\166")
+  DebugPrint("zwkkk12 获得聚焦")
   self.InFocus = true
   if self.CurInputDeviceType == ECommonInputType.Gamepad and self.Owner and self.Owner.Owner and 3 ~= self.Owner.Owner.CurTipsIndex then
     self.Owner.Owner:SwitchComKeyTipsState(3)
@@ -303,7 +303,7 @@ function WBP_ModArchive_TaskItem_C:OnFocusReceived(MyGeometry, InFocusEvent)
 end
 
 function WBP_ModArchive_TaskItem_C:OnFocusLost(InFocusEvent)
-  DebugPrint("zwkkk12 \229\164\177\229\142\187\232\129\154\231\132\166")
+  DebugPrint("zwkkk12 失去聚焦")
   self.InFocus = false
   if not self:HasFocusedDescendants() then
     self:OnFocusLostNew()

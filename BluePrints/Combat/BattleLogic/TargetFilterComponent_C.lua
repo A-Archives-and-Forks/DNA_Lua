@@ -9,7 +9,7 @@ function TargetFilterComponent_C:DoBPFilter(Source, Targets, FilterFunc, Vars, E
   self:SetEid2CollisionComponents(CollisionCompMap)
   if FilterFunc and "None" ~= FilterFunc then
     local Func = self.Overridden[FilterFunc]
-    assert(Func, "\230\137\190\228\184\141\229\136\176\231\155\174\230\160\135\232\191\135\230\187\164\229\135\189\230\149\176" .. tostring(FilterFunc))
+    assert(Func, "找不到目标过滤函数" .. tostring(FilterFunc))
     if Vars then
       for VarName, Value in pairs(Vars) do
         self[VarName] = Value

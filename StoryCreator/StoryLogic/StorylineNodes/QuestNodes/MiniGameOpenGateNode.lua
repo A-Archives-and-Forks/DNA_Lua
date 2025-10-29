@@ -31,7 +31,7 @@ function MiniGameOpenGateNode:MiniGame(Callback)
     end
   end
   if not IsValid(MiniGame) then
-    DebugPrint("------------ MiniGameOpenGateNode ------------------\232\138\130\231\130\185\229\188\128\229\167\139\230\151\182\229\176\143\230\184\184\230\136\143\230\156\186\229\133\179\228\184\141\229\173\152\229\156\168")
+    DebugPrint("------------ MiniGameOpenGateNode ------------------节点开始时小游戏机关不存在")
     EventManager:RemoveEvent(EventID.OnMechanismEnterState, self)
     MiniGameOpenGateNodeCallback()
     return
@@ -44,7 +44,7 @@ function MiniGameOpenGateNode:MiniGame(Callback)
     end
   end
   if MiniGame:IsCombatItemBase("MiniGame") then
-    assert(MiniGame.FiniStateId, "LXZ STL\233\135\140\231\148\168\229\136\176\231\154\132\229\176\143\230\184\184\230\136\143\230\178\161\230\156\137\229\174\154\228\185\137FiniStateId\229\143\130\230\149\176(\229\176\143\230\184\184\230\136\143\230\156\186\229\133\179\231\187\147\230\157\159\231\138\182\230\128\129\231\154\132id)")
+    assert(MiniGame.FiniStateId, "LXZ STL里用到的小游戏没有定义FiniStateId参数(小游戏机关结束状态的id)")
     if MiniGame.StateId == MiniGame.FiniStateId then
       MiniGameOpenGateNodeCallback()
       return

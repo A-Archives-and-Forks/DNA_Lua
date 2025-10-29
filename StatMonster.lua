@@ -31,7 +31,7 @@ function StatMonster:Stat(GM)
 end
 
 function StatMonster:StatStart(GM)
-  assert(GM.Player, "\231\188\186\229\176\145Player")
+  assert(GM.Player, "缺少Player")
   TmpPlayer = GM.Player
   local SkillInterval = 5
   local RecordInterval = 0.5
@@ -102,7 +102,7 @@ function StatMonster:StatRecordTimer()
 end
 
 function StatMonster:StatEnd(GM)
-  assert(GM.Player, "\231\188\186\229\176\145Player")
+  assert(GM.Player, "缺少Player")
   GM.Player:RemoveTimer("Test_RepeatSkillTimer")
   GM.Player:RemoveTimer("Test_StatRecordTimer")
   StrOutput = StrOutput .. "Average" .. StrLine
@@ -129,7 +129,7 @@ function StatMonster:StatEnd(GM)
 end
 
 function StatMonster:StatMem(GM)
-  assert(GM.Player, "\231\188\186\229\176\145Player")
+  assert(GM.Player, "缺少Player")
   TmpPlayer = GM.Player
   local AllNum = 0
   

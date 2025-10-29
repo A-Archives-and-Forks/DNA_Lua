@@ -27,7 +27,7 @@ function M:InitUIInfo(Name, IsInUIMode, EventList, ...)
   self.Player = UE4.UGameplayStatics.GetPlayerCharacter(self, 0)
   self.FeinaPassive = self.Player:GetPassiveEffectById(self.PassiveEffectId)
   if not IsValid(self.FeinaPassive) then
-    DebugPrint("\230\137\190\228\184\141\229\136\176FeinaPassive")
+    DebugPrint("找不到FeinaPassive")
     return
   end
   self:InitDungeonInfo()
@@ -96,7 +96,7 @@ end
 function M:InitDungeonInfo()
   local GameState = UE4.UGameplayStatics.GetGameState(self)
   if not IsValid(GameState) then
-    DebugPrint("\230\137\190\228\184\141\229\136\176GameState")
+    DebugPrint("找不到GameState")
     return
   end
   self.DungeonId = GameState.DungeonId

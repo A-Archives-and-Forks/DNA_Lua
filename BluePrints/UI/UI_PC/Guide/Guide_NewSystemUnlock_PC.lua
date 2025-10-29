@@ -34,12 +34,12 @@ function M:InitSystemInfo(SystemInfo)
     Img_Icon_DM:SetTextureParameterValue("Mask", SystemIcon)
     VX_IconGlow_DM:SetTextureParameterValue("Mask", SystemIcon)
   end
-  local UIUnlockName = SystemInfo.UIUnlockName or "\230\156\170\233\133\141\231\189\174"
+  local UIUnlockName = SystemInfo.UIUnlockName or "未配置"
   if UIUnlockName then
     local SystemName = GText(UIUnlockName) or UIUnlockName
     self.Text_Name:SetText(SystemName)
   end
-  local AfterUIUnlockDesc = SystemInfo.AfterUIUnlockDesc or "\230\156\170\233\133\141\231\189\174"
+  local AfterUIUnlockDesc = SystemInfo.AfterUIUnlockDesc or "未配置"
   if AfterUIUnlockDesc then
     local SystemUnlockDescribe = GText(AfterUIUnlockDesc) or AfterUIUnlockDesc
     local Desc1, ActionName, Desc2 = self:GetDescInfo(SystemUnlockDescribe)

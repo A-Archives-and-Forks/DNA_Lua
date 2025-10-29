@@ -28,7 +28,7 @@ function M:InitTabInfo()
     },
     StyleName = "Text",
     OwnerPanel = self,
-    TitleName = GText("\228\184\170\228\186\186\228\184\187\233\161\181"),
+    TitleName = GText("个人主页"),
     BackCallback = self.OnReturnKeyDown
   })
 end

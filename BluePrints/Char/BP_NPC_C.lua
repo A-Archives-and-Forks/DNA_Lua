@@ -340,7 +340,7 @@ end
 function BP_NPC_C:GetNpcTalkActionPath(InActionId)
   local TalkActionData = DataMgr.TalkAction[InActionId]
   if nil == TalkActionData then
-    Utils.ScreenPrint("ActionId \228\184\141\229\173\152\229\156\168:" .. tostring(InActionId))
+    Utils.ScreenPrint("ActionId 不存在:" .. tostring(InActionId))
     return ""
   end
   local MontagePath = ""
@@ -570,8 +570,8 @@ end
 function BP_NPC_C:PlayFacial(FacialId)
   local FacialData = DataMgr.Facial[FacialId]
   if nil == FacialData then
-    local Message = string.format("\230\137\190\228\184\141\229\136\176\232\161\168\230\131\133\230\149\176\230\141\174\239\188\140NpcId: %s\239\188\140\232\161\168\230\131\133Id: %s", self.NpcData.UnitId, FacialId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\161\168\230\131\133\230\149\176\230\141\174\231\188\186\229\164\177/\233\133\141\231\189\174\233\148\153\232\175\175", Message)
+    local Message = string.format("找不到表情数据，NpcId: %s，表情Id: %s", self.NpcData.UnitId, FacialId)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "表情数据缺失/配置错误", Message)
     return
   end
   if FacialData.NpcEye then
@@ -596,7 +596,7 @@ end
 function BP_NPC_C:PlayFacialMontage(MontageName, BlendInTime, PlayParams, bLoadAsync)
   if nil == MontageName then
     local Message = string.format("Play facial montage failed, montage name is nil, NpcId: %s", self.NpcData.UnitId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\161\168\230\131\133\232\146\153\229\164\170\229\165\135\232\181\132\230\186\144\231\188\186\229\164\177/\233\133\141\231\189\174\233\148\153\232\175\175", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "表情蒙太奇资源缺失/配置错误", Message)
     return
   end
   PlayParams = PlayParams or {
@@ -611,7 +611,7 @@ function BP_NPC_C:PlayFacialMontage(MontageName, BlendInTime, PlayParams, bLoadA
       function(_, MontageObj)
         if IsValid(MontageObj) == false then
           local Message = string.format("Play facial montage failed, montage is invalid, NpcId: %s, MontagePath: %s", self.NpcData.UnitId, MontagePath)
-          UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\161\168\230\131\133\232\146\153\229\164\170\229\165\135\232\181\132\230\186\144\231\188\186\229\164\177/\233\133\141\231\189\174\233\148\153\232\175\175", Message)
+          UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "表情蒙太奇资源缺失/配置错误", Message)
           return
         end
         if BlendInTime then
@@ -627,7 +627,7 @@ function BP_NPC_C:PlayFacialMontage(MontageName, BlendInTime, PlayParams, bLoadA
   local Montage = LoadObject(MontagePath)
   if IsValid(Montage) == false then
     local Message = string.format("Play facial montage failed, montage is invalid, NpcId: %s, MontagePath: %s", self.NpcData.UnitId, MontagePath)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\161\168\230\131\133\232\146\153\229\164\170\229\165\135\232\181\132\230\186\144\231\188\186\229\164\177/\233\133\141\231\189\174\233\148\153\232\175\175", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "表情蒙太奇资源缺失/配置错误", Message)
     return
   end
   if BlendInTime then
@@ -641,8 +641,8 @@ end
 function BP_NPC_C:GetFacialMontagePath(MontageName)
   local ModelData = DataMgr.Model[self.NpcData.ModelId]
   if nil == ModelData then
-    local Message = string.format("\230\137\190\228\184\141\229\136\176\230\168\161\229\158\139\230\149\176\230\141\174\239\188\140NpcId: %s\239\188\140\230\168\161\229\158\139Id: %s", self.NpcData.UnitId, self.NpcData.ModelId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\161\168\230\131\133\230\168\161\229\158\139\230\149\176\230\141\174\231\188\186\229\164\177/\233\133\141\231\189\174\233\148\153\232\175\175", Message)
+    local Message = string.format("找不到模型数据，NpcId: %s，模型Id: %s", self.NpcData.UnitId, self.NpcData.ModelId)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "表情模型数据缺失/配置错误", Message)
     return
   end
   local FacePrefix = ""
@@ -701,16 +701,16 @@ end
 
 function BP_NPC_C:PlayUITalkAction(ActionId, OnFinished)
   local TalkActionInfo = DataMgr.NPCDialogue[ActionId]
-  assert(TalkActionInfo, string.format("%s \229\156\168 NPCDialogue \232\161\168\228\184\173\228\184\141\229\173\152\229\156\168\227\128\130", ActionId))
+  assert(TalkActionInfo, string.format("%s 在 NPCDialogue 表中不存在。", ActionId))
   local MontagePath = TalkActionInfo.ActionMontage
   local Montage = LoadObject(MontagePath)
-  assert(Montage, string.format("%s \228\184\141\229\173\152\229\156\168", MontagePath))
+  assert(Montage, string.format("%s 不存在", MontagePath))
   if TalkActionInfo.EndLoopMontage then
     local function OnMontageFinished()
       local EndLoopMontagePath = TalkActionInfo.EndLoopMontage
       
       local EndLoopMontage = LoadObject(EndLoopMontagePath)
-      assert(EndLoopMontage, string.format("%s \228\184\141\229\173\152\229\156\168", EndLoopMontage))
+      assert(EndLoopMontage, string.format("%s 不存在", EndLoopMontage))
       UE4.UPlayMontageCallbackProxy.CreateProxyObjectForPlayMontage(self.Mesh, EndLoopMontage, 1, 0, TalkActionInfo.EndLoopMontageSection)
       if type(OnFinished) == "table" then
         OnFinished[2](OnFinished[1])
@@ -968,17 +968,17 @@ function BP_NPC_C:ResetLocation()
   local Ret = UE4.UKismetSystemLibrary.CapsuleTraceSingle(self, Start, End, Radius, Radius, ETraceTypeQuery.TraceScene, false, nil, 0, HitResult, true)
   local RetLine = UE4.UKismetSystemLibrary.LineTraceSingle(self, StartLine, End, ETraceTypeQuery.TraceScene, false, nil, 0, HitResultLine, true)
   if Ret and RetLine and Radius < HitResult.ImpactPoint.Z - HitResultLine.Location.Z then
-    DebugPrint("BP_NPC_C CapsuleTraceSingle \230\137\147\228\184\173\228\189\141\231\189\174\239\188\154", HitResult.ImpactPoint, "\230\137\147\228\184\173\231\155\174\230\160\135\239\188\154", HitResult.Actor:GetName(), "Pawn\229\144\141\229\173\151\239\188\154", self:GetName())
+    DebugPrint("BP_NPC_C CapsuleTraceSingle 打中位置：", HitResult.ImpactPoint, "打中目标：", HitResult.Actor:GetName(), "Pawn名字：", self:GetName())
     Ret = RetLine
     HitResult = HitResultLine
     OffsetZ = HalfHeight
   end
   if Ret then
     local SurfacePos = FVector(HitResult.Location.X, HitResult.Location.Y, HitResult.Location.Z + OffsetZ)
-    DebugPrint("BP_NPC_C\229\141\138\233\171\152\239\188\154", HalfHeight, "\230\137\147\228\184\173\228\189\141\231\189\174\239\188\154", HitResult.ImpactPoint, "\230\137\147\228\184\173\231\155\174\230\160\135\239\188\154", HitResult.Actor:GetName(), "Pawn\229\144\141\229\173\151\239\188\154", self:GetName(), "SurfacePos\239\188\154", SurfacePos, "============sssss================")
+    DebugPrint("BP_NPC_C半高：", HalfHeight, "打中位置：", HitResult.ImpactPoint, "打中目标：", HitResult.Actor:GetName(), "Pawn名字：", self:GetName(), "SurfacePos：", SurfacePos, "============sssss================")
     self:K2_SetActorLocation(SurfacePos, false, nil, false)
     if math.abs(HitResult.ImpactPoint.Z - SpawnPos.Z) > HalfHeight * 2 then
-      Utils.ScreenPrint("BP_NPC_C\233\157\153\230\128\129\229\136\183\230\150\176\231\130\185\228\189\141\231\189\174\229\188\130\229\184\184,Pawn\229\144\141\229\173\151\239\188\154" .. self:GetName() .. " SpawnPos.Z\239\188\154" .. SpawnPos.Z .. " ImpactPoint.Z:" .. HitResult.ImpactPoint.Z)
+      Utils.ScreenPrint("BP_NPC_C静态刷新点位置异常,Pawn名字：" .. self:GetName() .. " SpawnPos.Z：" .. SpawnPos.Z .. " ImpactPoint.Z:" .. HitResult.ImpactPoint.Z)
     end
   end
 end

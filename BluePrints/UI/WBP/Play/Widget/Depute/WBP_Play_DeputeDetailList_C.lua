@@ -42,7 +42,7 @@ function M:InitDungeonInfo(DungeonId, Index, IsShowDungeonName, Parent)
   self.Parent = Parent
   local Data = DataMgr.Dungeon[DungeonId]
   if not Data then
-    DebugPrint("ZDX_\230\137\190\228\184\141\229\136\176\229\133\179\229\141\161\230\149\176\230\141\174:", DungeonId)
+    DebugPrint("ZDX_找不到关卡数据:", DungeonId)
     return
   end
   if PageJumpUtils:CheckDungeonCondition(Data.Condition) then

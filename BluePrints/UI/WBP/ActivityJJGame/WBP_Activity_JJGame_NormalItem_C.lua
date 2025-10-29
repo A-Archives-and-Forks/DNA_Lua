@@ -52,7 +52,7 @@ function M:UpdateTaskList()
     local TaskData = DataMgr.MidTermTask[Task.UniqueID]
     if not TaskData then
       print("TaskData is nil, Task.UniqueID = ", Task.UniqueID)
-      Utils.ScreenPrint("MidTermTask\232\161\168\228\184\173\228\184\141\229\173\152\229\156\168UniqueID\228\184\186" .. Task.UniqueID .. "\231\154\132\228\187\187\229\138\161\239\188\140\232\175\183\230\163\128\230\159\165\233\133\141\231\189\174")
+      Utils.ScreenPrint("MidTermTask表中不存在UniqueID为" .. Task.UniqueID .. "的任务，请检查配置")
     else
       local TaskItem
       if type(self.TaskConfig.TaskType) == "table" then

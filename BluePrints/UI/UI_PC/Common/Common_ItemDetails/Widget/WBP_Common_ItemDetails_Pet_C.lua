@@ -61,11 +61,11 @@ function M:InitItemInfo(ItemType, ItemId, UnitId, Content)
       self.Pet_AttTips_List01.TextItem:AddChild(TextItem)
       self.Pet_AttTips_List01:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
     else
-      DebugPrint("ZDX_\229\174\160\231\137\169Tips\228\184\187\229\138\168\230\138\128\232\131\189\230\143\143\232\191\176\228\184\186\231\169\186")
+      DebugPrint("ZDX_宠物Tips主动技能描述为空")
     end
     local PassiveEffectDesc = ArmoryUtils:GenPetPassiveEffectDesc(BattlePetData, SkillLevel)
     if "" == PassiveEffectDesc then
-      DebugPrint("ZDX_\229\174\160\231\137\169Tips\232\162\171\229\138\168\230\138\128\232\131\189\230\143\143\232\191\176\228\184\186\231\169\186")
+      DebugPrint("ZDX_宠物Tips被动技能描述为空")
     else
       local TextItem = UIManager(self):_CreateWidgetNew("ItemDetailPetTextItem")
       TextItem.Text_PetSkill_Describe:SetText(GText(PassiveEffectDesc))
@@ -77,7 +77,7 @@ function M:InitItemInfo(ItemType, ItemId, UnitId, Content)
       CD = DataMgr.Skill[SkillId][SkillLevel][0].CD
     end
     if "" == CD then
-      DebugPrint("ZDX_\229\174\160\231\137\169TipsCD\228\184\186\231\169\186")
+      DebugPrint("ZDX_宠物TipsCD为空")
       self.Pet_AttTips_List01.SkillCD:SetVisibility(ESlateVisibility.Collapsed)
       self.Pet_AttTips_List01.SkillCD_Num:SetVisibility(ESlateVisibility.Collapsed)
     else
@@ -92,7 +92,7 @@ function M:InitItemInfo(ItemType, ItemId, UnitId, Content)
     for _, v in pairs(PetServerData.Entry) do
       local Widget = UIManager(self):_CreateWidgetNew("PetEntryItemDetails")
       if DataMgr.PetEntry[v] then
-        assert(DataMgr.PetEntry[v].IconS, "\230\156\170\233\133\141\231\189\174\229\174\160\231\137\169\229\164\169\232\181\139IconS", v)
+        assert(DataMgr.PetEntry[v].IconS, "未配置宠物天赋IconS", v)
         Widget.Icon_Entry:SetBrushResourceObject(LoadObject(DataMgr.PetEntry[v].IconS))
         Widget.Text_Entry:SetText(GText(DataMgr.PetEntry[v].PetEntryName))
         if 3 == DataMgr.PetEntry[v].Rarity then

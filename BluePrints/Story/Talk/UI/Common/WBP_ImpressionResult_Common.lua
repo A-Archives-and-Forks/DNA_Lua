@@ -335,10 +335,10 @@ function WBP_ImpressionResult_Common:OnReceivedRetryResult(Error, bCheckSucceed,
     self.OnServerHandledCallback(Error, bCheckSucceed, Rand1, Rand2, CheckParams)
   end
   if not ErrorCode:Check(Error) then
-    local ErrorCodeMessage = "\233\148\153\232\175\175\231\160\129\228\184\141\229\173\152\229\156\168"
+    local ErrorCodeMessage = "错误码不存在"
     local ErrorCodeData = DataMgr.ErrorCode[Error]
     if ErrorCodeData then
-      ErrorCodeMessage = ErrorCodeData.ErrorCodeContent or "\233\148\153\232\175\175\231\160\129\228\184\141\229\173\152\229\156\168\232\175\180\230\152\142\229\134\133\229\174\185"
+      ErrorCodeMessage = ErrorCodeData.ErrorCodeContent or "错误码不存在说明内容"
     end
     local DialogueChainStr = ""
     local DialogueChain = (...)
@@ -349,8 +349,8 @@ function WBP_ImpressionResult_Common:OnReceivedRetryResult(Error, bCheckSucceed,
       end
       DialogueChainStr = DialogueChainStr .. tostring(DialogueId)
     end
-    local Title = "\229\141\176\232\177\161\231\179\187\231\187\159\233\148\153\232\175\175"
-    local Message = string.format("ErrorCode: %d\n%s, \229\175\185\232\175\157\233\147\190:\n%s", Error, ErrorCodeMessage, DialogueChainStr)
+    local Title = "印象系统错误"
+    local Message = string.format("ErrorCode: %d\n%s, 对话链:\n%s", Error, ErrorCodeMessage, DialogueChainStr)
     UStoryLogUtils.PrintToFeiShu(self, Title, Message)
     self:Close()
     if self.ImpressionUI then
@@ -372,7 +372,7 @@ function WBP_ImpressionResult_Common:OnImpressionTimeout(DialogueChain)
   if self.OnServerHandledCallback then
     self.OnServerHandledCallback(0, false, 0, 0, {})
   end
-  local Title = "\229\141\176\232\177\161\230\163\128\229\174\154\232\182\133\230\151\182"
+  local Title = "印象检定超时"
   local DialogueChainStr = ""
   local DialogueId
   DialogueChain = DialogueChain or {}
@@ -383,7 +383,7 @@ function WBP_ImpressionResult_Common:OnImpressionTimeout(DialogueChain)
     DialogueId = dialogueId
     DialogueChainStr = DialogueChainStr .. tostring(DialogueId)
   end
-  local Message = string.format("\229\141\176\232\177\161\230\163\128\229\174\154\230\156\170\230\148\182\229\136\176\230\156\141\229\138\161\229\153\168\229\155\158\232\176\131\239\188\140\229\189\147\229\137\141\233\128\137\233\161\185Id: %s\239\188\140\229\175\185\232\175\157\233\147\190:\n%s", DialogueId and tostring(DialogueId) or "\230\151\160", DialogueChainStr)
+  local Message = string.format("印象检定未收到服务器回调，当前选项Id: %s，对话链:\n%s", DialogueId and tostring(DialogueId) or "无", DialogueChainStr)
   UStoryLogUtils.PrintToFeiShu(self, Title, Message)
   local Avatar = GWorld:GetAvatar()
   if Avatar then

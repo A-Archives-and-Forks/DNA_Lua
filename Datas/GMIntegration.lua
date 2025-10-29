@@ -8,16 +8,16 @@ return ReadOnly("GMIntegration", {
       [2] = "gm CompleteCondition 81006",
       [3] = "sgm sl 27"
     },
-    GMDisplayName = "\230\150\176\229\162\158\231\172\172\228\186\140\231\171\160\231\154\132\230\180\190\233\129\163",
+    GMDisplayName = "新增第二章的派遣",
     GMIntegrationName = "AddDispatchCh02"
   },
   Balcony = {
     GMCommands = {
       [1] = "gm skipregion 1 100102 1"
     },
-    GMDisplayName = "\233\152\179\229\143\176",
+    GMDisplayName = "阳台",
     GMIntegrationName = "Balcony",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   Batt01 = {
     GMCommands = {
@@ -28,9 +28,9 @@ return ReadOnly("GMIntegration", {
       [5] = "gm SuccQuest 12010503",
       [6] = "gm skipregion 1 104201 1"
     },
-    GMDisplayName = "\229\143\164\230\136\152\229\156\186\229\185\187\229\162\1311",
+    GMDisplayName = "古战场幻境1",
     GMIntegrationName = "Batt01",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   Batt02 = {
     GMCommands = {
@@ -41,9 +41,9 @@ return ReadOnly("GMIntegration", {
       [5] = "gm SuccQuest 12010517",
       [6] = "gm skipregion 1 104601 1"
     },
-    GMDisplayName = "\229\143\164\230\136\152\229\156\186\229\185\187\229\162\1312",
+    GMDisplayName = "古战场幻境2",
     GMIntegrationName = "Batt02",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   Batt03 = {
     GMCommands = {
@@ -54,9 +54,9 @@ return ReadOnly("GMIntegration", {
       [5] = "gm SuccQuest 12010518",
       [6] = "gm skipregion 1 104701 1"
     },
-    GMDisplayName = "\229\143\164\230\136\152\229\156\186\229\185\187\229\162\1313",
+    GMDisplayName = "古战场幻境3",
     GMIntegrationName = "Batt03",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   CE_EX01_1 = {
     GMCommands = {
@@ -119,9 +119,9 @@ return ReadOnly("GMIntegration", {
     GMCommands = {
       [1] = "gm skipregion 1 100103 1"
     },
-    GMDisplayName = "\228\186\145\230\181\183",
+    GMDisplayName = "云海",
     GMIntegrationName = "Clouds",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   DynCh01 = {
     GMCommands = {
@@ -133,7 +133,7 @@ return ReadOnly("GMIntegration", {
       [6] = "gm CompleteCondition 81003",
       [7] = "gm CompleteCondition 81004"
     },
-    GMDisplayName = "\232\167\163\233\148\129\231\172\172\228\184\128\231\171\160\229\138\168\230\128\129\228\186\139\228\187\182",
+    GMDisplayName = "解锁第一章动态事件",
     GMIntegrationName = "DynCh01"
   },
   DynCh02 = {
@@ -141,7 +141,7 @@ return ReadOnly("GMIntegration", {
       [1] = "gm CompleteCondition 100306",
       [2] = "gm CompleteCondition 81006"
     },
-    GMDisplayName = "\232\167\163\233\148\129\231\172\172\228\186\140\231\171\160\229\138\168\230\128\129\228\186\139\228\187\182",
+    GMDisplayName = "解锁第二章动态事件",
     GMIntegrationName = "DynCh02"
   },
   DynEx01 = {
@@ -149,7 +149,7 @@ return ReadOnly("GMIntegration", {
       [1] = "gm CompleteCondition 110109",
       [2] = "gm CompleteCondition 81005"
     },
-    GMDisplayName = "\232\167\163\233\148\129ex01\229\138\168\230\128\129\228\186\139\228\187\182",
+    GMDisplayName = "解锁ex01动态事件",
     GMIntegrationName = "DynEx01"
   },
   DynPrologue = {
@@ -157,7 +157,7 @@ return ReadOnly("GMIntegration", {
       [1] = "gm CompleteCondition 100103",
       [2] = "gm CompleteCondition 81001"
     },
-    GMDisplayName = "\232\167\163\233\148\129\229\186\143\231\171\160\229\138\168\230\128\129\228\186\139\228\187\182",
+    GMDisplayName = "解锁序章动态事件",
     GMIntegrationName = "DynPrologue"
   },
   East01 = {
@@ -168,9 +168,9 @@ return ReadOnly("GMIntegration", {
       [4] = "gm skipregion 1 104101 1",
       [5] = "gm succquestchain 990103"
     },
-    GMDisplayName = "\228\184\156\229\155\189\228\184\128\230\156\159\239\188\136\230\128\187\239\188\137",
+    GMDisplayName = "东国一期（总）",
     GMIntegrationName = "East01",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   East01C1 = {
     GMCommands = {
@@ -180,9 +180,9 @@ return ReadOnly("GMIntegration", {
       [4] = "gm succquestchain 990103",
       [5] = "gm skipregion 1 104108 1"
     },
-    GMDisplayName = "\228\184\156\229\155\189\228\184\128\230\156\159\239\188\136\228\184\128\239\188\137",
+    GMDisplayName = "东国一期（一）",
     GMIntegrationName = "East01C1",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   East01C2 = {
     GMCommands = {
@@ -192,9 +192,9 @@ return ReadOnly("GMIntegration", {
       [4] = "gm succquestchain 120101",
       [5] = "gm skipregion 1 104110 1"
     },
-    GMDisplayName = "\228\184\156\229\155\189\228\184\128\230\156\159\239\188\136\228\186\140\239\188\137",
+    GMDisplayName = "东国一期（二）",
     GMIntegrationName = "East01C2",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   East01C3 = {
     GMCommands = {
@@ -204,9 +204,9 @@ return ReadOnly("GMIntegration", {
       [4] = "gm succquestchain 120102",
       [5] = "gm skipregion 1 104109 1"
     },
-    GMDisplayName = "\228\184\156\229\155\189\228\184\128\230\156\159\239\188\136\228\184\137\239\188\137",
+    GMDisplayName = "东国一期（三）",
     GMIntegrationName = "East01C3",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   East01C4 = {
     GMCommands = {
@@ -216,9 +216,9 @@ return ReadOnly("GMIntegration", {
       [4] = "gm succquestchain 120103",
       [5] = "gm skipregion 1 104110 1"
     },
-    GMDisplayName = "\228\184\156\229\155\189\228\184\128\230\156\159\239\188\136\230\137\182\231\150\143\231\186\191\239\188\137",
+    GMDisplayName = "东国一期（扶疏线）",
     GMIntegrationName = "East01C4",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   East01C5 = {
     GMCommands = {
@@ -228,9 +228,9 @@ return ReadOnly("GMIntegration", {
       [4] = "gm succquestchain 120103",
       [5] = "gm skipregion 1 104109 1"
     },
-    GMDisplayName = "\228\184\156\229\155\189\228\184\128\230\156\159\239\188\136\232\153\172\229\133\136\231\148\159\231\186\191\239\188\137",
+    GMDisplayName = "东国一期（虬先生线）",
     GMIntegrationName = "East01C5",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   East01C6 = {
     GMCommands = {
@@ -241,9 +241,9 @@ return ReadOnly("GMIntegration", {
       [5] = "gm succquestchain 120105",
       [6] = "gm skipregion 1 104110 1"
     },
-    GMDisplayName = "\228\184\156\229\155\189\228\184\128\230\156\159\239\188\136\229\133\173\239\188\137",
+    GMDisplayName = "东国一期（六）",
     GMIntegrationName = "East01C6",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   EastOpen = {
     GMCommands = {
@@ -257,9 +257,9 @@ return ReadOnly("GMIntegration", {
       [8] = "sgm sl 40",
       [9] = "gm skipregion 1 101107 1"
     },
-    GMDisplayName = "\228\184\156\229\155\189\229\188\149\229\133\165",
+    GMDisplayName = "东国引入",
     GMIntegrationName = "EastOpen",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   Feina01 = {
     GMCommands = {
@@ -271,9 +271,9 @@ return ReadOnly("GMIntegration", {
       [6] = "gm aade",
       [7] = "gm CompleteCondition 4220"
     },
-    GMDisplayName = "\232\143\178\229\168\156\230\180\187\229\138\168\239\188\136\228\184\128\239\188\137",
+    GMDisplayName = "菲娜活动（一）",
     GMIntegrationName = "Feina01",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   Feina02 = {
     GMCommands = {
@@ -285,9 +285,9 @@ return ReadOnly("GMIntegration", {
       [6] = "gm aade",
       [7] = "gm CompleteCondition 4220"
     },
-    GMDisplayName = "\232\143\178\229\168\156\230\180\187\229\138\168\239\188\136\228\186\140\239\188\137",
+    GMDisplayName = "菲娜活动（二）",
     GMIntegrationName = "Feina02",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   Feina03 = {
     GMCommands = {
@@ -299,9 +299,9 @@ return ReadOnly("GMIntegration", {
       [6] = "gm aade",
       [7] = "gm CompleteCondition 4220"
     },
-    GMDisplayName = "\232\143\178\229\168\156\230\180\187\229\138\168\239\188\136\228\184\137\239\188\137",
+    GMDisplayName = "菲娜活动（三）",
     GMIntegrationName = "Feina03",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   Feina04 = {
     GMCommands = {
@@ -313,9 +313,9 @@ return ReadOnly("GMIntegration", {
       [6] = "gm aade",
       [7] = "gm CompleteCondition 4220"
     },
-    GMDisplayName = "\232\143\178\229\168\156\230\180\187\229\138\168\239\188\136\229\155\155\239\188\137",
+    GMDisplayName = "菲娜活动（四）",
     GMIntegrationName = "Feina04",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   Feina04Fight = {
     GMCommands = {
@@ -327,9 +327,9 @@ return ReadOnly("GMIntegration", {
       [6] = "gm skipregion 1 101103 6",
       [7] = "gm aade"
     },
-    GMDisplayName = "\232\143\178\229\168\156\230\180\187\229\138\168\239\188\136\229\155\155\239\188\137\230\136\152\230\150\151",
+    GMDisplayName = "菲娜活动（四）战斗",
     GMIntegrationName = "Feina04Fight",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   Feina04Find02 = {
     GMCommands = {
@@ -341,9 +341,9 @@ return ReadOnly("GMIntegration", {
       [6] = "gm skipregion 1 101103 6",
       [7] = "gm aade"
     },
-    GMDisplayName = "\232\143\178\229\168\156\230\180\187\229\138\168\239\188\136\229\155\155\239\188\137\229\134\176\230\185\150",
+    GMDisplayName = "菲娜活动（四）冰湖",
     GMIntegrationName = "Feina04Find02",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   Feina04Party = {
     GMCommands = {
@@ -355,15 +355,15 @@ return ReadOnly("GMIntegration", {
       [6] = "gm skipregion 1 101105 1",
       [7] = "gm aade"
     },
-    GMDisplayName = "\232\143\178\229\168\156\230\180\187\229\138\168\239\188\136\229\155\155\239\188\137\230\153\154\228\188\154",
+    GMDisplayName = "菲娜活动（四）晚会",
     GMIntegrationName = "Feina04Party",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   FinishAllStarterQuest = {
     GMCommands = {
       [1] = "sgm GMStarterQuestComplete"
     },
-    GMDisplayName = "\229\174\140\230\136\144\230\137\128\230\156\137\230\150\176\230\137\139\228\187\187\229\138\161",
+    GMDisplayName = "完成所有新手任务",
     GMIntegrationName = "FinishAllStarterQuest"
   },
   FinishStarterQuest1 = {
@@ -374,7 +374,7 @@ return ReadOnly("GMIntegration", {
       [4] = "sgm GMStarterQuestComplete 10200104",
       [5] = "sgm GMStarterQuestComplete 10200105"
     },
-    GMDisplayName = "\229\174\140\230\136\144\230\150\176\230\137\139\228\187\187\229\138\161\233\152\182\230\174\1811",
+    GMDisplayName = "完成新手任务阶段1",
     GMIntegrationName = "FinishStarterQuest1"
   },
   FinishStarterQuest2 = {
@@ -385,7 +385,7 @@ return ReadOnly("GMIntegration", {
       [4] = "sgm GMStarterQuestComplete 10200109",
       [5] = "sgm GMStarterQuestComplete 10200110"
     },
-    GMDisplayName = "\229\174\140\230\136\144\230\150\176\230\137\139\228\187\187\229\138\161\233\152\182\230\174\1812",
+    GMDisplayName = "完成新手任务阶段2",
     GMIntegrationName = "FinishStarterQuest2"
   },
   FinishStarterQuest3 = {
@@ -396,7 +396,7 @@ return ReadOnly("GMIntegration", {
       [4] = "sgm GMStarterQuestComplete 10200114",
       [5] = "sgm GMStarterQuestComplete 10200115"
     },
-    GMDisplayName = "\229\174\140\230\136\144\230\150\176\230\137\139\228\187\187\229\138\161\233\152\182\230\174\1813",
+    GMDisplayName = "完成新手任务阶段3",
     GMIntegrationName = "FinishStarterQuest3"
   },
   FinishStarterQuest4 = {
@@ -408,7 +408,7 @@ return ReadOnly("GMIntegration", {
       [5] = "sgm GMStarterQuestComplete 10200120",
       [6] = "sgm GMStarterQuestComplete 10200121"
     },
-    GMDisplayName = "\229\174\140\230\136\144\230\150\176\230\137\139\228\187\187\229\138\161\233\152\182\230\174\1814",
+    GMDisplayName = "完成新手任务阶段4",
     GMIntegrationName = "FinishStarterQuest4"
   },
   FinishStarterQuest5 = {
@@ -420,7 +420,7 @@ return ReadOnly("GMIntegration", {
       [5] = "sgm GMStarterQuestComplete 10200126",
       [6] = "sgm GMStarterQuestComplete 10200127"
     },
-    GMDisplayName = "\229\174\140\230\136\144\230\150\176\230\137\139\228\187\187\229\138\161\233\152\182\230\174\1815",
+    GMDisplayName = "完成新手任务阶段5",
     GMIntegrationName = "FinishStarterQuest5"
   },
   FinishStarterQuest6 = {
@@ -431,7 +431,7 @@ return ReadOnly("GMIntegration", {
       [4] = "sgm GMStarterQuestComplete 10200131",
       [5] = "sgm GMStarterQuestComplete 10200132"
     },
-    GMDisplayName = "\229\174\140\230\136\144\230\150\176\230\137\139\228\187\187\229\138\161\233\152\182\230\174\1816",
+    GMDisplayName = "完成新手任务阶段6",
     GMIntegrationName = "FinishStarterQuest6"
   },
   FinishStarterQuest7 = {
@@ -443,7 +443,7 @@ return ReadOnly("GMIntegration", {
       [5] = "sgm GMStarterQuestComplete 10200137",
       [6] = "sgm GMStarterQuestComplete 10200138"
     },
-    GMDisplayName = "\229\174\140\230\136\144\230\150\176\230\137\139\228\187\187\229\138\161\233\152\182\230\174\1817",
+    GMDisplayName = "完成新手任务阶段7",
     GMIntegrationName = "FinishStarterQuest7"
   },
   FinishStarterQuest8 = {
@@ -454,7 +454,7 @@ return ReadOnly("GMIntegration", {
       [4] = "sgm GMStarterQuestComplete 10200142",
       [5] = "sgm GMStarterQuestComplete 10200143"
     },
-    GMDisplayName = "\229\174\140\230\136\144\230\150\176\230\137\139\228\187\187\229\138\161\233\152\182\230\174\1818",
+    GMDisplayName = "完成新手任务阶段8",
     GMIntegrationName = "FinishStarterQuest8"
   },
   FinishStarterQuest9 = {
@@ -466,7 +466,7 @@ return ReadOnly("GMIntegration", {
       [5] = "sgm GMStarterQuestComplete 10200148",
       [6] = "sgm GMStarterQuestComplete 10200149"
     },
-    GMDisplayName = "\229\174\140\230\136\144\230\150\176\230\137\139\228\187\187\229\138\161\233\152\182\230\174\1819",
+    GMDisplayName = "完成新手任务阶段9",
     GMIntegrationName = "FinishStarterQuest9"
   },
   GXY_1xLv3_mod = {
@@ -671,7 +671,7 @@ return ReadOnly("GMIntegration", {
     GMCommands = {
       [1] = "gm A:GMUnlockGuideBook()"
     },
-    GMDisplayName = "\232\167\163\233\148\129\230\149\153\229\173\166\230\137\139\229\134\140\230\157\161\231\155\174",
+    GMDisplayName = "解锁教学手册条目",
     GMIntegrationName = "GuideBook"
   },
   Nai01 = {
@@ -683,9 +683,9 @@ return ReadOnly("GMIntegration", {
       [5] = "gm SuccQuest 12010415",
       [6] = "gm skipregion 1 104301 1"
     },
-    GMDisplayName = "\230\137\182\231\150\143\229\185\187\229\162\1311",
+    GMDisplayName = "扶疏幻境1",
     GMIntegrationName = "Nai01",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   Nai02 = {
     GMCommands = {
@@ -696,9 +696,9 @@ return ReadOnly("GMIntegration", {
       [5] = "gm SuccQuest 12010416",
       [6] = "gm skipregion 1 104401 1"
     },
-    GMDisplayName = "\230\137\182\231\150\143\229\185\187\229\162\1312",
+    GMDisplayName = "扶疏幻境2",
     GMIntegrationName = "Nai02",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   Nai03 = {
     GMCommands = {
@@ -709,15 +709,15 @@ return ReadOnly("GMIntegration", {
       [5] = "gm SuccQuest 12010417",
       [6] = "gm skipregion 1 105001 1"
     },
-    GMDisplayName = "\230\137\182\231\150\143\229\185\187\229\162\1313",
+    GMDisplayName = "扶疏幻境3",
     GMIntegrationName = "Nai03",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   ResetDispatch = {
     GMCommands = {
       [1] = "sgm rdgl"
     },
-    GMDisplayName = "\233\135\141\231\189\174\228\184\128\230\137\185\230\180\190\233\129\163",
+    GMDisplayName = "重置一批派遣",
     GMIntegrationName = "ResetDispatch"
   },
   Rou_Blessing_10101 = {
@@ -738,7 +738,7 @@ return ReadOnly("GMIntegration", {
       [14] = "sgm rlgb 114 1",
       [15] = "sgm rlgb 115 1"
     },
-    GMDisplayName = "\232\130\137\233\184\189\231\165\157\231\166\143-\231\130\137\229\191\131\231\130\142",
+    GMDisplayName = "肉鸽祝福-炉心炎",
     GMIntegrationName = "Rou_Blessing_10101"
   },
   Rou_Blessing_10102 = {
@@ -759,7 +759,7 @@ return ReadOnly("GMIntegration", {
       [14] = "sgm rlgb 214 1",
       [15] = "sgm rlgb 215 1"
     },
-    GMDisplayName = "\232\130\137\233\184\189\231\165\157\231\166\143-\230\181\174\230\181\183\230\156\136",
+    GMDisplayName = "肉鸽祝福-浮海月",
     GMIntegrationName = "Rou_Blessing_10102"
   },
   Rou_Blessing_10103 = {
@@ -780,7 +780,7 @@ return ReadOnly("GMIntegration", {
       [14] = "sgm rlgb 314 1",
       [15] = "sgm rlgb 315 1"
     },
-    GMDisplayName = "\232\130\137\233\184\189\231\165\157\231\166\143-\232\190\137\232\144\164\231\159\179",
+    GMDisplayName = "肉鸽祝福-辉萤石",
     GMIntegrationName = "Rou_Blessing_10103"
   },
   Rou_Blessing_10104 = {
@@ -801,7 +801,7 @@ return ReadOnly("GMIntegration", {
       [14] = "sgm rlgb 414 1",
       [15] = "sgm rlgb 415 1"
     },
-    GMDisplayName = "\232\130\137\233\184\189\231\165\157\231\166\143-\230\181\129\230\152\142\230\158\157",
+    GMDisplayName = "肉鸽祝福-流明枝",
     GMIntegrationName = "Rou_Blessing_10104"
   },
   Rou_Blessing_10105 = {
@@ -822,7 +822,7 @@ return ReadOnly("GMIntegration", {
       [14] = "sgm rlgb 514 1",
       [15] = "sgm rlgb 515 1"
     },
-    GMDisplayName = "\232\130\137\233\184\189\231\165\157\231\166\143-\233\169\177\233\187\175\232\157\182",
+    GMDisplayName = "肉鸽祝福-驱黯蝶",
     GMIntegrationName = "Rou_Blessing_10105"
   },
   Rou_Blessing_10106 = {
@@ -843,7 +843,7 @@ return ReadOnly("GMIntegration", {
       [14] = "sgm rlgb 614 1",
       [15] = "sgm rlgb 615 1"
     },
-    GMDisplayName = "\232\130\137\233\184\189\231\165\157\231\166\143-\230\155\179\229\133\137\232\153\171",
+    GMDisplayName = "肉鸽祝福-曳光虫",
     GMIntegrationName = "Rou_Blessing_10106"
   },
   Rou_Blessing_10107 = {
@@ -864,7 +864,7 @@ return ReadOnly("GMIntegration", {
       [14] = "sgm rlgb 714 1",
       [15] = "sgm rlgb 715 1"
     },
-    GMDisplayName = "\232\130\137\233\184\189\231\165\157\231\166\143-\230\177\178\232\161\128\232\138\177",
+    GMDisplayName = "肉鸽祝福-汲血花",
     GMIntegrationName = "Rou_Blessing_10107"
   },
   SSS = {
@@ -887,7 +887,7 @@ return ReadOnly("GMIntegration", {
       [16] = "sgm aitv 1011 Chaos 100"
     },
     GMIntegrationName = "SSS",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   StartChapter01 = {
     GMCommands = {
@@ -898,9 +898,9 @@ return ReadOnly("GMIntegration", {
       [5] = "gm TestTrackingQuest 100201",
       [6] = "sgm FSG 3001"
     },
-    GMDisplayName = "\231\155\180\230\142\165\229\188\128\229\167\139\231\172\172\228\184\128\231\171\160",
+    GMDisplayName = "直接开始第一章",
     GMIntegrationName = "StartChapter01",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   SystemCommonUnlock = {
     GMCommands = {
@@ -908,7 +908,7 @@ return ReadOnly("GMIntegration", {
       [2] = "gm MockAllSystemCondition",
       [3] = "gm SuccessAllSystemGuide"
     },
-    GMDisplayName = "\233\128\154\231\148\168\232\167\163\233\148\129\233\161\185",
+    GMDisplayName = "通用解锁项",
     GMIntegrationName = "SystemCommonUnlock"
   },
   SystemCommonUnlock1 = {
@@ -916,7 +916,7 @@ return ReadOnly("GMIntegration", {
       [1] = "gm MockAllSystemCondition",
       [2] = "gm SuccessAllSystemGuide"
     },
-    GMDisplayName = "\233\128\154\231\148\168\232\167\163\233\148\129\233\161\185",
+    GMDisplayName = "通用解锁项",
     GMIntegrationName = "SystemCommonUnlock1"
   },
   TrainingGroundQuest = {
@@ -926,14 +926,14 @@ return ReadOnly("GMIntegration", {
       [3] = "gm TestTrackingQuest 100201",
       [4] = "gm cm 6001001 1 1"
     },
-    GMDisplayName = "\232\174\173\231\187\131\229\156\186\229\188\149\229\175\188",
+    GMDisplayName = "训练场引导",
     GMIntegrationName = "TrainingGroundQuest"
   },
   UnlockDispatch = {
     GMCommands = {
       [1] = "Gm CADC"
     },
-    GMDisplayName = "\232\167\163\233\148\129\230\137\128\230\156\137\228\186\139\228\187\182\231\154\132\229\143\175\230\180\190\233\129\163",
+    GMDisplayName = "解锁所有事件的可派遣",
     GMIntegrationName = "UnlockDispatch"
   },
   UnlockDispatchSys = {
@@ -952,7 +952,7 @@ return ReadOnly("GMIntegration", {
       [12] = "gm CompleteCondition 110109",
       [13] = "sgm aac"
     },
-    GMDisplayName = "\233\166\150\230\172\161\232\167\163\233\148\129\230\180\190\233\129\163\239\188\136\229\174\140\230\136\144ex01\239\188\137",
+    GMDisplayName = "首次解锁派遣（完成ex01）",
     GMIntegrationName = "UnlockDispatchSys"
   },
   UnlockRougeAll = {
@@ -969,7 +969,7 @@ return ReadOnly("GMIntegration", {
       [10] = "gm CompleteCondition 5069",
       [11] = "gm CompleteCondition 5072"
     },
-    GMDisplayName = "\232\167\163\233\148\129\232\130\137\233\184\189\230\137\128\230\156\137\233\154\190\229\186\166",
+    GMDisplayName = "解锁肉鸽所有难度",
     GMIntegrationName = "UnlockRougeAll"
   },
   XibiBoss = {
@@ -978,25 +978,25 @@ return ReadOnly("GMIntegration", {
       [2] = "gm succquest 10010305",
       [3] = "gm skipregion 1 100103 1"
     },
-    GMDisplayName = "\229\186\143\231\171\160\239\188\136\232\165\191\230\175\148\229\176\148boss\230\136\152\239\188\137",
+    GMDisplayName = "序章（西比尔boss战）",
     GMIntegrationName = "XibiBoss",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   alch = {
     GMCommands = {
       [1] = "gm skipregion 1 103201 1"
     },
-    GMDisplayName = "\231\130\188\233\135\145\233\153\162",
+    GMDisplayName = "炼金院",
     GMIntegrationName = "alch",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   bainianchun = {
     GMCommands = {
       [1] = "gm skipregion 1 104110 1"
     },
-    GMDisplayName = "\231\153\190\229\185\180\230\152\165",
+    GMDisplayName = "百年春",
     GMIntegrationName = "bainianchun",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   ch021 = {
     GMCommands = {
@@ -1013,9 +1013,9 @@ return ReadOnly("GMIntegration", {
       [11] = "gm succquest 20021501",
       [12] = "gm TestTrackingQuest 100301"
     },
-    GMDisplayName = "\231\172\172\228\186\140\231\171\160\231\172\172\228\184\128\229\185\149",
+    GMDisplayName = "第二章第一幕",
     GMIntegrationName = "ch021",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   ch022 = {
     GMCommands = {
@@ -1032,9 +1032,9 @@ return ReadOnly("GMIntegration", {
       [11] = "gm succquest 20021501",
       [12] = "gm TestTrackingQuest 100302"
     },
-    GMDisplayName = "\231\172\172\228\186\140\231\171\160\231\172\172\228\186\140\229\185\149",
+    GMDisplayName = "第二章第二幕",
     GMIntegrationName = "ch022",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   ch023 = {
     GMCommands = {
@@ -1052,9 +1052,9 @@ return ReadOnly("GMIntegration", {
       [12] = "gm succquestchain 100302",
       [13] = "gm TestTrackingQuest 100303"
     },
-    GMDisplayName = "\231\172\172\228\186\140\231\171\160\231\172\172\228\184\137\229\185\149",
+    GMDisplayName = "第二章第三幕",
     GMIntegrationName = "ch023",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   ch024 = {
     GMCommands = {
@@ -1073,9 +1073,9 @@ return ReadOnly("GMIntegration", {
       [13] = "gm succquestchain 100303",
       [14] = "gm TestTrackingQuest 100304"
     },
-    GMDisplayName = "\231\172\172\228\186\140\231\171\160\231\172\172\229\155\155\229\185\149",
+    GMDisplayName = "第二章第四幕",
     GMIntegrationName = "ch024",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   ch025 = {
     GMCommands = {
@@ -1095,9 +1095,9 @@ return ReadOnly("GMIntegration", {
       [14] = "gm succquestchain 100304",
       [15] = "gm TestTrackingQuest 100305"
     },
-    GMDisplayName = "\231\172\172\228\186\140\231\171\160\231\172\172\228\186\148\229\185\149",
+    GMDisplayName = "第二章第五幕",
     GMIntegrationName = "ch025",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   ch026 = {
     GMCommands = {
@@ -1121,25 +1121,25 @@ return ReadOnly("GMIntegration", {
       [18] = "gm SS:SetInt(\"thea100306\", 3)",
       [19] = "gm SS:GetInt(\"thea100306\")"
     },
-    GMDisplayName = "\231\172\172\228\186\140\231\171\160\231\172\172\229\133\173\229\185\149",
+    GMDisplayName = "第二章第六幕",
     GMIntegrationName = "ch026",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   chaosheng = {
     GMCommands = {
       [1] = "gm skipregion 1 104103 1"
     },
-    GMDisplayName = "\230\189\174\229\163\176\229\178\169\231\169\180",
+    GMDisplayName = "潮声岩穴",
     GMIntegrationName = "chaosheng",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   dongjiao = {
     GMCommands = {
       [1] = "gm skipregion 1 104505 1"
     },
-    GMDisplayName = "\228\184\156\233\131\138\233\135\142\229\164\150",
+    GMDisplayName = "东郊野外",
     GMIntegrationName = "dongjiao",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   dream = {
     GMCommands = {
@@ -1173,9 +1173,9 @@ return ReadOnly("GMIntegration", {
       [2] = "gm succquestchain 100206",
       [3] = "sgm ar 2001 15000"
     },
-    GMDisplayName = "\231\172\172\228\184\128\231\171\160\239\188\136\230\129\169\233\135\140\229\133\139\228\185\139\230\173\187\239\188\137",
+    GMDisplayName = "第一章（恩里克之死）",
     GMIntegrationName = "enlike",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   ex01 = {
     GMCommands = {
@@ -1189,9 +1189,9 @@ return ReadOnly("GMIntegration", {
       [8] = "gm TestTrackingQuest 110101",
       [9] = "sgm sl 60"
     },
-    GMDisplayName = "\231\155\180\230\142\165\229\188\128\229\167\139EX01",
+    GMDisplayName = "直接开始EX01",
     GMIntegrationName = "ex01",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   ex0101 = {
     GMCommands = {
@@ -1199,7 +1199,7 @@ return ReadOnly("GMIntegration", {
     },
     GMDisplayName = "EX01_Fort01",
     GMIntegrationName = "ex0101",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   ex0102 = {
     GMCommands = {
@@ -1207,7 +1207,7 @@ return ReadOnly("GMIntegration", {
     },
     GMDisplayName = "EX01_Fort02",
     GMIntegrationName = "ex0102",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   ex0103 = {
     GMCommands = {
@@ -1215,7 +1215,7 @@ return ReadOnly("GMIntegration", {
     },
     GMDisplayName = "EX01_Fort03",
     GMIntegrationName = "ex0103",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   ex0104 = {
     GMCommands = {
@@ -1223,7 +1223,7 @@ return ReadOnly("GMIntegration", {
     },
     GMDisplayName = "EX01_Fort04",
     GMIntegrationName = "ex0104",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   ex01Haier = {
     GMCommands = {
@@ -1232,9 +1232,9 @@ return ReadOnly("GMIntegration", {
       [3] = "gm succquest 11010908",
       [4] = "gm skipregion 1 102104 1"
     },
-    GMDisplayName = "EX01\230\181\183\229\176\148\230\179\149",
+    GMDisplayName = "EX01海尔法",
     GMIntegrationName = "ex01Haier",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   ex01Maifu = {
     GMCommands = {
@@ -1244,9 +1244,9 @@ return ReadOnly("GMIntegration", {
       [4] = "gm succquest 11010809",
       [5] = "gm TestTrackingQuest 11010810"
     },
-    GMDisplayName = "EX01\228\184\139\230\176\180\233\129\147\229\137\141\229\159\139\228\188\143",
+    GMDisplayName = "EX01下水道前埋伏",
     GMIntegrationName = "ex01Maifu",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   ex01NengyuanDown = {
     GMCommands = {
@@ -1256,9 +1256,9 @@ return ReadOnly("GMIntegration", {
       [4] = "gm succquest 11010305",
       [5] = "gm TestTrackingQuest 11010306"
     },
-    GMDisplayName = "EX01\232\131\189\230\186\144\229\174\164\228\184\139\229\177\130",
+    GMDisplayName = "EX01能源室下层",
     GMIntegrationName = "ex01NengyuanDown",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   ex01NengyuanUP = {
     GMCommands = {
@@ -1268,9 +1268,9 @@ return ReadOnly("GMIntegration", {
       [4] = "gm succquest 11010313",
       [5] = "gm TestTrackingQuest 11010305"
     },
-    GMDisplayName = "EX01\232\131\189\230\186\144\229\174\164\228\184\138\229\177\130",
+    GMDisplayName = "EX01能源室上层",
     GMIntegrationName = "ex01NengyuanUP",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   ex01PaitaiPre = {
     GMCommands = {
@@ -1280,9 +1280,9 @@ return ReadOnly("GMIntegration", {
       [4] = "gm succquest 11010523",
       [5] = "gm TestTrackingQuest 11010526"
     },
-    GMDisplayName = "EX01\230\142\168\232\189\166-\229\135\134\229\164\135",
+    GMDisplayName = "EX01推车-准备",
     GMIntegrationName = "ex01PaitaiPre",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   ex01Paoji = {
     GMCommands = {
@@ -1292,9 +1292,9 @@ return ReadOnly("GMIntegration", {
       [4] = "gm succquest 11010512",
       [5] = "gm TestTrackingQuest 11010513"
     },
-    GMDisplayName = "EX01\229\164\167\231\130\174\231\142\169\230\179\149",
+    GMDisplayName = "EX01大炮玩法",
     GMIntegrationName = "ex01Paoji",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   ex01Sew = {
     GMCommands = {
@@ -1304,9 +1304,9 @@ return ReadOnly("GMIntegration", {
       [4] = "gm succquest 11010814",
       [5] = "gm TestTrackingQuest 11010801"
     },
-    GMDisplayName = "EX01\228\184\139\230\176\180\233\129\147",
+    GMDisplayName = "EX01下水道",
     GMIntegrationName = "ex01Sew",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   ex01Shenpan = {
     GMCommands = {
@@ -1314,9 +1314,9 @@ return ReadOnly("GMIntegration", {
       [2] = "gm skipregion 1 102104 3",
       [3] = "gm succquestchain 110108"
     },
-    GMDisplayName = "EX01\231\155\145\231\139\177\229\174\161\229\136\164",
+    GMDisplayName = "EX01监狱审判",
     GMIntegrationName = "ex01Shenpan",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   ex01Tuiche = {
     GMCommands = {
@@ -1326,9 +1326,9 @@ return ReadOnly("GMIntegration", {
       [4] = "gm succquest 11010511",
       [5] = "gm TestTrackingQuest 11010512"
     },
-    GMDisplayName = "EX01\230\142\168\232\189\166-\231\130\174\229\143\176",
+    GMDisplayName = "EX01推车-炮台",
     GMIntegrationName = "ex01Tuiche",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   findsaiqi1 = {
     GMCommands = {
@@ -1338,9 +1338,9 @@ return ReadOnly("GMIntegration", {
       [4] = "gm succquest 10020705",
       [5] = "gm skipregion 1 101101 10"
     },
-    GMDisplayName = "\231\172\172\228\184\128\231\171\160\239\188\136\232\191\189\232\184\170\232\181\155\231\144\170-\229\159\142\233\151\168\229\137\141\239\188\137",
+    GMDisplayName = "第一章（追踪赛琪-城门前）",
     GMIntegrationName = "findsaiqi1",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   findsaiqi2 = {
     GMCommands = {
@@ -1350,9 +1350,9 @@ return ReadOnly("GMIntegration", {
       [4] = "gm succquest 10020706",
       [5] = "gm skipregion 1 101103 1"
     },
-    GMDisplayName = "\231\172\172\228\184\128\231\171\160\239\188\136\232\191\189\232\184\170\232\181\155\231\144\170-\229\134\176\230\185\150\228\184\139\239\188\137",
+    GMDisplayName = "第一章（追踪赛琪-冰湖下）",
     GMIntegrationName = "findsaiqi2",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   fish = {
     GMCommands = {
@@ -1369,7 +1369,7 @@ return ReadOnly("GMIntegration", {
       [11] = "sgm ar 5210400 99",
       [12] = "gm skipregion 1 100101 1"
     },
-    GMDisplayName = "\229\191\171\233\128\159\229\188\128\229\167\139\233\146\147\233\177\188",
+    GMDisplayName = "快速开始钓鱼",
     GMIntegrationName = "fish"
   },
   fish_icelake = {
@@ -1383,32 +1383,32 @@ return ReadOnly("GMIntegration", {
       [7] = "sgm ar 5210400 99",
       [8] = "gm skipregion 1 101103 1"
     },
-    GMDisplayName = "\229\191\171\233\128\159\229\188\128\229\167\139\233\146\147\233\177\188\239\188\136\229\143\170\230\156\137\231\174\128\229\141\149\233\177\188\231\171\191\239\188\137",
+    GMDisplayName = "快速开始钓鱼（只有简单鱼竿）",
     GMIntegrationName = "fish_icelake"
   },
   flow = {
     GMCommands = {
       [1] = "gm skipregion 1 101111 1"
     },
-    GMDisplayName = "\232\138\177\229\186\151",
+    GMDisplayName = "花店",
     GMIntegrationName = "flow",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   guaxiang = {
     GMCommands = {
       [1] = "gm skipregion 1 105601 1"
     },
-    GMDisplayName = "\230\173\162\230\181\129\229\141\166\232\177\161\230\136\191\233\151\180",
+    GMDisplayName = "止流卦象房间",
     GMIntegrationName = "guaxiang",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   haojing = {
     GMCommands = {
       [1] = "gm skipregion 1 104503 1"
     },
-    GMDisplayName = "\231\154\147\228\186\172\229\159\142\229\140\186",
+    GMDisplayName = "皓京城区",
     GMIntegrationName = "haojing",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   ht = {
     GMCommands = {
@@ -1424,9 +1424,9 @@ return ReadOnly("GMIntegration", {
     GMCommands = {
       [1] = "gm skipregion 1 101103 5"
     },
-    GMDisplayName = "\229\134\176\230\185\150\229\159\142\230\179\170\230\185\150\229\140\186",
+    GMDisplayName = "冰湖城泪湖区",
     GMIntegrationName = "icelake",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   icelakeboss = {
     GMCommands = {
@@ -1443,41 +1443,41 @@ return ReadOnly("GMIntegration", {
     GMCommands = {
       [1] = "gm skipregion 1 101101 1"
     },
-    GMDisplayName = "\229\134\176\230\185\150\229\159\142\229\134\133",
+    GMDisplayName = "冰湖城内",
     GMIntegrationName = "icelakecity",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   jianjia = {
     GMCommands = {
       [1] = "gm skipregion 1 104107 1"
     },
-    GMDisplayName = "\232\146\185\232\145\173\230\181\166",
+    GMDisplayName = "蒹葭浦",
     GMIntegrationName = "jianjia",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   jiaolan = {
     GMCommands = {
       [1] = "gm skipregion 1 104504 1"
     },
-    GMDisplayName = "\230\164\146\229\133\176\230\157\145",
+    GMDisplayName = "椒兰村",
     GMIntegrationName = "jiaolan",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   jitan = {
     GMCommands = {
       [1] = "gm skipregion 1 104101 1"
     },
-    GMDisplayName = "\231\131\155\233\152\180\231\165\173\229\157\155",
+    GMDisplayName = "烛阴祭坛",
     GMIntegrationName = "jitan",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   julong = {
     GMCommands = {
       [1] = "gm skipregion 1 104901 1"
     },
-    GMDisplayName = "\230\189\156\233\190\153\229\177\133",
+    GMDisplayName = "潜龙居",
     GMIntegrationName = "julong",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   kk = {
     GMCommands = {
@@ -1495,47 +1495,47 @@ return ReadOnly("GMIntegration", {
     GMCommands = {
       [1] = "gm skipregion 1 101301 1"
     },
-    GMDisplayName = "\231\159\191\229\157\14501",
+    GMDisplayName = "矿坑01",
     GMIntegrationName = "kuangkeng1",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   kuangkeng2 = {
     GMCommands = {
       [1] = "gm skipregion 1 101305 1"
     },
-    GMDisplayName = "\231\159\191\229\157\14502",
+    GMDisplayName = "矿坑02",
     GMIntegrationName = "kuangkeng2",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   kuangkeng3 = {
     GMCommands = {
       [1] = "gm skipregion 1 101303 1"
     },
-    GMDisplayName = "\231\159\191\229\157\14503",
+    GMDisplayName = "矿坑03",
     GMIntegrationName = "kuangkeng3",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   kuangkeng4 = {
     GMCommands = {
       [1] = "gm skipregion 1 101304 1"
     },
-    GMDisplayName = "\231\159\191\229\157\14504",
+    GMDisplayName = "矿坑04",
     GMIntegrationName = "kuangkeng4",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   kurong = {
     GMCommands = {
       [1] = "gm skipregion 1 104106 1"
     },
-    GMDisplayName = "\230\158\175\232\141\163\233\152\129",
+    GMDisplayName = "枯荣阁",
     GMIntegrationName = "kurong",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   letmein = {
     GMCommands = {
       [1] = "gm aade"
     },
-    GMDisplayName = "\232\167\163\233\148\129\230\137\128\230\156\137\229\140\186\229\159\159",
+    GMDisplayName = "解锁所有区域",
     GMIntegrationName = "letmein"
   },
   letmeplay = {
@@ -1548,65 +1548,65 @@ return ReadOnly("GMIntegration", {
       [6] = "gm succquestchain 200229",
       [7] = "sgm ar 2001 50000"
     },
-    GMDisplayName = "\230\184\133\230\137\128\230\156\137\229\141\161\228\184\187\231\186\191\230\148\175\231\186\191",
+    GMDisplayName = "清所有卡主线支线",
     GMIntegrationName = "letmeplay",
-    GMTab = "\228\187\187\229\138\161"
+    GMTab = "任务"
   },
   mee = {
     GMCommands = {
       [1] = "gm skipregion 1 101104 1"
     },
-    GMDisplayName = "\229\134\155\229\155\162\228\188\154\232\174\174\229\174\164",
+    GMDisplayName = "军团会议室",
     GMIntegrationName = "mee",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   outside = {
     GMCommands = {
       [1] = "gm skipregion 1 101105 1"
     },
-    GMDisplayName = "\229\165\165\231\137\185\232\181\155\229\190\183\229\174\182",
+    GMDisplayName = "奥特赛德家",
     GMIntegrationName = "outside",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   pool = {
     GMCommands = {
       [1] = "gm skipregion 1 101101 18"
     },
-    GMDisplayName = "\232\180\171\230\176\145\229\140\186",
+    GMDisplayName = "贫民区",
     GMIntegrationName = "pool",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   qianshu01 = {
     GMCommands = {
       [1] = "gm skipregion 1 104201 1"
     },
-    GMDisplayName = "\229\141\131\230\158\162\231\139\169\233\152\18101",
+    GMDisplayName = "千枢狩阵01",
     GMIntegrationName = "qianshu01",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   qianshu02 = {
     GMCommands = {
       [1] = "gm skipregion 1 104601 1"
     },
-    GMDisplayName = "\229\141\131\230\158\162\231\139\169\233\152\18102",
+    GMDisplayName = "千枢狩阵02",
     GMIntegrationName = "qianshu02",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   qianshu03 = {
     GMCommands = {
       [1] = "gm skipregion 1 104701 1"
     },
-    GMDisplayName = "\229\141\131\230\158\162\231\139\169\233\152\18103",
+    GMDisplayName = "千枢狩阵03",
     GMIntegrationName = "qianshu03",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   sana = {
     GMCommands = {
       [1] = "gm skipregion 1 101106 1"
     },
-    GMDisplayName = "\231\150\151\229\133\187\233\153\162",
+    GMDisplayName = "疗养院",
     GMIntegrationName = "sana",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   searchsaiqi = {
     GMCommands = {
@@ -1622,9 +1622,9 @@ return ReadOnly("GMIntegration", {
     GMCommands = {
       [1] = "gm skipregion 1 101108 1"
     },
-    GMDisplayName = "\231\167\152\229\175\134\229\159\186\229\156\176",
+    GMDisplayName = "秘密基地",
     GMIntegrationName = "secr",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   sew = {
     GMCommands = {
@@ -1640,57 +1640,57 @@ return ReadOnly("GMIntegration", {
     GMCommands = {
       [1] = "gm skipregion 1 101701 1"
     },
-    GMDisplayName = "\228\184\139\230\176\180\233\129\14701",
+    GMDisplayName = "下水道01",
     GMIntegrationName = "sew1",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   sew2 = {
     GMCommands = {
       [1] = "gm skipregion 1 101702 1"
     },
-    GMDisplayName = "\228\184\139\230\176\180\233\129\14702",
+    GMDisplayName = "下水道02",
     GMIntegrationName = "sew2",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   sew3 = {
     GMCommands = {
       [1] = "gm skipregion 1 101703 1"
     },
-    GMDisplayName = "\228\184\139\230\176\180\233\129\14703",
+    GMDisplayName = "下水道03",
     GMIntegrationName = "sew3",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   shanwaishan = {
     GMCommands = {
       [1] = "gm skipregion 1 105201 1"
     },
-    GMDisplayName = "\229\177\177\229\164\150\229\177\177",
+    GMDisplayName = "山外山",
     GMIntegrationName = "shanwaishan",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   shihai = {
     GMCommands = {
       [1] = "gm skipregion 1 104105 1"
     },
-    GMDisplayName = "\229\176\152\230\188\160\231\159\179\230\181\183",
+    GMDisplayName = "尘漠石海",
     GMIntegrationName = "shihai",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   shijingzhe = {
     GMCommands = {
       [1] = "gm skipregion 1 101304 2"
     },
-    GMDisplayName = "\229\153\172\230\153\182\232\128\133",
+    GMDisplayName = "噬晶者",
     GMIntegrationName = "shijingzhe",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   sick = {
     GMCommands = {
       [1] = "gm skipregion 1 101110 1"
     },
-    GMDisplayName = "\229\140\187\233\153\162\231\151\133\230\136\191",
+    GMDisplayName = "医院病房",
     GMIntegrationName = "sick",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   sjz = {
     GMCommands = {
@@ -1707,65 +1707,65 @@ return ReadOnly("GMIntegration", {
     GMCommands = {
       [1] = "gm skipregion 1 105301 1"
     },
-    GMDisplayName = "\229\164\170\232\153\154\233\153\181",
+    GMDisplayName = "太虚陵",
     GMIntegrationName = "taixu",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   tavern = {
     GMCommands = {
       [1] = "gm skipregion 1 101107 1"
     },
-    GMDisplayName = "\230\176\180\228\187\153\229\185\179\229\142\159",
+    GMDisplayName = "水仙平原",
     GMIntegrationName = "tavern",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   thea = {
     GMCommands = {
       [1] = "gm skipregion 1 101901 1"
     },
-    GMDisplayName = "\230\173\140\229\137\167\233\153\162",
+    GMDisplayName = "歌剧院",
     GMIntegrationName = "thea",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   tingya = {
     GMCommands = {
       [1] = "gm skipregion 1 104102 1"
     },
-    GMDisplayName = "\229\144\172\233\184\166\229\142\159",
+    GMDisplayName = "听鸦原",
     GMIntegrationName = "tingya",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   trafficway = {
     GMCommands = {
       [1] = "gm skipregion 1 101103 14"
     },
-    GMDisplayName = "\229\134\176\230\185\150\229\159\142\229\133\172\232\183\175\229\140\186",
+    GMDisplayName = "冰湖城公路区",
     GMIntegrationName = "trafficway",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   train = {
     GMCommands = {
       [1] = "gm enterdungeon 900001"
     },
-    GMDisplayName = "\230\162\166\229\162\131\232\174\173\231\187\131\229\156\186",
+    GMDisplayName = "梦境训练场",
     GMIntegrationName = "train",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   village = {
     GMCommands = {
       [1] = "gm skipregion 1 100101 1"
     },
-    GMDisplayName = "\230\157\145\229\186\132",
+    GMDisplayName = "村庄",
     GMIntegrationName = "village",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   void = {
     GMCommands = {
       [1] = "gm skipregion 1 100104 1"
     },
-    GMDisplayName = "\230\178\153\230\181\183\232\153\154\231\169\186",
+    GMDisplayName = "沙海虚空",
     GMIntegrationName = "void",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   waitsaiqi = {
     GMCommands = {
@@ -1790,104 +1790,104 @@ return ReadOnly("GMIntegration", {
     GMCommands = {
       [1] = "gm skipregion 1 104301 1"
     },
-    GMDisplayName = "\229\190\128\233\154\15301",
+    GMDisplayName = "往隙01",
     GMIntegrationName = "wangxi01",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   wangxi02 = {
     GMCommands = {
       [1] = "gm skipregion 1 104401 1"
     },
-    GMDisplayName = "\229\190\128\233\154\15302",
+    GMDisplayName = "往隙02",
     GMIntegrationName = "wangxi02",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   wangxi03 = {
     GMCommands = {
       [1] = "gm skipregion 1 105001 1"
     },
-    GMDisplayName = "\229\190\128\233\154\15303",
+    GMDisplayName = "往隙03",
     GMIntegrationName = "wangxi03",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   weimang = {
     GMCommands = {
       [1] = "gm skipregion 1 104109 1"
     },
-    GMDisplayName = "\229\190\174\232\140\171\229\184\130",
+    GMDisplayName = "微茫市",
     GMIntegrationName = "weimang",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   won1 = {
     GMCommands = {
       [1] = "gm skipregion 1 101401 1"
     },
-    GMDisplayName = "\230\136\191\233\151\180\229\185\187\229\162\131",
+    GMDisplayName = "房间幻境",
     GMIntegrationName = "won1",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   won2 = {
     GMCommands = {
       [1] = "gm skipregion 1 101401 2"
     },
-    GMDisplayName = "\232\138\177\230\181\183\229\185\187\229\162\131",
+    GMDisplayName = "花海幻境",
     GMIntegrationName = "won2",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   won3 = {
     GMCommands = {
       [1] = "gm skipregion 1 101402 1"
     },
-    GMDisplayName = "\232\181\155\231\144\170\229\185\187\229\162\131\229\156\176\233\157\162",
+    GMDisplayName = "赛琪幻境地面",
     GMIntegrationName = "won3",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   won4 = {
     GMCommands = {
       [1] = "gm skipregion 1 101402 2"
     },
-    GMDisplayName = "\232\181\155\231\144\170\229\185\187\229\162\131\231\169\186\228\184\173",
+    GMDisplayName = "赛琪幻境空中",
     GMIntegrationName = "won4",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   wuyousheng = {
     GMCommands = {
       [1] = "gm skipregion 1 105501 1"
     },
-    GMDisplayName = "\230\151\160\231\148\177\231\148\159\232\129\154\233\155\134\229\156\176",
+    GMDisplayName = "无由生聚集地",
     GMIntegrationName = "wuyousheng",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   yanyin = {
     GMCommands = {
       [1] = "gm skipregion 1 104801 1"
     },
-    GMDisplayName = "\229\129\131\233\154\144\229\174\171",
+    GMDisplayName = "偃隐宫",
     GMIntegrationName = "yanyin",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   youming = {
     GMCommands = {
       [1] = "gm skipregion 1 104104 1"
     },
-    GMDisplayName = "\229\185\189\230\152\142\230\182\167",
+    GMDisplayName = "幽明涧",
     GMIntegrationName = "youming",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   youxing = {
     GMCommands = {
       [1] = "gm skipregion 1 104108 1"
     },
-    GMDisplayName = "\230\184\184\230\152\159\229\159\160",
+    GMDisplayName = "游星埠",
     GMIntegrationName = "youxing",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   },
   zhilvge = {
     GMCommands = {
       [1] = "gm skipregion 1 105101 1"
     },
-    GMDisplayName = "\230\137\167\229\190\139\233\152\129\229\174\164\229\134\133",
+    GMDisplayName = "执律阁室内",
     GMIntegrationName = "zhilvge",
-    GMTab = "\229\156\186\230\153\175"
+    GMTab = "场景"
   }
 })

@@ -100,7 +100,7 @@ function WBP_TaskIndicatorUI_C:SetGuideInfo(PointType, PointName, MapKey, QuestN
     if self.GuideInfoCache.PointName ~= nil and GuidePointLocData[self.GuideInfoCache.PointName] and 0 ~= GuidePointLocData[self.GuideInfoCache.PointName].SubRegionId then
       self.TaskRegionId = GuidePointLocData[self.GuideInfoCache.PointName].SubRegionId
     elseif Const.EnableTaskPrintError then
-      ScreenPrint(string.format("\230\140\135\229\188\149\231\130\185\230\137\128\229\156\168\229\140\186\229\159\159\228\184\141\229\173\152\229\156\168\239\188\140\232\175\183\230\163\128\230\159\165\229\175\188\229\135\186\230\149\176\230\141\174\230\152\175\229\144\166\230\173\163\231\161\174\239\188\129QuestChainId:" .. tostring(GuidePointChainId) .. ", STL\232\138\130\231\130\185Key:" .. tostring(QuestNode.Key) .. ", \230\140\135\229\188\149\231\130\185\229\144\141\231\167\176:" .. tostring(self.GuideInfoCache.PointName)))
+      ScreenPrint(string.format("指引点所在区域不存在，请检查导出数据是否正确！QuestChainId:" .. tostring(GuidePointChainId) .. ", STL节点Key:" .. tostring(QuestNode.Key) .. ", 指引点名称:" .. tostring(self.GuideInfoCache.PointName)))
     end
   else
     self.TaskRegionId = GuidePointLocData[self.GuideInfoCache.PointOrStaticCreatorName].SubRegionId

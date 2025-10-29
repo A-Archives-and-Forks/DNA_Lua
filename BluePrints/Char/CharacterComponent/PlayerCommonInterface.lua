@@ -349,16 +349,16 @@ end
 function PlayerCommonInterface:ChangeToNewWeapon(WeaponId)
   local WeaponData = DataMgr.BattleWeapon[WeaponId]
   if not WeaponData then
-    ScreenPrint("\232\175\183\232\190\147\229\133\165\230\173\163\231\161\174\231\154\132\230\173\166\229\153\168\231\188\150\229\143\183:" .. tostring(WeaponId))
+    ScreenPrint("请输入正确的武器编号:" .. tostring(WeaponId))
     return
   end
   local Avatar = GWorld:GetAvatar()
   if Avatar then
-    ScreenPrint("\232\191\158\230\142\165\230\156\141\229\138\161\229\153\168\230\131\133\229\134\181\228\184\139\239\188\140\232\175\183\229\156\168\229\134\155\230\162\176\229\186\147\230\155\180\230\141\162\230\173\166\229\153\168")
+    ScreenPrint("连接服务器情况下，请在军械库更换武器")
     return
   end
   if not IsAuthority(self) then
-    ScreenPrint("\229\164\154\228\186\186\232\129\148\230\156\186\230\168\161\229\188\143\228\184\141\232\131\189\230\141\162\230\173\166\229\153\168")
+    ScreenPrint("多人联机模式不能换武器")
     return
   end
   
@@ -376,11 +376,11 @@ function PlayerCommonInterface:ChangeToNewWeapon(WeaponId)
   end
   
   if HasTag(WeaponData, "Ultra") then
-    ScreenPrint("\230\151\160\230\179\149\230\155\180\230\141\162\230\152\190\232\181\171\230\173\166\229\153\168")
+    ScreenPrint("无法更换显赫武器")
     return
   end
   if HasTag(WeaponData, "Condemn") then
-    ScreenPrint("\230\151\160\230\179\149\230\155\180\230\141\162\229\164\132\229\136\145\230\173\166\229\153\168")
+    ScreenPrint("无法更换处刑武器")
     return
   end
   local IsMelee = HasTag(WeaponData, "Melee")

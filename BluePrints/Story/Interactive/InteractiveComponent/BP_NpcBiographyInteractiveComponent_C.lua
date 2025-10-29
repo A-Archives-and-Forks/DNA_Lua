@@ -58,10 +58,10 @@ function BP_NpcBiographyInteractiveComponent_C:BtnPressed(PlayerActor)
     NpcId = tostring(NpcId)
     NpcBiographyId = tonumber(NpcBiographyId)
     HeroUSDKSubsystem():UploadTrackLog_Lua("impression_exploration_start", {npc_id = NpcId, npc_biography_id = NpcBiographyId})
-    DebugPrint("@@@ \229\141\176\232\177\161\230\142\162\230\159\165\229\188\128\229\167\139", NpcId, NpcBiographyId)
+    DebugPrint("@@@ 印象探查开始", NpcId, NpcBiographyId)
     NpcBiographyUI:BindOnClose(function()
       HeroUSDKSubsystem():UploadTrackLog_Lua("impression_exploration_end", {npc_id = NpcId, npc_biography_id = NpcBiographyId})
-      DebugPrint("@@@ \229\141\176\232\177\161\230\142\162\230\159\165\231\187\147\230\157\159", NpcId, NpcBiographyId)
+      DebugPrint("@@@ 印象探查结束", NpcId, NpcBiographyId)
     end)
   end
 end
@@ -89,7 +89,7 @@ function BP_NpcBiographyInteractiveComponent_C:ReceiveBeginPlay()
     elseif Language == CommonConst.SystemLanguages.EN then
       self:SetInteractiveName(GText(self.NpcData.UnitName) .. "'s " .. GText(Data.ConfirmText))
     elseif Language == CommonConst.SystemLanguages.JP then
-      self:SetInteractiveName(GText(self.NpcData.UnitName) .. "\227\130\146" .. GText(Data.ConfirmText))
+      self:SetInteractiveName(GText(self.NpcData.UnitName) .. "を" .. GText(Data.ConfirmText))
     elseif Language == CommonConst.SystemLanguages.KR then
       self:SetInteractiveName(GText(self.NpcData.UnitName) .. " " .. GText(Data.ConfirmText))
     end

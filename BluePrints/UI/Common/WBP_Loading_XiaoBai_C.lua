@@ -88,7 +88,7 @@ function WBP_Com_Loading_XiaoBai_C:PlayXiaoBaiChangeAnimationForward()
   end
   self:PlayAnimation(self.Change, 0, 1, EUMGSequencePlayMode.Forward, 1.0)
   self.CurrentAnimationMode = "Forward"
-  DebugPrint("\230\173\163\229\144\145\230\146\173\230\148\190\229\138\168\231\148\187")
+  DebugPrint("正向播放动画")
 end
 
 function WBP_Com_Loading_XiaoBai_C:PlayXiaoBaiChangeAnimationReverse()
@@ -97,7 +97,7 @@ function WBP_Com_Loading_XiaoBai_C:PlayXiaoBaiChangeAnimationReverse()
   end
   self:PlayAnimation(self.Change, 0, 1, EUMGSequencePlayMode.Reverse, 1.0)
   self.CurrentAnimationMode = "Reverse"
-  DebugPrint("\229\128\146\230\148\190\229\138\168\231\148\187")
+  DebugPrint("倒放动画")
 end
 
 function WBP_Com_Loading_XiaoBai_C:OnAnimationFinished(InAnimation)
@@ -107,7 +107,7 @@ function WBP_Com_Loading_XiaoBai_C:OnAnimationFinished(InAnimation)
   if not self.IsPlaying then
     return
   end
-  DebugPrint("\229\138\168\231\148\187\229\174\140\230\136\144: " .. self.CurrentAnimationMode)
+  DebugPrint("动画完成: " .. self.CurrentAnimationMode)
   self.IsWaiting = true
   self.ElapsedWaitTime = 0.0
 end

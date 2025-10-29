@@ -715,7 +715,7 @@ function WBP_BattleMap_C:RealSetSabotageABCGuideIcon(Eids, GuideName, Info)
   DebugPrint("WBP_BattleMap_C:SetSabotageABCGuideIcon_Callback Content:", Content)
   local SceneManager = GWorld.GameInstance:GetSceneManager()
   if nil == SceneManager then
-    ScreenPrint("WBP_BattleMap_C:SetSabotageABCGuideIcon_Callback: SceneManager \228\184\141\229\173\152\229\156\168")
+    ScreenPrint("WBP_BattleMap_C:SetSabotageABCGuideIcon_Callback: SceneManager 不存在")
     return
   end
   local MiniMapGuidePNG = SceneManager:GetSabotageABCIconPath(Content)

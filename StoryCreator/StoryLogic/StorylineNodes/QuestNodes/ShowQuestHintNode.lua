@@ -118,7 +118,7 @@ function ShowQuestHintNode:FinishAction()
     local GameInstance = GWorld.GameInstance
     local GameMode = UE4.UGameplayStatics.GetGameMode(GameInstance)
     if nil == GameMode then
-      DebugPrint("ShowQuestHintNode:FinishAction GameMode == nil\239\188\140 QuestId", self.QuestData.QuestId)
+      DebugPrint("ShowQuestHintNode:FinishAction GameMode == nil， QuestId", self.QuestData.QuestId)
       return
     end
     local TaskUIObj = TaskUtils:GetTaskBarWidget()

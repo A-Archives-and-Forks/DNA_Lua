@@ -29,12 +29,12 @@ end
 
 function M:ShowToast(ToastText)
   if not DataMgr.TeleportStaticId2TeleportPointName[self.CreatorId] then
-    GWorld.logger.error("\228\188\160\233\128\129\231\130\185" .. self:GetName() .. ", \233\157\153\230\128\129\229\136\183\230\150\176\231\130\185ID" .. self.CreatorId .. "\232\161\168\229\134\133\233\133\141\231\189\174\231\188\186\229\164\177")
+    GWorld.logger.error("传送点" .. self:GetName() .. ", 静态刷新点ID" .. self.CreatorId .. "表内配置缺失")
     return true
   end
   local AnchorName = DataMgr.TeleportStaticId2TeleportPointName[self.CreatorId].TeleportPointName
   if not AnchorName then
-    GWorld.logger.error("\228\188\160\233\128\129\231\130\185" .. self:GetName() .. ", \233\157\153\230\128\129\229\136\183\230\150\176\231\130\185ID" .. self.CreatorId .. "\232\161\168\229\134\133\233\133\141\231\189\174\231\188\186\229\176\145\229\144\141\229\173\151")
+    GWorld.logger.error("传送点" .. self:GetName() .. ", 静态刷新点ID" .. self.CreatorId .. "表内配置缺少名字")
     return true
   end
   local UIManager = GWorld.GameInstance:GetGameUIManager()

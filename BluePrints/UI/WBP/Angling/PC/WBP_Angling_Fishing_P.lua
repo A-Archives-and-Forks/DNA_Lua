@@ -358,17 +358,17 @@ end
 function M:InitFishCurve()
   local FishData = DataMgr.Fish[self.LastFishId]
   if not FishData then
-    GWorld.logger.error("LXZ InitFishingGameState \233\177\188\231\154\132Id\233\148\153\232\175\175,\228\184\141\229\173\152\229\156\168\233\177\188\232\161\168\231\154\132\230\149\176\230\141\174\239\188\140 FishId:", self.LastFishId)
+    GWorld.logger.error("LXZ InitFishingGameState 鱼的Id错误,不存在鱼表的数据， FishId:", self.LastFishId)
   end
   local FishMoveId = FishData.FishMoveId
   if not FishMoveId or not DataMgr.FishMove[FishMoveId] then
-    GWorld.logger.error("LXZ InitFishingGameState \233\177\188\231\154\132\232\191\144\229\138\168Id\233\148\153\232\175\175,\228\184\141\229\173\152\229\156\168\233\177\188\232\191\144\229\138\168\232\161\168\231\154\132\230\149\176\230\141\174\239\188\140 FishMoveId:", FishMoveId)
+    GWorld.logger.error("LXZ InitFishingGameState 鱼的运动Id错误,不存在鱼运动表的数据， FishMoveId:", FishMoveId)
   end
   local FishMoveCurvePath = DataMgr.FishMove[FishMoveId].FishMoveCurve
   self.Curve = LoadObject(FishMoveCurvePath)
   self.CurveMaxTime = DataMgr.FishMove[FishMoveId].MaxTime
   if not FishMoveCurvePath or not self.Curve then
-    GWorld.logger.error("LXZ InitFishingGameState \233\177\188\231\154\132\232\191\144\229\138\168\230\155\178\231\186\191\232\183\175\229\190\132\233\148\153\232\175\175,\228\184\141\229\173\152\229\156\168\230\155\178\231\186\191\232\183\175\229\190\132\230\136\150\229\175\185\229\186\148\230\155\178\231\186\191\232\181\132\228\186\167\239\188\140 FishMoveId:", FishMoveId)
+    GWorld.logger.error("LXZ InitFishingGameState 鱼的运动曲线路径错误,不存在曲线路径或对应曲线资产， FishMoveId:", FishMoveId)
   end
 end
 
@@ -617,7 +617,7 @@ end
 
 function M:CheckSkipAngling()
   if not self.LastFishId or -1 == self.LastFishId then
-    print(_G.LogTag, "Error: LXZ \230\178\161\230\156\137\228\184\138\233\146\169\231\154\132\233\177\188\231\154\132id\239\188\140\229\143\175\232\131\189\230\152\175\230\178\161\230\156\137\233\177\188\231\171\191\232\181\132\230\186\144\230\136\150\233\177\188\233\165\181\232\181\132\230\186\144")
+    print(_G.LogTag, "Error: LXZ 没有上钩的鱼的id，可能是没有鱼竿资源或鱼饵资源")
     return
   end
   local AutoFishLevel = DataMgr.FishingRod[self.RootPage.FishingRodId].AutoFishingLevel or 1

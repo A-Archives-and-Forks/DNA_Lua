@@ -93,7 +93,7 @@ function SceneItemBase:RegionOnEMActorDestroy(DestroyReason, GameMode)
   end
   if self.WorldRegionEid == "" then
     if self.Data then
-      GWorld.logger.errorlog("Error : Actor\229\156\168Destroy\230\151\182\230\178\161\230\156\137\232\181\139\229\128\188WorldRegionEid", self.UnitId, self.UnitType, self.Eid)
+      GWorld.logger.errorlog("Error : Actor在Destroy时没有赋值WorldRegionEid", self.UnitId, self.UnitType, self.Eid)
     end
   else
     GameMode:GetRegionDataMgrSubSystem():DeadRegionActorData(self, DestroyReason)

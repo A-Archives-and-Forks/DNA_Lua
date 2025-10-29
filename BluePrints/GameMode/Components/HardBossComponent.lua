@@ -5,21 +5,21 @@ local HardBossComponent = {}
 function HardBossComponent:InitHardBoss(BossBattleId, DifficultyId)
   local BossInfo = DataMgr.HardBossMain[BossBattleId]
   if nil == BossInfo then
-    DebugPrint("\230\162\166\233\173\135\230\174\139\229\163\176BossId\228\187\165\229\143\138\233\154\190\229\186\166Id\229\161\171\229\134\153\233\148\153\232\175\175")
+    DebugPrint("梦魇残声BossId以及难度Id填写错误")
     return
   end
   self.LevelGameMode.BossBattleInfo = {}
   self.LevelGameMode.EMGameState.HardBossInfo = {}
   local BossStaticCreator = self.LevelGameMode.EMGameState.StaticCreatorMap:Find(BossInfo.MonsterStaticId)
   if not BossStaticCreator then
-    DebugPrint("\230\162\166\233\173\135\230\174\139\229\163\176\233\157\153\230\128\129\231\130\185Id\233\148\153\232\175\175\239\188\140\230\137\190\228\184\141\229\136\176\229\175\185\229\186\148\233\157\153\230\128\129\231\130\185", BossInfo.MonsterStaticId)
+    DebugPrint("梦魇残声静态点Id错误，找不到对应静态点", BossInfo.MonsterStaticId)
     return
   end
   BossStaticCreator.UnitType = "Monster"
   BossStaticCreator.UnitId = BossInfo.MonsterId
   local DifficultyLevel = DataMgr.HardBossDifficulty[DifficultyId].DifficultyLevel
   if nil == DifficultyLevel then
-    DebugPrint("\233\173\135\230\174\139\229\163\176DifficultyLevel\229\161\171\229\134\153\233\148\153\232\175\175")
+    DebugPrint("魇残声DifficultyLevel填写错误")
     return
   end
   BossStaticCreator.Level = DifficultyLevel - self.LevelGameMode:GetGameModeLevel()
@@ -184,8 +184,8 @@ function HardBossComponent:HardBossClearBattleEntities(IsBegin)
     end
   end
   if not IsValid(self.EMGameState.Battle) then
-    ScreenPrint("************* GameMode_HardBossComponent:HardBossClearBattleEntities Battle\228\184\141\229\173\152\229\156\168!!!!!! *************")
-    Battle(self):ShowBattleError("\230\162\166\233\173\135\230\174\139\229\163\176\230\184\133\233\153\164Actor\230\151\182, Battle\228\184\141\229\173\152\229\156\168\239\188\129")
+    ScreenPrint("************* GameMode_HardBossComponent:HardBossClearBattleEntities Battle不存在!!!!!! *************")
+    Battle(self):ShowBattleError("梦魇残声清除Actor时, Battle不存在！")
     return
   end
   local Index = 0
@@ -213,7 +213,7 @@ function HardBossComponent:HardBossClearBattleEntities(IsBegin)
       end
     end
   end
-  DebugPrint("GameMode_HardBossComponent: \230\152\175\229\144\166\232\191\155\229\133\165:", IsBegin, "\229\136\160\233\153\164\230\128\187\230\149\176:", Counter)
+  DebugPrint("GameMode_HardBossComponent: 是否进入:", IsBegin, "删除总数:", Counter)
 end
 
 function HardBossComponent:HardBossSetPhantomBTEnable(RunEnable)

@@ -234,7 +234,7 @@ end
 function M:HideNonDyeableHint()
   local IconDynaMaterial = self.Img_Item:GetDynamicMaterial()
   if not IsValid(IconDynaMaterial) then
-    DebugPrint("WYX HideNonDyeableHint \232\142\183\229\143\150DynaMaterial\229\164\177\232\180\165")
+    DebugPrint("WYX HideNonDyeableHint 获取DynaMaterial失败")
     return
   end
   IconDynaMaterial:SetScalarParameterValue("IconScale", 0)

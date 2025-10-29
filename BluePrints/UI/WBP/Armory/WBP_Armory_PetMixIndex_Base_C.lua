@@ -472,7 +472,7 @@ function M:UpdatePetEntry(PetEntry)
       PetEntryIsEmpty = false
       local Data = DataMgr.PetEntry[EntryId]
       if not Data then
-        ScreenPrint("\232\161\168\229\134\133\230\178\161\230\156\137\232\175\141\230\157\161ID\229\175\185\229\186\148\231\154\132\230\149\176\230\141\174\239\188\140\230\152\175\228\184\141\230\152\175\229\136\183\229\135\186\230\157\165\231\154\132\229\174\160\231\137\169\232\175\141\230\157\161\229\161\171\233\148\153\228\186\134\239\188\159")
+        ScreenPrint("表内没有词条ID对应的数据，是不是刷出来的宠物词条填错了？")
         return
       end
       local PetEntryItem = UIManager(self):CreateWidget(PetEntryPath, false)
@@ -645,7 +645,7 @@ function M:OnPetLocked(ErrCode, UniqueId, IsLocked)
     return
   end
   if UniqueId ~= CurrentContent.UniqueId then
-    ScreenPrint("\230\156\141\229\138\161\229\153\168\228\188\160\230\157\165\231\154\132\229\174\160\231\137\169ID\229\146\140\229\189\147\229\137\141\233\128\137\228\184\173\231\154\132\229\174\160\231\137\169ID\228\184\141\228\184\128\232\135\180")
+    ScreenPrint("服务器传来的宠物ID和当前选中的宠物ID不一致")
     return
   end
   CurrentContent.IsLocked = IsLocked

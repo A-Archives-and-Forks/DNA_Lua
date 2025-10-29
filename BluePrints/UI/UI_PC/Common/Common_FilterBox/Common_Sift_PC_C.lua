@@ -148,7 +148,7 @@ function M:GetSiftModelData(SiftModelId)
     table.insert(SiftModelDataList, SiftData)
   end
   if 0 == #SiftModelDataList then
-    DebugPrint("\233\148\153\232\175\175\239\188\154\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\231\154\132\231\173\155\233\128\137\230\168\161\229\158\139\230\149\176\230\141\174\239\188\140SiftModelId:", SiftModelId)
+    DebugPrint("错误：未找到对应的筛选模型数据，SiftModelId:", SiftModelId)
     return nil
   end
   return SiftModelDataList

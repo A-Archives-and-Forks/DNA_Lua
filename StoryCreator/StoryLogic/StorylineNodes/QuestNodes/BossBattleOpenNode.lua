@@ -31,7 +31,7 @@ end
 function M:PlaySequence()
   local SequenceAsset = LoadObject(self.SequencePath)
   if not IsValid(SequenceAsset) then
-    DebugPrint("Warning: BossBattleOpenNode Sequence\232\183\175\229\190\132\230\156\137\232\175\175\239\188\140\232\175\183\230\163\128\230\159\165\239\188\129\239\188\129\239\188\129", self.SequencePath)
+    DebugPrint("Warning: BossBattleOpenNode Sequence路径有误，请检查！！！", self.SequencePath)
     self:OnSequencePlayFinished()
     return
   end

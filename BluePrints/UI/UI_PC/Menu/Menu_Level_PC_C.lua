@@ -166,12 +166,12 @@ function Menu_Level_PC_C:InitTemple()
   if 3 == #Ids then
     self.IsStarLevel = true
     if StarLevel < 0 or StarLevel > 3 then
-      error("\230\156\172\229\133\179\232\174\190\231\189\174\230\152\159\231\186\167\232\182\133\229\135\186\229\143\175\232\142\183\229\190\151\231\154\132\232\140\131\229\155\180")
+      error("本关设置星级超出可获得的范围")
     end
   elseif 1 == #Ids then
     self.IsStarLevel = false
   else
-    error("\230\156\172\229\133\179\229\165\150\229\138\177\233\133\141\231\189\174\230\156\137\232\175\175\239\188\140\232\175\183\230\173\163\231\161\174\233\133\141\231\189\174\230\152\159\231\186\167\229\165\150\229\138\177\230\136\150\230\151\160\230\152\159\231\186\167\229\165\150\229\138\177")
+    error("本关奖励配置有误，请正确配置星级奖励或无星级奖励")
   end
   self.SizeBox_Rewards:ClearChildren()
   self.WidgetRewards = self:CreateWidgetNew("TempleItem")
@@ -233,12 +233,12 @@ function Menu_Level_PC_C:InitParty()
   if 3 == #Ids then
     self.IsStarLevel = true
     if StarLevel < 0 or StarLevel > 3 then
-      error("\230\156\172\229\133\179\232\174\190\231\189\174\230\152\159\231\186\167\232\182\133\229\135\186\229\143\175\232\142\183\229\190\151\231\154\132\232\140\131\229\155\180")
+      error("本关设置星级超出可获得的范围")
     end
   elseif 1 == #Ids then
     self.IsStarLevel = false
   else
-    error("\230\156\172\229\133\179\229\165\150\229\138\177\233\133\141\231\189\174\230\156\137\232\175\175\239\188\140\232\175\183\230\173\163\231\161\174\233\133\141\231\189\174\230\152\159\231\186\167\229\165\150\229\138\177\230\136\150\230\151\160\230\152\159\231\186\167\229\165\150\229\138\177")
+    error("本关奖励配置有误，请正确配置星级奖励或无星级奖励")
   end
   self.SizeBox_Rewards:ClearChildren()
   self.WidgetRewards = self:CreateWidgetNew("TempleItem")
@@ -629,7 +629,7 @@ function Menu_Level_PC_C:CalcRoleInfo(Avatar)
     Widget.Widget:PlayInAnimation()
   end
   if not InitSuccess then
-    DebugPrint("ljh@:\229\133\179\229\141\161ESC RoleInfo\229\136\157\229\167\139\229\140\150\229\164\177\232\180\165")
+    DebugPrint("ljh@:关卡ESC RoleInfo初始化失败")
     self.Panel_ExpGain:SetVisibility(UIConst.VisibilityOp.Collapsed)
   end
 end

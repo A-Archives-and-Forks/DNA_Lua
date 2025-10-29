@@ -108,33 +108,33 @@ end
 
 function M:PlayButtonStateAnimation()
   if self.CurButtonState == "InCDTime" then
-    DebugPrint(self.SkillAction, "\232\191\155\229\133\165CD\230\128\129")
+    DebugPrint(self.SkillAction, "进入CD态")
     if not EMUIAnimationSubsystem:EMAnimationIsPlaying(self, self.AnimationList.CD) then
       EMUIAnimationSubsystem:EMPlayAnimation(self, self.AnimationList.CD)
     end
   elseif self.CurButtonState == "InCDTimeSustain" then
-    DebugPrint(self.SkillAction, "\232\191\155\229\133\165CD\230\140\129\231\187\173\230\128\129")
+    DebugPrint(self.SkillAction, "进入CD持续态")
     if not EMUIAnimationSubsystem:EMAnimationIsPlaying(self, self.AnimationList.Sustain_CD) then
       EMUIAnimationSubsystem:EMPlayAnimation(self, self.AnimationList.Sustain_CD)
     end
   elseif self.CurButtonState == "SustainLoop" then
-    DebugPrint(self.SkillAction, "\232\191\155\229\133\165\230\140\129\231\187\173\230\128\129")
+    DebugPrint(self.SkillAction, "进入持续态")
     if not EMUIAnimationSubsystem:EMAnimationIsPlaying(self, self.AnimationList.Sustain_Loop) then
       EMUIAnimationSubsystem:EMPlayAnimation(self, self.AnimationList.Sustain_Loop)
     end
   elseif self.CurButtonState == "Normal" then
-    DebugPrint(self.SkillAction, "\232\191\155\229\133\165\229\184\184\232\167\132\230\128\129")
+    DebugPrint(self.SkillAction, "进入常规态")
     EMUIAnimationSubsystem:EMPlayAnimation(self, self.AnimationList.Normal)
   elseif self.CurButtonState == "MP_Deficiency" then
-    DebugPrint(self.SkillAction, "\232\191\155\229\133\165\232\147\157\233\135\143\228\184\141\232\182\179")
+    DebugPrint(self.SkillAction, "进入蓝量不足")
     EMUIAnimationSubsystem:EMPlayAnimation(self, self.AnimationList.MP_Deficiency)
   elseif self.CurButtonState == "Lock_In" then
-    DebugPrint(self.SkillAction, "\232\191\155\229\133\165\233\148\129\229\174\154\230\128\129")
+    DebugPrint(self.SkillAction, "进入锁定态")
     if not EMUIAnimationSubsystem:EMAnimationIsPlaying(self, self.AnimationList.Lock_In) then
       EMUIAnimationSubsystem:EMPlayAnimation(self, self.AnimationList.Lock_In)
     end
   elseif self.CurButtonState == "Ban" then
-    DebugPrint(self.SkillAction, "\232\191\155\229\133\165Ban\230\128\129")
+    DebugPrint(self.SkillAction, "进入Ban态")
     if not EMUIAnimationSubsystem:EMAnimationIsPlaying(self, self.AnimationList.Ban) then
       EMUIAnimationSubsystem:EMPlayAnimation(self, self.AnimationList.Ban)
     end
@@ -294,7 +294,7 @@ function M:OnRefreshSkillSpCost(Owner)
   if not Owner or Owner ~= self.OwnerPlayer then
     return
   end
-  DebugPrint("@zyh \229\136\183\230\150\176\230\138\128\232\131\189\231\154\132\230\152\190\231\164\186\232\147\157\232\128\151")
+  DebugPrint("@zyh 刷新技能的显示蓝耗")
   if not IsValid(self.Skill) then
     return
   end

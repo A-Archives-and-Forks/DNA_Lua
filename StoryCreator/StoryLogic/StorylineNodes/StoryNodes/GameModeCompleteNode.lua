@@ -151,7 +151,7 @@ function GameModeCompleteNode:ExecuteTaskHintShow()
     return
   end
   if nil == DataMgr.Message[self.QuestHintMessageId] or nil == DataMgr.Message[self.QuestHintMessageId].MessageContentPC or nil == DataMgr.Message[self.QuestHintMessageId].MessageContentPhone then
-    ScreenPrint(string.format("GameModeCompleteNode, \228\187\187\229\138\161\230\143\144\231\164\186\228\191\161\230\129\175\233\148\153\232\175\175\239\188\140MessageId\228\184\141\229\173\152\229\156\168 %s:", tostring(self.QuestHintMessageId)))
+    ScreenPrint(string.format("GameModeCompleteNode, 任务提示信息错误，MessageId不存在 %s:", tostring(self.QuestHintMessageId)))
     return
   end
   local TaskUIObj = TaskUtils:GetTaskBarWidget()

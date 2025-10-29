@@ -61,7 +61,7 @@ function Component:DoBattleCommand(EffectStruct, bPrintToClient, EidFrom)
 end
 
 function Component:ShowEidError(Eid)
-  return "\230\137\190\228\184\141\229\136\176Eid:[" .. tostring(Eid) .. "]\229\175\185\229\186\148\231\154\132\232\167\146\232\137\178"
+  return "找不到Eid:[" .. tostring(Eid) .. "]对应的角色"
 end
 
 function Component:GM_GetOrSetPlayerAttr(Eid, Name, Value)
@@ -75,10 +75,10 @@ function Component:GM_GetOrSetPlayerAttr(Eid, Name, Value)
   if nil == Value then
     Value = Target:GetAttr(Name)
     if type(Value) == "table" then
-      ScreenPrint(string.format("\229\189\147\229\137\141\231\142\169\229\174\182\231\154\132 %s \231\154\132\229\128\188\228\184\186:", Name))
+      ScreenPrint(string.format("当前玩家的 %s 的值为:", Name))
       PrintTable(Value, 10)
     else
-      ScreenPrint(string.format("\229\189\147\229\137\141\231\142\169\229\174\182\231\154\132 %s \231\154\132\229\128\188\228\184\186 %s", Name, Value))
+      ScreenPrint(string.format("当前玩家的 %s 的值为 %s", Name, Value))
     end
     return
   end
@@ -108,16 +108,16 @@ function Component:GM_GetOrSetPlayerWeaponAttr(Eid, WeaponId, Name, Value)
   WeaponId = tonumber(WeaponId)
   local Target = Player:GetWeapon(WeaponId)
   if not Target then
-    ScreenPrint(string.format("Id \228\184\186 %s \231\154\132\230\173\166\229\153\168\228\184\141\229\173\152\229\156\168\239\188\140\230\136\150\229\176\157\232\175\149\228\187\165\229\174\162\230\136\183\231\171\175\232\191\144\232\161\140\227\128\130", WeaponId))
+    ScreenPrint(string.format("Id 为 %s 的武器不存在，或尝试以客户端运行。", WeaponId))
     return
   end
   if nil == Value then
     Value = Target:GetAttr(Name)
     if type(Value) == "table" then
-      ScreenPrint(string.format("\229\189\147\229\137\141\230\173\166\229\153\168\231\154\132 %s \231\154\132\229\128\188\228\184\186:", Name))
+      ScreenPrint(string.format("当前武器的 %s 的值为:", Name))
       PrintTable(Value, 10)
     else
-      ScreenPrint(string.format("\229\189\147\229\137\141\230\173\166\229\153\168\231\154\132 %s \231\154\132\229\128\188\228\184\186 %s", Name, Value))
+      ScreenPrint(string.format("当前武器的 %s 的值为 %s", Name, Value))
     end
     return
   end
@@ -380,9 +380,9 @@ function Component:GM_RemoveBuff(Eid, BuffId)
   assert(Target, self:ShowEidError(Eid))
   local Success = self:RemoveBuffFromTarget(Target, Target, BuffId, false, -1)
   if Success then
-    ScreenPrint("\231\167\187\233\153\164Buff:" .. tostring(BuffId) .. "\230\136\144\229\138\159!")
+    ScreenPrint("移除Buff:" .. tostring(BuffId) .. "成功!")
   else
-    ScreenPrint("\231\167\187\233\153\164Buff:" .. tostring(BuffId) .. "\229\164\177\232\180\165!")
+    ScreenPrint("移除Buff:" .. tostring(BuffId) .. "失败!")
   end
 end
 
@@ -410,7 +410,7 @@ function Component:GM_RemoveMonsterBuff(BuffId)
     if Target:GetCamp() == ECampName.Monster then
       local Success = self:RemoveBuffFromTarget(Target, Target, BuffId, false, -1)
       if not Success then
-        ScreenPrint("Eid\228\184\186: " .. Target.eid .. "\231\167\187\233\153\164Buff:" .. tostring(BuffId) .. "\229\164\177\232\180\165!")
+        ScreenPrint("Eid为: " .. Target.eid .. "移除Buff:" .. tostring(BuffId) .. "失败!")
       end
     end
   end
@@ -473,7 +473,7 @@ function Component:GM_AddMod(ModId, Eid, ModLevel, TargetType)
       Target = Player.UltraWeapon
     end
   end
-  assert(Target, "\230\151\160\230\179\149\232\142\183\229\143\150\229\136\176AddMod\231\154\132\229\175\185\232\177\161")
+  assert(Target, "无法获取到AddMod的对象")
   Target:SetAttrByMod(tonumber(ModId), ModLevel)
   local ModData = DataMgr.Mod[ModId]
   local PassiveEffects = ModData.PassiveEffects
@@ -564,8 +564,8 @@ end
 
 function Component:GM_Hotfix(...)
   local HotfixData = require("Datas.HotfixData")
-  assert(HotfixData.index, "\233\156\128\232\166\129\229\161\171\229\134\153HotfixData.index")
-  assert(HotfixData.script, "\233\156\128\232\166\129\229\161\171\229\134\153HotfixData.script")
+  assert(HotfixData.index, "需要填写HotfixData.index")
+  assert(HotfixData.script, "需要填写HotfixData.script")
   local UnLuaHotReload = require("UnLuaHotReload")
   require("HotFix").ExecHotFix(HotfixData.index, HotfixData.script)
   GWorld.HotfixDataIndex = HotfixData.index

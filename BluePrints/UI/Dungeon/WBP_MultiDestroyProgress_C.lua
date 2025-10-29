@@ -6,7 +6,7 @@ local WBP_MultiDestroyProgress_C = Class({
 function WBP_MultiDestroyProgress_C:OnLoaded(...)
   WBP_MultiDestroyProgress_C.Super.OnLoaded(self, ...)
   local BattleMain = UIManager(self):GetUIObj("BattleMain")
-  assert(BattleMain, "WBP_Abyss_CountDown_C \229\138\160\232\189\189\230\151\182\230\139\191\228\184\141\229\136\176BattleMain\239\188\129")
+  assert(BattleMain, "WBP_Abyss_CountDown_C 加载时拿不到BattleMain！")
   BattleMain.Pos_ProcessCabin:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
   BattleMain.Pos_ProcessCabin:AddChild(self)
   self.IsInit = true

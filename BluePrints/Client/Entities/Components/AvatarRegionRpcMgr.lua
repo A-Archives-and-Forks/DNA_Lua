@@ -6,7 +6,7 @@ function Component:ReceiveSynchronizedDataFromServer(RegionDatas)
   local RegionId = self:GetSubRegionId2RegionId()
   local RegionInfo = DataMgr.Region[RegionId]
   if not RegionInfo then
-    self.logger.error("ZJT_ ReceiveSynchronizedDataFromServer \230\149\176\230\141\174\233\148\153\232\175\175 ", RegionId, self:GetCurrentRegionId())
+    self.logger.error("ZJT_ ReceiveSynchronizedDataFromServer 数据错误 ", RegionId, self:GetCurrentRegionId())
     PrintTable({RegionDatas = RegionDatas}, 10)
     return
   end
@@ -107,7 +107,7 @@ end
 
 function Component:CheckRepeatEnterRegion(TargetRegionId)
   if self:GetSubRegionId2RegionId(TargetRegionId) == self:GetSubRegionId2RegionId() and self:IsInBigWorld() then
-    self.logger.error("ZJT_ \229\144\140\229\140\186\229\159\159\228\188\160\233\128\129\232\175\183\232\181\176\229\133\179\229\141\161\229\138\160\229\141\184\232\189\189 ", TargetRegionId, self:GetCurrentRegionId())
+    self.logger.error("ZJT_ 同区域传送请走关卡加卸载 ", TargetRegionId, self:GetCurrentRegionId())
     return false
   end
   return true
@@ -158,7 +158,7 @@ function Component:SkipRegion(TargetRegionId)
   local function Callback(Ret)
     if not self:CheckRegionErrorCode(Ret) then
       if not self:CheckRegionErrorCode(Ret, ErrorCode.RET_REGION_BASEDATA_WORLDREGIONEID_REPEAT) and not self:CheckRegionErrorCode(Ret, ErrorCode.RET_CURRENT_TARGET_REGIOINID_EQUAL) then
-        GWorld.logger.debug("SkipRegion  " .. "ErrorCode:" .. Ret .. "  TargetRegionId:" .. TargetRegionId .. " CurrentRegionId:" .. self.CurrentRegionId .. ", \232\175\166\231\187\134\230\149\176\230\141\174\232\167\129Log")
+        GWorld.logger.debug("SkipRegion  " .. "ErrorCode:" .. Ret .. "  TargetRegionId:" .. TargetRegionId .. " CurrentRegionId:" .. self.CurrentRegionId .. ", 详细数据见Log")
       end
       return
     end
@@ -213,13 +213,13 @@ function Component:RegionActorUpdate(TargetActor, NewSubRegionId, NewLevelName, 
     ERegionDataType.RDT_QuestCommonData
   }
   if CommonUtils.HasValue(NoStorageRegionDataType, TargetActor.RegionDataType) then
-    DebugPrint("RegionLog:  Actor\230\155\180\230\150\176\229\177\158\230\128\167,\229\189\147\229\137\141\231\177\187\229\158\139\228\184\186\239\188\154" .. TargetActor.RegionDataType .. "  \228\184\141\229\129\154\228\187\187\228\189\149\229\164\132\231\144\134, WorldRegionEid:" .. tostring(TargetActor.WorldRegionEid))
+    DebugPrint("RegionLog:  Actor更新属性,当前类型为：" .. TargetActor.RegionDataType .. "  不做任何处理, WorldRegionEid:" .. tostring(TargetActor.WorldRegionEid))
     return
   end
   local GameMode = UE4.UGameplayStatics.GetGameMode(GWorld.GameInstance)
   local Ret, UnitRegionData = self:AvatarUpdateUnitRegionData(TargetActor, NewSubRegionId, NewLevelName)
   if not self:CheckRegionErrorCode(Ret) then
-    DebugPrint("RegionLog:  Actor\230\155\180\230\150\176\229\177\158\230\128\167,\229\189\147\229\137\141\231\177\187\229\158\139\228\184\186\239\188\154" .. TargetActor.RegionDataType .. "  WorldRegionEid:" .. tostring(TargetActor.WorldRegionEid) .. "    \230\155\180\230\150\176\230\149\176\230\141\174\229\164\177\232\180\165\239\188\140Ret\239\188\154" .. Ret)
+    DebugPrint("RegionLog:  Actor更新属性,当前类型为：" .. TargetActor.RegionDataType .. "  WorldRegionEid:" .. tostring(TargetActor.WorldRegionEid) .. "    更新数据失败，Ret：" .. Ret)
     return
   end
   
@@ -260,25 +260,25 @@ function Component:RegionActorDead(TargetActor, DestoryReason, NewSubRegionId, N
     ERegionDataType.RDT_QuestCommonData
   }
   if DestoryReason == EDestroyReason.LevelUnloadedSaveGame or DestoryReason == EDestroyReason.LevelNotExsit then
-    DebugPrint("RegionLog:  WC\229\175\188\232\135\180Actor\233\148\128\230\175\129,\229\189\147\229\137\141\231\177\187\229\158\139\228\184\186\239\188\154" .. TargetActor.RegionDataType .. "  WorldRegionEid:" .. TargetActor.WorldRegionEid)
+    DebugPrint("RegionLog:  WC导致Actor销毁,当前类型为：" .. TargetActor.RegionDataType .. "  WorldRegionEid:" .. TargetActor.WorldRegionEid)
     GameMode:GetRegionDataMgrSubSystem():AddSSData(TargetActor.WorldRegionEid)
     return
   end
   if DestoryReason == EDestroyReason.HardBossClear and TargetActor.RegionDataType ~= ERegionDataType.RDT_HardBossData then
-    DebugPrint("RegionLog:  HardBossClear\229\175\188\232\135\180Actor\233\148\128\230\175\129,\229\189\147\229\137\141\231\177\187\229\158\139\228\184\186\239\188\154" .. TargetActor.RegionDataType .. "  WorldRegionEid:" .. TargetActor.WorldRegionEid)
+    DebugPrint("RegionLog:  HardBossClear导致Actor销毁,当前类型为：" .. TargetActor.RegionDataType .. "  WorldRegionEid:" .. TargetActor.WorldRegionEid)
     if TargetActor.CheckHardBossNeedSnapShot and TargetActor:CheckHardBossNeedSnapShot() then
       GameMode:GetRegionDataMgrSubSystem():AddSSData(TargetActor.WorldRegionEid, true)
     end
     return
   end
   if DestoryReason == EDestroyReason.SepcialQuestStart then
-    DebugPrint("RegionLog:  SepcialQuestStart\229\175\188\232\135\180Actor\233\148\128\230\175\129,\229\189\147\229\137\141\231\177\187\229\158\139\228\184\186\239\188\154" .. TargetActor.RegionDataType .. "  WorldRegionEid:" .. TargetActor.WorldRegionEid)
+    DebugPrint("RegionLog:  SepcialQuestStart导致Actor销毁,当前类型为：" .. TargetActor.RegionDataType .. "  WorldRegionEid:" .. TargetActor.WorldRegionEid)
     GameMode:GetRegionDataMgrSubSystem():AddSSData(TargetActor.WorldRegionEid, true)
     return
   end
   GameMode:GetRegionDataMgrSubSystem():OnActorDead(TargetActor)
   if CommonUtils.HasValue(NoStorageRegionDataType, TargetActor.RegionDataType) then
-    DebugPrint("RegionLog:  Actor\233\148\128\230\175\129,\229\189\147\229\137\141\231\177\187\229\158\139\228\184\186\239\188\154" .. TargetActor.RegionDataType .. "  \228\184\141\229\129\154\228\187\187\228\189\149\229\164\132\231\144\134, WorldRegionEid:" .. tostring(TargetActor.WorldRegionEid))
+    DebugPrint("RegionLog:  Actor销毁,当前类型为：" .. TargetActor.RegionDataType .. "  不做任何处理, WorldRegionEid:" .. tostring(TargetActor.WorldRegionEid))
     return
   end
   if DestoryReason == EDestroyReason.RegionExploreGroup then

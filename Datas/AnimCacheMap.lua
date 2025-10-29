@@ -88,7 +88,7 @@ return ReadOnly("AnimCacheMap", {
       [2] = "AnimSequence'/Game/Asset/Char/Monster/GR_Jichong/Animation/Sequence/Locomotion/GR_Jichong_Run_Loop.GR_Jichong_Run_Loop'",
       [3] = "AnimSequence'/Game/Asset/Char/Monster/Common/Animation/GR_Mid_F/Sequence/Base/Combat/Hit/GR_Mid_F_Die01.GR_Mid_F_Die01'",
       [4] = "AnimSequence'/Game/Asset/Char/Monster/GR_Jichong/Animation/Sequence/Combat/Skill/GR_Jichong_Attack_01.GR_Jichong_Attack_01'",
-      [5] = "AnimSequence'/Game/Asset/Char/Monster/Common/Animation/GR_Mid_F/Sequence/Base/Combat/Hit/GR_Mid_F_Gun_GetUp_B.\194\183'",
+      [5] = "AnimSequence'/Game/Asset/Char/Monster/Common/Animation/GR_Mid_F/Sequence/Base/Combat/Hit/GR_Mid_F_Gun_GetUp_B.·'",
       [6] = "AnimSequence'/Game/Asset/Char/Monster/GR_Jichong/Animation/Sequence/Interactive/GR_Jichong_SpecialAlarm_Start.GR_Jichong_SpecialAlarm_Start'"
     },
     IsNotifiesCalled = true,

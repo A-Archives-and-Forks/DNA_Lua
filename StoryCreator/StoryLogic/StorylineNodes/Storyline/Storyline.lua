@@ -50,10 +50,10 @@ function Storyline:BuildStoryline()
     self:AddNode(NodeId, Node)
   end
   if not self:GetStartNode() then
-    local Message = "\228\187\187\229\138\161\233\147\190\230\178\161\230\156\137StartStoryNode\232\191\158\231\186\191" .. [[
+    local Message = "任务链没有StartStoryNode连线" .. [[
 
 FileName:]] .. self.FileName
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\228\187\187\229\138\161\233\147\190\230\178\161\230\156\137StartStoryNode\232\191\158\231\186\191", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "任务链没有StartStoryNode连线", Message)
     return
   end
   self.QuestChainId = self._StartNode.QuestChainId or 0
@@ -77,14 +77,14 @@ function Storyline:StartStory(QuestId, NodeId)
   if QuestId and 0 ~= QuestId then
     self.StartedNode = self.QuestIdNodeList[QuestId]
     if not self.StartedNode then
-      local Message = "\228\187\187\229\138\161Id\228\184\141\229\173\152\229\156\168" .. [[
+      local Message = "任务Id不存在" .. [[
 
 FileName:]] .. self.FileName .. [[
 
 QuestChainId:]] .. self.QuestChainId .. [[
 
 QuestId:]] .. QuestId
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\228\187\187\229\138\161Id\228\184\141\229\173\152\229\156\168", Message)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "任务Id不存在", Message)
       self:FinishStory()
       return
     end
@@ -110,21 +110,21 @@ function Storyline:StartNode(Node, NodeId)
     local Message = string.format([[
 FileName: %s
 NodeInfo: %s]], self.FileName, Node:ToString())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Storyline \229\183\178\231\187\147\230\157\159\239\188\140\229\188\128\229\167\139\232\138\130\231\130\185\229\164\177\232\180\165", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Storyline 已结束，开始节点失败", Message)
     return
   end
   if self.bLockRunningNodeList then
     local Message = string.format([[
 FileName: %s
 NodeInfo: %s]], self.FileName, Node:ToString())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\228\187\187\229\138\161\233\147\190\229\183\178\233\148\129\229\174\154\239\188\140\229\188\128\229\167\139\232\138\130\231\130\185\229\164\177\232\180\165", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "任务链已锁定，开始节点失败", Message)
     return
   end
   if Node.HasStarted then
     local Message = string.format([[
 FileName: %s
 NodeInfo: %s]], self.FileName, Node:ToString())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\138\130\231\130\185\229\183\178\229\188\128\229\167\139\239\188\140\229\188\128\229\167\139\232\138\130\231\130\185\229\164\177\232\180\165", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "节点已开始，开始节点失败", Message)
     return
   end
   if Node.QuestId then
@@ -142,21 +142,21 @@ function Storyline:FinishNode(Node, OutPortNames, Result)
     local Message = string.format([[
 FileName: %s
 NodeInfo: %s]], self.FileName, Node:ToString())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Storyline \229\183\178\231\187\147\230\157\159\239\188\140\229\174\140\230\136\144\232\138\130\231\130\185\229\164\177\232\180\165", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Storyline 已结束，完成节点失败", Message)
     return
   end
   if self.bLockRunningNodeList then
     local Message = string.format([[
 FileName: %s
 NodeInfo: %s]], self.FileName, Node:ToString())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\228\187\187\229\138\161\233\147\190\229\183\178\233\148\129\229\174\154\239\188\140\229\174\140\230\136\144\232\138\130\231\130\185\229\164\177\232\180\165", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "任务链已锁定，完成节点失败", Message)
     return
   end
   if Node.HasFinished then
     local Message = string.format([[
 FileName: %s
 NodeInfo: %s]], self.FileName, Node:ToString())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\138\130\231\130\185\229\183\178\229\174\140\230\136\144\239\188\140\229\174\140\230\136\144\232\138\130\231\130\185\229\164\177\232\180\165", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "节点已完成，完成节点失败", Message)
     return
   end
   Node.HasFinished = true
@@ -214,12 +214,12 @@ end
 
 function Storyline:FinishStory()
   if self.HasFinished then
-    local Message = "\228\187\187\229\138\161\233\147\190\229\183\178\231\187\147\230\157\159" .. [[
+    local Message = "任务链已结束" .. [[
 
 FileName:]] .. self.FileName .. [[
 
 QuestChainId:]] .. self.QuestChainId
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\228\187\187\229\138\161\233\147\190\229\183\178\231\187\147\230\157\159", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "任务链已结束", Message)
     return
   end
   self:ClearStory()

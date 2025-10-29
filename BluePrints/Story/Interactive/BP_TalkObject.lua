@@ -79,7 +79,7 @@ function BP_TalkObject:ResetLocation()
   local HitResult = FHitResult()
   local Ret = UE4.UKismetSystemLibrary.LineTraceSingle(self, Start, End, ETraceTypeQuery.TraceScene, true, nil, 0, HitResult, true)
   if Ret then
-    DebugPrint("BP_TalkObject\229\141\138\233\171\152:", HalfHeight, "\230\137\147\228\184\173\228\189\141\231\189\174\239\188\154", HitResult.ImpactPoint, "\230\137\147\228\184\173\231\155\174\230\160\135\239\188\154", HitResult.Actor:GetName(), "Pawn\229\144\141\229\173\151\239\188\154", self:GetName(), "============sssss================")
+    DebugPrint("BP_TalkObject半高:", HalfHeight, "打中位置：", HitResult.ImpactPoint, "打中目标：", HitResult.Actor:GetName(), "Pawn名字：", self:GetName(), "============sssss================")
     local SurfacePos = FVector(HitResult.ImpactPoint.X, HitResult.ImpactPoint.Y, HitResult.ImpactPoint.Z + HalfHeight)
     self:K2_SetActorLocation(SurfacePos, false, nil, false)
   end

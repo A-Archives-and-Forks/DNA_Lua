@@ -120,7 +120,7 @@ function G:InitValidGachaPool()
   end)
   if #self.ValidGachaTab <= 0 then
     self.IsGachaMainInvalid = true
-    DebugPrint(ErrorTag, "---jzn---\229\141\161\230\177\160\230\138\189\229\185\178\228\186\134---")
+    DebugPrint(ErrorTag, "---jzn---卡池抽干了---")
     self:OnClickBtnClose()
     return
   end
@@ -137,7 +137,7 @@ function G:UnLoadNavMeshLevel()
   local RegionId = Player:GetRegionId()
   self.IsUnLoadNavMesh = false
   if RegionId == CommonConst.GachaRegionId then
-    DebugPrint("----jzn---\229\134\176\230\185\150\229\159\142\230\137\147\229\188\128\230\138\189\229\141\161\229\141\184\232\189\189\229\175\188\232\136\170\231\189\145\230\160\188---")
+    DebugPrint("----jzn---冰湖城打开抽卡卸载导航网格---")
     self.IsUnLoadNavMesh = true
     URuntimeCommonFunctionLibrary.UnloadNavMeshLevel(Player:GetWorld())
   end
@@ -1764,7 +1764,7 @@ function G:Close()
   if self.IsUnLoadNavMesh then
     local GameInstance = GWorld.GameInstance
     local Player = UE4.UGameplayStatics.GetPlayerCharacter(GameInstance, 0)
-    DebugPrint("---\229\134\176\230\185\150\229\159\142\229\133\179\233\151\173\230\138\189\229\141\161\230\129\162\229\164\141\229\175\188\232\136\170\231\189\145\230\160\188---")
+    DebugPrint("---冰湖城关闭抽卡恢复导航网格---")
     URuntimeCommonFunctionLibrary.LoadNavMeshLevel(Player:GetWorld())
   end
   if self.CallBackObj and self.CallBackFunc then

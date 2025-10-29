@@ -427,7 +427,7 @@ end
 function WBP_Battle_Blood_Boss_PC_C:UpdateTakeDownTipText()
   local DamageRate = self.Owner:GetAttr(UEMNameRegisterLibrary.GetAttrNameAttributeType("DamagedRate", "NoTag_BossDown")) + 1
   DamageRate = DamageRate * 100
-  self.TakeDownTip:SetText(GText("UI_STAT_SUFFER") .. "\195\151" .. DamageRate .. "%")
+  self.TakeDownTip:SetText(GText("UI_STAT_SUFFER") .. "×" .. DamageRate .. "%")
 end
 
 function WBP_Battle_Blood_Boss_PC_C:ShowPanelTip()

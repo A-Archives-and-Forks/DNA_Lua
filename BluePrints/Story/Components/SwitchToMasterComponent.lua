@@ -10,13 +10,13 @@ function FSwitchToMasterComponent:New(MasterType, TalkTaskData)
 end
 
 function FSwitchToMasterComponent:Execute()
-  DebugPrint("FSwitchToMasterComponent@ \229\136\135\230\141\162\228\184\186\228\184\187\232\167\146")
+  DebugPrint("FSwitchToMasterComponent@ 切换为主角")
   local Player = UGameplayStatics.GetPlayerCharacter(GWorld.GameInstance, 0)
   if not IsValid(Player) then
-    local Message = "FSwitchToMasterComponent:Execute(), \229\175\185\232\175\157\232\138\130\231\130\185\229\136\135\230\141\162\228\184\187\232\167\146\230\151\182\239\188\140\231\142\169\229\174\182PlayerCharacter\230\151\160\230\149\136\n"
-    local Title = "PlayerCharacter\230\151\160\230\149\136"
+    local Message = "FSwitchToMasterComponent:Execute(), 对话节点切换主角时，玩家PlayerCharacter无效\n"
+    local Title = "PlayerCharacter无效"
     UStoryLogUtils.PrintToFeiShu(self, Title, Message)
-    DebugPrint("lhr@\231\142\169\229\174\182PlayerCharacter\230\151\160\230\149\136\n")
+    DebugPrint("lhr@玩家PlayerCharacter无效\n")
     return
   end
   if Player.ChangeRoleTimer then
@@ -31,7 +31,7 @@ function FSwitchToMasterComponent:Execute()
   end
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    GWorld.logger.error("FSwitchToMasterComponent@\230\178\161\230\156\137\230\173\163\229\184\184\231\153\187\229\189\149")
+    GWorld.logger.error("FSwitchToMasterComponent@没有正常登录")
     Avatar = {Sex = 0, WeitaSex = 1}
   end
   local MasterGender, MasterRoleId
@@ -42,12 +42,12 @@ function FSwitchToMasterComponent:Execute()
   end
   local MasterInfo = DataMgr.Player2RoleId[self.MasterType]
   if not MasterInfo then
-    GWorld.logger.error("FSwitchToMasterComponent@\230\178\161\230\156\137\230\137\190\229\136\176\229\175\185\229\186\148\231\154\132\228\184\187\232\167\146\228\191\161\230\129\175\239\188\140\232\175\183\230\163\128\230\159\165\229\175\188\232\161\168" .. self.MasterType)
+    GWorld.logger.error("FSwitchToMasterComponent@没有找到对应的主角信息，请检查导表" .. self.MasterType)
     return
   end
   local GenderInfo = MasterInfo[MasterGender]
   if not GenderInfo then
-    GWorld.logger.error("FSwitchToMasterComponent@\229\175\185\229\186\148\230\128\167\229\136\171\230\178\161\230\156\137\232\167\146\232\137\178\239\188\140\232\175\183\230\163\128\230\159\165\229\175\188\232\161\168")
+    GWorld.logger.error("FSwitchToMasterComponent@对应性别没有角色，请检查导表")
     return
   end
   MasterRoleId = GenderInfo
@@ -90,7 +90,7 @@ function FSwitchToMasterComponent:Execute()
 end
 
 function FSwitchToMasterComponent:Resume()
-  DebugPrint("FSwitchToMasterComponent@FSwitchToMasterComponent \232\167\163\233\153\164\229\136\135\230\141\162\228\184\187\232\167\146")
+  DebugPrint("FSwitchToMasterComponent@FSwitchToMasterComponent 解除切换主角")
   if -1 == self.TalkTaskData.BlendOutTime then
     return
   end
@@ -99,15 +99,15 @@ function FSwitchToMasterComponent:Resume()
     return
   end
   if not IsValid(Player) then
-    local Message = "FSwitchToMasterComponent:Resume(), \229\175\185\232\175\157\232\138\130\231\130\185\229\136\135\230\141\162\228\184\187\232\167\146\230\151\182\239\188\140\231\142\169\229\174\182PlayerCharacter\230\151\160\230\149\136\n"
-    local Title = "PlayerCharacter\230\151\160\230\149\136"
+    local Message = "FSwitchToMasterComponent:Resume(), 对话节点切换主角时，玩家PlayerCharacter无效\n"
+    local Title = "PlayerCharacter无效"
     UStoryLogUtils.PrintToFeiShu(self, Title, Message)
-    DebugPrint("lhr@\231\142\169\229\174\182PlayerCharacter\230\151\160\230\149\136\n")
+    DebugPrint("lhr@玩家PlayerCharacter无效\n")
     return
   end
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("FSwitchToMasterComponent:Resume(), Avatar\230\151\160\230\149\136\n")
+    DebugPrint("FSwitchToMasterComponent:Resume(), Avatar无效\n")
     return
   end
   if Player:GetController():GetClass():GetName() == "TalkAIController" and not self.SeamlessBlendOut then

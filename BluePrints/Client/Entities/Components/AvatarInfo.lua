@@ -114,7 +114,7 @@ function Component:NotifyDiscoverNewGameUICtrl()
     local CdnTool = require("BluePrints/UI/GameLogin/CdnTool")
     CdnTool:GetCdnHideData(self.ServerInfo.HostId)
   else
-    DebugPrint("@ljh,\229\136\183\230\150\176Cdn\233\133\141\231\189\174\229\164\177\232\180\165\239\188\140\230\156\170\230\137\190\229\136\176\229\144\136\230\179\149\231\154\132HostId")
+    DebugPrint("@ljh,刷新Cdn配置失败，未找到合法的HostId")
   end
 end
 

@@ -31,13 +31,13 @@ function M:InitStateTable_Lua()
   self.StateTableLua = {}
   for i, StateId in pairs(self.StateIdListLua) do
     if self.StateTableLua[StateId] then
-      assert(nil, "Error: Mechanism StateIdList \233\135\141\229\164\141")
+      assert(nil, "Error: Mechanism StateIdList 重复")
     end
     self.StateTableLua[StateId] = {}
     local EventsCurrentState, NextStateIds, TypeNextStates, EventsNextStates = self:GetStateInfo_Lua(StateId)
     for i, v in pairs(NextStateIds) do
       if self.StateTableLua[StateId][v] then
-        assert(nil, "Error: Mechanism NextStateId \233\135\141\229\164\141, NowStateId: " .. StateId)
+        assert(nil, "Error: Mechanism NextStateId 重复, NowStateId: " .. StateId)
       end
       self.StateTableLua[StateId][v] = {
         NextStateId = NextStateIds[i],

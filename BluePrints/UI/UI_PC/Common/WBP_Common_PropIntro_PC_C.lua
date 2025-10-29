@@ -34,7 +34,7 @@ function M:ShowPickupItem(PickUpItemInfo)
     self.ItemType = PickUpItemInfo.ItemType
     self.ItemId = PickUpItemInfo.ItemId
     self.ItemCount = PickUpItemInfo.ItemCount
-    assert(DataMgr[self.ItemType][self.ItemId], "\228\188\160\229\133\165\230\142\137\232\144\189\231\137\169\231\154\132\228\191\161\230\129\175\228\184\141\229\173\152\229\156\168\239\188\154Type:" .. self.ItemType .. " Id:" .. self.ItemId)
+    assert(DataMgr[self.ItemType][self.ItemId], "传入掉落物的信息不存在：Type:" .. self.ItemType .. " Id:" .. self.ItemId)
     self.bShowing = true
     self.bHover = false
     if PickUpItemInfo.IsNew then
@@ -71,7 +71,7 @@ function M:ShowPickupItem(PickUpItemInfo)
         for _, v in pairs(PickUpItemInfo.AdditionalParam.AffixList) do
           if DataMgr.PetEntry[v] then
             local Widget = UIManager(self):_CreateWidgetNew("PetEntryItemDetails")
-            assert(DataMgr.PetEntry[v].IconS, "\230\156\170\233\133\141\231\189\174\229\174\160\231\137\169\229\164\169\232\181\139Icons", v)
+            assert(DataMgr.PetEntry[v].IconS, "未配置宠物天赋Icons", v)
             Widget.Icon_Entry:SetBrushResourceObject(LoadObject(DataMgr.PetEntry[v].IconS))
             Widget.Text_Entry:SetText(GText(DataMgr.PetEntry[v].PetEntryName))
             if 3 == DataMgr.PetEntry[v].Rarity then
@@ -190,7 +190,7 @@ end
 function M:PopSpecialDropQueue()
   local BattleMain = UIManager(self):GetUIObj("BattleMain")
   if not BattleMain or not BattleMain.Pos_SpecialDrops then
-    DebugPrint("ZDX_\230\137\190\228\184\141\229\136\176BattleMain\230\136\150\231\137\185\230\174\138\230\142\137\232\144\189\231\137\169UI")
+    DebugPrint("ZDX_找不到BattleMain或特殊掉落物UI")
     return
   end
   if self.UITopTipsList:IsEmpty() then

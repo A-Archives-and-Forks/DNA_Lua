@@ -30,7 +30,7 @@ function M:InitUIInfo(Name, IsInUIMode, EventList, ...)
   else
     self.GuideNoteTab = DataMgr.GuideBook[self.GuideNoteId].GuideNoteTab
   end
-  assert(self.IconMap[self.GuideNoteTab], "\228\184\141\229\173\152\229\156\168" .. self.GuideNoteTab .. "\229\143\183GuideNoteTab")
+  assert(self.IconMap[self.GuideNoteTab], "不存在" .. self.GuideNoteTab .. "号GuideNoteTab")
   local Icon = LoadObject(self.IconMap[self.GuideNoteTab])
   local Material = self.Image_BookType:GetDynamicMaterial()
   Material:SetTextureParameterValue("Mask", Icon)

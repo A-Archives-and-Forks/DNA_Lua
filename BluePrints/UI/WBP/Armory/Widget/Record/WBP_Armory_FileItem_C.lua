@@ -63,7 +63,7 @@ function M:OnListItemObjectSet(Content)
     end
   end)
   if self.ReddotName then
-    ScreenPrint("\228\188\188\228\185\142Item\230\148\185\230\136\144\229\164\141\231\148\168\228\186\134\239\188\140\232\174\176\229\190\151\229\156\168BP_OnEntryReleased\229\162\158\229\138\160\231\167\187\233\153\164\231\155\145\229\144\172\229\135\189\230\149\176")
+    ScreenPrint("似乎Item改成复用了，记得在BP_OnEntryReleased增加移除监听函数")
   end
   self.ReddotName = ReddotName
 end

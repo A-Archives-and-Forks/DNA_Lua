@@ -299,7 +299,7 @@ end
 
 function M:SortByFloatField(ItemA, ItemB, Field, bReverse)
   if nil == ItemA[Field] then
-    DebugPrint("Error: \228\189\191\231\148\168\228\186\134\230\156\170\231\159\165\231\154\132\229\173\151\230\174\181\231\148\168\228\186\142\230\175\148\232\190\131\229\149\134\229\147\129", Field)
+    DebugPrint("Error: 使用了未知的字段用于比较商品", Field)
     return false
   end
   local bRes = false

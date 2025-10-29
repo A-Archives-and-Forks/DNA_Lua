@@ -122,7 +122,7 @@ function M:SetCineCameraActor()
   self.SequencePlayer:Pause()
   local CineCameraBind = self:FindNamedBinding(self.BindingTag)
   local BoundObjects = self.SequencePlayer:GetBoundObjects(CineCameraBind)
-  assert(1 == BoundObjects:Num(), self.BindingTag .. "\231\187\145\229\174\154\230\160\135\231\173\190\230\156\170\230\137\190\229\136\176\230\136\150\230\137\190\229\136\176\228\186\134\229\164\154\228\184\170\229\175\185\232\177\161\227\128\130")
+  assert(1 == BoundObjects:Num(), self.BindingTag .. "绑定标签未找到或找到了多个对象。")
   self.CineCameraActor = BoundObjects[1]
   self.CineCameraActor.CameraComponent:SetConstraintAspectRatio(false)
   if self.bUseNewSkillFeature then

@@ -129,7 +129,7 @@ function Component:GetFirstReloadAnimPlayTime()
     return
   end
   local TriggerTimeInfos = self.OwnerPlayer:GetCurMontageNotifyEventsTriggerTime():ToTable()
-  local Hit1Name = "\230\149\136\230\158\156:hit1"
+  local Hit1Name = "效果:hit1"
   local Hit1_TriggerTime = TriggerTimeInfos[Hit1Name]
   return Hit1_TriggerTime or 0
 end

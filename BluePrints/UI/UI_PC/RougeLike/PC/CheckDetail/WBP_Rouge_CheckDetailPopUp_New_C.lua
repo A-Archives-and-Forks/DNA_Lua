@@ -45,7 +45,7 @@ function M:OnLoaded(...)
     end
     self.Image_Quality:SetColorAndOpacity(self["Quality_" .. self.Rarity2Color[self.Rarity]])
   end
-  assert(self.Rarity, "Rarity\231\154\132\232\142\183\229\143\150\230\156\137\233\151\174\233\162\152")
+  assert(self.Rarity, "Rarity的获取有问题")
   local Desc, Title
   if self.IsGuide and not self.IsUnlock then
     Desc = ItemData[self.ItemId].UnlockConditionText

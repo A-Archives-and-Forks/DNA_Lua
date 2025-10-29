@@ -1569,7 +1569,7 @@ return ReadOnly("Dungeon", {
   [13] = {
     CameraParam = T.RT_2,
     DropReward = T.RT_8,
-    DungeonDes = "\233\152\178\229\190\161\239\188\136\229\188\177\231\129\171\239\188\137",
+    DungeonDes = "防御（弱火）",
     DungeonDoorBP = "/Game/BluePrints/Item/Door/BP_AutoDoor",
     DungeonID = 13,
     DungeonJsonFile = "/Game/Script/Datas/Houdini_data/Prologue/Defence01",
@@ -1589,7 +1589,7 @@ return ReadOnly("Dungeon", {
   [14] = {
     CameraParam = T.RT_2,
     DropReward = T.RT_8,
-    DungeonDes = "\233\152\178\229\190\161\239\188\136\229\188\177\233\155\183\239\188\137",
+    DungeonDes = "防御（弱雷）",
     DungeonDoorBP = "/Game/BluePrints/Item/Door/BP_AutoDoor",
     DungeonID = 14,
     DungeonJsonFile = "/Game/Script/Datas/Houdini_data/Prologue/Defence01",
@@ -1609,7 +1609,7 @@ return ReadOnly("Dungeon", {
   [15] = {
     CameraParam = T.RT_2,
     DropReward = T.RT_8,
-    DungeonDes = "\233\152\178\229\190\161\239\188\136\229\188\177\233\163\142\239\188\137",
+    DungeonDes = "防御（弱风）",
     DungeonDoorBP = "/Game/BluePrints/Item/Door/BP_AutoDoor",
     DungeonID = 15,
     DungeonJsonFile = "/Game/Script/Datas/Houdini_data/Prologue/Defence01",
@@ -1629,7 +1629,7 @@ return ReadOnly("Dungeon", {
   [16] = {
     CameraParam = T.RT_2,
     DropReward = T.RT_8,
-    DungeonDes = "\233\152\178\229\190\161\239\188\136\229\188\177\230\176\180\239\188\137",
+    DungeonDes = "防御（弱水）",
     DungeonDoorBP = "/Game/BluePrints/Item/Door/BP_AutoDoor",
     DungeonID = 16,
     DungeonJsonFile = "/Game/Script/Datas/Houdini_data/Prologue/Defence01",

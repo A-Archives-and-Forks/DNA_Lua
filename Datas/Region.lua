@@ -274,7 +274,7 @@ return ReadOnly("Region", {
     },
     RegionId = 1060,
     RegionMapFile = "/Game/Maps/Levels/Haiboliya/Haiboliya_Chezhan_Main/Haiboliya_Chezhan_Main",
-    RegionName = "\231\172\172\228\184\137\231\171\160\230\181\139\232\175\149",
+    RegionName = "第三章测试",
     RegionType = "Main"
   },
   [2001] = {
@@ -299,7 +299,7 @@ return ReadOnly("Region", {
     IsRandom = {999801},
     RegionId = 9998,
     RegionMapFile = "/Game/Maps/Levels/Test/TestLevel/SpecialQuestTest/TestSpecialQuest",
-    RegionName = "\231\137\185\230\174\138\228\187\187\229\138\161\230\181\139\232\175\149\229\140\186\229\159\159"
+    RegionName = "特殊任务测试区域"
   },
   [9999] = {
     AlertDisable = true,
@@ -311,6 +311,6 @@ return ReadOnly("Region", {
     RegionId = 9999,
     RegionJsonFile = "/Game/Script/Datas/Houdini_data/Test/NewTestRoom/BattleTest/BattleTest01",
     RegionMapFile = "/Game/Maps/Misc_Test/RegionWCTest/RegionTest_Main",
-    RegionName = "\229\140\186\229\159\159\230\181\139\232\175\149"
+    RegionName = "区域测试"
   }
 })

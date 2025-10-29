@@ -182,7 +182,7 @@ end
 function DataMgr.ReadOnly_NewIndex(t, k, v)
   local rawset = _ENV.rawset
   local getmetatable = _ENV.getmetatable
-  error("\230\178\161\230\179\149\229\175\185\229\175\188\232\161\168\230\149\176\230\141\174\227\128\144" .. tostring(t.__name) .. "\227\128\145\228\184\173\229\173\151\230\174\181\227\128\144" .. tostring(k) .. "\227\128\145\232\191\155\232\161\140\229\134\153\230\147\141\228\189\156")
+  error("没法对导表数据【" .. tostring(t.__name) .. "】中字段【" .. tostring(k) .. "】进行写操作")
 end
 
 function DataMgr.CleanAllTable()

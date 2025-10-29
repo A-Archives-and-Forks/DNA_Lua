@@ -3,18 +3,18 @@ local WBP_Rouge_FilterSort_C = Class("BluePrints.UI.BP_UIState_C")
 
 function WBP_Rouge_FilterSort_C:Construct()
   self.RomanNum = {
-    "\226\133\160",
-    "\226\133\161",
-    "\226\133\162",
-    "\226\133\163",
-    "\226\133\164",
-    "\226\133\165",
-    "\226\133\166",
-    "\226\133\167",
-    "\226\133\168",
-    "\226\133\169",
-    "\226\133\170",
-    "\226\133\171"
+    "Ⅰ",
+    "Ⅱ",
+    "Ⅲ",
+    "Ⅳ",
+    "Ⅴ",
+    "Ⅵ",
+    "Ⅶ",
+    "Ⅷ",
+    "Ⅸ",
+    "Ⅹ",
+    "Ⅺ",
+    "Ⅻ"
   }
   self.Btn_Filter_List.OnClicked:Add(self, self.ListOpenBtnClicked)
   self.Btn_Filter_List.OnPressed:Add(self, self.OnBtn_Filter_List_Pressed)

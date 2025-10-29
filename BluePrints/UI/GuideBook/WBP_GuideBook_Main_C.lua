@@ -252,7 +252,7 @@ function M:ChangeListContent()
   if self.GuideNotes then
     for GuideNoteId, Content in pairs(self.GuideNotes) do
       local GuideId = Content.GuideId
-      assert(DataMgr.UIGuide[GuideId], "\228\184\141\229\173\152\229\156\168" .. GuideId .. "\229\143\183UIGuide")
+      assert(DataMgr.UIGuide[GuideId], "不存在" .. GuideId .. "号UIGuide")
       local MainGuideTitle = DataMgr.UIGuide[GuideId].MainGuideTitle
       TargetList[GuideNoteId] = GText(MainGuideTitle)
     end
@@ -303,7 +303,7 @@ function M:UpdateListView(GuideNotes)
   DebugPrint("ClearListItems")
   if self.SelectedItem then
     self.SelectedItem:_OnCellUnSelect()
-    DebugPrint("\230\184\133\231\169\186\233\128\137\230\139\169\233\161\185")
+    DebugPrint("清空选择项")
     self.SelectedItem = nil
   end
   self.List:ClearListItems()
@@ -352,7 +352,7 @@ function M:UpdateListView(GuideNotes)
     self:AddTimer(0.01, function()
       local ListItemUIs = self.List:GetDisplayedEntryWidgets()
       local RestCount = UIUtils.GetListViewContentMaxCount(self.List, ListItemUIs) - ListItemUIs:Length()
-      DebugPrint(RestCount, "\233\156\128\232\166\129\231\148\159\230\136\144\231\154\132\231\169\186\230\160\188")
+      DebugPrint(RestCount, "需要生成的空格")
       for i = 1, RestCount do
         self.List:AddItem(self:CreateEmptyContent())
       end
@@ -377,7 +377,7 @@ function M:OnKeyDown(MyGeometry, InKeyEvent)
   elseif "E" == InKeyName or InKeyName == Const.GamepadRightShoulder then
     self.Com_Tab:TabToRight()
   elseif "W" == InKeyName then
-    DebugPrint("\230\137\167\232\161\140\228\184\128\230\172\161\228\184\138\231\167\187")
+    DebugPrint("执行一次上移")
     if self.CurrentListIndex > 0 then
       AudioManager(self):PlayUISound(self, "event:/ui/common/click_level_02", nil, nil)
       local GuideId = self.List:GetItemAt(self.CurrentListIndex - 1).GuideId

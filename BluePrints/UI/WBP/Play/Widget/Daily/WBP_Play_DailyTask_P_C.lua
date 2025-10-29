@@ -105,7 +105,7 @@ function M:ReceiveReward()
   if not PlayerAvatar then
     return
   end
-  DebugPrint("GetDailyTaskReward \233\162\134\229\143\150  ", self.Data.DailyGoalTaskId)
+  DebugPrint("GetDailyTaskReward 领取  ", self.Data.DailyGoalTaskId)
   PlayerAvatar:GetDailyTaskReward(self.Data.DailyGoalTaskId)
 end
 

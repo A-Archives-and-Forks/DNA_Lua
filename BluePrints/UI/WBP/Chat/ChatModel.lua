@@ -156,7 +156,7 @@ end
 function M:AddReddotCount(ChannelType, FriendUid)
   DebugPrint("ChatModel::AddReddotCount")
   if 1 == self:GetAvatar().ChatChannelMute[ChannelType] then
-    DebugPrint("ChatModel::AddReddotCount, \232\129\138\229\164\169\233\162\145\233\129\147\232\162\171\229\177\143\232\148\189\239\188\140\228\184\141\230\183\187\229\138\160\231\186\162\231\130\185\228\186\134")
+    DebugPrint("ChatModel::AddReddotCount, 聊天频道被屏蔽，不添加红点了")
     return
   end
   if ChannelType ~= ChatCommon.ChannelDef.Friend then
@@ -193,7 +193,7 @@ function M:ClearReddotCount(ChannelType, FriendUid)
 end
 
 function M:AddFriendReddotNode(Uid, bAppendParent)
-  DebugPrint(LXYTag, "Chat  \230\150\176\231\154\132\229\165\189\229\143\139\231\186\162\231\130\185\230\183\187\229\138\160\239\188\140Uid:", Uid)
+  DebugPrint(LXYTag, "Chat  新的好友红点添加，Uid:", Uid)
   if nil == bAppendParent then
     bAppendParent = true
   end

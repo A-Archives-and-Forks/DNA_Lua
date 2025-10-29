@@ -104,7 +104,7 @@ function BP_EMGameState_C:AddHijackPointInfo(HijackPointInfo)
     self.HijackPathInfo = {}
   end
   if HijackPointInfo.DisplayName == "" or 0 == HijackPointInfo.PathId or 0 == HijackPointInfo.PathPointIndex then
-    GWorld.logger.error("HijackPathInfo\230\149\176\230\141\174\233\148\153\232\175\175, \232\175\183\230\163\128\230\159\165\227\128\130DisplayName: " .. HijackPointInfo.DisplayName .. "   PathId: " .. HijackPointInfo.PathId .. " PathPointIndex: " .. HijackPointInfo.PathPointIndex)
+    GWorld.logger.error("HijackPathInfo数据错误, 请检查。DisplayName: " .. HijackPointInfo.DisplayName .. "   PathId: " .. HijackPointInfo.PathId .. " PathPointIndex: " .. HijackPointInfo.PathPointIndex)
     return
   end
   if self.HijackPathInfo[HijackPointInfo.PathId] then
@@ -156,7 +156,7 @@ end
 
 function BP_EMGameState_C:AddFallTriggerInfo(FallTrigger)
   if not IsValid(FallTrigger) then
-    DebugPrint("FallTrigger \228\184\141\229\173\152\229\156\168")
+    DebugPrint("FallTrigger 不存在")
     return
   end
   self.FallTriggersArray:Add(FallTrigger)
@@ -164,7 +164,7 @@ end
 
 function BP_EMGameState_C:RemoveFallTriggerInfo(FallTrigger)
   if not IsValid(FallTrigger) then
-    DebugPrint("FallTrigger \228\184\141\229\173\152\229\156\168")
+    DebugPrint("FallTrigger 不存在")
     return
   end
   self.FallTriggersArray:RemoveItem(FallTrigger)
@@ -407,7 +407,7 @@ function BP_EMGameState_C:SetRougeBattleMaxNum(Value, DisplayText)
     RougeBattleUI:InitRougeBattleDisplayText(DisplayText)
     RougeBattleUI:OnRepRougeBattleCount()
   else
-    ScreenPrint("BP_EMGameState_C:SetRougeBattleMaxNum \230\137\190\228\184\141\229\136\176\232\130\137\233\184\189ui")
+    ScreenPrint("BP_EMGameState_C:SetRougeBattleMaxNum 找不到肉鸽ui")
   end
 end
 
@@ -478,7 +478,7 @@ function BP_EMGameState_C:DealDungeonVoteResult()
     GameMode:TriggerPlayerWin(AvatarEids, PlayerEids)
   end
   if 0 == BattleNum then
-    DebugPrint("Vote::: BattleNum = 0 ,\232\167\166\229\143\145\229\137\175\230\156\172\231\187\147\231\174\151")
+    DebugPrint("Vote::: BattleNum = 0 ,触发副本结算")
     GameMode:TriggerDungeonOnEnd(true)
   else
     GameMode:ExecuteNextStepOfDungeonVote()
@@ -594,11 +594,11 @@ end
 
 function BP_EMGameState_C:HideUIInScreen(UIPath, IsHide, ShowOrHideNode)
   if IsDedicatedServer(self) and IsAuthority(self) then
-    print(_G.LogTag, "WARNING: \230\152\175\230\156\141\229\138\161\229\153\168,\228\184\141\230\137\167\232\161\140 HideUIInScreen \229\135\189\230\149\176")
+    print(_G.LogTag, "WARNING: 是服务器,不执行 HideUIInScreen 函数")
     return
   end
   if not UIPath then
-    print(_G.LogTag, "ERROR: \232\190\147\229\133\165\231\154\132UI\232\183\175\229\190\132\233\148\153\232\175\175", UIPath)
+    print(_G.LogTag, "ERROR: 输入的UI路径错误", UIPath)
     return
   end
   local Visible = UE4.ESlateVisibility.SelfHitTestInvisible
@@ -645,7 +645,7 @@ function BP_EMGameState_C:HideUIInScreen(UIPath, IsHide, ShowOrHideNode)
     if UIPathes then
       local root_ui = UIManager(self):GetUIObj(UIPathes[1])
       if not root_ui then
-        print(_G.LogTag, "ERROR: \232\190\147\229\133\165\231\154\132UI\232\183\175\229\190\132\233\148\153\232\175\175,\230\178\161\230\156\137\230\137\190\229\136\176\232\175\165UI", UIPath)
+        print(_G.LogTag, "ERROR: 输入的UI路径错误,没有找到该UI", UIPath)
         return
       end
       local len = #UIPathes
@@ -653,7 +653,7 @@ function BP_EMGameState_C:HideUIInScreen(UIPath, IsHide, ShowOrHideNode)
         root_ui = root_ui[UIPathes[i]]
       end
       if not root_ui then
-        print(_G.LogTag, "ERROR: \232\190\147\229\133\165\231\154\132UI\232\183\175\229\190\132\233\148\153\232\175\175,\230\178\161\230\156\137\230\137\190\229\136\176\232\175\165UI", UIPath)
+        print(_G.LogTag, "ERROR: 输入的UI路径错误,没有找到该UI", UIPath)
         return
       end
       DebugPrint("ShowOrHideUINode: GetVisibility", root_ui:GetName(), root_ui:GetVisibility())
@@ -677,11 +677,11 @@ end
 
 function BP_EMGameState_C:ShowUIAndCloseItAfterCertainTime(UIPath, UIName, Duration, ZOrder)
   if IsDedicatedServer(self) and IsAuthority(self) then
-    print(_G.LogTag, "WARNING: \230\152\175\230\156\141\229\138\161\229\153\168,\228\184\141\230\137\167\232\161\140 ShowUIAndCloseItAfterCertainTime \229\135\189\230\149\176")
+    print(_G.LogTag, "WARNING: 是服务器,不执行 ShowUIAndCloseItAfterCertainTime 函数")
     return nil
   end
   if Duration <= 0 then
-    print(_G.LogTag, "WARNING: Duration \228\184\141\232\131\189\229\176\143\228\186\142\231\173\137\228\186\1420")
+    print(_G.LogTag, "WARNING: Duration 不能小于等于0")
     return nil
   end
   local UI = UIManager(self):LoadUI(UIPath, UIName, ZOrder)
@@ -994,7 +994,7 @@ function BP_EMGameState_C:ChangeMechanismInteractiveInSpecialQuest(bClose, Type,
     for i, v in pairs(MechanismIds) do
       local Mechanism = GameMode.BPBornRegionActor:Find(v)
       if not Mechanism then
-        GWorld.logger.error("\231\137\185\230\174\138\228\187\187\229\138\161\233\128\154\231\148\168\233\133\141\231\189\174,\230\156\186\229\133\179ID" .. v .. "\233\148\153\232\175\175")
+        GWorld.logger.error("特殊任务通用配置,机关ID" .. v .. "错误")
         return
       end
       self:ChangeMechanismInteractive(Mechanism, false, false)
@@ -1062,7 +1062,7 @@ function BP_EMGameState_C:ShowDungeonError(ErrorMsg)
   local Space = "=========================================================\n"
   local ct = {
     Space,
-    "\230\138\165\233\148\153\230\150\135\230\156\172:\n\t",
+    "报错文本:\n\t",
     tostring(ErrorMsg),
     "\n"
   }
@@ -1077,30 +1077,30 @@ function BP_EMGameState_C:ShowDungeonError(ErrorMsg)
   table.insert(ct, Space)
   local FinalMsg = table.concat(ct)
   if UE4.URuntimeCommonFunctionLibrary.IsPlayInEditor(self) then
-    ScreenPrint("\229\137\175\230\156\172\230\138\165\233\148\153:\n" .. FinalMsg)
+    ScreenPrint("副本报错:\n" .. FinalMsg)
   end
-  Avatar:SendToFeiShuForRegionMgr(FinalMsg, "\229\137\175\230\156\172\230\138\165\233\148\153 | " .. NetMode)
+  Avatar:SendToFeiShuForRegionMgr(FinalMsg, "副本报错 | " .. NetMode)
 end
 
 function BP_EMGameState_C:FillNetMode(ct, NetMode)
-  table.insert(ct, "\231\142\175\229\162\131: ")
+  table.insert(ct, "环境: ")
   if "DedicatedServer" == NetMode then
-    table.insert(ct, "\232\129\148\230\156\186DS")
+    table.insert(ct, "联机DS")
   elseif "Client" == NetMode then
-    table.insert(ct, "\232\129\148\230\156\186\229\174\162\230\136\183\231\171\175")
+    table.insert(ct, "联机客户端")
   elseif "StandAlone" == NetMode then
-    table.insert(ct, "\229\141\149\230\156\186")
+    table.insert(ct, "单机")
   else
-    table.insert(ct, "\230\156\170\231\159\165")
+    table.insert(ct, "未知")
   end
   table.insert(ct, "\n")
 end
 
 function BP_EMGameState_C:FillGameStateLog(ct)
-  table.insert(ct, "\229\137\175\230\156\172Id: " .. self.DungeonId .. "\n")
-  table.insert(ct, "\231\142\169\230\179\149\231\177\187\229\158\139: " .. self.GameModeType .. "\n")
-  table.insert(ct, "\229\137\175\230\156\172\231\138\182\230\128\129: " .. EGameModeState:GetNameByValue(self.GameModeState) .. "\n")
-  table.insert(ct, "\229\137\175\230\156\172\232\191\155\229\186\166: " .. self.DungeonProgress .. "\n")
+  table.insert(ct, "副本Id: " .. self.DungeonId .. "\n")
+  table.insert(ct, "玩法类型: " .. self.GameModeType .. "\n")
+  table.insert(ct, "副本状态: " .. EGameModeState:GetNameByValue(self.GameModeState) .. "\n")
+  table.insert(ct, "副本进度: " .. self.DungeonProgress .. "\n")
   return
 end
 
@@ -1108,7 +1108,7 @@ function BP_EMGameState_C:FillLevelLog(ct)
   pcall(function()
     local Player = UE4.UGameplayStatics.GetPlayerCharacter(self, 0)
     local Level_shortname = UE4.URuntimeCommonFunctionLibrary.GetLevelLoadJsonName(Player)
-    table.insert(ct, string.format("\229\189\147\229\137\141\231\142\169\229\174\182\232\191\155\231\154\132\230\139\188\230\142\165\229\133\179\229\141\161: %s", Level_shortname) .. "\n")
+    table.insert(ct, string.format("当前玩家进的拼接关卡: %s", Level_shortname) .. "\n")
     local pro_path = UE4.UKismetSystemLibrary.GetProjectContentDirectory()
     local path = pro_path .. "Script/Datas/Houdini_data/" .. Level_shortname .. ".json"
     local info = UE4.URuntimeCommonFunctionLibrary.LoadFile(path)
@@ -1123,7 +1123,7 @@ function BP_EMGameState_C:FillLevelLog(ct)
           if "" == cur_artLevel then
             cur_artLevel = string.gsub(point.struct, "Data_Design", "Data_Art", 1)
           end
-          table.insert(ct, string.format("\230\137\128\229\156\168\231\190\142\230\156\175\229\133\179\229\141\161: %s, \229\133\179\229\141\161id: %s", cur_artLevel, cur_id) .. "\n")
+          table.insert(ct, string.format("所在美术关卡: %s, 关卡id: %s", cur_artLevel, cur_id) .. "\n")
         end
       end
     end

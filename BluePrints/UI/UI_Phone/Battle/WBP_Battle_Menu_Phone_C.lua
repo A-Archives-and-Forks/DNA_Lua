@@ -105,7 +105,7 @@ function M.BattleMenuDown(BattlePhone, Index, StartPos)
         InBattleWheelMenu:BindMenuButton(BattleMenu)
       end
     end)
-    DebugPrint(LXYTag, "\232\189\174\231\155\152\230\140\137\233\146\174\230\146\173\230\148\190\230\137\147\229\188\128\229\138\168\230\149\136")
+    DebugPrint(LXYTag, "轮盘按钮播放打开动效")
     EMUIAnimationSubsystem:EMPlayAnimation(BattleMenu, BattleMenu.Press)
     BattleMenu.Switcher_State:SetActiveWidgetIndex(BATTLE_WHEEL_STATE.CANCEL)
   end
@@ -126,7 +126,7 @@ function M.BattleMenuUp(BattlePhone, Index, WidgetLocalPos, LastWidgetTouchPos, 
   else
     return
   end
-  DebugPrint(LXYTag, "\232\189\174\231\155\152\230\140\137\233\146\174\230\146\173\230\148\190\229\133\179\233\151\173\229\138\168\230\149\136")
+  DebugPrint(LXYTag, "轮盘按钮播放关闭动效")
   BattleMenu:ClearSelectSlot()
   BattleMenu.Switcher_State:SetActiveWidgetIndex(BATTLE_WHEEL_STATE.NORMAL)
   BattleMenu.TotalDeltaDis = FVector2D(0, 0)

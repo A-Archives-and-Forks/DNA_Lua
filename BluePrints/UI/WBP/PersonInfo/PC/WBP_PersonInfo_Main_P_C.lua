@@ -30,7 +30,7 @@ function M:OnGamePadDown(InKeyName)
     if self.IsEditOpen then
       self:OnClickEdit()
       if self.RootPage and self.IsEditOpen == false then
-        ScreenPrint("\232\191\148\229\155\158\233\148\174\229\133\179\233\151\173List")
+        ScreenPrint("返回键关闭List")
         self:FreshFocusLeaveEditListView()
         if not self.RootPage:FocusToSavedWidget() then
           self:SetOriginFocus()

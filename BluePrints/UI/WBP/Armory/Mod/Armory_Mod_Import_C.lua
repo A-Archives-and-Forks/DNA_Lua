@@ -73,7 +73,7 @@ end
 function M:InitItemContent()
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("Armory_Mod_Import:InitItemContent@ Avatar\230\151\160\230\149\136")
+    DebugPrint("Armory_Mod_Import:InitItemContent@ Avatar无效")
   end
   self._Avatar = Avatar
   local ItemContent = {}
@@ -197,7 +197,7 @@ function M:HandleImportReturnValue(Ret, NotOwnedMods, LackCostMods, CallBack)
       for _, v in pairs(NotOwnedMods) do
         local ModName = GText(DataMgr.Mod[v].Name)
         if "" ~= NotOwnedStr then
-          NotOwnedStr = NotOwnedStr .. "\227\128\129"
+          NotOwnedStr = NotOwnedStr .. "、"
         end
         NotOwnedStr = NotOwnedStr .. ModName
       end
@@ -208,7 +208,7 @@ function M:HandleImportReturnValue(Ret, NotOwnedMods, LackCostMods, CallBack)
       for _, v in pairs(LackCostMods) do
         local ModName = GText(DataMgr.Mod[v].Name)
         if "" ~= LackCostStr then
-          LackCostStr = LackCostStr .. "\227\128\129"
+          LackCostStr = LackCostStr .. "、"
         end
         LackCostStr = LackCostStr .. ModName
       end
@@ -245,7 +245,7 @@ function M:HandleImportReturnValue(Ret, NotOwnedMods, LackCostMods, CallBack)
     UIManager():ShowCommonPopupUI(ModCommon.ModImportDialog, Params, self)
     self:BlockAllUIInput(false)
   else
-    GWorld.logger.error("\229\175\188\229\133\165Mod\230\151\182\229\135\186\233\148\153")
+    GWorld.logger.error("导入Mod时出错")
     ModController:TryAbortImport()
     self:NotifyOnImportAbort()
   end
@@ -312,7 +312,7 @@ end
 
 function M:ImportItemChanged(ItemIdx)
   if not type(ItemIdx) == "number" or 0 ~= ItemIdx % 1 or ItemIdx < 1 or ItemIdx > ImportItemNum then
-    DebugPrint("Armory_Mod_Import:ImportItemChanged@ ItemIdx\230\151\160\230\149\136")
+    DebugPrint("Armory_Mod_Import:ImportItemChanged@ ItemIdx无效")
     return
   end
   local CurrentImportItem = self.ItemIdx and self["ModImportItem_" .. self.ItemIdx]

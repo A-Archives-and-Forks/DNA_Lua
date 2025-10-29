@@ -3,7 +3,7 @@ local BP_RandomActorManager_C = Class("BluePrints.Common.TimerMgr")
 
 function BP_RandomActorManager_C:GetRandomCount(RandomId)
   if not DataMgr.RandomCreator[RandomId] then
-    GWorld.logger.error("\229\147\166\230\136\145\231\154\132\228\184\138\229\184\157\239\188\140\232\191\153\233\135\140\230\156\137\228\184\128\228\184\170\233\154\143\230\156\186\229\136\183\230\150\176\232\167\132\229\136\153" .. RandomId .. "\230\137\190\228\184\141\229\136\176\229\174\131\228\186\178\231\136\177\231\154\132\233\133\141\232\161\168\230\149\176\230\141\174\239\188\140\228\186\178\231\136\177\231\154\132\231\173\150\229\136\146\232\131\189\230\148\185\228\184\128\228\184\139GameMode\233\133\141\231\189\174\229\144\151")
+    GWorld.logger.error("哦我的上帝，这里有一个随机刷新规则" .. RandomId .. "找不到它亲爱的配表数据，亲爱的策划能改一下GameMode配置吗")
     return 0
   end
   local Count = DataMgr.RandomCreator[RandomId].Count
@@ -37,7 +37,7 @@ end
 
 function BP_RandomActorManager_C:IndexDataByLevelNameAndIdxInRule(RuleId, LevelName, IdxInRule)
   if not self.DataParamTable[RuleId][LevelName] then
-    DebugPrint("RandomCreator\228\184\173\228\184\141\229\173\152\229\156\168\229\166\130\228\184\139\230\149\176\230\141\174\239\188\154 RuleId = ", RuleId, " LevelName = ", LevelName)
+    DebugPrint("RandomCreator中不存在如下数据： RuleId = ", RuleId, " LevelName = ", LevelName)
     return {}
   end
   return self.DataParamTable[RuleId][LevelName][IdxInRule]

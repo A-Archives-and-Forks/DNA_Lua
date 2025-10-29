@@ -270,14 +270,14 @@ function M:CopyItemToConsumeList(AddContent)
     if i == self.SelectedCount then
       if self:IsCommonResource(AddContent.Uuid) then
         Target = self.Parent._Avatar.Resources[AddContent.UnitId]
-        assert(Target and Target.Count > 0, "\233\128\154\231\148\168\229\174\160\231\137\169\229\141\135\231\186\167\231\180\160\230\157\144\228\184\141\229\173\152\229\156\168\230\136\150\229\183\178\232\128\151\229\176\189")
+        assert(Target and Target.Count > 0, "通用宠物升级素材不存在或已耗尽")
         Content = ArmoryUtils:NewResourceItemContent(Target)
         Content.Count = 1
         Content.Uuid = AddContent.Uuid
         Content.Index = i
       else
         Target = ArmoryUtils:GetPet(AddContent.Uuid)
-        assert(Target, AddContent.Uuid .. "\239\188\140\239\188\140 \232\191\153\228\184\170\229\174\160\231\137\169\230\149\176\230\141\174\229\183\178\231\187\143\229\164\177\230\149\136\228\186\134\239\188\140\232\175\183\230\141\162\230\150\176\229\143\183\229\142\187\230\181\139")
+        assert(Target, AddContent.Uuid .. "，， 这个宠物数据已经失效了，请换新号去测")
         Content = ArmoryUtils:NewPetItemContent(Target)
         Content.Index = i
       end

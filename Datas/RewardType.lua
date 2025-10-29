@@ -5,14 +5,14 @@ return ReadOnly("RewardType", {
   Char = {
     DungeonRewardSeq = 90,
     OperationGM = true,
-    Remark = "\232\167\146\232\137\178",
+    Remark = "角色",
     RewardType = "Char"
   },
   CharAccessory = {
     DungeonRewardSeq = 70,
     DungeonRewardType = true,
     OperationGM = true,
-    Remark = "\232\167\146\232\137\178\233\133\141\233\165\176",
+    Remark = "角色配饰",
     RewardType = "CharAccessory",
     UniqueType = true
   },
@@ -20,21 +20,21 @@ return ReadOnly("RewardType", {
     DungeonRewardSeq = 41,
     DungeonRewardType = true,
     OperationGM = true,
-    Remark = "\233\147\184\233\128\160\229\155\190\231\186\184",
+    Remark = "铸造图纸",
     RewardType = "Draft"
   },
   Drop = {RewardType = "Drop"},
   HeadFrame = {
     DungeonRewardSeq = 53,
     OperationGM = true,
-    Remark = "\229\164\180\229\131\143\230\161\134",
+    Remark = "头像框",
     RewardType = "HeadFrame",
     UniqueType = true
   },
   HeadSculpture = {
     DungeonRewardSeq = 60,
     OperationGM = true,
-    Remark = "\229\164\180\229\131\143",
+    Remark = "头像",
     RewardType = "HeadSculpture",
     UniqueType = true
   },
@@ -42,41 +42,41 @@ return ReadOnly("RewardType", {
     DungeonRewardSeq = 50,
     DungeonRewardType = true,
     OperationGM = true,
-    Remark = "\233\173\148\228\185\139\230\165\148",
+    Remark = "魔之楔",
     RewardType = "Mod"
   },
   Pet = {
     DungeonRewardSeq = 51,
     DungeonRewardType = true,
     OperationGM = true,
-    Remark = "\229\174\160\231\137\169",
+    Remark = "宠物",
     RewardType = "Pet"
   },
   Resource = {
     DungeonRewardSeq = 1,
     DungeonRewardType = true,
     OperationGM = true,
-    Remark = "\232\181\132\230\186\144",
+    Remark = "资源",
     RewardType = "Resource"
   },
   Skin = {
     DungeonRewardSeq = 72,
     OperationGM = true,
-    Remark = "\232\167\146\232\137\178\231\154\174\232\130\164",
+    Remark = "角色皮肤",
     RewardType = "Skin",
     UniqueType = true
   },
   Title = {
     DungeonRewardSeq = 62,
     OperationGM = true,
-    Remark = "\231\167\176\229\143\183",
+    Remark = "称号",
     RewardType = "Title",
     UniqueType = true
   },
   TitleFrame = {
     DungeonRewardSeq = 63,
     OperationGM = true,
-    Remark = "\231\167\176\229\143\183\230\161\134",
+    Remark = "称号框",
     RewardType = "TitleFrame",
     UniqueType = true
   },
@@ -84,27 +84,27 @@ return ReadOnly("RewardType", {
     DungeonRewardSeq = 40,
     DungeonRewardType = true,
     OperationGM = true,
-    Remark = "\229\175\134\229\135\189",
+    Remark = "密函",
     RewardType = "Walnut"
   },
   Weapon = {
     DungeonRewardSeq = 80,
     DungeonRewardType = true,
     OperationGM = true,
-    Remark = "\230\173\166\229\153\168",
+    Remark = "武器",
     RewardType = "Weapon"
   },
   WeaponAccessory = {
     DungeonRewardSeq = 61,
     OperationGM = true,
-    Remark = "\230\173\166\229\153\168\233\133\141\233\165\176",
+    Remark = "武器配饰",
     RewardType = "WeaponAccessory",
     UniqueType = true
   },
   WeaponSkin = {
     DungeonRewardSeq = 71,
     OperationGM = true,
-    Remark = "\230\173\166\229\153\168\231\154\174\232\130\164",
+    Remark = "武器皮肤",
     RewardType = "WeaponSkin",
     UniqueType = true
   }

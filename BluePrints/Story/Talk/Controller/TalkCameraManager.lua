@@ -12,7 +12,7 @@ local ECameraFocusMethod = {
   [3] = "Disable",
   [4] = "MAX"
 }
-local FeishuErrorTitle = "\229\175\185\232\175\157\231\155\184\230\156\186\233\148\153\232\175\175"
+local FeishuErrorTitle = "对话相机错误"
 local TalkCameraManager_C = {}
 
 function TalkCameraManager_C.New(TalkContext, Player, PlayerController)
@@ -618,7 +618,7 @@ function TalkCameraManager_C:GetFixedCamera(CameraInfo, Stage, bUseDefaultIfCame
   local Trans, FocalLength, FocusDis, ConstraintAspectRadio, FocusMethod, CurrentAperture
   if nil == CameraInfo and bUseDefaultIfCameraInfoIsNil then
     if UE4.URuntimeCommonFunctionLibrary.IsPlayInEditor(self.TalkContext) then
-      ScreenPrint("\233\149\156\229\164\180\230\156\170\233\133\141\231\189\174\239\188\140\228\189\191\231\148\168\233\187\152\232\174\164\233\149\156\229\164\180\233\133\141\231\189\174\239\188\129")
+      ScreenPrint("镜头未配置，使用默认镜头配置！")
     end
     local Player = UE4.UGameplayStatics.GetPlayerCharacter(GWorld.GameInstance, 0)
     local PCC = Player:GetComponentByClass(UPlayerCameraComponent)
@@ -628,7 +628,7 @@ function TalkCameraManager_C:GetFixedCamera(CameraInfo, Stage, bUseDefaultIfCame
     self:MarkCameraIsConfigured(self:GetCameraComponent(CineCamera), true)
     self:RecordCameraConfig(self:GetCameraComponent(CineCamera), Config)
   elseif nil == CameraInfo or "" == CameraInfo then
-    local Message = "\233\149\156\229\164\180\228\191\161\230\129\175\230\156\170\233\133\141\231\189\174(Debug\228\191\161\230\129\175\231\155\174\229\137\141\228\184\141\229\164\170\229\165\189\229\138\160\239\188\140\228\185\139\229\144\142\232\161\165\229\133\133)"
+    local Message = "镜头信息未配置(Debug信息目前不太好加，之后补充)"
     UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, FeishuErrorTitle, Message)
   else
     if Stage then
@@ -874,8 +874,8 @@ function TalkCameraManager_C:SetPostProcess(MaterialPath)
   end
   local Material = LoadObject(MaterialPath)
   if not Material then
-    local Message = "\229\144\142\229\164\132\231\144\134\230\157\144\232\180\168\228\184\141\229\173\152\229\156\168\239\188\140\232\183\175\229\190\132\239\188\154" .. MaterialPath
-    local Title = "\229\175\185\232\175\157\232\132\154\230\156\172Error\239\188\154\229\144\142\229\164\132\231\144\134\230\157\144\232\180\168\228\184\141\229\173\152\229\156\168"
+    local Message = "后处理材质不存在，路径：" .. MaterialPath
+    local Title = "对话脚本Error：后处理材质不存在"
     UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, Title, Message)
     return
   end

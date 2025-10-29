@@ -1,5 +1,5 @@
 return {
-  storyName = "\230\156\170\229\145\189\229\144\141\230\149\133\228\186\139",
+  storyName = "未命名故事",
   storyDescription = "",
   lineData = {
     {
@@ -46,7 +46,7 @@ return {
       isStoryNode = true,
       key = "170893333262053899",
       type = "StoryNode",
-      name = "\230\156\170\229\145\189\229\144\141\228\187\187\229\138\161",
+      name = "未命名任务",
       pos = {x = 300, y = 140},
       propsData = {
         QuestId = 0,
@@ -113,7 +113,7 @@ return {
           ["17218009571469877"] = {
             key = "17218009571469877",
             type = "TalkNode",
-            name = "\232\191\135\229\156\186-100104-\230\139\191\229\137\145",
+            name = "过场-100104-拿剑",
             pos = {x = 600, y = 622},
             propsData = {
               IsNpcNode = false,

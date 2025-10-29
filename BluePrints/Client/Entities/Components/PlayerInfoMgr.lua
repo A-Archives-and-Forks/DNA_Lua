@@ -67,11 +67,11 @@ function Component:UpdateAndSavePlayerInfo(EnterLocation)
   local LastSubRegionId = self.LastRegionData.RegionId
   local LastLocation = self.LastRegionData:GetLocation()
   if self.IsInRegionOnline then
-    self.logger.debug("ZJT_ \228\189\141\231\189\174\229\144\140\230\173\165\229\143\150\230\182\136 \229\189\147\229\137\141\229\164\132\228\186\142\229\140\186\229\159\159\232\129\148\230\156\186 ", self.IsInRegionOnline)
+    self.logger.debug("ZJT_ 位置同步取消 当前处于区域联机 ", self.IsInRegionOnline)
     return
   end
   if self:CheckMarkingTime(LastSubRegionId, LastLocation, PlayerInfo.Location) then
-    self.logger.debug("ZJT_ \229\189\147\229\137\141\231\142\169\229\174\182\230\173\163\229\156\168\232\191\155\232\161\140\229\142\159\229\156\176\229\144\140\230\173\165 \229\143\150\230\182\136\230\156\172\230\172\161\229\144\140\230\173\165 ")
+    self.logger.debug("ZJT_ 当前玩家正在进行原地同步 取消本次同步 ")
     return
   end
   self.LastRegionData:UpdatePlayerInfo(PlayerInfo)
@@ -130,7 +130,7 @@ end
 function Component:ClientNotifyServerOpenSync()
   local function callback(Ret)
     if not self:CheckRegionErrorCode(Ret) then
-      self.logger.error("ZJT_ \230\142\146\230\159\165\228\189\141\231\189\174\229\144\140\230\173\165\233\151\174\233\162\152 \232\175\183\228\184\138\230\138\165\229\136\176QA ", Ret)
+      self.logger.error("ZJT_ 排查位置同步问题 请上报到QA ", Ret)
     else
       self.logger.debug("ZJT_ ClientNotifyServerOpenSync ServerCallClient ", self.SyncReason, self.IsOpenPlayerPositionSync, Ret, SyncReason)
       self:PlayerEnterBigWorld()

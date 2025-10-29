@@ -33,7 +33,7 @@ end
 
 function Component:TryEventPassRoom()
   local GameMode = UE4.UGameplayStatics.GetGameMode(GWorld.GameInstance)
-  assert(GameMode, "GameMode\228\184\141\229\173\152\229\156\168")
+  assert(GameMode, "GameMode不存在")
   if self.bHandleEventTime and self.RandomBlessings:Num() <= 0 and self.RandomTreasures:Num() <= 0 then
     EventManager:FireEvent(EventID.OnRougeDealEventReward)
   end
@@ -62,7 +62,7 @@ end
 
 function Component:FillAwardList(UpdateInfo)
   if self.IsGettingAward then
-    DebugPrint("@zyh \230\173\163\229\156\168\229\188\185\229\135\186\229\165\150\229\138\177\228\191\161\230\129\175\239\188\140\230\150\176\232\191\155\229\165\150\229\138\177\229\161\158\232\191\155BackUp")
+    DebugPrint("@zyh 正在弹出奖励信息，新进奖励塞进BackUp")
     table.insert(self.BackUpAwardList, UpdateInfo)
   else
     table.insert(self.AwardList, UpdateInfo)
@@ -154,7 +154,7 @@ function Component:AddTreasures(TreasureId, Level)
     if self.PlayerCharacter and self.PlayerCharacter.InitSuccess and TreasureData then
       local ModEquip = TreasureData.ModEquip
       local ModId = TreasureData.TreasureMod
-      DebugPrint("Mod\231\188\150\229\143\183", ModId, "Mod\232\163\133\229\164\135\228\189\141\231\189\174", ModEquip)
+      DebugPrint("Mod编号", ModId, "Mod装备位置", ModEquip)
       if ModId and ModEquip then
         self:AddModById(ModId, ModEquip, Level)
       end
@@ -167,7 +167,7 @@ function Component:AddTreasures(TreasureId, Level)
       self.NeedInitTreasures = true
     end
   else
-    DebugPrint("Treasure", TreasureId, "\229\183\178\229\173\152\229\156\168 \232\175\183\229\139\191\233\135\141\229\164\141\230\183\187\229\138\160")
+    DebugPrint("Treasure", TreasureId, "已存在 请勿重复添加")
   end
 end
 
@@ -177,7 +177,7 @@ function Component:RemoveTreasures(TreasureId)
     self:UpgradeModById("Treasure", TreasureId, Level, nil)
     self.TreasureGroup:Add(TreasureId, self.TreasureGroup:Find(TreasureId) - 1)
   else
-    DebugPrint("Treasure", TreasureId, "\228\184\141\229\173\152\229\156\168 \230\151\160\230\179\149\231\167\187\233\153\164")
+    DebugPrint("Treasure", TreasureId, "不存在 无法移除")
   end
   self.PlayerCharacter = UGameplayStatics.GetPlayerCharacter(self, 0)
   self:ReCountTreasureGroup(true)
@@ -217,7 +217,7 @@ function Component:AddBlessings(BlessingId, Level)
     if self.PlayerCharacter and self.PlayerCharacter.InitSuccess then
       local ModEquip = DataMgr.RougeLikeBlessing[BlessingId].ModEquip
       local ModId = DataMgr.RougeLikeBlessing[BlessingId].BlessingMod
-      DebugPrint("Mod\231\188\150\229\143\183", ModId, "Mod\232\163\133\229\164\135\228\189\141\231\189\174", ModEquip)
+      DebugPrint("Mod编号", ModId, "Mod装备位置", ModEquip)
       if ModId and ModEquip then
         self:AddModById(ModId, ModEquip, Level)
       end
@@ -226,7 +226,7 @@ function Component:AddBlessings(BlessingId, Level)
       self.NeedInitBlessings = true
     end
   else
-    DebugPrint("Blessing", BlessingId, "\229\183\178\229\173\152\229\156\168 \232\175\183\229\139\191\233\135\141\229\164\141\230\183\187\229\138\160")
+    DebugPrint("Blessing", BlessingId, "已存在 请勿重复添加")
   end
 end
 
@@ -237,7 +237,7 @@ function Component:RemoveBlessings(BlessingId)
     local GroupId = DataMgr.RougeLikeBlessing[BlessingId].BlessingGroup
     self.BlessingGroup:Add(GroupId, self.BlessingGroup:Find(GroupId) - 1)
   else
-    DebugPrint("Blessing", BlessingId, "\228\184\141\229\173\152\229\156\168 \230\151\160\230\179\149\231\167\187\233\153\164")
+    DebugPrint("Blessing", BlessingId, "不存在 无法移除")
   end
   self.PlayerCharacter = UGameplayStatics.GetPlayerCharacter(self, 0)
   self:ReCountBlessingGroup(self.PlayerCharacter, true)
@@ -273,7 +273,7 @@ function Component:UpdateBlessingGroup(GroupId, PlayerCharacter, NoNeedActiveUI)
       CurGroupLevel = i
     end
     if PassiveEffectActor:GetSkillLevel() ~= CurGroupLevel then
-      DebugPrint("@zyh \229\189\147\229\137\141\231\154\132\229\165\151\232\163\133:", GroupId, "\230\191\128\230\180\187\229\177\130\230\149\176:", CurGroupLevel)
+      DebugPrint("@zyh 当前的套装:", GroupId, "激活层数:", CurGroupLevel)
       PassiveEffectActor:SetSkillLevel(CurGroupLevel)
       if not NoNeedActiveUI then
         self.NeedActivateList[GroupId] = CurGroupLevel
@@ -310,7 +310,7 @@ function Component:AddTalents(TalentId, Level)
     if self.PlayerCharacter and self.PlayerCharacter.InitSuccess then
       local ModId = DataMgr.RougeLikeTalent[TalentId].TalentMod
       local ModEquip = DataMgr.RougeLikeTalent[TalentId].ModEquip
-      DebugPrint("Mod\231\188\150\229\143\183", ModId, "Mod\232\163\133\229\164\135\228\189\141\231\189\174", ModEquip)
+      DebugPrint("Mod编号", ModId, "Mod装备位置", ModEquip)
       if ModId and ModEquip then
         self:AddModById(ModId, ModEquip, Level)
       end
@@ -319,7 +319,7 @@ function Component:AddTalents(TalentId, Level)
       self.NeedInitTalents = true
     end
   else
-    DebugPrint("Talent", TalentId, "\229\183\178\229\173\152\229\156\168 \232\175\183\229\139\191\233\135\141\229\164\141\230\183\187\229\138\160")
+    DebugPrint("Talent", TalentId, "已存在 请勿重复添加")
   end
 end
 
@@ -420,7 +420,7 @@ end
 function Component:UpgradeModById(AwardType, AwardId, CurrentLevel, UpgradeLevel)
   local ModId, ModEquip
   self.PlayerCharacter = UGameplayStatics.GetPlayerCharacter(self, 0)
-  assert(self.PlayerCharacter.InitSuccess, "PlayerCharacter\232\191\152\230\156\170\229\136\157\229\167\139\229\140\150\230\136\144\229\138\159\239\188\140\230\151\160\230\179\149\229\175\185\229\136\187\229\141\176\232\191\155\232\161\140\229\141\135\231\186\167")
+  assert(self.PlayerCharacter.InitSuccess, "PlayerCharacter还未初始化成功，无法对刻印进行升级")
   AwardId = tonumber(AwardId)
   if "Blessing" == AwardType then
     ModId = DataMgr.RougeLikeBlessing[AwardId].BlessingMod
@@ -479,7 +479,7 @@ end
 
 function Component:ShowTokenTips(Count)
   self:AddTimer(0.1, function()
-    DebugPrint("\228\187\163\229\184\129\230\149\176\233\135\143", Count)
+    DebugPrint("代币数量", Count)
     local Avatar = GWorld:GetAvatar()
     local TokenId = Avatar and Avatar:GetCurrentRougeLikeTokenId()
     local RewardInfo = DataMgr.Resource[TokenId]
@@ -518,7 +518,7 @@ end
 function Component:PrintUpdateInfo(UpdateInfo)
   local Type = UpdateInfo.Type
   local Event = UpdateInfo.Event
-  DebugPrint("@zyh \230\156\172\230\172\161\229\165\150\229\138\177\231\154\132UpdateInfo\228\184\186\239\188\154 Type: ", Type, "Event:", Event)
+  DebugPrint("@zyh 本次奖励的UpdateInfo为： Type: ", Type, "Event:", Event)
   PrintTable(UpdateInfo.AwardsId, 4)
 end
 

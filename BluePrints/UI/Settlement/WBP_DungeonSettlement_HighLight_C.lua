@@ -51,7 +51,7 @@ function WBP_Settlement_DataDisplay_C:InitUIByType()
   IconPath = string.format("Texture2D'/%s'", IconPath)
   local Img = LoadObject(IconPath)
   if not Img then
-    DebugPrint("\231\188\186\229\176\145\229\155\190\231\137\135\232\181\132\230\186\144: ImgPath = " .. IconPath)
+    DebugPrint("缺少图片资源: ImgPath = " .. IconPath)
     return
   end
   self.Icon_Type:SetBrushResourceObject(Img)

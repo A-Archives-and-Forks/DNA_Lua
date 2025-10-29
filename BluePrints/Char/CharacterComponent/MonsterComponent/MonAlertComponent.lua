@@ -37,7 +37,7 @@ function Component:RequestRescueAlertSuccess()
   if not self.AlertGameMode:IsRescueAlertingMonster(Owner) then
     return
   end
-  DebugPrint("\230\149\145\230\143\180\229\137\175\230\156\172\230\138\165\232\173\166\230\136\144\229\138\159  \230\138\165\232\173\166\230\128\170 Eid:" .. Owner.Eid .. "  UnitId:" .. Owner.UnitId)
+  DebugPrint("救援副本报警成功  报警怪 Eid:" .. Owner.Eid .. "  UnitId:" .. Owner.UnitId)
   self:BroadCastRescueAlertInfo()
   self:AlertStateChange(Const.FightState, true)
   self:UpdateAlertInfo()
@@ -95,16 +95,16 @@ function Component:TrySetBBAlertingInfo()
     if not AlertMechanism then
       self.AlertGameMode:TryResetCommonAlertingInfo(Owner)
       self.OnlyBaseAlertEnable = true
-      DebugPrint("Monster Alert \230\128\170\231\137\169\230\138\162\229\141\160\228\186\134\230\138\165\232\173\166\228\189\141\228\189\134\230\152\175\230\178\161\230\156\137\230\156\186\229\133\179\230\138\165\232\173\166\229\164\177\232\180\165---Eid" .. Owner.Eid .. " UnitId:" .. Owner.UnitId .. " Loc:" .. tostring(Owner:K2_GetActorLocation()))
+      DebugPrint("Monster Alert 怪物抢占了报警位但是没有机关报警失败---Eid" .. Owner.Eid .. " UnitId:" .. Owner.UnitId .. " Loc:" .. tostring(Owner:K2_GetActorLocation()))
       return false
     end
-    DebugPrint("Monster Alert \230\138\162\229\141\160\230\138\165\232\173\166\228\189\141\239\188\140\232\142\183\229\143\150\230\138\165\232\173\166\230\156\186\229\133\179\230\136\144\229\138\159---Eid:" .. Owner.Eid .. " UnitId:" .. Owner.UnitId .. " Loc:" .. tostring(AlertMechanism:GetMonsterAnimTrans().Translation))
+    DebugPrint("Monster Alert 抢占报警位，获取报警机关成功---Eid:" .. Owner.Eid .. " UnitId:" .. Owner.UnitId .. " Loc:" .. tostring(AlertMechanism:GetMonsterAnimTrans().Translation))
     Owner:GetOwnBlackBoardComponent():SetValueAsVector("AlarmMechanismInteractiveLoc", AlertMechanism:GetMonsterAnimTrans().Translation)
     Owner:GetOwnBlackBoardComponent():SetValueAsObject("AlarmMechanism", AlertMechanism)
   end
   Owner:BBSetAlarmTarget(self.AlertGameMode:RequestCommonAlarmTargetInfo(Owner))
   Owner:GetOwnBlackBoardComponent():SetValueAsBool("AlarmTrigger", true)
-  DebugPrint("Monster Alert \230\138\162\229\141\160\230\138\165\232\173\166\228\189\141\230\136\144\229\138\159\239\188\140\229\188\128\229\167\139\230\138\165\232\173\166\229\138\168\231\148\187---Eid:" .. Owner.Eid .. " UnitId:" .. Owner.UnitId .. " Loc:" .. tostring(Owner:K2_GetActorLocation()) .. " AlarmTargetLoc:" .. tostring(self.AlarmTarget:K2_GetActorLocation()))
+  DebugPrint("Monster Alert 抢占报警位成功，开始报警动画---Eid:" .. Owner.Eid .. " UnitId:" .. Owner.UnitId .. " Loc:" .. tostring(Owner:K2_GetActorLocation()) .. " AlarmTargetLoc:" .. tostring(self.AlarmTarget:K2_GetActorLocation()))
   return true
 end
 
@@ -118,16 +118,16 @@ function Component:TrySetClanAlertingInfo()
     if not AlertMechanism then
       self.AlertGameMode:TryResetCommonAlertingInfo(Owner)
       self.OnlyBaseAlertEnable = true
-      DebugPrint("Clan Monster Alert \230\128\170\231\137\169\230\138\162\229\141\160\228\186\134\230\138\165\232\173\166\228\189\141\228\189\134\230\152\175\230\178\161\230\156\137\230\156\186\229\133\179\230\138\165\232\173\166\229\164\177\232\180\165---Eid" .. Owner.Eid .. " UnitId:" .. Owner.UnitId .. " Loc:" .. tostring(Owner:K2_GetActorLocation()))
+      DebugPrint("Clan Monster Alert 怪物抢占了报警位但是没有机关报警失败---Eid" .. Owner.Eid .. " UnitId:" .. Owner.UnitId .. " Loc:" .. tostring(Owner:K2_GetActorLocation()))
       return false
     end
-    DebugPrint("Clan Monster Alert \230\138\162\229\141\160\230\138\165\232\173\166\228\189\141\239\188\140\232\142\183\229\143\150\230\138\165\232\173\166\230\156\186\229\133\179\230\136\144\229\138\159---Eid:" .. Owner.Eid .. " UnitId:" .. Owner.UnitId .. " Loc:" .. tostring(AlertMechanism:GetMonsterAnimTrans().Translation))
+    DebugPrint("Clan Monster Alert 抢占报警位，获取报警机关成功---Eid:" .. Owner.Eid .. " UnitId:" .. Owner.UnitId .. " Loc:" .. tostring(AlertMechanism:GetMonsterAnimTrans().Translation))
     Owner:GetOwnBlackBoardComponent():SetValueAsVector("AlarmMechanismInteractiveLoc", AlertMechanism:GetMonsterAnimTrans().Translation)
     Owner:GetOwnBlackBoardComponent():SetValueAsObject("AlarmMechanism", AlertMechanism)
   end
   Owner:BBSetAlarmTarget(self.AlertGameMode:RequestCommonAlarmTargetInfo(Owner))
   Owner:GetOwnBlackBoardComponent():SetValueAsBool("AlarmTrigger", true)
-  DebugPrint("Clan Monster Alert \230\138\162\229\141\160\230\138\165\232\173\166\228\189\141\230\136\144\229\138\159\239\188\140\229\188\128\229\167\139\230\138\165\232\173\166\229\138\168\231\148\187---Eid:" .. Owner.Eid .. " UnitId:" .. Owner.UnitId .. " Loc:" .. tostring(Owner:K2_GetActorLocation()) .. " AlarmTargetLoc:" .. tostring(self.AlarmTarget:K2_GetActorLocation()))
+  DebugPrint("Clan Monster Alert 抢占报警位成功，开始报警动画---Eid:" .. Owner.Eid .. " UnitId:" .. Owner.UnitId .. " Loc:" .. tostring(Owner:K2_GetActorLocation()) .. " AlarmTargetLoc:" .. tostring(self.AlarmTarget:K2_GetActorLocation()))
   local ClanMgr = self.AlertGameMode:GetClan(Owner.ClanId)
   if not ClanMgr then
     DebugPrint("Clan Monster Alert ClanMgr is nil, can't set clan alerting info---Eid" .. Owner.Eid .. " UnitId:" .. Owner.UnitId)
@@ -153,13 +153,13 @@ function Component:BroadCastRescueAlertInfo()
   end
   local CommonAlertSetValue = self.AlertData.CommonAlertSetValue or 40
   local RescueAlarmTarget = self.AlertGameMode:TriggerDungeonComponentFun("RequestRescueAlarmTargetInfo", Owner)
-  DebugPrint("\230\149\145\230\143\180\229\133\184\231\139\177\233\149\191\230\138\165\232\173\166\228\189\141\229\141\179\229\176\134\232\191\155\232\161\140\229\185\191\230\146\173", Owner.Eid, Owner:GetName())
+  DebugPrint("救援典狱长报警位即将进行广播", Owner.Eid, Owner:GetName())
   local BroadCastInfo = FBroadCastInfo()
   BroadCastInfo.CommonAlertSetValue = CommonAlertSetValue
   BroadCastInfo.CommonAlarmTarget = RescueAlarmTarget
   for _, Monster in pairs(UE4.UGameplayStatics.GetGameState(Owner).MonsterMap) do
     if self:CheckMonsterCanBeBroadCast(Monster) then
-      DebugPrint("\230\149\145\230\143\180RescueAlertInfo\232\191\155\232\161\140\228\186\134\229\185\191\230\146\173 SourceEid:" .. Owner.Eid .. " TargetEid:" .. Monster.Eid .. " TargetUnitId:" .. Monster.UnitId .. "  \229\144\140\230\173\165\228\186\134\233\128\154\231\148\168\230\138\165\232\173\166\231\154\132\232\173\166\230\136\146\229\128\188\229\146\140AlarmTarget")
+      DebugPrint("救援RescueAlertInfo进行了广播 SourceEid:" .. Owner.Eid .. " TargetEid:" .. Monster.Eid .. " TargetUnitId:" .. Monster.UnitId .. "  同步了通用报警的警戒值和AlarmTarget")
       self:BroadCastChangeMonsterInfo(Owner, Monster, BroadCastInfo)
     end
   end

@@ -65,15 +65,15 @@ end
 
 function StoryMgr:RunStoryInternal(Storyline, FileName, QuestId, NodeId, EndCallback, StopCallback, Payload)
   if self.bEnableStory == false then
-    local Title = "STL \229\183\178\231\166\129\231\148\168"
-    local Message = string.format("\232\175\149\229\155\190\229\156\168\231\166\129\231\148\168\230\151\182\232\191\144\232\161\140\230\150\176\231\154\132 STL %s", FileName)
+    local Title = "STL 已禁用"
+    local Message = string.format("试图在禁用时运行新的 STL %s", FileName)
     UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, Title, Message)
   end
   if not Storyline then
-    local Message = "Story\228\184\141\229\173\152\229\156\168" .. [[
+    local Message = "Story不存在" .. [[
 
 FileName:]] .. FileName
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Story\228\184\141\229\173\152\229\156\168", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Story不存在", Message)
   end
   DebugPrint("StoryMgr:RunStory", FileName, QuestId, NodeId, EndCallback, StopCallback, Payload)
   self.Storylines[FileName] = Storyline
@@ -268,7 +268,7 @@ function StoryMgr:GetResurgencePointInfo()
   if StoryNode.ResurgencePoint ~= "" then
     local PointInfo = GuidePointLocData[StoryNode.ResurgencePoint]
     if not PointInfo then
-      local Message = "StoryNode\228\184\173\233\133\141\231\189\174\231\154\132\229\164\141\230\180\187\231\130\185\229\156\168QuestGuidePointLoc\232\161\168\228\184\173\228\184\141\229\173\152\229\156\168" .. [[
+      local Message = "StoryNode中配置的复活点在QuestGuidePointLoc表中不存在" .. [[
 
 FileName:]] .. QuestChain.StoryPath .. [[
 
@@ -277,11 +277,11 @@ QuestChainId:]] .. Storyline.QuestChainId .. [[
 QuestId:]] .. DoingQuestId .. [[
 
 ResurgencePoint:]] .. StoryNode.ResurgencePoint
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "StoryNode\228\184\173\233\133\141\231\189\174\231\154\132\229\164\141\230\180\187\231\130\185\229\156\168QuestGuidePointLoc\232\161\168\228\184\173\228\184\141\229\173\152\229\156\168", Message)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "StoryNode中配置的复活点在QuestGuidePointLoc表中不存在", Message)
       return
     end
     if not PointInfo.SubRegionId or PointInfo.SubRegionId <= 0 then
-      local Message = "StoryNode\228\184\173\233\133\141\231\189\174\231\154\132\229\164\141\230\180\187\231\130\185\229\156\168QuestGuidePointLoc\232\161\168\228\184\173\230\151\160SubRegionId" .. [[
+      local Message = "StoryNode中配置的复活点在QuestGuidePointLoc表中无SubRegionId" .. [[
 
 FileName:]] .. QuestChain.StoryPath .. [[
 
@@ -290,7 +290,7 @@ QuestChainId:]] .. Storyline.QuestChainId .. [[
 QuestId:]] .. DoingQuestId .. [[
 
 ResurgencePoint:]] .. StoryNode.ResurgencePoint
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "StoryNode\228\184\173\233\133\141\231\189\174\231\154\132\229\164\141\230\180\187\231\130\185\229\156\168QuestGuidePointLoc\232\161\168\228\184\173\230\151\160SubRegionId", Message)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "StoryNode中配置的复活点在QuestGuidePointLoc表中无SubRegionId", Message)
       return
     end
     if DataMgr.SubRegion[CurrentRegionId].RegionId == DataMgr.SubRegion[PointInfo.SubRegionId].RegionId then
@@ -324,14 +324,14 @@ ResurgencePoint:]] .. StoryNode.ResurgencePoint
     if not TargetRegionId or TargetRegionId < 0 then
       return
     elseif 0 == TargetRegionId then
-      local Message = "\228\187\187\229\138\161\233\147\190\228\184\173\231\154\132\231\172\172\228\184\128\228\184\170\228\187\187\229\138\161\239\188\140\230\131\179\232\166\129\228\189\191\231\148\168\229\164\141\230\180\187\229\138\159\232\131\189\233\156\128\232\166\129\233\133\141\231\189\174\229\164\141\230\180\187\231\130\185\228\189\141" .. [[
+      local Message = "任务链中的第一个任务，想要使用复活功能需要配置复活点位" .. [[
 
 FileName:]] .. QuestChain.StoryPath .. [[
 
 QuestChainId:]] .. Storyline.QuestChainId .. [[
 
 QuestId:]] .. DoingQuestId
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\228\187\187\229\138\161\233\147\190\228\184\173\231\154\132\231\172\172\228\184\128\228\184\170\228\187\187\229\138\161\239\188\140\230\131\179\232\166\129\228\189\191\231\148\168\229\164\141\230\180\187\229\138\159\232\131\189\233\156\128\232\166\129\233\133\141\231\189\174\229\164\141\230\180\187\231\130\185\228\189\141", Message)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "任务链中的第一个任务，想要使用复活功能需要配置复活点位", Message)
       return
     end
     if DataMgr.SubRegion[CurrentRegionId].RegionId ~= DataMgr.SubRegion[TargetRegionId].RegionId then

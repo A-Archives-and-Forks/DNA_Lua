@@ -18,7 +18,7 @@ function TalkOptionData_C.New(OptionType, TalkNodeData, DialogueOptionData, Dial
   Obj.Options = {}
   Obj.OptionId2Idx = {}
   if not TalkNodeData and not DialogueOptionData then
-    DebugPrint("TalkOptionData_C.New:TalkNodeData\228\184\142DialogueOptionData\233\131\189\228\184\186nil")
+    DebugPrint("TalkOptionData_C.New:TalkNodeData与DialogueOptionData都为nil")
     return
   end
   local Avatar = GWorld:GetAvatar()

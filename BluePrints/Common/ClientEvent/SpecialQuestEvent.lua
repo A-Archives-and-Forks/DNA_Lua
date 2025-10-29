@@ -44,8 +44,8 @@ function SpecialQuestEvent:OnStartEvent(...)
   DebugPrint("gyy@StartSpecialQuestEvent ", self.SpecialQuestId)
   self.SpecialQuestConfig = DataMgr.SpecialQuestConfig[self.SpecialQuestId]
   if not self.SpecialQuestConfig then
-    local Message = "\230\137\190\228\184\141\229\136\176\231\137\185\230\174\138\228\187\187\229\138\161\231\188\150\229\143\183" .. "\n\229\188\128\229\144\175\231\137\185\230\174\138\228\187\187\229\138\161\231\154\132\228\187\187\229\138\161\233\147\190Id:" .. self.PreQuestChainId .. "\n\231\137\185\230\174\138\228\187\187\229\138\161\231\188\150\229\143\183:" .. self.SpecialQuestId
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\230\137\190\228\184\141\229\136\176\231\137\185\230\174\138\228\187\187\229\138\161\231\188\150\229\143\183", Message)
+    local Message = "找不到特殊任务编号" .. "\n开启特殊任务的任务链Id:" .. self.PreQuestChainId .. "\n特殊任务编号:" .. self.SpecialQuestId
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "找不到特殊任务编号", Message)
     return
   end
   local Avatar = GWorld:GetAvatar()
@@ -78,8 +78,8 @@ function SpecialQuestEvent:OnStartEvent(...)
       DebugPrint("gyy@StartBlackScreenImmediately ", self.SpecialQuestId)
       self:PlayStartBlackScreen()
     else
-      local Message = "STL\232\138\130\231\130\185\228\184\138\229\139\190\233\128\137\228\186\134\231\171\139\229\136\187\233\187\145\229\177\143\239\188\140UniversalConfig\232\161\168\228\184\173\230\156\170\233\133\141\231\189\174\230\146\173\230\148\190\233\187\145\229\177\143\229\143\130\230\149\176" .. "\n\229\188\128\229\144\175\231\137\185\230\174\138\228\187\187\229\138\161\231\154\132\228\187\187\229\138\161\233\147\190Id:" .. self.PreQuestChainId .. "\n\231\137\185\230\174\138\228\187\187\229\138\161\231\188\150\229\143\183:" .. self.SpecialQuestId
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "STL\232\138\130\231\130\185\228\184\138\229\139\190\233\128\137\228\186\134\231\171\139\229\136\187\233\187\145\229\177\143\239\188\140UniversalConfig\232\161\168\228\184\173\230\156\170\233\133\141\231\189\174\230\146\173\230\148\190\233\187\145\229\177\143\229\143\130\230\149\176", Message)
+      local Message = "STL节点上勾选了立刻黑屏，UniversalConfig表中未配置播放黑屏参数" .. "\n开启特殊任务的任务链Id:" .. self.PreQuestChainId .. "\n特殊任务编号:" .. self.SpecialQuestId
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "STL节点上勾选了立刻黑屏，UniversalConfig表中未配置播放黑屏参数", Message)
       return
     end
   end
@@ -334,8 +334,8 @@ function SpecialQuestEvent:Destroy(Result, Info)
   end
   local GameMode = UE4.UGameplayStatics.GetGameMode(GWorld.GameInstance)
   if not IsValid(GameMode) then
-    local Message = "GameMode is not valid\239\188\140\230\151\160\230\179\149\230\184\133\231\144\134\229\140\186\229\159\159\230\149\176\230\141\174" .. "\n\231\137\185\230\174\138\228\187\187\229\138\161\231\188\150\229\143\183:" .. self.SpecialQuestId
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "GameMode is not valid\239\188\140\230\151\160\230\179\149\230\184\133\231\144\134\229\140\186\229\159\159\230\149\176\230\141\174", Message)
+    local Message = "GameMode is not valid，无法清理区域数据" .. "\n特殊任务编号:" .. self.SpecialQuestId
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "GameMode is not valid，无法清理区域数据", Message)
     return
   end
   GameMode:ClearRegionActorData("SpecialQuestId", self.SpecialQuestId, EDestroyReason.QuestChainClear, function(Target, Key, Value)
@@ -491,7 +491,7 @@ function SpecialQuestEvent:PlayStartBlackScreen()
   
   local function OnStartBlackScreenFadeOutSecond()
     self:FinishStartBlackScreen()
-    assert(false, "\229\183\178\232\190\190\233\187\145\229\177\143\230\156\128\233\149\191\230\151\182\233\151\180\239\188\140\228\189\134\231\137\185\230\174\138\228\187\187\229\138\161\230\156\170\230\136\144\229\138\159\229\188\128\229\167\139\239\188\140SpecialQuestId:" .. self.SpecialQuestId .. ",TryActive:" .. tostring(self.TryActive) .. ",BlackScreenImmediately:" .. tostring(self.BlackScreenImmediately))
+    assert(false, "已达黑屏最长时间，但特殊任务未成功开始，SpecialQuestId:" .. self.SpecialQuestId .. ",TryActive:" .. tostring(self.TryActive) .. ",BlackScreenImmediately:" .. tostring(self.BlackScreenImmediately))
   end
   
   local function OnStartBlackScreenFadeOutFirst()
@@ -557,7 +557,7 @@ function SpecialQuestEvent:PlaySuccessBlackScreen(Result)
   
   local function OnSuccessBlackScreenFadeOutSecond()
     self:FinishSuccessBlackScreen()
-    assert(false, "\229\183\178\232\190\190\233\187\145\229\177\143\230\156\128\233\149\191\230\151\182\233\151\180\239\188\140\228\189\134\231\137\185\230\174\138\228\187\187\229\138\161\230\156\170\230\136\144\229\138\159\231\187\147\230\157\159\239\188\140SpecialQuestId:" .. self.SpecialQuestId .. ",TryFinish:" .. tostring(self.TryFinish))
+    assert(false, "已达黑屏最长时间，但特殊任务未成功结束，SpecialQuestId:" .. self.SpecialQuestId .. ",TryFinish:" .. tostring(self.TryFinish))
   end
   
   local function OnSuccessBlackScreenContinueFinish()
@@ -622,7 +622,7 @@ function SpecialQuestEvent:PlayFailBlackScreen(Result)
   
   local function OnFailBlackScreenFadeOutSecond()
     self:FinishFailBlackScreen()
-    assert(false, "\229\183\178\232\190\190\233\187\145\229\177\143\230\156\128\233\149\191\230\151\182\233\151\180\239\188\140\228\189\134\231\137\185\230\174\138\228\187\187\229\138\161\230\156\170\230\136\144\229\138\159\231\187\147\230\157\159\239\188\140SpecialQuestId:" .. self.SpecialQuestId .. ",TryFinish:" .. tostring(self.TryFinish))
+    assert(false, "已达黑屏最长时间，但特殊任务未成功结束，SpecialQuestId:" .. self.SpecialQuestId .. ",TryFinish:" .. tostring(self.TryFinish))
   end
   
   local function OnFailBlackScreenContinueFinish()
@@ -772,8 +772,8 @@ function SpecialQuestEvent:SetUniversalConfig()
     if self.UniversalConfig.IfInActiveInteractive then
       local GameState = UE4.UGameplayStatics.GetGameState(GWorld.GameInstance)
       if self.UniversalConfig.IfInActiveInteractive.Type == "Part" and not self.UniversalConfig.IfInActiveInteractive.Id then
-        local Message = "\231\137\185\230\174\138\228\187\187\229\138\161\229\144\175\231\148\168\229\133\179\233\151\173\233\131\168\229\136\134\230\156\186\229\133\179\228\186\164\228\186\146\239\188\140\228\189\134\230\152\175\230\178\161\230\156\137\229\161\171\230\156\186\229\133\179ID" .. "\n\231\137\185\230\174\138\228\187\187\229\138\161\231\188\150\229\143\183:" .. self.SpecialQuestId
-        UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\231\137\185\230\174\138\228\187\187\229\138\161\229\144\175\231\148\168\229\133\179\233\151\173\233\131\168\229\136\134\230\156\186\229\133\179\228\186\164\228\186\146\239\188\140\228\189\134\230\152\175\230\178\161\230\156\137\229\161\171\230\156\186\229\133\179ID", Message)
+        local Message = "特殊任务启用关闭部分机关交互，但是没有填机关ID" .. "\n特殊任务编号:" .. self.SpecialQuestId
+        UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "特殊任务启用关闭部分机关交互，但是没有填机关ID", Message)
         return
       end
       GameState:ChangeMechanismInteractiveInSpecialQuest(true, self.UniversalConfig.IfInActiveInteractive.Type, self.UniversalConfig.IfInActiveInteractive.Id)
@@ -882,8 +882,8 @@ function SpecialQuestEvent:RecoverUniversalConfig()
     if self.UniversalConfig.IfInActiveInteractive then
       local GameState = UE4.UGameplayStatics.GetGameState(GWorld.GameInstance)
       if self.UniversalConfig.IfInActiveInteractive.Type == "Part" and not self.UniversalConfig.IfInActiveInteractive.Id then
-        local Message = "\231\137\185\230\174\138\228\187\187\229\138\161\229\144\175\231\148\168\230\137\147\229\188\128\233\131\168\229\136\134\230\156\186\229\133\179\228\186\164\228\186\146\239\188\140\228\189\134\230\152\175\230\178\161\230\156\137\229\161\171\230\156\186\229\133\179ID" .. "\n\231\137\185\230\174\138\228\187\187\229\138\161\231\188\150\229\143\183:" .. self.SpecialQuestId
-        UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\231\137\185\230\174\138\228\187\187\229\138\161\229\144\175\231\148\168\230\137\147\229\188\128\233\131\168\229\136\134\230\156\186\229\133\179\228\186\164\228\186\146\239\188\140\228\189\134\230\152\175\230\178\161\230\156\137\229\161\171\230\156\186\229\133\179ID", Message)
+        local Message = "特殊任务启用打开部分机关交互，但是没有填机关ID" .. "\n特殊任务编号:" .. self.SpecialQuestId
+        UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "特殊任务启用打开部分机关交互，但是没有填机关ID", Message)
         return
       end
       GameState:ChangeMechanismInteractiveInSpecialQuest(false, self.UniversalConfig.IfInActiveInteractive.Type, self.UniversalConfig.IfInActiveInteractive.Id)

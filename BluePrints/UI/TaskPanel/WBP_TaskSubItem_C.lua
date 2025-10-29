@@ -189,7 +189,7 @@ function WBP_TaskSubItem_C:GetDetailInfo()
         self.SubRegionId = DataMgr.QuestChain[self.QuestChainId].LockShowSubRegionId
         self.TeleportPointName = DataMgr.QuestChain[self.QuestChainId].LockShowTeleportPointName
       else
-        ScreenPrint(string.format("WBP_TaskSubItem_C: \228\187\187\229\138\161\233\157\162\230\157\191Item\229\138\160\232\189\189\229\140\186\229\159\159\228\191\161\230\129\175\232\142\183\229\143\150\229\164\177\232\180\165\239\188\140\232\175\183\230\163\128\230\159\165STL\230\152\175\229\144\166\233\133\141\231\189\174\230\140\135\229\188\149\231\130\185\232\138\130\231\130\185, \228\187\187\229\138\161Id: %s", self.QuestID))
+        ScreenPrint(string.format("WBP_TaskSubItem_C: 任务面板Item加载区域信息获取失败，请检查STL是否配置指引点节点, 任务Id: %s", self.QuestID))
       end
     end
     for _, v in pairs(UIObjs) do
@@ -199,12 +199,12 @@ function WBP_TaskSubItem_C:GetDetailInfo()
         self.TeleportPointName = GuidePointLocData[TargetKey].TeleportPointName
         break
       end
-      ScreenPrint(string.format("WBP_TaskSubItem_C: \230\140\135\229\188\149\231\130\185\229\140\186\229\159\159\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168, \228\187\187\229\138\161\229\140\186\229\159\159\228\191\161\230\129\175\232\142\183\229\143\150\229\164\177\232\180\165\239\188\140\232\175\183\230\163\128\230\159\165\229\175\188\229\135\186\230\149\176\230\141\174, \230\140\135\229\188\149\231\130\185: %s", v:GetName()))
+      ScreenPrint(string.format("WBP_TaskSubItem_C: 指引点区域数据不存在, 任务区域信息获取失败，请检查导出数据, 指引点: %s", v:GetName()))
       break
     end
   end
   if not Info then
-    ScreenPrint(string.format("WBP_TaskSubItem_C: \228\187\187\229\138\161\232\138\130\231\130\185\228\191\161\230\129\175\232\142\183\229\143\150\229\164\177\232\180\165\239\188\140\232\175\183\230\163\128\230\159\165STL\232\138\130\231\130\185, \228\187\187\229\138\161Id: %s", self.QuestID))
+    ScreenPrint(string.format("WBP_TaskSubItem_C: 任务节点信息获取失败，请检查STL节点, 任务Id: %s", self.QuestID))
     return
   end
   if self.SubRegionId == nil then
@@ -214,9 +214,9 @@ function WBP_TaskSubItem_C:GetDetailInfo()
   if self.SubRegionId and self.SubRegionId > 0 then
     self.RegionId = math.floor(self.SubRegionId / 100)
     if Info.TaskRegionReName ~= "" then
-      self.QuestPosition = GText(Info.TaskRegionReName) .. " \226\128\148\226\128\148 "
+      self.QuestPosition = GText(Info.TaskRegionReName) .. " —— "
     else
-      self.QuestPosition = GText(DataMgr.Region[self.RegionId].RegionName) .. " \226\128\148\226\128\148 "
+      self.QuestPosition = GText(DataMgr.Region[self.RegionId].RegionName) .. " —— "
     end
     if "" ~= Info.TaskSubRegionReName then
       self.QuestPosition = self.QuestPosition .. GText(Info.TaskSubRegionReName)
@@ -227,7 +227,7 @@ function WBP_TaskSubItem_C:GetDetailInfo()
     end
   else
     if Info.TaskRegionReName ~= "" then
-      self.QuestPosition = GText(Info.TaskRegionReName) .. " \226\128\148\226\128\148 "
+      self.QuestPosition = GText(Info.TaskRegionReName) .. " —— "
     end
     if "" ~= Info.TaskSubRegionReName then
       self.QuestPosition = self.QuestPosition .. GText(Info.TaskSubRegionReName)

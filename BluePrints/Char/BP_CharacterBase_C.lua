@@ -574,10 +574,10 @@ function BP_CharacterBase_C:UpdateRecovererInfo(Eid, RecoverySpeed)
     self.RecoverTargets[Eid] = RecoverySpeed
   end
   if not next(self.RecoverTargets) then
-    DebugPrint("Tianyi@ \230\149\145\229\138\169\232\128\133: " .. self.Eid .. "\228\184\141\229\134\141\230\149\145\229\138\169\229\175\185\232\177\161")
+    DebugPrint("Tianyi@ 救助者: " .. self.Eid .. "不再救助对象")
     self.IsRecoveringOthers = false
   else
-    DebugPrint("Tianyi@ \230\149\145\229\138\169\232\128\133: " .. self.Eid .. "\230\173\163\229\156\168\230\149\145\229\138\169\229\175\185\232\177\161")
+    DebugPrint("Tianyi@ 救助者: " .. self.Eid .. "正在救助对象")
     self.IsRecoveringOthers = true
   end
 end
@@ -999,7 +999,7 @@ function BP_CharacterBase_C:PlayTalkAction(ActionId, OnFinished, CallbackObj, Ca
   end
   local TalkActionData = DataMgr.TalkAction[ActionId]
   if nil == TalkActionData then
-    Utils.ScreenPrint("ActionId \228\184\141\229\173\152\229\156\168:" .. tostring(ActionId))
+    Utils.ScreenPrint("ActionId 不存在:" .. tostring(ActionId))
     StoryPlayableUtils:ExecuteStoryDelegate(OnFinished)
     return 0
   end
@@ -1141,7 +1141,7 @@ end
 
 function BP_CharacterBase_C:PlayTalkActionInternal(TalkActionData, OnFinished, CallbackObj, CallbackFuncName, IgnoreBlendInTime, MontageGroupName)
   if nil == TalkActionData then
-    Utils.ScreenPrint("TalkActionData \228\184\141\229\173\152\229\156\168")
+    Utils.ScreenPrint("TalkActionData 不存在")
     if IsValid(CallbackObj) and CallbackFuncName then
       CallbackObj[CallbackFuncName](CallbackObj)
     else
@@ -1237,7 +1237,7 @@ function BP_CharacterBase_C:PlayTalkMontage(MontageName, BlendInTime, BlendOutTi
   local MontagePath = self:GetTalkActionPath(PrePath, MontageName)
   local Montage = LoadObject(MontagePath)
   if nil == Montage then
-    Utils.ScreenPrint("\232\146\153\229\164\170\229\165\135\232\183\175\229\190\132\228\184\141\229\173\152\229\156\168" .. MontagePath)
+    Utils.ScreenPrint("蒙太奇路径不存在" .. MontagePath)
     if OnCompleted then
       OnCompleted()
     end

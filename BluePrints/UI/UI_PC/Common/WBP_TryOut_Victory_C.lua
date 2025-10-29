@@ -34,7 +34,7 @@ function M:SetGamePadImg(ImgShortPath, ImgLongPath)
     Img = LoadObject(ImgLongPath)
   end
   if not IsValid(Img) then
-    DebugPrint("\231\188\186\229\176\145\229\155\190\231\137\135\232\181\132\230\186\144: ImgPath = ", ImgPath, ImgShortPath, ImgLongPath)
+    DebugPrint("缺少图片资源: ImgPath = ", ImgPath, ImgShortPath, ImgLongPath)
     return Img
   end
   return Img

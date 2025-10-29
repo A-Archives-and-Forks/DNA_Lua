@@ -160,7 +160,7 @@ function Component:MultiCastPlayCondemnMontage_Implementation()
     local AnimTime, AnimationAsset = self:PlayMontageByPath(CondemnPath)
     if not AnimationAsset then
       self:QuitDefeatedTag()
-      DebugPrint("\229\164\132\229\136\145\229\138\168\231\148\187\232\183\175\229\190\132\230\150\135\228\187\182\228\184\141\229\173\152\229\156\168", CondemnPath)
+      DebugPrint("处刑动画路径文件不存在", CondemnPath)
     else
       local FrameNum = math.floor(AnimationAsset.SequenceLength / 0.03333333333333333 + 1.0E-4) + 1
       if FrameNum > 61 then

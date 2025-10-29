@@ -22,7 +22,7 @@ function M:Stat(GM, InNiagaraCount)
 end
 
 function M:StatStart(GM)
-  assert(GM.Player, "\231\188\186\229\176\145Player")
+  assert(GM.Player, "缺少Player")
   local RecordInterval = 0.5
   local PlayFXInterval = 5
   CurrentIndex = 0
@@ -70,7 +70,7 @@ function M:RepeatFXTimer()
 end
 
 function M:StatEnd(GM)
-  assert(GM.Player, "\231\188\186\229\176\145Player")
+  assert(GM.Player, "缺少Player")
   GM.Player:RemoveTimer("Test_RepeatSkillTimer")
   GM.Player:RemoveTimer("Test_RepeatFXTimer")
   StrOutput = StrOutput .. "Average" .. StrLine .. ","

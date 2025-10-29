@@ -11,7 +11,7 @@ function BP_Water_C:OnOverlapActor(OtherActor, OtherComponent)
     return
   end
   if not OtherActor.IsCharacter then
-    print(_G.LogTag, "Error: FallTrigger \232\167\166\229\143\145\229\136\176\228\186\134\230\178\161\230\156\137IsCharacter()\231\154\132\228\184\156\232\165\191, \230\173\164\231\137\169\228\184\141\229\156\168ActorType\232\140\131\231\149\180\229\134\133", OtherActor:GetName())
+    print(_G.LogTag, "Error: FallTrigger 触发到了没有IsCharacter()的东西, 此物不在ActorType范畴内", OtherActor:GetName())
   end
   if OtherActor.IsCharacter and not OtherActor:IsCharacter() and not OtherActor:Cast(UE4.APickupBase) then
     return
@@ -107,7 +107,7 @@ function BP_Water_C:OnEnterState(NowStateId)
   self.TargetIndex = Idx
   local NumTime = self.Time:Length()
   if TimeIdx > NumTime then
-    DebugPrint("\232\175\183\230\163\128\230\159\165\230\176\180\228\189\141\230\156\186\229\133\179\231\138\182\230\128\129")
+    DebugPrint("请检查水位机关状态")
     self:EnableTriggerBox()
     return
   end

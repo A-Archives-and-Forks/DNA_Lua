@@ -410,7 +410,7 @@ T.RT_52 = {
 T.RT_53 = {
   [1] = "$#SkillEffects[1010111].TaskEffects[1].Rate*100$%",
   [2] = "$#SkillEffects[1010112].TaskEffects[1].Rate*100$%",
-  [3] = "$#SkillEffects[1010113].TaskEffects[1].Rate*100$%\195\1512",
+  [3] = "$#SkillEffects[1010113].TaskEffects[1].Rate*100$%×2",
   [4] = "$#SkillEffects[1010114].TaskEffects[1].Rate*100$%"
 }
 T.RT_54 = {1019801}
@@ -500,7 +500,7 @@ T.RT_68 = {
 T.RT_69 = {
   [1] = "$#SkillEffects[1010211].TaskEffects[1].Rate*100$%",
   [2] = "$#SkillEffects[1010212].TaskEffects[1].Rate*100$%",
-  [3] = "$#SkillEffects[1010213].TaskEffects[1].Rate*100$%\195\1514",
+  [3] = "$#SkillEffects[1010213].TaskEffects[1].Rate*100$%×4",
   [4] = "$#SkillEffects[1010214].TaskEffects[1].Rate*100$%"
 }
 T.RT_70 = {
@@ -572,7 +572,7 @@ T.RT_76 = {
 }
 T.RT_77 = {
   [1] = "$#SkillEffects[1020111].TaskEffects[1].Rate*100$%",
-  [2] = "$#SkillEffects[1020112].TaskEffects[1].Rate*100$%\195\1513",
+  [2] = "$#SkillEffects[1020112].TaskEffects[1].Rate*100$%×3",
   [3] = "$#SkillEffects[1020113].TaskEffects[1].Rate*100$%",
   [4] = "$#SkillEffects[1020114].TaskEffects[1].Rate*100$%",
   [5] = "$#SkillEffects[1020115].TaskEffects[1].Rate*100$%"
@@ -675,8 +675,8 @@ T.RT_89 = {
 }
 T.RT_90 = {
   [1] = "$#SkillEffects[1020211].TaskEffects[1].Rate*100$%",
-  [2] = "$#SkillEffects[1020212].TaskEffects[1].Rate*100$%\195\1512",
-  [3] = "$#SkillEffects[1020213].TaskEffects[1].Rate*100$%\195\1512+$#SkillEffects[1020214].TaskEffects[1].Rate*100$%",
+  [2] = "$#SkillEffects[1020212].TaskEffects[1].Rate*100$%×2",
+  [3] = "$#SkillEffects[1020213].TaskEffects[1].Rate*100$%×2+$#SkillEffects[1020214].TaskEffects[1].Rate*100$%",
   [4] = "$#SkillEffects[1020215].TaskEffects[1].Rate*100$%+$#SkillEffects[1020216].TaskEffects[1].Rate*100$%"
 }
 T.RT_91 = {
@@ -888,10 +888,10 @@ T.RT_116 = {
   bEnablePrediction = true
 }
 T.RT_117 = {
-  [1] = "$#SkillEffects[1040111].TaskEffects[1].Rate*100$%\195\1512",
-  [2] = "$#SkillEffects[1040112].TaskEffects[1].Rate*100$%\195\1512",
+  [1] = "$#SkillEffects[1040111].TaskEffects[1].Rate*100$%×2",
+  [2] = "$#SkillEffects[1040112].TaskEffects[1].Rate*100$%×2",
   [3] = "$#SkillEffects[1040113].TaskEffects[1].Rate*100$%",
-  [4] = "$#SkillEffects[1040114].TaskEffects[1].Rate*100$%\195\1513"
+  [4] = "$#SkillEffects[1040114].TaskEffects[1].Rate*100$%×3"
 }
 T.RT_118 = {
   AttackSpeedType = T.RT_50,
@@ -907,7 +907,7 @@ T.RT_118 = {
   bEnablePrediction = true
 }
 T.RT_119 = {
-  [1] = "$#SkillEffects[1040121].TaskEffects[1].Rate*100$%\195\1516",
+  [1] = "$#SkillEffects[1040121].TaskEffects[1].Rate*100$%×6",
   [2] = "$#SkillEffects[1040122].TaskEffects[1].Rate*100$%"
 }
 T.RT_120 = {
@@ -943,7 +943,7 @@ T.RT_122 = {
   bEnablePrediction = true
 }
 T.RT_123 = {
-  [1] = "$#SkillEffects[1040141].TaskEffects[1].Rate*100$%\195\1512"
+  [1] = "$#SkillEffects[1040141].TaskEffects[1].Rate*100$%×2"
 }
 T.RT_124 = {
   AttackSpeedType = T.RT_65,
@@ -960,8 +960,8 @@ T.RT_124 = {
 T.RT_125 = {
   [1] = "$#SkillEffects[1040211].TaskEffects[1].Rate*100$%",
   [2] = "$#SkillEffects[1040212].TaskEffects[1].Rate*100$%",
-  [3] = "$#SkillEffects[1040213].TaskEffects[1].Rate*100$%\195\1514",
-  [4] = "$#SkillEffects[1040214].TaskEffects[1].Rate*100$%\195\1515"
+  [3] = "$#SkillEffects[1040213].TaskEffects[1].Rate*100$%×4",
+  [4] = "$#SkillEffects[1040214].TaskEffects[1].Rate*100$%×5"
 }
 T.RT_126 = {
   AttackSpeedType = T.RT_50,
@@ -1006,7 +1006,7 @@ T.RT_130 = {
   [1] = "$#SkillEffects[1050111].TaskEffects[1].Rate*100$%",
   [2] = "$#SkillEffects[1050112].TaskEffects[1].Rate*100$%",
   [3] = "$#SkillEffects[1050113].TaskEffects[1].Rate*100$%",
-  [4] = "$#SkillEffects[1050114].TaskEffects[1].Rate*100$%\195\1512"
+  [4] = "$#SkillEffects[1050114].TaskEffects[1].Rate*100$%×2"
 }
 T.RT_131 = {
   AttackSpeedType = T.RT_50,
@@ -1075,9 +1075,9 @@ T.RT_139 = {
   bEnablePrediction = true
 }
 T.RT_140 = {
-  [1] = "$#SkillEffects[1060111].TaskEffects[1].Rate*100$%\195\1513",
-  [2] = "$#SkillEffects[1060112].TaskEffects[1].Rate*100$%\195\1514",
-  [3] = "$#SkillEffects[1060113].TaskEffects[1].Rate*100$%\195\1512+$#SkillEffects[1060115].TaskEffects[1].Rate*100$%",
+  [1] = "$#SkillEffects[1060111].TaskEffects[1].Rate*100$%×3",
+  [2] = "$#SkillEffects[1060112].TaskEffects[1].Rate*100$%×4",
+  [3] = "$#SkillEffects[1060113].TaskEffects[1].Rate*100$%×2+$#SkillEffects[1060115].TaskEffects[1].Rate*100$%",
   [4] = "$#SkillEffects[1060114].TaskEffects[1].Rate*100$%"
 }
 T.RT_141 = {
@@ -1094,7 +1094,7 @@ T.RT_141 = {
   bEnablePrediction = true
 }
 T.RT_142 = {
-  [1] = "$#SkillEffects[1060121].TaskEffects[1].Rate*100$%\195\1519"
+  [1] = "$#SkillEffects[1060121].TaskEffects[1].Rate*100$%×9"
 }
 T.RT_143 = {
   AttackSpeedType = T.RT_56,
@@ -1145,7 +1145,7 @@ T.RT_147 = {
 }
 T.RT_148 = {
   [1] = "$#SkillEffects[1060251].TaskEffects[1].Rate*100$%",
-  [2] = "$#SkillEffects[1060221].TaskEffects[1].Rate*100$%\195\1519"
+  [2] = "$#SkillEffects[1060221].TaskEffects[1].Rate*100$%×9"
 }
 T.RT_149 = {
   AttackSpeedType = T.RT_56,
@@ -2719,7 +2719,7 @@ T.RT_328 = {
 }
 T.RT_329 = {
   [1] = "$#SkillNode[150111].CostSp$",
-  [2] = "$#SkillEffects[150111].TaskEffects[1].Rate*100$%\195\1513+$#SkillEffects[150112].TaskEffects[1].Rate*100$%",
+  [2] = "$#SkillEffects[150111].TaskEffects[1].Rate*100$%×3+$#SkillEffects[150112].TaskEffects[1].Rate*100$%",
   [3] = "$#TargetFilter[#SkillEffects[150112].TargetFilter].LuaFilterParaments.Radius/100$$GText(\"SKILL_DESC_Meter\")$"
 }
 T.RT_330 = {
@@ -2812,14 +2812,14 @@ T.RT_338 = {
   [1] = "$#SkillNode[150121].CostSp$",
   [2] = "$#SkillEffects[150131].TaskEffects[1].Rate*100$%",
   [3] = "$#SkillEffects[150132].TaskEffects[1].Rate*100$%",
-  [4] = "$#SkillEffects[150133].TaskEffects[1].Rate*100$%\195\1512",
+  [4] = "$#SkillEffects[150133].TaskEffects[1].Rate*100$%×2",
   [5] = "$#SkillEffects[150134].TaskEffects[1].Rate*100$%+$#SkillEffects[150135].TaskEffects[1].Rate*100$%",
   [6] = "$#TargetFilter[#SkillEffects[150131].TargetFilter].LuaFilterParaments.Radius/100$$GText(\"SKILL_DESC_Meter\")$",
   [7] = "$#SkillEffects[1030132].TaskEffects[1].Rate*100$%",
   [8] = "$#SkillEffects[1030141].TaskEffects[1].Rate*100$%",
   [9] = "$#SkillEffects[150141].TaskEffects[1].Rate*100$%",
   [10] = "$#SkillEffects[150145].TaskEffects[1].Rate*100$%+$#SkillEffects[150141].TaskEffects[1].Rate*100$%",
-  [11] = "$#TargetFilter[#SkillEffects[150141].TargetFilter].LuaFilterParaments.Length/100$$GText(\"SKILL_DESC_Meter\")$\195\151$#TargetFilter[#SkillEffects[150141].TargetFilter].LuaFilterParaments.HalfWidth/50$$GText(\"SKILL_DESC_Meter\")$",
+  [11] = "$#TargetFilter[#SkillEffects[150141].TargetFilter].LuaFilterParaments.Length/100$$GText(\"SKILL_DESC_Meter\")$×$#TargetFilter[#SkillEffects[150141].TargetFilter].LuaFilterParaments.HalfWidth/50$$GText(\"SKILL_DESC_Meter\")$",
   [12] = "$#SkillNode[150141].CostSp$",
   [13] = "$#PassiveEffect[150101].Vars.HeavyAtkSp$",
   [14] = "$#PassiveEffect[150101].Vars.HeavyAtkCombo$",
@@ -4700,7 +4700,7 @@ T.RT_548 = {
   [2] = "SKILL_DESC_Sustain"
 }
 T.RT_549 = {
-  [1] = "$#Buff[180141].AddAttrs[1].Value*100$%\195\151$GText(\"SKILL_DESC_1801PassiveLayer\")$",
+  [1] = "$#Buff[180141].AddAttrs[1].Value*100$%×$GText(\"SKILL_DESC_1801PassiveLayer\")$",
   [2] = "$#PassiveEffect[180103].Vars.BuffLastTime$$GText(\"SKILL_DESC_Second\")$"
 }
 T.RT_550 = {
@@ -9134,8 +9134,8 @@ T.RT_1073 = {
   [5] = "$#SkillEffects[410222].TaskEffects[1].Rate*100$%",
   [6] = "$#TargetFilter[#SkillEffects[410222].TargetFilter].LuaFilterParaments.Radius/100$$GText(\"SKILL_DESC_Meter\")$",
   [7] = "$#SkillEffects[410232].TaskEffects[1].Rate*100$%",
-  [8] = "$#TargetFilter[#SkillEffects[410232].TargetFilter].LuaFilterParaments.Length/100$$GText(\"SKILL_DESC_Meter\")$\195\151$#TargetFilter[#SkillEffects[410232].TargetFilter].LuaFilterParaments.HalfWidth/50$$GText(\"SKILL_DESC_Meter\")$",
-  [9] = "$#SkillEffects[410243].TaskEffects[1].Rate*100$%\195\1513+$#SkillEffects[410245].TaskEffects[1].Rate*100$%",
+  [8] = "$#TargetFilter[#SkillEffects[410232].TargetFilter].LuaFilterParaments.Length/100$$GText(\"SKILL_DESC_Meter\")$×$#TargetFilter[#SkillEffects[410232].TargetFilter].LuaFilterParaments.HalfWidth/50$$GText(\"SKILL_DESC_Meter\")$",
+  [9] = "$#SkillEffects[410243].TaskEffects[1].Rate*100$%×3+$#SkillEffects[410245].TaskEffects[1].Rate*100$%",
   [10] = "$#TargetFilter[#SkillEffects[410243].TargetFilter].LuaFilterParaments.Radius/100$$GText(\"SKILL_DESC_Meter\")$",
   [11] = "$#SkillCreature[410225].ShapeInfo.Radius/100$$GText(\"SKILL_DESC_Meter\")$",
   [12] = "$#SkillCreature[410225].TimeLife$$GText(\"SKILL_DESC_Second\")$",

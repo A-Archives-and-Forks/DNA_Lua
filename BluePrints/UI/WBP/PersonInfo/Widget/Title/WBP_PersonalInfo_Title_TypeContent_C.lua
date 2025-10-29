@@ -110,7 +110,7 @@ function M:EquipSelectedTitleFrame()
   if self.EquippedItem.UI then
     self.EquippedItem.UI:SetIsEquipped(true)
   else
-    ScreenPrint("EquipSelectedTitleFrame: " .. "\230\137\190\228\184\141\229\136\176Item\229\175\185\229\186\148\231\154\132UI")
+    ScreenPrint("EquipSelectedTitleFrame: " .. "找不到Item对应的UI")
   end
 end
 

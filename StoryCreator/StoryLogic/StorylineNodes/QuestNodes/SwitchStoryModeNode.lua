@@ -22,7 +22,7 @@ function SwitchStoryModeNode:OnQuestlineSuccess()
 end
 
 function SwitchStoryModeNode:OnQuestlineFail()
-  DebugPrint("SwitchStoryModeNode On QuestlineFail,\232\191\152\229\142\159\229\137\167\230\131\133\230\168\161\229\188\143\239\188\140\232\191\152\229\142\159\228\184\186", self.LastStoryMode)
+  DebugPrint("SwitchStoryModeNode On QuestlineFail,还原剧情模式，还原为", self.LastStoryMode)
   self:SetStoryModeInternal(self.LastStoryMode)
 end
 

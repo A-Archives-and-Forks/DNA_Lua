@@ -10,7 +10,7 @@ end
 function BP_TrialComponent_C:InitTrialDungeonInfo()
   self.TrialDungeonInfo = DataMgr.Trial[self.CharTrialId]
   if not self.TrialDungeonInfo then
-    DebugPrint("\230\151\160\230\179\149\230\137\190\229\136\176\229\189\147\229\137\141\232\167\146\232\137\178\232\175\149\231\142\169\228\191\161\230\129\175\227\128\130\232\175\187\229\133\165\232\167\146\232\137\178Id\239\188\154", self.CharTrialId)
+    DebugPrint("无法找到当前角色试玩信息。读入角色Id：", self.CharTrialId)
     return
   end
   self.TaskList = self.TrialDungeonInfo.Tasks
@@ -19,7 +19,7 @@ end
 function BP_TrialComponent_C:UpdateTaskInfo(TaskIndex)
   self.CurrentTaskInfo = DataMgr.TrialTask[self.TaskList[TaskIndex]]
   if not self.CurrentTaskInfo then
-    DebugPrint("thy   \232\175\149\231\142\169\228\187\187\229\138\161\228\191\161\230\129\175\228\184\141\229\173\152\229\156\168\239\188\140\232\175\183\230\163\128\230\159\165\228\187\165\228\184\139\229\156\176\230\150\185\230\152\175\229\144\166\230\156\137\233\151\174\233\162\152\239\188\129 1.\228\188\160\229\133\165\229\143\130\230\149\176TaskIndex(\228\187\187\229\138\161\231\188\150\229\143\183) 2.Trial\232\161\168\228\184\173\229\175\185\229\186\148\232\167\146\232\137\178\231\154\132\232\175\149\231\142\169\228\187\187\229\138\161\229\136\151\232\161\168 3.TrialTask\232\161\168\228\184\173\230\152\175\229\144\166\229\140\133\229\144\1712\228\184\173\231\154\132TaskId")
+    DebugPrint("thy   试玩任务信息不存在，请检查以下地方是否有问题！ 1.传入参数TaskIndex(任务编号) 2.Trial表中对应角色的试玩任务列表 3.TrialTask表中是否包含2中的TaskId")
   end
   self.TaskIndex = TaskIndex
   self.WidgetPath = self.CurrentTaskInfo.WidgetPath
@@ -102,7 +102,7 @@ end
 
 function BP_TrialComponent_C:OnTimerEnd_AutoUpdate()
   if self.Player then
-    DebugPrint("TrialComponent: \232\135\170\229\138\168\230\155\180\230\150\176RemoveGuideEid \232\162\171Remove\231\154\132\230\140\135\229\188\149\231\130\185Eid: " .. tostring(self.NowGuideEid) .. "  Player Eid: " .. tostring(self.Player.Eid))
+    DebugPrint("TrialComponent: 自动更新RemoveGuideEid 被Remove的指引点Eid: " .. tostring(self.NowGuideEid) .. "  Player Eid: " .. tostring(self.Player.Eid))
     self.GameMode.EMGameState:RemoveGuideEid(self.NowGuideEid, self.Player.Eid)
     self:TryUpdateGuidePoint()
   end
@@ -187,9 +187,9 @@ function BP_TrialComponent_C:UpdateNearestMonsterGuide()
   if nil ~= MonsterEid and MonsterEid > 0 then
     self.NowGuideEid = MonsterEid
     self.GameMode.EMGameState:AddGuideEid(MonsterEid, self.Player.Eid)
-    DebugPrint("TrialComponent: \229\183\178\230\136\144\229\138\159\230\183\187\229\138\160\230\140\135\229\188\149\231\130\185 \230\140\135\229\188\149\231\130\185Eid: " .. MonsterEid .. "  Player Eid: " .. self.Player.Eid)
+    DebugPrint("TrialComponent: 已成功添加指引点 指引点Eid: " .. MonsterEid .. "  Player Eid: " .. self.Player.Eid)
   else
-    DebugPrint("TrialComponent: Error  \229\189\147\229\137\141\229\156\186\228\184\138\230\137\190\228\184\141\229\136\176\230\128\170\231\137\169!")
+    DebugPrint("TrialComponent: Error  当前场上找不到怪物!")
   end
 end
 

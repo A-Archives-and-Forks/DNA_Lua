@@ -21,7 +21,7 @@ function WBP_Battle_Version_C:InitVersionDisplay()
   end
   local versionText = UE.AHotUpdateGameMode.GetTotalVersionNumber()
   if "" == versionText then
-    versionText = "\231\188\150\232\190\145\229\153\168\231\138\182\230\128\129\239\188\140\230\156\170\232\142\183\229\143\150\229\136\176\231\137\136\230\156\172\229\143\183"
+    versionText = "编辑器状态，未获取到版本号"
   end
   if self.Text_Version then
     self.Text_Version:SetText(GText(versionText))

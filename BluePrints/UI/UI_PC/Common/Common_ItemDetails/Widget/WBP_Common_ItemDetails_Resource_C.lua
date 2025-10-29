@@ -16,9 +16,9 @@ function M:InitItemInfo(ItemType, ItemId, UnitId, Content)
     local TreasureGroupInfo = DataMgr[ItemType][ItemId]
     if not self.ParentWidget.Content.bGuide then
       if self.ParentWidget.Content.bActive then
-        self.Text_Describe:SetText(GText("\229\183\178\230\191\128\230\180\187"))
+        self.Text_Describe:SetText(GText("已激活"))
       else
-        self.Text_Describe:SetText(GText("\230\156\170\230\191\128\230\180\187"))
+        self.Text_Describe:SetText(GText("未激活"))
       end
     else
       self.Text_Describe:SetVisibility(ESlateVisibility.Collapsed)
@@ -27,7 +27,7 @@ function M:InitItemInfo(ItemType, ItemId, UnitId, Content)
     return
   end
   if "CharPartMesh" == ItemType or "Skin" == ItemType or "WeaponSkin" == ItemType or "Title" == ItemType or "TitleFrame" == ItemType then
-    assert(DataMgr[ItemType][ItemId], "\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148CharPartMesh\228\191\161\230\129\175\239\188\154", ItemType, ItemId)
+    assert(DataMgr[ItemType][ItemId], "未找到对应CharPartMesh信息：", ItemType, ItemId)
     local CharPartMeshInfo = DataMgr[ItemType][ItemId]
     self.ParentWidget.Panel_Hold:SetVisibility(ESlateVisibility.Collapsed)
     if "WeaponSkin" == ItemType then
@@ -39,11 +39,11 @@ function M:InitItemInfo(ItemType, ItemId, UnitId, Content)
     return
   end
   if "CharAccessory" == ItemType or "WeaponAccessory" == ItemType then
-    assert(DataMgr[ItemType][ItemId], "\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\233\133\141\233\165\176\228\191\161\230\129\175\239\188\154", ItemType, ItemId)
+    assert(DataMgr[ItemType][ItemId], "未找到对应配饰信息：", ItemType, ItemId)
     local CharAccessoryInfo = DataMgr[ItemType][ItemId]
     self.ParentWidget.Panel_Hold:SetVisibility(ESlateVisibility.Collapsed)
     if CharAccessoryInfo.AccessoryType then
-      assert(UIConst.AccessoryTypeTextMap[CharAccessoryInfo.AccessoryType], "\230\156\170\231\159\165\231\154\132\233\133\141\233\165\176\233\131\168\228\189\141\239\188\154" .. CharAccessoryInfo.AccessoryType)
+      assert(UIConst.AccessoryTypeTextMap[CharAccessoryInfo.AccessoryType], "未知的配饰部位：" .. CharAccessoryInfo.AccessoryType)
       self.Text_Describe:SetText(GText(UIConst.AccessoryTypeTextMap[CharAccessoryInfo.AccessoryType]))
       self.Text_Describe:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
     else
@@ -72,7 +72,7 @@ function M:InitItemInfo(ItemType, ItemId, UnitId, Content)
     return
   end
   if "HeadSculpture" == ItemType or "HeadFrame" == ItemType then
-    assert(DataMgr[ItemType][ItemId], "\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\233\133\141\233\165\176\228\191\161\230\129\175\239\188\154", ItemType, ItemId)
+    assert(DataMgr[ItemType][ItemId], "未找到对应配饰信息：", ItemType, ItemId)
     local HeadInfo = DataMgr[ItemType][ItemId]
     self.ParentWidget.Panel_Hold:SetVisibility(ESlateVisibility.Collapsed)
     if "HeadSculpture" == ItemType then

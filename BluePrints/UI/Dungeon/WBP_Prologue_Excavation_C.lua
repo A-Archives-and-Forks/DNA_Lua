@@ -51,12 +51,12 @@ function WBP_Prologue_Excavation_C:OnExcavationItemChange(Type, Eid)
     table.insert(self.Eids, Eid)
     local GameInstance = UE4.UGameplayStatics.GetGameInstance(self)
     if nil == GameInstance then
-      DebugPrint("OnExcavationItemChange: GameInstance \228\184\141\229\173\152\229\156\168")
+      DebugPrint("OnExcavationItemChange: GameInstance 不存在")
       return
     end
     local SceneManager = GameInstance:GetSceneManager()
     if nil == SceneManager then
-      DebugPrint("OnExcavationItemChange: SceneManager \228\184\141\229\173\152\229\156\168")
+      DebugPrint("OnExcavationItemChange: SceneManager 不存在")
       return
     end
     local NewEnergyBarData = NewObject(UE4.LoadClass(UIConst.DUNGEONEXCAVATIONENERGYBARDATA))

@@ -71,7 +71,7 @@ end
 
 function M:InitShopTabInfo(MainTabIdx, SubTabIdx, ShopType)
   local MainShopTabData = DataMgr.Shop[ShopType]
-  assert(MainShopTabData, "\232\142\183\229\143\150\229\149\134\229\186\151\231\177\187\229\158\139\228\191\161\230\129\175\229\164\177\232\180\165:" .. ShopType)
+  assert(MainShopTabData, "获取商店类型信息失败:" .. ShopType)
   self:LoadShopTabInfo(MainShopTabData)
   self.Common_Tab:Init({
     LeftKey = "Q",

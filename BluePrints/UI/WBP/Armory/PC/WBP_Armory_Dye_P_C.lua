@@ -736,7 +736,7 @@ function M:BackToColorList(BackState)
   elseif self.EMList_Special:GetIndexForItem(ListContent) >= 0 then
     self.EMList_Special:BP_NavigateToItem(ListContent)
   else
-    DebugPrint("Warning: \232\191\148\229\155\158\233\162\156\232\137\178\229\136\151\232\161\168\230\151\182\228\189\191\231\148\168\228\186\134\233\148\153\232\175\175\231\154\132\230\149\176\230\141\174", ColorContent and ColorContent.ColorId)
+    DebugPrint("Warning: 返回颜色列表时使用了错误的数据", ColorContent and ColorContent.ColorId)
     return self:BackToDefaultWidget()
   end
   if IsValid(BackState.Widget) then
@@ -753,7 +753,7 @@ function M:BackToResource(BackState)
   elseif self.EMList_Special:GetIndexForItem(ListContent) >= 0 then
     self.EMList_Special:BP_NavigateToItem(ListContent)
   else
-    DebugPrint("Warning: \232\191\148\229\155\158\232\181\132\230\186\144\229\136\151\232\161\168\230\151\182\228\189\191\231\148\168\228\186\134\233\148\153\232\175\175\231\154\132\230\149\176\230\141\174")
+    DebugPrint("Warning: 返回资源列表时使用了错误的数据")
     return self:BackToDefaultWidget()
   end
   if IsValid(BackState.Widget) then
@@ -772,7 +772,7 @@ function M:BackToNoramlDyeTab(BackState)
     end
     return self.List_Tab
   else
-    DebugPrint("Warning: \232\191\148\229\155\158\230\153\174\233\128\154\230\159\147\232\137\178Tab\230\151\182\228\189\191\231\148\168\228\186\134\233\148\153\232\175\175\231\154\132\230\149\176\230\141\174", BackContent and BackContent.Idx)
+    DebugPrint("Warning: 返回普通染色Tab时使用了错误的数据", BackContent and BackContent.Idx)
     return self:BackToDefaultWidget()
   end
 end

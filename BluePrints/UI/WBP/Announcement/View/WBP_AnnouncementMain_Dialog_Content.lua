@@ -106,18 +106,18 @@ end
 function M:OnBeforePopup(RawUrl, Frame)
   RawUrl = AnnouncementUtils:UrlDecode(RawUrl)
   local NewUrl = string.lower(RawUrl)
-  DebugPrint("\231\156\139\231\156\139Url\230\152\175\229\149\165 ", NewUrl)
+  DebugPrint("看看Url是啥 ", NewUrl)
   if string.find(NewUrl, "opengamesystem|") then
-    DebugPrint("\229\186\148\232\175\165\230\152\175\230\137\190\229\136\176\228\186\134\231\179\187\231\187\159\232\183\179\232\189\172\231\154\132\229\133\179\233\148\174\229\173\151\228\186\134")
+    DebugPrint("应该是找到了系统跳转的关键字了")
     if self.ShowTag ~= AnnounceCommon.ShowTag.InGame then
-      DebugPrint(ErrorTag, "\232\175\165\229\133\172\229\145\138\231\177\187\229\158\139\228\184\141\230\152\175\226\128\156\230\184\184\230\136\143\229\134\133\229\133\172\229\145\138\226\128\157\239\188\140\228\184\141\229\133\129\232\174\184\231\179\187\231\187\159\232\183\179\232\189\172\239\188\129\239\188\129\239\188\129\239\188\129\239\188\129\239\188\140\229\133\172\229\145\138\230\160\135\233\162\152\239\188\154", self.CurContent.Conf.NoticeTitle)
+      DebugPrint(ErrorTag, "该公告类型不是“游戏内公告”，不允许系统跳转！！！！！，公告标题：", self.CurContent.Conf.NoticeTitle)
     end
     local OpenGameSystemInfo = string.split(NewUrl, "opengamesystem|")
     OpenGameSystemInfo = string.split(OpenGameSystemInfo[#OpenGameSystemInfo], ",")
-    OpenGameSystemInfo = string.split(OpenGameSystemInfo[1], "\239\188\140")
+    OpenGameSystemInfo = string.split(OpenGameSystemInfo[1], "，")
     local SystemId = tonumber(OpenGameSystemInfo[1])
     if DataMgr.MainUI[SystemId].AnnouncementMain == "AnnouncementMain" then
-      DebugPrint(ErrorTag, "\229\133\172\229\145\138\228\184\141\229\135\134\232\135\170\229\183\177\232\183\179\232\135\170\229\183\177")
+      DebugPrint(ErrorTag, "公告不准自己跳自己")
       return
     end
     if SystemId then
@@ -127,7 +127,7 @@ function M:OnBeforePopup(RawUrl, Frame)
       
       self.Owner:OnCloseBtnClicked()
     else
-      DebugPrint(ErrorTag, "\232\175\165\229\133\172\229\145\138\231\154\132\232\183\179\232\189\172\232\182\133\233\147\190\230\142\165\230\160\188\229\188\143\228\184\141\229\175\185\239\188\140\228\184\141\229\133\129\232\174\184\231\179\187\231\187\159\232\183\179\232\189\172\239\188\129\239\188\129\239\188\129\239\188\129\239\188\129\239\188\140\229\133\172\229\145\138\230\160\135\233\162\152\239\188\154", self.CurContent.Conf.NoticeTitle)
+      DebugPrint(ErrorTag, "该公告的跳转超链接格式不对，不允许系统跳转！！！！！，公告标题：", self.CurContent.Conf.NoticeTitle)
     end
     return
   end
@@ -208,7 +208,7 @@ end
 function M:AddReddotListener(ReddotName, TabIdx)
   ReddotManager.AddListener(ReddotName, self, function(self, Count)
     if not self.Owner.DialogTitle then
-      DebugPrint(ErrorTag, LXYTag, "\229\133\172\229\145\138\229\188\185\231\170\151\231\154\132Tab\229\135\186\233\148\153\239\188\140\230\152\175\229\155\160\228\184\186\233\128\154\231\148\168\229\188\185\231\170\151\231\154\132Tab\229\136\157\229\167\139\229\140\150\230\151\182\229\186\143\230\148\185\228\186\134")
+      DebugPrint(ErrorTag, LXYTag, "公告弹窗的Tab出错，是因为通用弹窗的Tab初始化时序改了")
       return
     end
     local NodeConf = DataMgr.ReddotNode[ReddotName]

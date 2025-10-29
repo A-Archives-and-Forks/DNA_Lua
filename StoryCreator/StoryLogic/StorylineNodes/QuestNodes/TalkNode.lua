@@ -45,7 +45,7 @@ function TalkNode:Clear()
   GWorld.StoryMgr:UnbindNPCInteractiveTalk(self.NpcIdWithGender, self.BindId)
   if not self:IsNormalFinished() then
     local TS = TalkSubsystem()
-    assert(TS, "\229\175\185\232\175\157\231\179\187\231\187\159\229\191\133\233\161\187\229\173\152\229\156\168")
+    assert(TS, "对话系统必须存在")
     TS:ExceptionInterruptTaskBySTL(self.TalkTaskKey)
   end
   EventManager:RemoveEvent(EventID.OnUIPauseGame, self)
@@ -330,12 +330,12 @@ function TalkNode:StopStory()
 end
 
 function TalkNode:CalOutPortName(TalkNodeFinishType, OptionIndex)
-  assert(TalkNodeFinishType, "\229\175\185\232\175\157\232\138\130\231\130\185\229\174\140\230\136\144\231\177\187\229\158\139\228\184\141\232\131\189\228\184\186\231\169\186")
+  assert(TalkNodeFinishType, "对话节点完成类型不能为空")
   local OutPortName = TalkNodeFinishType
   if TalkNodeFinishType == ETalkNodeFinishType.Out then
     OutPortName = "Out"
   elseif TalkNodeFinishType == ETalkNodeFinishType.Option then
-    assert(OptionIndex, "\229\175\185\232\175\157\232\138\130\231\130\185\229\174\140\230\136\144\231\177\187\229\158\139\228\184\186Option\230\151\182\239\188\140\233\128\137\233\161\185\231\180\162\229\188\149\228\184\141\232\131\189\228\184\186\231\169\186")
+    assert(OptionIndex, "对话节点完成类型为Option时，选项索引不能为空")
     OutPortName = "Option_" .. OptionIndex
   elseif TalkNodeFinishType == ETalkNodeFinishType.Fail then
     OutPortName = "Fail"

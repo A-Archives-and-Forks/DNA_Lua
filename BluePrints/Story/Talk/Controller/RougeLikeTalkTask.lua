@@ -44,7 +44,7 @@ function FRougeLikeTalkTask:PlayDialogue()
       return
     end
   else
-    DebugPrint("lhr@Dialogue Iteration Error: NodeType", NodeType, "\228\184\141\229\144\136\230\179\149")
+    DebugPrint("lhr@Dialogue Iteration Error: NodeType", NodeType, "不合法")
     return
   end
 end

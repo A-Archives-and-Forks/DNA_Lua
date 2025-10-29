@@ -8,7 +8,7 @@ local WARNING_TIME = 10
 function WBP_Abyss_Progress_C:OnLoaded(...)
   WBP_Abyss_Progress_C.Super.OnLoaded(self, ...)
   local BattleMain = UIManager(self):GetUIObj("BattleMain")
-  assert(BattleMain, "WBP_Abyss_Progress_C \229\138\160\232\189\189\230\151\182\230\139\191\228\184\141\229\136\176BattleMain\239\188\129")
+  assert(BattleMain, "WBP_Abyss_Progress_C 加载时拿不到BattleMain！")
   BattleMain.Pos_Abyss_CountDown_1:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
   BattleMain.Pos_Abyss_CountDown_1:AddChildToOverlay(self)
   self:InitUi()

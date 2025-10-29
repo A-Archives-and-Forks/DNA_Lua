@@ -208,7 +208,7 @@ function GoToRegionNode:CheckResurgencePoint()
       return
     end
     if self.RegionId ~= QuestCoordinate.SubRegionId then
-      local Message = "GoToRegionNode\230\137\128\229\156\168\228\187\187\229\138\161\233\147\190\231\154\132StoryNode\233\156\128\232\166\129\233\133\141\231\189\174ResurgencePoint" .. [[
+      local Message = "GoToRegionNode所在任务链的StoryNode需要配置ResurgencePoint" .. [[
 
 FileName:]] .. self.Context.FileName .. [[
 
@@ -217,7 +217,7 @@ QuestChainId:]] .. self.Context.QuestChainId .. [[
 QuestId:]] .. self.Context.QuestId .. [[
 
 StoryNodeKey:]] .. self.Context.Data.key
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "GoToRegionNode\230\137\128\229\156\168\228\187\187\229\138\161\233\147\190\231\154\132StoryNode\233\156\128\232\166\129\233\133\141\231\189\174ResurgencePoint", Message)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "GoToRegionNode所在任务链的StoryNode需要配置ResurgencePoint", Message)
       return
     end
   end

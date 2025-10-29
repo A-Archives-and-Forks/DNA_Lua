@@ -84,7 +84,7 @@ function M:GetCurrentDyePlanInfo()
     end
   end
   local PlanNames = Parent:GetPlanNames()
-  DyePlanInfo.PlanName = PlanNames[CurrentPlan] or "\230\150\185\230\161\136" .. CurrentPlan
+  DyePlanInfo.PlanName = PlanNames[CurrentPlan] or "方案" .. CurrentPlan
   local Colors = CurrentSkin:GetColors(CurrentPlan)
   DyePlanInfo.Colors = {}
   for i = 1, Parent.ColorPartCount do

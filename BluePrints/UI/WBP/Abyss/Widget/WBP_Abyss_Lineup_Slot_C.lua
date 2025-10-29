@@ -89,7 +89,7 @@ end
 function WBP_Abyss_Lineup_Slot_C:SetRarity(Rarity)
   if not Rarity then
     self.Img_Quality:SetVisibility(UE4.ESlateVisibility.Collapsed)
-    DebugPrint("lhr@WBP_Abyss_Lineup_Slot_C:SetRarity@ \231\168\128\230\156\137\229\186\166\230\151\160\230\149\136")
+    DebugPrint("lhr@WBP_Abyss_Lineup_Slot_C:SetRarity@ 稀有度无效")
     return
   end
   if self.IsExpanded then
@@ -103,7 +103,7 @@ end
 
 function WBP_Abyss_Lineup_Slot_C:SetIcon(IconPath)
   if not IconPath then
-    DebugPrint("lhr@WBP_Abyss_Lineup_Slot_C:SetIcon@ \229\155\190\230\160\135\232\183\175\229\190\132\230\151\160\230\149\136")
+    DebugPrint("lhr@WBP_Abyss_Lineup_Slot_C:SetIcon@ 图标路径无效")
     self:SetEmptyIcon()
     return
   end
@@ -164,7 +164,7 @@ function WBP_Abyss_Lineup_Slot_C:OnClicked(bNotToList)
   if self.LineupPage then
     self.LineupPage:SlotSelectionChanged(self.SlotName, self.DungeonIndex, not bNotToList)
   else
-    DebugPrint("lhr@WBP_Abyss_Lineup_Slot_C:OnClicked\239\188\140\233\152\181\229\174\185\233\133\141\231\189\174\231\149\140\233\157\162\229\164\177\230\149\136")
+    DebugPrint("lhr@WBP_Abyss_Lineup_Slot_C:OnClicked，阵容配置界面失效")
   end
 end
 

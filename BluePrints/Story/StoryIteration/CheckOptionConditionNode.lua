@@ -34,7 +34,7 @@ end
 
 function Node:GenerateNextNodes()
   if not self.NextDialogue or not self.NextOptions then
-    DebugPrint("CheckOptionConditionNode@GenerateNextNodes: NextDialogue\230\136\150NextOptions\228\184\186\231\169\186", self.NextDialogue, self.NextOptions)
+    DebugPrint("CheckOptionConditionNode@GenerateNextNodes: NextDialogue或NextOptions为空", self.NextDialogue, self.NextOptions)
     return
   end
   local NextNode = self.IterGraph:GetOrCreateNode("Dialogue", self.NextDialogue)

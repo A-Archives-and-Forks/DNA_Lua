@@ -491,7 +491,7 @@ function WBP_Pet_Capture_C:InitSnacks()
   self.SnackBlueIcon = "/Game/UI/Texture/Dynamic/Atlas/Prop/Item/T_Resource_PetFood01.T_Resource_PetFood01"
   local Item = self.Snack_Green.Item_Snacks
   Item:SetIcon(self.SnackBlueIcon)
-  Item:SetName("\226\136\158")
+  Item:SetName("∞")
   Item.Content = {}
   Item:SetRarity(2)
   Item:BindEventOnMouseButtonUp(self, function()

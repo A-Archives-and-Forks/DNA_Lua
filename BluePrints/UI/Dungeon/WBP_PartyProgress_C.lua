@@ -161,7 +161,7 @@ function M:OnPartyProgressUpdate()
     return
   end
   self.PartyPlayerDisPercentValues = GameState.PartyPlayerDisPercentValues
-  DebugPrint("zwk \230\180\190\229\175\185\229\189\147\229\137\141\228\186\186\230\149\176\239\188\154", self.PartyPlayerDisPercentValues:Num())
+  DebugPrint("zwk 派对当前人数：", self.PartyPlayerDisPercentValues:Num())
   if not self.PartyPlayerDisPercentValues then
     return
   end

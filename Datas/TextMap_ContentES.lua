@@ -33,11 +33,11 @@ local Data = {
           TextMapId = "ChatCharacter34"
         },
         UI_SystemNotice_TestContent = {
-          ContentES = "\232\165\191\232\175\173\230\181\139\232\175\149\230\150\135\230\156\172",
+          ContentES = "西语测试文本",
           TextMapId = "UI_SystemNotice_TestContent"
         },
         UI_SystemNotice_Title = {
-          ContentES = "\232\165\191\232\175\173\230\181\139\232\175\149\230\150\135\230\156\172",
+          ContentES = "西语测试文本",
           TextMapId = "UI_SystemNotice_Title"
         },
         VoiceDes001 = {
@@ -57,7 +57,7 @@ local Data = {
           TextMapId = "VoiceDes004"
         },
         VoiceDes005 = {
-          ContentES = "Saludos de cumplea\195\177os",
+          ContentES = "Saludos de cumpleaños",
           TextMapId = "VoiceDes005"
         },
         VoiceDes006 = {
@@ -65,7 +65,7 @@ local Data = {
           TextMapId = "VoiceDes006"
         },
         VoiceDes007 = {
-          ContentES = "Ascensi\195\179n",
+          ContentES = "Ascensión",
           TextMapId = "VoiceDes007"
         },
         VoiceDes008 = {
@@ -113,7 +113,7 @@ local Data = {
           TextMapId = "VoiceDes020"
         },
         VoiceDes021 = {
-          ContentES = "Resurrecci\195\179n",
+          ContentES = "Resurrección",
           TextMapId = "VoiceDes021"
         },
         VoiceDes022 = {
@@ -141,7 +141,7 @@ local Data = {
           TextMapId = "VoiceDes027"
         },
         VoiceDes028 = {
-          ContentES = "Doblaje pr\195\179ximamente",
+          ContentES = "Doblaje próximamente",
           TextMapId = "VoiceDes028"
         },
         VoiceDes031 = {
@@ -225,7 +225,7 @@ local Data = {
           TextMapId = "VoiceDes050"
         },
         VoiceDes051 = {
-          ContentES = "Sobre los d\195\173as lluviosos",
+          ContentES = "Sobre los días lluviosos",
           TextMapId = "VoiceDes051"
         },
         VoiceDes052 = {
@@ -245,7 +245,7 @@ local Data = {
           TextMapId = "VoiceDes055"
         },
         VoiceDes056 = {
-          ContentES = "\194\191Por qu\195\169 est\195\161s aqu\195\173?",
+          ContentES = "¿Por qué estás aquí?",
           TextMapId = "VoiceDes056"
         },
         VoiceDes057 = {
@@ -257,7 +257,7 @@ local Data = {
           TextMapId = "VoiceDes058"
         },
         VoiceDes059 = {
-          ContentES = "Sobre la Legi\195\179n",
+          ContentES = "Sobre la Legión",
           TextMapId = "VoiceDes059"
         },
         VoiceDes060 = {
@@ -265,11 +265,11 @@ local Data = {
           TextMapId = "VoiceDes060"
         },
         VoiceDes061 = {
-          ContentES = "Estoy cansado/a\226\128\166",
+          ContentES = "Estoy cansado/a…",
           TextMapId = "VoiceDes061"
         },
         VoiceDes062 = {
-          ContentES = "Sobre la imitaci\195\179n",
+          ContentES = "Sobre la imitación",
           TextMapId = "VoiceDes062"
         },
         VoiceDes063 = {
@@ -281,7 +281,7 @@ local Data = {
           TextMapId = "VoiceDes064"
         },
         VoiceDes065 = {
-          ContentES = "Sobre tu t\195\173tulo",
+          ContentES = "Sobre tu título",
           TextMapId = "VoiceDes065"
         },
         VoiceDes066 = {
@@ -289,7 +289,7 @@ local Data = {
           TextMapId = "VoiceDes066"
         },
         VoiceDes067 = {
-          ContentES = "Sobre la soluci\195\179n a los problemas",
+          ContentES = "Sobre la solución a los problemas",
           TextMapId = "VoiceDes067"
         },
         VoiceDes068 = {
@@ -329,7 +329,7 @@ local Data = {
           TextMapId = "VoiceDes076"
         },
         VoiceDes077 = {
-          ContentES = "Sobre la jardiner\195\173a",
+          ContentES = "Sobre la jardinería",
           TextMapId = "VoiceDes077"
         },
         VoiceDes078 = {
@@ -353,7 +353,7 @@ local Data = {
           TextMapId = "VoiceDes082"
         },
         VoiceDes083 = {
-          ContentES = "Sobre los sue\195\177os",
+          ContentES = "Sobre los sueños",
           TextMapId = "VoiceDes083"
         },
         VoiceDes084 = {
@@ -377,11 +377,11 @@ local Data = {
           TextMapId = "VoiceDes088"
         },
         VoiceDes089 = {
-          ContentES = "\194\191En qu\195\169 est\195\161s ocupado/a?",
+          ContentES = "¿En qué estás ocupado/a?",
           TextMapId = "VoiceDes089"
         },
         VoiceDes090 = {
-          ContentES = "Sobre la 13.\194\170 Legi\195\179n",
+          ContentES = "Sobre la 13.ª Legión",
           TextMapId = "VoiceDes090"
         },
         VoiceDes091 = {
@@ -429,7 +429,7 @@ local Data = {
           TextMapId = "VoiceDes101"
         },
         VoiceDes102 = {
-          ContentES = "Sobre tu t\195\173tulo",
+          ContentES = "Sobre tu título",
           TextMapId = "VoiceDes102"
         },
         VoiceDes103 = {
@@ -441,7 +441,7 @@ local Data = {
           TextMapId = "VoiceDes104"
         },
         VoiceDes105 = {
-          ContentES = "Sobre los sue\195\177os",
+          ContentES = "Sobre los sueños",
           TextMapId = "VoiceDes105"
         },
         VoiceDes106 = {
@@ -477,7 +477,7 @@ local Data = {
           TextMapId = "VoiceDes113"
         },
         VoiceDes114 = {
-          ContentES = "Sobre el estado de \195\161nimo",
+          ContentES = "Sobre el estado de ánimo",
           TextMapId = "VoiceDes114"
         },
         VoiceDes115 = {
@@ -497,19 +497,19 @@ local Data = {
           TextMapId = "VoiceDes118"
         },
         VoiceDes119 = {
-          ContentES = "Sobre su arm\195\179nica \226\133\160",
+          ContentES = "Sobre su armónica Ⅰ",
           TextMapId = "VoiceDes119"
         },
         VoiceDes120 = {
-          ContentES = "Sobre su arm\195\179nica \226\133\161",
+          ContentES = "Sobre su armónica Ⅱ",
           TextMapId = "VoiceDes120"
         },
         VoiceDes121 = {
-          ContentES = "Sobre la Legi\195\179n \226\133\160",
+          ContentES = "Sobre la Legión Ⅰ",
           TextMapId = "VoiceDes121"
         },
         VoiceDes122 = {
-          ContentES = "Sobre la Legi\195\179n \226\133\161",
+          ContentES = "Sobre la Legión Ⅱ",
           TextMapId = "VoiceDes122"
         },
         VoiceDes123 = {
@@ -525,7 +525,7 @@ local Data = {
           TextMapId = "VoiceDes125"
         },
         VoiceDes126 = {
-          ContentES = "Sobre la actuaci\195\179n",
+          ContentES = "Sobre la actuación",
           TextMapId = "VoiceDes126"
         },
         VoiceDes127 = {
@@ -557,7 +557,7 @@ local Data = {
           TextMapId = "VoiceDes133"
         },
         VoiceDes134 = {
-          ContentES = "Sobre la rebeli\195\179n",
+          ContentES = "Sobre la rebelión",
           TextMapId = "VoiceDes134"
         },
         VoiceDes135 = {
@@ -589,7 +589,7 @@ local Data = {
           TextMapId = "VoiceDes141"
         },
         VoiceDes142 = {
-          ContentES = "Sobre las t\195\169cnicas",
+          ContentES = "Sobre las técnicas",
           TextMapId = "VoiceDes142"
         },
         VoiceDes143 = {

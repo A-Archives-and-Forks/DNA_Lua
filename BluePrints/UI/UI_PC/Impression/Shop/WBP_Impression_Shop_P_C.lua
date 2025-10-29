@@ -144,7 +144,7 @@ function M:UpdateResource()
   local Data = DataMgr.ImpressionResource[SubRegionId]
   local ResourceId = 3001
   if not Data then
-    Utils.ScreenPrint("Error: ImpressionResource\228\184\173\230\156\170\233\133\141\231\189\174\229\189\147\229\137\141RegionId" .. SubRegionId)
+    Utils.ScreenPrint("Error: ImpressionResource中未配置当前RegionId" .. SubRegionId)
   else
     ResourceId = Data.ResourceId
   end

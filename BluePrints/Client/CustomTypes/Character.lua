@@ -241,7 +241,7 @@ function Char:Data()
   if not CData then
     CData = DataMgr.BattleChar[self.CharId]
     if not CData and not skynet then
-      DebugPrint("ERROR::", string.format("\232\167\146\232\137\178Id%s \230\151\160\230\149\136\239\188\140\229\133\136\230\155\180\230\150\176\239\188\140\228\184\141\232\166\129\231\148\168\232\128\129\229\143\183\239\188\140\231\148\168\230\150\176\229\143\183\233\135\141\232\175\149\239\188\140\232\191\152\230\156\137\233\151\174\233\162\152\229\176\177\230\137\190\231\173\150\229\136\146\230\163\128\230\159\165\228\184\139Char\232\161\168\228\191\174\230\148\185\230\152\175\229\144\166\229\144\140\230\173\165\229\136\176\229\143\140\231\171\175", self.CharId))
+      DebugPrint("ERROR::", string.format("角色Id%s 无效，先更新，不要用老号，用新号重试，还有问题就找策划检查下Char表修改是否同步到双端", self.CharId))
     end
   end
   return CData
@@ -822,7 +822,7 @@ function Char:CalcAddonAttr(BaseValues, ModRateValues, ModAddValues)
           if "ATK" == AttrName then
             for _AttrName, _ in pairs(DataMgr.Attribute) do
               if AttrData.Value then
-                assert(nil, AddonData.AttrId .. "\229\143\183\233\162\157\229\164\150\229\177\158\230\128\167\228\184\141\229\133\129\232\174\184\228\189\191\231\148\168Value\229\162\158\229\138\160ATK")
+                assert(nil, AddonData.AttrId .. "号额外属性不允许使用Value增加ATK")
               end
               self:CalcOneAttrs("ATK_" .. _AttrName, BaseValues, ModRateValues, CommonConst.RateIndex.GlobalATK, ModAddValues, AttrData)
             end
@@ -845,7 +845,7 @@ function Char:CalcOneAttrs(AttrName, BaseValues, ModRateValues, RateIndex, ModAd
     if type(AttrData.Rate) == "number" then
       IncreaseRateValue = AttrData.Rate
     else
-      assert(nil, "\233\162\157\229\164\150\229\177\158\230\128\167\228\184\141\229\133\129\232\174\184\229\161\171\229\134\153string")
+      assert(nil, "额外属性不允许填写string")
     end
     ModRateValues[RateIndex] = (ModRateValues[RateIndex] or 0) + IncreaseRateValue
   end
@@ -854,7 +854,7 @@ function Char:CalcOneAttrs(AttrName, BaseValues, ModRateValues, RateIndex, ModAd
     if "number" == type(AttrData.Value) then
       IncreaseValue = AttrData.Value
     else
-      assert(nil, "\233\162\157\229\164\150\229\177\158\230\128\167\228\184\141\229\133\129\232\174\184\229\161\171\229\134\153string")
+      assert(nil, "额外属性不允许填写string")
     end
     ModAddValues[AttrName] = (ModAddValues[AttrName] or 0) + IncreaseValue
   end

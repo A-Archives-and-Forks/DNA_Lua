@@ -379,7 +379,7 @@ function Component:SetShopDiscount(_ShopDiscount)
 end
 
 function Component:SetStoryId(_StoryId)
-  DebugPrint("@zyh \229\143\145\231\148\159\229\137\167\230\131\133\228\186\139\228\187\182", _StoryId)
+  DebugPrint("@zyh 发生剧情事件", _StoryId)
   self.StoryId = _StoryId
 end
 

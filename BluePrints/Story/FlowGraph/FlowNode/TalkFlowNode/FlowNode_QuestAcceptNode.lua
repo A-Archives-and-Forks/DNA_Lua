@@ -23,7 +23,7 @@ function M:InitCameraSequence()
   self.CameraSequenceActor = self:GetWorld():SpawnActor(ALevelSequenceActor)
   if not IsValid(self.CameraSequenceActor) then
     local Message = string.format("%s start failed, CameraSequenceActor is invalid", self:GetName())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\230\148\175\231\186\191\230\142\165\229\143\150\232\138\130\231\130\185", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "支线接取节点", Message)
     return
   end
   self.CameraSequenceActor.CameraSettings.bOverrideAspectRatioAxisConstraint = false

@@ -19,7 +19,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100205,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 101,
-    StoryPath = "SpecialQuest\\1002\\IcelakeHunting.story",
+    StoryPath = "SpecialQuest\d2\\IcelakeHunting.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1180295,
     UniversalConfigId = 101
@@ -29,7 +29,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100208,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 102,
-    StoryPath = "SpecialQuest\\1002\\SaiqiDream1.story",
+    StoryPath = "SpecialQuest\d2\\SaiqiDream1.story",
     SubRegionIds = T.RT_5,
     UniversalConfigId = 102
   },
@@ -38,7 +38,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100208,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 103,
-    StoryPath = "SpecialQuest\\1002\\SaiqiDream2.story",
+    StoryPath = "SpecialQuest\d2\\SaiqiDream2.story",
     SubRegionIds = T.RT_5,
     UniversalConfigId = 103
   },
@@ -47,7 +47,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100208,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 104,
-    StoryPath = "SpecialQuest\\1002\\SaiqiDreamBoss1.story",
+    StoryPath = "SpecialQuest\d2\\SaiqiDreamBoss1.story",
     SubRegionIds = T.RT_7,
     UniversalConfigId = 104
   },
@@ -56,7 +56,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100208,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 105,
-    StoryPath = "SpecialQuest\\1002\\SaiqiDreamBoss2.story",
+    StoryPath = "SpecialQuest\d2\\SaiqiDreamBoss2.story",
     SubRegionIds = T.RT_7,
     UniversalConfigId = 105
   },
@@ -65,7 +65,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100206,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 106,
-    StoryPath = "SpecialQuest\\1002\\SaiqiWalk.story",
+    StoryPath = "SpecialQuest\d2\\SaiqiWalk.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1240108,
     UniversalConfigId = 106
@@ -75,7 +75,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100206,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 107,
-    StoryPath = "SpecialQuest\\1002\\SaiqiWalk2.story",
+    StoryPath = "SpecialQuest\d2\\SaiqiWalk2.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1240260,
     UniversalConfigId = 107
@@ -85,7 +85,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100203,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 109,
-    StoryPath = "SpecialQuest\\1002\\KKPart02.story",
+    StoryPath = "SpecialQuest\d2\\KKPart02.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1380018,
     UniversalConfigId = 109
@@ -95,7 +95,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100203,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 110,
-    StoryPath = "SpecialQuest\\1002\\SJZBOSS.story",
+    StoryPath = "SpecialQuest\d2\\SJZBOSS.story",
     TriggerBoxStaticCreatorId = 1440071,
     UniversalConfigId = 110
   },
@@ -104,7 +104,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100207,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 111,
-    StoryPath = "SpecialQuest\\1002\\IcelakeBoss.story",
+    StoryPath = "SpecialQuest\d2\\IcelakeBoss.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1240109,
     UniversalConfigId = 111
@@ -114,7 +114,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100202,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 114,
-    StoryPath = "SpecialQuest\\1002\\SewThief3.story",
+    StoryPath = "SpecialQuest\d2\\SewThief3.story",
     TriggerBoxStaticCreatorId = 1730063,
     UniversalConfigId = 112
   },
@@ -123,7 +123,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100207,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 115,
-    StoryPath = "SpecialQuest\\1002\\FindSaiqi1.story",
+    StoryPath = "SpecialQuest\d2\\FindSaiqi1.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1180431,
     UniversalConfigId = 113
@@ -133,7 +133,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100207,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 116,
-    StoryPath = "SpecialQuest\\1002\\FindSaiqi2.story",
+    StoryPath = "SpecialQuest\d2\\FindSaiqi2.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1240290,
     UniversalConfigId = 114
@@ -143,7 +143,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100207,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 117,
-    StoryPath = "SpecialQuest\\1002\\IcelakeBoss2.story",
+    StoryPath = "SpecialQuest\d2\\IcelakeBoss2.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1240690,
     UniversalConfigId = 117
@@ -153,7 +153,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100201,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 118,
-    StoryPath = "SpecialQuest\\1002\\TrafficwayFight.story",
+    StoryPath = "SpecialQuest\d2\\TrafficwayFight.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1241024,
     UniversalConfigId = 118
@@ -163,7 +163,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100206,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 120,
-    StoryPath = "SpecialQuest\\1002\\TraceEnlike.story",
+    StoryPath = "SpecialQuest\d2\\TraceEnlike.story",
     SubRegionIds = T.RT_9,
     TalkTriggerId = 1001,
     UniversalConfigId = 120
@@ -184,7 +184,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110101,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1003,
-    StoryPath = "SpecialQuest\\1101\\110102boss.story",
+    StoryPath = "SpecialQuest\n1\n102boss.story",
     SubRegionIds = T.RT_3,
     TalkTriggerId = 1001,
     UniversalConfigId = 1003
@@ -194,7 +194,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110101,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1004,
-    StoryPath = "SpecialQuest\\1101\\ProtectDafu.story",
+    StoryPath = "SpecialQuest\n1\\ProtectDafu.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1640042,
     UniversalConfigId = 1004
@@ -203,7 +203,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110103,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1005,
-    StoryPath = "SpecialQuest\\1101\\DestroyPower.story",
+    StoryPath = "SpecialQuest\n1\\DestroyPower.story",
     SubRegionIds = T.RT_3,
     TalkTriggerId = 1001,
     UniversalConfigId = 1005
@@ -212,7 +212,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110107,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1006,
-    StoryPath = "SpecialQuest\\1101\\110110boss.story",
+    StoryPath = "SpecialQuest\n1\n110boss.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1650074,
     UniversalConfigId = 1006
@@ -222,7 +222,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110105,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1008,
-    StoryPath = "SpecialQuest\\1101\\Tuiche.story",
+    StoryPath = "SpecialQuest\n1\\Tuiche.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1650073,
     UniversalConfigId = 1008
@@ -232,7 +232,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110105,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1009,
-    StoryPath = "SpecialQuest\\1101\\Paoji.story",
+    StoryPath = "SpecialQuest\n1\\Paoji.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1650072,
     UniversalConfigId = 1009
@@ -241,7 +241,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110101,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1010,
-    StoryPath = "SpecialQuest\\1101\\void.story",
+    StoryPath = "SpecialQuest\n1\\void.story",
     SubRegionIds = {100104},
     TalkTriggerId = 1001,
     UniversalConfigId = 1010
@@ -251,7 +251,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110101,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1011,
-    StoryPath = "SpecialQuest\\1101\\HelpDafu.story",
+    StoryPath = "SpecialQuest\n1\\HelpDafu.story",
     SubRegionIds = T.RT_3,
     TalkTriggerId = 1001,
     UniversalConfigId = 1011
@@ -261,7 +261,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110108,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1012,
-    StoryPath = "SpecialQuest\\1101\\Sew.story",
+    StoryPath = "SpecialQuest\n1\\Sew.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1670017,
     UniversalConfigId = 1012
@@ -270,7 +270,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110108,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1013,
-    StoryPath = "SpecialQuest\\1101\\SewBegin.story",
+    StoryPath = "SpecialQuest\n1\\SewBegin.story",
     SubRegionIds = {102103},
     TalkTriggerId = 1001,
     UniversalConfigId = 1013
@@ -280,7 +280,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110109,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1014,
-    StoryPath = "SpecialQuest\\1101\\Shenpan01.story",
+    StoryPath = "SpecialQuest\n1\\Shenpan01.story",
     SubRegionIds = T.RT_4,
     TalkTriggerId = 1001,
     UniversalConfigId = 1014
@@ -289,7 +289,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110109,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1015,
-    StoryPath = "SpecialQuest\\1101\\HaierBoss3.story",
+    StoryPath = "SpecialQuest\n1\\HaierBoss3.story",
     SubRegionIds = T.RT_4,
     TalkTriggerId = 1001,
     UniversalConfigId = 1015
@@ -299,7 +299,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110107,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1017,
-    StoryPath = "SpecialQuest\\1101\\Wake.story",
+    StoryPath = "SpecialQuest\n1\\Wake.story",
     SubRegionIds = {102102},
     TalkTriggerId = 1001,
     UniversalConfigId = 1017
@@ -308,7 +308,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110108,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1018,
-    StoryPath = "SpecialQuest\\1101\\Maifu.story",
+    StoryPath = "SpecialQuest\n1\\Maifu.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1650281,
     UniversalConfigId = 1018
@@ -318,7 +318,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110107,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1019,
-    StoryPath = "SpecialQuest\\1101\\ZhongKongJIGUAN.story",
+    StoryPath = "SpecialQuest\n1\\ZhongKongJIGUAN.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1650329,
     UniversalConfigId = 1019
@@ -327,7 +327,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110103,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1021,
-    StoryPath = "SpecialQuest\\1101\\SmallRoomBattle.story",
+    StoryPath = "SpecialQuest\n1\\SmallRoomBattle.story",
     SubRegionIds = T.RT_3,
     TalkTriggerId = 1001,
     UniversalConfigId = 1021
@@ -336,7 +336,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110103,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1023,
-    StoryPath = "SpecialQuest\\1101\\StopPower.story",
+    StoryPath = "SpecialQuest\n1\\StopPower.story",
     SubRegionIds = T.RT_3,
     TalkTriggerId = 1001,
     UniversalConfigId = 1023
@@ -346,7 +346,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110109,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1024,
-    StoryPath = "SpecialQuest\\1101\\Shenpan02.story",
+    StoryPath = "SpecialQuest\n1\\Shenpan02.story",
     SubRegionIds = T.RT_4,
     TalkTriggerId = 1001,
     UniversalConfigId = 1024
@@ -356,7 +356,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110109,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1025,
-    StoryPath = "SpecialQuest\\1101\\Shenpan03.story",
+    StoryPath = "SpecialQuest\n1\\Shenpan03.story",
     SubRegionIds = T.RT_4,
     TalkTriggerId = 1001,
     UniversalConfigId = 1025
@@ -365,7 +365,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110105,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1026,
-    StoryPath = "SpecialQuest\\1101\\GuidaoMaiFu.story",
+    StoryPath = "SpecialQuest\n1\\GuidaoMaiFu.story",
     SubRegionIds = T.RT_3,
     TalkTriggerId = 1001,
     UniversalConfigId = 1026
@@ -376,7 +376,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100305,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1028,
-    StoryPath = "SpecialQuest\\1003\\100305battle1pre.story",
+    StoryPath = "SpecialQuest\d3\d305battle1pre.story",
     SubRegionIds = T.RT_6,
     TalkTriggerId = 1001,
     UniversalConfigId = 1030
@@ -387,7 +387,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100305,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1029,
-    StoryPath = "SpecialQuest\\1003\\100305escape.story",
+    StoryPath = "SpecialQuest\d3\d305escape.story",
     SubRegionIds = T.RT_6,
     TalkTriggerId = 1001,
     UniversalConfigId = 1030
@@ -398,7 +398,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100305,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1030,
-    StoryPath = "SpecialQuest\\1003\\100305battle.story",
+    StoryPath = "SpecialQuest\d3\d305battle.story",
     SubRegionIds = T.RT_6,
     TalkTriggerId = 1001,
     UniversalConfigId = 1030
@@ -409,7 +409,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100305,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1031,
-    StoryPath = "SpecialQuest\\1003\\100305battle2.story",
+    StoryPath = "SpecialQuest\d3\d305battle2.story",
     SubRegionIds = T.RT_6,
     TalkTriggerId = 1001,
     UniversalConfigId = 1030
@@ -420,7 +420,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100305,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1032,
-    StoryPath = "SpecialQuest\\1003\\100305battle3.story",
+    StoryPath = "SpecialQuest\d3\d305battle3.story",
     SubRegionIds = T.RT_6,
     TalkTriggerId = 1001,
     UniversalConfigId = 1030
@@ -431,7 +431,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100305,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1033,
-    StoryPath = "SpecialQuest\\1003\\100305battle4.story",
+    StoryPath = "SpecialQuest\d3\d305battle4.story",
     SubRegionIds = T.RT_6,
     TalkTriggerId = 1001,
     UniversalConfigId = 1035
@@ -442,7 +442,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100305,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1034,
-    StoryPath = "SpecialQuest\\1003\\100305battle5.story",
+    StoryPath = "SpecialQuest\d3\d305battle5.story",
     SubRegionIds = T.RT_6,
     TalkTriggerId = 1001,
     UniversalConfigId = 1035
@@ -452,7 +452,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100302,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1035,
-    StoryPath = "SpecialQuest\\1003\\100302sewsp1.story",
+    StoryPath = "SpecialQuest\d3\d302sewsp1.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1730090,
     UniversalConfigId = 1032
@@ -462,7 +462,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100302,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1036,
-    StoryPath = "SpecialQuest\\1003\\100302sewsp2.story",
+    StoryPath = "SpecialQuest\d3\d302sewsp2.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1720202,
     UniversalConfigId = 1033
@@ -472,7 +472,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100302,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1037,
-    StoryPath = "SpecialQuest\\1003\\100302sewsp3.story",
+    StoryPath = "SpecialQuest\d3\d302sewsp3.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1720209,
     UniversalConfigId = 1035
@@ -482,7 +482,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100103,
     QuestFailTalkTriggerId = 100125,
     SpecialConfigId = 1040,
-    StoryPath = "SpecialQuest\\1001\\XibiBoss.story",
+    StoryPath = "SpecialQuest\d1\\XibiBoss.story",
     SubRegionIds = {100103},
     TalkTriggerId = 1001,
     UniversalConfigId = 1040
@@ -493,7 +493,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100305,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1041,
-    StoryPath = "SpecialQuest\\1003\\100306thea.story",
+    StoryPath = "SpecialQuest\d3\d306thea.story",
     SubRegionIds = T.RT_8,
     TalkTriggerId = 1001,
     UniversalConfigId = 1034
@@ -504,7 +504,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100306,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1042,
-    StoryPath = "SpecialQuest\\1003\\100306thea2.story",
+    StoryPath = "SpecialQuest\d3\d306thea2.story",
     SubRegionIds = T.RT_8,
     TalkTriggerId = 1001,
     UniversalConfigId = 1034
@@ -514,7 +514,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100304,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1043,
-    StoryPath = "SpecialQuest\\1003\\100303ilc.story",
+    StoryPath = "SpecialQuest\d3\d303ilc.story",
     SubRegionIds = T.RT_1,
     TalkTriggerId = 1001,
     UniversalConfigId = 1037
@@ -524,7 +524,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100304,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1044,
-    StoryPath = "SpecialQuest\\1003\\100303sew3spmain.story",
+    StoryPath = "SpecialQuest\d3\d303sew3spmain.story",
     SubRegionIds = {
       101701,
       101702,
@@ -538,7 +538,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100304,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1045,
-    StoryPath = "SpecialQuest\\1003\\100304secroutsideboss.story",
+    StoryPath = "SpecialQuest\d3\d304secroutsideboss.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1180564,
     UniversalConfigId = 1035
@@ -549,7 +549,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100305,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1046,
-    StoryPath = "SpecialQuest\\1003\\100306theaout.story",
+    StoryPath = "SpecialQuest\d3\d306theaout.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1191418,
     UniversalConfigId = 1034
@@ -569,7 +569,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110108,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1048,
-    StoryPath = "SpecialQuest\\1101\\ShenpanPre.story",
+    StoryPath = "SpecialQuest\n1\\ShenpanPre.story",
     SubRegionIds = T.RT_4,
     TalkTriggerId = 1001,
     UniversalConfigId = 1048
@@ -620,7 +620,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 100305,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1053,
-    StoryPath = "SpecialQuest\\1003\\100306thea1.story",
+    StoryPath = "SpecialQuest\d3\d306thea1.story",
     SubRegionIds = T.RT_8,
     TalkTriggerId = 1001,
     UniversalConfigId = 1034
@@ -660,7 +660,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 110109,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 1057,
-    StoryPath = "SpecialQuest\\1101\\ShenpanWaitDafu.story",
+    StoryPath = "SpecialQuest\n1\\ShenpanWaitDafu.story",
     SubRegionIds = T.RT_4,
     TalkTriggerId = 1001,
     UniversalConfigId = 1057
@@ -980,7 +980,7 @@ return ReadOnly("SpecialQuestConfig", {
     QuestChainId = 120002,
     QuestFailTalkTriggerId = 1002,
     SpecialConfigId = 12000208,
-    StoryPath = "SpecialQuest\\1200\\ZhiliuWalk.story",
+    StoryPath = "SpecialQuest\x0\\ZhiliuWalk.story",
     TalkTriggerId = 1001,
     TriggerBoxStaticCreatorId = 1191197,
     UniversalConfigId = 12000208

@@ -281,7 +281,7 @@ return ReadOnly("CountryRegionCode", {
   CN = {
     CountryRegionCode = "CN",
     MoneyCode = "CNY",
-    MoneySymbol = "\239\191\165",
+    MoneySymbol = "￥",
     ServerArea = "HMT"
   },
   CO = {

@@ -66,7 +66,7 @@ function M:InitMod(ModSuitInfo, bSelfMsg)
   self.TargetType = TargetType
   self.TargetId = TargetId
   self.Text_Plan:SetText(GText(ModSuitName))
-  local Conf, Name = nil, "\232\167\146\232\137\178\230\136\150\230\173\166\229\153\168\232\162\171\229\136\160\233\153\164\228\186\134!!!!"
+  local Conf, Name = nil, "角色或武器被删除了!!!!"
   if "Char" == TargetType then
     Conf = DataMgr.Char[TargetId]
     Name = Conf.CharName

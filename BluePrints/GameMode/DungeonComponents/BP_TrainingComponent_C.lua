@@ -43,7 +43,7 @@ function BP_TrainingComponent_C:CreateMonster(CreateInfo)
       while true do
         Creator = self.StaticCreators[Index]
         if nil == Creator then
-          DebugPrint("\232\174\173\231\187\131\229\156\186\229\136\183\230\128\170\239\188\154\229\136\183\230\128\170\231\130\185\228\184\141\232\182\179\239\188\140\230\156\137\230\128\170\231\137\169\230\178\161\229\136\134\233\133\141\229\136\176\229\136\183\230\128\170\231\130\185")
+          DebugPrint("训练场刷怪：刷怪点不足，有怪物没分配到刷怪点")
           return
         end
         if Creator.ChildEids:Num() <= 0 then

@@ -58,7 +58,7 @@ end
 function M:SetCharInfo(Id)
   local Path = DataMgr.Char[Id].Icon
   if nil == Path then
-    DebugPrint(Id .. "\229\155\190\231\137\135\232\183\175\229\190\132\228\184\141\229\173\152\229\156\168")
+    DebugPrint(Id .. "图片路径不存在")
     return
   end
   self.Icon_Head:SetBrushResourceObject(LoadObject(Path))

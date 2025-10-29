@@ -89,7 +89,7 @@ end
 function Component:CheckUIUnlocked_Internal(UIUnlockRuleId, bShowFailed)
   local UIUnlockInfo = DataMgr.UIUnlockRule[UIUnlockRuleId]
   if not UIUnlockInfo then
-    GWorld.logger.error("@@@ \230\137\128\230\159\165\232\175\162\232\167\163\233\148\129\231\154\132UIUnlockRuleId\228\184\141\229\156\168\232\161\168\229\134\133:" .. tostring(UIUnlockRuleId))
+    GWorld.logger.error("@@@ 所查询解锁的UIUnlockRuleId不在表内:" .. tostring(UIUnlockRuleId))
     return false
   end
   bShowFailed = bShowFailed or false
@@ -292,7 +292,7 @@ function Component:OnSystemFirstTimeUnlock_Internal(UIUnlockRuleId, OnFinishedCa
     return
   end
   if 1 == SystemInfo.IsHideUnlockPopup or self.bGMHideUnlockPopup then
-    DebugPrint("@@@UIUnlockMgr \233\154\144\232\151\143UI\232\167\163\233\148\129\232\161\168\231\142\176", UIUnlockRuleId)
+    DebugPrint("@@@UIUnlockMgr 隐藏UI解锁表现", UIUnlockRuleId)
     OnFinishedCallback()
     return
   end
@@ -398,7 +398,7 @@ end
 function Component:UIUnlockMgrOnConditionComplete(ConditionId)
   DebugPrint("@@@ UIUnlockMgr Received Condition Completed ", ConditionId)
   if self.ConditionMetCache[ConditionId] then
-    DebugPrint("UIUnlockMgrOnConditionComplete: \231\179\187\231\187\159\232\167\163\233\148\129\230\148\182\229\136\176\228\186\134\229\144\140\228\184\128Condition\231\154\132\229\164\154\230\172\161\229\174\140\230\136\144\233\128\154\231\159\165: " .. ConditionId)
+    DebugPrint("UIUnlockMgrOnConditionComplete: 系统解锁收到了同一Condition的多次完成通知: " .. ConditionId)
     return
   end
   if self.ConditionFirstMetEvents[ConditionId] then

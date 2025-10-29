@@ -88,7 +88,7 @@ function BP_PlayerCharacter_C:SetGamepadFromCache()
     return
   end
   local GamepadLayout = EMCache:Get("GamepadLayout")
-  DebugPrint("@zyh \232\142\183\229\143\150\229\136\176\231\154\132GamepadLayout", GamepadLayout)
+  DebugPrint("@zyh 获取到的GamepadLayout", GamepadLayout)
   if not GamepadLayout then
     local DefaultLayout = tonumber(DataMgr.Option.GamepadPreset.DefaultValue)
     EMCache:Set("GamepadLayout", DefaultLayout)
@@ -111,7 +111,7 @@ function BP_PlayerCharacter_C:SetMobileRotationFromCache()
     return
   end
   local EnableMobileRotation = EMCache:Get("EnableMobileRotation")
-  DebugPrint("@zyh \232\142\183\229\143\150\229\136\176\231\154\132EnableMobileRotation", EnableMobileRotation)
+  DebugPrint("@zyh 获取到的EnableMobileRotation", EnableMobileRotation)
   if nil == EnableMobileRotation then
     local DefaultValue = DataMgr.Option.EnableMobileRotation.DefaultValueM
     local ToBool = "True" == DefaultValue and true or false
@@ -701,7 +701,7 @@ function BP_PlayerCharacter_C:HandleDeadDuringQuest()
       self:RequestDeadAsyncTravel(RespawnPointParams)
     end)
   else
-    DebugPrint("Tianyi@ \230\137\190\228\184\141\229\136\176\229\164\141\230\180\187\231\130\185\239\188\140\232\181\176\229\140\186\229\159\159\229\164\141\230\180\187\233\128\187\232\190\145")
+    DebugPrint("Tianyi@ 找不到复活点，走区域复活逻辑")
     self:TryEnterDying()
   end
 end
@@ -727,11 +727,11 @@ function BP_PlayerCharacter_C:RealOnDead_Lua(KillMineRoleEid, KillMineSkillId, D
     if RespawnPoint then
       Battle(self):TeleportRecovery(self.Eid, RespawnPoint:K2_GetActorLocation(), RespawnPoint:K2_GetActorRotation(), DelayTime)
     else
-      DebugPrint("Tianyi@ \230\137\190\228\184\141\229\136\176\232\174\173\231\187\131\229\156\186\229\164\141\230\180\187\231\130\185")
+      DebugPrint("Tianyi@ 找不到训练场复活点")
       Battle(self):TeleportRecovery(self.Eid, FVector(2148.795166, -4042.718262, 2133), FRotator(0, 0, 0), DelayTime)
     end
   elseif self:IsDeadDuringQuest() then
-    DebugPrint("Tianyi@ \231\142\169\229\174\182\229\156\168\228\187\187\229\138\161\228\184\173\230\173\187\228\186\161")
+    DebugPrint("Tianyi@ 玩家在任务中死亡")
     self:HandleDeadDuringQuest()
   else
     self:TryEnterDying()
@@ -1254,7 +1254,7 @@ end
 function BP_PlayerCharacter_C:GetNickName()
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    return "\229\164\156\232\136\170\228\184\187\232\167\146\229\144\141"
+    return "夜航主角名"
   end
   if GWorld:IsStandAlone() then
     return Avatar.Nickname
@@ -2144,19 +2144,19 @@ end
 function BP_PlayerCharacter_C:_CheckCanChangeToMaster(ShowLog, CheckRegion)
   if not IsStandAlone(self) then
     if ShowLog then
-      GWorld.logger.error("\232\129\148\230\156\186\230\131\133\229\134\181\228\184\139\239\188\140\228\184\141\232\131\189\229\136\135\230\141\162\229\165\179\228\184\187")
+      GWorld.logger.error("联机情况下，不能切换女主")
     end
     return false
   end
   if self:CheckSkillIsBan(ESkillName.SwitchMasterOrHero) then
     if ShowLog then
-      GWorld.logger.error("\231\166\129\231\148\168\229\136\135\230\141\162\229\165\179\228\184\187\229\146\140\229\136\135\229\155\158\229\142\187\232\139\177\233\155\132\230\138\128\232\131\189")
+      GWorld.logger.error("禁用切换女主和切回去英雄技能")
     end
     return false
   end
   if self:CheckSkillInActive(ESkillName.SwitchMasterOrHero) then
     if ShowLog then
-      GWorld.logger.error("\229\136\135\230\141\162\229\165\179\228\184\187\229\146\140\229\136\135\229\155\158\229\142\187\232\139\177\233\155\132\230\138\128\232\131\189\230\156\170\230\191\128\230\180\187")
+      GWorld.logger.error("切换女主和切回去英雄技能未激活")
     end
     return false
   end
@@ -2164,28 +2164,28 @@ function BP_PlayerCharacter_C:_CheckCanChangeToMaster(ShowLog, CheckRegion)
   local DungeonId = GWorld.GameInstance:GetCurrentDungeonId()
   if DungeonId and DungeonId > 0 then
     if ShowLog then
-      GWorld.logger.error("\229\137\175\230\156\172\229\134\133\239\188\140\228\184\141\232\131\189\229\136\135\230\141\162\229\165\179\228\184\187")
+      GWorld.logger.error("副本内，不能切换女主")
     end
     return false
   end
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
     if ShowLog then
-      GWorld.logger.error("\230\178\161\230\156\137\232\191\158\230\142\165\230\156\141\229\138\161\229\153\168\239\188\140\228\184\141\232\131\189\229\136\135\230\141\162\229\165\179\228\184\187")
+      GWorld.logger.error("没有连接服务器，不能切换女主")
     end
     return false
   end
   local RegionId = Avatar:GetCurrentRegionId()
   if not RegionId or 0 == RegionId then
     if ShowLog then
-      GWorld.logger.error("\228\184\141\229\156\168\229\140\186\229\159\159\228\184\173\230\136\150\232\128\133\229\140\186\229\159\159\231\188\150\229\143\183\229\135\186\233\148\153\239\188\140\228\184\141\232\131\189\229\136\135\230\141\162\229\165\179\228\184\187")
+      GWorld.logger.error("不在区域中或者区域编号出错，不能切换女主")
     end
     return false
   end
   local RegionInfo = DataMgr.SubRegion[RegionId]
   if not RegionInfo then
     if ShowLog then
-      GWorld.logger.error("\228\184\141\229\156\168\229\140\186\229\159\159\228\184\173\230\136\150\232\128\133\229\140\186\229\159\159\231\188\150\229\143\183\229\135\186\233\148\153\239\188\140\228\184\141\232\131\189\229\136\135\230\141\162\229\165\179\228\184\187")
+      GWorld.logger.error("不在区域中或者区域编号出错，不能切换女主")
     end
     return false
   end
@@ -2196,7 +2196,7 @@ function BP_PlayerCharacter_C:CheckCanChangeToMaster(ShowLog, IsEnterRegion)
   self.CanChangeToMaster = self:_CheckCanChangeToMaster(ShowLog, true)
   if not IsEnterRegion and (not self:CanEnterInteractive() or not self:CharacterInTag("Idle")) then
     if ShowLog then
-      GWorld.logger.error("\229\189\147\229\137\141\231\138\182\230\128\129\228\184\141\229\133\129\232\174\184\229\136\135\230\141\162\229\165\179\228\184\187")
+      GWorld.logger.error("当前状态不允许切换女主")
     end
     self.CanChangeToMaster = false
     return self.CanChangeToMaster
@@ -2205,7 +2205,7 @@ function BP_PlayerCharacter_C:CheckCanChangeToMaster(ShowLog, IsEnterRegion)
   if not IsValid(GameMode) then
     self.CanChangeToMaster = false
     if ShowLog then
-      GWorld.logger.error("\229\189\147\229\137\141\230\184\184\230\136\143\230\168\161\229\188\143\230\151\160\230\149\136, \228\184\141\232\131\189\229\136\135\230\141\162\229\165\179\228\184\187")
+      GWorld.logger.error("当前游戏模式无效, 不能切换女主")
     end
   elseif GameMode:IsInDungeon() then
     if self:IsDungeonInBattle() then
@@ -2274,7 +2274,7 @@ function BP_PlayerCharacter_C:ChangeToMaster(ShowLog, IsEnterRegion)
     return
   end
   if self.CurrentMasterBan then
-    GWorld.logger.error("\229\189\147\229\137\141\229\183\178\231\187\143\230\152\175\228\184\187\232\167\146\231\138\182\230\128\129\239\188\140\228\184\141\232\131\189\230\137\167\232\161\140\229\136\135\228\184\187\232\167\146\230\147\141\228\189\156")
+    GWorld.logger.error("当前已经是主角状态，不能执行切主角操作")
     return
   end
   local MasterRoleId = 111
@@ -2282,17 +2282,17 @@ function BP_PlayerCharacter_C:ChangeToMaster(ShowLog, IsEnterRegion)
   local RegionId = Avatar:GetCurrentRegionId()
   print(_G.LogTag, "CheckCanChangeToMaster", RegionId)
   if not RegionId or DataMgr.SubRegion[RegionId] == nil then
-    GWorld.logger.error("\229\189\147\229\137\141\228\184\141\229\156\168\229\140\186\229\159\159\228\184\173\239\188\140\228\184\141\232\131\189\229\136\135\230\141\162\228\184\187\232\167\146")
+    GWorld.logger.error("当前不在区域中，不能切换主角")
     return
   end
   local PlayerIdentity = DataMgr.SubRegion[RegionId].SwitchPlayer
   if not PlayerIdentity then
-    GWorld.logger.error("\229\189\147\229\137\141\229\140\186\229\159\159\230\178\161\230\156\137\229\143\175\229\136\135\230\141\162\232\167\146\232\137\178\239\188\140\228\184\141\232\131\189\229\136\135\230\141\162\228\184\187\232\167\146")
+    GWorld.logger.error("当前区域没有可切换角色，不能切换主角")
     return
   end
   local MasterGender = 1
   if not Avatar then
-    GWorld.logger.error("\230\178\161\230\156\137\230\173\163\229\184\184\231\153\187\229\189\149\239\188\140\228\184\141\232\131\189\229\136\135\230\141\162\228\184\187\232\167\146")
+    GWorld.logger.error("没有正常登录，不能切换主角")
     return
   end
   self.HeroTempInfo = {
@@ -2315,12 +2315,12 @@ function BP_PlayerCharacter_C:ChangeToMaster(ShowLog, IsEnterRegion)
   print(_G.LogTag, "ChangeToMaster", MasterRoleId, MasterGender, PlayerIdentity)
   local MasterInfo = DataMgr.Player2RoleId[PlayerIdentity]
   if not MasterInfo then
-    GWorld.logger.error("\230\178\161\230\156\137\230\137\190\229\136\176\229\175\185\229\186\148\231\154\132\228\184\187\232\167\146\228\191\161\230\129\175\239\188\140\232\175\183\230\163\128\230\159\165\229\175\188\232\161\168")
+    GWorld.logger.error("没有找到对应的主角信息，请检查导表")
     return
   end
   local GenderInfo = MasterInfo[MasterGender]
   if not GenderInfo then
-    GWorld.logger.error("\229\175\185\229\186\148\230\128\167\229\136\171\230\178\161\230\156\137\232\167\146\232\137\178\239\188\140\232\175\183\230\163\128\230\159\165\229\175\188\232\161\168")
+    GWorld.logger.error("对应性别没有角色，请检查导表")
     return
   end
   MasterRoleId = GenderInfo
@@ -2350,7 +2350,7 @@ function BP_PlayerCharacter_C:ChangeBackToHero()
     return
   end
   if not self.CurrentMasterBan then
-    GWorld.logger.error("\229\189\147\229\137\141\228\184\141\230\152\175\229\165\179\228\184\187\231\138\182\230\128\129\239\188\140\228\184\141\232\131\189\228\187\142\229\165\179\228\184\187\229\136\135\229\155\158\229\134\155\230\162\176\229\186\147\232\167\146\232\137\178")
+    GWorld.logger.error("当前不是女主状态，不能从女主切回军械库角色")
     return
   end
   self:RecoverBanSkills()
@@ -2870,7 +2870,7 @@ function BP_PlayerCharacter_C:InpActEvt_GlobalSlow_K2Node_InputActionEvent_1(Key
 end
 
 function BP_PlayerCharacter_C:CallClientPrint_Lua(Text)
-  print(LogTag, "\230\156\141\229\138\161\229\153\168\231\154\132\232\190\147\229\135\186\228\184\186:" .. tostring(Text))
+  print(LogTag, "服务器的输出为:" .. tostring(Text))
 end
 
 function BP_PlayerCharacter_C:SetEnableFallAtkDir()

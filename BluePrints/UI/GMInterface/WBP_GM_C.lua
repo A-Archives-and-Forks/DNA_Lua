@@ -20,7 +20,7 @@ function WBP_GM_C:OnLoaded(...)
   self.AllCommands = GameInstance.GMPanelObj
   if not IsValid(self.AllCommands) then
     self:TryToGetCommandList()
-    assert(self.AllCommands, "GM\230\140\135\228\187\164\229\136\151\232\161\168\232\175\187\229\143\150\229\164\177\232\180\165,\232\175\183\230\163\128\230\159\165\230\160\188\229\188\143\230\136\150\232\183\175\229\190\132\239\188\129")
+    assert(self.AllCommands, "GM指令列表读取失败,请检查格式或路径！")
     self.List_Tab_Top:ClearListItems()
     for k, v in pairs(self.AllCommands.Commands) do
       self.List_Tab_Top:AddItem(v)
@@ -31,19 +31,19 @@ function WBP_GM_C:OnLoaded(...)
   end
   local Player = UE4.UGameplayStatics.GetPlayerCharacter(self, 0)
   if Player then
-    local str = "\230\178\137\230\181\184\230\168\161\229\188\143"
+    local str = "沉浸模式"
     if Player.IsImmersionModel then
-      str = str .. "\239\188\154\229\188\128"
+      str = str .. "：开"
     else
-      str = str .. "\239\188\154\229\133\179"
+      str = str .. "：关"
     end
     self.Text_Immerse:SetText(str)
   end
-  local str = "\231\149\140\233\157\162\230\149\176\230\141\174"
+  local str = "界面数据"
   if GMVariable.EnableUIData then
-    str = str .. "\239\188\154\229\188\128"
+    str = str .. "：开"
   else
-    str = str .. "\239\188\154\229\133\179"
+    str = str .. "：关"
   end
   self.Text_Data:SetText(str)
   self.Key_L:CreateCommonKey({
@@ -105,11 +105,11 @@ function WBP_GM_C:UIData()
   UIUtils.PlayCommonBtnSe(self)
   GMVariable.EnableUIData = not GMVariable.EnableUIData
   GMFunctionLibrary.ShowUIData(GMVariable.EnableUIData)
-  local str = "\231\149\140\233\157\162\230\149\176\230\141\174"
+  local str = "界面数据"
   if GMVariable.EnableUIData then
-    str = str .. "\239\188\154\229\188\128"
+    str = str .. "：开"
   else
-    str = str .. "\239\188\154\229\133\179"
+    str = str .. "：关"
   end
   self.Text_Data:SetText(str)
 end
@@ -119,12 +119,12 @@ function WBP_GM_C:Immerse()
   local Player = UE4.UGameplayStatics.GetPlayerCharacter(self, 0)
   if Player and Player.ImmersionModel then
     Player:ImmersionModel()
-    local str = "\230\178\137\230\181\184\230\168\161\229\188\143"
+    local str = "沉浸模式"
     if Player.IsImmersionModel then
-      str = str .. "\239\188\154\229\188\128"
+      str = str .. "：开"
       self:Close()
     else
-      str = str .. "\239\188\154\229\133\179"
+      str = str .. "：关"
     end
     self.Text_Immerse:SetText(str)
   end

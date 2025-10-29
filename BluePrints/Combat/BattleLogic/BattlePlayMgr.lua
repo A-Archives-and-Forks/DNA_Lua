@@ -26,7 +26,7 @@ function Component:ExecuteEffectResults(EffectStruct)
     for _, Args in pairs(_Data) do
       for Func, Content in pairs(Args) do
         local f = self["Play_" .. Func]
-        assert(f, "\228\184\141\229\173\152\229\156\168\229\135\189\230\149\176:Play_" .. Func)
+        assert(f, "不存在函数:Play_" .. Func)
         f(self, Content, ParamentsTable)
       end
     end

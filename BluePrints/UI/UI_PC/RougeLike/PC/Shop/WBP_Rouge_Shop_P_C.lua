@@ -197,7 +197,7 @@ function M:UpdateShopDetail(MainTabId)
   end
   if not self.ShopId then
     self.Group_Empty:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
-    DebugPrint("ZDX \228\188\160\229\133\165\231\154\132ShopId\228\184\186\231\169\186")
+    DebugPrint("ZDX 传入的ShopId为空")
     return
   end
   local ShopItemList = RougeLikeManager.Shop:FindRef(self.ShopId)[self.ShopItemType]

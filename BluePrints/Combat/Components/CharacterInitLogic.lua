@@ -797,7 +797,7 @@ function Component:JudgeIfPlayLevelEnter()
   end
   local PlayerState = self:GetEMPlayerState()
   if PlayerState and PlayerState.bIsEMInactive == true then
-    DebugPrint("Tianyi@ \233\135\141\232\191\158\228\184\141\233\156\128\232\166\129LevelEnter")
+    DebugPrint("Tianyi@ 重连不需要LevelEnter")
     return false
   elseif not PlayerState then
     DebugPrint("Tianyi@ PlayState is nullptr")

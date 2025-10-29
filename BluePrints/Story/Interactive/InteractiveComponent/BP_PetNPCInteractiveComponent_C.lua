@@ -25,7 +25,7 @@ function BP_PetNPCInteractiveComponent_C:BtnClicked(PlayerActor, InPressTimeSeco
   if IsSuccess then
     self.Owner:K2_SetActorRotation(Rotator, false)
   end
-  DebugPrint("\229\174\160\231\137\169\228\186\164\228\186\146\230\136\144\229\138\159")
+  DebugPrint("宠物交互成功")
 end
 
 function BP_PetNPCInteractiveComponent_C:ResetPetState()

@@ -135,17 +135,17 @@ end
 
 function M:AddPhantomUI(PhantomEid)
   if not PhantomEid then
-    DebugPrint(LXYTag, WarningTag, "WBP_Team_PlayerItem_Base::AddPhantomUI\230\151\160\230\149\136\231\154\132PhantomEid", PhantomEid)
+    DebugPrint(LXYTag, WarningTag, "WBP_Team_PlayerItem_Base::AddPhantomUI无效的PhantomEid", PhantomEid)
     return
   end
   local PhantomState = GameState(self):GetPhantomState(PhantomEid)
   if not PhantomState then
-    DebugPrint(LXYTag, WarningTag, "WBP_Team_PlayerItem_Base::AddPhantomUI\230\151\160\230\149\136\231\154\132PhantomEid", PhantomEid)
+    DebugPrint(LXYTag, WarningTag, "WBP_Team_PlayerItem_Base::AddPhantomUI无效的PhantomEid", PhantomEid)
     return
   end
   local PhantomCharConf = DataMgr.Phantom[PhantomState.CharId]
   if PhantomCharConf and PhantomCharConf.IsHostage then
-    DebugPrint(LXYTag, WarningTag, "\228\186\186\232\180\168\231\137\185\230\174\138\229\164\132\231\144\134\239\188\140\228\184\141\229\186\148\232\175\165\232\162\171\229\189\147\228\189\156\233\173\133\229\189\177")
+    DebugPrint(LXYTag, WarningTag, "人质特殊处理，不应该被当作魅影")
     return
   end
   if PhantomState.OwnerEid ~= self.Eid then

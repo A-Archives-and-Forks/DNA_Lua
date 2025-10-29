@@ -324,19 +324,19 @@ local TeamErrorCodes = {
 function WBP_Abyss_Settle_P_C:EnterDungeon()
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("thy     \229\133\179\229\141\161\232\175\166\230\131\133\231\149\140\233\157\162\232\191\155\229\133\165\229\133\179\229\141\161\229\164\177\232\180\165\239\188\140Avatar\232\142\183\229\143\150\229\164\177\232\180\165")
+    DebugPrint("thy     关卡详情界面进入关卡失败，Avatar获取失败")
     return
   end
   
   local function Callback(RetCode)
     if RetCode == ErrorCode.RET_SUCCESS then
-      UIManager(self):ShowUITip(UIConst.Tip_CommonTop, "\230\136\144\229\138\159\232\191\155\229\133\165" .. self.DungeonName)
+      UIManager(self):ShowUITip(UIConst.Tip_CommonTop, "成功进入" .. self.DungeonName)
     elseif DataMgr.ErrorCode[RetCode] then
       local ErrorContent = DataMgr.ErrorCode[RetCode].ErrorCodeContent
       if TeamErrorCodes[RetCode] then
         UIManager(self):ShowUITip(UIConst.Tip_CommonTop, GText("Abyss_PartySetup_ConditionsAreNot"))
       else
-        UIManager(self):ShowUITip(UIConst.Tip_CommonTop, ErrorContent .. "(Debug\231\148\168)")
+        UIManager(self):ShowUITip(UIConst.Tip_CommonTop, ErrorContent .. "(Debug用)")
       end
     end
   end
@@ -716,11 +716,11 @@ function WBP_Abyss_Settle_P_C:SetPhantomAttrsDetails()
   local PhantomNum = self.CombatData.PhantomNum
   local Battle = GWorld.Battle
   if not Battle then
-    DebugPrint("[THY]  Battle\228\184\186nil")
+    DebugPrint("[THY]  Battle为nil")
     return
   end
   if 0 == PhantomNum then
-    DebugPrint("[THY]  \230\178\161\230\156\137\233\173\133\229\189\177")
+    DebugPrint("[THY]  没有魅影")
     return
   end
   local PhantomDetails = {}

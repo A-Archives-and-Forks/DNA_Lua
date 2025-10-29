@@ -81,7 +81,7 @@ function WBP_Common_Dialog_PC_C:InitView(PopupId, Params, ParentWidget)
     if self.Script then
       self.Script:BindDialogWidget(PopupId, self)
       self.Script:Initialize()
-      DebugPrint("Tianyi@ \229\188\185\231\170\151\230\136\144\229\138\159\231\187\145\229\174\154\232\132\154\230\156\172: ", Params.BindScript)
+      DebugPrint("Tianyi@ 弹窗成功绑定脚本: ", Params.BindScript)
     end
   end
 end
@@ -225,7 +225,7 @@ function WBP_Common_Dialog_PC_C:UpdateView(PopupStyleID, Params, PopupData)
   end
   local PopupStyle = DataMgr.CommonPopupUIStyle[PopupStyleID]
   if not PopupStyle then
-    DebugPrint("Tianyi@ \230\137\190\228\184\141\229\136\176 " .. tostring(PopupStyleID) .. " \229\175\185\229\186\148\231\154\132\229\188\185\231\170\151\230\160\183\229\188\143")
+    DebugPrint("Tianyi@ 找不到 " .. tostring(PopupStyleID) .. " 对应的弹窗样式")
     return
   end
   self.PopupStyle = PopupStyle
@@ -322,7 +322,7 @@ function WBP_Common_Dialog_PC_C:UpdateView(PopupStyleID, Params, PopupData)
         self:RegisterContentWidget(ContentTypeIdx, TipWidget)
         table.insert(self.Tips, TipWidget)
       else
-        DebugPrint("Tianyi@ \229\156\168\229\188\185\231\170\151\230\142\167\228\187\182\232\161\168\228\184\173\230\137\190\228\184\141\229\136\176ContentId: " .. ContentTypeIdx)
+        DebugPrint("Tianyi@ 在弹窗控件表中找不到ContentId: " .. ContentTypeIdx)
       end
     end
     local AllChildrend = self.Pos_Tips:GetAllChildren()
@@ -342,7 +342,7 @@ function WBP_Common_Dialog_PC_C:UpdateView(PopupStyleID, Params, PopupData)
     if BGWidget then
       self.Pos_BGEffect:AddChild(BGWidget)
     else
-      DebugPrint(LogTag.Error, "Tianyi@ \229\136\155\229\187\186BG\230\142\167\228\187\182\229\164\177\232\180\165", PopupStyle.ShowBG)
+      DebugPrint(LogTag.Error, "Tianyi@ 创建BG控件失败", PopupStyle.ShowBG)
     end
   end
   local AllChildrend = self.VB_Node:GetAllChildren()
@@ -462,7 +462,7 @@ function WBP_Common_Dialog_PC_C:BP_GetDesiredFocusTarget()
     if ContentWidget.HandleDialogFocused then
       ContentWidgetDesiredFocusTarget = ContentWidget:HandleDialogFocused()
       if ContentWidgetDesiredFocusTarget then
-        DebugPrint("Tianyi@ \229\188\185\231\170\151\230\142\167\228\187\182: " .. ContentWidget:GetName() .. " Handle\228\186\134\229\188\185\231\170\151\231\154\132\232\129\154\231\132\166, \230\150\176\232\129\154\231\132\166\228\184\186: " .. ContentWidgetDesiredFocusTarget:GetName())
+        DebugPrint("Tianyi@ 弹窗控件: " .. ContentWidget:GetName() .. " Handle了弹窗的聚焦, 新聚焦为: " .. ContentWidgetDesiredFocusTarget:GetName())
         break
       end
     end
@@ -752,7 +752,7 @@ end
 function WBP_Common_Dialog_PC_C:CreateContentWidget(WidgetName)
   local ContentData = DataMgr.CommonDialogContent[WidgetName]
   if not ContentData then
-    DebugPrint("Tianyi@ \229\156\168\229\188\185\231\170\151\230\142\167\228\187\182\232\161\168\228\184\173\230\137\190\228\184\141\229\136\176ContentId: " .. WidgetName)
+    DebugPrint("Tianyi@ 在弹窗控件表中找不到ContentId: " .. WidgetName)
     return nil
   end
   local ContentBPPath = ContentData.BPPath
@@ -769,11 +769,11 @@ end
 function WBP_Common_Dialog_PC_C:RegisterContentWidget(ContentWidgetName, ContentWidget)
   if ContentWidgetName then
     if self.ContentWidgetTable[ContentWidgetName] then
-      DebugPrint("Tianyi@ \233\135\141\229\164\141\230\179\168\229\134\140\230\142\167\228\187\182\239\188\154" .. ContentWidgetName)
+      DebugPrint("Tianyi@ 重复注册控件：" .. ContentWidgetName)
     end
     self.ContentWidgetTable[ContentWidgetName] = ContentWidget
   else
-    DebugPrint("Tianyi@ ContentWidget:" .. ContentWidget:GetName() .. "\230\178\161\230\156\137\232\174\190\231\189\174ContentWidgetName, \228\185\159\232\174\184\230\152\175\230\156\170\231\187\167\230\137\191DialogContentBase\231\177\187?")
+    DebugPrint("Tianyi@ ContentWidget:" .. ContentWidget:GetName() .. "没有设置ContentWidgetName, 也许是未继承DialogContentBase类?")
   end
 end
 

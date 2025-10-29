@@ -78,7 +78,7 @@ function Component:AsyncCreateEffectCreatureById(EffectCreatureId, CreateEffectI
         end
         self.AsyncEffectCreatures[EffectCreatureId][CreateEffectInfo] = nil
         if not BPCLass then
-          DebugPrint("\231\137\185\230\149\136\229\136\155\231\148\159\231\137\169\232\183\175\229\190\132\228\184\186\231\169\186" .. RealEffectCreaturePath)
+          DebugPrint("特效创生物路径为空" .. RealEffectCreaturePath)
           return
         end
         if not AttachToCharacter then
@@ -150,7 +150,7 @@ function Component:CreateEffectCreatureById(EffectCreatureId, CreateEffectInfo)
     local RealEffectCreaturePath = EffectCreatureData.EffectCreaturePath or "/Game/BluePrints/Combat/SkillCreatures/BP_EffectCreature.BP_EffectCreature"
     local BPCLass = LoadClass(RealEffectCreaturePath)
     if not BPCLass then
-      DebugPrint("\231\137\185\230\149\136\229\136\155\231\148\159\231\137\169\232\183\175\229\190\132\228\184\186\231\169\186" .. RealEffectCreaturePath)
+      DebugPrint("特效创生物路径为空" .. RealEffectCreaturePath)
       return
     end
     if not AttachToCharacter then
@@ -331,7 +331,7 @@ function Component:RemoveEffectCreature(EffectCreatureId)
     if IsValid(EffectCreature) then
       EffectCreature:DestroyEffectCreature()
     else
-      DebugPrint("\231\137\185\230\149\136\229\136\155\231\148\159\231\137\169\228\184\186\231\169\186\228\189\134\230\152\175\230\149\176\230\141\174\228\190\157\230\151\167\229\173\152\229\156\168\239\188\140id\239\188\154" .. EffectCreatureId)
+      DebugPrint("特效创生物为空但是数据依旧存在，id：" .. EffectCreatureId)
     end
   end
   self.EffectCreatures[EffectCreatureId] = nil
@@ -352,7 +352,7 @@ function Component:RemoveEffectCreatureByRef(DeleteEffectCreature)
         table.insert(EffectCreatures, EffectCreature)
       end
     else
-      DebugPrint("\231\137\185\230\149\136\229\136\155\231\148\159\231\137\169\228\184\186\231\169\186\228\189\134\230\152\175\230\149\176\230\141\174\228\190\157\230\151\167\229\173\152\229\156\168\239\188\140id\239\188\154" .. EffectCreatureId)
+      DebugPrint("特效创生物为空但是数据依旧存在，id：" .. EffectCreatureId)
     end
   end
   self.EffectCreatures[EffectCreatureId] = EffectCreatures
@@ -369,7 +369,7 @@ function Component:RemoveEffectCreatureByBuff(EffectCreatureId, BuffUniqueId)
       EffectCreature:DestroyEffectCreature()
       table.remove(EffectCreatures, Index)
     else
-      DebugPrint("\231\137\185\230\149\136\229\136\155\231\148\159\231\137\169\228\184\186\231\169\186\228\189\134\230\152\175\230\149\176\230\141\174\228\190\157\230\151\167\229\173\152\229\156\168\239\188\140id\239\188\154" .. EffectCreatureId)
+      DebugPrint("特效创生物为空但是数据依旧存在，id：" .. EffectCreatureId)
       table.remove(EffectCreatures, Index)
     end
   end
@@ -386,7 +386,7 @@ function Component:RemoveAllEffectCreature(NormalDeath)
       if IsValid(EffectCreature) then
         EffectCreature:DestroyEffectCreature()
       else
-        DebugPrint("\231\137\185\230\149\136\229\136\155\231\148\159\231\137\169\228\184\186\231\169\186\228\189\134\230\152\175\230\149\176\230\141\174\228\190\157\230\151\167\229\173\152\229\156\168\239\188\140id\239\188\154" .. EffectCreatureId)
+        DebugPrint("特效创生物为空但是数据依旧存在，id：" .. EffectCreatureId)
       end
     end
   end

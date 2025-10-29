@@ -92,7 +92,7 @@ function M:OpenDataView()
   if self.MainPage.Com_BtnVisible then
     self.MainPage.Com_BtnVisible:SetVisibility(UIConst.VisibilityOp.Collapsed)
   end
-  ScreenPrint("\230\137\147\229\188\128\230\149\176\230\141\174\231\187\159\232\174\161\231\149\140\233\157\162")
+  ScreenPrint("打开数据统计界面")
 end
 
 function M:CreatDataPage()
@@ -105,7 +105,7 @@ function M:CreatDataPage()
   end
   self.DataPage = UIManager(self):CreateWidget(PCBluePrint)
   if self.DataPage == nil then
-    ScreenPrint("--------------\230\149\176\230\141\174\231\187\159\232\174\161\231\149\140\233\157\162\229\138\160\232\189\189\229\164\177\232\180\165-----------------")
+    ScreenPrint("--------------数据统计界面加载失败-----------------")
     return
   end
   self.MainPage.Content:AddChildToOverlay(self.DataPage)
@@ -132,13 +132,13 @@ end
 
 function M:ReallyCloseDateView(Page)
   if not self.DataPage or not self.DataPage.IsClosing then
-    DebugPrint("\230\178\161\230\156\137\230\149\176\230\141\174\231\187\159\232\174\161\231\149\140\233\157\162\239\188\140\229\186\148\232\175\165\230\152\175\230\137\147\229\188\128\230\151\182\229\164\177\232\180\165")
+    DebugPrint("没有数据统计界面，应该是打开时失败")
     return
   end
   if Page then
     Page:RemovefromParent()
   else
-    DebugPrint("\230\178\161\230\156\137\231\188\150\232\190\145\231\149\140\233\157\162\239\188\140\229\186\148\232\175\165\230\152\175\230\137\147\229\188\128\230\151\182\229\164\177\232\180\165")
+    DebugPrint("没有编辑界面，应该是打开时失败")
   end
 end
 
@@ -148,7 +148,7 @@ function M:CloseEditView()
     self.EditPage:RemovefromParent()
     self.EditPage:PlayAnimation(self.EditPage.Out)
   else
-    DebugPrint("\230\178\161\230\156\137\231\188\150\232\190\145\231\149\140\233\157\162\239\188\140\229\186\148\232\175\165\230\152\175\230\137\147\229\188\128\230\151\182\229\164\177\232\180\165")
+    DebugPrint("没有编辑界面，应该是打开时失败")
   end
   self.bReturnMain = true
   self:ReturnMainPage()

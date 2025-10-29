@@ -155,7 +155,7 @@ function GM_BattleHistory_C:_PrintBattleHistory(Verbose)
     ShouldPrint = true
   end
   if not ShouldPrint then
-    DebugPrint("Tianyi@ \230\178\161\230\156\137\229\139\190\233\128\137\228\187\187\228\189\149\230\160\135\231\173\190\239\188\140\228\184\141\232\191\155\232\161\140\230\136\152\230\150\151\232\174\176\229\189\149\230\137\147\229\141\176!")
+    DebugPrint("Tianyi@ 没有勾选任何标签，不进行战斗记录打印!")
     return
   end
   Battle(self):BP_PrintBattleHistory(Filter)

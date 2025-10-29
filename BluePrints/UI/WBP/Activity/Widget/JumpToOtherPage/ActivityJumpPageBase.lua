@@ -218,8 +218,8 @@ function M:GoToMoreClick()
     end
   }
   local TabTypes = {
-    "\228\189\142\231\186\167\229\165\150\229\138\177",
-    "\233\171\152\231\186\167\229\165\150\229\138\177"
+    "低级奖励",
+    "高级奖励"
   }
   local DataMap = {}
   for i = 1, #TabTypes do

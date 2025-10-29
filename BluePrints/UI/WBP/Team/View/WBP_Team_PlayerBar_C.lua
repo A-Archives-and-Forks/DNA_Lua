@@ -52,7 +52,7 @@ function M:AddEid(PlayerEid, PhantomEid, PosIndex)
       self.PlayerState.OnRepbIsEMInactiveDelegate:Add(self, self.PlayOfflineAnim)
       self.PlayerState.OnReceiveActorStateChangeDelegate:Add(self, self.SetBloodBarState)
     end
-    DebugPrint(LXYTag, "\228\188\160\231\187\153\232\161\128\230\157\161\231\154\132\231\142\169\229\174\182\229\175\185\232\177\161\229\144\141\231\167\176" .. Player.PlayerState.PlayerName)
+    DebugPrint(LXYTag, "传给血条的玩家对象名称" .. Player.PlayerState.PlayerName)
     if not IsValid(self.PlayerBar.Owner) then
       self.PlayerBar:InitConfig(Player)
     end

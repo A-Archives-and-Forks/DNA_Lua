@@ -72,7 +72,7 @@ function LightBubbleTalkAudioComp:PlayDialogue(DialogueId, LightTalkTask, Callba
   local AssetPaths = self.SoundOralComponent:GetAssetPaths(AudioManager, DialogueData.VoiceName, DialogueData.ExStoryInfo)
   if not AssetPaths or 0 == #AssetPaths then
     self:StopVOSound(Actor)
-    DebugPrint(string.format("Error:DialogueData.DialogueId: %d \231\154\132\233\159\179\233\162\145\232\181\132\230\186\144\228\184\141\229\173\152\229\156\168", DialogueId))
+    DebugPrint(string.format("Error:DialogueData.DialogueId: %d 的音频资源不存在", DialogueId))
     if Callback then
       Callback()
     end

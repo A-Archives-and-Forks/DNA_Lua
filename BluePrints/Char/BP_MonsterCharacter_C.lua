@@ -391,7 +391,7 @@ function BP_MonsterCharacter_C:BlockTickLod(bEnable, Tag, TickObjectFlag)
     return
   end
   if TickObjectFlag | ETickObjectFlag.FLAG_CHARMOVEMENTCOMPONENT then
-    GWorld.logger.errorlog("@wuzhijun\239\188\154BlockTickLod.\229\164\132\231\144\134\231\167\187\229\138\168\231\187\132\228\187\182\231\148\168 BlockTickLod_MoveComp")
+    GWorld.logger.errorlog("@wuzhijun：BlockTickLod.处理移动组件用 BlockTickLod_MoveComp")
     return
   end
   local SignificanceMgrSubsystem = USubsystemBlueprintLibrary.GetWorldSubsystem(self, UEMSignificanceMgrSubsystem)

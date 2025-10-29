@@ -16,7 +16,7 @@ function M:Construct()
     if self._bSetUpEvent then
       self.Head_Anchor:Open(true)
     else
-      DebugPrint(LXYTag, WarningTag, "\229\137\175\230\156\172\228\184\173\233\128\148\229\138\160\229\133\165\231\154\132\228\186\186\239\188\140\230\178\161\230\156\137AvatarInfo\239\188\140\230\151\160\230\179\149\229\129\154\230\155\180\229\164\154\230\147\141\228\189\156")
+      DebugPrint(LXYTag, WarningTag, "副本中途加入的人，没有AvatarInfo，无法做更多操作")
     end
   end)
 end

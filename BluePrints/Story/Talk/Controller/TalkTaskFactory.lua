@@ -8,7 +8,7 @@ function TalkTaskFactory:CreateTalkTask(TalkNodeData)
   elseif "Guide" == BasicTalkType or "Audio" == BasicTalkType or "Boss" == BasicTalkType or "Bubble" == BasicTalkType then
     return self:CreateLightTalkTask(TalkNodeData)
   end
-  DebugPrint("@@@ \229\136\155\229\187\186TalkTask ", TalkNodeData.TalkType, BasicTalkType)
+  DebugPrint("@@@ 创建TalkTask ", TalkNodeData.TalkType, BasicTalkType)
   local TalkTask_C = require("BluePrints.Story.Talk.Controller." .. BasicTalkType .. "TalkTask")
   local TalkTaskData_C = require("BluePrints.Story.Talk.Model." .. BasicTalkType .. "TalkTaskData")
   local TalkTaskData = TalkTaskData_C.New(TalkNodeData)
@@ -25,7 +25,7 @@ end
 function TalkTaskFactory:CreateCommonTalkTask(TalkNodeData)
   local TalkTypeData = DataMgr.TalkType[TalkNodeData.TalkType]
   local BasicTalkType = TalkTypeData.BasicType
-  DebugPrint("@@@ \229\136\155\229\187\186TalkTask ", TalkNodeData.TalkType, BasicTalkType)
+  DebugPrint("@@@ 创建TalkTask ", TalkNodeData.TalkType, BasicTalkType)
   local TalkTask_C
   local TalkTaskData_C = require("BluePrints.Story.Talk.Model.CommonTalkTaskData")
   if "Cinematic" == BasicTalkType then
@@ -42,7 +42,7 @@ end
 function TalkTaskFactory:CreateLightTalkTask(TalkNodeData)
   local TalkTypeData = DataMgr.TalkType[TalkNodeData.TalkType]
   local BasicTalkType = TalkTypeData.BasicType
-  DebugPrint("@@@ \229\136\155\229\187\186TalkTask ", TalkNodeData.TalkType, BasicTalkType)
+  DebugPrint("@@@ 创建TalkTask ", TalkNodeData.TalkType, BasicTalkType)
   local TalkTask_C
   local TalkTaskData_C = require("BluePrints.Story.Talk.Model.CommonTalkTaskData")
   if "Bubble" == BasicTalkType then

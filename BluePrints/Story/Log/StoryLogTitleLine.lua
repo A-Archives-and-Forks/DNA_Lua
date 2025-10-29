@@ -9,7 +9,7 @@ function M:New(Title)
 end
 
 function M:ToString()
-  return string.format("\194\183 %s\n", self.Title)
+  return string.format("· %s\n", self.Title)
 end
 
 function M:ToRichString()

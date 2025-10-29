@@ -654,12 +654,12 @@ function M:OnGamePadDown(InKeyName)
     if not self.PersonInfoMainPage.IsEditOpen then
       self.PersonInfoMainPage:OnClickOpenEditPage()
       if self.PersonInfoMainPage.IsEditOpen == false then
-        DebugPrint("\232\129\154\231\132\166\231\154\132\228\191\157\229\173\152\231\154\132widget")
+        DebugPrint("聚焦的保存的widget")
         self:FocusToSavedWidget()
         self.PersonInfoMainPage:FreshFocusLeaveEditListView()
       end
       if self.PersonInfoMainPage.Panel_Edit:HasFocusedDescendants() then
-        DebugPrint("Panel_Edit\232\191\152\230\156\137\232\129\154\231\132\166\239\188\140\232\129\154\231\132\166\229\155\158\229\142\187")
+        DebugPrint("Panel_Edit还有聚焦，聚焦回去")
         self:SetFocus()
       end
     end
@@ -674,7 +674,7 @@ function M:OnGamePadDown(InKeyName)
       self:AddTimer(0.1, function()
         local firstUi = self.PersonInfoMainPage:GetFisrtEditItem()
         if firstUi then
-          DebugPrint("\232\129\154\231\132\166\229\136\176\231\172\172\228\184\128\228\184\170ui")
+          DebugPrint("聚焦到第一个ui")
           firstUi:SetFocus()
           self.PersonInfoMainPage.Edit_List:SetSelectedIndex(0)
           if self.PersonInfoMainPage.Panel_Edit:HasFocusedDescendants() then
@@ -685,10 +685,10 @@ function M:OnGamePadDown(InKeyName)
     else
       self.PersonInfoMainPage:OnClickEdit()
       if false == self.PersonInfoMainPage.IsEditOpen then
-        DebugPrint("\232\129\154\231\132\166\229\136\176\228\191\157\229\173\152\231\154\132widget")
+        DebugPrint("聚焦到保存的widget")
         self:FocusToSavedWidget()
         if self.PersonInfoMainPage.Panel_Edit:HasFocusedDescendants() then
-          DebugPrint("\229\176\157\232\175\149\229\133\179\233\151\173\231\149\140\233\157\162\239\188\140\232\129\154\231\132\166\229\155\158\230\157\165")
+          DebugPrint("尝试关闭界面，聚焦回来")
           self:SetFocus()
         end
         self.PersonInfoMainPage:FreshFocusLeaveEditListView()
@@ -775,10 +775,10 @@ function M:OnFocusReceived(MyGeometry, InFocusEvent)
   if PersonInfoController.CurPage == PersonInfoController.PageEnum.EditPage and IsValid(PersonInfoController.EditPage) then
     PersonInfoController.EditPage:SetFocus()
   elseif PersonInfoController.CurPage == PersonInfoController.PageEnum.DataPage then
-    ScreenPrint("\231\187\159\232\174\161\231\149\140\233\157\162\230\137\147\229\188\128\228\184\173\239\188\140\232\129\154\231\132\166\229\136\176\231\187\159\232\174\161\231\149\140\233\157\162")
+    ScreenPrint("统计界面打开中，聚焦到统计界面")
     PersonInfoController.DataPage:SetFocus()
   else
-    ScreenPrint("\228\184\187\231\149\140\233\157\162\230\137\147\229\188\128\228\184\173\239\188\140\232\129\154\231\132\166\229\136\176\228\184\187\231\149\140\233\157\162")
+    ScreenPrint("主界面打开中，聚焦到主界面")
     if self.PersonInfoMainPage then
       self.GameInputModeSubsystem = UGameInputModeSubsystem.GetGameInputModeSubsystem(self)
       self:OnUpdateUIStyleByInputTypeChange(self.GameInputModeSubsystem:GetCurrentInputType(), self.GameInputModeSubsystem:GetCurrentGamepadName())

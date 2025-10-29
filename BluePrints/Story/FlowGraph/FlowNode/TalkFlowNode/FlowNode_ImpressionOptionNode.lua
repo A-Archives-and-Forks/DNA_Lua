@@ -40,8 +40,8 @@ function M:Skip()
   if LastCheck then
     self:SelectOption(LastCheck)
   else
-    local Message = string.format("\229\189\147\229\137\141Option\232\138\130\231\130\185\228\184\141\229\143\175\228\187\165\232\183\179\232\191\135, \228\184\141\229\186\148\232\175\165\232\181\176\232\191\135\230\157\165")
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157FLowNode\229\135\186\233\148\153", Message)
+    local Message = string.format("当前Option节点不可以跳过, 不应该走过来")
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话FLowNode出错", Message)
   end
 end
 

@@ -45,11 +45,11 @@ end
 
 function M:SetDisplayCharacter(SettedCharacterData, OwnedCharacterDataMap)
   if not SettedCharacterData then
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\130\128\231\186\166\231\179\187\231\187\159\233\148\153\232\175\175", "\232\174\190\231\189\174\229\177\149\231\164\186\232\167\146\232\137\178\229\164\177\232\180\165\239\188\140SettedCharacterData \228\184\186\231\169\186\227\128\130")
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "邀约系统错误", "设置展示角色失败，SettedCharacterData 为空。")
     return
   end
   if not OwnedCharacterDataMap then
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\130\128\231\186\166\231\179\187\231\187\159\233\148\153\232\175\175", "\232\174\190\231\189\174\229\177\149\231\164\186\232\167\146\232\137\178\229\164\177\232\180\165\239\188\140OwnedCharacterDataMap \228\184\186\231\169\186\227\128\130")
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "邀约系统错误", "设置展示角色失败，OwnedCharacterDataMap 为空。")
     return
   end
   self:SetOwnedCharacterDataMap(OwnedCharacterDataMap)

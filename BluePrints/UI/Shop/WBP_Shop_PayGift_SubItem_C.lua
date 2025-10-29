@@ -29,7 +29,7 @@ function M:InitItemInfo(ShopItemData)
     self.WS_PriceSign:SetActiveWidgetIndex(0)
   else
     self.WS_PriceSign:SetActiveWidgetIndex(1)
-    assert(ItemData.Icon, "\231\188\186\229\176\145Icon", ShopItemData.ItemType, ShopItemData.TypeId)
+    assert(ItemData.Icon, "缺少Icon", ShopItemData.ItemType, ShopItemData.TypeId)
     self.Com_ItemIcon:Init({
       Id = ShopItemData.PriceType,
       Icon = LoadObject(DataMgr.Resource[ShopItemData.PriceType].Icon),

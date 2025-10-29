@@ -288,7 +288,7 @@ function Component:RefreshListComp()
           end
         end
       else
-        print("Lgc@ Avatar.Resources \228\184\141\229\173\152\229\156\168")
+        print("Lgc@ Avatar.Resources 不存在")
       end
       if self._Avatar.Pets then
         for UniqueId, Pet in pairs(self._Avatar.Pets) do
@@ -308,10 +308,10 @@ function Component:RefreshListComp()
           end
         end
       else
-        print("Lgc@ Avatar.Pets \228\184\141\229\173\152\229\156\168")
+        print("Lgc@ Avatar.Pets 不存在")
       end
     else
-      print("Lgc@ Avatar \228\184\141\229\173\152\229\156\168")
+      print("Lgc@ Avatar 不存在")
     end
     self:SortSelectiveList(PetContents, 1, CommonConst.ASC)
     self.Selective_Listing:Init(self, {
@@ -587,7 +587,7 @@ function Component:LockOrUnlockPet()
         self:BlockAllUIInput(true)
         Avatar:UnLockPet(self.ItemDetailsContent.UniqueId)
         self.LvupLockTimer = self:AddTimer(5, function()
-          UIManager(self):ShowUITip(UIConst.Tip_CommonToast, "\232\167\163\233\148\129\232\175\183\230\177\130\232\182\133\230\151\182", 1.5)
+          UIManager(self):ShowUITip(UIConst.Tip_CommonToast, "解锁请求超时", 1.5)
           self:BlockAllUIInput(false)
         end)
       end
@@ -599,7 +599,7 @@ function Component:LockOrUnlockPet()
       }, self)
     else
       self.LvupLockTimer = self:AddTimer(5, function()
-        UIManager(self):ShowUITip(UIConst.Tip_CommonToast, "\233\148\129\229\174\154\232\175\183\230\177\130\232\182\133\230\151\182", 1.5)
+        UIManager(self):ShowUITip(UIConst.Tip_CommonToast, "锁定请求超时", 1.5)
         self:BlockAllUIInput(false)
       end)
       self:BlockAllUIInput(true)
@@ -667,7 +667,7 @@ end
 function Component:TryToLevelUp()
   local Avatar = GWorld:GetAvatar()
   if nil == Avatar then
-    GWorld.logger.error("Armory_PetLvup_Component:TryToLevelUp@Avatar\228\184\141\229\173\152\229\156\168")
+    GWorld.logger.error("Armory_PetLvup_Component:TryToLevelUp@Avatar不存在")
     return
   end
   local PopupId = PreciousPopupId
@@ -697,7 +697,7 @@ function Component:TryToLevelUp()
     local function CallBack(RefundResources)
       Avatar = GWorld:GetAvatar()
       if not Avatar then
-        GWorld.logger.error("Armory_PetLvup_Component:TryToLevelUp@Avatar\228\184\141\229\173\152\229\156\168")
+        GWorld.logger.error("Armory_PetLvup_Component:TryToLevelUp@Avatar不存在")
         return
       end
       self._Avatar = Avatar

@@ -19,7 +19,7 @@ function WBP_ModArchive_Archive_Item_C:OnListItemObjectSet(ListItemObject)
   self.Text_ArchiveTitle:SetText(GText(self.Info.Name))
   self.CurSelectedItem = nil
   self.Owner:UpdateListWidgets(self)
-  DebugPrint("zwkkkkkkk \231\142\176\229\156\168\231\154\132Index ", self.Info.Index, #self.Info.ModList)
+  DebugPrint("zwkkkkkkk 现在的Index ", self.Info.Index, #self.Info.ModList)
   local Exp = 0
   for i = 1, #self.Info.ModList do
     local Info = DataMgr.Mod[self.Info.ModList[i]]
@@ -129,7 +129,7 @@ function WBP_ModArchive_Archive_Item_C:InitListMod()
     self.Image_Lock:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
     self.Text_ArchiveSuitNum:SetColorAndOpacity(self.Color_Lock)
     if 2 == self.LockState then
-      DebugPrint("\230\156\170\230\143\173\230\153\147")
+      DebugPrint("未揭晓")
       local Text = DataMgr.Condition[self.Info.ShowCondition].ConditionText
       self.Text_ArchiveSuitNum:SetText(GText(Text))
     elseif 3 == self.LockState then

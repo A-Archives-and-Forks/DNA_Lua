@@ -61,7 +61,7 @@ end
 function BP_RougeLikeManager_C:UpdateRougeToken()
   local Avatar = GWorld:GetAvatar()
   local RougeToken = Avatar:GetCurrentRougeLikeToken()
-  DebugPrint("@zyh \232\191\155\229\133\165\232\130\137\233\184\189\230\151\182\232\180\167\229\184\129\230\149\176\233\135\143", RougeToken)
+  DebugPrint("@zyh 进入肉鸽时货币数量", RougeToken)
   self.RougeToken = RougeToken
 end
 
@@ -340,7 +340,7 @@ function BP_RougeLikeManager_C:ShowRougeLikeError(Text)
   Text = Space .. Text .. "\n" .. Space
   local Avatar = GWorld:GetAvatar()
   if Avatar then
-    Avatar:SendToFeishuForRougeLike(Text, "\232\130\137\233\184\189\230\138\165\233\148\153")
+    Avatar:SendToFeishuForRougeLike(Text, "肉鸽报错")
     return
   end
 end
@@ -379,13 +379,13 @@ end
 
 function BP_RougeLikeManager_C:FillErrorLog(MsgTable)
   local IsCurRoomClear = self:IsCurRougeLikeRoomClear()
-  table.insert(MsgTable, "\229\189\147\229\137\141\230\136\191\233\151\180\230\152\175\229\144\166\233\128\154\229\133\179\239\188\154" .. tostring(IsCurRoomClear) .. "\n")
-  table.insert(MsgTable, "\230\152\175\229\144\166\230\173\163\229\156\168\231\173\137\229\190\133DealRewardEvent\239\188\154" .. tostring(self.IsListeningDealRewardEvent) .. "\n")
+  table.insert(MsgTable, "当前房间是否通关：" .. tostring(IsCurRoomClear) .. "\n")
+  table.insert(MsgTable, "是否正在等待DealRewardEvent：" .. tostring(self.IsListeningDealRewardEvent) .. "\n")
   table.insert(MsgTable, "EventId: " .. tostring(self.EventId) .. "\n")
   local RandomBlessingsTb = self.RandomBlessings:ToTable()
-  table.insert(MsgTable, "\229\190\133\233\128\137\228\184\137\233\128\137\228\184\128\233\154\143\230\156\186\231\165\157\231\166\143\239\188\154" .. table.concat(RandomBlessingsTb, ",") .. "\n")
+  table.insert(MsgTable, "待选三选一随机祝福：" .. table.concat(RandomBlessingsTb, ",") .. "\n")
   local RandomTreasuresTb = self.RandomTreasures:ToTable()
-  table.insert(MsgTable, "\229\190\133\233\128\137\228\184\137\233\128\137\228\184\128\233\154\143\230\156\186\229\174\157\231\137\169\239\188\154" .. table.concat(RandomTreasuresTb, ",") .. "\n")
+  table.insert(MsgTable, "待选三选一随机宝物：" .. table.concat(RandomTreasuresTb, ",") .. "\n")
 end
 
 AssembleComponents(BP_RougeLikeManager_C)

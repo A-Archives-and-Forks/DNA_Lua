@@ -16,7 +16,7 @@ function Component:ExploreIdActive(RarelyId, SubRegionId)
     if self:CheckRegionErrorCode(RetCode) then
       EventManager:FireEvent(EventID.OnExploreGroupActive, RarelyId)
     else
-      GWorld.logger.error(string.format("ZJT_ \232\175\165\230\142\162\231\180\162\231\187\132\230\191\128\230\180\187\229\164\177\232\180\165 \232\175\165\230\142\162\231\180\162\231\187\132\229\148\175\228\184\128ID\239\188\154%d \230\156\141\229\138\161\229\153\168\232\191\148\229\155\158\233\148\153\232\175\175\231\160\129\239\188\154%d", RarelyId, RetCode))
+      GWorld.logger.error(string.format("ZJT_ 该探索组激活失败 该探索组唯一ID：%d 服务器返回错误码：%d", RarelyId, RetCode))
     end
   end
   
@@ -25,11 +25,11 @@ end
 
 function Component:SetExploreSpecialActiveState(RarelyId)
   if not self.Explores[RarelyId] then
-    DebugPrint("ZJT_ \228\184\141\229\173\152\229\156\168\230\142\162\231\180\162\231\187\132\230\149\176\230\141\174 \231\137\185\230\174\138\230\191\128\230\180\187\229\164\177\232\180\165 ", RarelyId)
+    DebugPrint("ZJT_ 不存在探索组数据 特殊激活失败 ", RarelyId)
     return
   end
   if not self.Explores[RarelyId]:IsDoing() then
-    DebugPrint("ZJT_ \229\173\152\229\156\168\230\142\162\231\180\162\231\187\132\230\149\176\230\141\174 \231\138\182\230\128\129\233\157\158\230\191\128\230\180\187 \231\137\185\230\174\138\230\191\128\230\180\187\229\164\177\232\180\165 ", RarelyId)
+    DebugPrint("ZJT_ 存在探索组数据 状态非激活 特殊激活失败 ", RarelyId)
     return
   end
   
@@ -56,7 +56,7 @@ function Component:ExploreIdsActive(RarelyIdTable)
   
   local function Callback(Ret, ActiveRarelyIds)
     if not (self:CheckRegionErrorCode(Ret) and ActiveRarelyIds) or 0 == #ActiveRarelyIds then
-      GWorld.logger.error(string.format("ZJT_ \230\156\172\230\172\161\230\142\162\231\180\162\231\187\132\231\154\132\230\191\128\230\180\187\229\133\168\233\131\168\229\164\177\232\180\165 \232\175\183\232\129\148\231\179\187\230\156\141\229\138\161\231\171\175\229\144\140\229\173\166\229\184\174\229\191\153\230\159\165\231\156\139 \233\148\153\232\175\175\231\160\129\239\188\154 %d ", Ret))
+      GWorld.logger.error(string.format("ZJT_ 本次探索组的激活全部失败 请联系服务端同学帮忙查看 错误码： %d ", Ret))
       return
     end
     self:CombineAddRegionData(true)
@@ -65,7 +65,7 @@ function Component:ExploreIdsActive(RarelyIdTable)
         if self:CheckRegionErrorCode(RetCode) then
           EventManager:FireEvent(EventID.OnExploreGroupActive, RarelyId)
         else
-          GWorld.logger.error(string.format("ZJT_ \232\175\165\230\142\162\231\180\162\231\187\132\230\191\128\230\180\187\229\164\177\232\180\165 \232\175\165\230\142\162\231\180\162\231\187\132\229\148\175\228\184\128ID\239\188\154%d \230\156\141\229\138\161\229\153\168\232\191\148\229\155\158\233\148\153\232\175\175\231\160\129\239\188\154%d", RarelyId, RetCode))
+          GWorld.logger.error(string.format("ZJT_ 该探索组激活失败 该探索组唯一ID：%d 服务器返回错误码：%d", RarelyId, RetCode))
         end
       end
     end
@@ -101,7 +101,7 @@ function Component:ExploreIdComplete(RarelyId)
     if self:CheckRegionErrorCode(Ret) then
       EventManager:FireEvent(EventID.OnExploreGroupComplete, RarelyId, TotalReward)
     else
-      GWorld.logger.error(string.format("ZJT_ \232\175\165\230\142\162\231\180\162\231\187\132\229\174\140\230\136\144\229\164\177\232\180\165 \232\175\165\230\142\162\231\180\162\231\187\132\229\148\175\228\184\128ID\239\188\154%d \230\156\141\229\138\161\229\153\168\232\191\148\229\155\158\233\148\153\232\175\175\231\160\129\239\188\154%d", RarelyId, Ret))
+      GWorld.logger.error(string.format("ZJT_ 该探索组完成失败 该探索组唯一ID：%d 服务器返回错误码：%d", RarelyId, Ret))
     end
   end
   
@@ -126,12 +126,12 @@ function Component:ExploreIdsComplete(RarelyIdTable)
           if self:CheckRegionErrorCode(RetCode) then
             EventManager:FireEvent(EventID.OnExploreGroupComplete, RarelyId)
           else
-            GWorld.logger.error(string.format("ZJT_ \232\175\165\230\142\162\231\180\162\231\187\132\229\174\140\230\136\144\229\164\177\232\180\165 %\232\175\165\230\142\162\231\180\162\231\187\132\229\148\175\228\184\128ID\239\188\154d \230\156\141\229\138\161\229\153\168\232\191\148\229\155\158\233\148\153\232\175\175\231\160\129\239\188\154%d", RarelyId, Ret))
+            GWorld.logger.error(string.format("ZJT_ 该探索组完成失败 %该探索组唯一ID：d 服务器返回错误码：%d", RarelyId, Ret))
           end
         end
       end
     else
-      GWorld.logger.error("ZJT_ \232\175\165\230\142\162\231\180\162\231\187\132\229\174\140\230\136\144\229\133\168\233\131\168\229\164\177\232\180\165 ", RarelyIdTable)
+      GWorld.logger.error("ZJT_ 该探索组完成全部失败 ", RarelyIdTable)
     end
   end
   
@@ -177,25 +177,25 @@ end
 
 function Component:SetState2InExploreChanllenge(ExploreId)
   if not ExploreId or ExploreId <= 0 then
-    self.logger.debug("ZJT_ ExitState2InExploreChanllenge \229\188\128\229\144\175\229\164\177\232\180\165 \230\178\161\230\156\137\230\142\162\231\180\162Id ", ExploreId)
+    self.logger.debug("ZJT_ ExitState2InExploreChanllenge 开启失败 没有探索Id ", ExploreId)
     return
   end
   local Explore = self.Explores[ExploreId]
   if not Explore then
-    self.logger.debug("ZJT_ ExitState2InExploreChanllenge \229\188\128\229\144\175\229\164\177\232\180\165 \230\178\161\230\156\137\230\142\162\231\180\162\230\149\176\230\141\174 ", ExploreId)
+    self.logger.debug("ZJT_ ExitState2InExploreChanllenge 开启失败 没有探索数据 ", ExploreId)
     return
   end
   if not Explore:IsDoing() then
-    self.logger.debug("ZJT_ ExitState2InExploreChanllenge \229\188\128\229\144\175\229\164\177\232\180\165 \228\184\141\229\156\168\230\137\167\232\161\140\228\184\173 ", ExploreId)
+    self.logger.debug("ZJT_ ExitState2InExploreChanllenge 开启失败 不在执行中 ", ExploreId)
     return
   end
   if self:InExploreChanllenge() then
-    self.logger.debug("ZJT_ ExitState2InExploreChanllenge \229\188\128\229\144\175\229\164\177\232\180\165 \229\189\147\229\137\141\229\156\168\230\140\145\230\136\152\228\184\173 ", ExploreId)
+    self.logger.debug("ZJT_ ExitState2InExploreChanllenge 开启失败 当前在挑战中 ", ExploreId)
     return
   end
   
   local function Callback(Ret)
-    self.logger.debug("ZJT_ SetAvatarState2InExploreChanllenge \229\188\128\229\144\175\230\136\144\229\138\159 ", Ret, ExploreId)
+    self.logger.debug("ZJT_ SetAvatarState2InExploreChanllenge 开启成功 ", Ret, ExploreId)
   end
   
   self:CallServer("SetState2InExploreChanllenge", Callback, ExploreId)
@@ -203,25 +203,25 @@ end
 
 function Component:ExitState2InExploreChanllenge(ExploreId)
   if not ExploreId or ExploreId <= 0 then
-    self.logger.debug("ZJT_ ExitState2InExploreChanllenge \233\128\128\229\135\186\229\164\177\232\180\165 \230\178\161\230\156\137\230\142\162\231\180\162Id ", ExploreId)
+    self.logger.debug("ZJT_ ExitState2InExploreChanllenge 退出失败 没有探索Id ", ExploreId)
     return
   end
   local Explore = self.Explores[ExploreId]
   if not Explore then
-    self.logger.debug("ZJT_ ExitState2InExploreChanllenge \233\128\128\229\135\186\229\164\177\232\180\165 \230\178\161\230\156\137\230\142\162\231\180\162\230\149\176\230\141\174 ", ExploreId)
+    self.logger.debug("ZJT_ ExitState2InExploreChanllenge 退出失败 没有探索数据 ", ExploreId)
     return
   end
   if not Explore:IsDoing() then
-    self.logger.debug("ZJT_ ExitState2InExploreChanllenge \233\128\128\229\135\186\229\164\177\232\180\165 \228\184\141\229\156\168\230\137\167\232\161\140\228\184\173 ", ExploreId)
+    self.logger.debug("ZJT_ ExitState2InExploreChanllenge 退出失败 不在执行中 ", ExploreId)
     return
   end
   if not self:InExploreChanllenge() then
-    self.logger.debug("ZJT_ ExitState2InExploreChanllenge \233\128\128\229\135\186\229\164\177\232\180\165 \228\184\141\229\156\168\230\140\145\230\136\152\228\184\173 ", ExploreId)
+    self.logger.debug("ZJT_ ExitState2InExploreChanllenge 退出失败 不在挑战中 ", ExploreId)
     return
   end
   
   local function Callback(Ret)
-    self.logger.debug("ZJT_ ExitState2InExploreChanllenge \233\128\128\229\135\186\230\136\144\229\138\159 ", Ret, ExploreId)
+    self.logger.debug("ZJT_ ExitState2InExploreChanllenge 退出成功 ", Ret, ExploreId)
   end
   
   self:CallServer("ExitState2InExploreChanllenge", Callback, ExploreId)

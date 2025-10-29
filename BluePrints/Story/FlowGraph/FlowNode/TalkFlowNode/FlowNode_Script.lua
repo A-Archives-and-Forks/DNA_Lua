@@ -389,7 +389,7 @@ function M:PostProcess(MaterialInstance)
   local TalkContext = GWorld.GameInstance:GetTalkContext()
   if not IsValid(TalkContext) then
     local Message = string.format("PostProcess create failed: TalkContext not found, DialogueId: %d", Flow.DialogueId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local Guid = self:GetGuidString()
@@ -406,23 +406,23 @@ function M:SetStoryVar(Index, VarName, VarValue)
   local QuestChainId = TalkTaskData.QuestChainId
   self.TaskQueue:AddTask(Guid, "SetStoryVar", function(OnFinish)
     if not VarName or "" == VarName then
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "SetStoryVar\232\132\154\230\156\172\229\135\186\233\148\153", "\230\178\161\230\156\137\229\161\171\229\134\153VarName, GUID:" .. Guid .. ",\232\175\183\231\173\150\229\136\146\230\142\146\230\159\165.")
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "SetStoryVar脚本出错", "没有填写VarName, GUID:" .. Guid .. ",请策划排查.")
       return OnFinish()
     end
     local VarInfo = DataMgr.StoryVariable[VarName]
     if not VarInfo then
-      local _Str = "\229\143\152\233\135\143:[" .. tostring(VarName) .. "]\233\156\128\232\166\129\231\142\176\229\156\168StoryVariable.xlsx\228\184\173\229\133\136\229\163\176\230\152\142"
+      local _Str = "变量:[" .. tostring(VarName) .. "]需要现在StoryVariable.xlsx中先声明"
       if QuestChainId and 0 ~= QuestChainId then
         _Str = _Str .. ",QuestChainId:[" .. tostring(QuestChainId) .. "]"
       end
-      _Str = _Str .. ",GUID:" .. tostring(Guid) .. ",\232\175\183\231\173\150\229\136\146\230\142\146\230\159\165."
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "SetVar\232\132\154\230\156\172\229\135\186\233\148\153", _Str)
+      _Str = _Str .. ",GUID:" .. tostring(Guid) .. ",请策划排查."
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "SetVar脚本出错", _Str)
       return OnFinish()
     end
     if VarInfo.QuestChainId and VarInfo.QuestChainId ~= QuestChainId then
-      local _Str = "\229\143\152\233\135\143:[" .. tostring(VarName) .. "]\228\184\141\232\131\189\229\156\168QuestChain:[" .. tostring(QuestChainId) .. "]\228\184\173\228\189\191\231\148\168\239\188\129\232\161\168\233\135\140\229\161\171\233\135\140\229\174\131\229\143\170\230\148\175\230\140\129\229\156\168QuestChain:[" .. tostring(VarInfo.QuestChainId) .. "]\228\184\173\228\189\191\231\148\168\239\188\129"
-      _Str = _Str .. ",GUID:" .. tostring(Guid) .. ",\232\175\183\231\173\150\229\136\146\230\142\146\230\159\165."
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "SetVar\232\132\154\230\156\172\233\148\153\232\175\175", _Str)
+      local _Str = "变量:[" .. tostring(VarName) .. "]不能在QuestChain:[" .. tostring(QuestChainId) .. "]中使用！表里填里它只支持在QuestChain:[" .. tostring(VarInfo.QuestChainId) .. "]中使用！"
+      _Str = _Str .. ",GUID:" .. tostring(Guid) .. ",请策划排查."
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "SetVar脚本错误", _Str)
       return OnFinish()
     end
     local StorySubsystem = UE4.USubsystemBlueprintLibrary.GetGameInstanceSubsystem(self, UStorySubsystem:StaticClass())

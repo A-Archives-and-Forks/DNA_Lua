@@ -228,7 +228,7 @@ function BP_Excavation_C:ClientInitInfo(Info)
   if ExcavationUI then
     ExcavationUI:OnExcavationItemChange("Add", self.Eid)
   else
-    DebugPrint("BP_Excavation_C\230\137\190\228\184\141\229\136\176ExcavationUI", self.Eid)
+    DebugPrint("BP_Excavation_C找不到ExcavationUI", self.Eid)
     self:AddTimer(5, function()
       ExcavationUI = Utils.UIManager(self):GetUIObj("DungenonExcavation")
       if ExcavationUI then

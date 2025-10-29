@@ -30,7 +30,7 @@ function Component:CheckCondition_Lua(ConditionId, Source, Targets, ExtraVars)
     return false
   end
   local _Data = DataMgr.CombatCondition[ConditionId]
-  assert(_Data, "CombatCondition\227\128\144" .. tostring(ConditionId) .. "\227\128\145\228\184\141\229\173\152\229\156\168!")
+  assert(_Data, "CombatCondition【" .. tostring(ConditionId) .. "】不存在!")
   if _Data.FuncName then
     ret = self.ConditionComponent:CheckCondition_Lua(ConditionId, Source, Targets, ExtraVars)
   end

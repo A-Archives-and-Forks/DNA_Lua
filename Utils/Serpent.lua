@@ -82,7 +82,7 @@ local function s(t, opts)
   end
   
   local function safestr(s)
-    return type(s) == "number" and tostring(huge and snum[tostring(s)] or numformat:format(s)) or type(s) ~= "string" and tostring(s) or ("%q"):format(s):gsub("\n", "n"):gsub("\026", "\\026")
+    return type(s) == "number" and tostring(huge and snum[tostring(s)] or numformat:format(s)) or type(s) ~= "string" and tostring(s) or ("%q"):format(s):gsub("\n", "n"):gsub("", "\")
   end
   
   local function comment(s, l)

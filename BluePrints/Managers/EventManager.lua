@@ -609,9 +609,9 @@ function Event:CheckIsLeak(eventName, bLog)
         end
     end
     if self.LastCount < self.NowCount then
-      ScreenPrint(ErrorTag .. string.format("EventManager\228\186\139\228\187\182 %s \229\143\145\231\142\176\229\134\133\229\173\152\230\179\132\230\188\143\239\188\140\232\175\183\230\163\128\230\159\165\232\175\165\228\186\139\228\187\182\230\179\168\229\134\140\229\144\142\230\152\175\229\144\166\230\173\163\231\161\174\230\184\133\231\144\134\239\188\140LastCount:%s\239\188\140NowCount:%s", eventName, self.LastCount, self.NowCount))
+      ScreenPrint(ErrorTag .. string.format("EventManager事件 %s 发现内存泄漏，请检查该事件注册后是否正确清理，LastCount:%s，NowCount:%s", eventName, self.LastCount, self.NowCount))
       for Obj, Count in pairs(Logger) do
-        DebugPrint(ErrorTag, string.format("\232\175\165\230\179\132\230\188\143\231\154\132\228\186\139\228\187\182\231\187\145\229\174\154\231\154\132\229\135\189\230\149\176\230\149\176\233\135\143:%s, \231\177\187\229\144\141or\229\175\185\232\177\161:", Count), Obj)
+        DebugPrint(ErrorTag, string.format("该泄漏的事件绑定的函数数量:%s, 类名or对象:", Count), Obj)
       end
     end
     self.NowCount = RealCount
@@ -664,11 +664,11 @@ EventManager.EventDic = {}
 
 function EventManager:AddEvent(eventName, obj, func)
   if not obj then
-    Traceback(ErrorTag, "EventManager:AddEvent\239\188\140\228\186\139\228\187\182\231\154\132\229\175\185\232\177\161\228\184\141\232\131\189\228\184\186\231\169\186\239\188\129\239\188\129\239\188\129")
+    Traceback(ErrorTag, "EventManager:AddEvent，事件的对象不能为空！！！")
     return
   end
   if not func then
-    Traceback(ErrorTag, "EventManager:AddEvent\239\188\140\228\188\160\229\133\165\231\154\132\229\135\189\230\149\176\229\155\158\232\176\131\228\184\141\232\131\189\228\184\186\231\169\186\239\188\129\239\188\129")
+    Traceback(ErrorTag, "EventManager:AddEvent，传入的函数回调不能为空！！")
     return
   end
   if self.EventDic[eventName] == nil then
@@ -679,7 +679,7 @@ end
 
 function EventManager:RemoveEvent(eventName, obj)
   if not obj then
-    Traceback(ErrorTag, "EventManager:RemoveEvent\239\188\140\228\186\139\228\187\182\231\154\132\229\175\185\232\177\161\228\184\141\232\131\189\228\184\186\231\169\186\239\188\129\239\188\129\239\188\129")
+    Traceback(ErrorTag, "EventManager:RemoveEvent，事件的对象不能为空！！！")
     return
   end
   if self.EventDic[eventName] ~= nil then
@@ -698,7 +698,7 @@ function EventManager:CheckIsLeak()
   if not GWorld.IsDev then
     return
   end
-  DebugPrint(WarningTag, "\230\163\128\230\181\139EventMananger\228\186\139\228\187\182\230\179\132\230\188\143...")
+  DebugPrint(WarningTag, "检测EventMananger事件泄漏...")
   for eventName, Event in pairs(self.EventDic) do
     Event:CheckIsLeak(eventName, bLog)
   end

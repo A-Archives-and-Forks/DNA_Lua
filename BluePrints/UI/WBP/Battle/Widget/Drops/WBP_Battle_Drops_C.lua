@@ -46,7 +46,7 @@ end
 
 function M:OnUpdateTips(ItemId, ItemCount, TableName)
   local ItemData = DataMgr[TableName][ItemId]
-  assert(ItemData, "\230\142\137\232\144\189\231\137\169\228\184\141\229\173\152\229\156\168:" .. TableName .. ItemId)
+  assert(ItemData, "掉落物不存在:" .. TableName .. ItemId)
   local ListItems = self.ListView_Box:GetListItems()
   if ListItems:Length() > 0 then
     for _, Content in pairs(ListItems) do

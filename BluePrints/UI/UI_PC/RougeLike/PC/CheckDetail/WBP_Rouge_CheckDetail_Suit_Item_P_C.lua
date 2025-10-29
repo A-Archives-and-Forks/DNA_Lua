@@ -71,7 +71,7 @@ function M:InitSuitInfo()
     end
   else
     self.Group_TitleIcon:SetVisibility(UE4.ESlateVisibility.Collapsed)
-    Des = string.format("\194\183 %s", GText("UI_DUNGEON_DES_TRAINING_23"))
+    Des = string.format("· %s", GText("UI_DUNGEON_DES_TRAINING_23"))
   end
   self.Text_SuitTitle:SetText(Des)
   self.Text_SuitEffectTitle:SetText(GText("RL_GroupEffect"))
@@ -177,7 +177,7 @@ function M:OnSuitTipClicked()
     }
     self.ItemDetails_MenuAnchor:OpenItemDetailsWidget(false, Content)
   else
-    DebugPrint("@@@ Rouge\230\178\161\230\137\190\229\136\176TreasureGroupId")
+    DebugPrint("@@@ Rouge没找到TreasureGroupId")
   end
   self:HiedAllButtomTips()
 end

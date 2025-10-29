@@ -4,7 +4,7 @@ local M = Class("BluePrints.UI.BP_EMUserWidget_C")
 function M:Init(RegionId)
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    GWorld.logger.error("BP_DimensionDrawAreaBtn_C\239\188\154Init()\239\188\140Avatar\228\184\141\229\173\152\229\156\168")
+    GWorld.logger.error("BP_DimensionDrawAreaBtn_C：Init()，Avatar不存在")
     return
   end
   local RegionId = RegionId or DataMgr.SubRegion[Avatar.CurrentRegionId].RegionId

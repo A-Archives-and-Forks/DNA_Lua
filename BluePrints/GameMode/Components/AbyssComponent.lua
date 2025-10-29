@@ -16,19 +16,19 @@ function AbyssComponent:OnAbyssRoomBegin(LevelId, RoomId)
   self.AbyssRoomId = RoomId
   local AbyssRoomInfo = DataMgr.AbyssRoom[self.AbyssRoomId]
   if not AbyssRoomInfo then
-    self.EMGameState:ShowDungeonError("RoomId\228\184\141\229\173\152\229\156\168\228\186\142AbyssRoom\232\161\168\233\135\140, RoomId" .. self.AbyssRoomId)
+    self.EMGameState:ShowDungeonError("RoomId不存在于AbyssRoom表里, RoomId" .. self.AbyssRoomId)
     return
   end
   if not AbyssRoomInfo.ClearCondition then
-    self.EMGameState:ShowDungeonError("AbyssRoom\232\161\168\233\135\140\228\184\141\229\173\152\229\156\168ClearCondition, RoomId" .. self.AbyssRoomId)
+    self.EMGameState:ShowDungeonError("AbyssRoom表里不存在ClearCondition, RoomId" .. self.AbyssRoomId)
     return
   end
   if not AbyssRoomInfo.TimeLimit then
-    self.EMGameState:ShowDungeonError("AbyssRoom\232\161\168\233\135\140\228\184\141\229\173\152\229\156\168TimeLimit, RoomId" .. self.AbyssRoomId)
+    self.EMGameState:ShowDungeonError("AbyssRoom表里不存在TimeLimit, RoomId" .. self.AbyssRoomId)
     return
   end
   if not AbyssRoomInfo.UnitSpawnId then
-    self.EMGameState:ShowDungeonError("AbyssRoom\232\161\168\233\135\140\228\184\141\229\173\152\229\156\168UnitSpawnId, RoomId" .. self.AbyssRoomId)
+    self.EMGameState:ShowDungeonError("AbyssRoom表里不存在UnitSpawnId, RoomId" .. self.AbyssRoomId)
     return
   end
   self.ClearCondition = AbyssRoomInfo.ClearCondition
@@ -70,10 +70,10 @@ function AbyssComponent:TryUnlockDoor()
         end
       end
     else
-      self.EMGameState:ShowDungeonError("\229\189\147\229\137\141\230\136\191\233\151\180\233\128\154\232\191\135\239\188\140\228\189\134\230\152\175LevelLoader.LevelId2Doors\228\184\173\230\178\161\230\156\137\229\189\147\229\137\141LevelName\239\188\154" .. self.LevelName)
+      self.EMGameState:ShowDungeonError("当前房间通过，但是LevelLoader.LevelId2Doors中没有当前LevelName：" .. self.LevelName)
     end
   else
-    self.EMGameState:ShowDungeonError("\229\189\147\229\137\141\230\136\191\233\151\180\233\128\154\232\191\135\239\188\140\228\189\134\230\152\175GameMode\232\142\183\229\143\150\228\184\141\229\136\176LevelLoader")
+    self.EMGameState:ShowDungeonError("当前房间通过，但是GameMode获取不到LevelLoader")
   end
   return false
 end
@@ -89,10 +89,10 @@ function AbyssComponent:TryLockDoor()
         end
       end
     else
-      self.EMGameState:ShowDungeonError("\232\191\155\229\133\165\230\150\176\230\136\191\233\151\180\239\188\140\228\189\134\230\152\175LevelLoader.LevelId2Doors\228\184\173\230\178\161\230\156\137\229\189\147\229\137\141LevelName\239\188\154" .. self.LevelName .. self:GetName())
+      self.EMGameState:ShowDungeonError("进入新房间，但是LevelLoader.LevelId2Doors中没有当前LevelName：" .. self.LevelName .. self:GetName())
     end
   else
-    self.EMGameState:ShowDungeonError("\232\191\155\229\133\165\230\150\176\230\136\191\233\151\180\239\188\140\228\189\134\230\152\175GameMode\232\142\183\229\143\150\228\184\141\229\136\176LevelLoader")
+    self.EMGameState:ShowDungeonError("进入新房间，但是GameMode获取不到LevelLoader")
   end
 end
 
@@ -130,7 +130,7 @@ function AbyssComponent:SetAbyssBattlePanelVisibility(IsShow)
   if AbyssBattleUI then
     AbyssBattleUI:SetAbyssBattleVisibility(IsShow)
   else
-    DebugPrint("AbyssComponent:SetAbyssBattlePanelVisibility \230\137\190\228\184\141\229\136\176AbyssBattleUI ", IsShow)
+    DebugPrint("AbyssComponent:SetAbyssBattlePanelVisibility 找不到AbyssBattleUI ", IsShow)
   end
 end
 

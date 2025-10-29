@@ -123,8 +123,8 @@ function BP_TalkContext_C:CreateTalkActors(TalkTask, CreateInfos, Callback, Talk
     
     local function OnGotActor(Actor, bExternal)
       if not IsValid(Actor) then
-        local Message = string.format("\229\175\185\232\175\157\229\136\155\229\187\186Actor\229\164\177\232\180\165\239\188\140ActorId: %d, ActorType: %s", ActorId, ActorType)
-        UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+        local Message = string.format("对话创建Actor失败，ActorId: %d, ActorType: %s", ActorId, ActorType)
+        UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
         return
       end
       if StageInfo then
@@ -471,8 +471,8 @@ function BP_TalkContext_C:CreateStageInfos(Stage)
         ForcedLodModel = ForcedLodModel
       }
     else
-      local Message = string.format("\232\136\158\229\143\176\239\188\136%s\239\188\137\233\133\141\231\189\174\231\154\132\231\172\172 %d \228\184\170\229\136\183\230\150\176\231\130\185\230\152\175\231\169\186\231\154\132\239\188\140\232\139\165\233\157\158\230\132\143\229\164\150\229\136\160\233\153\164\239\188\140\229\136\153\231\167\187\233\153\164\232\175\165\230\149\176\230\141\174\227\128\130", Stage:GetName(), i)
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\157\153\230\128\129\229\136\183\230\150\176\231\130\185\230\152\175\231\169\186\231\154\132", Message)
+      local Message = string.format("舞台（%s）配置的第 %d 个刷新点是空的，若非意外删除，则移除该数据。", Stage:GetName(), i)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "静态刷新点是空的", Message)
     end
   end
   return StageInfos
@@ -494,7 +494,7 @@ end
 function BP_TalkContext_C:RegisterStage(TalkStageName, Stage)
   if not TalkStageName or "" == TalkStageName then
     local Message = UKismetSystemLibrary.GetPathName(Stage)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\156\176\229\155\190\228\184\173\229\173\152\229\156\168\230\151\160\230\149\136TalkStage(DisplayName\228\184\186\231\169\186)", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "地图中存在无效TalkStage(DisplayName为空)", Message)
     return
   end
   if self.TalkStageMap[TalkStageName] then
@@ -583,7 +583,7 @@ end
 function BP_TalkContext_C:StartDirectTalkByTalkTriggerId_CPP(TalkTriggerId, AudioAttachActor, EndCallback)
   DebugPrint("StartDirectTalkByTalkTriggerId_CPP ", TalkTriggerId)
   if not self:CheckTalkTriggerId() then
-    DebugPrint("\230\163\128\230\181\139TalkTriggerId\228\184\141\233\128\154\232\191\135\239\188\140\232\175\183\230\163\128\230\159\165\233\133\141\231\189\174", TalkTriggerId)
+    DebugPrint("检测TalkTriggerId不通过，请检查配置", TalkTriggerId)
     if EndCallback then
       EndCallback()
     end
@@ -591,7 +591,7 @@ function BP_TalkContext_C:StartDirectTalkByTalkTriggerId_CPP(TalkTriggerId, Audi
   end
   local TS = TalkSubsystem()
   if not TS then
-    DebugPrint("\232\142\183\229\143\150TalkSubsystem\229\164\177\232\180\165:")
+    DebugPrint("获取TalkSubsystem失败:")
     if EndCallback then
       EndCallback()
     end
@@ -599,7 +599,7 @@ function BP_TalkContext_C:StartDirectTalkByTalkTriggerId_CPP(TalkTriggerId, Audi
   end
   local TalkTriggerInfo = DataMgr.TalkTrigger[TalkTriggerId]
   if not TalkTriggerInfo then
-    Utils.ScreenPrint("Warning: \232\176\131\231\148\168\231\155\180\230\142\165\230\146\173\230\148\190\229\175\185\232\175\157\230\151\182\228\188\160\229\133\165\228\186\134\230\151\160\230\149\136\231\154\132TalkTriggerId,\232\175\183\230\163\128\230\159\165\227\128\130TalkTriggerId: " .. TalkTriggerId)
+    Utils.ScreenPrint("Warning: 调用直接播放对话时传入了无效的TalkTriggerId,请检查。TalkTriggerId: " .. TalkTriggerId)
     if EndCallback then
       EndCallback()
     end
@@ -1047,7 +1047,7 @@ function BP_TalkContext_C:OnSequencePlayBegin(TalkTaskData)
   HeroUSDKSubsystem():UploadTrackLog_Lua("game_guide_step_start", {
     step_id = UFormulaFunctionLibrary.GetBaseFileName(TalkTaskData.SequencePath)
   })
-  DebugPrint("@@@ CG\229\188\128\229\167\139", TalkTaskData.TalkNodeName)
+  DebugPrint("@@@ CG开始", TalkTaskData.TalkNodeName)
   self.SequencePlayer = TalkTaskData.SequencePlayer
   self.SequenceActor = TalkTaskData.SequenceActor
   self:FixSequenceCamerasBegin(TalkTaskData)
@@ -1062,7 +1062,7 @@ function BP_TalkContext_C:OnSequencePlayEnd(TalkTaskData)
     end_type = EndType,
     continue_time = MiscUtils.Round(ContinueTime)
   })
-  DebugPrint("@@@ CG\231\187\147\230\157\159", TalkTaskData.TalkNodeName, EndType, EndTime, TalkTaskData.SkippedSequencePoint)
+  DebugPrint("@@@ CG结束", TalkTaskData.TalkNodeName, EndType, EndTime, TalkTaskData.SkippedSequencePoint)
   self.SequencePlayer = nil
   self.SequenceActor = nil
   self:FixSequenceCamerasEnd(TalkTaskData)

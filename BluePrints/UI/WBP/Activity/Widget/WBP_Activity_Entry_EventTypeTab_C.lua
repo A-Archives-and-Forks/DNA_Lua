@@ -87,7 +87,7 @@ function M:SwitchTab(TargetTabName)
     return
   end
   if self:IsAnimationPlaying(self.Switch) then
-    print("lgc@ \229\138\168\231\148\187Switch\230\173\163\229\156\168\230\146\173\230\148\190,\229\136\135\230\141\162\229\164\177\232\180\165")
+    print("lgc@ 动画Switch正在播放,切换失败")
     return
   end
   if "LimitTime" == TargetTabName then

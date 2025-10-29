@@ -86,7 +86,7 @@ return ReadOnly("Npc", {
     CharId = 1101,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Heitao.T_Head_Heitao'",
-    MailSender = "\232\180\157\233\155\183\229\166\174\229\141\161(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "贝雷妮卡(看板娘)",
     ModelId = 81101,
     MouthProfile = "LipSync_10003",
     NpcType = "Show",
@@ -102,7 +102,7 @@ return ReadOnly("Npc", {
     CharId = 1103,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Tuosi.T_Head_Tuosi'",
-    MailSender = "\229\185\187\230\153\175(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "幻景(看板娘)",
     ModelId = 81103,
     MouthProfile = "LipSync_10027",
     NpcType = "Show",
@@ -118,7 +118,7 @@ return ReadOnly("Npc", {
     CharId = 1501,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Baonu.T_Head_Baonu'",
-    MailSender = "\229\136\169\229\133\185\232\180\157\229\176\148\239\188\136\231\156\139\230\157\191\229\168\152\239\188\137",
+    MailSender = "利兹贝尔（看板娘）",
     ModelId = 81501,
     MouthProfile = "LipSync_10030",
     NpcType = "Show",
@@ -134,7 +134,7 @@ return ReadOnly("Npc", {
     CharId = 1502,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Nifu.T_Head_Nifu'",
-    MailSender = "\229\166\174\229\188\151\229\176\148\229\164\171\228\186\186(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "妮弗尔夫人(看板娘)",
     ModelId = 81502,
     MouthProfile = "LipSync_10030",
     NpcType = "Show",
@@ -150,7 +150,7 @@ return ReadOnly("Npc", {
     CharId = 1503,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Kezhou.T_Head_Kezhou'",
-    MailSender = "\229\136\187\232\136\159(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "刻舟(看板娘)",
     ModelId = 81503,
     NpcType = "Show",
     RelatedTalks = {902701},
@@ -164,7 +164,7 @@ return ReadOnly("Npc", {
     CharId = 1801,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Feina.T_Head_Feina'",
-    MailSender = "\232\143\178\229\168\156(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "菲娜(看板娘)",
     ModelId = 81801,
     MouthProfile = "LipSync_10011",
     NpcType = "Show",
@@ -180,7 +180,7 @@ return ReadOnly("Npc", {
     CharId = 2101,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Shuimu.T_Head_Shuimu'",
-    MailSender = "\228\184\189\232\147\147\229\141\161(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "丽蓓卡(看板娘)",
     ModelId = 82101,
     MouthProfile = "LipSync_10011",
     NpcType = "Show",
@@ -196,7 +196,7 @@ return ReadOnly("Npc", {
     CharId = 2301,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Zhangyu.T_Head_Zhangyu'",
-    MailSender = "\229\161\148\230\175\148\231\145\159(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "塔比瑟(看板娘)",
     ModelId = 82301,
     MouthProfile = "LipSync_10012",
     NpcType = "Show",
@@ -212,7 +212,7 @@ return ReadOnly("Npc", {
     CharId = 2401,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Baiheng.T_Head_Baiheng'",
-    MailSender = "\231\153\189\232\152\133(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "白蘅(看板娘)",
     ModelId = 82401,
     NpcType = "Show",
     RelatedTalks = {901101},
@@ -227,7 +227,7 @@ return ReadOnly("Npc", {
     CharId = 3101,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Linen.T_Head_Linen'",
-    MailSender = "\231\144\179\230\129\169(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "琳恩(看板娘)",
     ModelId = 83101,
     MouthProfile = "LipSync_10013",
     NpcType = "Show",
@@ -243,7 +243,7 @@ return ReadOnly("Npc", {
     CharId = 3102,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Xier.T_Head_Xier'",
-    MailSender = "\229\184\140\229\176\148\229\166\178(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "希尔妲(看板娘)",
     ModelId = 83102,
     MouthProfile = "LipSync_10014",
     NpcType = "Show",
@@ -259,7 +259,7 @@ return ReadOnly("Npc", {
     CharId = 3103,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Yeer.T_Head_Yeer'",
-    MailSender = "\232\128\182\229\176\148(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "耶尔(看板娘)",
     ModelId = 83103,
     MouthProfile = "LipSync_10028",
     NpcType = "Show",
@@ -275,7 +275,7 @@ return ReadOnly("Npc", {
     CharId = 3201,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Haier.T_Head_Haier'",
-    MailSender = "\230\181\183\229\176\148\230\179\149(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "海尔法(看板娘)",
     ModelId = 83201,
     MouthProfile = "LipSync_10019",
     NpcType = "Show",
@@ -290,7 +290,7 @@ return ReadOnly("Npc", {
     CharId = 3301,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Maer.T_Head_Maer'",
-    MailSender = "\231\142\155\229\176\148\230\180\129(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "玛尔洁(看板娘)",
     ModelId = 83301,
     MouthProfile = "LipSync_10029",
     NpcType = "Show",
@@ -306,7 +306,7 @@ return ReadOnly("Npc", {
     CharId = 4101,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Lise.T_Head_Lise'",
-    MailSender = "\233\187\142\231\145\159(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "黎瑟(看板娘)",
     ModelId = 84101,
     MouthProfile = "LipSync_10022",
     NpcType = "Show",
@@ -322,7 +322,7 @@ return ReadOnly("Npc", {
     CharId = 4102,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Zhiliu.T_Head_Zhiliu'",
-    MailSender = "\230\173\162\230\181\129(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "止流(看板娘)",
     ModelId = 84102,
     MouthProfile = "LipSync_10024",
     NpcType = "Show",
@@ -338,7 +338,7 @@ return ReadOnly("Npc", {
     CharId = 4201,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Yuming.T_Head_Yuming'",
-    MailSender = "\231\133\156\230\152\142(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "煜明(看板娘)",
     ModelId = 84201,
     MouthProfile = "LipSync_10025",
     NpcType = "Show",
@@ -354,7 +354,7 @@ return ReadOnly("Npc", {
     CharId = 4202,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Landi.T_Head_Landi'",
-    MailSender = "\229\133\176\232\191\170(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "兰迪(看板娘)",
     ModelId = 84202,
     MouthProfile = "LipSync_10005",
     NpcType = "Show",
@@ -371,7 +371,7 @@ return ReadOnly("Npc", {
     CollisionLevel = 999,
     GuideHeadId = "Xibi_Idle",
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Xibi.T_Head_Xibi'",
-    MailSender = "\232\165\191\230\175\148\229\176\148(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "西比尔(看板娘)",
     ModelId = 84301,
     MouthProfile = "LipSync_10004",
     NpcType = "Show",
@@ -387,7 +387,7 @@ return ReadOnly("Npc", {
     CharId = 5101,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Songlu.T_Head_Songlu'",
-    MailSender = "\230\157\190\233\156\178(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "松露(看板娘)",
     ModelId = 85101,
     MouthProfile = "LipSync_10017",
     NpcType = "Show",
@@ -402,7 +402,7 @@ return ReadOnly("Npc", {
     CharId = 5102,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Aote.T_Head_Aote'",
-    MailSender = "\229\165\165\231\137\185\232\181\155\229\190\183(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "奥特赛德(看板娘)",
     ModelId = 85102,
     MouthProfile = "LipSync_10009",
     NpcType = "Show",
@@ -418,7 +418,7 @@ return ReadOnly("Npc", {
     CharId = 5301,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Saiqi.T_Head_Saiqi'",
-    MailSender = "\232\181\155\231\144\170(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "赛琪(看板娘)",
     ModelId = 85301,
     MouthProfile = "LipSync_10008",
     NpcType = "Show",
@@ -434,7 +434,7 @@ return ReadOnly("Npc", {
     CharId = 5401,
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Avatar/T_Head_Dafu.T_Head_Dafu'",
-    MailSender = "\232\190\190\232\138\153\230\182\133(\231\156\139\230\157\191\229\168\152)",
+    MailSender = "达芙涅(看板娘)",
     ModelId = 85401,
     MouthProfile = "LipSync_10021",
     NpcType = "Show",
@@ -736,7 +736,7 @@ return ReadOnly("Npc", {
     Camp = "NPC",
     CollisionLevel = 999,
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Mail/T_Head_YunYingJJ.T_Head_YunYingJJ'",
-    MailSender = "\232\191\144\232\144\165\229\155\162\233\152\159",
+    MailSender = "运营团队",
     NpcType = "Normal",
     UnitId = 99999,
     UnitName = "UI_CHAR_NAME_9999"
@@ -9431,7 +9431,7 @@ return ReadOnly("Npc", {
     HeadIconPath = "/Game/UI/Texture/Dynamic/Atlas/GuidePoint/T_Gp_Forging",
     InteractiveInfo = {Forge = 100003},
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Mail/T_Head_TieJiangJJ.T_Head_TieJiangJJ'",
-    MailSender = "\233\147\129\229\140\160\231\154\142\231\154\142",
+    MailSender = "铁匠皎皎",
     ModelId = 90001,
     NpcType = "Normal",
     RelatedBubble = {900101},
@@ -9464,7 +9464,7 @@ return ReadOnly("Npc", {
     HeadIconPath = "/Game/UI/Texture/Dynamic/Atlas/GuidePoint/T_Gp_Depute",
     InteractiveInfo = {Play = 100014},
     MailHead = "Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Mail/T_Head_JJ.T_Head_JJ'",
-    MailSender = "\231\153\189",
+    MailSender = "白",
     ModelId = 90003,
     MouthProfile = "LipSync_10006",
     NpcType = "Normal",
@@ -10277,7 +10277,7 @@ return ReadOnly("Npc", {
     RelatedTalks = {74114701},
     UnitBPPath = "Blueprint'/Game/AssetDesign/Char/Npc/Custom/IceLakeCity/People/BP_LNM.BP_LNM'",
     UnitId = 74114701,
-    UnitName = "\232\128\129\229\185\180\231\148\183"
+    UnitName = "老年男"
   },
   [74114702] = {
     Camp = "NPC",
@@ -10287,7 +10287,7 @@ return ReadOnly("Npc", {
     RelatedTalks = {74114702},
     UnitBPPath = "Blueprint'/Game/AssetDesign/Char/Npc/Custom/IceLakeCity/People/BP_XIlin.BP_XIlin'",
     UnitId = 74114702,
-    UnitName = "\232\128\129\229\185\180\229\165\179"
+    UnitName = "老年女"
   },
   [74114703] = {
     Camp = "NPC",
@@ -10297,7 +10297,7 @@ return ReadOnly("Npc", {
     RelatedTalks = {74114703},
     UnitBPPath = "Blueprint'/Game/AssetDesign/Char/Npc/Custom/IceLakeCity/People/BP_Shangfan.BP_Shangfan'",
     UnitId = 74114703,
-    UnitName = "\228\184\173\229\185\180\231\148\183"
+    UnitName = "中年男"
   },
   [74114704] = {
     Camp = "NPC",
@@ -10307,7 +10307,7 @@ return ReadOnly("Npc", {
     RelatedTalks = {74114704},
     UnitBPPath = "Blueprint'/Game/AssetDesign/Char/Npc/Custom/IceLakeCity/People/BP_ZNF03.BP_ZNF03'",
     UnitId = 74114704,
-    UnitName = "\228\184\173\229\185\180\229\165\179"
+    UnitName = "中年女"
   },
   [74114705] = {
     Camp = "NPC",
@@ -10317,7 +10317,7 @@ return ReadOnly("Npc", {
     RelatedTalks = {74114705},
     UnitBPPath = "Blueprint'/Game/AssetDesign/Char/Npc/Custom/IceLakeCity/People/BP_Bake.BP_Bake'",
     UnitId = 74114705,
-    UnitName = "\233\157\146\229\185\180\231\148\183"
+    UnitName = "青年男"
   },
   [74114706] = {
     Camp = "NPC",
@@ -10327,7 +10327,7 @@ return ReadOnly("Npc", {
     RelatedTalks = {74114706},
     UnitBPPath = "Blueprint'/Game/AssetDesign/Char/Npc/Custom/IceLakeCity/People/BP_Sangni.BP_Sangni'",
     UnitId = 74114706,
-    UnitName = "\233\157\146\229\185\180\229\165\179"
+    UnitName = "青年女"
   },
   [74114707] = {
     Camp = "NPC",
@@ -10337,7 +10337,7 @@ return ReadOnly("Npc", {
     RelatedTalks = {74114707},
     UnitBPPath = "Blueprint'/Game/AssetDesign/Char/Npc/Custom/IceLakeCity/People/BP_Aima.BP_Aima'",
     UnitId = 74114707,
-    UnitName = "\229\185\188\229\185\180"
+    UnitName = "幼年"
   },
   [74114708] = {
     BT = "BehaviorTree'/Game/AssetDesign/AI/Npc/Custom/IceLakeCity/BT_IceLakeCityPatrolKeep_ZNM.BT_IceLakeCityPatrolKeep_ZNM'",
@@ -10348,7 +10348,7 @@ return ReadOnly("Npc", {
     NpcType = "Normal",
     UnitBPPath = "Blueprint'/Game/AssetDesign/Char/Npc/Custom/IceLakeCity/People/BP_LNM.BP_LNM'",
     UnitId = 74114708,
-    UnitName = "\232\128\129\229\185\180\231\148\183"
+    UnitName = "老年男"
   },
   [74114709] = {
     BT = "BehaviorTree'/Game/AssetDesign/AI/Npc/Custom/IceLakeCity/BT_IceLakeCityPatrolKeep_ZNM.BT_IceLakeCityPatrolKeep_ZNM'",
@@ -10359,7 +10359,7 @@ return ReadOnly("Npc", {
     NpcType = "Normal",
     UnitBPPath = "Blueprint'/Game/AssetDesign/Char/Npc/Custom/IceLakeCity/People/BP_XIlin.BP_XIlin'",
     UnitId = 74114709,
-    UnitName = "\232\128\129\229\185\180\229\165\179"
+    UnitName = "老年女"
   },
   [74114710] = {
     BT = "BehaviorTree'/Game/AssetDesign/AI/Npc/Custom/IceLakeCity/BT_IceLakeCityPatrolKeep_ZNM.BT_IceLakeCityPatrolKeep_ZNM'",
@@ -10370,7 +10370,7 @@ return ReadOnly("Npc", {
     NpcType = "Normal",
     UnitBPPath = "Blueprint'/Game/AssetDesign/Char/Npc/Custom/IceLakeCity/People/BP_Shangfan.BP_Shangfan'",
     UnitId = 74114710,
-    UnitName = "\228\184\173\229\185\180\231\148\183"
+    UnitName = "中年男"
   },
   [74114711] = {
     BT = "BehaviorTree'/Game/AssetDesign/AI/Npc/Custom/IceLakeCity/BT_IceLakeCityPatrolKeep_ZNM.BT_IceLakeCityPatrolKeep_ZNM'",
@@ -10381,7 +10381,7 @@ return ReadOnly("Npc", {
     NpcType = "Normal",
     UnitBPPath = "Blueprint'/Game/AssetDesign/Char/Npc/Custom/IceLakeCity/People/BP_ZNF03.BP_ZNF03'",
     UnitId = 74114711,
-    UnitName = "\228\184\173\229\185\180\229\165\179"
+    UnitName = "中年女"
   },
   [74114712] = {
     BT = "BehaviorTree'/Game/AssetDesign/AI/Npc/Custom/IceLakeCity/BT_IceLakeCityPatrolKeep_ZNM.BT_IceLakeCityPatrolKeep_ZNM'",
@@ -10392,7 +10392,7 @@ return ReadOnly("Npc", {
     NpcType = "Normal",
     UnitBPPath = "Blueprint'/Game/AssetDesign/Char/Npc/Custom/IceLakeCity/People/BP_Bake.BP_Bake'",
     UnitId = 74114712,
-    UnitName = "\233\157\146\229\185\180\231\148\183"
+    UnitName = "青年男"
   },
   [74114713] = {
     BT = "BehaviorTree'/Game/AssetDesign/AI/Npc/Custom/IceLakeCity/BT_IceLakeCityPatrolKeep_ZNM.BT_IceLakeCityPatrolKeep_ZNM'",
@@ -10403,7 +10403,7 @@ return ReadOnly("Npc", {
     NpcType = "Normal",
     UnitBPPath = "Blueprint'/Game/AssetDesign/Char/Npc/Custom/IceLakeCity/People/BP_Sangni.BP_Sangni'",
     UnitId = 74114713,
-    UnitName = "\233\157\146\229\185\180\229\165\179"
+    UnitName = "青年女"
   },
   [74114714] = {
     BT = "BehaviorTree'/Game/AssetDesign/AI/Npc/Custom/IceLakeCity/BT_IceLakeCityPatrolKeep_ZNM.BT_IceLakeCityPatrolKeep_ZNM'",
@@ -10414,7 +10414,7 @@ return ReadOnly("Npc", {
     NpcType = "Normal",
     UnitBPPath = "Blueprint'/Game/AssetDesign/Char/Npc/Custom/IceLakeCity/People/BP_Aima.BP_Aima'",
     UnitId = 74114714,
-    UnitName = "\229\185\188\229\185\180"
+    UnitName = "幼年"
   },
   [74114715] = {
     BT = "BehaviorTree'/Game/AssetDesign/AI/Npc/Custom/IceLakeCity/BT_IceLakeCityPatrolKeep_ZNM.BT_IceLakeCityPatrolKeep_ZNM'",
@@ -10492,7 +10492,7 @@ return ReadOnly("Npc", {
     NpcType = "Normal",
     UnitBPPath = "Blueprint'/Game/AssetDesign/Char/Npc/CharacterNpc/Lise/BP_NPC_Lise.BP_NPC_Lise'",
     UnitId = 74114721,
-    UnitName = "\233\187\142\231\145\159"
+    UnitName = "黎瑟"
   },
   [74114722] = {
     BT = "BehaviorTree'/Game/AssetDesign/AI/Npc/Custom/IceLakeCity/BT_IceLakeCityPatrolKeep_ZNM.BT_IceLakeCityPatrolKeep_ZNM'",
@@ -10559,7 +10559,7 @@ return ReadOnly("Npc", {
     RelatedTalks = {74114711},
     UnitBPPath = "Blueprint'/Game/AssetDesign/Char/Npc/CharacterNpc/Lise/BP_NPC_Lise.BP_NPC_Lise'",
     UnitId = 74114727,
-    UnitName = "\233\187\142\231\145\159"
+    UnitName = "黎瑟"
   },
   [74114728] = {
     Camp = "NPC",
@@ -11421,7 +11421,7 @@ return ReadOnly("Npc", {
     RelatedTalks = {76000014},
     UnitBPPath = "/Game/AssetDesign/Char/Npc/Custom/BP_LNM",
     UnitId = 76000014,
-    UnitName = "\232\128\129\229\185\180\231\148\183"
+    UnitName = "老年男"
   },
   [76000015] = {
     Camp = "NPC",
@@ -11432,7 +11432,7 @@ return ReadOnly("Npc", {
     RelatedTalks = {76000015},
     UnitBPPath = "/Game/AssetDesign/Char/Npc/Custom/BP_LNF",
     UnitId = 76000015,
-    UnitName = "\232\128\129\229\185\180\229\165\179"
+    UnitName = "老年女"
   },
   [76000016] = {
     Camp = "NPC",
@@ -11443,7 +11443,7 @@ return ReadOnly("Npc", {
     RelatedTalks = {76000016},
     UnitBPPath = "/Game/AssetDesign/Char/Npc/Custom/BP_ZNM",
     UnitId = 76000016,
-    UnitName = "\228\184\173\229\185\180\231\148\183"
+    UnitName = "中年男"
   },
   [76000017] = {
     Camp = "NPC",
@@ -11454,7 +11454,7 @@ return ReadOnly("Npc", {
     RelatedTalks = {76000017},
     UnitBPPath = "/Game/AssetDesign/Char/Npc/Custom/BP_ZNF",
     UnitId = 76000017,
-    UnitName = "\228\184\173\229\185\180\229\165\179"
+    UnitName = "中年女"
   },
   [76000018] = {
     Camp = "NPC",
@@ -11465,7 +11465,7 @@ return ReadOnly("Npc", {
     RelatedTalks = {76000018},
     UnitBPPath = "/Game/AssetDesign/Char/Npc/Custom/BP_QNM",
     UnitId = 76000018,
-    UnitName = "\233\157\146\229\185\180\231\148\183"
+    UnitName = "青年男"
   },
   [76000019] = {
     Camp = "NPC",
@@ -11476,7 +11476,7 @@ return ReadOnly("Npc", {
     RelatedTalks = {76000019},
     UnitBPPath = "/Game/AssetDesign/Char/Npc/Custom/BP_QNF",
     UnitId = 76000019,
-    UnitName = "\233\157\146\229\185\180\229\165\179"
+    UnitName = "青年女"
   },
   [76000020] = {
     Camp = "NPC",
@@ -11487,7 +11487,7 @@ return ReadOnly("Npc", {
     RelatedTalks = {76000020},
     UnitBPPath = "/Game/AssetDesign/Char/Npc/Custom/BP_YNF",
     UnitId = 76000020,
-    UnitName = "\229\185\188\229\185\180"
+    UnitName = "幼年"
   },
   [76000021] = {
     BT = "BehaviorTree'/Game/AssetDesign/AI/Npc/Custom/IceLakeCity/BT_IceLakeCityPatrolKeep_NvzhuMove01.BT_IceLakeCityPatrolKeep_NvzhuMove01'",
@@ -11544,7 +11544,7 @@ return ReadOnly("Npc", {
     NpcType = "Normal",
     UnitBPPath = "/Game/AssetDesign/Char/Npc/Custom/BP_ZNF",
     UnitId = 77000001,
-    UnitName = "\230\181\139\232\175\149"
+    UnitName = "测试"
   },
   [77000002] = {
     Camp = "NPC",
@@ -11553,7 +11553,7 @@ return ReadOnly("Npc", {
     NpcType = "Normal",
     UnitBPPath = "/Game/AssetDesign/Char/Npc/Custom/BP_ZNM",
     UnitId = 77000002,
-    UnitName = "\230\181\139\232\175\149"
+    UnitName = "测试"
   },
   [77000003] = {
     Camp = "NPC",
@@ -11562,7 +11562,7 @@ return ReadOnly("Npc", {
     NpcType = "Normal",
     UnitBPPath = "/Game/AssetDesign/Char/Npc/Test/BP_NPC_ZNF_Kawaii_test.BP_NPC_ZNF_Kawaii_test",
     UnitId = 77000003,
-    UnitName = "\230\181\139\232\175\149"
+    UnitName = "测试"
   },
   [77000004] = {
     Camp = "NPC",
@@ -11571,7 +11571,7 @@ return ReadOnly("Npc", {
     NpcType = "Normal",
     UnitBPPath = "/Game/AssetDesign/Char/Npc/Test/BP_NPC_QNF_Kawaii_test.BP_NPC_QNF_Kawaii_test",
     UnitId = 77000004,
-    UnitName = "\230\181\139\232\175\149"
+    UnitName = "测试"
   },
   [77000005] = {
     Camp = "NPC",
@@ -11580,7 +11580,7 @@ return ReadOnly("Npc", {
     NpcType = "Normal",
     UnitBPPath = "/Game/AssetDesign/Char/Npc/Test/BP_LN_Kawaii_test.BP_LN_Kawaii_test",
     UnitId = 77000005,
-    UnitName = "\230\181\139\232\175\149"
+    UnitName = "测试"
   },
   [77000006] = {
     Camp = "NPC",
@@ -11589,7 +11589,7 @@ return ReadOnly("Npc", {
     NpcType = "Normal",
     UnitBPPath = "/Game/AssetDesign/Char/Npc/Test/BP_YN_Kawaii_test.BP_YN_Kawaii_test",
     UnitId = 77000006,
-    UnitName = "\230\181\139\232\175\149"
+    UnitName = "测试"
   },
   [77000007] = {
     Camp = "NPC",
@@ -11598,6 +11598,6 @@ return ReadOnly("Npc", {
     NpcType = "Normal",
     UnitBPPath = "/Game/AssetDesign/Char/Npc/Test/BP_ZNM_Kawaii_test.BP_ZNM_Kawaii_test",
     UnitId = 77000007,
-    UnitName = "\230\181\139\232\175\149"
+    UnitName = "测试"
   }
 })

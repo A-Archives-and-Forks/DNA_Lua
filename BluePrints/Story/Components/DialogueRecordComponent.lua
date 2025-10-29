@@ -50,7 +50,7 @@ function FDialogueRecordComponent:RecordOption(OptionData)
       local AreaId = OptionInfo.RegionId
       local Avatar = GWorld:GetAvatar()
       if not Avatar then
-        DebugPrint("FStoryIterationGraph@RecordOption\230\151\182\239\188\140Avatar\228\184\141\229\173\152\229\156\168")
+        DebugPrint("FStoryIterationGraph@RecordOption时，Avatar不存在")
         return
       end
       local ImpressionInfo = Avatar:GetRegionImpression(AreaId)

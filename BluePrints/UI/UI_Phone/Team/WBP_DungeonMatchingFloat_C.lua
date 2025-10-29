@@ -14,7 +14,7 @@ function WBP_DungeoneMatchingFloat_C:OnLoaded(DungeonId, ...)
   self.Super.OnLoaded(self, DungeonId, ...)
   self.DungeonId = DungeonId
   local DungeonData = DataMgr.Dungeon[self.DungeonId]
-  assert(DungeonData, "\229\137\175\230\156\172ID\233\148\153\232\175\175" .. tostring(self.DungeonId))
+  assert(DungeonData, "副本ID错误" .. tostring(self.DungeonId))
   self.Btn_Confirm.OnClicked:Add(self, self.OnClick_Confirm)
   self.Btn_Cancel.OnClicked:Add(self, self.OnClick_Cancel)
   self.Text_Name:SetText(GText(DungeonData.DungeonName))

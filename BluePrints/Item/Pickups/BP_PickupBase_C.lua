@@ -157,7 +157,7 @@ function BP_PickupBase_C:DestroyByExceedMaxDropNum()
 end
 
 function BP_PickupBase_C:SetLifeTime(LifeTime, Reason)
-  DebugPrint("THY_ \229\189\147\229\137\141\230\173\187\228\186\161\231\154\132\230\156\186\229\133\179\229\144\141\231\167\176\228\184\186\239\188\154 ", self:GetName(), self.UnitType, LifeTime, Reason, self.IsCache)
+  DebugPrint("THY_ 当前死亡的机关名称为： ", self:GetName(), self.UnitType, LifeTime, Reason, self.IsCache)
   if self.IsCache then
     return
   end

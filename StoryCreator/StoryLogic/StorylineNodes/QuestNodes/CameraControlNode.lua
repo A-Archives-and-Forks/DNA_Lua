@@ -59,8 +59,8 @@ function CameraControlNode:SetPPMaterial(CameraComponent, PPMaterialPath, InOutI
   if PPMaterialPath and "" ~= PPMaterialPath then
     Material = LoadObject(PPMaterialPath)
     if not Material then
-      local Message = "\229\144\142\229\164\132\231\144\134\230\157\144\232\180\168\228\184\141\229\173\152\229\156\168\239\188\140\232\183\175\229\190\132\239\188\154" .. PPMaterialPath
-      local Title = "\233\149\156\229\164\180\230\142\167\229\136\182\232\138\130\231\130\185Error\239\188\154\229\144\142\229\164\132\231\144\134\230\157\144\232\180\168\228\184\141\229\173\152\229\156\168"
+      local Message = "后处理材质不存在，路径：" .. PPMaterialPath
+      local Title = "镜头控制节点Error：后处理材质不存在"
       UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, Title, Message)
       return
     end

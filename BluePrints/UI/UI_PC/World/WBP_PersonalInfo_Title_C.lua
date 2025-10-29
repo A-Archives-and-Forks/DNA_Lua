@@ -9,7 +9,7 @@ function WBP_PersonalInfo_Title_C:SetTitleContent(PrefixId, SuffixId)
 end
 
 function WBP_PersonalInfo_Title_C:SetEmpty()
-  self.Text_Title:SetText("\226\128\148 \226\128\148")
+  self.Text_Title:SetText("— —")
 end
 
 return WBP_PersonalInfo_Title_C

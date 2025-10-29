@@ -194,7 +194,7 @@ function M:CheckIsMidTermGoalNeedShowReddot()
   for TaskId, Task in pairs(self._Avatar.MidTermTasks) do
     local TaskData = DataMgr.MidTermTask[Task.UniqueID]
     if not TaskData then
-      Utils.ScreenPrint("MidTermTask\232\161\168\228\184\173\228\184\141\229\173\152\229\156\168UniqueID\228\184\186" .. Task.UniqueID .. "\231\154\132\228\187\187\229\138\161\239\188\140\232\175\183\230\163\128\230\159\165\233\133\141\231\189\174")
+      Utils.ScreenPrint("MidTermTask表中不存在UniqueID为" .. Task.UniqueID .. "的任务，请检查配置")
     elseif TaskData.TaskType == TaskType.Achievement then
       if Task.Progress >= Task.Target and Task.RewardsGot == false then
         self:TryIncreaceChallengeRewardReddot(Task.UniqueID)

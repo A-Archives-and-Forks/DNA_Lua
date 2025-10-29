@@ -38,7 +38,7 @@ end
 
 function M:GetPlayerWeaponMontageTags()
   if not self.Owner:IsPlayer() or not self.Owner.InitSuccess then
-    GWorld.logger.errorlog("\228\184\187\232\167\146\233\162\132\229\138\160\232\189\189\230\173\166\229\153\168\232\146\153\229\164\170\229\165\135\232\181\132\230\186\144, \232\142\183\229\143\150\230\149\176\230\141\174\229\164\177\232\180\165", self.Owner.CurrentRoleId, self.Owner.InitSuccess)
+    GWorld.logger.errorlog("主角预加载武器蒙太奇资源, 获取数据失败", self.Owner.CurrentRoleId, self.Owner.InitSuccess)
     return {}
   end
   local TmpWeaponIds = {}

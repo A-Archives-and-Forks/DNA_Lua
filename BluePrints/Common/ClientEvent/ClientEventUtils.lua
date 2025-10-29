@@ -15,11 +15,11 @@ end
 function ClientEventUtils:StartSpecialQuestEvent(...)
   local SpecialQuestId = (...)
   if self.CurrentEvent then
-    DebugPrint("\231\137\185\230\174\138\228\187\187\229\138\161\228\184\173\229\188\128\229\167\139\229\143\166\228\184\128\231\137\185\230\174\138\228\187\187\229\138\161" .. SpecialQuestId)
+    DebugPrint("特殊任务中开始另一特殊任务" .. SpecialQuestId)
     return
   end
   if self.SpecialQuestEvents[SpecialQuestId] then
-    DebugPrint("\233\135\141\229\164\141\229\188\128\229\167\139\231\155\184\229\144\140\231\154\132\231\137\185\230\174\138\228\187\187\229\138\161" .. SpecialQuestId)
+    DebugPrint("重复开始相同的特殊任务" .. SpecialQuestId)
     return
   end
   local SpecialEvent = SpecialQuestEvent(...)
@@ -67,14 +67,14 @@ function ClientEventUtils:StartDynamicEvent(...)
   local DynamicQuestId = (...)
   local DynamicQuestConfig = DataMgr.DynQuest[DynamicQuestId]
   if not DynamicQuestConfig then
-    DebugPrint("\230\137\190\228\184\141\229\136\176\229\138\168\230\128\129\228\187\187\229\138\161\231\188\150\229\143\183:\227\128\144" .. tostring(DynamicQuestId) .. "\227\128\145")
+    DebugPrint("找不到动态任务编号:【" .. tostring(DynamicQuestId) .. "】")
     return
   end
   local Avatar = GWorld:GetAvatar()
   local SubRegionId = Avatar:GetCurrentRegionId()
   local RegionId = Avatar:GetSubRegionId2RegionId(SubRegionId)
   if Avatar and RegionId == DynamicQuestConfig.RegionId then
-    DebugPrint("[\229\138\168\230\128\129\228\186\139\228\187\182]\229\138\168\230\128\129\228\186\139\228\187\182Id" .. tostring(DynamicQuestId) .. "\232\167\163\233\148\129 " .. TimeUtils.TimeToHMSStr())
+    DebugPrint("[动态事件]动态事件Id" .. tostring(DynamicQuestId) .. "解锁 " .. TimeUtils.TimeToHMSStr())
     local DynamicEvent = DynamicQuestEvent(...)
     table.insert(self.CurrentActiveDynamicEvent, DynamicEvent)
     DynamicEvent:StartEvent()
@@ -84,7 +84,7 @@ end
 function ClientEventUtils:SetCurrentDoingDynamicEvent(DynQuestEvent)
   if self.CurrentDoingDynamicEvent then
     if DynQuestEvent == self.CurrentDoingDynamicEvent then
-      DebugPrint("\233\135\141\229\164\141\229\188\128\229\167\139\231\155\184\229\144\140\231\154\132\229\138\168\230\128\129\228\187\187\229\138\161" .. TimeUtils.TimeToHMSStr())
+      DebugPrint("重复开始相同的动态任务" .. TimeUtils.TimeToHMSStr())
       return
     end
     self.CurrentDoingDynamicEvent:Destroy()
@@ -214,72 +214,72 @@ function ClientEventUtils.GetDynEventInfo(Id)
     
     local function GetState(State)
       if 0 == State then
-        return "\230\156\170\230\191\128\230\180\187"
+        return "未激活"
       elseif 1 == State then
-        return "\229\143\175\230\191\128\230\180\187"
+        return "可激活"
       elseif 2 == State then
-        return "\232\191\155\232\161\140\228\184\173"
+        return "进行中"
       elseif 3 == State then
-        return "\229\183\178\229\174\140\230\136\144"
+        return "已完成"
       elseif 4 == State then
-        return "\229\164\177\232\180\165"
+        return "失败"
       end
     end
     
     if DynamicQuest then
       if nil == Id or "" == Id or "nil" == Id then
-        Message = Message .. "-------------\230\137\128\230\156\137\229\138\168\230\128\129\228\186\139\228\187\182\228\191\161\230\129\175--------------\n"
+        Message = Message .. "-------------所有动态事件信息--------------\n"
         for _, DynQuest in pairs(DynamicQuest) do
-          Message = Message .. "\229\138\168\230\128\129\228\186\139\228\187\182Id:" .. DynQuest.DynamicQuestId .. "   "
-          Message = Message .. "\228\186\139\228\187\182\231\138\182\230\128\129:" .. GetState(DynQuest.State) .. "   "
-          Message = Message .. "\232\167\166\229\143\145\230\166\130\231\142\135:" .. tostring(DynQuest.Chance) .. "\n"
+          Message = Message .. "动态事件Id:" .. DynQuest.DynamicQuestId .. "   "
+          Message = Message .. "事件状态:" .. GetState(DynQuest.State) .. "   "
+          Message = Message .. "触发概率:" .. tostring(DynQuest.Chance) .. "\n"
         end
       else
         local Exist = false
         for _, DynQuest in pairs(DynamicQuest) do
           if _ == tonumber(Id) then
             Exist = true
-            local StartTime = "\230\151\160"
-            local EndTime = "\230\151\160"
-            Message = Message .. "\229\138\168\230\128\129\228\186\139\228\187\182Id:" .. _ .. "\n"
-            Message = Message .. "\228\186\139\228\187\182\231\138\182\230\128\129:" .. GetState(DynQuest.State) .. "\n"
+            local StartTime = "无"
+            local EndTime = "无"
+            Message = Message .. "动态事件Id:" .. _ .. "\n"
+            Message = Message .. "事件状态:" .. GetState(DynQuest.State) .. "\n"
             if DynQuest.StartTime > 0 then
               StartTime = TimeUtils.TimeToStr(DynQuest.StartTime)
             end
-            Message = Message .. "\229\188\128\229\167\139\230\151\182\233\151\180:" .. StartTime .. "\n"
+            Message = Message .. "开始时间:" .. StartTime .. "\n"
             if DynQuest.StartTime > 0 then
               EndTime = TimeUtils.TimeToStr(DynQuest.LastEndTime)
             end
-            Message = Message .. "\228\184\138\228\184\128\230\172\161\231\187\147\230\157\159\230\151\182\233\151\180:" .. EndTime .. "\n"
-            Message = Message .. "\229\183\178\229\174\140\230\136\144\230\172\161\230\149\176:" .. tostring(DynQuest.AlreadyCompleteTimes) .. "\n"
-            Message = Message .. "\232\167\166\229\143\145\230\166\130\231\142\135:" .. tostring(DynQuest.Chance) .. "\n"
+            Message = Message .. "上一次结束时间:" .. EndTime .. "\n"
+            Message = Message .. "已完成次数:" .. tostring(DynQuest.AlreadyCompleteTimes) .. "\n"
+            Message = Message .. "触发概率:" .. tostring(DynQuest.Chance) .. "\n"
           end
         end
         if not Exist then
-          Message = Message .. "\230\151\160Id\228\184\186" .. tostring(Id) .. "\231\154\132\229\138\168\230\128\129\228\186\139\228\187\182\n"
+          Message = Message .. "无Id为" .. tostring(Id) .. "的动态事件\n"
         end
       end
-      Message = Message .. "-------------\229\174\162\230\136\183\231\171\175\229\138\168\230\128\129\228\186\139\228\187\182\228\191\161\230\129\175--------------\n"
+      Message = Message .. "-------------客户端动态事件信息--------------\n"
       local CurrentDoing = ClientEventUtils:GetCurrentDoingDynamicEvent()
       if CurrentDoing then
-        Message = Message .. "\229\189\147\229\137\141\232\191\155\232\161\140\231\154\132\229\138\168\230\128\129\228\186\139\228\187\182ID\239\188\154" .. tostring(CurrentDoing.DynamicQuestId) .. "\n"
+        Message = Message .. "当前进行的动态事件ID：" .. tostring(CurrentDoing.DynamicQuestId) .. "\n"
       else
-        Message = Message .. "\230\151\160\230\173\163\229\156\168\232\191\155\232\161\140\231\154\132\229\138\168\230\128\129\228\186\139\228\187\182\n"
+        Message = Message .. "无正在进行的动态事件\n"
       end
       local ActiveEvent = ClientEventUtils:GetCurrentActiveDynamicEvent()
       if ActiveEvent and 0 ~= #ActiveEvent then
-        Message = Message .. "\229\189\147\229\137\141\229\183\178\231\187\143\230\191\128\230\180\187Trigger\231\154\132\229\138\168\230\128\129\228\186\139\228\187\182ID\239\188\154"
+        Message = Message .. "当前已经激活Trigger的动态事件ID："
         for _, Event in pairs(ActiveEvent) do
           Message = Message .. tostring(Event.DynamicQuestId) .. " "
         end
       else
-        Message = Message .. "\230\178\161\230\156\137\229\183\178\231\187\143\230\191\128\230\180\187Trigger\231\154\132\229\138\168\230\128\129\228\186\139\228\187\182"
+        Message = Message .. "没有已经激活Trigger的动态事件"
       end
     else
-      Message = Message .. "\230\151\160\229\138\168\230\128\129\228\186\139\228\187\182"
+      Message = Message .. "无动态事件"
     end
   else
-    Message = Message .. "\230\151\160Avatar"
+    Message = Message .. "无Avatar"
   end
   return Message
 end

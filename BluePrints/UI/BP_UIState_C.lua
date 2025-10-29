@@ -76,7 +76,7 @@ function BP_UIState_C:UpdateArgs(Args)
 end
 
 function BP_UIState_C:InitUIInfo(Name, IsInUIMode, EventList, ...)
-  DebugPrint("Hy@ UIState\229\158\139\231\149\140\233\157\162\230\137\147\229\188\128 InitUIInfo\239\188\140\229\144\141\231\167\176\239\188\154", self:GetUIConfigName())
+  DebugPrint("Hy@ UIState型界面打开 InitUIInfo，名称：", self:GetUIConfigName())
   self:SetBaseName(Name)
   self:BindInOutAnimationWithConfigParam()
   self.IsInUIMode = IsInUIMode
@@ -207,7 +207,7 @@ end
 
 function BP_UIState_C:ListenForInputAction(ActionName, EventType, bConsume, Callback)
   if EventType < 0 or EventType > 5 then
-    GWorld.logger.error(self.WidgetName .. "\228\184\138\231\187\145\229\174\154\231\154\132" .. ActionName .. "\231\155\145\229\144\172\228\186\139\228\187\182 \232\190\147\229\133\165\231\177\187\229\158\139\230\156\137\233\151\174\233\162\152\239\188\140\232\175\183\230\163\128\230\159\165\230\139\188\229\134\153\239\188\129")
+    GWorld.logger.error(self.WidgetName .. "上绑定的" .. ActionName .. "监听事件 输入类型有问题，请检查拼写！")
     return
   end
   
@@ -228,7 +228,7 @@ end
 
 function BP_UIState_C:StopListeningForInputAction(ActionName, EventType)
   if EventType < 0 or EventType > 5 then
-    GWorld.logger.error(ActionName .. "\231\154\132stop\231\155\145\229\144\172\228\186\139\228\187\182 \232\190\147\229\133\165\231\177\187\229\158\139\230\156\137\233\151\174\233\162\152\239\188\140\232\175\183\230\163\128\230\159\165\230\139\188\229\134\153\239\188\129")
+    GWorld.logger.error(ActionName .. "的stop监听事件 输入类型有问题，请检查拼写！")
     return
   end
   self.Overridden.StopListeningForInputAction(self, ActionName, EventType)
@@ -288,7 +288,7 @@ function BP_UIState_C:OnPreviewKeyDown(MyGeometry, InKeyEvent)
   local InKey = UE4.UKismetInputLibrary.GetKey(InKeyEvent)
   local InKeyName = UE4.UFormulaFunctionLibrary.Key_GetFName(InKey)
   if (InKeyName == Const.GamepadSpecialLeft or InKeyName == Const.GamepadSpecialRight) and TeamController and TeamController:IsTeamPopupBarOpenInGamepad() then
-    DebugPrint(LXYTag, "OnPreviewKeyDown:::\231\187\132\233\152\159\231\155\184\229\133\179\231\154\132\229\188\185\230\157\161\230\173\163\229\156\168\230\137\147\229\188\128...")
+    DebugPrint(LXYTag, "OnPreviewKeyDown:::组队相关的弹条正在打开...")
     return UIUtils.UnHandled
   end
   if "Enter" == InKeyName or "Gamepad_Special_Left" == InKeyName then
@@ -304,7 +304,7 @@ function BP_UIState_C:OnKeyUp(MyGeometry, InKeyEvent)
   local InKey = UE4.UKismetInputLibrary.GetKey(InKeyEvent)
   local InKeyName = UE4.UFormulaFunctionLibrary.Key_GetFName(InKey)
   if (InKeyName == Const.GamepadSpecialLeft or InKeyName == Const.GamepadSpecialRight) and TeamController and TeamController:IsTeamPopupBarOpenInGamepad() then
-    DebugPrint(LXYTag, "OnKeyUp:::\231\187\132\233\152\159\231\155\184\229\133\179\231\154\132\229\188\185\230\157\161\230\173\163\229\156\168\230\137\147\229\188\128...")
+    DebugPrint(LXYTag, "OnKeyUp:::组队相关的弹条正在打开...")
     return UIUtils.Unhandled
   end
   local IsEventHandled = false
@@ -419,7 +419,7 @@ end
 
 function BP_UIState_C:Hide(HideTag)
   if self.IsMarkToUnload then
-    DebugPrint("Hy@==UIState\229\158\139\231\149\140\233\157\162\231\167\187\233\153\164\229\189\147\229\184\167\233\156\128\232\166\129Hide\239\188\140\231\155\180\230\142\165\229\191\189\231\149\165", self:GetUIConfigName())
+    DebugPrint("Hy@==UIState型界面移除当帧需要Hide，直接忽略", self:GetUIConfigName())
     return
   end
   if self.IgnoreHideTags and CommonUtils.HasValue(self.IgnoreHideTags, HideTag) then
@@ -450,7 +450,7 @@ end
 
 function BP_UIState_C:Show(ShowTag)
   if self.IsMarkToUnload then
-    DebugPrint("Hy@==UIState\229\158\139\231\149\140\233\157\162\231\167\187\233\153\164\229\189\147\229\184\167\233\156\128\232\166\129Show\239\188\140\231\155\180\230\142\165\229\191\189\231\149\165", self:GetUIConfigName())
+    DebugPrint("Hy@==UIState型界面移除当帧需要Show，直接忽略", self:GetUIConfigName())
     return
   end
   ShowTag = ShowTag or UIConst.CommonHideTagName.DefaultTag
@@ -518,7 +518,7 @@ function BP_UIState_C:Close()
   if not self or not IsValid(self) then
     return
   end
-  DebugPrint("Hy@ UIState\229\158\139\231\149\140\233\157\162\229\133\179\233\151\173 Close\239\188\140\229\144\141\231\167\176\239\188\154", self:GetUIConfigName())
+  DebugPrint("Hy@ UIState型界面关闭 Close，名称：", self:GetUIConfigName())
   if not self.IsInit then
     return
   end
@@ -668,7 +668,7 @@ function BP_UIState_C:OnKeyDown(MyGeometry, InKeyEvent)
   local InKey = UE4.UKismetInputLibrary.GetKey(InKeyEvent)
   local InKeyName = UE4.UFormulaFunctionLibrary.Key_GetFName(InKey)
   if (InKeyName == Const.GamepadSpecialLeft or InKeyName == Const.GamepadSpecialRight) and TeamController and TeamController:IsTeamPopupBarOpenInGamepad() then
-    DebugPrint(LXYTag, "OnKeyDown:::\231\187\132\233\152\159\231\155\184\229\133\179\231\154\132\229\188\185\230\157\161\230\173\163\229\156\168\230\137\147\229\188\128...")
+    DebugPrint(LXYTag, "OnKeyDown:::组队相关的弹条正在打开...")
     return UIUtils.Unhandled
   end
   if ("Escape" == InKeyName or "Android_Back" == InKeyName) and self.IsAllowEscape then

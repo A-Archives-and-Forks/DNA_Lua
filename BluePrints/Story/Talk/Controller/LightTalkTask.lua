@@ -47,13 +47,13 @@ end
 function LightTalkTask:PlayDialogue(bPauseResume)
   local NodeType = self.DialogueIterationComponent:GetCurrentNodeType()
   if NodeType ~= EDialogueNodeType.Dialogue then
-    DebugPrint("lhr@Dialogue Iteration Error: NodeType", NodeType, "\228\184\141\229\144\136\230\179\149")
+    DebugPrint("lhr@Dialogue Iteration Error: NodeType", NodeType, "不合法")
     return
   end
   local Dialogue = self.DialogueIterationComponent:GetDialogue()
   DebugPrint("LightTalkTask PlayDialogue:", Dialogue and Dialogue.DialogueId)
   if not Dialogue then
-    DebugPrint("lhr@Dialogue Iteration Error: Dialogue\228\184\186\231\169\186")
+    DebugPrint("lhr@Dialogue Iteration Error: Dialogue为空")
     return
   end
   self:OnPlayingDialogue(Dialogue)
@@ -169,7 +169,7 @@ function LightTalkTask:OnInterrupted()
 end
 
 function LightTalkTask:OnPaused()
-  DebugPrint("LightTalkTask:\229\175\185\232\175\157\232\162\171\230\154\130\229\129\156", self, self:GetTalkType())
+  DebugPrint("LightTalkTask:对话被暂停", self, self:GetTalkType())
   self.PauseTime = UE4.UGameplayStatics.GetTimeSeconds(GWorld.GameInstance)
   self:ClearWaitTag()
   self:PauseAllTimers(true)
@@ -186,7 +186,7 @@ function LightTalkTask:OnPauseResumed()
   if self.bHasInterrupted then
     return
   end
-  DebugPrint("LightTalkTask:\229\175\185\232\175\157\230\154\130\229\129\156\230\129\162\229\164\141", self, self:GetTalkType(), self.bHasInterrupted)
+  DebugPrint("LightTalkTask:对话暂停恢复", self, self:GetTalkType(), self.bHasInterrupted)
   if IsValid(self.UI) and self.UI.OnPauseResumed then
     self.UI:OnPauseResumed()
   end

@@ -85,7 +85,7 @@ function Component:OnCompleteFishGame(IsSuccess, callback)
 end
 
 function Component:GMSimulateFish(FishData)
-  self.logger.debug("\230\168\161\230\139\159\233\146\147\233\177\188\230\136\144\229\138\159\239\188\140\230\130\168\231\148\168\233\177\188\231\171\191:" .. FishData.FishingRodId .. "\229\146\140\233\177\188\233\165\181:" .. FishData.FishingLureId .. "\229\156\168\233\146\147\233\177\188\231\130\185\239\188\154" .. FishData.FishingSpotId .. "\233\146\147\229\136\176\228\186\134\228\184\128\230\157\161\229\176\186\229\175\184\228\184\186\239\188\154" .. FishData.FishSize .. "\231\154\132\233\177\188:" .. FishData.FishId .. "\239\188\140\233\177\188\228\184\138\233\146\169\230\137\128\233\156\128\230\151\182\233\151\180\228\184\186\239\188\154" .. FishData.FishHookDuration, ",\232\175\165\233\177\188\230\152\175\229\144\166\229\143\152\229\188\130\239\188\154", FishData.IsVariant, ",\230\152\175\229\144\166\232\167\166\229\143\145\228\187\165\229\176\143\233\146\147\229\164\167\239\188\154", FishData.IsSmall2Big)
+  self.logger.debug("模拟钓鱼成功，您用鱼竿:" .. FishData.FishingRodId .. "和鱼饵:" .. FishData.FishingLureId .. "在钓鱼点：" .. FishData.FishingSpotId .. "钓到了一条尺寸为：" .. FishData.FishSize .. "的鱼:" .. FishData.FishId .. "，鱼上钩所需时间为：" .. FishData.FishHookDuration, ",该鱼是否变异：", FishData.IsVariant, ",是否触发以小钓大：", FishData.IsSmall2Big)
 end
 
 function Component:InitFishMapReddot()

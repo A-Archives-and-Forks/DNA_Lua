@@ -137,7 +137,7 @@ function Component:CheckCanUseFallAttack()
   end
   if self.PlayerAnimInstance.CurrentJumpState == Const.BulletJump then
     PrintTable({
-      "\229\173\144\229\188\185\232\183\179\229\191\133\228\184\139\232\144\189\230\148\187\229\135\187"
+      "子弹跳必下落攻击"
     })
     return true
   end
@@ -325,7 +325,7 @@ function Component:InitGamepadSet(KeySet)
   self.ActionToGamepadIcon = {}
   self.InputSetting = UE4.UInputSettings.GetInputSettings()
   if not self.InputSetting then
-    DebugPrint("@@zyh \232\142\183\229\143\150InputSetting\229\164\177\232\180\165")
+    DebugPrint("@@zyh 获取InputSetting失败")
     return
   end
   local ActionMappings = self.InputSetting.ActionMappings:ToTable()
@@ -363,7 +363,7 @@ function Component:InitGamepadSet(KeySet)
   for ActionName, KeyName in pairs(NameMapping) do
     if CurrentKeyMapping[ActionName] then
       for _, UserData in ipairs(CurrentKeyMapping[ActionName]) do
-        DebugPrint("@zyh \232\162\171\229\136\160\230\142\137\231\154\132\230\152\160\229\176\132", UserData.ActionName, UserData.Key.KeyName)
+        DebugPrint("@zyh 被删掉的映射", UserData.ActionName, UserData.Key.KeyName)
         self.InputSetting:RemoveActionMapping(UserData)
       end
     end
@@ -371,7 +371,7 @@ function Component:InitGamepadSet(KeySet)
   for ActionName, ActionData in pairs(GamepadSet) do
     if ActionData.GamepadKey and ActionData.GamepadKey[KeySet] then
       local KeyName = "Gamepad_" .. ActionData.GamepadKey[KeySet]
-      DebugPrint("@zyh \230\183\187\229\138\160\231\154\132\230\152\160\229\176\132\229\133\179\231\179\187", ActionName, KeyName)
+      DebugPrint("@zyh 添加的映射关系", ActionName, KeyName)
       local FInputActionKeyMapping = UE4.FInputActionKeyMapping()
       FInputActionKeyMapping.ActionName = ActionName
       FInputActionKeyMapping.Key = UE4.EKeys[KeyName]

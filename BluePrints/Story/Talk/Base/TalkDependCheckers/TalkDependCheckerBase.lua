@@ -32,11 +32,11 @@ function TalkDependCheckerBase:OnDisabled()
 end
 
 function TalkDependCheckerBase:IsCheckerCompletedInternal(Task, TaskData)
-  DebugPrint("@@@ error \232\175\183\229\174\158\231\142\176\230\173\164TalkChecker IsCheckerCompletedInternal")
+  DebugPrint("@@@ error 请实现此TalkChecker IsCheckerCompletedInternal")
 end
 
 function TalkDependCheckerBase:Clear()
-  DebugPrint("@@@ error \232\175\183\229\174\158\231\142\176\230\173\164TalkChecker Clear")
+  DebugPrint("@@@ error 请实现此TalkChecker Clear")
 end
 
 function TalkDependCheckerBase:IsCheckerCompleted(Task, TaskData)

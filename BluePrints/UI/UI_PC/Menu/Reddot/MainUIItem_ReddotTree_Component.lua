@@ -23,7 +23,7 @@ function Component:ReddotTreePlugIn(BtnConf, Type)
   if self._ReddotNode == BattleMainMenu then
     local function Callback()
       if not UIUtils.IsMenuWorld() then
-        DebugPrint(LXYTag, "\229\137\175\230\156\172\229\146\140boss\230\136\152\228\184\173\239\188\140\229\188\186\229\136\182\228\184\141\230\152\190\231\164\186esc\231\186\162\231\130\185")
+        DebugPrint(LXYTag, "副本和boss战中，强制不显示esc红点")
         
         self.bForceInvisible = true
         self:EMShowReddot(false, EReddotType.New, 0)
@@ -147,7 +147,7 @@ function Component:_AddReddotListener(ChildNodes)
     return
   end
   if self._ListenedReddot and self._ReddotNode == BattleMainMenu then
-    PrintTable(ChildNodes, 3, WarningTag .. LXYTag .. "BattleMainMenu\229\136\176\229\186\149\229\138\160\228\186\134\229\147\170\228\186\155\229\173\144\232\138\130\231\130\185")
+    PrintTable(ChildNodes, 3, WarningTag .. LXYTag .. "BattleMainMenu到底加了哪些子节点")
     ReddotManager.AddNode(BattleMainMenu, ChildNodes)
     return
   end

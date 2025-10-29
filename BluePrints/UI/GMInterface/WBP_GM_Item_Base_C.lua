@@ -11,9 +11,9 @@ function WBP_GM_Item_Base_C:SetItem()
     self.Text_Name_Btn:SetText(self.Command.Text)
   elseif self.Command.Mode == "switch" then
     if self.Command.IsEnable then
-      self.Text_Name_Btn:SetText(self.Command.Text .. "\239\188\154\229\188\128")
+      self.Text_Name_Btn:SetText(self.Command.Text .. "：开")
     else
-      self.Text_Name_Btn:SetText(self.Command.Text .. "\239\188\154\229\133\179")
+      self.Text_Name_Btn:SetText(self.Command.Text .. "：关")
     end
   elseif self.Command.Mode == "edit" then
     if self.Text_Name_Para then
@@ -72,9 +72,9 @@ function WBP_GM_Item_Base_C:Exec(...)
       self.Command.IsEnable = GMVariable[self.Command.VarName]
     end
     if self.Command.IsEnable then
-      self.Text_Name_Btn:SetText(self.Command.Text .. "\239\188\154\229\188\128")
+      self.Text_Name_Btn:SetText(self.Command.Text .. "：开")
     else
-      self.Text_Name_Btn:SetText(self.Command.Text .. "\239\188\154\229\133\179")
+      self.Text_Name_Btn:SetText(self.Command.Text .. "：关")
     end
   elseif self.Command.Mode == "menu" then
     self:SubMenuToggleOpen()

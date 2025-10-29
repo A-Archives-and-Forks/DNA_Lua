@@ -343,7 +343,7 @@ function BP_EventMgr_C:SnapShotCreateUnit(SpawnData, Creator)
   Context.IntParams:Add("RandomTableId", SpawnData.RandomTableId)
   Context.VectorParams:Add("BornPos", BornPos)
   self:CreateUnitNew(Context, false)
-  DebugPrint("SnapShot: \229\137\175\230\156\172\229\186\143\229\136\151\229\140\150\230\129\162\229\164\141, LevelName:", SpawnData.LevelName, "UnitId:", SpawnData.UnitId, "UnitType:", SpawnData.UnitType, "Eid:", SpawnData.SnapShotId, "Location:", Location, "CreatorId:", SpawnData.CreatorId, "BornPos:", SpawnData.BornPos, "PrivateEnable:", SpawnData.PrivateEnable, "RandomCreatorId:", SpawnData.RandomCreatorId, "RandomRuleId:", SpawnData.RuleId, "RandomTableId", SpawnData.RandomTableId)
+  DebugPrint("SnapShot: 副本序列化恢复, LevelName:", SpawnData.LevelName, "UnitId:", SpawnData.UnitId, "UnitType:", SpawnData.UnitType, "Eid:", SpawnData.SnapShotId, "Location:", Location, "CreatorId:", SpawnData.CreatorId, "BornPos:", SpawnData.BornPos, "PrivateEnable:", SpawnData.PrivateEnable, "RandomCreatorId:", SpawnData.RandomCreatorId, "RandomRuleId:", SpawnData.RuleId, "RandomTableId", SpawnData.RandomTableId)
 end
 
 function BP_EventMgr_C:PostProcessInfo(Info)
@@ -544,15 +544,15 @@ function BP_EventMgr_C:RealCreateUnit(Info, bForceSync)
   local ActorData = DataMgr[Info.UnitType][Info.UnitId]
   if nil == ActorData then
     if not Info.Creator then
-      GWorld.logger.error("\229\136\183\230\128\170\230\149\176\230\141\174\232\142\183\229\143\150\229\164\177\232\180\165    UnitId:   " .. Info.UnitId .. "   UnitType:  " .. Info.UnitType)
+      GWorld.logger.error("刷怪数据获取失败    UnitId:   " .. Info.UnitId .. "   UnitType:  " .. Info.UnitType)
       return
     end
     local ExploreActor = GameMode.EMGameState.ExploreGroupMap:FindRef(Info.Creator.RarelyId)
     local LevelName = GameMode:GetActorLevelName(Info.Creator)
     if ExploreActor then
-      GWorld.logger.error("\229\136\183\230\128\170\230\149\176\230\141\174\232\142\183\229\143\150\229\164\177\232\180\165    UnitId:   " .. Info.UnitId .. "   UnitType:  " .. Info.UnitType .. "  CreatorId: " .. Info.Creator.StaticCreatorId .. "  LevelName: " .. tostring(Info.LevelName) .. "  ExploreActorName: " .. ExploreActor:GetName() .. " StaticCreatorActor: " .. Info.Creator:GetName())
+      GWorld.logger.error("刷怪数据获取失败    UnitId:   " .. Info.UnitId .. "   UnitType:  " .. Info.UnitType .. "  CreatorId: " .. Info.Creator.StaticCreatorId .. "  LevelName: " .. tostring(Info.LevelName) .. "  ExploreActorName: " .. ExploreActor:GetName() .. " StaticCreatorActor: " .. Info.Creator:GetName())
     else
-      GWorld.logger.error("\229\136\183\230\128\170\230\149\176\230\141\174\232\142\183\229\143\150\229\164\177\232\180\165    UnitId:   " .. Info.UnitId .. "   UnitType:  " .. Info.UnitType .. "  CreatorId: " .. Info.Creator.StaticCreatorId .. "  LevelName: " .. tostring(LevelName) .. " StaticCreatorActor: " .. Info.Creator:GetName())
+      GWorld.logger.error("刷怪数据获取失败    UnitId:   " .. Info.UnitId .. "   UnitType:  " .. Info.UnitType .. "  CreatorId: " .. Info.Creator.StaticCreatorId .. "  LevelName: " .. tostring(LevelName) .. " StaticCreatorActor: " .. Info.Creator:GetName())
     end
     return
   end
@@ -609,7 +609,7 @@ function BP_EventMgr_C:CreateAIUnit(Info, bForceSync, bFromMonsterLimitQueue)
       return
     end
     if Info.WorldRegionEid and not self.LoadingClassMonsterQueue[Info.WorldRegionEid] then
-      DebugPrint("BP_EventMgr_C LoadClassFinished but", Info.WorldRegionEid, "\229\183\178\231\187\143\232\162\171\233\148\128\230\175\129\228\186\134")
+      DebugPrint("BP_EventMgr_C LoadClassFinished but", Info.WorldRegionEid, "已经被销毁了")
       return
     end
     if Info.WorldRegionEid then
@@ -619,7 +619,7 @@ function BP_EventMgr_C:CreateAIUnit(Info, bForceSync, bFromMonsterLimitQueue)
     local Unit = URuntimeCommonFunctionLibrary.SpawnAIFromClass(self, UnitBlueprint, nil, Info.Loc, Info.Rotation, UE4.ESpawnActorCollisionHandlingMethod.AdjustIfPossibleButAlwaysSpawn, nil)
     if IsValid(Unit) == false then
       DebugPrint("BP_EventMgr_C CreateAIUnit Failed Please Check BPPath", Info.UnitId, Info.ActorPath)
-      GWorld.logger.error("\229\136\183\230\128\170\229\164\177\232\180\165!\232\175\183\230\163\128\230\159\165\232\147\157\229\155\190\232\183\175\229\190\132    UnitId:   " .. Info.UnitId .. "   UnitType:  " .. Info.UnitType)
+      GWorld.logger.error("刷怪失败!请检查蓝图路径    UnitId:   " .. Info.UnitId .. "   UnitType:  " .. Info.UnitType)
       return
     end
     if Info.UnitType == "Npc" then
@@ -714,7 +714,7 @@ function BP_EventMgr_C:CreateActorUnit(Info, bForceSync)
     end
     print(_G.LogTag, "LXZ LoadClassFinished00000")
     if IsValid(UnitBlueprint) == false then
-      GWorld.logger.error("\229\136\183\230\156\186\229\133\179\229\164\177\232\180\165!UnitBlueprint\233\148\153\232\175\175 \232\175\183\230\163\128\230\159\165\232\147\157\229\155\190\232\183\175\229\190\132    UnitId:   " .. Info.UnitId .. "   UnitType:  " .. Info.UnitType .. "   ActorPath   " .. Info.ActorPath)
+      GWorld.logger.error("刷机关失败!UnitBlueprint错误 请检查蓝图路径    UnitId:   " .. Info.UnitId .. "   UnitType:  " .. Info.UnitType .. "   ActorPath   " .. Info.ActorPath)
       return
     end
     local GameMode = UE.UGameplayStatics.GetGameMode(self)
@@ -726,7 +726,7 @@ function BP_EventMgr_C:CreateActorUnit(Info, bForceSync)
     GameMode.RegionDataIniting = true
     local Unit = self:GetWorld():SpawnActor(UnitBlueprint, Transform, UE4.ESpawnActorCollisionHandlingMethod.AlwaysSpawn)
     if IsValid(Unit) == false then
-      GWorld.logger.error("\229\136\183\230\156\186\229\133\179\229\164\177\232\180\165!\232\175\183\230\163\128\230\159\165\232\147\157\229\155\190\232\183\175\229\190\132    UnitId:   " .. Info.UnitId .. "   UnitType:  " .. Info.UnitType)
+      GWorld.logger.error("刷机关失败!请检查蓝图路径    UnitId:   " .. Info.UnitId .. "   UnitType:  " .. Info.UnitType)
       return
     end
     if Info.SkillLevelSource and Unit.SetSkillLevelInfo then
@@ -739,7 +739,7 @@ function BP_EventMgr_C:CreateActorUnit(Info, bForceSync)
     if Unit.RegisterInfo then
       Unit:RegisterInfo(Info)
     else
-      DebugPrint("CreateUnit: \229\136\155\229\187\186\228\186\134\228\184\128\228\184\170\230\178\161\230\156\137RegisterInfo\230\150\185\230\179\149\231\154\132Actor Name:", Unit:GetName())
+      DebugPrint("CreateUnit: 创建了一个没有RegisterInfo方法的Actor Name:", Unit:GetName())
     end
   end
   
@@ -854,7 +854,7 @@ function BP_EventMgr_C:CreateTalkObject(Info)
     local Transform = UE4.FTransform(Rotation:ToQuat(), Info.Loc)
     local Unit = self:GetWorld():SpawnActor(UnitBlueprint, Transform, UE4.ESpawnActorCollisionHandlingMethod.AlwaysSpawn)
     if IsValid(Unit) == false then
-      GWorld.logger.error("\229\136\155\229\187\186TalkObject\229\164\177\232\180\165!\232\175\183\230\163\128\230\159\165\232\147\157\229\155\190\232\183\175\229\190\132    UnitId:   " .. Info.UnitId .. "   UnitType:  " .. Info.UnitType)
+      GWorld.logger.error("创建TalkObject失败!请检查蓝图路径    UnitId:   " .. Info.UnitId .. "   UnitType:  " .. Info.UnitType)
       return
     end
     Unit:Init(Info)
@@ -919,7 +919,7 @@ function BP_EventMgr_C:AddInitializeMonsterQueue(Info)
   end
   if not Info or not Info.WorldRegionEid then
     if Info.UnitType == "Monster" then
-      GWorld.logger.error("\229\156\168\229\140\186\229\159\159\229\134\133\231\154\132\230\128\170\231\137\169\230\178\161\230\156\137\229\136\157\229\167\139\229\140\150\230\149\176\230\141\174\230\136\150WorldRegionEid!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+      GWorld.logger.error("在区域内的怪物没有初始化数据或WorldRegionEid!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     end
     return
   end

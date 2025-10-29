@@ -1132,7 +1132,7 @@ local CommonConst = {
   PetType = {Normal = 1, Consumable = 2},
   DynamicQuestPetToBeCapturedMaxCount = 100,
   LauncherSwitchConf = {
-    [1] = "\230\139\166\230\136\170\229\133\172\229\145\138\229\188\128\229\133\179"
+    [1] = "拦截公告开关"
   },
   BattlePassPayType = {
     RANK2 = 1,
@@ -1145,8 +1145,8 @@ local CommonConst = {
     Limit = 2
   },
   WhitelistType = {
-    Internal = "\229\134\133\233\131\168\231\153\189\229\144\141\229\141\149",
-    Player = "\231\142\169\229\174\182\231\153\189\229\144\141\229\141\149"
+    Internal = "内部白名单",
+    Player = "玩家白名单"
   },
   CHANNEL_OS = {
     IOS = "ios",

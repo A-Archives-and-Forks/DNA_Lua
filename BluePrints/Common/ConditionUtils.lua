@@ -62,7 +62,7 @@ function ConditionUtils.CheckConditionInternal(Avatar, ConditionId, ConditionChe
 end
 
 function ConditionUtils.ServerCheckCondition(Avatar, ConditionId, Callback, bShowFailed)
-  assert(not GWorld:IsSkynetServer() and not IsDedicatedServer(GWorld.GameInstance), "ServerCheckCondition \233\157\158Server/DedicatedServer \230\142\165\229\143\163")
+  assert(not GWorld:IsSkynetServer() and not IsDedicatedServer(GWorld.GameInstance), "ServerCheckCondition 非Server/DedicatedServer 接口")
   Avatar:ServerCheckCondition(ConditionId, Callback, bShowFailed)
 end
 

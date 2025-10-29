@@ -17,7 +17,7 @@ function WBP_PrologueInfo_C:OnLoaded(DungeonId, ...)
   self.Btn_Close.OnClicked:Add(self, self.Close)
   self.DungeonId = DungeonId
   local DungeonData = DataMgr.Dungeon[self.DungeonId]
-  assert(DungeonData, "\229\137\175\230\156\172ID\233\148\153\232\175\175" .. tostring(self.DungeonId))
+  assert(DungeonData, "副本ID错误" .. tostring(self.DungeonId))
   self.Text_Info:SetText(GText(DungeonData.DungeonName))
   self.Text_Single:SetText(GText(self.TextMap_Single))
   self.Text_Team:SetText(GText(self.TextMap_Match))

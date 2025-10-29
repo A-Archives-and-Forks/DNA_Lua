@@ -178,7 +178,7 @@ function M:OnGetAllReward()
                 end
               elseif allRewards[categoryName][itemId] then
                 if type(allRewards[categoryName][itemId]) == "table" then
-                  DebugPrint("\232\173\166\229\145\138\239\188\154\229\176\157\232\175\149\229\176\134\230\149\176\229\128\188\228\184\142\232\161\168\229\144\136\229\185\182\239\188\154" .. categoryName .. "[" .. itemId .. "]")
+                  DebugPrint("警告：尝试将数值与表合并：" .. categoryName .. "[" .. itemId .. "]")
                 else
                   allRewards[categoryName][itemId] = allRewards[categoryName][itemId] + itemInfo
                 end
@@ -392,7 +392,7 @@ function M:RefreshOpInfoByInputDevice(CurInputDevice, CurGamepadName)
     return
   end
   if self.CurInputDeviceType == CurInputDevice then
-    DebugPrint("thy    \229\183\178\231\187\143\230\152\190\231\164\186\231\154\132\230\152\175\232\175\165\232\190\147\229\133\165\230\168\161\229\188\143\239\188\140\228\184\141\233\156\128\232\166\129\232\191\155\232\161\140\229\136\183\230\150\176")
+    DebugPrint("thy    已经显示的是该输入模式，不需要进行刷新")
     return
   end
   self.CurInputDeviceType = CurInputDevice

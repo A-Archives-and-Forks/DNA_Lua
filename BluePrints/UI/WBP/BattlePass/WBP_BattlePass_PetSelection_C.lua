@@ -6,7 +6,7 @@ local WBP_BattlePass_PetSelection_C = Class({
 
 function WBP_BattlePass_PetSelection_C:Construct()
   self.Avatar = GWorld:GetAvatar()
-  assert(self.Avatar, "\230\139\191\228\184\141\229\136\176Avatar")
+  assert(self.Avatar, "拿不到Avatar")
   self.PetItemList = {
     self.WBP_BattlePass_PetOption,
     self.WBP_BattlePass_PetOption_1,

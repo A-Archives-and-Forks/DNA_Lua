@@ -3,11 +3,11 @@ local ReadOnly = (DataMgr or {}).ReadOnly or function(n, x)
 end
 return ReadOnly("DateFormat", {
   Date_MD = {
-    FormatCN = "%m\230\156\136%d\230\151\165",
+    FormatCN = "%m月%d日",
     FormatEN = "%B %e",
     FormatID = "Date_MD",
-    FormatJP = "%m\230\156\136%d\230\151\165",
-    FormatKR = "%m\236\155\148%d\236\157\188"
+    FormatJP = "%m月%d日",
+    FormatKR = "%m월%d일"
   },
   Date_MD_Raw = {
     FormatCN = "%m-%d",
@@ -17,11 +17,11 @@ return ReadOnly("DateFormat", {
     FormatKR = "%m-%d"
   },
   Date_YMD = {
-    FormatCN = "%Y\229\185\180%m\230\156\136%d\230\151\165",
+    FormatCN = "%Y年%m月%d日",
     FormatEN = "%B %e, %Y",
     FormatID = "Date_YMD",
-    FormatJP = "%Y\229\185\180%m\230\156\136%d\230\151\165",
-    FormatKR = "%Y\235\133\132%m\236\155\148%d\236\157\188"
+    FormatJP = "%Y年%m月%d日",
+    FormatKR = "%Y년%m월%d일"
   },
   Date_YMD_Raw = {
     FormatCN = "%y-%m-%d",

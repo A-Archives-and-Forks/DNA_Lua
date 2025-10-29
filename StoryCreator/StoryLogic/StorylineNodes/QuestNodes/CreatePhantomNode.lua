@@ -26,7 +26,7 @@ function CreatePhantomNode:STLCreatePhantom()
       self.TotalCeatorNumCounter = self.TotalCeatorNumCounter + 1
       GWorld.StoryMgr:BindStaticCreatorActorEvent(StaticCreatorId, EActorEventType.OnCreated, self, self.LoadFinishCallback)
     end
-    DebugPrint("CreatePhantomNode: \231\187\145\229\174\154\229\155\158\232\176\131\239\188\140\233\156\128\231\173\137\229\190\133\229\155\158\232\176\131\230\128\187\230\149\176: ", self.TotalCeatorNumCounter)
+    DebugPrint("CreatePhantomNode: 绑定回调，需等待回调总数: ", self.TotalCeatorNumCounter)
   end
   local GameMode = UE4.UGameplayStatics.GetGameMode(GWorld.GameInstance)
   local Player = UE4.UGameplayStatics.GetPlayerCharacter(GWorld.GameInstance, 0)
@@ -40,7 +40,7 @@ end
 
 function CreatePhantomNode:LoadFinishCallback(InfoTable)
   if not self.IsSync then
-    ScreenPrint("CreatePhantomNode: \228\187\133\229\156\168\229\188\128\229\144\175\229\144\140\230\173\165\230\151\182\230\137\141\233\156\128\232\166\129\232\167\166\229\143\145\229\155\158\232\176\131\239\188\129\232\175\183\232\129\148\231\179\187ljl\230\163\128\230\159\165\239\188\129")
+    ScreenPrint("CreatePhantomNode: 仅在开启同步时才需要触发回调！请联系ljl检查！")
     return
   end
   self.TotalCeatorNumCounter = self.TotalCeatorNumCounter - 1
@@ -53,15 +53,15 @@ end
 function CreatePhantomNode:ActivePhantomStaticCreator(GameMode, Player, CreatorId)
   local Creator = GameMode.EMGameState:GetStaticCreatorInfo(CreatorId)
   if self:IsPhantomExist(Creator) then
-    DebugPrint("CreatePhantomNode: \229\176\157\232\175\149\231\148\159\230\136\144\231\154\132\233\173\133\229\189\177\229\183\178\229\173\152\229\156\168\239\188\140\233\157\153\230\128\129\231\130\185Id:", CreatorId)
+    DebugPrint("CreatePhantomNode: 尝试生成的魅影已存在，静态点Id:", CreatorId)
     return
   end
   if not IsValid(Creator) then
-    ScreenPrint("CreatePhantomNode: \233\157\153\230\128\129\231\130\185\228\184\141\229\144\136\230\179\149, \230\137\190\228\184\141\229\136\176\233\157\153\230\128\129\231\130\185\239\188\129\233\157\153\230\128\129\231\130\185Id:" .. CreatorId)
+    ScreenPrint("CreatePhantomNode: 静态点不合法, 找不到静态点！静态点Id:" .. CreatorId)
     return
   end
   if not GameMode:CheckLevelLoadedByActor(Creator) then
-    ScreenPrint("CreatePhantomNode: \233\157\153\230\128\129\231\130\185\228\184\141\229\144\136\230\179\149, \233\157\153\230\128\129\231\130\185\230\137\128\229\156\168\229\133\179\229\141\161\230\156\170\229\138\160\232\189\189\239\188\129\233\157\153\230\128\129\231\130\185Id:" .. CreatorId)
+    ScreenPrint("CreatePhantomNode: 静态点不合法, 静态点所在关卡未加载！静态点Id:" .. CreatorId)
     return
   end
   local SpecialQuestId
@@ -71,7 +71,7 @@ function CreatePhantomNode:ActivePhantomStaticCreator(GameMode, Player, CreatorI
   end
   GameMode:STLSetPhantomCreatorRegionInfo(Creator, self.QuestChainId, SpecialQuestId)
   Creator:RealActiveStaticCreator()
-  DebugPrint("CreatePhantomNode: \231\148\159\230\136\144\233\173\133\229\189\177\239\188\140\233\157\153\230\128\129\231\130\185Id:", Creator.StaticCreatorId)
+  DebugPrint("CreatePhantomNode: 生成魅影，静态点Id:", Creator.StaticCreatorId)
 end
 
 function CreatePhantomNode:IsPhantomExist(Creator)
@@ -100,7 +100,7 @@ function CreatePhantomNode:STLDestroyPhantom()
   local StaticCreatorArray = TArray(0)
   for _, CreatorId in pairs(self.StaticCreatorIdList) do
     StaticCreatorArray:Add(CreatorId)
-    DebugPrint("CreatePhantomNode: \233\148\128\230\175\129\233\173\133\229\189\177\239\188\140\233\157\153\230\128\129\231\130\185Id:", CreatorId)
+    DebugPrint("CreatePhantomNode: 销毁魅影，静态点Id:", CreatorId)
   end
   GameMode:TriggerInactiveStaticCreator(StaticCreatorArray, false, EDestroyReason.StoryLine)
   self:FinishAction()

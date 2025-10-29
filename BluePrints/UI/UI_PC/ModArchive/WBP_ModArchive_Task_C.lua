@@ -483,7 +483,7 @@ function WBP_ModArchive_Task_C:RefreshLRBtnState()
     end
     local MaterialGlow = self.TitleItem.Progress_AddGlow:GetDynamicMaterial()
     if MaterialGlow then
-      DebugPrint("111\232\174\190\231\189\174 Glow ", 1 - (CompleteNum - self.PhaseAddedNum[self.CurPhaseId]) / MaxValidTaskNum)
+      DebugPrint("111设置 Glow ", 1 - (CompleteNum - self.PhaseAddedNum[self.CurPhaseId]) / MaxValidTaskNum)
       MaterialGlow:SetScalarParameterValue("InitialPosition", 1 - (CompleteNum - self.PhaseAddedNum[self.CurPhaseId]) / MaxValidTaskNum)
       MaterialGlow:SetScalarParameterValue("Percent", 0.0)
     end
@@ -553,7 +553,7 @@ function WBP_ModArchive_Task_C:RefreshLRBtnState()
     local Num = self.TitleItem.ListView_Rewards:GetNumItems()
     local ItemUIs = self.TitleItem.ListView_Rewards:GetDisplayedEntryWidgets()
     local RestCount = UIUtils.GetListViewContentMaxCount(self.TitleItem.ListView_Rewards, ItemUIs) - ItemUIs:Length()
-    DebugPrint("\233\156\128\232\166\129\229\161\171\229\133\133\231\154\132\231\169\186\230\160\188\229\173\144\230\149\176 ", RestCount)
+    DebugPrint("需要填充的空格子数 ", RestCount)
     if RestCount > 0 then
       for i = 1, RestCount do
         self.TitleItem.ListView_Rewards:AddItem(self:CreateEmptyContent())
@@ -602,7 +602,7 @@ function WBP_ModArchive_Task_C:AddProgress(CompleteNum, MaxValidTaskNum)
   end
   local SetNum = 25
   local PerPercent = self.PhaseAddedNum[self.CurPhaseId] / MaxValidTaskNum / SetNum
-  DebugPrint("111\232\174\190\231\189\174 AddProgress", self.PhaseAddedNum[self.CurPhaseId] / MaxValidTaskNum, CompleteNum, MaxValidTaskNum)
+  DebugPrint("111设置 AddProgress", self.PhaseAddedNum[self.CurPhaseId] / MaxValidTaskNum, CompleteNum, MaxValidTaskNum)
   
   local function Func()
     SetNum = SetNum - 1

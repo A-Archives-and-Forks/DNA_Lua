@@ -9,7 +9,7 @@ end
 
 function WaitQuestFinishedNode:Execute(Callback)
   if self.FinishedInPortNames[self.InPortName] then
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "STL\233\148\153\232\175\175", string.format("\232\138\130\231\130\185 %s Inport %s \233\135\141\229\164\141\232\191\155\229\133\165", self.Key, self.InPortName))
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "STL错误", string.format("节点 %s Inport %s 重复进入", self.Key, self.InPortName))
     return
   end
   self.FinishedInPortNames[self.InPortName] = true

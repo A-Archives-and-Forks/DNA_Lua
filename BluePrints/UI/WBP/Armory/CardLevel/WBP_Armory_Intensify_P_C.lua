@@ -61,14 +61,14 @@ function M:InitUIInfo(Name, IsInUIMode, EventList, ...)
   M.Super.InitUIInfo(self, Name, IsInUIMode, EventList, ...)
   self._Avatar = GWorld:GetAvatar()
   if not self._Avatar then
-    DebugPrint(ErrorTag, LXYTag, "WBP_Armory_Intensify_P_C:InitUIInfo", "Avatar\228\184\141\229\173\152\229\156\168")
+    DebugPrint(ErrorTag, LXYTag, "WBP_Armory_Intensify_P_C:InitUIInfo", "Avatar不存在")
     return
   end
   local User, Target, SubWidget, Params = ...
   local behaviorType = Params and Params.BehaviourType or "LevelUp"
   local typeCompMap = M.CompMap[behaviorType]
   if not typeCompMap then
-    DebugPrint(ErrorTag, LXYTag, "WBP_Armory_Intensify_P_C:InitUIInfo", "behaviorType\229\143\130\230\149\176\233\148\153\232\175\175, behaviorType =", behaviorType)
+    DebugPrint(ErrorTag, LXYTag, "WBP_Armory_Intensify_P_C:InitUIInfo", "behaviorType参数错误, behaviorType =", behaviorType)
     return
   else
     local componentName = typeCompMap[User]

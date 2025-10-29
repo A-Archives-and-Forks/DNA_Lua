@@ -496,7 +496,7 @@ function M:GetMainButtonState_Combat()
   end
   local QuestChain = Avatar.QuestChains[self.CurCombatQuestChainId]
   if not QuestChain then
-    ScreenPrint("\233\133\141\231\189\174\228\186\134\228\184\128\228\184\170\228\184\141\229\173\152\229\156\168\231\154\132\228\187\187\229\138\161\233\147\190Id\239\188\129\232\175\183\231\173\150\229\136\146\230\163\128\230\159\165\239\188\129Id:" .. self.CurCombatQuestChainId)
+    ScreenPrint("配置了一个不存在的任务链Id！请策划检查！Id:" .. self.CurCombatQuestChainId)
     return "Normal"
   end
   if self:IsCombatCompleted(self.CurDayIndex) then
@@ -657,7 +657,7 @@ function M:OnBagItemClicked(ItemContent)
   ItemContent.SelectTotalCount = TotalNumInBag
   ItemContent.SelfWidget:SetSelectNum(SelectNum, TotalNumInBag)
   if self.SubmitContentIndex > #self.SubmitContentList then
-    ScreenPrint("ZhiliuEventTask:\229\176\157\232\175\149\229\138\160\229\133\165\229\190\133\230\143\144\228\186\164\229\136\151\232\161\168\231\154\132\229\134\133\229\174\185\229\164\167\228\186\142\229\143\175\230\143\144\228\186\164\229\134\133\229\174\185\231\154\132\233\149\191\229\186\166\239\188\129")
+    ScreenPrint("ZhiliuEventTask:尝试加入待提交列表的内容大于可提交内容的长度！")
     return
   end
   local SubmitContent = self.SubmitContentList[self.SubmitContentIndex]
@@ -773,15 +773,15 @@ function M:OnCombatMainBtnClicked()
   end
   local QuestChain = Avatar.QuestChains[self.CurCombatQuestChainId]
   if not QuestChain then
-    ScreenPrint("Zhiliu \233\133\141\231\189\174\228\186\134\228\184\128\228\184\170\228\184\141\229\173\152\229\156\168\231\154\132\228\187\187\229\138\161\233\147\190Id\239\188\129\232\175\183\231\173\150\229\136\146\230\163\128\230\159\165\239\188\129Id:" .. self.CurCombatQuestChainId)
+    ScreenPrint("Zhiliu 配置了一个不存在的任务链Id！请策划检查！Id:" .. self.CurCombatQuestChainId)
     return
   end
   if not DataMgr.QuestChain[self.CurCombatQuestChainId] then
-    ScreenPrint("Zhiliu \232\175\165\228\187\187\229\138\161\233\147\190Id\228\184\141\229\173\152\229\156\168\228\186\142QuestChain\232\161\168\228\184\173\239\188\129Id:" .. self.CurCombatQuestChainId)
+    ScreenPrint("Zhiliu 该任务链Id不存在于QuestChain表中！Id:" .. self.CurCombatQuestChainId)
     return
   end
   if QuestChain:IsDoing() or QuestChain:IsFinish() then
-    ScreenPrint("Zhiliu \232\175\165\228\187\187\229\138\161\233\147\190Id\229\183\178\231\187\143\229\156\168\232\191\155\232\161\140\228\184\173\230\136\150\229\183\178\229\174\140\230\136\144\239\188\129Id:" .. self.CurCombatQuestChainId)
+    ScreenPrint("Zhiliu 该任务链Id已经在进行中或已完成！Id:" .. self.CurCombatQuestChainId)
     return
   end
   

@@ -40,7 +40,7 @@ function M:SetRechargeItemCost(ShopItemData, Cost, Count)
   self.Cost = Cost
   local ItemId = ShopItemData.TypeId
   local ItemType = ShopItemData.ItemType
-  assert(DataMgr[ItemType][ItemId], "\230\156\170\230\137\190\229\136\176\229\149\134\229\147\129\228\191\161\230\129\175", ItemType, ItemId)
+  assert(DataMgr[ItemType][ItemId], "未找到商品信息", ItemType, ItemId)
   self.Text_StoneName:SetText(GText(ItemUtils.GetItemName(ItemId, ItemType)))
 end
 
@@ -50,7 +50,7 @@ function M:BtnOnClicked()
     local CommonDialog = UIManager(self):ShowCommonPopupUI(100233, {
       ShopItemId = self.ShopItemId,
       Tips = {
-        [1] = self.Cost .. "\229\134\134"
+        [1] = self.Cost .. "円"
       },
       RightCallbackObj = self,
       RightCallbackFunction = function(Obj)

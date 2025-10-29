@@ -62,7 +62,7 @@ end
 function M:InitItemContent()
   local ChapterData = DataMgr.SelectDungeon[self.ChapterId]
   if not ChapterData then
-    DebugPrint("SL_\230\137\190\228\184\141\229\136\176\229\133\179\229\141\161\230\149\176\230\141\174:", self.ChapterId)
+    DebugPrint("SL_找不到关卡数据:", self.ChapterId)
     return
   end
   self.bIsHovered = false

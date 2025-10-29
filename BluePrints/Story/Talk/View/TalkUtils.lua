@@ -50,10 +50,10 @@ function TalkUtils:DialogueIdToContent(DialogueId)
   DialogueId = tonumber(DialogueId)
   local DialogueInfo = DataMgr.Dialogue[DialogueId]
   if not DialogueInfo then
-    local Message = "DialogueId\229\156\168Dialogue\232\161\168\228\184\173\228\184\141\229\173\152\229\156\168" .. [[
+    local Message = "DialogueId在Dialogue表中不存在" .. [[
 
 DialogueId:]] .. DialogueId
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "DialogueId\228\184\141\229\173\152\229\156\168", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "DialogueId不存在", Message)
     return
   end
   local Content = DialogueInfo.Content
@@ -62,7 +62,7 @@ DialogueId:]] .. DialogueId
     if ContentLanguage then
       Content = ContentLanguage
     else
-      DebugPrint(DialogueId .. ", " .. CommonConst.SystemLanguage .. " \230\150\135\230\156\172\232\175\173\232\168\128\231\188\186\229\164\177\239\188\140\229\183\178\228\189\191\231\148\168\233\187\152\232\174\164\230\150\135\230\156\172\227\128\130")
+      DebugPrint(DialogueId .. ", " .. CommonConst.SystemLanguage .. " 文本语言缺失，已使用默认文本。")
     end
   end
   Content = Content or " "
@@ -79,10 +79,10 @@ function TalkUtils:IsKeyOption(DialogueId)
   DialogueId = tonumber(DialogueId)
   local DialogueInfo = DataMgr.Dialogue[DialogueId]
   if not DialogueInfo then
-    local Message = "DialogueId\229\156\168Dialogue\232\161\168\228\184\173\228\184\141\229\173\152\229\156\168" .. [[
+    local Message = "DialogueId在Dialogue表中不存在" .. [[
 
 DialogueId:]] .. DialogueId
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "DialogueId\228\184\141\229\173\152\229\156\168", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "DialogueId不存在", Message)
     return
   end
   return DialogueInfo.IsKeyOption
@@ -126,7 +126,7 @@ function TalkUtils:GetImpressionPlusInfo(ImpressionPlusId)
     end
     return Res
   else
-    DebugPrint("Error: ImpressionPlusId\228\184\141\229\173\152\229\156\168", ImpressionPlusId)
+    DebugPrint("Error: ImpressionPlusId不存在", ImpressionPlusId)
   end
 end
 

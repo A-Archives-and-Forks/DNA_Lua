@@ -33,7 +33,7 @@ function M:OnListItemObjectSet(Content)
   end
   self.Rewards = Content.ConfigData.Rewards
   self.ReceiveCallBack = Content.ConfigData.ReceiveCallBack
-  self.BtnReward:SetText(GText(Content.ConfigData.ReceiveButtonText) or "\233\162\134\229\143\150")
+  self.BtnReward:SetText(GText(Content.ConfigData.ReceiveButtonText) or "领取")
   if Content.ConfigData.ReceiveCallBack then
     self.BtnReward:BindEventOnClicked(self, function()
       Content.ConfigData.ReceiveCallBack(self, Content)

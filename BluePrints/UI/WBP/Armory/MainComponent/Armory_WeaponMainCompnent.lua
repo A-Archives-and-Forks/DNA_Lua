@@ -710,7 +710,7 @@ function M:WeaponMain_CreateItemContents()
         catch = function(err)
           local trace = debug.traceback()
           err = err or ""
-          DebugPrint("Error: CY@ \230\156\170\232\167\163\233\148\129\230\173\166\229\153\168\228\191\161\230\129\175\229\136\155\229\187\186\229\164\177\232\180\165!\n" .. err .. "\n" .. trace)
+          DebugPrint("Error: CY@ 未解锁武器信息创建失败!\n" .. err .. "\n" .. trace)
         end
       })
     end

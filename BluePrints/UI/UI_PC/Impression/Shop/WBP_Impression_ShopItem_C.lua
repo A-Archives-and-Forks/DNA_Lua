@@ -99,7 +99,7 @@ function M:InitItemPrice(ShopItemData)
   self.Text_Undiscounted_Price:SetVisibility(ESlateVisibility.Collapsed)
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("Error InitItemPrice: Avatar\228\184\141\229\173\152\229\156\168")
+    DebugPrint("Error InitItemPrice: Avatar不存在")
   end
   local ImpressionResourceInfo = DataMgr.ImpressionResource[self.ImpressionAreaId]
   self.Text_Price:SetText(ImpressionResourceInfo.Count)
@@ -328,7 +328,7 @@ function M:SwitchSetPopupUIRightButton(Params)
 end
 
 function M:OnPopUIConfirmed()
-  DebugPrint("WBP_Impression_ShopItem:\231\161\174\232\174\164\232\180\173\228\185\176")
+  DebugPrint("WBP_Impression_ShopItem:确认购买")
   self:ShowCheckUI()
 end
 
@@ -343,14 +343,14 @@ end
 function M:HandleCheck()
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("Error: No Avatar\239\188\140\230\151\160\230\179\149\232\191\155\232\161\140\229\141\176\232\177\161\230\163\128\229\174\154")
+    DebugPrint("Error: No Avatar，无法进行印象检定")
     self.ImpressionResultUI:Close()
     return
   end
   local ImpressionResourceInfo = DataMgr.ImpressionResource[self.ImpressionAreaId]
   local DiceNum = Avatar:GetResourceNum(ImpressionResourceInfo.ResourceId)
   local ImpressionShopId = self.ShopItemData.ImpressionShopId
-  DebugPrint("WBP_Impression_ShopItem:HandleCheck \229\143\145\232\181\183\232\175\183\230\177\130", ImpressionShopId, DiceNum)
+  DebugPrint("WBP_Impression_ShopItem:HandleCheck 发起请求", ImpressionShopId, DiceNum)
   Avatar:PurchaseImpressionShopItem({
     self,
     self.OnReceiveServerPurchaseCallback

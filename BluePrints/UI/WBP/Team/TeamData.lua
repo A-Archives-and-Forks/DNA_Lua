@@ -2,7 +2,7 @@ local GlobalConstant = DataMgr.GlobalConstant
 
 local function IsCanEnterMultiGame(TeamMember)
   if not TeamMember.AvatarStatus then
-    Utils.Traceback(WarningTag, LXYTag .. "\233\152\159\228\188\141\230\136\144\229\145\152\230\178\161\230\156\137AvatarStatus\230\149\176\230\141\174\239\188\140\230\151\160\230\179\149\229\136\164\230\150\173\229\143\175\232\129\148\230\156\186,\233\187\152\232\174\164\232\191\148\229\155\158True, \230\156\137\233\151\174\233\162\152\231\154\132\233\152\159\228\188\141\230\136\144\229\145\152\239\188\154" .. TeamMember.Nickname)
+    Utils.Traceback(WarningTag, LXYTag .. "队伍成员没有AvatarStatus数据，无法判断可联机,默认返回True, 有问题的队伍成员：" .. TeamMember.Nickname)
     return true
   end
   local Avatar = GWorld:GetAvatar()
@@ -11,12 +11,12 @@ local function IsCanEnterMultiGame(TeamMember)
   if bSuccess then
     for _, StateEnum in ipairs(TeamCommon.CanEnterMultiGameStatus) do
       if Avatar:CheckCanSetStatus(TeamMember.AvatarStatus, StateEnum) then
-        PrintTable(TeamMember.AvatarStatus, 1, LXYTag .. "  \233\152\159\228\188\141\230\136\144\229\145\152" .. TeamMember.Nickname .. "\229\143\175\232\191\155\229\133\165\232\129\148\230\156\186\231\138\182\230\128\129, \231\138\182\230\128\129\232\161\168\239\188\154")
+        PrintTable(TeamMember.AvatarStatus, 1, LXYTag .. "  队伍成员" .. TeamMember.Nickname .. "可进入联机状态, 状态表：")
         return true
       end
     end
   end
-  PrintTable(TeamMember.AvatarStatus, 1, WarningTag .. LXYTag .. "  \233\152\159\228\188\141\230\136\144\229\145\152" .. TeamMember.Nickname .. "\228\184\141\229\143\175\232\191\155\229\133\165\232\129\148\230\156\186\231\138\182\230\128\129, \231\138\182\230\128\129\232\161\168\239\188\154")
+  PrintTable(TeamMember.AvatarStatus, 1, WarningTag .. LXYTag .. "  队伍成员" .. TeamMember.Nickname .. "不可进入联机状态, 状态表：")
   TeamMember.HeadState = TeamCommon.HeadState.CantEnterDungeon
   return false
 end

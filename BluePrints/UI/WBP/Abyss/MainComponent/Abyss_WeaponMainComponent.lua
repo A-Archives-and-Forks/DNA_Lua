@@ -136,7 +136,7 @@ function Component:WeaponMain_SelectListItem(Content)
   if self.CurDungeonPanel then
     self.CurDungeonPanel:UpdateSlot(self.CurSlotName, Content)
   else
-    DebugPrint("lhr@CharMain_SelectListItem\239\188\154\233\152\181\229\174\185\233\157\162\230\157\191\229\164\177\230\149\136\230\136\150\229\136\157\229\167\139\229\140\150\229\164\177\232\180\165")
+    DebugPrint("lhr@CharMain_SelectListItem：阵容面板失效或初始化失败")
   end
 end
 

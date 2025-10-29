@@ -4,8 +4,8 @@ local BP_DimensionDrawArea_C = Class("BluePrints.UI.BP_EMUserWidget_C")
 function BP_DimensionDrawArea_C:Init(ImpressionAreaId, UsingGM)
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    local Message = "Avatar\228\184\141\229\173\152\229\156\168\239\188\140\229\141\176\232\177\161\228\186\148\231\187\180\229\155\190\232\175\187\229\143\150\230\149\176\230\141\174\229\164\177\232\180\165"
-    local Title = "Avatar\228\184\141\229\173\152\229\156\168"
+    local Message = "Avatar不存在，印象五维图读取数据失败"
+    local Title = "Avatar不存在"
     if not UsingGM then
       UStoryLogUtils.PrintToFeiShu(self, Title, Message)
     end

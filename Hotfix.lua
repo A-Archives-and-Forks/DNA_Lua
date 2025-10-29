@@ -59,7 +59,7 @@ function HotFix.HotFix(module, name, new_value)
   else
     local ok, ret = pcall(HotFix.HotFixFunction, old_value, new_value)
     if not ok then
-      ScreenPrint("HotFix\230\137\167\232\161\140\229\164\177\232\180\165!name:[" .. tostring(name) .. "],ret:" .. tostring(ret))
+      ScreenPrint("HotFix执行失败!name:[" .. tostring(name) .. "],ret:" .. tostring(ret))
       HotFix.Success = false
       return false
     end
@@ -81,7 +81,7 @@ function HotFix.HotFixData(name, new_module)
   else
     local ok, ret = pcall(HotFix.HotFixFunction, old_value, new_value)
     if not ok then
-      ScreenPrint("HotFix\230\137\167\232\161\140\229\164\177\232\180\165!name:[" .. tostring(name) .. "],ret:" .. tostring(ret))
+      ScreenPrint("HotFix执行失败!name:[" .. tostring(name) .. "],ret:" .. tostring(ret))
       HotFix.Success = false
       return false
     end
@@ -126,18 +126,18 @@ function HotFix.ExecHotFix(Index, ScriptData)
 end]]
   local ok, HotFixExecFunction = pcall(_G.load, ExecStr)
   if not ok then
-    ScreenPrint("HotFix\230\137\167\232\161\140\229\164\177\232\180\1651,\232\175\183\230\163\128\230\159\165HotFix\228\187\163\231\160\129\231\188\150\229\134\153\230\152\175\229\144\166\230\173\163\231\161\174:[" .. tostring(ExecStr) .. "]" .. tostring(HotFixExecFunction))
+    ScreenPrint("HotFix执行失败1,请检查HotFix代码编写是否正确:[" .. tostring(ExecStr) .. "]" .. tostring(HotFixExecFunction))
     return
   end
   local ok, HotFixFunction = pcall(HotFixExecFunction)
   if not ok then
-    ScreenPrint("HotFix\230\137\167\232\161\140\229\164\177\232\180\1652,\232\175\183\230\163\128\230\159\165HotFix\228\187\163\231\160\129\231\188\150\229\134\153\230\152\175\229\144\166\230\173\163\231\161\174:[" .. tostring(ExecStr) .. "]" .. tostring(HotFixFunction))
+    ScreenPrint("HotFix执行失败2,请检查HotFix代码编写是否正确:[" .. tostring(ExecStr) .. "]" .. tostring(HotFixFunction))
     return
   end
   if not HotFixFunction(HotFix, HotFix.HotFix) then
     return
   end
-  print(LogTag, "HotFix\230\137\167\232\161\140\230\136\144\229\138\159:[" .. tostring(ExecStr) .. "]")
+  print(LogTag, "HotFix执行成功:[" .. tostring(ExecStr) .. "]")
 end
 
 return HotFix

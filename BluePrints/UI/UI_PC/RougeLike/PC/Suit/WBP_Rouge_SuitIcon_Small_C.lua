@@ -21,7 +21,7 @@ function M:OnListItemObjectSet(Content)
   self.GroupId = Content.GroupId
   self:UpdateSuitInfo()
   local GroupData = DataMgr.BlessingGroup[self.GroupId]
-  assert(GroupData, "\230\156\170\230\137\190\229\136\176\229\165\151\232\163\133\228\191\161\230\129\175: " .. self.GroupId)
+  assert(GroupData, "未找到套装信息: " .. self.GroupId)
   self:SetIcon(GroupData.Icon)
 end
 
@@ -29,7 +29,7 @@ function M:UpdateSuitInfo()
   local RougeLikeManager = GWorld.RougeLikeManager
   assert(RougeLikeManager, "ZDX RougeLikeManager is nil!")
   local BlessingGroup = RougeLikeManager.BlessingGroup
-  assert(BlessingGroup, "\230\156\170\230\137\190\229\136\176BlessingGroup")
+  assert(BlessingGroup, "未找到BlessingGroup")
   local Count = BlessingGroup:FindRef(self.Content.GroupId) or 0
   self.Count = Count
   self.Level = RougeUtils:GetGroupLevel(self.Content.GroupId, Count)
@@ -50,7 +50,7 @@ function M:UpdateSuitInfo()
 end
 
 function M:SetIcon(Icon)
-  assert(Icon, "\230\156\170\230\137\190\229\136\176\229\165\151\232\163\133\228\191\161\230\129\175: " .. self.GroupId)
+  assert(Icon, "未找到套装信息: " .. self.GroupId)
   local Icon = LoadObject(Icon)
   self.Image_SuitIcon.Image_SuitIcon:SetBrushFromTexture(Icon)
   local IconDynaMaterial = self.Image_SuitIcon.Image_SuitIcon_Color:GetDynamicMaterial()

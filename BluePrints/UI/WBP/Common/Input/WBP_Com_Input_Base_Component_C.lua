@@ -287,7 +287,7 @@ function M:FilterSpaceAndBr(Text)
   local TextTable = StringUtils.Utf8ToTable(Text)
   local bIsLastCharSpace = false
   for _, value in ipairs(TextTable) do
-    if self.bLimitSpaces and (" " == value or "\227\128\128" == value) then
+    if self.bLimitSpaces and (" " == value or "　" == value) then
       if not bIsLastCharSpace then
         Res = Res .. value
       else

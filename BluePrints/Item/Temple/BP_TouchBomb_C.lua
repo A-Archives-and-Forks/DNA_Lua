@@ -91,7 +91,7 @@ function M:Lanuch(DeltaSeconds)
     local HitResult = UE.FHitResult()
     self.Mesh:K2_AddWorldOffset(Offset, true, HitResult, false)
     if HitResult.bBlockingHit then
-      DebugPrint("zwk \230\146\158\229\136\176\231\137\169\228\189\147\229\129\156\228\184\139\230\157\165", HitResult.Actor:GetName())
+      DebugPrint("zwk 撞到物体停下来", HitResult.Actor:GetName())
       self:OnCrash()
       if HitResult.Actor and HitResult.Actor.IsPureMonster and HitResult.Actor:IsPureMonster() and self.SpecialEffect and self.SpecialEffect > 0 then
         Battle(self):ExecuteSkillEffect(self, self.SpecialEffect, nil, nil, self)

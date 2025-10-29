@@ -30,12 +30,12 @@ function BP_RescueComponent_C:InitRescueBaseInfo()
     end
   end
   if #StaticIds < 1 then
-    GameState(self):ShowDungeonError("RescueComponent:\230\149\145\230\143\180\231\142\169\230\179\149\229\134\133\230\156\170\230\137\190\229\136\176\228\186\186\232\180\168\229\136\183\230\150\176\231\130\185,\232\175\183\230\163\128\230\159\165\232\147\157\229\155\190\233\133\141\231\189\174\239\188\140\229\189\147\229\137\141\229\137\175\230\156\172Id: " .. self.GameMode.DungeonId .. ", \229\189\147\229\137\141Json: " .. UE4.URuntimeCommonFunctionLibrary.GetLevelLoadJsonName(self.GameMode))
+    GameState(self):ShowDungeonError("RescueComponent:救援玩法内未找到人质刷新点,请检查蓝图配置，当前副本Id: " .. self.GameMode.DungeonId .. ", 当前Json: " .. UE4.URuntimeCommonFunctionLibrary.GetLevelLoadJsonName(self.GameMode))
     return
   end
   local Index = math.random(1, #StaticIds)
   self.HostageStaticId = StaticIds[Index]
-  DebugPrint("RescueComponent: \230\149\145\230\143\180\231\142\169\230\179\149 \229\189\147\229\137\141\228\186\186\232\180\168\233\157\153\230\128\129\231\130\185\228\184\186\239\188\154 ", self.HostageStaticId)
+  DebugPrint("RescueComponent: 救援玩法 当前人质静态点为： ", self.HostageStaticId)
 end
 
 function BP_RescueComponent_C:TriggerSpawnHostage(Player)
@@ -48,13 +48,13 @@ function BP_RescueComponent_C:TriggerSpawnHostage(Player)
   end
   HostageExtraInfo.EventName = "RescueHostage"
   Creator:RealActiveStaticCreator(HostageExtraInfo)
-  DebugPrint("RescueComponent: \230\149\145\230\143\180\231\142\169\230\179\149 TriggerSpawnHostage")
+  DebugPrint("RescueComponent: 救援玩法 TriggerSpawnHostage")
 end
 
 function BP_RescueComponent_C:OnStaticCreatorEvent(EventName, Eid, UnitId, UnitType)
   if "RescueHostage" == EventName then
     self:SetHostageEid(Eid)
-    DebugPrint("RescueComponent: \230\149\145\230\143\180\231\142\169\230\179\149 \231\148\159\230\136\144\228\186\186\232\180\168\239\188\140\229\189\147\229\137\141\228\186\186\232\180\168Eid\228\184\186\239\188\154 ", self:GetHostageEid())
+    DebugPrint("RescueComponent: 救援玩法 生成人质，当前人质Eid为： ", self:GetHostageEid())
     local Hostage = Battle(self):Getentity(self:GetHostageEid())
     if IsValid(Hostage) then
       Hostage:StopBT("RescueDoor")
@@ -74,19 +74,19 @@ function BP_RescueComponent_C:TriggerStartHostageBT()
   local Hostage = Battle(self):Getentity(self:GetHostageEid())
   if IsValid(Hostage) then
     Hostage:RestartBT()
-    DebugPrint("RescueComponent: \229\188\128\229\144\175\228\186\186\232\180\168\232\161\140\228\184\186\230\160\145\239\188\140Eid:", self:GetHostageEid())
+    DebugPrint("RescueComponent: 开启人质行为树，Eid:", self:GetHostageEid())
   end
 end
 
 function BP_RescueComponent_C:TriggerRescueExitMechanismOverlap(Player)
-  DebugPrint("RescueComponent: \230\149\145\230\143\180\231\142\169\230\179\149\230\156\137\231\142\169\229\174\182\229\136\176\232\190\190\230\146\164\231\166\187\231\130\185, Player Eid =", Player.Eid)
+  DebugPrint("RescueComponent: 救援玩法有玩家到达撤离点, Player Eid =", Player.Eid)
   local Hostage = Battle(self):Getentity(self:GetHostageEid())
   if nil == Hostage then
-    DebugPrint("RescueComponent Error: \228\186\186\232\180\168\230\156\170\229\136\183\229\135\186\239\188\140\230\151\160\230\179\149\231\167\187\229\138\168\229\136\176\230\146\164\231\166\187\230\156\186\229\133\179")
+    DebugPrint("RescueComponent Error: 人质未刷出，无法移动到撤离机关")
   end
   local ExitMachanism = self.GameMode:GetEscapeMechanismActor()
   if nil == ExitMachanism then
-    DebugPrint("RescueComponent Error: \230\146\164\231\166\187\230\156\186\229\133\179\228\184\141\229\173\152\229\156\168\239\188\140\228\186\186\232\180\168\231\167\187\229\138\168\230\151\160\231\155\174\230\160\135")
+    DebugPrint("RescueComponent Error: 撤离机关不存在，人质移动无目标")
   end
   UE4.UNavigationFunctionLibrary.ActorToActorTeleport(Hostage, ExitMachanism)
   Hostage:StopBT("RescueHostageSucceed")
@@ -129,7 +129,7 @@ end
 
 function BP_RescueComponent_C:OnHostageDie(Hostage)
   if Hostage.Eid == self:GetHostageEid() then
-    DebugPrint("RescueComponent: \228\186\186\232\180\168\230\173\187\228\186\161\239\188\129")
+    DebugPrint("RescueComponent: 人质死亡！")
     self.GameMode:TriggerGameModeEvent("OnHostageDieBP")
     self.GameMode:TriggerDungeonFailed()
   end
@@ -137,7 +137,7 @@ end
 
 function BP_RescueComponent_C:OnHostageDying(Hostage)
   if Hostage.Eid == self:GetHostageEid() then
-    DebugPrint("RescueComponent: \228\186\186\232\180\168\229\128\146\229\156\176\239\188\129")
+    DebugPrint("RescueComponent: 人质倒地！")
     self.GameMode:TriggerGameModeEvent("OnHostageDyingBP")
     local NowTime = URuntimeCommonFunctionLibrary.GetNowTimeStamp()
     self.GameMode:AddDungeonEvent("HostageDyingCountDown")
@@ -150,16 +150,16 @@ end
 
 function BP_RescueComponent_C:StartRescueCountDown()
   if self.IsRescueCountDownTriggered then
-    DebugPrint("RescueComponent: \229\128\146\232\174\161\230\151\182\229\183\178\232\167\166\229\143\145\239\188\140\228\184\141\233\135\141\229\164\141\230\183\187\229\138\160")
+    DebugPrint("RescueComponent: 倒计时已触发，不重复添加")
     return
   end
   if self.IsHostageRescued then
-    DebugPrint("RescueComponent: \228\186\186\232\180\168\229\183\178\232\167\163\230\149\145\239\188\140\228\184\141\232\167\166\229\143\145\229\128\146\232\174\161\230\151\182")
+    DebugPrint("RescueComponent: 人质已解救，不触发倒计时")
     return
   end
   local DungenData = DataMgr.Rescue[self.GameMode.DungeonId]
   if nil == DungenData then
-    DebugPrint("RescueComponent Error: \229\137\175\230\156\172\232\161\168\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168, DungeonId =", self.GameMode.DungeonId)
+    DebugPrint("RescueComponent Error: 副本表数据不存在, DungeonId =", self.GameMode.DungeonId)
   end
   self.GameMode.EMGameState:SetRescueCountDownTime(DungenData.HostageRescueTime or 0)
   self.RescueLowTimeThreshold = DungenData.RescueLowTimeThreshold or 0
@@ -168,7 +168,7 @@ function BP_RescueComponent_C:StartRescueCountDown()
   self:AddTimer(1, self.RescueCountDown, true, 0, "RescueCountDownTimer")
   self.GameMode:AddDungeonEvent("RescueCountDownUI")
   self.GameMode:TriggerGameModeEvent("OnRescueCountDownStart")
-  DebugPrint("RescueComponent: \229\164\132\229\134\179\229\128\146\232\174\161\230\151\182\229\188\128\229\167\139\239\188\129\230\151\182\233\151\180", DungenData.HostageRescueTime)
+  DebugPrint("RescueComponent: 处决倒计时开始！时间", DungenData.HostageRescueTime)
 end
 
 function BP_RescueComponent_C:RescueCountDown()
@@ -192,7 +192,7 @@ function BP_RescueComponent_C:StopRescueCountDown()
   end
   self:RemoveTimer("RescueCountDownTimer")
   self.GameMode:RemoveDungeonEvent("RescueCountDownUI")
-  DebugPrint("RescueComponent: \229\164\132\229\134\179\229\128\146\232\174\161\230\151\182\229\133\179\233\151\173\239\188\129")
+  DebugPrint("RescueComponent: 处决倒计时关闭！")
 end
 
 function BP_RescueComponent_C:AddToRescueCountDownTime(Value)
@@ -212,7 +212,7 @@ function BP_RescueComponent_C:TriggerRescueAlert(Monster)
     Monster.MonAlertComponent:AlertStateChange(Const.FightState, true)
     Monster.MonAlertComponent:RequestRescueAlertSuccess()
   end
-  DebugPrint("RescueComponent: \230\149\145\230\143\180\231\142\169\230\179\149\232\167\166\229\143\145\231\155\145\231\139\177\233\149\191\232\173\166\230\136\146, RescueCountDownTime =", self:GetRescueCountDownTime())
+  DebugPrint("RescueComponent: 救援玩法触发监狱长警戒, RescueCountDownTime =", self:GetRescueCountDownTime())
 end
 
 function BP_RescueComponent_C:TrySetRescueAlertingInfo(LastTargetAlertedNum, Monster)
@@ -240,7 +240,7 @@ function BP_RescueComponent_C:TrySetRescueAlertingInfo(LastTargetAlertedNum, Mon
     end
     Monster:BBSetAlarmTarget(self.RescueAlarmTarget)
     Monster:GetOwnBlackBoardComponent():SetValueAsBool("AlarmTrigger", true)
-    DebugPrint("RescueComponent: \230\149\145\230\143\180\231\142\169\230\179\149\229\133\184\231\139\177\233\149\191\230\138\162\229\141\160\230\138\165\232\173\166\228\189\141\230\136\144\229\138\159\239\188\140\229\188\128\229\167\139\230\138\165\232\173\166\229\138\168\231\148\187---Eid:" .. Monster.Eid .. " UnitId:" .. Monster.UnitId .. " Loc:" .. tostring(Monster:K2_GetActorLocation()) .. " AlarmTargetLoc:" .. tostring(self.RescueAlarmTarget:K2_GetActorLocation()))
+    DebugPrint("RescueComponent: 救援玩法典狱长抢占报警位成功，开始报警动画---Eid:" .. Monster.Eid .. " UnitId:" .. Monster.UnitId .. " Loc:" .. tostring(Monster:K2_GetActorLocation()) .. " AlarmTargetLoc:" .. tostring(self.RescueAlarmTarget:K2_GetActorLocation()))
     return true
   end
   return false
@@ -255,7 +255,7 @@ end
 
 function BP_RescueComponent_C:TryResetRescueAlertingInfo(Monster)
   if Monster.Eid == self.GameMode:GetRescueAlertingEid() then
-    DebugPrint("RescueComponent: \230\149\145\230\143\180\231\142\169\230\179\149\229\133\184\231\139\177\233\149\191\233\135\141\231\189\174\230\138\165\232\173\166\228\189\141\230\136\144\229\138\159", Monster.Eid)
+    DebugPrint("RescueComponent: 救援玩法典狱长重置报警位成功", Monster.Eid)
     self.GameMode:SetRescueAlertingEid(0)
     Monster:GetOwnBlackBoardComponent():SetValueAsBool("AlarmTrigger", false)
   end

@@ -8,11 +8,11 @@ local GMFunctionLibrary = {}
 
 function GMFunctionLibrary.Exec(WorldContext, Command)
   if not Command or Command.Callback == "" then
-    MiscUtils.Error("GMFunctionLibrary:\230\140\135\228\187\164\229\175\185\232\177\161\230\136\150callback\228\184\186\231\169\186")
+    MiscUtils.Error("GMFunctionLibrary:指令对象或callback为空")
     return
   end
   if not GMFunctionLibrary[Command.Callback] then
-    MiscUtils.Error("GMFunctionLibrary:\230\156\170\229\174\158\231\142\176callback\229\135\189\230\149\176" .. Command.Callback)
+    MiscUtils.Error("GMFunctionLibrary:未实现callback函数" .. Command.Callback)
     return
   end
   local args = Command.FixedParameters:ToTable()
@@ -79,7 +79,7 @@ function GMFunctionLibrary.ModifyRootAnimation(WorldContext, IsEnable)
     print(_G.LogTag, "FileModify Loads Failed!!!")
   end
   if not IsEnable then
-    print(_G.LogTag, "\229\133\179\233\151\173\229\138\159\232\131\189\229\176\154\230\156\170\229\174\158\231\142\176\227\128\130")
+    print(_G.LogTag, "关闭功能尚未实现。")
   end
 end
 
@@ -257,9 +257,9 @@ function GMFunctionLibrary.PrintEnvironment(WorldContext)
   local Config = GMCommandConfig.commands[1].commands
   if Config then
     for index, value in ipairs(Config) do
-      if value.text == "\230\137\147\229\141\176\229\189\147\229\137\141\231\142\175\229\162\131" then
+      if value.text == "打印当前环境" then
         for __, Commands in ipairs(value.commands) do
-          if Commands.text ~= "\230\137\147\229\141\176\230\137\128\230\156\137\228\191\161\230\129\175" then
+          if Commands.text ~= "打印所有信息" then
             GMFunctionLibrary[Commands.callback](WorldContext)
           end
         end
@@ -336,16 +336,16 @@ function GMFunctionLibrary.PrintPlayerBuff(WorldContext)
   local result = ""
   GMFunctionLibrary.ExecConsoleCommand(WorldContext, "logmask nil")
   if buff_count > 0 then
-    result = result .. "\229\189\147\229\137\141\231\142\169\229\174\182\232\186\171\228\184\138buff\230\149\176\233\135\143\228\184\186: " .. buff_count .. "\n"
+    result = result .. "当前玩家身上buff数量为: " .. buff_count .. "\n"
     for i = 1, buffs:Length() do
       local buff = buffs:GetRef(i)
       local buff_id = buff.BuffId
       local buff_lastTime = buff.LastTime
       local buff_Forever = buff.bForever
-      result = result .. "\231\138\182\230\128\129\231\188\150\229\143\183: " .. buff_id .. ", \230\140\129\231\187\173\230\151\182\233\151\180: " .. buff_lastTime .. ", \230\152\175\229\144\166\230\176\184\228\185\133: " .. tostring(buff_Forever) .. "\n"
+      result = result .. "状态编号: " .. buff_id .. ", 持续时间: " .. buff_lastTime .. ", 是否永久: " .. tostring(buff_Forever) .. "\n"
     end
   else
-    result = result .. "\229\189\147\229\137\141\231\142\169\229\174\182\232\186\171\228\184\138\230\154\130\230\151\160buff"
+    result = result .. "当前玩家身上暂无buff"
   end
   print(result)
 end
@@ -806,7 +806,7 @@ end
 
 function GMFunctionLibrary.ShowFlags(WorldContext, bEnable, Name)
   local GameInstance = WorldContext:GetGameInstance()
-  assert(GameInstance, "\230\137\190\228\184\141\229\136\176GameInstance")
+  assert(GameInstance, "找不到GameInstance")
   local Player = UE4.UGameplayStatics.GetPlayerCharacter(GameInstance, 0)
   local Controller = Player:GetController()
   if bEnable then

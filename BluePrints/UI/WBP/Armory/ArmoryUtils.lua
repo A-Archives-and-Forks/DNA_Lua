@@ -350,14 +350,14 @@ function M:CustomDebugSort(arr, cmp)
   for i = 2, #arr do
     local current = arr[i]
     local j = i - 1
-    print(string.format("[DebugSort] \231\172\172%d\232\189\174\230\175\148\232\190\131\239\188\154\229\189\147\229\137\141\229\133\131\231\180\160\231\180\162\229\188\149=%d\239\188\140\229\128\188=%s", i, i, tostring(current)))
+    print(string.format("[DebugSort] 第%d轮比较：当前元素索引=%d，值=%s", i, i, tostring(current)))
     while j >= 1 and cmp(current, arr[j]) do
-      print(string.format("  \230\175\148\232\190\131 current=%s vs arr[%d]=%s \226\134\146 \231\187\147\230\158\156=%s", tostring(current), j, tostring(arr[j]), tostring(cmp(current, arr[j]))))
+      print(string.format("  比较 current=%s vs arr[%d]=%s → 结果=%s", tostring(current), j, tostring(arr[j]), tostring(cmp(current, arr[j]))))
       arr[j + 1] = arr[j]
       j = j - 1
     end
     arr[j + 1] = current
-    print(string.format("  \230\143\146\229\133\165\229\174\140\230\136\144\239\188\140\230\156\128\231\187\136\228\189\141\231\189\174=%d\n", j + 1))
+    print(string.format("  插入完成，最终位置=%d\n", j + 1))
   end
   return arr
 end
@@ -516,12 +516,12 @@ end
 local function _GetModAttrConf(DescValue, ModId, AttrIdx, ValueType)
   local ModConf = DataMgr.Mod[ModId]
   if not ModConf.AddAttrs then
-    error("\232\162\171\229\138\168\230\149\136\230\158\156\230\149\176\229\128\188\231\154\132ModId\229\161\171\233\148\153\228\186\134!!!" .. "\231\173\150\229\136\146\230\163\128\230\159\165\228\184\128\228\184\139" .. DescValue, 0)
+    error("被动效果数值的ModId填错了!!!" .. "策划检查一下" .. DescValue, 0)
     return nil
   end
   local ModAttrConf = ModConf.AddAttrs[AttrIdx]
   if not ModAttrConf then
-    error("\232\162\171\229\138\168\230\149\136\230\158\156\230\149\176\229\128\188\231\154\132AddAttrs[\231\180\162\229\188\149]\231\180\162\229\188\149\229\161\171\233\148\153\228\186\134!!!" .. "\231\173\150\229\136\146\230\163\128\230\159\165\228\184\128\228\184\139" .. DescValue, 0)
+    error("被动效果数值的AddAttrs[索引]索引填错了!!!" .. "策划检查一下" .. DescValue, 0)
     return nil
   end
   return ModAttrConf
@@ -611,7 +611,7 @@ function M:CalcModAttrByLevel(ModAttrConf, ModLevel, ValueType, ModId)
     }, ModAttrConf)
     local Value = tonumber(IsRate and AttrData.Rate or AttrData.Value)
     if not Value then
-      DebugPrint(ErrorTag, string.format("ModId: %s \231\154\132SkillGrow\233\133\141\231\189\174\230\156\137\233\151\174\233\162\152\239\188\140\231\188\186\229\176\145\231\173\137\231\186\167%s\231\154\132\230\136\144\233\149\191\230\149\176\229\128\188\239\188\140\232\175\183\230\163\128\230\159\165SkillGrow\232\161\168", ModId, ModLevel))
+      DebugPrint(ErrorTag, string.format("ModId: %s 的SkillGrow配置有问题，缺少等级%s的成长数值，请检查SkillGrow表", ModId, ModLevel))
       return 0
     end
     return Value
@@ -1266,7 +1266,7 @@ function M:TryAddNewModReddot(Mod, ModId)
     return
   end
   if not Mod:Data() then
-    print(_G.LogTag, "\231\186\162\231\130\185\230\183\187\229\138\160\229\164\177\232\180\165\239\188\140Mod\231\154\132\232\161\168\230\149\176\230\141\174\230\151\160\230\149\136\239\188\140\230\151\160\230\149\136Id: " .. Mod.ModId)
+    print(_G.LogTag, "红点添加失败，Mod的表数据无效，无效Id: " .. Mod.ModId)
     return false
   end
   if nil == ModId then
@@ -1310,7 +1310,7 @@ function M:TryAddNewWeaponReddot(Weapon, UuidStr)
     return
   end
   if not Weapon:BattleData() or not Weapon:Data() then
-    print(_G.LogTag, "\231\186\162\231\130\185\230\183\187\229\138\160\229\164\177\232\180\165\239\188\140Weapon\231\154\132\232\161\168\230\149\176\230\141\174\230\151\160\230\149\136\239\188\140\230\151\160\230\149\136Id: " .. Weapon.WeaponId)
+    print(_G.LogTag, "红点添加失败，Weapon的表数据无效，无效Id: " .. Weapon.WeaponId)
     return false
   end
   if Weapon:HasTag(CommonConst.WeaponType.UltraWeapon) then
@@ -1336,7 +1336,7 @@ function M:TryAddNewResourceReddot(Resource, Id)
     return
   end
   if not Resource:Data() then
-    print(_G.LogTag, "\231\186\162\231\130\185\230\183\187\229\138\160\229\164\177\232\180\165\239\188\140Resource\231\154\132\232\161\168\230\160\188\230\149\176\230\141\174\230\151\160\230\149\136\239\188\140\230\151\160\230\149\136Id: " .. Resource.ResourceId)
+    print(_G.LogTag, "红点添加失败，Resource的表格数据无效，无效Id: " .. Resource.ResourceId)
     return false
   end
   local ResData = Resource:Data()
@@ -1358,7 +1358,7 @@ function M:TryAddNewCharReddot(Char, UuidStr)
     return
   end
   if not Char:Data() or not Char:BattleData() then
-    print(_G.LogTag, "\231\186\162\231\130\185\230\183\187\229\138\160\229\164\177\232\180\165\239\188\140Char\231\154\132\232\161\168\230\149\176\230\141\174\230\151\160\230\149\136\239\188\140\230\151\160\230\149\136CharId: " .. Char.CharId .. "\230\151\160\230\149\136RoleId: " .. Char.RoleId)
+    print(_G.LogTag, "红点添加失败，Char的表数据无效，无效CharId: " .. Char.CharId .. "无效RoleId: " .. Char.RoleId)
     return false
   end
   if nil == UuidStr then
@@ -1420,7 +1420,7 @@ function M:TryAddNewCharSkillReddot(CharSkill, Id, CharUuid, bCanLevelUp)
     return
   end
   if not CharSkill:Data() then
-    print(_G.LogTag, "\231\186\162\231\130\185\230\183\187\229\138\160\229\164\177\232\180\165\239\188\140CharSkill\231\154\132\232\161\168\230\149\176\230\141\174\230\151\160\230\149\136\239\188\140\230\151\160\230\149\136Id: " .. CharSkill.SkillId)
+    print(_G.LogTag, "红点添加失败，CharSkill的表数据无效，无效Id: " .. CharSkill.SkillId)
     return false
   end
   if nil == Id then
@@ -1444,7 +1444,7 @@ function M:TryAddNewCharAccessoryReddot(AccessoryId, SkinId)
   end
   local CharAccessoryData = DataMgr.CharAccessory[AccessoryId]
   if not CharAccessoryData then
-    print(_G.LogTag, "\231\186\162\231\130\185\230\183\187\229\138\160\229\164\177\232\180\165\239\188\140CharAccessory\231\154\132\232\161\168\230\149\176\230\141\174\230\151\160\230\149\136\239\188\140\230\151\160\230\149\136Id: " .. AccessoryId)
+    print(_G.LogTag, "红点添加失败，CharAccessory的表数据无效，无效Id: " .. AccessoryId)
     return false
   end
   local ReddotName = CommonConst.DataType.CharAccessory .. CharAccessoryData.AccessoryType
@@ -1531,7 +1531,7 @@ function M:TryAddNewPetReddot(Pet, UniqueId)
     return
   end
   if not Pet:Data() or not Pet:BattleData() then
-    print(_G.LogTag, "\231\186\162\231\130\185\230\183\187\229\138\160\229\164\177\232\180\165\239\188\140\229\174\160\231\137\169\231\154\132\232\161\168\230\149\176\230\141\174\230\151\160\230\149\136\239\188\140\230\151\160\230\149\136Id: " .. Pet.PetId)
+    print(_G.LogTag, "红点添加失败，宠物的表数据无效，无效Id: " .. Pet.PetId)
     return false
   end
   if nil == UniqueId then
@@ -1551,7 +1551,7 @@ function M:_TryAddNewReddotCommon(CacheKey, NodeName, Recyclable, bDontIncrease,
   end
   local CacheDetail = ReddotManager.GetLeafNodeCacheDetail(NodeName)
   if not CacheDetail then
-    DebugPrint(Traceback(ErrorTag, "CacheDetail\228\184\186\231\169\186: " .. NodeName))
+    DebugPrint(Traceback(ErrorTag, "CacheDetail为空: " .. NodeName))
     return
   end
   if not CacheDetail[CacheKey] or Recyclable and 0 == CacheDetail[CacheKey] then
@@ -1568,11 +1568,11 @@ end
 function M:_SetReddotReadCommon(CacheKey, NodeName, bDeleteCache)
   local CacheDetail = ReddotManager.GetLeafNodeCacheDetail(NodeName)
   if not CacheDetail then
-    DebugPrint(WarningTag, LXYTag, "\229\134\155\230\162\176\229\186\147\231\186\162\231\130\185\230\178\161\230\156\137\232\191\153\228\184\170\231\188\147\229\173\152 " .. NodeName)
+    DebugPrint(WarningTag, LXYTag, "军械库红点没有这个缓存 " .. NodeName)
     return
   end
   if not CacheDetail[CacheKey] then
-    DebugPrint(WarningTag, LXYTag, NodeName .. "\229\134\155\230\162\176\229\186\147\231\186\162\231\130\185\231\188\147\229\173\152\230\178\161\230\156\137\232\191\153\228\184\170key " .. CacheKey)
+    DebugPrint(WarningTag, LXYTag, NodeName .. "军械库红点缓存没有这个key " .. CacheKey)
     return
   end
   if 1 == CacheDetail[CacheKey] then
@@ -2223,7 +2223,7 @@ function M:InitAllCharRecordReddot()
             nil
           }
         else
-          ScreenPrint("CharacterDataTarget\232\161\168\233\135\140\229\161\171\231\154\132CharDataType\230\178\161\230\156\137\229\156\168CharRecordType\232\161\168\233\135\140\230\137\190\229\136\176\239\188\140\232\175\183\231\173\150\229\136\146\230\163\128\230\159\165")
+          ScreenPrint("CharacterDataTarget表里填的CharDataType没有在CharRecordType表里找到，请策划检查")
         end
         if not IsInit and M.CheckCharRecoedUnlock(self, CharId, RecordId, CharModel) then
           local RecordNodeCache = ReddotManager.GetLeafNodeCacheDetail(RecordNodeName)
@@ -2280,7 +2280,7 @@ function M:CreatCharRecordReddotNode(CharId)
         nil
       }
     else
-      ScreenPrint("CharacterDataTarget\232\161\168\233\135\140\229\161\171\231\154\132CharDataType\230\178\161\230\156\137\229\156\168CharRecordType\232\161\168\233\135\140\230\137\190\229\136\176\239\188\140\232\175\183\231\173\150\229\136\146\230\163\128\230\159\165")
+      ScreenPrint("CharacterDataTarget表里填的CharDataType没有在CharRecordType表里找到，请策划检查")
     end
   end
   for RecordType, DataNodes in pairs(LeafNodes) do
@@ -2301,7 +2301,7 @@ function M:InitCharRecoedReddotNode(CharId)
   end
   DebugPrint("yklua ..InitCharRecoedReddotNode" .. CharId)
   if not HeadNode then
-    DebugPrint("yklua..InitCharRecoedReddotNode" .. CharId .. "\229\136\155\229\187\186\230\161\163\230\161\136\232\138\130\231\130\185")
+    DebugPrint("yklua..InitCharRecoedReddotNode" .. CharId .. "创建档案节点")
     self:CreatCharRecordReddotNode(CharId)
   end
   local bHavaTryCreateNode = false
@@ -2314,13 +2314,13 @@ function M:InitCharRecoedReddotNode(CharId)
     }, "_")
     local LeafNode = ReddotManager.GetTreeNode(LeafNodeName)
     if not LeafNode and not bHavaTryCreateNode then
-      DebugPrint("yklua..InitCharRecoedReddotNode" .. CharId .. "\229\136\155\229\187\186\230\161\163\230\161\136\232\138\130\231\130\185" .. LeafNodeName)
+      DebugPrint("yklua..InitCharRecoedReddotNode" .. CharId .. "创建档案节点" .. LeafNodeName)
       self:CreatCharRecordReddotNode(CharId)
       bHavaTryCreateNode = true
     end
     LeafNode = ReddotManager.GetTreeNode(LeafNodeName)
     if not LeafNode then
-      ScreenPrint("\229\136\155\229\187\186\231\186\162\231\130\185\228\191\161\230\129\175\229\164\177\232\180\165" .. CharId)
+      ScreenPrint("创建红点信息失败" .. CharId)
     else
       local LeftNodeCache = ReddotManager.GetLeafNodeCacheDetail(LeafNodeName)
       if LeftNodeCache and (LeftNodeCache.IsRead == true or LeftNodeCache.IsRead == false) then

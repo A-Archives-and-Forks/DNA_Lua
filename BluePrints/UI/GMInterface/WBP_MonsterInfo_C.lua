@@ -90,7 +90,7 @@ function WBP_MonsterInfo_C:RefreshOneMonsterInfo()
     self.TextInfo:SetText(str)
   else
     GameState.DebugMonster = nil
-    self.TextInfo:SetText("\231\148\168\229\135\134\229\191\131\231\158\132\229\135\134\228\184\128\229\143\170\230\128\170\229\134\141\230\140\1379\239\188\140\230\136\150\231\148\168GM GetMonster\232\142\183\229\143\150\228\184\128\229\143\170\230\156\128\232\191\145\231\154\132\230\128\170")
+    self.TextInfo:SetText("用准心瞄准一只怪再按9，或用GM GetMonster获取一只最近的怪")
   end
 end
 

@@ -60,7 +60,7 @@ function ToString(tab, cnt)
 end
 
 function M:StatStart(GM)
-  assert(GM.Player, "\231\188\186\229\176\145Player")
+  assert(GM.Player, "缺少Player")
   self.Player = GM.Player
   self.GM = GM
   self:GetPositionMap()
@@ -112,7 +112,7 @@ end
 function M:GetPositionMap()
   local GridFrame = UE4.UGameplayStatics.GetActorOfClass(self.Player, GridFrameClass)
   if not GridFrame then
-    DebugPrint("\229\189\147\229\137\141\229\133\179\229\141\161\229\185\182\229\143\175\233\157\158\230\139\188\230\142\165\229\173\144\229\133\179\229\141\161   ", UE4.UGameplayStatics.GetCurrentLevelName(self.Player))
+    DebugPrint("当前关卡并可非拼接子关卡   ", UE4.UGameplayStatics.GetCurrentLevelName(self.Player))
     return
   end
   local ActorSize = GridFrame:GetActorScale3D() * 100 / 2
@@ -184,7 +184,7 @@ function M.RecordInfo(Player, StatTable)
 end
 
 function M:StatEnd(GM)
-  assert(GM.Player, "\231\188\186\229\176\145Player")
+  assert(GM.Player, "缺少Player")
   print("Scan Done")
   GM.Player:RemoveTimer("Test_StatLevelTimer")
   GM.Player:RemoveTimer("Test_StatLevelRecorder")

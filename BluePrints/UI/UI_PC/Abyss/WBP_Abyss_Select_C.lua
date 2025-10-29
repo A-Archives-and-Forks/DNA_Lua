@@ -87,7 +87,7 @@ function WBP_Abyss_Select_C:InitTable()
   self.IsClosing = false
   local AbyssTitle = self.AbyssInfo:Data().AbyssIdName
   self.TabConfigData = {
-    TitleName = string.format(GText(AbyssTitle) .. "\194\183" .. string.format(GText("Abyss_LevelName"), self.LevelIndex)),
+    TitleName = string.format(GText(AbyssTitle) .. "·" .. string.format(GText("Abyss_LevelName"), self.LevelIndex)),
     DynamicNode = {
       "Back",
       "BottomKey",
@@ -204,7 +204,7 @@ function WBP_Abyss_Select_C:Enter(AbyssId, LevelIndex, SelectedDungeon)
         CurrentProgressSum = CurrentProgressSum + Now
       end
     else
-      DebugPrint("lhr@WBP_Abyss_Select_C:Enter, \229\133\179\229\141\161\232\175\166\230\131\133\233\157\162\230\157\191\229\136\157\229\167\139\229\140\150\229\164\177\232\180\165")
+      DebugPrint("lhr@WBP_Abyss_Select_C:Enter, 关卡详情面板初始化失败")
     end
   end
   if 0 == CurrentProgressSum then
@@ -241,24 +241,24 @@ function WBP_Abyss_Select_C:InitLevelInfo(AbyssId, LevelIndex)
   self.LevelIndex = LevelIndex
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("WBP_Abyss_Lineup_C:InitLevelInfo, \229\133\179\229\141\161\232\175\166\230\131\133\229\136\157\229\167\139\229\140\150\229\164\177\232\180\165:Avatar\230\151\160\230\149\136")
+    DebugPrint("WBP_Abyss_Lineup_C:InitLevelInfo, 关卡详情初始化失败:Avatar无效")
     return
   end
   local AbyssInfo = Avatar.Abysses[AbyssId]
   if not AbyssInfo then
-    DebugPrint("lhr@WBP_Abyss_Select_C:InitLevelInfo, AbyssId", AbyssId, "\229\175\185\229\186\148\231\154\132\232\181\155\229\173\163\228\184\141\229\173\152\229\156\168")
+    DebugPrint("lhr@WBP_Abyss_Select_C:InitLevelInfo, AbyssId", AbyssId, "对应的赛季不存在")
     return
   end
   self.AbyssInfo = AbyssInfo
   local LevelInfo = AbyssInfo.AbyssLevelList[LevelIndex]
   if not LevelInfo then
-    DebugPrint("lhr@WBP_Abyss_Select_C:InitLevelInfo, LevelIndex", LevelIndex, "\229\175\185\229\186\148\231\154\132\229\133\179\229\141\161\228\184\141\229\173\152\229\156\168")
+    DebugPrint("lhr@WBP_Abyss_Select_C:InitLevelInfo, LevelIndex", LevelIndex, "对应的关卡不存在")
     return
   end
   self.LevelInfo = LevelInfo
   self.LevelId = LevelInfo.AbyssLevelId
   if not LevelInfo.AbyssDungeon1 then
-    DebugPrint("lhr@WBP_Abyss_Select_C:InitLevelInfo, LevelIndex", LevelIndex, "\229\175\185\229\186\148\231\154\132\229\133\179\229\141\161\228\184\173\230\156\170\229\173\152\229\130\168\229\137\175\230\156\172")
+    DebugPrint("lhr@WBP_Abyss_Select_C:InitLevelInfo, LevelIndex", LevelIndex, "对应的关卡中未存储副本")
     return
   end
   table.insert(self.DungeonIds, LevelInfo.AbyssDungeon1)
@@ -310,7 +310,7 @@ function WBP_Abyss_Select_C:InitLevelInfo(AbyssId, LevelIndex)
     self.TeamMetConditon = true
   else
     if not LevelInfo.AbyssCacheTeamList then
-      DebugPrint("lhr@WBP_Abyss_Select_C:InitLevelInfo, LevelIndex", LevelIndex, "\229\175\185\229\186\148\231\154\132\229\133\179\229\141\161\228\184\173\230\156\170\229\173\152\229\130\168\231\188\147\229\173\152\231\154\132\233\152\181\229\174\185")
+      DebugPrint("lhr@WBP_Abyss_Select_C:InitLevelInfo, LevelIndex", LevelIndex, "对应的关卡中未存储缓存的阵容")
       return
     end
     for _, TeamInfo in ipairs(LevelInfo.AbyssCacheTeamList) do
@@ -325,7 +325,7 @@ end
 function WBP_Abyss_Select_C:CheckTeamCondition(TeamInfos)
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("WBP_Abyss_Lineup_C:CheckTeamCondition, \229\133\179\229\141\161\232\175\166\230\131\133\229\136\157\229\167\139\229\140\150\229\164\177\232\180\165:Avatar\230\151\160\230\149\136")
+    DebugPrint("WBP_Abyss_Lineup_C:CheckTeamCondition, 关卡详情初始化失败:Avatar无效")
     return
   end
   for _, Team in pairs(TeamInfos) do
@@ -394,7 +394,7 @@ end
 function WBP_Abyss_Select_C:InitDetailPanels()
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("WBP_Abyss_Lineup_C:InitDetailPanels, \229\133\179\229\141\161\232\175\166\230\131\133\229\136\157\229\167\139\229\140\150\229\164\177\232\180\165:Avatar\230\151\160\230\149\136")
+    DebugPrint("WBP_Abyss_Lineup_C:InitDetailPanels, 关卡详情初始化失败:Avatar无效")
     return
   end
   self.CurSlotName = ESlotName.Null
@@ -787,13 +787,13 @@ local TeamErrorCodes = {
 function WBP_Abyss_Select_C:EnterDungeon()
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("lhr@\229\133\179\229\141\161\232\175\166\230\131\133\231\149\140\233\157\162\232\191\155\229\133\165\229\133\179\229\141\161\229\164\177\232\180\165\239\188\140Avatar\232\142\183\229\143\150\229\164\177\232\180\165")
+    DebugPrint("lhr@关卡详情界面进入关卡失败，Avatar获取失败")
     return
   end
   
   local function Callback(RetCode)
     if RetCode == ErrorCode.RET_SUCCESS then
-      UIManager(self):ShowUITip(UIConst.Tip_CommonTop, "\230\136\144\229\138\159\232\191\155\229\133\165" .. DungeonName[self.SelectedDungeon])
+      UIManager(self):ShowUITip(UIConst.Tip_CommonTop, "成功进入" .. DungeonName[self.SelectedDungeon])
       self.IsTeamLocked = self:GetTeamLockState()
       local ExitDungeonInfo = {
         Type = "Abyss",
@@ -809,7 +809,7 @@ function WBP_Abyss_Select_C:EnterDungeon()
         if TeamErrorCodes[RetCode] then
           UIManager(self):ShowUITip(UIConst.Tip_CommonTop, GText("Abyss_PartySetup_ConditionsAreNot"))
         else
-          UIManager(self):ShowUITip(UIConst.Tip_CommonTop, ErrorContent .. "(Debug\231\148\168)")
+          UIManager(self):ShowUITip(UIConst.Tip_CommonTop, ErrorContent .. "(Debug用)")
         end
       end
       self:HighlightEmptySlots()
@@ -824,13 +824,13 @@ end
 function WBP_Abyss_Select_C:ResetLineup()
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("lhr@\229\133\179\229\141\161\232\175\166\230\131\133\231\149\140\233\157\162\232\167\163\233\148\129\229\164\177\232\180\165\239\188\154Avatar\232\142\183\229\143\150\229\164\177\232\180\165")
+    DebugPrint("lhr@关卡详情界面解锁失败：Avatar获取失败")
     return
   end
   
   local function Callback(RetCode)
     if RetCode == ErrorCode.RET_SUCCESS then
-      UIManager(self):ShowUITip(UIConst.Tip_CommonTop, "\229\183\178\232\167\163\233\148\129\233\152\181\229\174\185")
+      UIManager(self):ShowUITip(UIConst.Tip_CommonTop, "已解锁阵容")
       self.IsTeamLocked = self:GetTeamLockState()
       DebugPrint("lhr@Locked", self.IsTeamLocked)
       if self.Dungeons then
@@ -855,7 +855,7 @@ end
 function WBP_Abyss_Select_C:GetTeamLockState()
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("lhr@\233\152\181\229\174\185\233\133\141\231\189\174\231\149\140\233\157\162\232\142\183\229\143\150\233\148\129\229\174\154\231\138\182\230\128\129\229\164\177\232\180\165\239\188\154Avatar\232\142\183\229\143\150\229\164\177\232\180\165")
+    DebugPrint("lhr@阵容配置界面获取锁定状态失败：Avatar获取失败")
     return
   end
   return Avatar.Abysses[self.AbyssId].AbyssLevelList[self.LevelIndex].IsTeamLocked

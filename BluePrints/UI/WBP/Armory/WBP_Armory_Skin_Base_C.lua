@@ -946,7 +946,7 @@ function M:OnCharSkinGoToShopBtnClicked()
   if bSuccess and JumpToPage then
     JumpToPage()
   else
-    UIManager(self):ShowUITip(UIConst.Tip_CommonToast, GText("\231\154\174\232\130\164\232\161\168\229\175\185\229\186\148\231\154\132\229\149\134\229\147\129Id\229\143\175\232\131\189\230\178\161\233\133\141\229\175\185,\233\186\187\231\131\166\231\173\150\229\136\146\230\163\128\230\159\165\228\184\128\228\184\139"))
+    UIManager(self):ShowUITip(UIConst.Tip_CommonToast, GText("皮肤表对应的商品Id可能没配对,麻烦策划检查一下"))
   end
 end
 
@@ -970,7 +970,7 @@ function M:OnWeaponSkinGoToShopBtnClicked()
   if bSuccess and JumpToPage then
     JumpToPage()
   else
-    UIManager(self):ShowUITip(UIConst.Tip_CommonToast, GText("\231\154\174\232\130\164\232\161\168\229\175\185\229\186\148\231\154\132\229\149\134\229\147\129Id\229\143\175\232\131\189\230\178\161\233\133\141\229\175\185,\233\186\187\231\131\166\231\173\150\229\136\146\230\163\128\230\159\165\228\184\128\228\184\139"))
+    UIManager(self):ShowUITip(UIConst.Tip_CommonToast, GText("皮肤表对应的商品Id可能没配对,麻烦策划检查一下"))
   end
 end
 

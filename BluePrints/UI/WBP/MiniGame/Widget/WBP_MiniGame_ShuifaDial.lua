@@ -66,7 +66,7 @@ function M:GetPipeArea()
   local StartInfo = Info.ClickStartInfo
   local EndInfo = Info.ClickEndInfo
   if #LevelInfo ~= #StartInfo or #EndInfo ~= #StartInfo or #LevelInfo ~= #EndInfo then
-    GWorld.logger.error("\232\189\172\230\176\180\233\152\128\229\176\143\230\184\184\230\136\143\231\188\150\229\143\183" .. self.RootPage.MapIndex .. "\228\184\137\228\184\170Info\233\149\191\229\186\166\228\184\141\228\184\128\232\135\180\239\188\140\229\161\171\232\161\168\233\148\153\232\175\175")
+    GWorld.logger.error("转水阀小游戏编号" .. self.RootPage.MapIndex .. "三个Info长度不一致，填表错误")
     return
   end
   self.PipeLevel = {}

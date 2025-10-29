@@ -9,7 +9,7 @@ function BP_ExcavationComponent_C:InitExcavationComponent()
   self:InitVoteComponent()
   self.ExcavationData = DataMgr.Excavation[self.GameMode.DungeonId]
   if not self.ExcavationData then
-    GameState(self):ShowDungeonError("ExcavationComponent:\229\189\147\229\137\141\229\137\175\230\156\172ID\230\178\161\230\156\137\229\161\171\229\134\153\229\156\168\229\175\185\229\186\148\231\154\132\229\137\175\230\156\172\232\161\168\228\184\173, \232\175\187\232\161\168\229\164\177\232\180\165! \232\175\187\229\133\165Id\239\188\154" .. self.GameMode.DungeonId)
+    GameState(self):ShowDungeonError("ExcavationComponent:当前副本ID没有填写在对应的副本表中, 读表失败! 读入Id：" .. self.GameMode.DungeonId)
     return
   end
   self.GameMode.EMGameState:SetExcavationItemId(self.ExcavationData.ExcavationItemId)
@@ -59,7 +59,7 @@ function BP_ExcavationComponent_C:TriggerPrepareActiveExcavation()
     self.GameMode:TriggerSpawnPet()
   end
   if self.NowExcavNum >= self.ExcavMaxNum or self.ThisTurnExcavNum >= self.ATurnExcavMaxNum then
-    DebugPrint("BP_ExcavationComponent_C \230\140\150\230\142\152\230\156\186\230\149\176\233\135\143\229\183\178\232\190\190\230\156\128\229\164\167")
+    DebugPrint("BP_ExcavationComponent_C 挖掘机数量已达最大")
     return
   end
   local Info = TArray(0)
@@ -112,7 +112,7 @@ function BP_ExcavationComponent_C:GetIndexByEid(Eid)
 end
 
 function BP_ExcavationComponent_C:TriggerClearExcavNum()
-  DebugPrint("BP_ExcavationComponent_C  \230\140\150\230\142\152\231\142\169\230\179\149\229\188\128\229\167\139\230\150\176\231\154\132\232\189\174\230\172\161")
+  DebugPrint("BP_ExcavationComponent_C  挖掘玩法开始新的轮次")
   self.ThisTurnExcavNum = 0
   self.FinishedExcavNum = 0
   self.TurnDeadExcavNum = 0
@@ -160,13 +160,13 @@ end
 function BP_ExcavationComponent_C:UpdateFinishedExcavNum(Num)
   self.FinishedExcavNum = self.FinishedExcavNum + Num
   if not self.ExcavationData.TreasureMonsterSpawnProbability or #self.ExcavationData.TreasureMonsterSpawnProbability < 2 then
-    GameState(self):ShowDungeonError("\230\140\150\230\142\152\230\156\172\233\133\141\231\189\174\232\161\168\228\184\173\231\154\132\229\174\157\231\137\169\230\128\170\231\137\169\229\175\185\229\186\148\231\154\132\229\136\183\230\150\176\230\166\130\231\142\135\230\149\176\230\141\174\228\184\141\229\133\168")
+    GameState(self):ShowDungeonError("挖掘本配置表中的宝物怪物对应的刷新概率数据不全")
     return
   else
     self.CurrentTreasureMonsterProb = self.CurrentTreasureMonsterProb + self.ExcavationData.TreasureMonsterSpawnProbability[2]
   end
   if not self.ExcavationData.ButcherMonsterSpawnProbability or #self.ExcavationData.ButcherMonsterSpawnProbability < 2 then
-    GameState(self):ShowDungeonError("\230\140\150\230\142\152\230\156\172\233\133\141\231\189\174\232\161\168\228\184\173\231\154\132\229\177\160\229\164\171\230\128\170\231\137\169\229\175\185\229\186\148\231\154\132\229\136\183\230\150\176\230\166\130\231\142\135\230\149\176\230\141\174\228\184\141\229\133\168")
+    GameState(self):ShowDungeonError("挖掘本配置表中的屠夫怪物对应的刷新概率数据不全")
     return
   else
     self.CurrentButcherMonsterProb = self.CurrentButcherMonsterProb + self.ExcavationData.ButcherMonsterSpawnProbability[2]

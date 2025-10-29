@@ -140,7 +140,7 @@ function TaskUtils:GetQuestMapInfo(InChainId)
           if Avatar.QuestChains[InChainId] then
             TargetDoingQuestId = Avatar.QuestChains[InChainId].DoingQuestId
           end
-          local Message = "\232\175\183\230\163\128\230\159\165STL\228\187\187\229\138\161\232\138\130\231\130\185\230\152\175\229\144\166\233\133\141\231\189\174\230\140\135\229\188\149\231\130\185\232\138\130\231\130\185" .. "\n\229\175\185\229\186\148\228\187\187\229\138\161\233\147\190:" .. InChainId .. "\n\229\175\185\229\186\148\228\187\187\229\138\161:" .. TargetDoingQuestId .. "\n\231\142\169\229\174\182\229\173\144\229\140\186\229\159\159:" .. Avatar.CurrentRegionId
+          local Message = "请检查STL任务节点是否配置指引点节点" .. "\n对应任务链:" .. InChainId .. "\n对应任务:" .. TargetDoingQuestId .. "\n玩家子区域:" .. Avatar.CurrentRegionId
           if Const.EnableTaskPrintError then
             ScreenPrint(string.format("%s", Message))
           end
@@ -160,7 +160,7 @@ function TaskUtils:GetQuestMapInfo(InChainId)
               if Avatar.QuestChains[InChainId] then
                 TargetDoingQuestId = Avatar.QuestChains[InChainId].DoingQuestId
               end
-              local Message = "\228\187\187\229\138\161\230\140\135\229\188\149\231\130\185\229\140\186\229\159\159\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168\239\188\140\229\175\188\232\135\180\232\142\183\229\143\150\228\187\187\229\138\161\229\140\186\229\159\159\230\149\176\230\141\174\229\164\177\232\180\165\239\188\140\232\175\183\231\173\150\229\136\146\229\144\140\229\173\166\230\163\128\230\159\165" .. "\n\229\175\185\229\186\148\228\187\187\229\138\161\233\147\190:" .. InChainId .. "\n\229\175\185\229\186\148\228\187\187\229\138\161:" .. TargetDoingQuestId .. "\n\231\142\169\229\174\182\229\173\144\229\140\186\229\159\159:" .. Avatar.CurrentRegionId .. "\n\230\140\135\229\188\149\231\130\185\229\144\141\231\167\176\239\188\136\228\184\139\229\136\146\231\186\191\229\144\142\231\188\128\228\184\186\230\140\135\229\188\149\231\130\185\232\138\130\231\130\185Key\239\188\137:" .. v:GetName()
+              local Message = "任务指引点区域数据不存在，导致获取任务区域数据失败，请策划同学检查" .. "\n对应任务链:" .. InChainId .. "\n对应任务:" .. TargetDoingQuestId .. "\n玩家子区域:" .. Avatar.CurrentRegionId .. "\n指引点名称（下划线后缀为指引点节点Key）:" .. v:GetName()
               if Const.EnableTaskPrintError then
                 ScreenPrint(string.format("%s", Message))
               end
@@ -190,7 +190,7 @@ function TaskUtils:GetQuestMapInfo(InChainId)
           if Avatar.QuestChains[InChainId] then
             TargetDoingQuestId = Avatar.QuestChains[InChainId].DoingQuestId
           end
-          local Message = "\228\187\187\229\138\161\230\140\135\229\188\149\231\130\185\229\140\186\229\159\159\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168\239\188\140\229\175\188\232\135\180\232\142\183\229\143\150\228\187\187\229\138\161\229\140\186\229\159\159\230\149\176\230\141\174\229\164\177\232\180\165\239\188\140\232\175\183\231\173\150\229\136\146\229\144\140\229\173\166\230\163\128\230\159\165" .. "\n\229\175\185\229\186\148\228\187\187\229\138\161\233\147\190:" .. InChainId .. "\n\229\175\185\229\186\148\228\187\187\229\138\161:" .. TargetDoingQuestId .. "\n\231\142\169\229\174\182\229\173\144\229\140\186\229\159\159:" .. Avatar.CurrentRegionId .. "\n\230\140\135\229\188\149\231\130\185\229\144\141\231\167\176\239\188\136\228\184\139\229\136\146\231\186\191\229\144\142\231\188\128\228\184\186\230\140\135\229\188\149\231\130\185\232\138\130\231\130\185Key\239\188\137:" .. v:GetName()
+          local Message = "任务指引点区域数据不存在，导致获取任务区域数据失败，请策划同学检查" .. "\n对应任务链:" .. InChainId .. "\n对应任务:" .. TargetDoingQuestId .. "\n玩家子区域:" .. Avatar.CurrentRegionId .. "\n指引点名称（下划线后缀为指引点节点Key）:" .. v:GetName()
           if Const.EnableTaskPrintError then
             ScreenPrint(string.format("%s", Message))
           end
@@ -325,7 +325,7 @@ function TaskUtils:CheckTaskIsInEXRegion()
         if Avatar.QuestChains[CurTrackingQuestChainId] then
           CurTrackingQuestId = Avatar.QuestChains[CurTrackingQuestChainId].DoingQuestId
         end
-        local Message = "\228\187\187\229\138\161\230\140\135\229\188\149\231\130\185\229\140\186\229\159\159\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168\239\188\140\229\175\188\232\135\180\232\142\183\229\143\150\228\187\187\229\138\161\229\140\186\229\159\159\230\149\176\230\141\174\229\164\177\232\180\165\239\188\140\232\175\183\231\173\150\229\136\146\229\144\140\229\173\166\230\163\128\230\159\165" .. "\n\229\189\147\229\137\141\232\191\189\232\184\170\228\187\187\229\138\161\233\147\190:" .. CurTrackingQuestChainId .. "\n\229\189\147\229\137\141\232\191\189\232\184\170\228\187\187\229\138\161:" .. CurTrackingQuestId .. "\n\231\142\169\229\174\182\229\173\144\229\140\186\229\159\159:" .. Avatar.CurrentRegionId .. "\n\230\140\135\229\188\149\231\130\185\229\144\141\231\167\176\239\188\136\228\184\139\229\136\146\231\186\191\229\144\142\231\188\128\228\184\186\230\140\135\229\188\149\231\130\185\232\138\130\231\130\185Key\239\188\137:" .. v:GetName()
+        local Message = "任务指引点区域数据不存在，导致获取任务区域数据失败，请策划同学检查" .. "\n当前追踪任务链:" .. CurTrackingQuestChainId .. "\n当前追踪任务:" .. CurTrackingQuestId .. "\n玩家子区域:" .. Avatar.CurrentRegionId .. "\n指引点名称（下划线后缀为指引点节点Key）:" .. v:GetName()
         if Const.EnableTaskPrintError then
           ScreenPrint(string.format("%s", Message))
         end
@@ -533,7 +533,7 @@ function TaskUtils:QuestOpenMainMapByQuestTrack()
     if Avatar.QuestChains[CurTrackingQuestChainId] then
       CurTrackingQuestId = Avatar.QuestChains[CurTrackingQuestChainId].DoingQuestId
     end
-    local Message = "\228\187\187\229\138\161\230\140\135\229\188\149\231\130\185\229\140\186\229\159\159\230\149\176\230\141\174\228\184\141\229\173\152\229\156\168\239\188\140\232\175\183\231\173\150\229\136\146\229\144\140\229\173\166\233\133\141" .. "\n\229\189\147\229\137\141\232\191\189\232\184\170\228\187\187\229\138\161\233\147\190:" .. CurTrackingQuestChainId .. "\n\229\189\147\229\137\141\232\191\189\232\184\170\228\187\187\229\138\161:" .. CurTrackingQuestId .. "\n\231\142\169\229\174\182\229\173\144\229\140\186\229\159\159:" .. Avatar.CurrentRegionId .. "\n\228\187\187\229\138\161\229\173\144\229\140\186\229\159\159Id:" .. TargetSubRegionId
+    local Message = "任务指引点区域数据不存在，请策划同学配" .. "\n当前追踪任务链:" .. CurTrackingQuestChainId .. "\n当前追踪任务:" .. CurTrackingQuestId .. "\n玩家子区域:" .. Avatar.CurrentRegionId .. "\n任务子区域Id:" .. TargetSubRegionId
     if Const.EnableTaskPrintError then
       ScreenPrint(string.format("%s", Message))
     end

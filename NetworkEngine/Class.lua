@@ -106,11 +106,11 @@ function InstanceMeta:__index(key)
           end
           avatar.bAccountBroken = true
           local account = avatar and avatar.Account or ""
-          local log = string.format("::Error::  CustomType\231\177\187Index\233\148\153\232\175\175 %s\231\177\187\231\154\132Data\229\135\189\230\149\176\229\190\151\229\136\176\231\154\132\231\187\147\230\158\156\230\152\175\231\169\186\231\154\132\239\188\140%s \232\191\153\228\184\170\229\143\183\229\186\159\228\186\134\239\188\140\229\176\157\232\175\149\230\141\162\228\184\170\230\150\176\229\143\183\239\188\140\232\191\152\230\152\175\228\184\141\232\161\140\229\176\177\230\155\180\230\150\176\228\189\160\231\154\132\229\174\162\230\136\183\231\171\175", self.__Class__.__Name__, account)
+          local log = string.format("::Error::  CustomType类Index错误 %s类的Data函数得到的结果是空的，%s 这个号废了，尝试换个新号，还是不行就更新你的客户端", self.__Class__.__Name__, account)
           if Battle and Battle(GWorld.GameInstance) and Battle(GWorld.GameInstance).ShowBattleError then
             Battle(GWorld.GameInstance):ShowBattleError(log)
           end
-          UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\136\160\232\161\168\229\188\149\232\181\183\231\154\132\230\151\167\229\143\183\230\138\165\229\186\159", log)
+          UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "删表引起的旧号报废", log)
         end
         return nil
       end

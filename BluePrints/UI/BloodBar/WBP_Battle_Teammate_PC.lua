@@ -234,10 +234,10 @@ function WBP_Teammate_PC_C:SetName()
         else
           self.Text_Name:SetText(GText(NameKey))
           self.bPendingPhantomSetName = true
-          DebugPrint(ErrorTag, "WBP_Teammate_PC_C:SetName  \228\184\187\232\167\146\233\173\133\229\189\177\230\137\190\228\184\141\229\136\176\229\174\131\231\154\132OwnerPlayerName")
+          DebugPrint(ErrorTag, "WBP_Teammate_PC_C:SetName  主角魅影找不到它的OwnerPlayerName")
         end
       else
-        DebugPrint(ErrorTag, "WBP_Teammate_PC_C:SetName  \228\184\187\232\167\146\233\173\133\229\189\177\230\137\190\228\184\141\229\136\176\229\174\131\231\154\132Owner\239\188\140 \230\151\160\230\179\149\232\181\139\228\186\136\229\144\141\231\167\176")
+        DebugPrint(ErrorTag, "WBP_Teammate_PC_C:SetName  主角魅影找不到它的Owner， 无法赋予名称")
         self.Text_Name:SetText("<ERROR>")
       end
     else

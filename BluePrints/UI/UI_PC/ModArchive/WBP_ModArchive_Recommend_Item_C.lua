@@ -81,15 +81,15 @@ function WBP_ModArchive_Recommend_Item_C:InitListMod()
 end
 
 function WBP_ModArchive_Recommend_Item_C:OnClickJumpTo()
-  DebugPrint("zwkk \232\183\179\232\189\172\239\188\159 ", self.Info.InterfaceJumpId)
+  DebugPrint("zwkk 跳转？ ", self.Info.InterfaceJumpId)
   PageJumpUtils:JumpToTargetPageByJumpId(self.Info.InterfaceJumpId)
 end
 
 function WBP_ModArchive_Recommend_Item_C:OnClickForbidden()
   if self.Info.TargetType == "Char" then
-    UIManager(self):ShowUITip(UIConst.Tip_CommonTop, GText("\230\178\161\230\156\137\229\189\147\229\137\141\232\167\146\232\137\178111"))
+    UIManager(self):ShowUITip(UIConst.Tip_CommonTop, GText("没有当前角色111"))
   elseif self.Info.TargetType == "Weapon" then
-    UIManager(self):ShowUITip(UIConst.Tip_CommonTop, GText("\230\178\161\230\156\137\229\189\147\229\137\141\230\173\166\229\153\168111"))
+    UIManager(self):ShowUITip(UIConst.Tip_CommonTop, GText("没有当前武器111"))
   end
 end
 
@@ -135,7 +135,7 @@ end
 
 function WBP_ModArchive_Recommend_Item_C:OnSelected()
   if self.CurInputDeviceType == ECommonInputType.Gamepad then
-    DebugPrint("11122233 Item\233\128\137\228\184\173", self:GetName())
+    DebugPrint("11122233 Item选中", self:GetName())
     self.Image_Select:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
     self.Image_Head:SetRenderOpacity(1.0)
     self.Image_Weapon:SetRenderOpacity(1.0)

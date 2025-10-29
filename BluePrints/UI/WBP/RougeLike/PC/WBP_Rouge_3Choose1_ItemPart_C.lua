@@ -12,7 +12,7 @@ end
 
 function M:OnLoaded(AwardInfo)
   local Avatar = GWorld:GetAvatar()
-  assert(Avatar, "\229\189\147\229\137\141\232\130\137\233\184\189\229\134\133\230\139\191\228\184\141\229\136\176Avatar")
+  assert(Avatar, "当前肉鸽内拿不到Avatar")
   self.AwardType = AwardInfo.AwardType
   self.AwardId = AwardInfo.AwardId
   local AwardData, IsUnlocked
@@ -29,7 +29,7 @@ function M:OnLoaded(AwardInfo)
   end
   self.Text_Title:SetText(GText(AwardData[self.AwardId].Name))
   self.Rarity = AwardData[self.AwardId][self.AwardType .. "Rarity"]
-  assert(self.Rarity, "Rarity\231\154\132\232\142\183\229\143\150\230\156\137\233\151\174\233\162\152")
+  assert(self.Rarity, "Rarity的获取有问题")
   if self.Rarity > 2 then
     self.WidgetSwitcher_Glow:SetActiveWidgetIndex(0)
   elseif self.Rarity > 1 then

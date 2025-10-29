@@ -114,7 +114,7 @@ function M:InitRewardList()
         IsShowDetails = true,
         MenuPlacement = EMenuPlacement.MenuPlacement_MenuRight
       })
-      self["Text_ItemNum" .. index]:SetText("\195\151" .. Num)
+      self["Text_ItemNum" .. index]:SetText("×" .. Num)
       self["HB_Item" .. index]:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
       index = index + 1
     end
@@ -127,7 +127,7 @@ function M:InitRewardList()
       local ItemType = GachaCommon.GachaItemTypeMap[Data.Sign]
       local ItemData = DataMgr[ItemType][Data.ResultId]
       local bNew, bConvert = self:IsNewOrConvertItem(ItemType, Data.ResultId, Data.Count)
-      assert(ItemData, "\230\156\170\230\137\190\229\136\176\232\175\165\230\172\161\230\138\189\229\141\161\229\165\150\229\138\177\231\154\132\228\191\161\230\129\175:Id:" .. Data.ResultId .. " Type:" .. ItemType)
+      assert(ItemData, "未找到该次抽卡奖励的信息:Id:" .. Data.ResultId .. " Type:" .. ItemType)
       local Content = NewObject(UIUtils.GetCommonItemContentClass())
       Content.Id = Data.ResultId
       Content.Icon = ItemUtils.GetItemIconPath(Data.ResultId, ItemType)
@@ -155,7 +155,7 @@ function M:InitRewardList()
           local ItemType = GachaCommon.GachaItemTypeMap[Data.Sign]
           local ItemData = DataMgr[ItemType][Data.ResultId]
           local bNew, bConvert = self:IsNewOrConvertItem(ItemType, Data.ResultId, Data.Count)
-          assert(ItemData, "\230\156\170\230\137\190\229\136\176\232\175\165\230\172\161\230\138\189\229\141\161\229\165\150\229\138\177\231\154\132\228\191\161\230\129\175:Id:" .. Data.ResultId .. " Type:" .. ItemType)
+          assert(ItemData, "未找到该次抽卡奖励的信息:Id:" .. Data.ResultId .. " Type:" .. ItemType)
           local Content = NewObject(UIUtils.GetCommonItemContentClass())
           Content.Id = Data.ResultId
           Content.Icon = ItemUtils.GetItemIconPath(Data.ResultId, ItemType)
@@ -211,13 +211,13 @@ function M:InitRewardList()
     local UpItemId, UpItemType = GachaModel:GetSkinGachaUpInfo(self.GachaId)
     local ShowSkinData = DataMgr[self.ShowSkinType][self.ShowSkinId]
     if UpItemId and self.ShowSkinType == UpItemType and self.ShowSkinId == UpItemId then
-      assert(GachaInfo.RewardUpDisplay, "\230\156\170\230\137\190\229\136\176\232\175\165\230\172\161\230\138\189\229\141\161\231\137\185\230\174\138\229\177\149\231\164\186\229\165\150\229\138\177\231\154\132\228\191\161\230\129\175:Id:" .. self.ShowSkinId .. " Type:" .. self.ShowSkinType)
+      assert(GachaInfo.RewardUpDisplay, "未找到该次抽卡特殊展示奖励的信息:Id:" .. self.ShowSkinId .. " Type:" .. self.ShowSkinType)
       IconObj = LoadObject(GachaInfo.RewardUpDisplay)
     else
-      assert(ShowSkinData, "\230\156\170\230\137\190\229\136\176\232\175\165\230\172\161\230\138\189\229\141\161\231\137\185\230\174\138\229\177\149\231\164\186\229\165\150\229\138\177\231\154\132\228\191\161\230\129\175:Id:" .. self.ShowSkinId .. " Type:" .. self.ShowSkinType)
+      assert(ShowSkinData, "未找到该次抽卡特殊展示奖励的信息:Id:" .. self.ShowSkinId .. " Type:" .. self.ShowSkinType)
       IconObj = LoadObject(ShowSkinData.BigIcon)
     end
-    assert(IconObj, "\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\231\154\174\232\130\164\231\154\132BigIcon\228\191\161\230\129\175:Id:" .. self.ShowSkinId .. " Type:" .. self.ShowSkinType)
+    assert(IconObj, "未找到对应皮肤的BigIcon信息:Id:" .. self.ShowSkinId .. " Type:" .. self.ShowSkinType)
     self.TypeTag:SetVisibility(UE4.ESlateVisibility.SelfHitTestInvisible)
     if self.ShowSkinType == "Skin" then
       self.WS_Icon:SetActiveWidgetIndex(0)
@@ -242,7 +242,7 @@ function M:IsNewOrConvertItem(Type, Id)
   end
   local Count = AvatarUtils:GetTargetDataStatistics(Avatar, Type, Id)
   local ItemData = DataMgr[Type][Id]
-  assert(ItemData, "\230\138\189\229\141\161\231\187\147\230\158\156\233\129\147\229\133\183\228\184\141\229\173\152\229\156\168\239\188\154Type:" .. Type .. " Id:" .. Id)
+  assert(ItemData, "抽卡结果道具不存在：Type:" .. Type .. " Id:" .. Id)
   if self.RewardMap[Type][Id] == Count then
     self.RewardMap[Type][Id] = -1
     return true, false

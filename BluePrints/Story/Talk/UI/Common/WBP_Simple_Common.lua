@@ -322,11 +322,11 @@ function WBP_Simple_Common:HasWholeDialogueTypingFinished()
 end
 
 function WBP_Simple_Common:InitPlayKey()
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_Simple_Common:InitPlayKey")
+  DebugPrint("Error: 未实现的函数WBP_Simple_Common:InitPlayKey")
 end
 
 function WBP_Simple_Common:InitAutoPlay()
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_Simple_Common:InitAutoPlay")
+  DebugPrint("Error: 未实现的函数WBP_Simple_Common:InitAutoPlay")
 end
 
 return WBP_Simple_Common

@@ -21,8 +21,8 @@ function FOptionNode:CreateNodeData(DialogueId)
     local OptionDialogue = self.Dialogues[OptionId]
     if nil == OptionDialogue then
       do
-        local Message = "OptionDialogue\228\184\141\229\173\152\229\156\168, DialogueId\228\184\186 " .. OptionId
-        local Title = "OptionDialogue\228\184\141\229\173\152\229\156\168"
+        local Message = "OptionDialogue不存在, DialogueId为 " .. OptionId
+        local Title = "OptionDialogue不存在"
         UStoryLogUtils.PrintToFeiShu(self, Title, Message)
       end
     else

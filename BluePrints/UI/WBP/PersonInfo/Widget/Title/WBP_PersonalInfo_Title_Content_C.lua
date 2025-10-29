@@ -55,7 +55,7 @@ function M:LoadData()
       local FrameData = DataMgr.TitleFrame[FrameId]
       self.Text_DetailType:SetText(GText(FrameData.Name))
     else
-      ScreenPrint("\230\178\161\230\156\137\230\137\190\229\136\176\228\189\169\230\136\180\231\154\132\229\164\180\229\131\143 ID\228\184\186" .. FrameId or "\231\169\186")
+      ScreenPrint("没有找到佩戴的头像 ID为" .. FrameId or "空")
     end
   end
   self.TitleFrameDatas = DataMgr.TitleFrame
@@ -286,7 +286,7 @@ function M:OnTietleStyleChange(FrameId)
       local FrameData = DataMgr.TitleFrame[FrameId]
       self.Text_DetailType:SetText(GText(FrameData.Name))
     else
-      ScreenPrint("\230\178\161\230\156\137\230\137\190\229\136\176\228\189\169\230\136\180\231\154\132\229\164\180\229\131\143 ID\228\184\186" .. FrameId or "\231\169\186")
+      ScreenPrint("没有找到佩戴的头像 ID为" .. FrameId or "空")
     end
   end
   self:FreshBtnStatebyFrame()
@@ -297,7 +297,7 @@ function M:FreshTitleText()
     if 1 == self.TabId then
       self.WS_Detail:SetActiveWidgetIndex(1)
     else
-      self.CurrentTitleWidget:SetTitleContent("\226\128\148\226\128\148", "\226\128\148\226\128\148")
+      self.CurrentTitleWidget:SetTitleContent("——", "——")
     end
     self.CurrentTitleWidget:SetEmpty()
   else

@@ -12,7 +12,7 @@ function M:BindChooseEvent()
     self.Btn_Click.OnClicked:Add(self, self.OnBtnClicked)
   end
   local Avatar = GWorld:GetAvatar()
-  assert(Avatar, "\230\137\190\228\184\141\229\136\176Avatar")
+  assert(Avatar, "找不到Avatar")
   local Currency = Avatar.Resources:QueryResourceCount(self.Parent.CoinId)
   if self.SelectId then
     self.ChoicePrice = DataMgr.RougeLikeEventSelect[self.SelectId].Price
@@ -34,9 +34,9 @@ function M:OnBtnClicked()
     return
   end
   local Avatar = GWorld:GetAvatar()
-  assert(Avatar, "\230\137\190\228\184\141\229\136\176Avatar")
+  assert(Avatar, "找不到Avatar")
   local UIManager = GWorld.GameInstance:GetGameUIManager()
-  assert(UIManager, "\230\137\190\228\184\141\229\136\176UIManager")
+  assert(UIManager, "找不到UIManager")
   local Currency = Avatar.Resources:QueryResourceCount(self.Parent.CoinId)
   if self.ChoicePrice and Currency < self.ChoicePrice then
     UIManager:ShowUITip(UIConst.Tip_CommonToast, GText("RL_Event_CantSelect"))

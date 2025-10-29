@@ -378,14 +378,14 @@ function M:CheckAutoChoose(IsShowTip)
     if IsShowTip then
       UIManager(self):ShowUITip(UIConst.Tip_CommonTop, GText("UI_Dispatch_Toast_MustWin"))
     end
-    DebugPrint("\229\189\147\229\137\141\230\136\144\229\138\159\231\142\135\229\164\167\228\186\142\231\173\137\228\186\142100")
+    DebugPrint("当前成功率大于等于100")
     return false
   end
   if CurPerson == MaxPerson then
     if IsShowTip then
       UIManager(self):ShowUITip(UIConst.Tip_CommonTop, GText("UI_Dispatch_Toast_FullMan"))
     end
-    DebugPrint("\230\180\190\233\129\163\228\186\186\230\149\176\228\184\138\233\153\144")
+    DebugPrint("派遣人数上限")
     return false
   end
   if true == Flag then

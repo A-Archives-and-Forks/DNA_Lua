@@ -133,12 +133,12 @@ local function _RealSetIcon(self, Icon)
   local IconDynaMaterial = self.Img_Item:GetDynamicMaterial()
   if IsValid(IconDynaMaterial) then
     if not IsValid(Icon) then
-      DebugPrint("ZDX_\232\175\183\229\175\185\229\186\148\231\179\187\231\187\159\230\163\128\230\159\165Icon\230\152\175\229\144\166\230\173\163\231\161\174")
+      DebugPrint("ZDX_请对应系统检查Icon是否正确")
     else
       IconDynaMaterial:SetTextureParameterValue("IconMap", Icon)
     end
   else
-    DebugPrint("ZDX_IconDynaMaterial\228\184\141\229\144\136\230\179\149")
+    DebugPrint("ZDX_IconDynaMaterial不合法")
   end
 end
 
@@ -157,7 +157,7 @@ function M:SetIcon(Icon)
     return
   end
   if not Icon then
-    DebugPrint("ZDX_\233\129\147\229\133\183\230\161\134\231\188\186\229\176\145Icon")
+    DebugPrint("ZDX_道具框缺少Icon")
     return
   end
   if type(Icon) == "string" then
@@ -454,7 +454,7 @@ function M:SetWeaponPhantomIcon(_Uuid)
 end
 
 function M:SetWalnutNum(ItemId)
-  assert(DataMgr.Walnut[ItemId], "\230\160\184\230\161\131\228\184\141\229\173\152\229\156\168\239\188\154", ItemId)
+  assert(DataMgr.Walnut[ItemId], "核桃不存在：", ItemId)
   local WalnutNum = DataMgr.Walnut[ItemId].WalnutNumber
   if self.Walnut_Num then
     local NumWidget = UIManager(self):_CreateWidgetNew("ItemWalnutNum")

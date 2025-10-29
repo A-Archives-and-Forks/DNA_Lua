@@ -754,7 +754,7 @@ function WBP_Battle_C:UpdateSignalStrength(LastSignalStrength)
   local Player = UE4.UGameplayStatics.GetPlayerCharacter(self, 0)
   local PlayerState = Player:GetController().PlayerState
   if not PlayerState then
-    DebugPrint(ErrorTag, "xuxiangnan::PlayerState\232\142\183\229\143\150\229\164\177\232\180\165\239\188\140\230\139\191\228\184\141\229\136\176\230\173\163\231\161\174ping\229\128\188")
+    DebugPrint(ErrorTag, "xuxiangnan::PlayerState获取失败，拿不到正确ping值")
     return
   end
   local Ping = PlayerState:GetPlayerPing()
@@ -957,9 +957,9 @@ function WBP_Battle_C:OpenSystemByAction(ActionName, bEscMenu, ...)
 end
 
 function WBP_Battle_C:AddTeammateUI(Eid, bIsPlayer, Entity)
-  DebugPrint(DebugTag, LXYTag, "TeamSyncDebug \230\156\137\232\167\146\232\137\178\228\186\167\231\148\159\239\188\140\233\173\133\229\189\177\230\136\150\231\142\169\229\174\182", bIsPlayer, Eid)
+  DebugPrint(DebugTag, LXYTag, "TeamSyncDebug 有角色产生，魅影或玩家", bIsPlayer, Eid)
   if GameState(self):GetPhantomState(Eid) then
-    DebugPrint("TeamSyncDebug  PhantomArray\229\173\152\229\156\168\232\175\165\233\173\133\229\189\177\239\188\140\231\156\139\228\184\128\228\184\139OwnerEid,", GameState(self):GetPhantomState(Eid).OwnerEid)
+    DebugPrint("TeamSyncDebug  PhantomArray存在该魅影，看一下OwnerEid,", GameState(self):GetPhantomState(Eid).OwnerEid)
   end
   Entity = Entity or Battle(self):GetEntity(Eid)
   if self.TeammateEidSet[Eid] then
@@ -989,7 +989,7 @@ function WBP_Battle_C:AddTeammateUI(Eid, bIsPlayer, Entity)
         OwnerEid = Entity.PhantomState.OwnerEid
       end
       if not OwnerEid then
-        Utils.Traceback(WarningTag, LXYTag .. "TeamSyncDebug\233\157\158\229\184\184\230\128\128\231\150\145\233\173\133\229\189\177\231\154\132\229\136\157\229\167\139\229\140\150\230\181\129\231\168\139\230\156\137\230\151\182\229\186\143\233\151\174\233\162\152..")
+        Utils.Traceback(WarningTag, LXYTag .. "TeamSyncDebug非常怀疑魅影的初始化流程有时序问题..")
         return
       end
       if OwnerEid ~= MainPlayer.Eid then
@@ -1221,7 +1221,7 @@ function WBP_Battle_C:InitSystemEntrance()
       local GameState = UE4.UGameplayStatics.GetGameState(self)
       if self.bInTrial then
         Content.bForbidReddot = true
-        DebugPrint("yeke::trial\230\168\161\229\188\143\228\184\141\230\152\190\231\164\186\231\186\162\231\130\185")
+        DebugPrint("yeke::trial模式不显示红点")
       end
       self.ListView:AddItem(Content)
     end
@@ -1445,14 +1445,14 @@ function WBP_Battle_C:TryRecoverUI()
     self:SetVisibility(UIConst.VisibilityOp.Collapsed)
     return false
   end
-  DebugPrint("-----yk---\228\184\187\231\149\140\233\157\162 in-------")
+  DebugPrint("-----yk---主界面 in-------")
   self:PlayInAnim()
   self:SetVisibility(UIConst.VisibilityOp.SelfHitTestInvisible)
   return true
 end
 
 function WBP_Battle_C:PlayInAnim()
-  DebugPrint("-----Jzn---\228\184\187\231\149\140\233\157\162 in-------")
+  DebugPrint("-----Jzn---主界面 in-------")
   self:SetUIVisibilityTag("PlayBattleAni", false)
   self:UnbindAllFromAnimationFinished(self.In)
   
@@ -1483,7 +1483,7 @@ function WBP_Battle_C:_RefreshEscReddot()
 end
 
 function WBP_Battle_C:PlayOutAnim(Obj, Func)
-  DebugPrint("-----Jzn---\228\184\187\231\149\140\233\157\162 out-------")
+  DebugPrint("-----Jzn---主界面 out-------")
   self:SetUIVisibilityTag("PlayBattleAni", true)
   self:StopAnimation(self.In)
   self:PlayAnimation(self.Out)

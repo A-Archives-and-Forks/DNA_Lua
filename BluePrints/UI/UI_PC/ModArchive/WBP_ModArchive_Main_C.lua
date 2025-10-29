@@ -21,7 +21,7 @@ end
 function WBP_ModArchive_Main_C:OnLoaded(...)
   self.Super.OnLoaded(self, ...)
   self.Owner = (...)
-  DebugPrint("\233\173\148\228\185\139\229\140\163 ", self.Owner)
+  DebugPrint("魔之匣 ", self.Owner)
   self.CurTipsIndex = 1
   self.Group_Page:ClearChildren()
   self.IsClosing = false
@@ -325,7 +325,7 @@ function WBP_ModArchive_Main_C:RefreshData()
   EMCache:Set("ModBookModsViewState", self.ModBookModsViewState, true)
   EMCache:Set("ModArchiveNewByViewState", ModArchiveNewByViewState, true)
   if #ModShows > 0 or #ModUnlocks > 0 then
-    DebugPrint("\229\138\160\232\189\189\229\188\185\231\170\151 ")
+    DebugPrint("加载弹窗 ")
     self.ShouldShowTips = true
     self.TipsModShows = ModShows
     self.TipsModUnlocks = ModUnlocks
@@ -344,7 +344,7 @@ function WBP_ModArchive_Main_C:RefreshReddot()
   local ArchiveTabRed = false
   for i, v in pairs(ModBookCanGetRewards) do
     if v then
-      DebugPrint("\229\186\148\232\175\165\230\156\137\231\186\162\231\130\185 ", tonumber(i))
+      DebugPrint("应该有红点 ", tonumber(i))
       local ArchiveId = tonumber(i)
       local TabId = DataMgr.ModGuideBookArchive[ArchiveId].TabId
       SubTabRed[TabId] = true
@@ -399,7 +399,7 @@ function WBP_ModArchive_Main_C:RefreshNewdot()
   for i, v in pairs(ModBookModsViewState) do
     for ModIdString, IsNew in pairs(v) do
       if IsNew then
-        DebugPrint("\229\147\170\228\184\170\230\152\175new ", ModIdString, i)
+        DebugPrint("哪个是new ", ModIdString, i)
         local ArchiveId = tonumber(i)
         HasNewTabs[ArchiveId] = true
         if DataMgr.ModGuideBookArchive[ArchiveId] and DataMgr.ModGuideBookArchive[ArchiveId].TabId then

@@ -1244,7 +1244,7 @@ function CommonUtils.CheckDestroyReason(DestroyReason, Operation)
   local Reason = EDestroyReason:GetNameByValue(DestroyReason)
   local OperationMap = DataMgr.DestroyReason[Reason]
   if not OperationMap then
-    ScreenPrint("\233\148\128\230\175\129\230\151\182\228\188\160\229\133\165\231\154\132DestroyReason\230\178\161\230\156\137\229\161\171\229\134\153\229\156\168DestroyReason\232\161\168\228\184\173\227\128\130DestroyReason", Reason)
+    ScreenPrint("销毁时传入的DestroyReason没有填写在DestroyReason表中。DestroyReason", Reason)
     return false
   end
   local Res = OperationMap[Operation]

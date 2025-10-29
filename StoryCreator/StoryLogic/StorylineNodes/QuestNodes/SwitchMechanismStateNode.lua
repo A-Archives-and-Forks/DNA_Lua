@@ -26,7 +26,7 @@ function SwitchMechanismStateNode:Execute()
     local Array = self:TableToTArray(self.ManualItemIdList)
     GameMode:TriggerMechanismManualItem(Array, self.StateId, 0, self.QuestId)
   else
-    error("SwitchMechanismStateNode\232\138\130\231\130\185\228\184\173\233\157\153\230\128\129\231\130\185Id\229\146\140ManualItemId\229\157\135\230\156\170\233\133\141\231\189\174")
+    error("SwitchMechanismStateNode节点中静态点Id和ManualItemId均未配置")
   end
 end
 

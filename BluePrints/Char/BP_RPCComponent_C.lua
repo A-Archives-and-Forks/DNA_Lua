@@ -3,7 +3,7 @@ require("UnLua")
 local BP_RPCComponent_C = Class()
 
 function BP_RPCComponent_C:OnRequestGuideInfo_Lua(GuideInfo)
-  DebugPrint("\232\142\183\229\143\150\229\186\143\229\136\151\229\140\150\230\149\176\230\141\174:", GuideInfo, GuideInfo.SnapShotId, GuideInfo.Loc, GuideInfo.UnitId, GuideInfo.UnitType, GuideInfo.Level, GuideInfo.CurrentLevelId)
+  DebugPrint("获取序列化数据:", GuideInfo, GuideInfo.SnapShotId, GuideInfo.Loc, GuideInfo.UnitId, GuideInfo.UnitType, GuideInfo.Level, GuideInfo.CurrentLevelId)
   local GameInstance = UE4.UGameplayStatics.GetGameInstance(self)
   local SceneMgr = GameInstance:GetSceneManager()
   if nil ~= SceneMgr then

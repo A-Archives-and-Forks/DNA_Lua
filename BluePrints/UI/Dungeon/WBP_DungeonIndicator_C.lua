@@ -224,7 +224,7 @@ end
 
 function WBP_DungeonIndicatorUI_C:ChangeStyle(IndicatorStyle, Count)
   if self.ConfigData == nil or nil == self.ConfigData.GuideIconAni then
-    self:DebugPrint("ChangeStyle: \230\140\135\229\188\149\231\130\185\230\156\170\230\152\190\231\164\186")
+    self:DebugPrint("ChangeStyle: 指引点未显示")
     return
   end
   if self.IndicatorStyle == EIndicatorStyle.Disappearing then
@@ -360,17 +360,17 @@ function WBP_DungeonIndicatorUI_C:InitABCTextInSabotage(GuideIconAni)
     return
   end
   if self.TargetEid == nil then
-    self:DebugPrint("InitABCTextInSabotage: TargetEid \228\184\141\229\173\152\229\156\168")
+    self:DebugPrint("InitABCTextInSabotage: TargetEid 不存在")
     return
   end
   local GameInstance = UE4.UGameplayStatics.GetGameInstance(self)
   if nil == GameInstance then
-    self:DebugPrint("InitABCTextInSabotage: GameInstance \228\184\141\229\173\152\229\156\168")
+    self:DebugPrint("InitABCTextInSabotage: GameInstance 不存在")
     return
   end
   local SceneManager = GameInstance:GetSceneManager()
   if nil == SceneManager then
-    self:DebugPrint("InitABCTextInSabotage: SceneManager \228\184\141\229\173\152\229\156\168")
+    self:DebugPrint("InitABCTextInSabotage: SceneManager 不存在")
     return
   end
   local Player = UE4.UGameplayStatics.GetPlayerCharacter(self, 0)
@@ -394,7 +394,7 @@ function WBP_DungeonIndicatorUI_C:SetABCTextInSabotage_Callback(Eids, UnitIds)
   DebugPrint("WBP_DungeonIndicatorUI_C ABCLetter", ABCLetter, "Eid", self.TargetEid, "index", index)
   local SceneManager = GWorld.GameInstance:GetSceneManager()
   if nil == SceneManager then
-    self:DebugPrint("InitABCTextInSabotage: SceneManager \228\184\141\229\173\152\229\156\168")
+    self:DebugPrint("InitABCTextInSabotage: SceneManager 不存在")
     return
   end
   local RetPath = SceneManager:GetSabotageABCIconPath(ABCLetter)

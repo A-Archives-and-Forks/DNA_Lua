@@ -28,7 +28,7 @@ function M:AddBlock(Block, TypingUserWidget)
     local OldBlock = Block
     Block = Page:AddBlock(Block, TypingUserWidget)
     if OldBlock == Block then
-      print(_G.LogTag, "Block \229\134\133\229\174\185\232\182\133\229\135\186\233\161\181\229\164\167\229\176\143\239\188\140\232\162\171\228\184\162\229\188\131\227\128\130", "Block \229\164\167\229\176\143\239\188\154", Block:GetSize(), "Block \229\134\133\229\174\185\239\188\154", Block:GetRichText())
+      print(_G.LogTag, "Block 内容超出页大小，被丢弃。", "Block 大小：", Block:GetSize(), "Block 内容：", Block:GetRichText())
       break
     end
     table.insert(self.Pages, Page)

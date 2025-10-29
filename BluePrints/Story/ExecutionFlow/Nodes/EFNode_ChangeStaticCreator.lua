@@ -14,7 +14,7 @@ function M:CreateNode(Flow, TalkTask, Params)
     end
   end
   if not self.TalkNode then
-    self:PrintError("Error! EFNode_ChangeStaticCreator \230\156\170\230\137\190\229\136\176TalkNode")
+    self:PrintError("Error! EFNode_ChangeStaticCreator 未找到TalkNode")
     return
   end
   self.ActiveEnable = Params.IsActive
@@ -39,7 +39,7 @@ end
 
 function M:Start()
   if not self:IsAllStaticCreatorValid() then
-    self:PrintError("Error! EFNode_ChangeStaticCreator \231\148\159\230\136\144/\233\148\128\230\175\129\229\136\183\230\150\176\231\130\185: \229\161\171\229\133\165\233\157\153\230\128\129\231\130\185Id\228\184\141\229\173\152\229\156\168\239\188\140\232\138\130\231\130\185\228\184\173\230\150\173\239\188\129")
+    self:PrintError("Error! EFNode_ChangeStaticCreator 生成/销毁刷新点: 填入静态点Id不存在，节点中断！")
     return
   end
   if not self.EnableBlackScreenSync then
@@ -47,7 +47,7 @@ function M:Start()
     return
   end
   if self.EnableFadeIn then
-    DebugPrint("EFNode_ChangeStaticCreator: \233\187\145\229\177\143\229\188\128\229\144\175")
+    DebugPrint("EFNode_ChangeStaticCreator: 黑屏开启")
     self:PlayBlackUIIn()
   else
     if self.EnableFadeOut then
@@ -64,7 +64,7 @@ function M:Finish()
       Node.FinishPin
     })
   else
-    self:PrintError("Error! EFNode_ChangeStaticCreator Node\228\184\141\229\173\152\229\156\168")
+    self:PrintError("Error! EFNode_ChangeStaticCreator Node不存在")
   end
 end
 
@@ -93,11 +93,11 @@ function M:ChangeStaticCreatorState()
   if self.ActiveEnable then
     if self.EnableBlackScreenSync then
       local function BindEventAndTrigger()
-        DebugPrint("EFNode_ChangeStaticCreator \231\148\159\230\136\144/\233\148\128\230\175\129\229\136\183\230\150\176\231\130\185: \231\187\145\229\174\154\228\186\139\228\187\182\229\185\182\230\191\128\230\180\187\233\157\153\230\128\129\231\130\185")
+        DebugPrint("EFNode_ChangeStaticCreator 生成/销毁刷新点: 绑定事件并激活静态点")
         
         if not self:IsAllLevelLoaded() then
           self:DirectCloseBlackUI()
-          self:PrintError("Error! EFNode_ChangeStaticCreator \231\148\159\230\136\144/\233\148\128\230\175\129\229\136\183\230\150\176\231\130\185: \228\188\160\233\128\129\229\144\142\233\157\153\230\128\129\231\130\185\229\164\170\232\191\156\232\162\171\229\186\143\229\136\151\229\140\150\239\188\140\232\138\130\231\130\185\228\184\173\230\150\173\239\188\129")
+          self:PrintError("Error! EFNode_ChangeStaticCreator 生成/销毁刷新点: 传送后静态点太远被序列化，节点中断！")
           return
         end
         for index, StaticCreatorId in pairs(self.StaticCreatorIdList) do
@@ -110,20 +110,20 @@ function M:ChangeStaticCreatorState()
       if self.NewTargetPointName == nil or self.NewTargetPointName == "" or not IsValid(NewTargetPoint) then
         if not self:IsAllLevelLoaded() then
           self:DirectCloseBlackUI()
-          self:PrintError("Error! EFNode_ChangeStaticCreator \231\148\159\230\136\144/\233\148\128\230\175\129\229\136\183\230\150\176\231\130\185: \230\178\161\230\156\137\229\161\171\229\134\153TargetPoint\228\184\148\233\157\153\230\128\129\231\130\185\229\164\170\232\191\156\232\162\171\229\186\143\229\136\151\229\140\150\239\188\140\232\138\130\231\130\185\228\184\173\230\150\173\239\188\129")
+          self:PrintError("Error! EFNode_ChangeStaticCreator 生成/销毁刷新点: 没有填写TargetPoint且静态点太远被序列化，节点中断！")
           return
         end
         BindEventAndTrigger()
       else
         local Player = UE4.UGameplayStatics.GetPlayerCharacter(GWorld.GameInstance, 0)
         if GameMode:GetWCSubSystem() then
-          DebugPrint("EFNode_ChangeStaticCreator \231\148\159\230\136\144/\233\148\128\230\175\129\229\136\183\230\150\176\231\130\185: \229\188\128\229\167\139\228\188\160\233\128\129\232\135\179\231\155\174\230\160\135\231\130\185", self.NewTargetPointName)
+          DebugPrint("EFNode_ChangeStaticCreator 生成/销毁刷新点: 开始传送至目标点", self.NewTargetPointName)
           GameMode:GetWCSubSystem():RequestAsyncTravel(Player, NewTargetPoint:GetTransform(), {
             GWorld.GameInstance,
             BindEventAndTrigger
           }, true)
         else
-          DebugPrint("Warning EFNode_ChangeStaticCreator \231\148\159\230\136\144/\233\148\128\230\175\129\229\136\183\230\150\176\231\130\185: \230\173\164\229\140\186\229\159\159\230\178\161\230\156\137WC")
+          DebugPrint("Warning EFNode_ChangeStaticCreator 生成/销毁刷新点: 此区域没有WC")
           GameMode:EMSetActorLocationAndRotation(0, self.NewTargetPointName, true)
           BindEventAndTrigger()
         end
@@ -148,7 +148,7 @@ function M:FinishAction()
     return
   end
   if self.EnableFadeOut then
-    DebugPrint("EFNode_ChangeStaticCreator: \233\187\145\229\177\143\231\187\147\230\157\159")
+    DebugPrint("EFNode_ChangeStaticCreator: 黑屏结束")
     self:PlayBlackUIOut()
   else
     if self.EnableFadeIn then
@@ -173,7 +173,7 @@ function M:IsAllStaticCreatorValid()
   for _, CreatorId in pairs(self.StaticCreatorIdList) do
     local Creator = GameMode.EMGameState:GetStaticCreatorInfo(CreatorId)
     if not IsValid(Creator) then
-      self:PrintError("Error! EFNode_ChangeStaticCreator \231\148\159\230\136\144/\233\148\128\230\175\129\229\136\183\230\150\176\231\130\185: \229\161\171\229\133\165\231\154\132\233\157\153\230\128\129\231\130\185Id\227\128\144" .. tostring(CreatorId) .. "\227\128\145\230\137\190\228\184\141\229\136\176\233\157\153\230\128\129\231\130\185\239\188\140\232\175\183\230\163\128\230\159\165\239\188\129")
+      self:PrintError("Error! EFNode_ChangeStaticCreator 生成/销毁刷新点: 填入的静态点Id【" .. tostring(CreatorId) .. "】找不到静态点，请检查！")
       return false
     end
   end
@@ -185,7 +185,7 @@ function M:IsAllLevelLoaded()
   for _, CreatorId in pairs(self.StaticCreatorIdList) do
     local Creator = GameMode.EMGameState:GetStaticCreatorInfo(CreatorId)
     if not GameMode:CheckLevelLoadedByActor(Creator) then
-      self:PrintError("Error! EFNode_ChangeStaticCreator \231\148\159\230\136\144/\233\148\128\230\175\129\229\136\183\230\150\176\231\130\185: \229\161\171\229\133\165\231\154\132\233\157\153\230\128\129\231\130\185Id\227\128\144" .. tostring(CreatorId) .. "\227\128\145\230\137\128\229\156\168\229\133\179\229\141\161\230\178\161\230\156\137\232\162\171\229\138\160\232\189\189\239\188\140\232\175\183\230\163\128\230\159\165\239\188\129")
+      self:PrintError("Error! EFNode_ChangeStaticCreator 生成/销毁刷新点: 填入的静态点Id【" .. tostring(CreatorId) .. "】所在关卡没有被加载，请检查！")
       return false
     end
   end

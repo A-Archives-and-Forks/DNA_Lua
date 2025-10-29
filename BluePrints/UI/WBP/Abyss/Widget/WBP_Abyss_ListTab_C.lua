@@ -18,7 +18,7 @@ function WBP_Abyss_ListTab_C:OnClicked()
   if self.LineupPage then
     self.LineupPage:PhantomWeaponTypeChanged(self.Type)
   else
-    DebugPrint("lhr@WBP_Abyss_ListTab_C:OnClicked\239\188\140\233\152\181\229\174\185\233\133\141\231\189\174\231\149\140\233\157\162\229\164\177\230\149\136")
+    DebugPrint("lhr@WBP_Abyss_ListTab_C:OnClicked，阵容配置界面失效")
   end
 end
 

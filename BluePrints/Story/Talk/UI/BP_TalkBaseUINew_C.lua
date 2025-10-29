@@ -491,7 +491,7 @@ function BP_TalkBaseUINew_C:ShowPicture(dir, fadeInTime, fadeOutTime, duration)
     if not self.ImgItemUI then
       self.ImgItemUI = UIManager(self):_CreateWidgetNew("StoryImgItem")
       if not self.ImgItemUI then
-        DebugPrint("Error: \230\146\173\230\148\190\229\155\190\231\137\135\230\151\182\230\142\167\228\187\182\230\151\160\230\149\136,\232\175\183\230\163\128\230\159\165WBP_Story_ImgItem\232\147\157\229\155\190")
+        DebugPrint("Error: 播放图片时控件无效,请检查WBP_Story_ImgItem蓝图")
         return
       end
       local ZOrder = self:GetZOrder()
@@ -499,7 +499,7 @@ function BP_TalkBaseUINew_C:ShowPicture(dir, fadeInTime, fadeOutTime, duration)
     end
     self.ImgItemUI:PlayFadeAnim(true, Picture, fadeInTime, fadeOutTime, duration)
   else
-    DebugPrint("Error: \230\151\160\230\179\149\230\137\190\229\136\176\229\155\190\231\137\135\232\183\175\229\190\132:", dir, ",\232\175\183\230\163\128\230\159\165Dialogue\233\133\141\231\189\174")
+    DebugPrint("Error: 无法找到图片路径:", dir, ",请检查Dialogue配置")
   end
 end
 
@@ -626,7 +626,7 @@ function BP_TalkBaseUINew_C:OnPlayRecallGraph(DialogueData)
   if not self.ImgRecallUI then
     self.ImgRecallUI = UIManager(self):_CreateWidgetNew("StoryImgRecall")
     if not self.ImgRecallUI then
-      DebugPrint("Error: \230\146\173\230\148\190\229\155\158\229\191\134\229\155\190\231\137\135\230\151\182\230\142\167\228\187\182\230\151\160\230\149\136,\232\175\183\230\163\128\230\159\165WBP_Story_ImgRecall\232\147\157\229\155\190")
+      DebugPrint("Error: 播放回忆图片时控件无效,请检查WBP_Story_ImgRecall蓝图")
       return
     end
     local ZOrder = self:GetZOrder()

@@ -28,7 +28,7 @@ function Component:InitChat()
     return
   end
   local ChatEntryConf = DataMgr.MainUI[ChatCommon.MainUIId]
-  assert(ChatEntryConf, "\232\129\138\229\164\169\231\154\132\229\133\165\229\143\163\233\133\141\231\189\174\228\184\141\229\173\152\229\156\168\239\188\140\231\173\150\229\136\146\233\156\128\232\166\129\230\163\128\230\159\165MainUI\233\133\141\232\161\168\239\188\140\232\129\138\229\164\169\231\179\187\231\187\159\231\154\132id\228\184\186" .. ChatCommon.MainUIId)
+  assert(ChatEntryConf, "聊天的入口配置不存在，策划需要检查MainUI配表，聊天系统的id为" .. ChatCommon.MainUIId)
   self.ChatSimpleOpenQueue = Deque.New()
   local PlatfromType = CommonUtils.GetDeviceTypeByPlatformName(self)
   self["_InitChat" .. PlatfromType](self, Avatar, ChatEntryConf)
@@ -86,7 +86,7 @@ function Component:_InitChatPC(Avatar, ...)
     elseif EventId == ChatCommon.EventID.ChatMsgRecv then
       local TimeWrap, MsgWrap = ...
       if 1 == Avatar.ChatChannelMute[MsgWrap.Message.ChannelType] then
-        print("yklua \230\148\182\229\136\176\230\182\136\230\129\175\239\188\140\228\189\134\230\152\175\229\156\168\229\133\141\230\137\147\230\137\176\229\136\151\232\161\168\228\184\173")
+        print("yklua 收到消息，但是在免打扰列表中")
         return
       end
       self:UpdateChatSimple(MsgWrap)

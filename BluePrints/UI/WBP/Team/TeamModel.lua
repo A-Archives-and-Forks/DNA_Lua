@@ -23,7 +23,7 @@ function M:SetTeam(Team, bDsData)
       self.TeamData = nil
     end
     if not self.TeamData then
-      Utils.Traceback("\233\152\159\228\188\141\232\162\171\231\189\174\231\169\186\228\186\134, TeamData is nil")
+      Utils.Traceback("队伍被置空了, TeamData is nil")
       ChatController:GetModel():ClearReddotCount(ChatCommon.ChannelDef.InTeam)
       ChatController:GetModel():ClearMessage(ChatCommon.ChannelDef.InTeam)
     end
@@ -141,16 +141,16 @@ end
 
 function M:SetTeamBackup(Team)
   if nil == Team then
-    DebugPrint(LXYTag, "\230\184\133\231\169\186\233\152\159\228\188\141\229\164\135\228\187\189")
+    DebugPrint(LXYTag, "清空队伍备份")
     self.TeamDataBackup = nil
   else
-    PrintTable(Team, 1, LXYTag .. "\232\174\190\231\189\174\233\152\159\228\188\141\229\164\135\228\187\189")
+    PrintTable(Team, 1, LXYTag .. "设置队伍备份")
     self.TeamDataBackup = TeamData.New(Team)
   end
 end
 
 function M:GetTeamBackup()
-  DebugPrint(LXYTag, "\232\142\183\229\143\150\233\152\159\228\188\141\229\164\135\228\187\189")
+  DebugPrint(LXYTag, "获取队伍备份")
   return self.TeamDataBackup
 end
 
@@ -248,7 +248,7 @@ function M:PushInviteInfo(InviteInfo)
     DebugPrint(ErrorTag, "PushInviteInfo Error !!! InviteQueue is full")
     return
   end
-  DebugPrint(LXYTag, "\231\187\132\233\152\159\233\130\128\232\175\183QueuePush", InviteInfo.Nickname)
+  DebugPrint(LXYTag, "组队邀请QueuePush", InviteInfo.Nickname)
   self.InviteRecvQueue:PushFront(InviteInfo)
 end
 
@@ -259,7 +259,7 @@ function M:PopInviteInfo()
   end
   local InviteInfo = self.InviteRecvQueue:PopBack()
   self.InviteTable[InviteInfo.Uid] = nil
-  Utils.Traceback(LXYTag .. "  \231\187\132\233\152\159\233\130\128\232\175\183QueuePop  " .. InviteInfo.Nickname)
+  Utils.Traceback(LXYTag .. "  组队邀请QueuePop  " .. InviteInfo.Nickname)
   return true
 end
 
@@ -303,14 +303,14 @@ function M:GetOwnerEidOfUnknowEid(WorldContext, Eid)
       return PhantomState.OwnerEid, Eid
     end
   end
-  DebugPrint(LXYTag, ErrorTag, "\233\173\133\229\189\177\229\189\146\229\177\158\228\191\161\230\129\175\229\156\168PhantomState\233\135\140\230\178\161\230\156\137\229\136\157\229\167\139\229\140\150")
+  DebugPrint(LXYTag, ErrorTag, "魅影归属信息在PhantomState里没有初始化")
   local Entity = Battle(WorldContext):GetEntity(Eid)
   local PlayerEid = Entity.PhantomOwner and Entity.PhantomOwner.Eid or nil
   if not PlayerEid then
-    DebugPrint(LXYTag, ErrorTag, "\231\148\154\232\135\179\233\173\133\229\189\177Entity\231\154\132PhantomOwner\228\185\159\230\178\161\230\156\137\229\136\157\229\167\139\229\140\150")
+    DebugPrint(LXYTag, ErrorTag, "甚至魅影Entity的PhantomOwner也没有初始化")
     PlayerEid = Entity:GetInitLogicComp().PhantomOwnerEid or Entity.InitFinalInfo.PhantomOwnerEid
     if not PlayerEid then
-      DebugPrint(LXYTag, ErrorTag, "\233\173\133\229\189\177\232\191\152\230\152\175\230\139\191\228\184\141\229\136\176PhantomOwner!!!!\232\191\153\230\152\175\232\166\129\233\128\188\230\136\145\229\142\187\230\148\185PhantomCharacter\239\188\159\239\188\159\239\188\159!!")
+      DebugPrint(LXYTag, ErrorTag, "魅影还是拿不到PhantomOwner!!!!这是要逼我去改PhantomCharacter？？？!!")
       return nil, Eid
     end
   end
@@ -366,7 +366,7 @@ end
 
 function M:GetNowDungeonId()
   if not self.DungeonId then
-    Utils.Traceback(ErrorCode, LXYTag .. "\232\129\148\230\156\186\230\138\149\231\165\168\229\143\145\231\148\159\229\136\176\232\191\155\229\133\165\229\137\175\230\156\172\230\156\159\233\151\180\239\188\140\229\137\175\230\156\172ID\231\188\147\229\173\152\230\137\141\230\152\175\230\156\137\230\149\136\231\154\132\239\188\140\231\142\176\229\156\168\230\152\175nil")
+    Utils.Traceback(ErrorCode, LXYTag .. "联机投票发生到进入副本期间，副本ID缓存才是有效的，现在是nil")
     return nil
   end
   return self.DungeonId

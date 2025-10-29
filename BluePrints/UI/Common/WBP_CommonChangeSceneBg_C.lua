@@ -131,7 +131,7 @@ function WBP_CommonChangeSceneBg_C:OnShowLoading()
   self.ShowTipsInterval = Const.LoadingTipsInterval
   self.WidgetLoading = nil
   self.bIsInLoading = true
-  DebugPrint(WaringTag, LXYTag, "Loading\231\149\140\233\157\162\230\137\147\229\188\128....")
+  DebugPrint(WaringTag, LXYTag, "Loading界面打开....")
   UIManager():DestroyAfterLoadingMgr()
   EventManager:FireEvent(EventID.InLoading)
   if GWorld:GetAvatar() then
@@ -251,7 +251,7 @@ function WBP_CommonChangeSceneBg_C:ConstructSoundFunc()
 end
 
 function WBP_CommonChangeSceneBg_C:Destruct()
-  DebugPrint(WaringTag, LXYTag, "Loading\231\149\140\233\157\162\229\186\148\232\175\165\233\148\128\230\175\129\228\186\134")
+  DebugPrint(WaringTag, LXYTag, "Loading界面应该销毁了")
   self.Overridden.Destruct(self)
   UIManager(self):GetGameInputModeSubsystem().OnInputMethodChanged:Remove(self, self.RefreshOpInfoByInputDevice)
   self:DestructSoundFunc()
@@ -319,7 +319,7 @@ function WBP_CommonChangeSceneBg_C:AddQuene(Progress)
   table.insert(self.QueenShow, Progress)
   DebugPrint("SL_LoadingDBG", "AddQuene: +", Progress, "  QueueLen =", #self.QueenShow)
   if Progress >= 100 then
-    DebugPrint(WarningTag, LXYTag, "Loading\232\191\155\229\186\166\229\186\148\232\175\165\231\187\147\230\157\159\228\186\134\230\137\141\229\175\185")
+    DebugPrint(WarningTag, LXYTag, "Loading进度应该结束了才对")
   end
 end
 
@@ -481,7 +481,7 @@ function WBP_CommonChangeSceneBg_C:RealCloseLoading()
   self.bIsInLoading = nil
   if self.WidgetLoading then
     self.bEnableTick = false
-    DebugPrint("SL_LoadingDBG \229\133\179\233\151\173\229\189\147\229\137\141Loading  UIName :", self.WidgetLoading:GetName())
+    DebugPrint("SL_LoadingDBG 关闭当前Loading  UIName :", self.WidgetLoading:GetName())
     if self.WidgetLoading.Out then
       self.WidgetLoading:UnbindAllFromAnimationFinished(self.WidgetLoading.Out)
       self.WidgetLoading:BindToAnimationFinished(self.WidgetLoading.Out, {
@@ -513,7 +513,7 @@ function WBP_CommonChangeSceneBg_C:OnOutAnimationFinished()
     return
   end
   if not self.bShowThisFrame then
-    DebugPrint("SL_LoadingDBG OnOutAnimationFinished \233\148\128\230\175\129\229\189\147\229\137\141Loading  UIName :", self.WidgetLoading:GetName())
+    DebugPrint("SL_LoadingDBG OnOutAnimationFinished 销毁当前Loading  UIName :", self.WidgetLoading:GetName())
     GWorld.GameInstance:CloseLoadingUI()
     UIManager(self):LaunchAfterLoadingMgr()
   end

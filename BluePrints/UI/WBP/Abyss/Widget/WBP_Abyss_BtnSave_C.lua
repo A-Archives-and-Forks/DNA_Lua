@@ -26,7 +26,7 @@ function WBP_Abyss_BtnSave_C:OnClicked()
   if self.Func then
     self.Func(self.Parent)
   else
-    DebugPrint("WBP_Abyss_BtnSave_C:OnClicked()\239\188\140self.Func\230\151\160\230\149\136")
+    DebugPrint("WBP_Abyss_BtnSave_C:OnClicked()，self.Func无效")
   end
 end
 
@@ -34,7 +34,7 @@ function WBP_Abyss_BtnSave_C:OnForbiddenClicked()
   if self.ForbidFuc then
     self.ForbidFuc(self.Parent)
   else
-    DebugPrint("WBP_Abyss_BtnSave_C:OnForbiddenClicked()\239\188\140self.ForbidFuc\230\151\160\230\149\136")
+    DebugPrint("WBP_Abyss_BtnSave_C:OnForbiddenClicked()，self.ForbidFuc无效")
   end
 end
 

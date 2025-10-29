@@ -842,7 +842,7 @@ function SystemGuideManager:RunStory(Data)
   DebugPrint("RunStory,SystemGuideId:" .. GuideId)
   local GuideChannel = DataMgr.SystemGuide[GuideId].GuideChannel
   if not GuideChannel then
-    DebugPrint("\229\188\149\229\175\188\231\188\186\229\176\145\233\128\154\233\129\147\233\133\141\231\189\174", GuideId)
+    DebugPrint("引导缺少通道配置", GuideId)
     return
   end
   self.RunningId = GuideId

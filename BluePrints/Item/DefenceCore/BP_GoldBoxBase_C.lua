@@ -27,7 +27,7 @@ function M:GetRealSkillId()
   for SkillId, Data in pairs(self.SkillList) do
     local RandomNumber = math.random(1, WeightSum)
     if #Data < 4 then
-      print(_G.LogTag, "Error: GoldBoxBase \230\156\186\229\133\179\229\143\130\230\149\176\233\148\153\232\175\175")
+      print(_G.LogTag, "Error: GoldBoxBase 机关参数错误")
     else
       print(_G.LogTag, "LXZ GetRealSkillId22", SkillId, Data[1], RandomNumber)
       if RandomNumber <= Data[1] then

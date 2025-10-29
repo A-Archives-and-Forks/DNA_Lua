@@ -173,7 +173,7 @@ function ReddotTreeNode:UpdateRdType()
     if LastRdType and LastRdType ~= self.ReddotType then
       ReddotManager.TryInvokeEvent(self, self.Count, true)
     end
-    DebugPrint(DebugTag, "ReddotTreeNode:SetUpRdType  \230\155\180\230\150\176\231\186\162\231\130\185\231\177\187\229\158\139", self.Name, self.ReddotType)
+    DebugPrint(DebugTag, "ReddotTreeNode:SetUpRdType  更新红点类型", self.Name, self.ReddotType)
   end
   for Name, Parent in pairs(self.Parents) do
     if Parent and "Root" ~= Name then
@@ -193,7 +193,7 @@ end
 
 function ReddotTreeNode:AddLeafChild(Node)
   if IsEmptyTable(Node.Children) then
-    assert(true, "[laixiaoyang]ReddotTreeNode:AddLeafChild: \229\143\170\232\131\189\230\183\187\229\138\160\229\143\182\229\173\144\232\138\130\231\130\185\239\188\140\233\148\153\232\175\175\231\154\132\232\138\130\231\130\185\229\144\141" .. Node.Name)
+    assert(true, "[laixiaoyang]ReddotTreeNode:AddLeafChild: 只能添加叶子节点，错误的节点名" .. Node.Name)
   end
   if not self.LeafChildrens[Node.Name] then
     self.LeafChildrens[Node.Name] = Node
@@ -270,18 +270,18 @@ end
 
 function ReddotTreeNode:IncreaseCount(AddValue, CacheDetailChangedParams)
   if self.Count < 0 then
-    DebugPrint(Traceback(ErrorTag, "[laixiaoyang][ReddotTree][IncreaseCount]\232\138\130\231\130\185" .. self.Name .. "\231\154\132\232\174\161\230\149\176\229\128\188\228\184\141\232\131\189\229\176\143\228\186\1420", false))
+    DebugPrint(Traceback(ErrorTag, "[laixiaoyang][ReddotTree][IncreaseCount]节点" .. self.Name .. "的计数值不能小于0", false))
     return false
   end
   if not IsEmptyTable(self.Children) then
-    DebugPrint(Traceback(ErrorTag, "[laixiaoyang][ReddotTree][IncreaseCount]\232\138\130\231\130\185" .. self.Name .. "\233\157\158\229\143\182\229\173\144\232\138\130\231\130\185\239\188\140\228\184\141\232\131\189\228\184\187\229\138\168\229\162\158\229\138\160\232\174\161\230\149\176", false))
+    DebugPrint(Traceback(ErrorTag, "[laixiaoyang][ReddotTree][IncreaseCount]节点" .. self.Name .. "非叶子节点，不能主动增加计数", false))
     return false
   end
   if nil == AddValue then
     AddValue = 1
   end
   if not self:OnIncreaseJudge(AddValue, CacheDetailChangedParams) then
-    DebugPrint(WarningTag, "ReddotTreeNode:IncreaseCount \228\184\141\231\172\166\229\144\136\231\186\162\231\130\185\232\174\161\230\149\176\229\162\158\229\138\160\231\154\132\230\157\161\228\187\182", self.Name)
+    DebugPrint(WarningTag, "ReddotTreeNode:IncreaseCount 不符合红点计数增加的条件", self.Name)
     return false
   end
   local OldCount = self.Count
@@ -329,18 +329,18 @@ end
 
 function ReddotTreeNode:DecreaseCount(SubValue, CacheDetailChangedParams)
   if self.Count < 0 then
-    DebugPrint(Traceback(ErrorTag, "[laixiaoyang][ReddotTree][DecreaseCount]\232\138\130\231\130\185" .. self.Name .. "\231\154\132\232\174\161\230\149\176\229\128\188\228\184\141\232\131\189\229\176\143\228\186\1420", false))
+    DebugPrint(Traceback(ErrorTag, "[laixiaoyang][ReddotTree][DecreaseCount]节点" .. self.Name .. "的计数值不能小于0", false))
     return false
   end
   if not IsEmptyTable(self.Children) then
-    DebugPrint(Traceback(ErrorTag, "[laixiaoyang][ReddotTree][DecreaseCount]\232\138\130\231\130\185" .. self.Name .. "\233\157\158\229\143\182\229\173\144\232\138\130\231\130\185\239\188\140\228\184\141\232\131\189\228\184\187\229\138\168\229\135\143\229\176\145\232\174\161\230\149\176", false))
+    DebugPrint(Traceback(ErrorTag, "[laixiaoyang][ReddotTree][DecreaseCount]节点" .. self.Name .. "非叶子节点，不能主动减少计数", false))
     return false
   end
   if nil == SubValue then
     SubValue = 1
   end
   if not self:OnDecreaseJudge(SubValue, CacheDetailChangedParams) then
-    DebugPrint(WarningTag, "ReddotTreeNode:DecreaseCount \228\184\141\231\172\166\229\144\136\231\186\162\231\130\185\232\174\161\230\149\176\229\135\143\229\176\145\231\154\132\230\157\161\228\187\182", self.Name)
+    DebugPrint(WarningTag, "ReddotTreeNode:DecreaseCount 不符合红点计数减少的条件", self.Name)
     return false
   end
   local OldCount = self.Count

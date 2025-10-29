@@ -69,16 +69,16 @@ function BP_TalkSubsystem:PlayTalk(TalkConfigKey, TalkAction, AudioAttachActor)
 end
 
 function BP_TalkSubsystem:ForceInterruptTalk(TalkTask)
-  DebugPrint("@@@ ForceInterruptTalk \232\176\131\231\148\168\229\188\186\229\136\182\228\184\173\230\150\173\229\175\185\232\175\157\230\142\165\229\143\163", TalkTask)
+  DebugPrint("@@@ ForceInterruptTalk 调用强制中断对话接口", TalkTask)
   if not self:CheckTalkCanBeInterrupted(TalkTask) then
-    DebugPrint("@@@ \229\175\185\232\175\157\230\151\160\230\179\149\232\162\171\230\137\147\230\150\173", TalkTask)
+    DebugPrint("@@@ 对话无法被打断", TalkTask)
     return
   end
   self:OnTaskInterrupted(TalkTask)
 end
 
 function BP_TalkSubsystem:ForceInterruptTalkTaskData(CheckFunc)
-  DebugPrint("@@@ ForceInterruptTalkTaskData \232\176\131\231\148\168\229\188\186\229\136\182\228\184\173\230\150\173\229\175\185\232\175\157\230\142\165\229\143\163", CheckFunc)
+  DebugPrint("@@@ ForceInterruptTalkTaskData 调用强制中断对话接口", CheckFunc)
   local Tasks = self:GetAllTasks()
   local CopyTasks = {}
   for _, Task in pairs(Tasks) do
@@ -93,7 +93,7 @@ function BP_TalkSubsystem:ForceInterruptTalkTaskData(CheckFunc)
 end
 
 function BP_TalkSubsystem:ForceInterruptAllTalks()
-  DebugPrint("@@@ ForceInterruptAllTalks \232\176\131\231\148\168\229\188\186\229\136\182\228\184\173\230\150\173\230\137\128\230\156\137\229\175\185\232\175\157\230\142\165\229\143\163")
+  DebugPrint("@@@ ForceInterruptAllTalks 调用强制中断所有对话接口")
   self:ForceInterruptTalkTaskData(function(TalkTaskData)
     return true
   end)
@@ -116,17 +116,17 @@ function BP_TalkSubsystem:InterruptAllLightTask()
 end
 
 function BP_TalkSubsystem:ForcePauseTalk(TalkTask, Pauser)
-  DebugPrint("@@@ \232\176\131\231\148\168\229\188\186\229\136\182\230\154\130\229\129\156\229\175\185\232\175\157\230\142\165\229\143\163", TalkTask, Pauser)
+  DebugPrint("@@@ 调用强制暂停对话接口", TalkTask, Pauser)
   self:OnTaskPaused(Pauser, TalkTask)
 end
 
 function BP_TalkSubsystem:TryResumePauseTalk(Pauser)
-  DebugPrint("@@@ \229\176\157\232\175\149\230\129\162\229\164\141\232\162\171\230\154\130\229\129\156\231\154\132Talk", Pauser)
+  DebugPrint("@@@ 尝试恢复被暂停的Talk", Pauser)
   self:OnTaskResumePaused(Pauser)
 end
 
 function BP_TalkSubsystem:TryAdvanceTaskQueue()
-  DebugPrint("@@@ TS:TryAdvanceTaskQueue \229\176\157\232\175\149\230\142\168\229\138\168\233\152\159\229\136\151\228\184\173\231\154\132\228\184\139\228\184\128\228\184\170TalkTask")
+  DebugPrint("@@@ TS:TryAdvanceTaskQueue 尝试推动队列中的下一个TalkTask")
   local NextTask
   for _, Type in pairs(ETalkType) do
     local TQ = self:GetTasksQueue(ETaskState.Queue, Type)
@@ -139,7 +139,7 @@ function BP_TalkSubsystem:TryAdvanceTaskQueue()
     end
   end
   if NextTask then
-    DebugPrint("@@@ TS:TryAdvanceTaskQueue \228\184\139\228\184\128\228\184\170TalkTask\229\173\152\229\156\168\239\188\140\229\176\157\232\175\149Working", NextTask)
+    DebugPrint("@@@ TS:TryAdvanceTaskQueue 下一个TalkTask存在，尝试Working", NextTask)
     self:TryWorkingTask(NextTask)
   end
 end
@@ -151,12 +151,12 @@ function BP_TalkSubsystem:RegisterTalkData(TalkData)
   self.RegisteredDataKey = self.RegisteredDataKey + 1
   local Key = self.RegisteredDataKey
   self.RegisteredDatas[Key] = TalkData
-  DebugPrint("@@@ \230\179\168\229\134\140\228\187\187\229\138\161\230\149\176\230\141\174", TalkData, Key)
+  DebugPrint("@@@ 注册任务数据", TalkData, Key)
   return Key
 end
 
 function BP_TalkSubsystem:UnregisterTalkData(Key)
-  DebugPrint("@@@ \230\179\168\233\148\128\228\187\187\229\138\161\230\149\176\230\141\174", Key, self.bInitialized_Lua)
+  DebugPrint("@@@ 注销任务数据", Key, self.bInitialized_Lua)
   if not self.bInitialized_Lua or not Key then
     return
   end
@@ -263,7 +263,7 @@ function BP_TalkSubsystem:Clear()
 end
 
 function BP_TalkSubsystem:ClearAllTalks()
-  DebugPrint("@@@ ClearAllTalks \232\176\131\231\148\168\229\188\186\229\136\182\230\184\133\231\144\134\230\137\128\230\156\137\229\175\185\232\175\157\230\142\165\229\143\163")
+  DebugPrint("@@@ ClearAllTalks 调用强制清理所有对话接口")
   local Tasks = self:GetAllTasks()
   for _, Task in pairs(Tasks) do
     Task:Clear()
@@ -285,7 +285,7 @@ function BP_TalkSubsystem:BindGameModeDelegates()
   if GameMode and GameMode.OnGamePauseChanged then
     GameMode.OnGamePauseChanged:Add(self, self.OnGamePauseChanged)
   else
-    DebugPrint("@@@ \230\151\160GameMode/OnGamePauseChanged", GameMode)
+    DebugPrint("@@@ 无GameMode/OnGamePauseChanged", GameMode)
   end
 end
 
@@ -308,7 +308,7 @@ function BP_TalkSubsystem:OnEMGameModeEndPlay()
 end
 
 function BP_TalkSubsystem:RegisterTalkTask(Key, OnTalkEndCallback)
-  DebugPrint("@@@ \230\179\168\229\134\140\229\175\185\232\175\157\228\187\187\229\138\161", Key, self.bInitialized_Lua)
+  DebugPrint("@@@ 注册对话任务", Key, self.bInitialized_Lua)
   if not self.bInitialized_Lua then
     return false
   end
@@ -332,19 +332,19 @@ function BP_TalkSubsystem:TryWorkingTask(TalkTask)
     self:ClearRefs(TalkTask)
     return
   end
-  DebugPrint("@@@ TS:\229\176\157\232\175\149\229\144\175\229\138\168Talk", TalkTask, TaskData.TalkNodeName)
+  DebugPrint("@@@ TS:尝试启动Talk", TalkTask, TaskData.TalkNodeName)
   if TalkTask:IsWorking() then
-    DebugPrint("@@@ TS:Talk\229\183\178\229\156\168\229\183\165\228\189\156\228\184\173", TalkTask, TaskData.TalkNodeName)
+    DebugPrint("@@@ TS:Talk已在工作中", TalkTask, TaskData.TalkNodeName)
     return
   end
   if self:IsTaskShouldQueue(TalkTask, TaskData) then
-    DebugPrint("@@@ TS:Task\233\156\128\230\142\146\233\152\159\239\188\140\229\183\178\229\138\160\229\133\165\233\152\159\229\136\151\228\184\173", TalkTask, TaskData.TalkNodeName)
+    DebugPrint("@@@ TS:Task需排队，已加入队列中", TalkTask, TaskData.TalkNodeName)
     self:OnTaskQueued(TalkTask)
     return
   end
   local bRes = self.TalkDependencyComponent:CheckDependenciesComplete(TalkTask, TaskData)
   if not bRes then
-    DebugPrint("@@@ Talk\228\190\157\232\181\150\230\163\128\230\159\165\230\156\170\233\128\154\232\191\135", TalkTask)
+    DebugPrint("@@@ Talk依赖检查未通过", TalkTask)
     self:MoveTaskState(TalkTask, ETaskState.WaitingDependency)
     self.TalkDependencyComponent:EnableDependencyDetection(TalkTask, TaskData, self, self.OnDependencyComplete)
     return
@@ -364,13 +364,13 @@ function BP_TalkSubsystem:WorkingTaskInternal(TalkTask)
 end
 
 function BP_TalkSubsystem:ProcessTalkInterruptEvents(TalkTask)
-  DebugPrint("@@@ \229\164\132\231\144\134TalkTask\231\154\132Interrupt\229\133\179\231\179\187", TalkTask)
+  DebugPrint("@@@ 处理TalkTask的Interrupt关系", TalkTask)
   self:TasksInterruptedByTask(TalkTask)
   self:TasksPausedByTask(TalkTask)
 end
 
 function BP_TalkSubsystem:TasksInterruptedByTask(InstigatorTask)
-  DebugPrint("@@@ \229\176\157\232\175\149\230\137\147\230\150\173\229\133\182\228\187\150\229\175\185\232\175\157", InstigatorTask)
+  DebugPrint("@@@ 尝试打断其他对话", InstigatorTask)
   self:PreClearInterruptedTasks(InstigatorTask)
   local TalkType = InstigatorTask:GetTalkType()
   local InterruptTypes = self.TalkInterruptComponent:GetSpecificInterruptTypes(TalkType, ETalkInterruptType.Interrupt)
@@ -382,7 +382,7 @@ function BP_TalkSubsystem:TasksInterruptedByTask(InstigatorTask)
 end
 
 function BP_TalkSubsystem:TasksPausedByTask(InstigatorTask)
-  DebugPrint("@@@ \229\176\157\232\175\149\230\154\130\229\129\156\229\133\182\228\187\150\229\175\185\232\175\157", InstigatorTask)
+  DebugPrint("@@@ 尝试暂停其他对话", InstigatorTask)
   local TalkType = InstigatorTask:GetTalkType()
   local InterruptTypes = self.TalkInterruptComponent:GetSpecificInterruptTypes(TalkType, ETalkInterruptType.Pause)
   for _, Type in pairs(InterruptTypes) do
@@ -392,11 +392,11 @@ function BP_TalkSubsystem:TasksPausedByTask(InstigatorTask)
 end
 
 function BP_TalkSubsystem:OnCannotRegisterTask(Reason)
-  DebugPrint("@@@ \230\179\168\229\134\140\228\187\187\229\138\161\229\164\177\232\180\165:", Reason)
+  DebugPrint("@@@ 注册任务失败:", Reason)
 end
 
 function BP_TalkSubsystem:OnDependencyComplete(TalkTask)
-  DebugPrint("@@@ Talk\228\190\157\232\181\150\229\174\140\230\136\144", TalkTask)
+  DebugPrint("@@@ Talk依赖完成", TalkTask)
   local TaskData = self:GetTaskDataFromTalkTask(TalkTask)
   self.TalkDependencyComponent:DisableDependencyDetection(TalkTask, TaskData)
   self:MoveTaskState(TalkTask, ETaskState.DependencyCompleted)
@@ -412,13 +412,13 @@ function BP_TalkSubsystem:OnDependencyPaused(TalkTask)
 end
 
 function BP_TalkSubsystem:OnTaskWorking(TalkTask)
-  DebugPrint("@@@ Talk\229\188\128\229\167\139\229\183\165\228\189\156", TalkTask)
+  DebugPrint("@@@ Talk开始工作", TalkTask)
   self:MoveTaskState(TalkTask, ETaskState.Working)
   self:TryFireEnterStoryEvent(TalkTask)
 end
 
 function BP_TalkSubsystem:OnTaskFinished(TalkTask, TaskFinishType, OptionIndex)
-  DebugPrint("@@@ TalkTask\230\137\167\232\161\140\231\187\147\230\157\159", TalkTask)
+  DebugPrint("@@@ TalkTask执行结束", TalkTask)
   self:MoveTaskState(TalkTask, ETaskState.Finished)
   self:OnTaskFinishedInternal(TalkTask, TaskFinishType, OptionIndex)
 end
@@ -476,7 +476,7 @@ function BP_TalkSubsystem:OnDifferentStateTaskInterrupted(Task)
   elseif State == ETaskState.Paused then
     Task:OnInterrupted()
   else
-    DebugPrint("@@@ \230\151\160\230\179\149\230\137\147\230\150\173\233\153\164Working\229\146\140WaitingDependency\228\187\165\229\164\150\231\138\182\230\128\129\231\154\132\229\175\185\232\175\157", State, Task)
+    DebugPrint("@@@ 无法打断除Working和WaitingDependency以外状态的对话", State, Task)
     return
   end
 end
@@ -489,7 +489,7 @@ function BP_TalkSubsystem:OnDifferentStateTaskPaused(Task)
   elseif State == ETaskState.WaitingDependency then
     self:OnDependencyPaused(Task)
   else
-    DebugPrint("@@@ \230\151\160\230\179\149\230\154\130\229\129\156\233\153\164Working\229\146\140WaitingDependency\228\187\165\229\164\150\231\138\182\230\128\129\231\154\132\229\175\185\232\175\157", State, Task)
+    DebugPrint("@@@ 无法暂停除Working和WaitingDependency以外状态的对话", State, Task)
     return
   end
 end
@@ -498,7 +498,7 @@ function BP_TalkSubsystem:OnDifferentLastStateTaskPauseResumed(Task)
   DebugPrint("@@@ TS:OnDifferentLastStateTaskPauseResumed", Task)
   local State = Task:GetState()
   if State ~= ETaskState.Paused then
-    DebugPrint("@@@ \230\151\160\230\179\149\230\129\162\229\164\141\230\154\130\229\129\156\233\153\164Paused\228\187\165\229\164\150\231\138\182\230\128\129\231\154\132\229\175\185\232\175\157", State, Task)
+    DebugPrint("@@@ 无法恢复暂停除Paused以外状态的对话", State, Task)
     return
   end
   local LastState = Task:GetLastState()
@@ -509,7 +509,7 @@ function BP_TalkSubsystem:OnDifferentLastStateTaskPauseResumed(Task)
     self:MoveTaskState(Task, ETaskState.Default)
     self:TryWorkingTask(Task)
   else
-    DebugPrint("@@@ \230\151\160\230\179\149\230\129\162\229\164\141\230\154\130\229\129\156\229\142\159\231\138\182\230\128\129\228\184\186Working\229\146\140WaitingDependency\228\187\165\229\164\150\231\154\132\229\175\185\232\175\157", LastState, Task)
+    DebugPrint("@@@ 无法恢复暂停原状态为Working和WaitingDependency以外的对话", LastState, Task)
     self:ClearRefs(Task)
     return
   end
@@ -577,7 +577,7 @@ function BP_TalkSubsystem:GetAllTasks()
 end
 
 function BP_TalkSubsystem:RemovePausedTasks(Pauser, bRecursive)
-  DebugPrint("@@@ \230\184\133\233\153\164\232\162\171\230\154\130\229\129\156\231\154\132TalkTask", Pauser, bRecursive)
+  DebugPrint("@@@ 清除被暂停的TalkTask", Pauser, bRecursive)
   local Tasks = self:GetPausedTasks(Pauser)
   if not Tasks then
     return
@@ -593,7 +593,7 @@ end
 function BP_TalkSubsystem:CheckType(Type)
   local bValid = Type and nil ~= ETalkType[Type]
   if not bValid then
-    error("\229\176\157\232\175\149\232\174\191\233\151\174\233\157\158ETalkType\228\184\173\231\154\132Type\239\188\140\229\133\183\228\189\147\228\184\186" .. Type)
+    error("尝试访问非ETalkType中的Type，具体为" .. Type)
     return
   end
   return true
@@ -632,7 +632,7 @@ function BP_TalkSubsystem:TryFireEnterStoryEvent(TalkTask)
     end
   end
   if GWorld.GameInstance then
-    DebugPrint("TS: \229\188\128TalkContext Tick")
+    DebugPrint("TS: 开TalkContext Tick")
     GWorld.GameInstance.bTalkContextTickable = true
   end
 end
@@ -650,7 +650,7 @@ function BP_TalkSubsystem:TryFireLeaveStoryEvent()
   end
   TalkUtils:RemovePlayerInvincible()
   if IsEmptyTable(self.TalkTasks) and GWorld.GameInstance then
-    DebugPrint("TS: \229\129\156TalkContext Tick")
+    DebugPrint("TS: 停TalkContext Tick")
     GWorld.GameInstance.bTalkContextTickable = false
   end
 end
@@ -679,7 +679,7 @@ function BP_TalkSubsystem:CheckInImmersiveTalk()
       break
     end
   end
-  DebugPrint("TS:CheckInImmersiveTalk \230\163\128\230\181\139\230\152\175\229\144\166\229\164\132\228\186\142\230\178\137\230\181\184\229\188\143\229\137\167\230\131\133\228\184\173:", bRes, ExistType)
+  DebugPrint("TS:CheckInImmersiveTalk 检测是否处于沉浸式剧情中:", bRes, ExistType)
   return bRes
 end
 
@@ -701,7 +701,7 @@ function BP_TalkSubsystem:CheckBlockedByOthers(TalkType)
     DebugPrint("@@@ CheckBlockedBy", Type)
     local Queue = self:GetTasksQueue(ETaskState.Working, Type)
     if not IsEmptyTable(Queue) then
-      DebugPrint("@@@ " .. TalkType .. "\228\187\187\229\138\161\232\162\171\230\173\163\229\156\168\232\191\144\232\161\140\228\184\173\231\154\132" .. Type .. "\228\187\187\229\138\161\233\152\187\229\161\158")
+      DebugPrint("@@@ " .. TalkType .. "任务被正在运行中的" .. Type .. "任务阻塞")
       return true
     end
   end
@@ -742,7 +742,7 @@ function BP_TalkSubsystem:MoveTaskState(Task, NewState)
   self:OnTaskExitState(Task)
   Task:SetState(NewState)
   self:OnTaskEnterState(Task)
-  DebugPrint("@@@ TS: \231\167\187\229\138\168TaskState " .. CurrentState .. " -> " .. NewState, Task)
+  DebugPrint("@@@ TS: 移动TaskState " .. CurrentState .. " -> " .. NewState, Task)
 end
 
 function BP_TalkSubsystem:OnTaskEnterState(Task)
@@ -804,7 +804,7 @@ function BP_TalkSubsystem:InterruptTaskQueue(State, Type)
 end
 
 function BP_TalkSubsystem:PauseTaskQueue(PauserTask, State, Type)
-  DebugPrint("@@@ \230\154\130\229\129\156TalkTask\233\152\159\229\136\151", PauserTask, State, Type)
+  DebugPrint("@@@ 暂停TalkTask队列", PauserTask, State, Type)
   local TQ = self:GetTasksQueue(State, Type)
   local tmpTQ = {}
   for _, Task in pairs(TQ) do
@@ -817,7 +817,7 @@ function BP_TalkSubsystem:PauseTaskQueue(PauserTask, State, Type)
 end
 
 function BP_TalkSubsystem:RecordPausedTasks(Pauser, PauseTask)
-  DebugPrint("@@@ \232\174\176\229\189\149\232\162\171\230\154\130\229\129\156\231\154\132TalkTask", Pauser, PauseTask)
+  DebugPrint("@@@ 记录被暂停的TalkTask", Pauser, PauseTask)
   self.PausedTasks[Pauser] = self.PausedTasks[Pauser] or {}
   table.insert(self.PausedTasks[Pauser], PauseTask)
 end

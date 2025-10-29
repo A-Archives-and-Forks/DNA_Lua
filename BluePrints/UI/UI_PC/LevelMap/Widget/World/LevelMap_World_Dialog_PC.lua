@@ -73,7 +73,7 @@ end
 
 function M:InitArea(TableIndex, WorldMapData, TrackingQuestWorldMapId)
   local UIIndex = WorldMapData.UIIndex
-  assert(TableIndex <= #self.AreaNameList, "\232\161\168\229\134\133\229\156\176\229\155\190\231\130\185\228\189\141\230\149\176\233\135\143\232\182\133\232\191\135\232\147\157\229\155\190\229\134\133\233\162\132\231\149\153\230\149\176\233\135\143\239\188\140\232\129\148\231\179\187\232\147\157\229\155\190\230\183\187\229\138\160\239\188\140\232\147\157\229\155\190\229\134\133\230\149\176\233\135\143\239\188\154" .. #self.AreaNameList)
+  assert(TableIndex <= #self.AreaNameList, "表内地图点位数量超过蓝图内预留数量，联系蓝图添加，蓝图内数量：" .. #self.AreaNameList)
   local AreaName = self.AreaNameList[UIIndex].NameWidget
   if not self:CheckRegionUnLocked(TableIndex) then
     self:LockRegion(UIIndex)
@@ -87,7 +87,7 @@ function M:InitArea(TableIndex, WorldMapData, TrackingQuestWorldMapId)
     RootPage = self
   })
   if self.AreaNameList[UIIndex].Used then
-    assert(nil, "\228\184\150\231\149\140\229\156\176\229\155\190\231\154\132UIIndex\230\156\137\233\135\141\229\164\141\239\188\140\233\135\141\229\164\141\230\149\176\229\128\188\239\188\154" .. UIIndex)
+    assert(nil, "世界地图的UIIndex有重复，重复数值：" .. UIIndex)
   end
   self.AreaNameList[UIIndex].Used = true
   self.AreaNameList[UIIndex].MapDataId = WorldMapData.WorldMapId

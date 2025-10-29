@@ -23,7 +23,7 @@ function VideoNode:Execute(Callback)
         _FireCallback()
       end)
     else
-      DebugPrint("\230\146\173\230\148\190\232\167\134\233\162\145\229\164\177\232\180\165 PlayVideoByMediaSourcec\230\156\170\232\191\148\229\155\158\230\173\163\231\161\174\229\128\188", GWorld.GameInstance, obj)
+      DebugPrint("播放视频失败 PlayVideoByMediaSourcec未返回正确值", GWorld.GameInstance, obj)
       _FireCallback()
     end
   else

@@ -507,7 +507,7 @@ function M:OnMouseCaptureLost()
 end
 
 function M:SetOriginFocus()
-  DebugPrint("\232\129\154\231\132\166\229\136\176\232\181\183\231\130\185")
+  DebugPrint("聚焦到起点")
   if not PersonInfoModel:IsOwener() then
     PersonInfoController.MainPage:SetFocus()
     if 1 ~= self.AvatarItem_1.Com_Item.Id then

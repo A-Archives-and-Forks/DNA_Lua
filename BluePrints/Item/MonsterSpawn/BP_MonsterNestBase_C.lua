@@ -147,10 +147,10 @@ function M:CheckRestMonsters()
     end
   end
   self.ExistMonsters = NewExistMonsters
-  DebugPrint("BP_MonsterNestBase_C ManaualItemId", self.ManualItemId, " \232\191\152\229\137\169", #self.ExistMonsters, "\228\184\170\230\128\170\231\137\169\230\178\161\230\184\133\233\153\164")
+  DebugPrint("BP_MonsterNestBase_C ManaualItemId", self.ManualItemId, " 还剩", #self.ExistMonsters, "个怪物没清除")
   if 0 == #self.ExistMonsters then
     self.IsCountRest = false
-    DebugPrint("BP_MonsterNestBase_C ManaualItemId", self.ManualItemId, " \229\133\168\233\131\168\230\128\170\231\137\169\230\173\187\228\186\161\239\188\140\229\143\145\229\135\186\228\186\139\228\187\182")
+    DebugPrint("BP_MonsterNestBase_C ManaualItemId", self.ManualItemId, " 全部怪物死亡，发出事件")
     local GameMode = UE4.UGameplayStatics.GetGameMode(self)
     GameMode:OnMonsterNestRestMonClear(self.ManualItemId)
   end

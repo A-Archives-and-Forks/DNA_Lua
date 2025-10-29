@@ -59,7 +59,7 @@ function Component:HandleTryInitRegionInfo()
   end
   local GameMode = GWorld.GameInstance:GetCurrentGameMode()
   if not IsValid(GameMode) then
-    DebugPrint("Error HandleTryInitRegionInfo \232\142\183\229\143\150\228\184\141\229\136\176GameMode ")
+    DebugPrint("Error HandleTryInitRegionInfo 获取不到GameMode ")
     return
   end
   GameMode:GetRegionDataMgrSubSystem():InitRegionInfo()
@@ -76,7 +76,7 @@ function Component:SetInRegionState()
   for _, SubRegionId in pairs(DataMgr.Region[RegionId].IsRandom) do
     local LevelName = WorldLoader:GetLevelIdByRegionId(SubRegionId)
     if not LevelName then
-      GWorld.logger.error("\229\140\186\229\159\159Id:" .. RegionId .. "\239\188\140\229\173\144\229\140\186\229\159\159Id" .. SubRegionId .. "\229\156\168WorldLoader\229\134\133\228\184\141\229\133\183\230\156\137LevelName")
+      GWorld.logger.error("区域Id:" .. RegionId .. "，子区域Id" .. SubRegionId .. "在WorldLoader内不具有LevelName")
     else
       local SubGameMode = GameMode.SubGameModeInfo:FindRef(LevelName)
       SubGameMode:OnBigWorldActive()
@@ -165,7 +165,7 @@ function Component:RemoveRegionSkipCallback(RegionId, Obj, Func)
   if Obj and Func then
     self.SkipRegionCallback[RegionId][Obj][Func] = false
   else
-    DebugPrint("Obj,Func\228\184\186\231\169\186")
+    DebugPrint("Obj,Func为空")
     for Obj, Funcs in pairs(self.SkipRegionCallback[RegionId]) do
       for Func, _ in pairs(Funcs) do
         Funcs[Func] = false
@@ -187,7 +187,7 @@ function Component:RemoveSubRegionSkipCallback(SubRegionId, Obj, Func)
   if Obj and Func then
     self.SkipSubRegionCallback[SubRegionId][Obj][Func] = false
   else
-    DebugPrint("Obj,Func\228\184\186\231\169\186")
+    DebugPrint("Obj,Func为空")
     for Obj, Funcs in pairs(self.SkipSubRegionCallback[SubRegionId]) do
       for Func, _ in pairs(Funcs) do
         Funcs[Func] = false
@@ -296,16 +296,16 @@ function Component:ExeRegionSkipCallbck(SubRegionId)
     self:HandleExeSubRegionSkipCallbck(SubRegionId)
     self:HandleExeRegionSkipCallbck(DataMgr.SubRegion[SubRegionId].RegionId)
   else
-    GWorld.logger.error("ZJT_ ExeRegionSkipCallbck \228\184\141\229\173\152\229\156\168\232\175\165 SubRegionId : ", SubRegionId)
+    GWorld.logger.error("ZJT_ ExeRegionSkipCallbck 不存在该 SubRegionId : ", SubRegionId)
   end
 end
 
 function Component:StartJumpRegion(TargetSubregionId, OnJumpToSubregionSucceed)
   if self:GetSubRegionId2RegionId(self.CurrentRegionId) == self:GetSubRegionId2RegionId(TargetSubregionId) then
-    DebugPrint("Invitation: \229\144\140\229\140\186\229\159\159\232\183\179\232\189\172 %d \229\173\144\229\140\186\229\159\159\227\128\130", TargetSubregionId)
+    DebugPrint("Invitation: 同区域跳转 %d 子区域。", TargetSubregionId)
     self:AddRegionSkipCallback(TargetSubregionId, self, OnJumpToSubregionSucceed)
   else
-    DebugPrint("Invitation: \232\183\168\229\140\186\229\159\159\232\183\179\232\189\172 %d \229\173\144\229\140\186\229\159\159\227\128\130", TargetSubregionId)
+    DebugPrint("Invitation: 跨区域跳转 %d 子区域。", TargetSubregionId)
     EventManager:AddEvent(EventID.OnRegionLoaded, self, function()
       EventManager:RemoveEvent(EventID.OnRegionLoaded, self)
       if OnJumpToSubregionSucceed then
@@ -317,10 +317,10 @@ end
 
 function Component:StopJumpRegion(TargetSubregionId)
   if self:GetSubRegionId2RegionId() == self:GetSubRegionId2RegionId(TargetSubregionId) then
-    DebugPrint("Invitation: \228\184\173\230\150\173\229\144\140\229\140\186\229\159\159\232\183\179\232\189\172 %d \229\173\144\229\140\186\229\159\159\227\128\130", TargetSubregionId)
+    DebugPrint("Invitation: 中断同区域跳转 %d 子区域。", TargetSubregionId)
     self:RemoveSubRegionSkipCallback(TargetSubregionId)
   else
-    DebugPrint("Invitation: \228\184\173\230\150\173\232\183\168\229\140\186\229\159\159\232\183\179\232\189\172 %d \229\173\144\229\140\186\229\159\159\227\128\130", TargetSubregionId)
+    DebugPrint("Invitation: 中断跨区域跳转 %d 子区域。", TargetSubregionId)
     EventManager:RemoveEvent(EventID.OnRegionLoaded, self)
   end
 end

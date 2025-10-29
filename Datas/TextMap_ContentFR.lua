@@ -5,11 +5,11 @@ local Data = {
     Loader = function()
       return {
         UI_SystemNotice_TestContent = {
-          ContentFR = "\230\179\149\232\175\173\230\181\139\232\175\149\230\150\135\230\156\172",
+          ContentFR = "法语测试文本",
           TextMapId = "UI_SystemNotice_TestContent"
         },
         UI_SystemNotice_Title = {
-          ContentFR = "\230\179\149\232\175\173\230\181\139\232\175\149\230\150\135\230\156\172",
+          ContentFR = "法语测试文本",
           TextMapId = "UI_SystemNotice_Title"
         }
       }

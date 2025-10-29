@@ -275,7 +275,7 @@ function WBP_HomeBaseMain_Item_C:SetRedDot(IsNew, Upgradeable, OtherReddot, Coun
   self.Reddot:SetVisibility(UIConst.VisibilityOp.Collapsed)
   if self.bForceInvisible and (IsNew or Upgradeable or Count and "0" ~= Count) then
     self.Reddot_Num:SetVisibility(UIConst.VisibilityOp.Collapsed)
-    Traceback(ErrorTag, "Esc\231\186\162\231\130\185\229\183\178\231\187\143\229\188\186\229\136\182\228\184\141\229\143\175\232\167\129\228\186\134\239\188\140\232\181\176\229\136\176\232\191\153\233\135\140\232\130\175\229\174\154\230\156\137\233\151\174\233\162\152\231\154\132\239\188\140\230\156\128\231\187\136\229\174\185\233\148\153\229\183\178\231\187\143\229\129\154\228\186\134,\228\189\134\232\191\152\230\152\175\229\159\139\228\184\170\230\161\169\231\156\139\231\156\139\230\152\175\229\147\170\233\135\140\230\141\163\233\172\188")
+    Traceback(ErrorTag, "Esc红点已经强制不可见了，走到这里肯定有问题的，最终容错已经做了,但还是埋个桩看看是哪里捣鬼")
     return
   end
   if IsNew then

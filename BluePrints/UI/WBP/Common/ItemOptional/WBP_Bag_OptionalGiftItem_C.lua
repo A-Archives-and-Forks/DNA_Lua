@@ -41,7 +41,7 @@ end
 
 function M:InitCommonView(Content)
   self.Text_Name:SetText(Content.Name)
-  self.Text_Num:SetText("\195\151" .. Content.Count)
+  self.Text_Num:SetText("×" .. Content.Count)
   local GiftContent = NewObject(UIUtils.GetCommonItemContentClass())
   GiftContent.ParentWidget = self
   GiftContent.Id = Content.Id

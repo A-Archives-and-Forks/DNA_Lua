@@ -64,7 +64,7 @@ function M:UnLoadNavMeshLevel()
   local RegionId = Player:GetRegionId()
   self.IsUnLoadNavMesh = false
   if RegionId == CommonConst.GachaRegionId then
-    DebugPrint("----jzn---\229\134\176\230\185\150\229\159\142\230\137\147\229\188\128\230\138\189\229\141\161\229\141\184\232\189\189\229\175\188\232\136\170\231\189\145\230\160\188---")
+    DebugPrint("----jzn---冰湖城打开抽卡卸载导航网格---")
     self.IsUnLoadNavMesh = true
     URuntimeCommonFunctionLibrary.UnloadNavMeshLevel(Player:GetWorld())
   end
@@ -228,7 +228,7 @@ function M:RefreshGachaInfo(TabId)
     return
   end
   local GachaData = DataMgr.SkinGacha[GachaLstData[1]]
-  assert(GachaData, "\230\138\189\229\141\161\228\191\161\230\129\175\228\184\141\229\173\152\229\156\168:" .. GachaLstData[1])
+  assert(GachaData, "抽卡信息不存在:" .. GachaLstData[1])
   local GachaBGM = GachaData.BgBGM
   if GachaBGM then
     AudioManager(self):PlaySystemUIBGM(GachaBGM, nil, GachaLstData[1])
@@ -396,7 +396,7 @@ function M:RefreshGachaBG(GachaData)
         BgPath = CommonConst.GachaBackgroundAddrMobile .. GachaData.GachaDisplayPath .. "." .. GachaData.GachaDisplayPath
       end
       local BgUI = UIManager(self):CreateWidget(BgPath, false)
-      assert(BgUI, "\230\138\189\229\141\161\232\131\140\230\153\175\232\181\132\230\186\144\228\184\141\229\173\152\229\156\168\239\188\154BgPath:" .. BgPath .. " GachaId: " .. self.CurrentGachaId)
+      assert(BgUI, "抽卡背景资源不存在：BgPath:" .. BgPath .. " GachaId: " .. self.CurrentGachaId)
       self.BGWidgetMap[self.CurrentGachaId] = BgUI
       self.PoolStaticBG:AddChild(self.BGWidgetMap[self.CurrentGachaId])
       local Slot = UE4.UWidgetLayoutLibrary.SlotAsOverlaySlot(self.BGWidgetMap[self.CurrentGachaId])
@@ -415,7 +415,7 @@ function M:RefreshGachaTitle(GachaData)
   if not self.TitleWidgetMap[self.CurrentGachaId] then
     local TitleBPPath = GachaData.GachaNameBp
     local TitleUI = UIManager(self):CreateWidget(TitleBPPath, false)
-    assert(TitleUI, "\230\138\189\229\141\161\230\160\135\233\162\152\232\181\132\230\186\144\228\184\141\229\173\152\229\156\168\239\188\154BTitleBPPath:" .. TitleBPPath .. " GachaId: " .. self.CurrentGachaId)
+    assert(TitleUI, "抽卡标题资源不存在：BTitleBPPath:" .. TitleBPPath .. " GachaId: " .. self.CurrentGachaId)
     self.TitleWidgetMap[self.CurrentGachaId] = TitleUI
     self.Group_TitleAnchor:AddChild(self.TitleWidgetMap[self.CurrentGachaId])
   end
@@ -532,7 +532,7 @@ function M:RefreshCumulativeDrawReward()
       self.ExchangeBtn.VX_Particle:SetVisibility(ESlateVisibility.Collapsed)
       self.ExchangeBtn.VX_Particle:DeactivateSystem()
     end
-    assert(Icon, "\230\138\189\229\141\161\231\180\175\232\174\161\229\165\150\229\138\177\229\155\190\230\160\135\228\184\141\229\144\136\230\179\149, Id:" .. Id .. " Type:" .. Type)
+    assert(Icon, "抽卡累计奖励图标不合法, Id:" .. Id .. " Type:" .. Type)
     self.ExchangeBtn.Image_ExchangeIcon:SetBrushResourceObject(Icon)
   end
   GachaModel:CheckReddot()
@@ -1495,7 +1495,7 @@ function M:Close()
   if self.IsUnLoadNavMesh then
     local GameInstance = GWorld.GameInstance
     local Player = UE4.UGameplayStatics.GetPlayerCharacter(GameInstance, 0)
-    DebugPrint("---\229\134\176\230\185\150\229\159\142\229\133\179\233\151\173\230\138\189\229\141\161\230\129\162\229\164\141\229\175\188\232\136\170\231\189\145\230\160\188---")
+    DebugPrint("---冰湖城关闭抽卡恢复导航网格---")
     URuntimeCommonFunctionLibrary.LoadNavMeshLevel(Player:GetWorld())
   end
   self.Super.Close(self)

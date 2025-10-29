@@ -313,7 +313,7 @@ end
 function Component:ClickConfirmAbyssRestart()
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("thy     \229\133\179\229\141\161\232\175\166\230\131\133\231\149\140\233\157\162\232\191\155\229\133\165\229\133\179\229\141\161\229\164\177\232\180\165\239\188\140Avatar\232\142\183\229\143\150\229\164\177\232\180\165")
+    DebugPrint("thy     关卡详情界面进入关卡失败，Avatar获取失败")
     return
   end
   Avatar:TriggerReEnterAbyss()

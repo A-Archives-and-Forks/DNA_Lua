@@ -56,7 +56,7 @@ function M:PlayDialogue(bPauseResume)
   if NodeType == EDialogueNodeType.Dialogue then
     local Dialogue = self.DialogueIterationComponent:GetDialogue()
     if not Dialogue then
-      DebugPrint("lhr@Dialogue Iteration Error: Dialogue\228\184\186\231\169\186")
+      DebugPrint("lhr@Dialogue Iteration Error: Dialogue为空")
       return
     end
     DebugPrint("M:PlayDialogue:", self.TalkTaskData.TalkNodeId, Dialogue.DialogueId)
@@ -72,7 +72,7 @@ function M:PlayDialogue(bPauseResume)
     self:ProcessWaitTag_UIPlayDialogue(DialogueData, self.WaitQueue)
     self:ProcessWaitTag_PlayAudio(DialogueData, bPauseResume, true, true, self.WaitQueue)
   else
-    DebugPrint("lhr@Dialogue Iteration Error: NodeType", NodeType, "\228\184\141\229\144\136\230\179\149")
+    DebugPrint("lhr@Dialogue Iteration Error: NodeType", NodeType, "不合法")
     return
   end
 end
@@ -183,15 +183,15 @@ DialogueId:]] .. tostring(DialogueId) .. [[
 
 TalkNodeName: ]] .. tostring(self.TalkTaskData.TalkNodeName)
   if not DialogueData then
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\134\146\230\179\161\229\175\185\232\175\157\230\149\176\230\141\174\233\148\153\232\175\175", "\229\143\176\230\156\172\229\134\133\229\174\185\228\184\186\231\169\186" .. ErrorMessge)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "冒泡对话数据错误", "台本内容为空" .. ErrorMessge)
     return false
   elseif not DialogueData.TalkActorData then
     local Dialogue = DataMgr.Dialogue[DialogueId]
     local SpeakNpcId = Dialogue and Dialogue.SpeakNpcId or 0
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\134\146\230\179\161\229\175\185\232\175\157\230\149\176\230\141\174\233\148\153\232\175\175", "\229\143\176\230\156\172SpeakNpcId\229\173\151\230\174\181\228\184\186\231\169\186\n \230\136\150\232\128\133TalkNode\230\178\161\230\156\137\233\133\141\231\189\174\229\189\147\229\137\141\229\143\176\230\156\172SpeakNpcId\231\154\132\230\188\148\229\145\152 SpeakNpcId: " .. tostring(SpeakNpcId) .. ErrorMessge)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "冒泡对话数据错误", "台本SpeakNpcId字段为空\n 或者TalkNode没有配置当前台本SpeakNpcId的演员 SpeakNpcId: " .. tostring(SpeakNpcId) .. ErrorMessge)
     return false
   elseif not DialogueData.TalkActorData.TalkActor then
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\134\146\230\179\161\229\175\185\232\175\157\230\149\176\230\141\174\233\148\153\232\175\175", "Npc\228\184\141\229\173\152\229\156\168\nNpcId:" .. tostring(DialogueData.TalkActorData.TalkActorId) .. ErrorMessge)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "冒泡对话数据错误", "Npc不存在\nNpcId:" .. tostring(DialogueData.TalkActorData.TalkActorId) .. ErrorMessge)
     return false
   end
   return true

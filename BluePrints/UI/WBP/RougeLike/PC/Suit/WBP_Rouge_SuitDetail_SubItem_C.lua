@@ -64,7 +64,7 @@ function M:OnBtn_ClickHover()
 end
 
 function M:SelectItem()
-  DebugPrint("\230\163\128\230\181\139\229\136\176\232\162\171\233\128\137\228\184\173")
+  DebugPrint("检测到被选中")
   self.IsSelected = true
   if self.Parent then
     self.Parent.CurrentSelectSuitItem = self

@@ -238,7 +238,7 @@ function M:InitCoroutine()
               self.MapBoxMax:Set(math.max(self.MapBoxMax.X, tempPos.X + tempSize.X / 2), math.max(self.MapBoxMax.Y, tempPos.Y + tempSize.Y / 2))
               self.MapBoxMin:Set(math.min(self.MapBoxMin.X, tempPos.X - tempSize.X / 2), math.min(self.MapBoxMin.Y, tempPos.Y - tempSize.Y / 2))
             else
-              error("\229\173\144\229\140\186\229\159\159" .. subRegionId .. "\231\188\186\229\176\145Grdiframe\229\157\144\230\160\135\239\188\129")
+              error("子区域" .. subRegionId .. "缺少Grdiframe坐标！")
             end
           end
         end
@@ -736,7 +736,7 @@ function M:UpdateSingleMapFogByTeleport(TeleportJson, ShowFog, ShowAnimId)
         end
       end
     elseif Const.EnableTaskPrintError then
-      ScreenPrint(string.format("\229\156\176\229\155\190\232\191\183\233\155\190block\228\184\141\229\173\152\229\156\168\239\188\140SubRegionId:%s  FloorId:%s  BlockIndex:%s", SubRegionId, Block.FloorId, Block.Big))
+      ScreenPrint(string.format("地图迷雾block不存在，SubRegionId:%s  FloorId:%s  BlockIndex:%s", SubRegionId, Block.FloorId, Block.Big))
     end
   end
 end

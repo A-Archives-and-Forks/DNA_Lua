@@ -5,7 +5,7 @@ function TestPrintNode:Init()
 end
 
 function TestPrintNode:Execute()
-  local Str = "[TestPrint]Text\228\184\186:"
+  local Str = "[TestPrint]Text为:"
   if self.Text then
     Str = Str .. "'" .. self.Text .. "'"
   end

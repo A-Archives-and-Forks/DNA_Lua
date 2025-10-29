@@ -20,7 +20,7 @@ function M:InitSuitSign(TreasureId, GroupId, Count, bPreview)
   local TreasureGroupData = DataMgr.TreasureGroup[GroupId]
   if TreasureGroupData then
     local IconObj = LoadObject(TreasureGroupData.Icon)
-    assert(IconObj, "\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148TreasureGroup\231\154\132Icon:" .. GroupId)
+    assert(IconObj, "未找到对应TreasureGroup的Icon:" .. GroupId)
     self.Image_TitleIcon:SetBrushResourceObject(IconObj)
     local TreasureNum = UIUtils.GetTreasureGroupNum(TreasureId)
     local Text = "<G>" .. tostring(Count) .. "</>/" .. tostring(TreasureNum)
@@ -52,7 +52,7 @@ function M:InitSuitSign(TreasureId, GroupId, Count, bPreview)
       end
     })
   else
-    ScreenPrint("\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148TreasureGroup\228\191\161\230\129\175\239\188\154" .. GroupId)
+    ScreenPrint("未找到对应TreasureGroup信息：" .. GroupId)
   end
 end
 

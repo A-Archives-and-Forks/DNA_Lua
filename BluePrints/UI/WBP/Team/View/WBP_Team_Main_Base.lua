@@ -23,7 +23,7 @@ function M:Construct()
   if not self.IsAddingToParent then
     self:RegisterEvent()
   end
-  DebugPrint(LXYTag, "\231\187\132\233\152\159\229\164\180\229\131\143\231\149\140\233\157\162Construct , IsAddingToParent", self.IsAddingToParent)
+  DebugPrint(LXYTag, "组队头像界面Construct , IsAddingToParent", self.IsAddingToParent)
 end
 
 function M:_UpdateMemberTag(Uid)
@@ -49,7 +49,7 @@ function M:ProcessAddQueue()
   end
   self.bAddQueueProcessing = true
   local Member = self.AddQueue:PopBack()
-  Utils.Traceback(LXYTag, "\231\187\132\233\152\159\229\164\180\229\131\143\229\138\160\228\186\186Uid " .. Member.Uid .. " Name " .. Member.Nickname)
+  Utils.Traceback(LXYTag, "组队头像加人Uid " .. Member.Uid .. " Name " .. Member.Nickname)
   self:AddTimer(self.Normal:GetEndTime(), function()
     self:AddTeammateUI(Member, true, nil, Member.Index)
   end)
@@ -75,7 +75,7 @@ function M:ProcessDelQueue()
   end
   self.bDelQueueProcessing = true
   local Uid = self.DelQueue:PopBack()
-  Utils.Traceback(LXYTag, "\231\187\132\233\152\159\229\164\180\229\131\143\229\135\143\228\186\186Uid " .. Uid)
+  Utils.Traceback(LXYTag, "组队头像减人Uid " .. Uid)
   self:AddTimer(self.Normal:GetEndTime(), function()
     self:DelTeammateUI(Uid)
   end)
@@ -218,13 +218,13 @@ function M:Close()
 end
 
 function M:Destruct()
-  DebugPrint(LXYTag, "\231\187\132\233\152\159\229\164\180\229\131\143\231\149\140\233\157\162Destruct , IsAddingToParent", self.IsAddingToParent)
+  DebugPrint(LXYTag, "组队头像界面Destruct , IsAddingToParent", self.IsAddingToParent)
   if not self.IsAddingToParent then
     TeamController:ClearHeadUI(self.ParentWidget)
     TeamController:UnRegisterEvent(self)
     self:RemoveFromParent()
-    DebugPrint(LXYTag, "\231\187\132\233\152\159\231\149\140\233\157\162\230\158\144\230\158\132\228\184\173....")
-    PrintTable(self.ListenEvent, LXYTag, "\228\186\139\228\187\182\229\136\151\232\161\168")
+    DebugPrint(LXYTag, "组队界面析构中....")
+    PrintTable(self.ListenEvent, LXYTag, "事件列表")
     M.Super.Destruct(self)
   end
 end

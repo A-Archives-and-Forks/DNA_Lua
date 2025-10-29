@@ -32,11 +32,11 @@ function Component:InitMailReddotNode()
   Node = Node or ReddotManager.AddNode(NormalMailName)
   ReddotManager.ClearLeafNodeCount(NormalMailName)
   for Unique, MailData in pairs(self.MailInbox or {}) do
-    DebugPrint(string.format("\229\136\157\229\167\139\229\140\150\233\130\174\228\187\182\231\186\162\231\130\185\239\188\140UniqueId %s, \229\183\178\233\162\134\229\165\150\239\188\154%s, \229\183\178\232\175\187%s", Unique, MailData.RewardGot, MailData.MailReaded))
+    DebugPrint(string.format("初始化邮件红点，UniqueId %s, 已领奖：%s, 已读%s", Unique, MailData.RewardGot, MailData.MailReaded))
     self:_AddNormalMailReddotCount(MailData)
   end
   for Unique, MailData in pairs(self.StarMails or {}) do
-    DebugPrint(string.format("\229\136\157\229\167\139\229\140\150\233\130\174\228\187\182\231\186\162\231\130\185\239\188\140UniqueId %s, \229\183\178\233\162\134\229\165\150\239\188\154%s, \229\183\178\232\175\187%s", Unique, MailData.RewardGot, MailData.MailReaded))
+    DebugPrint(string.format("初始化邮件红点，UniqueId %s, 已领奖：%s, 已读%s", Unique, MailData.RewardGot, MailData.MailReaded))
     self:_AddNormalMailReddotCount(MailData)
   end
 end

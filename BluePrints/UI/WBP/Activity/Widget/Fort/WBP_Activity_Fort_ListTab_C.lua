@@ -155,9 +155,9 @@ function M:OnCellClickedWithoutSound()
   end
   if self.Content.LockReason then
     if self.Content.LockReason == "Time" then
-      UE.UKismetSystemLibrary.PrintString(self, "\230\151\182\233\151\180\230\156\170\229\136\176")
+      UE.UKismetSystemLibrary.PrintString(self, "时间未到")
     elseif self.Content.LockReason == "PreDungeon" then
-      UE.UKismetSystemLibrary.PrintString(self, "\229\137\141\231\189\174\229\133\179\229\141\161\230\156\170\230\187\161\232\182\179")
+      UE.UKismetSystemLibrary.PrintString(self, "前置关卡未满足")
     end
     return false
   else

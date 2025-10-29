@@ -275,7 +275,7 @@ end
 function M:OnArmoryWeaponLoaded(WeaponActor)
   self.IsArmoryWeaponLoading = false
   if self.bDestructed then
-    DebugPrint("Error: \233\162\132\232\167\136\230\173\166\229\153\168\229\138\160\232\189\189\229\174\140\230\136\144\229\155\158\232\176\131\233\148\153\232\175\175\239\188\140\229\143\175\232\131\189\230\152\175ActorController\230\178\161\230\156\137\230\173\163\231\161\174\233\148\128\230\175\129")
+    DebugPrint("Error: 预览武器加载完成回调错误，可能是ActorController没有正确销毁")
     return
   end
   if self.NextWeaponDataToLoad then

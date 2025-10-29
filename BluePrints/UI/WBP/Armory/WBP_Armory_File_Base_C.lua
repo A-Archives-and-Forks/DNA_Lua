@@ -556,7 +556,7 @@ function M:OnRecordSubTabSelected(TabWidget)
     local perfix = Data.CharDataName and Data.CharDataName[1] or " "
     local suffix = Data.CharDataName and Data.CharDataName[2] or " "
     if " " == perfix and " " == suffix then
-      print("Error: \230\161\163\230\161\136\229\137\141\229\144\142\231\188\128\231\154\134\231\169\186")
+      print("Error: 档案前后缀皆空")
     end
     Obj.Title = GText(perfix) .. GText(suffix)
     Obj.SubTitle = GText(Data.CharDataTargetDescribe)

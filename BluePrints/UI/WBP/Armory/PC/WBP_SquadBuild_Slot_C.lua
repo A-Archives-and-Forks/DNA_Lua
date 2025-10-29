@@ -426,7 +426,7 @@ function WBP_Build_Slot_P_C:SetImage(ImgShortPath, ImgLongPath)
     Img = LoadObject(ImgLongPath)
   end
   if not IsValid(Img) then
-    DebugPrint("\231\188\186\229\176\145\229\155\190\231\137\135\232\181\132\230\186\144: ImgPath = " .. ImgPath)
+    DebugPrint("缺少图片资源: ImgPath = " .. ImgPath)
     return
   end
   local IconDynaMaterial = self.Item.Image_Bg:GetDynamicMaterial()

@@ -2,7 +2,7 @@ require("UnLua")
 
 local function GetIndexText(Index)
   if not Index then
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\130\128\231\186\166\231\179\187\231\187\159\233\148\153\232\175\175", "\232\142\183\229\143\150\233\130\128\231\186\166\229\186\143\229\143\183\229\164\177\232\180\165\239\188\140\229\186\143\229\143\183\228\184\186\231\169\186\227\128\130")
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "邀约系统错误", "获取邀约序号失败，序号为空。")
     return nil
   end
   local IndexText = tostring(Index)

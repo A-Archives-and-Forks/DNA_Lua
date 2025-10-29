@@ -105,7 +105,7 @@ function WBP_Abyss_Lineup_C:InitWidget()
   self.CurDungeonPanel = self.Team_Detail1
   local Avatar = ArmoryUtils:GetAvatar()
   if not Avatar then
-    DebugPrint("lhr@\233\152\181\229\174\185\233\133\141\231\189\174\231\149\140\233\157\162Avatar\232\142\183\229\143\150\229\164\177\232\180\165")
+    DebugPrint("lhr@阵容配置界面Avatar获取失败")
     return
   end
   self.Btn_Save:SetForbidden(true)
@@ -114,7 +114,7 @@ function WBP_Abyss_Lineup_C:InitWidget()
       if DungeonPanel then
         DungeonPanel:ClearAllSlots(true)
       else
-        DebugPrint("lhr@WBP_Abyss_Lineup_C:Enter, \233\152\181\229\174\185\233\157\162\230\157\191\229\136\157\229\167\139\229\140\150\229\164\177\232\180\165")
+        DebugPrint("lhr@WBP_Abyss_Lineup_C:Enter, 阵容面板初始化失败")
       end
     end
   end
@@ -279,7 +279,7 @@ end
 
 function WBP_Abyss_Lineup_C:InitDungeons(DungeonIds, SelectedDungeon)
   if not DungeonIds or type(DungeonIds) ~= "table" then
-    DebugPrint("lhr@WBP_Abyss_Lineup_C:Enter, \229\137\175\230\156\172Id\230\151\160\230\149\136")
+    DebugPrint("lhr@WBP_Abyss_Lineup_C:Enter, 副本Id无效")
     return
   end
   self.DungeonIds = DungeonIds
@@ -301,7 +301,7 @@ function WBP_Abyss_Lineup_C:InitDungeons(DungeonIds, SelectedDungeon)
     if DungeonPanel then
       DungeonPanel:Init(DungeonIndex, self, self.DungeonIds[DungeonIndex], DungeonIndex == SelectedDungeon)
     else
-      DebugPrint("lhr@WBP_Abyss_Lineup_C:InitDungeons, \233\152\181\229\174\185\233\157\162\230\157\191\229\136\157\229\167\139\229\140\150\229\164\177\232\180\165")
+      DebugPrint("lhr@WBP_Abyss_Lineup_C:InitDungeons, 阵容面板初始化失败")
     end
   end
 end
@@ -309,7 +309,7 @@ end
 function WBP_Abyss_Lineup_C:InitDetailPanels()
   local Avatar = ArmoryUtils:GetAvatar()
   if not Avatar then
-    DebugPrint("WBP_Abyss_Lineup_C:InitDetailPanels, \233\133\141\231\189\174\233\157\162\230\157\191\229\136\157\229\167\139\229\140\150\229\164\177\232\180\165\239\188\140Avatar\230\151\160\230\149\136")
+    DebugPrint("WBP_Abyss_Lineup_C:InitDetailPanels, 配置面板初始化失败，Avatar无效")
     return
   end
   for SlotName, EName in pairs(self.ESlotName) do
@@ -320,7 +320,7 @@ function WBP_Abyss_Lineup_C:InitDetailPanels()
         local DataType = self.SlotType2DataType[SlotType]
         local Unit = Avatar[DataType .. "s"][Uuid]
         if not Unit then
-          GWorld.logger.error("WBP_Abyss_Lineup_C:InitDetailPanels@\232\175\165Uuid\229\175\185\229\186\148\231\154\132\231\137\169\229\147\129\229\183\178\229\164\177\230\149\136" .. CommonUtils.ObjId2Str(Uuid))
+          GWorld.logger.error("WBP_Abyss_Lineup_C:InitDetailPanels@该Uuid对应的物品已失效" .. CommonUtils.ObjId2Str(Uuid))
         end
         local UnitData = Unit and Unit:Data()
         local Content = {
@@ -517,7 +517,7 @@ end
 function WBP_Abyss_Lineup_C:RemoveTeamIcons(DungeonIndex)
   local DungeonPanel = self.Dungeons[DungeonIndex]
   if not DungeonPanel then
-    DebugPrint("lhr@WBP_Abyss_Lineup_C:RemoveTeamIcons, DungeonIndex\229\175\185\229\186\148\231\154\132\229\133\179\229\141\161\233\152\181\229\174\185\233\157\162\230\157\191\230\151\160\230\149\136")
+    DebugPrint("lhr@WBP_Abyss_Lineup_C:RemoveTeamIcons, DungeonIndex对应的关卡阵容面板无效")
     return
   end
   for SlotName, Slot in pairs(DungeonPanel.Slots) do
@@ -571,7 +571,7 @@ function WBP_Abyss_Lineup_C:UpdateSingleTeamIcon(Uuid, bVisble, Type)
   local Type = Type or self.CurSlotType
   local Content = self[Type .. "ItemContentsMap"][Uuid]
   if not Content then
-    DebugPrint("lhr@UpdateSingleTeamIcon: Uuid\230\178\161\230\156\137\229\175\185\229\186\148\231\154\132Content")
+    DebugPrint("lhr@UpdateSingleTeamIcon: Uuid没有对应的Content")
     return
   end
   Content.TeamIdx = bVisble and Content.TeamIdx or nil
@@ -614,7 +614,7 @@ function WBP_Abyss_Lineup_C:PhantomWeaponTypeChanged(Type, IsPlaySound, bSlotCha
     self:ReInitListItems()
     self:DelaySetFocusTarget(bSlotChanged)
   else
-    DebugPrint("lhr@PhantomWeaponTypeChanged:\228\188\160\229\133\165\230\173\166\229\153\168\231\177\187\229\158\139\230\151\160\230\149\136,", Type)
+    DebugPrint("lhr@PhantomWeaponTypeChanged:传入武器类型无效,", Type)
   end
 end
 
@@ -685,7 +685,7 @@ function WBP_Abyss_Lineup_C:OnListItemClicked(Content)
         CurContent.TeamCharId = PreChar
         CurContent.SelfWidget:SetTeamIcon(PreIndex, PreChar)
       end
-      UIManager(GWorld.GameInstance):ShowUITip(UIConst.Tip_CommonToast, GText(Content.UnitName) .. GText("Abyss_Party_Replaced") .. "<Highlight>" .. self.CurDungeonPanel.Name .. "\194\183" .. self.SlotName2TextMap[self.CurSlotName] .. "</>")
+      UIManager(GWorld.GameInstance):ShowUITip(UIConst.Tip_CommonToast, GText(Content.UnitName) .. GText("Abyss_Party_Replaced") .. "<Highlight>" .. self.CurDungeonPanel.Name .. "·" .. self.SlotName2TextMap[self.CurSlotName] .. "</>")
       return
     end
   end
@@ -901,7 +901,7 @@ function WBP_Abyss_Lineup_C:SaveLineup()
   end
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("lhr@\233\152\181\229\174\185\233\133\141\231\189\174\231\149\140\233\157\162\228\191\157\229\173\152\229\164\177\232\180\165\239\188\154Avatar\232\142\183\229\143\150\229\164\177\232\180\165")
+    DebugPrint("lhr@阵容配置界面保存失败：Avatar获取失败")
     return
   end
   local TeamTable = {

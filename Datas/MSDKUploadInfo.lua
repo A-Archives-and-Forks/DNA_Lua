@@ -249,7 +249,7 @@ return ReadOnly("MSDKUploadInfo", {
   weapon_1 = {EventName = "weapon_1"},
   weapon_3 = {EventName = "weapon_3"},
   weaponup_1 = {EventName = "weaponup_1"},
-  ["\231\169\186\232\161\140\229\141\160\228\189\141"] = {
-    EventName = "\231\169\186\232\161\140\229\141\160\228\189\141"
+  ["空行占位"] = {
+    EventName = "空行占位"
   }
 })

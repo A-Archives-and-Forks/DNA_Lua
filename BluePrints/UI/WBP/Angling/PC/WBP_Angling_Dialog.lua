@@ -244,7 +244,7 @@ function M:RefreshSelectRodDetail(Content)
   else
     self.Switcher_Btn:SetActiveWidgetIndex(0)
   end
-  assert(Content.Icon, "\229\189\147\229\137\141\229\183\178\232\163\133\229\164\135\233\177\188\231\171\191\229\155\190\230\160\135 \228\188\160\229\133\165Icon\232\183\175\229\190\132\228\184\186\231\169\186")
+  assert(Content.Icon, "当前已装备鱼竿图标 传入Icon路径为空")
   local Icon = LoadObject(Content.Icon)
   self.Icon_Head:SetBrushFromTexture(Icon)
   self.Text_RoleName:SetText(GText(Data.ResourceName))
@@ -266,7 +266,7 @@ function M:RefreshSelectLureDetail(Content)
   else
     self.Switcher_Btn:SetActiveWidgetIndex(0)
   end
-  assert(Content.Icon, "\229\189\147\229\137\141\229\183\178\232\163\133\229\164\135\233\177\188\233\165\181\229\155\190\230\160\135 \228\188\160\229\133\165Icon\232\183\175\229\190\132\228\184\186\231\169\186")
+  assert(Content.Icon, "当前已装备鱼饵图标 传入Icon路径为空")
   local Icon = LoadObject(Content.Icon)
   self.Icon_Head:SetBrushFromTexture(Icon)
   self.Text_RoleName:SetText(GText(Data.ResourceName))

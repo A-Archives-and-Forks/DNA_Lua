@@ -23,7 +23,7 @@ function Component:TryRegisterFirstSeeMehcanism(UnitId, Eid)
   end
   local Mechanism = Battle(self):GetEntity(Eid)
   if not Mechanism.FirstSeen then
-    print(_G.LogTag, "Error: \230\156\186\229\133\179\230\178\161\230\156\137\231\148\168\228\186\142\229\136\157\230\172\161\233\129\135\229\136\176\229\138\159\232\131\189\231\154\132\231\162\176\230\146\158\228\189\147", Mechanism:GetName(), Mechanism.UnitId)
+    print(_G.LogTag, "Error: 机关没有用于初次遇到功能的碰撞体", Mechanism:GetName(), Mechanism.UnitId)
     return
   end
   if self.MechanismNeedCheck[FirstSeenTag] then

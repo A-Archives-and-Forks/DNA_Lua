@@ -99,7 +99,7 @@ function WBP_InteractivePanel_C:AddNormalInteractiveItem(InItem)
   if ExistedItem then
     ExistedItem:ReAdd()
     if bMerge then
-      assert(self.MergeActors[InItem.MergeName], "\230\137\190\228\184\141\229\136\176\229\183\178\231\187\143\229\173\152\229\156\168\231\154\132\229\144\136\229\185\182\228\186\164\228\186\146" .. InItem.MergeName)
+      assert(self.MergeActors[InItem.MergeName], "找不到已经存在的合并交互" .. InItem.MergeName)
       self.MergeActors[InItem.MergeName]:AddMergeList(InItem:GetOwner():GetName(), InItem)
     end
     return

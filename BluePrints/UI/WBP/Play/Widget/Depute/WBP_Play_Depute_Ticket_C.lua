@@ -80,7 +80,7 @@ function M:OnClicked()
   elseif TicketData.ResourceName and TicketData.UseParam then
     TipsContent = string.format(GText("UI_Ticket_Effect"), GText(TicketData.ResourceName), TicketData.UseParam / 100.0)
   else
-    DebugPrint("ZDX_\233\151\168\231\165\168\229\175\185\229\186\148Resource\231\188\186\229\176\145Name\230\136\150Id")
+    DebugPrint("ZDX_门票对应Resource缺少Name或Id")
   end
   table.insert(self.Tips, TipsContent)
   self:BroadcastDialogEvent("UpdateDialogTipText", {

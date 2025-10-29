@@ -1,5 +1,5 @@
 return {
-  storyName = "\230\156\170\229\145\189\229\144\141\230\149\133\228\186\139",
+  storyName = "未命名故事",
   storyDescription = "",
   lineData = {
     {
@@ -46,11 +46,11 @@ return {
       isStoryNode = true,
       key = "1704175979408216787",
       type = "StoryNode",
-      name = "\230\181\139\232\175\149\228\187\187\229\138\161",
+      name = "测试任务",
       pos = {x = 265.0487967914437, y = 332.7987967914442},
       propsData = {
         QuestId = 99010301,
-        QuestDescriptionComment = "\232\153\154\231\169\186\226\128\166\226\128\166",
+        QuestDescriptionComment = "虚空……",
         QuestDescription = "Description_100101_0",
         QuestDeatil = "Description_100101_0",
         TaskRegionReName = "",
@@ -113,7 +113,7 @@ return {
           ["1704175979408216791"] = {
             key = "1704175979408216791",
             type = "ShowGuideToastNode",
-            name = "Toast\230\152\190\231\164\186/\233\154\144\232\151\143\228\191\161\230\129\175",
+            name = "Toast显示/隐藏信息",
             pos = {x = 545, y = 142.72727272727266},
             propsData = {
               ShowEnable = true,

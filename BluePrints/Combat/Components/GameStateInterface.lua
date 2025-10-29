@@ -19,7 +19,7 @@ end
 function Component:GameModeEvent_Lua(Func, ...)
   local FuncName = Func .. "_Lua"
   if nil ~= self[FuncName] then
-    DebugPrint("GameStateInterface \230\148\182\229\136\176Custom\228\186\139\228\187\182\229\185\191\230\146\173\232\191\155\232\161\140\232\189\172\229\143\145\239\188\154", Func)
+    DebugPrint("GameStateInterface 收到Custom事件广播进行转发：", Func)
     self[FuncName](self, ...)
   end
 end
@@ -84,7 +84,7 @@ function Component:OnRep_DungeonEvent_Lua()
     return
   end
   if GWorld.GameInstance.IsInSettlementScene == true then
-    DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua \229\155\160\228\184\186\229\156\168\231\187\147\231\174\151\231\149\140\233\157\162\232\128\140\233\152\187\230\150\173")
+    DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua 因为在结算界面而阻断")
     return
   end
   local Player = UE4.UGameplayStatics.GetPlayerCharacter(self, 0)
@@ -96,7 +96,7 @@ function Component:OnRep_DungeonEvent_Lua()
     self.LastDungeonEvent = {}
   end
   local DungeonEventNum = self.DungeonEvent:Num()
-  DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua \230\148\182\229\136\176\228\186\139\228\187\182\229\185\191\230\146\173, \228\184\138\228\184\128\230\172\161\228\186\139\228\187\182\230\149\176\233\135\143\239\188\154" .. #self.LastDungeonEvent .. "    \229\189\147\229\137\141\228\186\139\228\187\182\230\149\176\233\135\143\239\188\154" .. DungeonEventNum)
+  DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua 收到事件广播, 上一次事件数量：" .. #self.LastDungeonEvent .. "    当前事件数量：" .. DungeonEventNum)
   self:PrintAllDungeonEvents()
   self:TriggerUpdateDungeonEvent()
   self.LastDungeonEvent = {}
@@ -115,13 +115,13 @@ function Component:PrintAllDungeonEvents()
   for _, Event in pairs(self.LastDungeonEvent or {}) do
     EventString = EventString .. Event .. ", "
   end
-  DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua \230\137\147\229\141\176\228\184\138\228\184\128\230\172\161\228\186\139\228\187\182\229\134\133\229\174\185   " .. EventString)
+  DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua 打印上一次事件内容   " .. EventString)
   EventString = ""
   for i = 1, self.DungeonEvent:Num() do
     local Event = self.DungeonEvent:GetValueByIdx(i - 1)
     EventString = EventString .. Event .. ", "
   end
-  DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua \230\137\147\229\141\176\229\189\147\229\137\141DungeonEvent\229\134\133\229\174\185   " .. EventString)
+  DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua 打印当前DungeonEvent内容   " .. EventString)
 end
 
 function Component:TriggerUpdateDungeonEvent()
@@ -130,7 +130,7 @@ function Component:TriggerUpdateDungeonEvent()
   local IgnoreIdxCanChange = true
   local RemoveEvents = {}
   local AddEvents = {}
-  DebugPrint("GameStateInterface @@@@@@  \230\173\164\230\172\161OnRep\230\148\182\229\136\176TriggerUpdateDungeonEvent", IgnoreIdx, self.DungeonEvent:Num())
+  DebugPrint("GameStateInterface @@@@@@  此次OnRep收到TriggerUpdateDungeonEvent", IgnoreIdx, self.DungeonEvent:Num())
   if #self.LastDungeonEvent == DungeonEventNum and 0 ~= #self.LastDungeonEvent then
     local HasNewEvent = false
     for i = 1, self.DungeonEvent:Num() do
@@ -174,13 +174,13 @@ end
 
 function Component:TriggerAddDungeonEvent(Event)
   if "" == Event then
-    DebugPrint("GameStateInterface  TriggerAddDungeonEvent \229\135\186\231\142\176\231\169\186\228\186\139\228\187\182")
+    DebugPrint("GameStateInterface  TriggerAddDungeonEvent 出现空事件")
     return
   end
   local FuncName = Event .. "_Lua"
-  DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua \230\148\182\229\136\176\229\162\158\233\135\143\228\186\139\228\187\182\239\188\154", Event)
+  DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua 收到增量事件：", Event)
   if nil ~= self[FuncName] then
-    DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua \230\137\167\232\161\140\229\162\158\233\135\143\228\186\139\228\187\182\239\188\154", FuncName)
+    DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua 执行增量事件：", FuncName)
     try({
       exec = function()
         self[FuncName](self)
@@ -191,19 +191,19 @@ function Component:TriggerAddDungeonEvent(Event)
       end
     })
   else
-    DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua \230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\231\154\132\228\186\139\228\187\182\239\188\154", FuncName)
+    DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua 未找到对应的事件：", FuncName)
   end
 end
 
 function Component:TriggerRemoveDungeonEvent(Event)
   if "" == Event then
-    DebugPrint("GameStateInterface  TriggerRemoveDungeonEvent \229\135\186\231\142\176\231\169\186\228\186\139\228\187\182")
+    DebugPrint("GameStateInterface  TriggerRemoveDungeonEvent 出现空事件")
     return
   end
   local FuncName = "Remove" .. Event .. "_Lua"
-  DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua \230\148\182\229\136\176Remove\228\186\139\228\187\182\239\188\154", Event)
+  DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua 收到Remove事件：", Event)
   if nil ~= self[FuncName] then
-    DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua \230\137\167\232\161\140Remove\228\186\139\228\187\182\239\188\154", FuncName)
+    DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua 执行Remove事件：", FuncName)
     try({
       exec = function()
         self[FuncName](self)
@@ -214,26 +214,26 @@ function Component:TriggerRemoveDungeonEvent(Event)
       end
     })
   else
-    DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua \230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\231\154\132\228\186\139\228\187\182\239\188\154", FuncName)
+    DebugPrint("GameStateInterface  OnRep_DungeonEvent_Lua 未找到对应的事件：", FuncName)
   end
 end
 
 function Component:OnRep_GameModeReady()
-  DebugPrint("GameStateInterface  Client \230\148\182\229\136\176OnRep_GameModeReady")
+  DebugPrint("GameStateInterface  Client 收到OnRep_GameModeReady")
   if self.bGameModeReady then
     self:TryEndLoading("GameModeReady")
   end
 end
 
 function Component:OnInit_Lua()
-  DebugPrint("GameStateInterface  Client \230\148\182\229\136\176\228\186\139\228\187\182OnInit_Lua")
+  DebugPrint("GameStateInterface  Client 收到事件OnInit_Lua")
   self:LoadDungeonUI()
   self:InitFbdRule()
   self:UpdatePhonePostProcessMaterial()
 end
 
 function Component:RemoveOnInit_Lua()
-  DebugPrint("GameStateInterface  Client \230\148\182\229\136\176\228\186\139\228\187\182RemoveOnInit_Lua")
+  DebugPrint("GameStateInterface  Client 收到事件RemoveOnInit_Lua")
   self:ResetFbdRule()
 end
 
@@ -248,7 +248,7 @@ end
 
 function Component:OnCustomeEvent_Lua(EventName)
   local FunName = "On" .. EventName .. "_Lua"
-  DebugPrint("GameStateInterface \230\148\182\229\136\176\228\186\139\228\187\182OnCustomeEvent_Lua\239\188\154", EventName)
+  DebugPrint("GameStateInterface 收到事件OnCustomeEvent_Lua：", EventName)
   if nil ~= self[FunName] then
     self[FunName](self)
   end
@@ -469,13 +469,13 @@ end
 
 function Component:DefenceCountDown_Lua()
   local Info = self.ClientTimerStruct:GetTimerInfo("DefenceCountDown")
-  DebugPrint("GameStateInterface \230\148\182\229\136\176 DefenceCountDown_Lua", self:GetLocalRole())
+  DebugPrint("GameStateInterface 收到 DefenceCountDown_Lua", self:GetLocalRole())
   EventManager:FireEvent(EventID.DefenseTimerAdded, Info.Key, Info.Time, Info.TimeSeconds)
   EventManager:FireEvent(EventID.ShowDungeonUI)
 end
 
 function Component:RemoveDefenceCountDown_Lua()
-  DebugPrint("GameStateInterface \230\148\182\229\136\176 RemoveDefenceCountDown_Lua", self:GetLocalRole())
+  DebugPrint("GameStateInterface 收到 RemoveDefenceCountDown_Lua", self:GetLocalRole())
 end
 
 function Component:OnWaveStart_Lua()
@@ -609,7 +609,7 @@ function Component:LoadDungeonUI(DungeonType)
   elseif DungeonUIName then
     self:RealLoadDungeonUI(DungeonUIName)
   else
-    ScreenPrint("LoadDungeonUI\229\138\160\232\189\189\229\175\185\229\186\148\229\137\175\230\156\172UI\229\164\177\232\180\165\239\188\140\230\178\161\230\156\137\229\161\171\229\134\153\233\187\152\232\174\164\229\128\188\239\188\129GameModeType " .. GameModeType)
+    ScreenPrint("LoadDungeonUI加载对应副本UI失败，没有填写默认值！GameModeType " .. GameModeType)
   end
 end
 
@@ -644,7 +644,7 @@ function Component:UnloadDungeonUI(DungeonType)
   elseif DungeonUIName then
     self:RealCloseDungeonUI(DungeonUIName)
   else
-    ScreenPrint("CloseDungeonUI\229\141\184\232\189\189\229\175\185\229\186\148\229\137\175\230\156\172UI\229\164\177\232\180\165\239\188\129GameModeType " .. GameModeType)
+    ScreenPrint("CloseDungeonUI卸载对应副本UI失败！GameModeType " .. GameModeType)
   end
 end
 
@@ -671,13 +671,13 @@ function Component:GetToLoadDungeonUINames()
 end
 
 function Component:OnRep_DungeonUIInfo()
-  DebugPrint("GameState:OnRep_DungeonUIInfo \229\174\162\230\136\183\231\171\175\230\148\182\229\136\176DungeonUIInfo\230\149\176\230\141\174", self.DungeonUIInfo.TexturePath, self.DungeonUIInfo.TextTitle, self.DungeonUIInfo.TextMap)
+  DebugPrint("GameState:OnRep_DungeonUIInfo 客户端收到DungeonUIInfo数据", self.DungeonUIInfo.TexturePath, self.DungeonUIInfo.TextTitle, self.DungeonUIInfo.TextMap)
   self.HasDungeonUIInfoData = true
   self:RealShowDungeonTask()
 end
 
 function Component:ShowDungeonTask_Lua()
-  DebugPrint("GameState:ShowDungeonTask_Lua \229\174\162\230\136\183\231\171\175\230\148\182\229\136\176DungeonUIInfo\228\186\139\228\187\182 \228\185\139\229\137\141\231\154\132self.HasDungeonUIInfoEvent", self.HasDungeonUIInfoEvent)
+  DebugPrint("GameState:ShowDungeonTask_Lua 客户端收到DungeonUIInfo事件 之前的self.HasDungeonUIInfoEvent", self.HasDungeonUIInfoEvent)
   if self.HasDungeonUIInfoEvent then
     return
   end
@@ -686,12 +686,12 @@ function Component:ShowDungeonTask_Lua()
 end
 
 function Component:RealShowDungeonTask()
-  DebugPrint("GameState:RealShowDungeonTask \229\174\162\230\136\183\231\171\175\230\152\175\229\144\166\230\148\182\229\136\176\230\149\176\230\141\174", self.HasDungeonUIInfoData, "\229\174\162\230\136\183\231\171\175\230\152\175\229\144\166\230\148\182\229\136\176\228\186\139\228\187\182", self.HasDungeonUIInfoEvent)
+  DebugPrint("GameState:RealShowDungeonTask 客户端是否收到数据", self.HasDungeonUIInfoData, "客户端是否收到事件", self.HasDungeonUIInfoEvent)
   if not self.HasDungeonUIInfoData or not self.HasDungeonUIInfoEvent then
     return
   end
   self.HasDungeonUIInfoData = false
-  DebugPrint("GameState:RealShowDungeonTask \229\174\162\230\136\183\231\171\175\230\155\180\230\150\176\228\187\187\229\138\161\230\160\143")
+  DebugPrint("GameState:RealShowDungeonTask 客户端更新任务栏")
   
   local function WrapFuncEventFire()
     local GameInstance = UE4.UGameplayStatics.GetGameInstance(self)
@@ -1119,7 +1119,7 @@ function Component:PreloadGameAssets()
     self.bAssetsPreloading = false
     return
   end
-  print(_G.LogTag, "wzj- \229\137\175\230\156\172\232\181\132\230\186\144\233\162\132\229\138\160\232\189\189 Start", UE4.UGameplayStatics.GetTimeSeconds(self), DungeonId)
+  print(_G.LogTag, "wzj- 副本资源预加载 Start", UE4.UGameplayStatics.GetTimeSeconds(self), DungeonId)
   self.bPreloadAssetsReady = false
   self.bAssetsPreloading = true
   local Res = PreloadSystem:CacheDungeonGameAssetsOuter({
@@ -1132,7 +1132,7 @@ function Component:PreloadGameAssets()
 end
 
 function Component:PreloadGameAssetsCallback()
-  print(_G.LogTag, "wzj- \229\137\175\230\156\172\232\181\132\230\186\144\233\162\132\229\138\160\232\189\189 End", UE4.UGameplayStatics.GetTimeSeconds(self), GWorld.GameInstance:GetCurrentDungeonId())
+  print(_G.LogTag, "wzj- 副本资源预加载 End", UE4.UGameplayStatics.GetTimeSeconds(self), GWorld.GameInstance:GetCurrentDungeonId())
   self.bPreloadAssetsReady = true
   self.bAssetsPreloading = false
   self:TryEndLoading("AssetsPreload")

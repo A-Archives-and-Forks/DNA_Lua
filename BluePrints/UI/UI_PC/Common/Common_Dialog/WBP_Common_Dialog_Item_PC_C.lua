@@ -13,7 +13,7 @@ function WBP_Common_Dialog_Item_PC_C:Init(PosIndex, TypeIdx, Params, PopupData, 
   self.PosIndex = PosIndex
   local ItemType = TypeIdx2Type[TypeIdx]
   if not ItemType then
-    DebugPrint("Tianyi@ ItemType\229\161\171\229\134\153\233\148\153\232\175\175!")
+    DebugPrint("Tianyi@ ItemType填写错误!")
     return
   end
   self.ItemType = ItemType

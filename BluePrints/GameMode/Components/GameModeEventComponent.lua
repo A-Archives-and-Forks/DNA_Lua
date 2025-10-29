@@ -26,7 +26,7 @@ function GameModeEventComponent:GetSubDungeonComponent()
   for LevelName, SubGameMode in pairs(self.SubGameModeInfo) do
     local SubDungeonComponent = SubGameMode[GameModeComponentName]
     if nil == SubDungeonComponent then
-      DebugPrint("GameModeEventComponent Error! \231\165\158\229\186\153/\230\180\190\229\175\185\231\142\169\230\179\149\229\173\144\229\133\179\229\141\161\231\188\186\229\176\145\231\165\158\229\186\153/\230\180\190\229\175\185\231\187\132\228\187\182\239\188\140\232\175\183\231\173\150\229\136\146\230\163\128\230\159\165\231\155\184\229\133\179\233\133\141\231\189\174")
+      DebugPrint("GameModeEventComponent Error! 神庙/派对玩法子关卡缺少神庙/派对组件，请策划检查相关配置")
     end
     return SubDungeonComponent
   end

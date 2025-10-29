@@ -44,7 +44,7 @@ end
 function M:InitNormalInfo()
   self.CurEventId = DataMgr.PaotaiEventConstant.PaotaiGameEventId.ConstantValue
   self.Text_EnemyPre:SetText(GText("UI_DUNGEON_MonsterType"))
-  self.Text_Buff:SetText(GText("\230\136\152\230\150\151\229\162\158\231\155\138\239\188\136\229\190\133\233\133\141\232\161\168\239\188\137"))
+  self.Text_Buff:SetText(GText("战斗增益（待配表）"))
   self.Btn_More.Btn_Click.OnClicked:Add(self, self.SelectFirstMonsterInfoItem)
 end
 

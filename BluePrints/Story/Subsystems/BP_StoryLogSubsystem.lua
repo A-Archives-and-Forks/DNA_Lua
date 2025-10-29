@@ -47,18 +47,18 @@ function M:AddTracebackLog(StoryLog, Level, LineLimit)
     Traceback = NativeTraceback
   end
   StoryLog:AddSeparator()
-  StoryLog:AddTitleLine("\232\176\131\231\148\168\230\160\136")
+  StoryLog:AddTitleLine("调用栈")
   StoryLog:AddTextLine(Traceback)
 end
 
 function M:AddPlatformLog(StoryLog)
   local PlatformName = UE4.UGameplayStatics.GetPlatformName()
   if UE4.URuntimeCommonFunctionLibrary.IsPlayInEditor(GWorld.GameInstance) then
-    PlatformName = "\231\188\150\232\190\145\229\153\168"
+    PlatformName = "编辑器"
   end
   StoryLog:AddSeparator()
-  StoryLog:AddTitleLine("\229\185\179\229\143\176\228\191\161\230\129\175")
-  StoryLog:AddKeyLine("\229\185\179\229\143\176", PlatformName)
+  StoryLog:AddTitleLine("平台信息")
+  StoryLog:AddKeyLine("平台", PlatformName)
 end
 
 function M:AddSubregionLog(StoryLog)
@@ -67,7 +67,7 @@ function M:AddSubregionLog(StoryLog)
     return
   end
   local SubregionId = Avatar:GetCurrentRegionId()
-  local SubregionName = "\230\151\160\230\149\136\231\154\132\229\173\144\229\140\186\229\159\159\229\145\189\229\144\141"
+  local SubregionName = "无效的子区域命名"
   local SubregionData = DataMgr.SubRegion[SubregionId]
   if SubregionData then
     local TextData = DataMgr.TextMap[SubregionData.SubRegionName]
@@ -76,9 +76,9 @@ function M:AddSubregionLog(StoryLog)
     end
   end
   StoryLog:AddSeparator()
-  StoryLog:AddTitleLine("\229\140\186\229\159\159\228\191\161\230\129\175")
-  StoryLog:AddKeyLine("\229\173\144\229\140\186\229\159\159 ID", SubregionId)
-  StoryLog:AddKeyLine("\229\173\144\229\140\186\229\159\159\229\144\141\231\167\176", SubregionName)
+  StoryLog:AddTitleLine("区域信息")
+  StoryLog:AddKeyLine("子区域 ID", SubregionId)
+  StoryLog:AddKeyLine("子区域名称", SubregionName)
 end
 
 function M:AddWorkingTalkTaskLog(StoryLog)
@@ -91,7 +91,7 @@ function M:AddWorkingTalkTaskLog(StoryLog)
     return
   end
   StoryLog:AddSeparator()
-  StoryLog:AddTitleLine("\229\189\147\229\137\141\232\191\144\232\161\140\228\184\173\231\154\132\229\175\185\232\175\157\228\187\187\229\138\161\228\191\161\230\129\175")
+  StoryLog:AddTitleLine("当前运行中的对话任务信息")
   for _, Log in pairs(Logs) do
     StoryLog:AddMapLine(Log)
   end

@@ -665,8 +665,8 @@ function M:FillListView(bfresh)
       self.TileView_Select_Role:ClearListItems()
       EditModel:InitEditData(self)
       self:InitEditData()
-      DebugPrint("Item\229\164\177\230\149\136\239\188\140\229\176\157\232\175\149\233\135\141\230\150\176\229\136\155\229\187\186", index)
-      UKismetSystemLibrary.PrintString(nil, index .. "Item\229\164\177\230\149\136\239\188\140\229\176\157\232\175\149\233\135\141\230\150\176\229\136\155\229\187\186", true, false, FLinearColor(1, 0, 0, 1), 2)
+      DebugPrint("Item失效，尝试重新创建", index)
+      UKismetSystemLibrary.PrintString(nil, index .. "Item失效，尝试重新创建", true, false, FLinearColor(1, 0, 0, 1), 2)
       self:FreshAgain()
       return
     end

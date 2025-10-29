@@ -7,13 +7,13 @@ function M:EnterTrigger()
   end
   local Condition = ConditionUtils.CheckCondition(Avatar, DataMgr.RegionOnline[self.SubRegionId].OnlineCondition)
   if false == Condition then
-    DebugPrint("Condition\228\184\141\230\187\161\232\182\179")
+    DebugPrint("Condition不满足")
     self.bIsSuccess = false
     return
   end
   local CloseCondition = ConditionUtils.CheckCondition(Avatar, DataMgr.RegionOnline[self.SubRegionId].OfflineCondition)
   if CloseCondition and DataMgr.RegionOnline[self.SubRegionId].OfflineCondition then
-    DebugPrint("CloseCondition\230\187\161\232\182\179")
+    DebugPrint("CloseCondition满足")
     self.bIsSuccess = false
     return
   end
@@ -72,7 +72,7 @@ function M:ExitTrigger()
     return
   end
   if self.bIsSuccess == false then
-    DebugPrint("\230\178\161\230\156\137\232\167\166\229\143\145\229\140\186\229\159\159\232\129\148\230\156\186", self.bIsSuccess, self:GetName())
+    DebugPrint("没有触发区域联机", self.bIsSuccess, self:GetName())
     return
   end
   if self.bByEvent then

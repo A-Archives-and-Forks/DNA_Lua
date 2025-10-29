@@ -326,12 +326,12 @@ local CountPad = 0.05
 
 function UIUtils.GetListViewContentMaxCount(ListView, ItemUIs, bDontChangeScrollbar, bDontSetEmptyGridItemCount)
   if not ListView:IsVisible() then
-    Utils.Traceback(WarningTag, LXYTag .. "UIUtils.GetListViewContentMaxCount\239\188\154ListView\229\191\133\233\161\187\230\152\175\229\143\175\232\167\129\231\154\132")
+    Utils.Traceback(WarningTag, LXYTag .. "UIUtils.GetListViewContentMaxCount：ListView必须是可见的")
     return 0
   end
   ItemUIs = ItemUIs or ListView:GetDisplayedEntryWidgets()
   if 0 == ItemUIs:Length() then
-    Utils.Traceback(WarningTag, LXYTag .. "UIUtils.GetListViewContentMaxCount\239\188\154ListView\229\191\133\233\161\187\229\133\136\231\148\159\230\136\144\228\184\128\228\184\170ItemUI\230\137\141\232\131\189\229\135\134\231\161\174\232\174\161\231\174\151\228\184\170\230\149\176")
+    Utils.Traceback(WarningTag, LXYTag .. "UIUtils.GetListViewContentMaxCount：ListView必须先生成一个ItemUI才能准确计算个数")
     return 0
   end
   local UIManager = GWorld.GameInstance:GetGameUIManager()
@@ -370,7 +370,7 @@ function UIUtils.GetListViewContentMaxCount(ListView, ItemUIs, bDontChangeScroll
     local EmptyItemNum = not bDontSetEmptyGridItemCount and math.max(0, Count - CurItemCount) or 0
     ListView:SetEmptyGridItemCount(EmptyItemNum)
   else
-    DebugPrint(ErrorTag, "GetListViewContentMaxCount: \229\189\147\229\137\141\229\136\151\232\161\168\230\178\161\230\156\137\229\161\171\229\133\133\232\191\135Item, \232\175\183\230\137\139\229\138\168\232\176\131\231\148\168\229\136\151\232\161\168\231\154\132SetEmptyGridItemCount\230\157\165\232\174\190\231\189\174\231\169\186\230\128\129\230\160\188\229\173\144\230\149\176")
+    DebugPrint(ErrorTag, "GetListViewContentMaxCount: 当前列表没有填充过Item, 请手动调用列表的SetEmptyGridItemCount来设置空态格子数")
   end
   DebugPrint("ListViewCount", RawCount, Count)
   return Count
@@ -432,7 +432,7 @@ function UIUtils.GetTileViewContentMaxCount(TileView, Option, bDontChangeScrollb
     end
     TileView:SetEmptyGridItemCount(EmptyItemNum)
   else
-    DebugPrint(ErrorTag, "GetTileViewContentMaxCount: \229\189\147\229\137\141\229\136\151\232\161\168\230\178\161\230\156\137\229\161\171\229\133\133\232\191\135Item, \232\175\183\230\137\139\229\138\168\232\176\131\231\148\168\229\136\151\232\161\168\231\154\132SetEmptyGridItemCount\230\157\165\232\174\190\231\189\174\231\169\186\230\128\129\230\160\188\229\173\144\230\149\176")
+    DebugPrint(ErrorTag, "GetTileViewContentMaxCount: 当前列表没有填充过Item, 请手动调用列表的SetEmptyGridItemCount来设置空态格子数")
   end
   if not Option then
     return XCount * YCount
@@ -443,7 +443,7 @@ function UIUtils.GetTileViewContentMaxCount(TileView, Option, bDontChangeScrollb
   elseif "XY" == Option then
     return XCount, YCount
   end
-  assert(false, "UIUtils.GetTileViewContentMaxCount: Option\229\143\130\230\149\176\233\148\153\232\175\175")
+  assert(false, "UIUtils.GetTileViewContentMaxCount: Option参数错误")
 end
 
 function UIUtils.PlayListViewFramingInAnimation(UIState, ListView, Params)
@@ -1371,7 +1371,7 @@ function UIUtils.FinalOpenSystem(SystemUIName, IsEscMenu, NeedAnimation, ...)
     Flow.OnBegin:Add(Flow, function()
       local ExistUIObj = UIManager:GetUI(SystemUIName)
       if IsValid(ExistUIObj) then
-        DebugPrint("JLY \231\179\187\231\187\159ui\233\135\141\229\164\141\230\137\147\229\188\128\239\188\140\232\175\183\230\163\128\230\159\165\233\128\187\232\190\145, Name is ", SystemUIName)
+        DebugPrint("JLY 系统ui重复打开，请检查逻辑, Name is ", SystemUIName)
         FlowManager:RemoveFlow(Flow)
       else
         UIUtils.FinalOpenSystemInternal(SystemUIName, IsEscMenu, NeedAnimation, table.unpack(Params))
@@ -1644,7 +1644,7 @@ function UIUtils.GenRougeTreasureDesc(TreasureId)
     local DescStr = GText(ItemData.Desc)
     local ModData = DataMgr.Mod[ItemData.TreasureMod]
     if not ItemData.ServerBuild and not ItemData.ClientBuild and not ModData then
-      local String = tostring(TreasureId) .. "\229\143\183\229\174\157\231\137\169\228\184\141\230\152\175ServerBuild\228\184\142ClientBuild\239\188\140\228\189\134Mod\230\149\176\230\141\174\228\184\186\231\169\186\232\175\183\231\173\150\229\136\146\230\163\128\230\159\165"
+      local String = tostring(TreasureId) .. "号宝物不是ServerBuild与ClientBuild，但Mod数据为空请策划检查"
       UE.ARougeLikeManager.ShowRougeLikeError(String)
     end
     if ModData then
@@ -1662,7 +1662,7 @@ function UIUtils.GenRougeTreasureDesc(TreasureId)
     DescStr = UIUtils.GenRougeServerDesc(DescStr, ItemData, 0)
     return DescStr
   else
-    local String = tostring(TreasureId) .. "\229\143\183\229\174\157\231\137\169\230\149\176\230\141\174\228\184\186\231\169\186\232\175\183\231\173\150\229\136\146\230\163\128\230\159\165"
+    local String = tostring(TreasureId) .. "号宝物数据为空请策划检查"
     UE.ARougeLikeManager.ShowRougeLikeError(String)
   end
 end
@@ -1846,7 +1846,7 @@ function UIUtils.SwitchGuideHead(RawName, MID)
   if UIFunctionLibClass then
     return UIFunctionLibClass.SwitchGuideHead(RawName, MID)
   else
-    DebugPrint("Error: UIFunctionLibClass\228\184\141\229\173\152\229\156\168\239\188\140\232\183\175\229\190\132", Path)
+    DebugPrint("Error: UIFunctionLibClass不存在，路径", Path)
     return false
   end
 end
@@ -2026,16 +2026,16 @@ end
 
 function UIUtils.NumberToChinese(Num)
   local ChineseNums = {
-    "\233\155\182",
-    "\228\184\128",
-    "\228\186\140",
-    "\228\184\137",
-    "\229\155\155",
-    "\228\186\148",
-    "\229\133\173",
-    "\228\184\131",
-    "\229\133\171",
-    "\228\185\157"
+    "零",
+    "一",
+    "二",
+    "三",
+    "四",
+    "五",
+    "六",
+    "七",
+    "八",
+    "九"
   }
   return ChineseNums[Num + 1]
 end
@@ -2153,10 +2153,10 @@ function UIUtils.GetIconListByActionName(ActionName)
   if ActionData then
     IconList = ActionData.GamepadIcon[GamepadLayout]
   else
-    print(_G.ErrorTag, ActionName, "\239\188\154\230\173\164Action\230\178\161\230\156\137\229\175\185\229\186\148\231\154\132\233\148\174\228\189\141\239\188\140\232\175\183\230\163\128\230\159\165\230\139\188\229\134\153\230\136\150\230\163\128\230\159\165GamepadSet\232\161\168\233\135\140\230\152\175\229\144\166\230\156\137\229\161\171\229\134\153")
+    print(_G.ErrorTag, ActionName, "：此Action没有对应的键位，请检查拼写或检查GamepadSet表里是否有填写")
   end
   if not IconList then
-    print(_G.ErrorTag, ActionName, "\239\188\154\231\155\174\229\137\141\231\154\132\233\162\132\232\174\190\230\150\185\230\161\136\230\178\161\230\156\137\229\175\185\229\186\148\231\154\132\233\148\174\228\189\141\239\188\140\232\175\183\230\163\128\230\159\165GamepadSet\232\161\168\233\135\140\230\152\175\229\144\166\230\156\137\229\161\171\229\134\153")
+    print(_G.ErrorTag, ActionName, "：目前的预设方案没有对应的键位，请检查GamepadSet表里是否有填写")
   else
     return IconList
   end
@@ -2170,7 +2170,7 @@ function UIUtils.GetIconListByActionNameAndSetNum(ActionName, Num)
 end
 
 function UIUtils.GetTextFont(TextWidget)
-  assert(TextWidget:IsA(UTextLayoutWidget), "UIUtils.GetTextFont, \233\148\153\232\175\175\239\188\140\229\143\130\230\149\176TextWidget\229\191\133\233\161\187\230\152\175\230\150\135\230\156\172\230\142\167\228\187\182")
+  assert(TextWidget:IsA(UTextLayoutWidget), "UIUtils.GetTextFont, 错误，参数TextWidget必须是文本控件")
   local Font
   if TextWidget:IsA(URichTextBlock) then
     if TextWidget.bOverrideDefaultStyle then
@@ -2186,7 +2186,7 @@ function UIUtils.GetTextFont(TextWidget)
     Font = TextWidget.WidgetStyle.Font
   end
   if not Font then
-    GWorld.logger.error("UIUtils.GetTextFont \229\143\130\230\149\176TextWidget\230\152\175\228\184\141\230\148\175\230\140\129\231\154\132\230\150\135\230\156\172\230\150\135\230\156\172\230\142\167\228\187\182\239\188\140\229\133\182\228\187\150\230\150\135\230\156\172\230\142\167\228\187\182\231\177\187\229\158\139\230\156\137\233\156\128\232\166\129\231\154\132\229\134\141\232\128\131\232\153\145\230\137\169\229\177\149")
+    GWorld.logger.error("UIUtils.GetTextFont 参数TextWidget是不支持的文本文本控件，其他文本控件类型有需要的再考虑扩展")
   end
   return Font
 end
@@ -2230,7 +2230,7 @@ function UIUtils.ShowMainUIFobidToast(MainUIConfig)
 end
 
 function UIUtils.CalcOnelineTextDesireHeight(TextWidget)
-  assert(TextWidget:IsA(UTextLayoutWidget), "UIUtils.CalcOnelineTextDesireHeight, \233\148\153\232\175\175\239\188\140\229\143\130\230\149\176TextWidget\229\191\133\233\161\187\230\152\175\230\150\135\230\156\172\230\142\167\228\187\182")
+  assert(TextWidget:IsA(UTextLayoutWidget), "UIUtils.CalcOnelineTextDesireHeight, 错误，参数TextWidget必须是文本控件")
   local Font = UIUtils.GetTextFont(TextWidget)
   if not Font then
     return
@@ -2241,14 +2241,14 @@ function UIUtils.CalcOnelineTextDesireHeight(TextWidget)
 end
 
 function UIUtils.SetTextJustificationByLineCount(TextWidget, bForceCenter, ExpectLine, Justifications)
-  assert(TextWidget:IsA(UTextLayoutWidget), "UIUtils.LayoutTextByLineRule, \233\148\153\232\175\175\239\188\140\229\143\130\230\149\176TextWidget\229\191\133\233\161\187\230\152\175\230\150\135\230\156\172\230\142\167\228\187\182")
+  assert(TextWidget:IsA(UTextLayoutWidget), "UIUtils.LayoutTextByLineRule, 错误，参数TextWidget必须是文本控件")
   local DesireHeight = TextWidget:GetDesiredSize().Y
   if 0 == DesireHeight then
     TextWidget:ForceLayoutPrepass()
     DesireHeight = TextWidget:GetDesiredSize().Y
   end
   if 0 == DesireHeight then
-    GWorld.logger.error("UIUtils.LayoutTextByLineRule \229\143\130\230\149\176TextWidget\230\178\161\230\156\137\231\187\152\229\136\182\229\174\140\230\136\150\232\128\133\232\135\170\232\186\171\233\171\152\229\186\166\229\176\177\230\152\1750\239\188\140\230\151\160\230\179\149\229\136\164\230\150\173\228\187\128\228\185\136\230\151\182\229\128\153\232\175\165\230\141\162\232\161\140")
+    GWorld.logger.error("UIUtils.LayoutTextByLineRule 参数TextWidget没有绘制完或者自身高度就是0，无法判断什么时候该换行")
     return
   end
   ExpectLine = ExpectLine or 1
@@ -2411,7 +2411,7 @@ function UIUtils.OpenPopupToArmory(OtherPopupParms)
           self
         }
       else
-        ScreenPrint("\230\178\161\230\156\137\230\137\190\229\136\176\229\134\155\230\162\176\229\186\147\231\149\140\233\157\162\239\188\140\229\133\179\233\151\173\231\149\140\233\157\162\229\144\142\228\184\141\228\188\154\230\137\147\229\188\128\229\188\185\231\170\151\227\128\130")
+        ScreenPrint("没有找到军械库界面，关闭界面后不会打开弹窗。")
       end
     end
   end

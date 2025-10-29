@@ -62,12 +62,12 @@ function Component:LoadNpcAsync(NpcId, Callback)
     
     local GameState = UE4.UGameplayStatics.GetGameState(GWorld.GameInstance)
     if not GameState then
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\130\128\231\186\166\231\179\187\231\187\159\233\148\153\232\175\175", "\232\142\183\229\143\150 NPC \229\164\177\232\180\165\239\188\140game state \228\184\186\231\169\186\227\128\130")
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "邀约系统错误", "获取 NPC 失败，game state 为空。")
       OnFinal(nil)
       return
     end
     if not GameState.GetNpcInfoAsync then
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\130\128\231\186\166\231\179\187\231\187\159\233\148\153\232\175\175", string.format("\232\142\183\229\143\150 NPC \229\164\177\232\180\165\239\188\140game state\239\188\154%s\230\156\170\229\174\158\231\142\176 GetNpcInfoAsync \230\150\185\230\179\149\227\128\130", GameState:GetClass().Name))
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "邀约系统错误", string.format("获取 NPC 失败，game state：%s未实现 GetNpcInfoAsync 方法。", GameState:GetClass().Name))
       OnFinal(nil)
       return
     end

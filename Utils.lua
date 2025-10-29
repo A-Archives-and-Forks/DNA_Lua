@@ -146,7 +146,7 @@ end
 
 function Utils.UIManager(context)
   if not Utils.IsValid(Utils._UIManager) then
-    DebugPrint(WarningTag, "Utils.UIManager \233\135\141\230\150\176\232\142\183\229\190\151UIManager")
+    DebugPrint(WarningTag, "Utils.UIManager 重新获得UIManager")
     context = context or GWorld.GameInstance
     local GameInstance = UE4.UGameplayStatics.GetGameInstance(context)
     Utils._UIManager = GameInstance:GetGameUIManager()
@@ -199,7 +199,7 @@ local function TestCrypt(...)
   local p = crypt.rc4_crypt(rc4_1, p)
   local p = crypt.rc4_crypt(rc4_1, p)
   if p ~= text then
-    Utils.ScreenPrint("\229\138\160\229\175\134\231\174\151\230\179\149\233\170\140\232\175\129\229\164\177\232\180\165")
+    Utils.ScreenPrint("加密算法验证失败")
   end
 end
 

@@ -18,7 +18,7 @@ end
 
 function M:GetGroupIsActive(GroupId, Count)
   local GroupData = DataMgr.BlessingGroup[GroupId]
-  assert(GroupData, "\229\165\151\232\163\133\228\191\161\230\129\175\230\156\170\230\137\190\229\136\176\239\188\154" .. GroupId)
+  assert(GroupData, "套装信息未找到：" .. GroupId)
   local IsActive = false
   for _, v in pairs(GroupData.ActivateNeed) do
     if Count == v + GWorld.RougeLikeManager.BlessingGroupDiscount then
@@ -48,7 +48,7 @@ function M:ShowRougeLikeError(Text)
   end
   local Avatar = GWorld:GetAvatar()
   if Avatar then
-    Avatar:SendToFeishuForRougeLike(Text, "\232\130\137\233\184\189\230\138\165\233\148\153")
+    Avatar:SendToFeishuForRougeLike(Text, "肉鸽报错")
     return
   end
 end

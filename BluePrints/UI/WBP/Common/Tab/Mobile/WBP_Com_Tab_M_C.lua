@@ -462,7 +462,7 @@ function M:SetBackBtnAttrColor(AttrName, bAsyncLoadIcon)
     if bAsyncLoadIcon then
       self:LoadTextureAsync(IconPath, function(Texture)
         if not Texture then
-          DebugPrint(ErrorTag, string.format("SetBackBtnAttrColor \231\148\168\233\148\153\229\155\190\230\160\135\232\183\175\229\190\132\228\186\134\239\188\129\239\188\129\239\188\129\233\148\153\232\175\175\231\154\132\232\183\175\229\190\132\230\152\175\239\188\154%s", IconPath))
+          DebugPrint(ErrorTag, string.format("SetBackBtnAttrColor 用错图标路径了！！！错误的路径是：%s", IconPath))
           return
         end
         if Texture then

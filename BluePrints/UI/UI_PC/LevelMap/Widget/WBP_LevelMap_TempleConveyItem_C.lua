@@ -14,7 +14,7 @@ function M:ShowTempleInfo(TempleInfo)
   self.Text_TempleConveyDesc:SetColorAndOpacity(self.TempleConveyDesc_Normal)
   print(_G.LogTag, "LXZ ShowTempleInfo", TempleInfo.PassInfo)
   if TempleInfo.PassInfo == "NoConfigReward" then
-    DebugPrint("\231\165\158\229\186\153\230\156\170\233\133\141\231\189\174\229\165\150\229\138\177")
+    DebugPrint("神庙未配置奖励")
   elseif TempleInfo.PassInfo == "Lock" or TempleInfo.PassInfo == "NoCompleteCondition" then
     self.WS_Item:SetActiveWidgetIndex(1)
     self.WS_Sign:SetActiveWidgetIndex(0)

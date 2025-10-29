@@ -103,7 +103,7 @@ function M:SetTaskIconAndName(TaskIconPath, TextTitle, TaskContent)
   end
   self.ReceiveTaskContent = TaskContent
   local CurContent = TaskContent
-  if string.find(GText(CurContent), "%\239\188\136%%d/%%d%\239\188\137") then
+  if string.find(GText(CurContent), "%（%%d/%%d%）") then
     if not self.CurProgress then
       self.CurProgress = GameState(self).CurProgressCache or 0
     end
@@ -167,7 +167,7 @@ end
 function M:OnDungeonTaskProgress(CurProgress, TotalProgress)
   self.CurProgress = CurProgress
   self.TotalProgress = TotalProgress
-  if self.ReceiveTaskContent ~= nil and string.find(GText(self.ReceiveTaskContent), "%\239\188\136%%d/%%d%\239\188\137") then
+  if self.ReceiveTaskContent ~= nil and string.find(GText(self.ReceiveTaskContent), "%（%%d/%%d%）") then
     local CurStr = string.format(GText(self.ReceiveTaskContent), self.CurProgress, self.TotalProgress)
     self.Text_TaskContent:SetText(CurStr)
   end
@@ -213,7 +213,7 @@ function M:SetCurTaskBarInfo(QuestChainId)
     end
   end
   if not CurTaskDescribe or not DataMgr.TextMap[CurTaskDescribe] then
-    ScreenPrint(string.format("TaskBar: \228\187\187\229\138\161\230\160\143\228\187\187\229\138\161\230\143\143\232\191\176\228\184\141\229\173\152\229\156\168TextMap: %s", CurTaskDescribe))
+    ScreenPrint(string.format("TaskBar: 任务栏任务描述不存在TextMap: %s", CurTaskDescribe))
     CurTaskDescribe = GText("UI_QUEST_UNKNOWN")
   end
   local RetTaskDescribe = GText(CurTaskDescribe)

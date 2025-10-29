@@ -7,7 +7,7 @@ local WBP_CoDefenceProgress_C = Class({
 function WBP_CoDefenceProgress_C:OnLoaded(...)
   WBP_CoDefenceProgress_C.Super.OnLoaded(self, ...)
   local BattleMain = UIManager(self):GetUIObj("BattleMain")
-  assert(BattleMain, "WBP_Battle_ProcessEscape_C \229\138\160\232\189\189\230\151\182\230\139\191\228\184\141\229\136\176BattleMain\239\188\129")
+  assert(BattleMain, "WBP_Battle_ProcessEscape_C 加载时拿不到BattleMain！")
   BattleMain.Pos_ProcessSew:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
   BattleMain.Pos_ProcessSew:AddChild(self)
   self.IsInit = true
@@ -28,13 +28,13 @@ function WBP_CoDefenceProgress_C:InitDataInfo()
   if not IsSuccess then
     self.TotalPointNum = 3
     self.WaterLevelTextmap = {
-      [1] = "\230\176\180\228\189\141\228\184\138\230\182\168\228\184\173",
-      [2] = "\229\130\168\230\176\180\230\177\160\229\183\178\230\187\161",
-      [3] = "\230\142\146\230\176\180\232\191\155\231\168\139\229\143\151\233\152\187\239\188\140\232\175\183\229\188\128\229\144\175\230\176\180\233\152\128",
-      [4] = "\230\176\180\228\189\141\233\153\141\228\189\142\228\184\173",
-      [5] = "\229\130\168\230\176\180\230\177\160\229\183\178\230\142\146\231\169\186",
-      [6] = "%ss\229\144\142\230\142\146\230\176\180\230\156\186\229\133\179\230\175\129\229\157\143",
-      [7] = "\230\176\180\233\152\128\229\141\179\229\176\134\229\188\128\229\144\175"
+      [1] = "水位上涨中",
+      [2] = "储水池已满",
+      [3] = "排水进程受阻，请开启水阀",
+      [4] = "水位降低中",
+      [5] = "储水池已排空",
+      [6] = "%ss后排水机关毁坏",
+      [7] = "水阀即将开启"
     }
     return
   end

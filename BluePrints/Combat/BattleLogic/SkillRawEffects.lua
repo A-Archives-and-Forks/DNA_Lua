@@ -13,7 +13,7 @@ function Component:RealExecuteOneEffect_Lua(EffectStruct, Index)
   })
   local FunctionName = Effect.Function
   if not self["Effect_" .. FunctionName] then
-    self:ShowBattleError("\230\138\128\232\131\189\230\149\136\230\158\156\231\188\150\229\143\183: " .. EffectId .. ", \230\137\167\232\161\140\230\149\136\230\158\156\231\188\150\229\143\183: " .. Index .. ", \230\150\185\230\179\149: " .. FunctionName .. ", \229\156\168 SkillRawEffects.lua \228\184\173\228\184\141\229\173\152\229\156\168\227\128\130")
+    self:ShowBattleError("技能效果编号: " .. EffectId .. ", 执行效果编号: " .. Index .. ", 方法: " .. FunctionName .. ", 在 SkillRawEffects.lua 中不存在。")
     return
   end
   local EffectDataParam = {
@@ -217,7 +217,7 @@ function Component:Effect_GatherTargets(EffectStruct, ParamentsTable)
   if 0 ~= EffectStruct.CreatureInfo.CreatureEid then
     local SkillCreatureConfig = DataMgr.SkillCreature[EffectStruct.CreatureInfo.CreatureId]
     if Source:IsPlayer() and SkillCreatureConfig.ClientOwner and IsDedicatedServer(self) then
-      self:ShowBattleError("\229\189\147\229\137\141\228\184\141\230\148\175\230\140\129\231\148\177\231\142\169\229\174\182\231\155\180\230\142\165\230\137\167\232\161\140\231\154\132\230\138\128\232\131\189\230\149\136\230\158\156\231\188\150\229\143\183: " .. EffectStruct.EffectId .. ", \230\137\167\232\161\140\230\149\136\230\158\156GatherTargets\239\188\140\230\138\128\232\131\189\229\136\155\231\148\159\231\137\169id\228\184\186" .. EffectStruct.CreatureInfo.CreatureId .. "ClientOwner\228\184\186true\231\154\132\230\138\128\232\131\189\230\149\136\230\158\156")
+      self:ShowBattleError("当前不支持由玩家直接执行的技能效果编号: " .. EffectStruct.EffectId .. ", 执行效果GatherTargets，技能创生物id为" .. EffectStruct.CreatureInfo.CreatureId .. "ClientOwner为true的技能效果")
       return
     end
     for _, Eid in ipairs(HitTargets) do
@@ -544,8 +544,8 @@ function Component:Effect_ChargeSkill(EffectStruct, ParamentsTable)
   local SkillId = ParamentsTable.SkillId
   local ChargeNum = ParamentsTable.ChargeNum
   local Skill = Source:GetSkill(SkillId)
-  assert(Source, "Source \229\191\133\233\161\187\229\173\152\229\156\168\227\128\130")
-  assert(Skill, "Skill \229\191\133\233\161\187\229\173\152\229\156\168\227\128\130")
+  assert(Source, "Source 必须存在。")
+  assert(Skill, "Skill 必须存在。")
   Skill:ChargeUseTime(ChargeNum)
 end
 
@@ -822,7 +822,7 @@ function Component:Effect_PlayUIAnim(EffectStruct, ParamentsTable)
       if UI then
         EMUIAnimationSubsystem:EMPlayAnimation(UI, UI[ParamentsTable.AnimName])
       else
-        DebugPrint("SystemUI\232\161\168\230\178\161\230\137\190\229\136\176" .. tostring(ParamentsTable.UIName))
+        DebugPrint("SystemUI表没找到" .. tostring(ParamentsTable.UIName))
       end
     end
   end

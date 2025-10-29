@@ -9,16 +9,16 @@ end
 function M:SetCharacterImg()
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("Error: WBP_Reasoning_Ani_C SetCharacterImg \230\137\190\228\184\141\229\136\176Avatar")
+    DebugPrint("Error: WBP_Reasoning_Ani_C SetCharacterImg 找不到Avatar")
   end
   local RegionId = Avatar:GetCurrentRegionId()
   if not RegionId or DataMgr.SubRegion[RegionId] == nil then
-    DebugPrint("Error: WBP_Reasoning_Ani_C SetCharacterImg \230\137\190\228\184\141\229\136\176\229\140\186\229\159\159\230\136\150\229\140\186\229\159\159\229\175\185\229\186\148Player\230\149\176\230\141\174 RegionId: ", RegionId)
+    DebugPrint("Error: WBP_Reasoning_Ani_C SetCharacterImg 找不到区域或区域对应Player数据 RegionId: ", RegionId)
     return
   end
   local PlayerIdentity = DataMgr.SubRegion[RegionId].SwitchPlayer
   if not PlayerIdentity then
-    DebugPrint("Error: WBP_Reasoning_Ani_C SetCharacterImg \229\189\147\229\137\141\229\140\186\229\159\159\230\178\161\230\156\137\229\143\175\229\136\135\230\141\162\232\167\146\232\137\178")
+    DebugPrint("Error: WBP_Reasoning_Ani_C SetCharacterImg 当前区域没有可切换角色")
     return
   end
   if "Player" == PlayerIdentity then

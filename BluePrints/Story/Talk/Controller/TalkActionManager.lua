@@ -145,25 +145,25 @@ function TalkActionManager_C:LookAtReady(TalkTaskData, TalkTask, LookAtDescripti
   local LookId, LookedInfo = LookAtDescription.LookId, LookAtDescription.LookedInfo
   if not LookId then
     local Message = string.format("Look at ready failed: LookId not found, LookAtDescription: %s, TalkNodeId: %s", LookAtDescription, TalkTaskData.TalkNodeId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local TalkContext = TalkTaskData.TalkContext
   if not IsValid(TalkContext) then
     local Message = string.format("Look at ready failed: TalkContext not found, ActorId: %s, TalkNodeId: %s", LookId, TalkTaskData.TalkNodeId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local LookActorData = TalkContext:GetTalkActorData(TalkTask, LookId)
   if not LookActorData then
     local Message = string.format("Look at ready failed: LookActorData not found, ActorId: %s, TalkNodeId: %s", LookId, TalkTaskData.TalkNodeId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local LookActor = LookActorData.TalkActor
   if not IsValid(LookActor) then
     local Message = string.format("Look at ready failed: LookActor not found, ActorId: %s, TalkNodeId: %s", LookId, TalkTaskData.TalkNodeId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   if not LookActor then
@@ -179,13 +179,13 @@ function TalkActionManager_C:LookAtReady(TalkTaskData, TalkTask, LookAtDescripti
     local LookedActorData = TalkContext:GetTalkActorData(TalkTask, LookedInfo)
     if not LookedActorData then
       local Message = string.format("Look at ready failed: LookedActorData not found, ActorId: %s, TalkNodeId: %s", LookedInfo, TalkTaskData.TalkNodeId)
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
       return
     end
     LookedActor = LookedActorData.TalkActor
     if not IsValid(LookedActor) then
       local Message = string.format("Look at ready failed: LookedActor not found, ActorId: %s, TalkNodeId: %s", LookedInfo, TalkTaskData.TalkNodeId)
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
       return
     end
   elseif "string" == type(LookedInfo) then
@@ -193,7 +193,7 @@ function TalkActionManager_C:LookAtReady(TalkTaskData, TalkTask, LookAtDescripti
     LookedActor = GameState:GetTargetPoint(LookedInfo)
     if not IsValid(LookedActor) then
       local Message = string.format("Look at ready failed: LookedActor not found, ActorId: %s, TalkNodeId: %s", LookedInfo, TalkTaskData.TalkNodeId)
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
       return
     end
   end
@@ -246,7 +246,7 @@ function TalkActionManager_C:SetLookAtAngles(TalkActor)
   local AnimInstance = TalkActor.Mesh:GetAnimInstance()
   if IsValid(AnimInstance) == false then
     local Message = string.format("Set look at angles failed, AnimInstance is invalid, ActorName: %s", TalkActor:GetName())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   AnimInstance.LookAtMaxX = 20
@@ -348,19 +348,19 @@ end
 function TalkActionManager_C:RotateToDegree(TalkContext, TalkTask, SrcActorId, RotDegree, MontageName, CallBack)
   if not IsValid(TalkContext) then
     local Message = string.format("Rotate to degree failed: TalkContext is invalid, SrcActorId: %s, RotDegree: %s", SrcActorId, RotDegree)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local SrcActorData = TalkContext:GetTalkActorData(TalkTask, SrcActorId)
   if not SrcActorData then
     local Message = string.format("Rotate to degree failed: SrcActorData is nil, SrcActorId: %s, RotDegree: %s", SrcActorId, RotDegree)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local SrcActor = SrcActorData.TalkActor
   if not IsValid(SrcActor) then
     local Message = string.format("Rotate to degree failed: SrcActor is nil, SrcActorId: %s, RotDegree: %s", SrcActorId, RotDegree)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   self:RotateOffset(SrcActor, RotDegree, MontageName, CallBack, TalkTask, TalkTask.TalkTaskData)
@@ -371,31 +371,31 @@ end
 function TalkActionManager_C:RotateToActorById(TalkContext, TalkTask, SrcActorId, DstActorId, MontageName, CallBack)
   if not IsValid(TalkContext) then
     local Message = string.format("Rotate to actor failed: TalkContext is invalid, SrcActorId: %s, DstActorId: %s", SrcActorId, DstActorId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local SrcActorData = TalkContext:GetTalkActorData(TalkTask, SrcActorId)
   if not SrcActorData then
     local Message = string.format("Rotate to actor failed: SrcActorData is nil, SrcActorId: %s, DstActorId: %s", SrcActorId, DstActorId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local SrcActor = SrcActorData.TalkActor
   if not IsValid(SrcActor) then
     local Message = string.format("Rotate to actor failed: SrcActor is nil, SrcActorId: %s, DstActorId: %s", SrcActorId, DstActorId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local DstActorData = TalkContext:GetTalkActorData(TalkTask, DstActorId)
   if not DstActorData then
     local Message = string.format("Rotate to actor failed: DstActorData is nil, SrcActorId: %s, DstActorId: %s", SrcActorId, DstActorId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local DstActor = DstActorData.TalkActor
   if not IsValid(DstActor) then
     local Message = string.format("Rotate to actor failed: DstActor is nil, SrcActorId: %s, DstActorId: %s", SrcActorId, DstActorId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   return self:RotateToActor(TalkTask, SrcActor, DstActor, MontageName, CallBack)
@@ -404,12 +404,12 @@ end
 function TalkActionManager_C:RotateToActor(TalkTask, SrcActor, DstActor, MontageName, CallBack)
   if IsValid(SrcActor) == false then
     local Message = "Rotate to actor failed: SrcActor is invalid"
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   if IsValid(DstActor) == false then
     local Message = "Rotate to actor failed: DstActor is invalid"
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local SrcActorLoc = SrcActor:K2_GetActorLocation()

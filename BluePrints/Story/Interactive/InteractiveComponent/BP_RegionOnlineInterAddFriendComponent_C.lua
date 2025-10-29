@@ -13,7 +13,7 @@ function BP_RegionOnlineInterAddFriendComponent_C:InitRegionInfo(Eid, ObjId)
 end
 
 function BP_RegionOnlineInterAddFriendComponent_C:SetInteractiveName(Name)
-  self.DisplayInteractiveName = "\230\183\187\229\138\160\229\165\189\229\143\139"
+  self.DisplayInteractiveName = "添加好友"
 end
 
 function BP_RegionOnlineInterAddFriendComponent_C:DisplayInteractiveBtn(PlayerActor)

@@ -4,7 +4,7 @@ function M:Start()
   local PlayerCharacter = UE4.UGameplayStatics.GetPlayerCharacter(GWorld.GameInstance, 0)
   if not IsValid(PlayerCharacter) then
     local Message = string.format("%s start failed, PlayerCharacter is invalid", self:GetName())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\128\137\230\158\170\232\138\130\231\130\185", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "选枪节点", Message)
     return
   end
   if PlayerCharacter.RangedWeapon then
@@ -15,7 +15,7 @@ function M:Start()
   self.CameraSequenceActor = self:GetWorld():SpawnActor(ALevelSequenceActor)
   if not IsValid(self.CameraSequenceActor) then
     local Message = string.format("%s start failed, CameraSequenceActor is invalid", self:GetName())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\128\137\230\158\170\232\138\130\231\130\185", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "选枪节点", Message)
     return
   end
   self.CameraSequenceActor.CameraSettings.bOverrideAspectRatioAxisConstraint = false

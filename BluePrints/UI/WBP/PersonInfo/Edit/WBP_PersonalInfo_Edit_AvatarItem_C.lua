@@ -74,7 +74,7 @@ function M:SetFocusCallback(func)
   if type(func) == "function" then
     self.FocusCallback = func
   else
-    ScreenPrint("\228\188\160\229\133\165\231\154\132\229\143\130\230\149\176\228\184\141\230\152\175\229\135\189\230\149\176")
+    ScreenPrint("传入的参数不是函数")
   end
 end
 
@@ -90,7 +90,7 @@ function M:SetFocusLostCallback(func)
   if type(func) == "function" then
     self.RemoveCallback = func
   else
-    ScreenPrint("\228\188\160\229\133\165\231\154\132\229\143\130\230\149\176\228\184\141\230\152\175\229\135\189\230\149\176")
+    ScreenPrint("传入的参数不是函数")
   end
 end
 

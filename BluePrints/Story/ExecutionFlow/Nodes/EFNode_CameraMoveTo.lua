@@ -13,13 +13,13 @@ function M:CreateNode(Flow, TalkTask, Params)
   local PlayerController = UGameplayStatics.GetPlayerController(GWorld.GameInstance, 0)
   if CurveName and nil == ECameraBlendFunc[CurveName] then
     local Message = string.format("CameraMoveTo create failed: invalid curve name: %s, DialogueId: %d", CurveName, Flow.DialogueId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local TalkContext = GWorld.GameInstance:GetTalkContext()
   if not IsValid(TalkContext) then
     local Message = string.format("CameraMoveTo create failed: TalkContext not found, DialogueId: %d", Flow.DialogueId)
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     return
   end
   local CameraMoveToNode = Flow:CreateNode(UEFNode_Delegate)
@@ -27,7 +27,7 @@ function M:CreateNode(Flow, TalkTask, Params)
   CameraMoveToNode.OnStart:Add(CameraMoveToNode, function(Node)
     if TalkTask.TalkTaskData.CameraType == "PlayerCamera" or TalkTask.TalkTaskData.CameraType == "FreeCamera" then
       local Message = string.format("CameraMoveTo create failed, camera type can't is %s, DialogueId: %s", TalkTask.TalkTaskData.CameraType, Flow.DialogueId)
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\232\191\144\232\161\140\230\151\182\229\135\186\233\148\153", Message)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话运行时出错", Message)
     else
       TalkContext.TalkCameraManager:_StartCameraBreathe_FinalCameraConfig(nil, TargetPosition, Duration, TalkTask.TalkTaskData.TalkStage, CurveName)
     end

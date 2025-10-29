@@ -52,13 +52,13 @@ function FStoryIterationGraph:GetOrCreateNode(NodeType, DialogueId)
   elseif "CheckOptionCondition" == NodeType then
     Node = FCheckOptionConditionNode:New(self.Dialogues, DialogueId, self)
   elseif "Start" == NodeType then
-    DebugPrint("FStoryIterationGraph@GetOrCreateNode: \228\184\141\232\131\189\229\136\155\229\187\186Start\232\138\130\231\130\185")
+    DebugPrint("FStoryIterationGraph@GetOrCreateNode: 不能创建Start节点")
     return
   elseif "End" == NodeType then
-    DebugPrint("FStoryIterationGraph@GetOrCreateNode: \228\184\141\232\131\189\229\136\155\229\187\186End\232\138\130\231\130\185")
+    DebugPrint("FStoryIterationGraph@GetOrCreateNode: 不能创建End节点")
     return
   else
-    DebugPrint("FStoryIterationGraph@GetOrCreateNode: NodeType\230\151\160\230\149\136", NodeType)
+    DebugPrint("FStoryIterationGraph@GetOrCreateNode: NodeType无效", NodeType)
     return
   end
   return Node
@@ -82,11 +82,11 @@ end
 
 function FStoryIterationGraph:OnNodeEnter(Node)
   if not Node then
-    DebugPrint("FStoryIterationGraph@OnNodeEnter: Node\230\151\160\230\149\136")
+    DebugPrint("FStoryIterationGraph@OnNodeEnter: Node无效")
     return
   end
   if self.CurrentNode == Node then
-    DebugPrint("FStoryIterationGraph@OnNodeEnter: \233\135\141\229\164\141\232\191\155\229\133\165\232\138\130\231\130\185")
+    DebugPrint("FStoryIterationGraph@OnNodeEnter: 重复进入节点")
     return
   end
   self.CurrentNode = Node
@@ -143,7 +143,7 @@ function FStoryIterationGraph:RecordOption(OptionData, bTalkOption)
         local AreaId = OptionInfo.RegionId
         local Avatar = GWorld:GetAvatar()
         if not Avatar then
-          DebugPrint("FStoryIterationGraph@RecordOption\230\151\182\239\188\140Avatar\228\184\141\229\173\152\229\156\168")
+          DebugPrint("FStoryIterationGraph@RecordOption时，Avatar不存在")
           return
         end
         local ImpressionInfo = Avatar:GetRegionImpression(AreaId)

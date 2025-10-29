@@ -19,9 +19,9 @@ function M:OnListItemObjectSet(Content)
   self.SetListItemCallBack = Content.SetListItemCallBack
   self.Parent = Content.Parent
   local BannerData = DataMgr.ShopBannerTab[self.BannerId]
-  assert(BannerData, "\230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\231\154\132Banner\233\161\181\228\191\161\230\129\175\239\188\154" .. self.BannerId)
+  assert(BannerData, "未找到对应的Banner页信息：" .. self.BannerId)
   local BannerIcon = LoadObject(BannerData.BannerIcon)
-  assert(BannerIcon, "\230\156\170\230\137\190\229\136\176Banner\233\161\181\229\175\185\229\186\148\231\154\132Icon:" .. self.BannerId)
+  assert(BannerIcon, "未找到Banner页对应的Icon:" .. self.BannerId)
   self.Text_Title:SetText(GText(BannerData.Text1))
   self.Image_ItemIcon:SetBrushResourceObject(BannerIcon)
   if BannerData.MarkText then

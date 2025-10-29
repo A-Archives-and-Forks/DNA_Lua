@@ -142,7 +142,7 @@ function M:InitBaseView()
   if EnableLog then
     self:AddTimer(1, function()
       local currentOffset = self.List_Title01:GetScrollOffset()
-      ScreenPrint("\228\189\141\231\189\174\230\138\165\230\151\182:currentOffset:" .. currentOffset .. "\229\144\142\230\156\128  " .. self.List_Title02:GetScrollOffset())
+      ScreenPrint("位置报时:currentOffset:" .. currentOffset .. "后最  " .. self.List_Title02:GetScrollOffset())
     end, true, nil, nil, true)
   end
 end
@@ -184,13 +184,13 @@ end
 
 function M:CalculateLayoutParams()
   self.FullFillCount = self.List_Title01:GetFullFillItemCount()
-  DebugPrint("\231\167\176\229\143\183\231\179\187\231\187\159\239\188\154FullFillCount:" .. self.FullFillCount)
+  DebugPrint("称号系统：FullFillCount:" .. self.FullFillCount)
   self.CenterOffset = (self.FullFillCount - 1) / 2
-  DebugPrint("\231\167\176\229\143\183\231\179\187\231\187\159\239\188\154CenterOffset:" .. self.CenterOffset)
+  DebugPrint("称号系统：CenterOffset:" .. self.CenterOffset)
   self.LoopStartIdx = self.FullFillCount
   self.LoopEndIdx = self.FullFillCount + self.OriginalPreItemCount
-  DebugPrint("\231\167\176\229\143\183\231\179\187\231\187\159\239\188\154LoopStartIdx:" .. self.LoopStartIdx .. " LoopEndIdx:" .. self.LoopEndIdx)
-  DebugPrint("   \231\167\176\229\143\183\231\179\187\231\187\159OriginalPreItemCount:" .. self.OriginalPreItemCount .. " OriginalSuffixItemCount:" .. self.OriginalSuffixItemCount)
+  DebugPrint("称号系统：LoopStartIdx:" .. self.LoopStartIdx .. " LoopEndIdx:" .. self.LoopEndIdx)
+  DebugPrint("   称号系统OriginalPreItemCount:" .. self.OriginalPreItemCount .. " OriginalSuffixItemCount:" .. self.OriginalSuffixItemCount)
 end
 
 function M:OnPrefixTitleScrolled(ItemOffset, DistanceRemaining)
@@ -203,12 +203,12 @@ function M:OnPrefixTitleScrolled(ItemOffset, DistanceRemaining)
     end)
   end
   self.LastPreListOffSet = ItemOffset
-  ScreenPrint("-------------\230\187\154\229\138\168\228\184\173:ItemOffset:" .. ItemOffset .. " DistanceRemaining:" .. DistanceRemaining)
+  ScreenPrint("-------------滚动中:ItemOffset:" .. ItemOffset .. " DistanceRemaining:" .. DistanceRemaining)
   self:ChangeSelectPrefixTitle()
 end
 
 function M:OnSuffixTitleScrolled(ItemOffset, DistanceRemaining)
-  ScreenPrint("-------------\230\187\154\229\138\168\228\184\173:ItemOffset:" .. ItemOffset .. " DistanceRemaining:" .. DistanceRemaining)
+  ScreenPrint("-------------滚动中:ItemOffset:" .. ItemOffset .. " DistanceRemaining:" .. DistanceRemaining)
   if not self.bHaveInit then
     return
   end
@@ -247,7 +247,7 @@ function M:CancelSelectTitle(Item)
     Item.IsSelected = false
   end
   if Item and Item.UI then
-    ScreenPrint("------------\229\143\150\230\182\136\233\128\137\228\184\173\228\186\134 " .. (Item and Item.Name) .. Item.UI.Text_Title:GetText() or " \231\169\186 " .. (Item and Item.ReallyIdx) or " \231\169\186id ")
+    ScreenPrint("------------取消选中了 " .. (Item and Item.Name) .. Item.UI.Text_Title:GetText() or " 空 " .. (Item and Item.ReallyIdx) or " 空id ")
     Item.UI.Text_Title:SetRenderOpacity(0.4)
   end
 end
@@ -269,7 +269,7 @@ end
 function M:SelectTitle(Item, bIsPrefix)
   self:AddTimer(0.01, function()
     self:ReallySelectTitle(Item, bIsPrefix)
-  end, nil, nil, bIsPrefix and "\229\137\141\231\188\128" or "\229\144\142\231\188\128", true)
+  end, nil, nil, bIsPrefix and "前缀" or "后缀", true)
 end
 
 function M:ReallySelectTitle(Item, bIsPrefix)
@@ -281,7 +281,7 @@ function M:ReallySelectTitle(Item, bIsPrefix)
     return
   end
   if Item.UI then
-    ScreenPrint("------------\231\156\159\230\173\163\229\136\135\230\141\162\228\186\134 " .. (bIsPrefix and "\229\137\141\231\188\128  " or "\229\144\142\231\188\128  ") .. "\230\151\167\231\154\132Item " .. (self.SelectPrefixTitleItem and self.SelectPrefixTitleItem.Name or " \231\169\186 ") .. (self.SelectPrefixTitleItem and self.SelectPrefixTitleItem.UI and self.SelectPrefixTitleItem.UI.Text_Title:GetText() or " \231\169\186 ") .. " \230\150\176\231\154\132Item" .. Item.Name .. Item.UI.Text_Title:GetText())
+    ScreenPrint("------------真正切换了 " .. (bIsPrefix and "前缀  " or "后缀  ") .. "旧的Item " .. (self.SelectPrefixTitleItem and self.SelectPrefixTitleItem.Name or " 空 ") .. (self.SelectPrefixTitleItem and self.SelectPrefixTitleItem.UI and self.SelectPrefixTitleItem.UI.Text_Title:GetText() or " 空 ") .. " 新的Item" .. Item.Name .. Item.UI.Text_Title:GetText())
   end
   AudioManager(self):PlayUISound(self, "event:/ui/common/roll_list_change", nil, nil)
   if bIsPrefix then
@@ -374,7 +374,7 @@ function M:ScrollToItem(Item, IsPrefix)
   ScreenPrint(CurrentIten and CurrentIten.RealIndex or self.LoopStartIdx .. "ssss" .. Item.RealIndex)
   ScroolIndex = math.floor(Item.RealIndex + self.CenterOffset)
   List:SetScrollOffset(ScroolIndex)
-  DebugPrint("ScrollToItem" .. ScroolIndex .. "\231\155\174\229\137\141\229\129\143\231\167\187" .. List:GetScrollOffset() .. "\233\128\137\228\184\173item\231\154\132realidx")
+  DebugPrint("ScrollToItem" .. ScroolIndex .. "目前偏移" .. List:GetScrollOffset() .. "选中item的realidx")
 end
 
 function M:GetScrollIndexbyRealIdx(RealIdx, IsUp)
@@ -398,7 +398,7 @@ function M:SetToClosestItem(IsPrefix)
   if OriginalItemCount < currentOffset then
     currentOffset = currentOffset - OriginalItemCount
   end
-  ScreenPrint("-------------\229\174\154\228\189\141\229\136\176\230\156\128\232\191\145\233\161\185:currentOffset:" .. currentOffset)
+  ScreenPrint("-------------定位到最近项:currentOffset:" .. currentOffset)
   List:SetCurrentScrollOffset(currentOffset)
   local aim = math.floor(currentOffset + 0.5)
   aim = math.floor(aim + 0.5)

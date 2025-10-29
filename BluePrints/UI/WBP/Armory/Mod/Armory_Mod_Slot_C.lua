@@ -129,7 +129,7 @@ function M:SetModIcon(Mod)
     function(_, Icon)
       if not Icon then
         Icon = LoadObject("Texture2D'/Game/UI/Texture/Dynamic/Image/Head/Monster/T_Head_Empty.T_Head_Empty'")
-        DebugPrint(ErrorTag, string.format("Mod%s\230\178\161\230\156\137\233\133\141\231\189\174\229\155\190\230\160\135\230\136\150\232\128\133\231\148\168\233\148\153\229\155\190\230\160\135\232\183\175\229\190\132\228\186\134\239\188\129\239\188\129\239\188\129\232\191\153\233\135\140\231\148\168\233\187\152\232\174\164\231\154\132\229\155\190\230\160\135\233\161\182\228\184\128\228\184\139\n \232\161\168\233\135\140\233\133\141\231\154\132\233\148\153\232\183\175\229\190\132\230\152\175\239\188\154%s", Mod.ModId, Mod.Icon))
+        DebugPrint(ErrorTag, string.format("Mod%s没有配置图标或者用错图标路径了！！！这里用默认的图标顶一下\n 表里配的错路径是：%s", Mod.ModId, Mod.Icon))
       end
       self.Icon_Mod:SetBrushResourceObject(Icon)
     end

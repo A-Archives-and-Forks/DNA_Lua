@@ -240,7 +240,7 @@ function G:RefreshGachaOnceUI()
       self:GetGachaOnceSpineUI(TargetId, CharInfo.SpineBp)
     else
       self:GetGachaOnceSpineUI(TargetId, "WBP_Gacha_Pool_WidgetMaer")
-      DebugPrint(ErrorTag, "----jzn---\230\138\189\229\141\161\229\189\147\229\137\141\232\167\146\232\137\178\230\151\160Spine\232\147\157\229\155\190\232\181\132\230\186\144----", TargetId)
+      DebugPrint(ErrorTag, "----jzn---抽卡当前角色无Spine蓝图资源----", TargetId)
     end
     self.IsSpineAnimation = true
     self:SetCharImgRole(TargetId)
@@ -815,7 +815,7 @@ function G:RefreshCommonOnceUI()
     else
       self:GetGachaOnceSpineUI(ShowResult.TargetId, "WBP_Gacha_Pool_WidgetMaer")
       self.IsSpineAnimation = true
-      DebugPrint(ErrorTag, "----jzn---\230\138\189\229\141\161\229\189\147\229\137\141\232\167\146\232\137\178\230\151\160Spine\232\147\157\229\155\190\232\181\132\230\186\144----", ShowResult.TargetId)
+      DebugPrint(ErrorTag, "----jzn---抽卡当前角色无Spine蓝图资源----", ShowResult.TargetId)
     end
     self:SetCharImgRole(ShowResult.TargetId)
     self:PlayInAnim(ShowResult.Rarity, ShowResult.TargetId)

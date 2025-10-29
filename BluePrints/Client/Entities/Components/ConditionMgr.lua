@@ -58,7 +58,7 @@ function ConditionMgr:ServerCheckCondition(ConditionId, Callback, bShowFailed)
 end
 
 function ConditionMgr:CheckDedicatedServerCondition(ConditionCheckId, ConditionString)
-  assert(not self.PendingCheckConditionTable[ConditionCheckId][ConditionString], "\230\157\161\228\187\182\229\183\178\229\173\152\229\156\168")
+  assert(not self.PendingCheckConditionTable[ConditionCheckId][ConditionString], "条件已存在")
   print(_G.LogTag, "CheckDedicatedServerCondition", ConditionCheckId, ConditionString)
   self.PendingCheckConditionTable[ConditionCheckId][ConditionString] = ConditionState.Unknown
   local PlayerController = UE4.UGameplayStatics.GetPlayerController(GWorld.GameInstance, 0)
@@ -81,7 +81,7 @@ function ConditionMgr:OnCheckDedicatedServerCondition(ConditionCheckId, Conditio
 end
 
 function ConditionMgr:CheckClientCondition(ConditionCheckId, ConditionString)
-  assert(not self.PendingCheckConditionTable[ConditionCheckId][ConditionString], "\230\157\161\228\187\182\229\183\178\229\173\152\229\156\168")
+  assert(not self.PendingCheckConditionTable[ConditionCheckId][ConditionString], "条件已存在")
   print(_G.LogTag, "CheckClientCondition", ConditionCheckId, ConditionString)
   local ConditionValue = 0
   local ConditionName, Params = ConditionUtils:UnpackParams(ConditionString)

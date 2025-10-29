@@ -20,7 +20,7 @@ function WBP_DungeonSettlement_Role_C:SetItem(OldBattleInfo, RoleName, IncrsExp,
   if "MeleeWeapon" == RoleName or "RangedWeapon" == RoleName then
     local Player = UE4.UGameplayStatics.GetPlayerCharacter(self, 0)
     if not Player[RoleName] then
-      DebugPrint("DungeonSettlement_Role:SetItem RoleName", RoleName, "\230\178\161\230\156\137\229\175\185\229\186\148\230\173\166\229\153\168, \232\191\148\229\155\158false\239\188\129")
+      DebugPrint("DungeonSettlement_Role:SetItem RoleName", RoleName, "没有对应武器, 返回false！")
       return false
     end
   end

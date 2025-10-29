@@ -195,7 +195,7 @@ end
 
 function BP_UIManagerComponent_C:_CreateWidgetNew(UIName)
   local WidgetUIConfig = DataMgr.WidgetUI[UIName]
-  assert(WidgetUIConfig, "UI:" .. UIName .. "\228\184\141\229\156\168WidgetUI\232\161\168\228\184\173")
+  assert(WidgetUIConfig, "UI:" .. UIName .. "不在WidgetUI表中")
   local PlatformName, BPClassPath = (CommonUtils.GetDeviceTypeByPlatformName(self))
   if PlatformName == CommonConst.CLIENT_DEVICE_TYPE.PC then
     BPClassPath = WidgetUIConfig.BPPath
@@ -230,7 +230,7 @@ function BP_UIManagerComponent_C:CreateWidgetAsync(UIName, CoroutineOrCBFunc, BP
     }
   else
     WidgetUIConfig = DataMgr.WidgetUI[UIName]
-    assert(WidgetUIConfig, "UI:" .. UIName .. "\228\184\141\229\156\168WidgetUI\232\161\168\228\184\173")
+    assert(WidgetUIConfig, "UI:" .. UIName .. "不在WidgetUI表中")
     if PlatformName == CommonConst.CLIENT_DEVICE_TYPE.PC then
       BPClassPath = WidgetUIConfig.BPPath
     elseif PlatformName == CommonConst.CLIENT_DEVICE_TYPE.MOBILE then
@@ -252,12 +252,12 @@ function BP_UIManagerComponent_C:CreateWidgetAsync(UIName, CoroutineOrCBFunc, BP
   end
   
   local UMG_Class
-  DebugPrint("CreateWidget \229\188\128\229\167\139\229\188\130\230\173\165\229\138\160\232\189\189UMGCLass", UIName)
+  DebugPrint("CreateWidget 开始异步加载UMGCLass", UIName)
   local Handler
   Handler = UE.UResourceLibrary.LoadClassAsync(self, BPClassPath, {
     self,
     function(self, UIClass)
-      DebugPrint("CreateWidget \229\188\130\230\173\165\229\138\160\232\189\189UMGCLass\229\174\140\230\136\144", UIName)
+      DebugPrint("CreateWidget 异步加载UMGCLass完成", UIName)
       UMG_Class = UIClass
       if type(CoroutineOrCBFunc) == "function" then
         if Handler then
@@ -272,7 +272,7 @@ function BP_UIManagerComponent_C:CreateWidgetAsync(UIName, CoroutineOrCBFunc, BP
     if not UResourceLibrary.IsValidResource(self, Handler) then
       return
     end
-    DebugPrint("CreateWidget \231\173\137\229\190\133\229\188\130\230\173\165\229\138\160\232\189\189UMGCLass...", UIName)
+    DebugPrint("CreateWidget 等待异步加载UMGCLass...", UIName)
     if type(CoroutineOrCBFunc) == "thread" then
       UMG_Class = coroutine.yield()
     elseif type(CoroutineOrCBFunc) == "function" then
@@ -555,13 +555,13 @@ end
 
 function BP_UIManagerComponent_C:LoadUINew(UIName, ...)
   local SystemUIConfig = DataMgr.SystemUI[UIName]
-  assert(SystemUIConfig, "UI:" .. UIName .. "\228\184\141\229\156\168SystemUI\232\161\168\228\184\173")
+  assert(SystemUIConfig, "UI:" .. UIName .. "不在SystemUI表中")
   return self:LoadUI(UIConst.LoadInConfig, UIName, SystemUIConfig.ZOrder, ...)
 end
 
 function BP_UIManagerComponent_C:LoadUIAsync(UIName, CoroutineOrCBFunc, ...)
   local SystemUIConfig = DataMgr.SystemUI[UIName]
-  assert(SystemUIConfig, "UI:" .. UIName .. "\228\184\141\229\156\168SystemUI\232\161\168\228\184\173")
+  assert(SystemUIConfig, "UI:" .. UIName .. "不在SystemUI表中")
   local Param = {
     ...
   }
@@ -677,7 +677,7 @@ function BP_UIManagerComponent_C:LoadUI(BPClassPath, UIName, ZOrder, ...)
     end
     if self.AsyncGetUIContexts[UIName] then
       self:AddTimer(0.01, function()
-        DebugPrint(LXYTag, "GetUIObjAsync\229\188\130\230\173\165\229\155\158\232\176\131\229\164\132\231\144\134")
+        DebugPrint(LXYTag, "GetUIObjAsync异步回调处理")
         for _, CoroutineOrCBFunc in ipairs(self.AsyncGetUIContexts[UIName]) do
           if type(CoroutineOrCBFunc) == "function" then
             CoroutineOrCBFunc(UIObj)
@@ -705,15 +705,15 @@ function BP_UIManagerComponent_C:LoadUI(BPClassPath, UIName, ZOrder, ...)
         table.remove(Params, #Params)
       end
       if CoroutineOrCBFunc then
-        DebugPrint(LXYTag, "\229\188\128\229\167\139\229\188\130\230\173\165\229\138\160\232\189\189UMGClass", UIName, BPClassPath)
+        DebugPrint(LXYTag, "开始异步加载UMGClass", UIName, BPClassPath)
         local Handler = UE.UResourceLibrary.LoadClassAsync(self, BPClassPath, {
           self,
           function(self, UIClass)
             if not IsValid(UIClass) then
-              DebugPrint(LXYTag, "\229\155\158\232\176\131\229\134\133\239\188\140\229\188\130\230\173\165\229\138\160\232\189\189UMGCLass\229\164\177\232\180\165", UIName, BPClassPath)
+              DebugPrint(LXYTag, "回调内，异步加载UMGCLass失败", UIName, BPClassPath)
               return
             end
-            DebugPrint(LXYTag, "\229\188\130\230\173\165\229\138\160\232\189\189UMGCLass\229\174\140\230\136\144", UIName, BPClassPath)
+            DebugPrint(LXYTag, "异步加载UMGCLass完成", UIName, BPClassPath)
             UMG_Class = UIClass
             if type(CoroutineOrCBFunc) == "function" or type(CoroutineOrCBFunc) == "nil" then
               if self.AsyncLoadHandlers[UIName] then
@@ -726,10 +726,10 @@ function BP_UIManagerComponent_C:LoadUI(BPClassPath, UIName, ZOrder, ...)
         })
         if not UMG_Class then
           if UResourceLibrary.IsValidResource(self, Handler) then
-            DebugPrint(LXYTag, "\231\173\137\229\190\133\229\188\130\230\173\165\229\138\160\232\189\189UMGCLass...", UIName)
+            DebugPrint(LXYTag, "等待异步加载UMGCLass...", UIName)
             self.AsyncLoadHandlers[UIName] = Handler
           else
-            DebugPrint(LXYTag, "\229\188\130\230\173\165\229\138\160\232\189\189UMGCLass\229\164\177\232\180\165\239\188\140\228\188\176\232\174\161\232\183\175\229\190\132\230\156\137\233\151\174\233\162\152", UIName, BPClassPath)
+            DebugPrint(LXYTag, "异步加载UMGCLass失败，估计路径有问题", UIName, BPClassPath)
             return
           end
           if type(CoroutineOrCBFunc) == "thread" then
@@ -1009,7 +1009,7 @@ end
 function BP_UIManagerComponent_C:GetBannedActionNameList(KeyboardSetName)
   local KeyboardSetData = DataMgr.UIKeyboardSet[KeyboardSetName]
   if not KeyboardSetData then
-    DebugPrint("Tianyi@ \230\137\190\228\184\141\229\136\176\230\140\137\233\148\174\231\166\129\231\148\168\231\187\132: " .. KeyboardSetName)
+    DebugPrint("Tianyi@ 找不到按键禁用组: " .. KeyboardSetName)
     return nil
   end
   if KeyboardSetData.IsWhiteList then
@@ -1084,7 +1084,7 @@ function BP_UIManagerComponent_C:SetBannedActionCallback(KeyboardSetName, IsBann
     end
     Player:FlushInputKeyExcept(AllowedList)
   end
-  DebugPrint("Tianyi@ \232\174\190\231\189\174\231\166\129\231\148\168Action: , IsBanned = " .. tostring(IsBanned))
+  DebugPrint("Tianyi@ 设置禁用Action: , IsBanned = " .. tostring(IsBanned))
   self.BanActionCallbackMap = self.BanActionCallbackMap or {}
   for _, Action in ipairs(ActionList) do
     if IsBanned then
@@ -1195,7 +1195,7 @@ end
 
 function BP_UIManagerComponent_C:UnLoadUINew(UIName)
   local SystemUIConfig = DataMgr.SystemUI[UIName]
-  assert(SystemUIConfig, "UI:" .. UIName .. "\228\184\141\229\156\168SystemUI\232\161\168\228\184\173")
+  assert(SystemUIConfig, "UI:" .. UIName .. "不在SystemUI表中")
   if UIConst.AllUIConfig[UIName] then
     UIConst.AllUIConfig[UIName] = {
       resource = UIConst.LoadInConfig
@@ -1358,7 +1358,7 @@ end
 function BP_UIManagerComponent_C:GetUIObjAsync(UIName, CoroutineOrCBFunc)
   local UI = self:GetUIObj(UIName)
   if not UI and self.AsyncLoadHandlers[UIName] then
-    DebugPrint(LXYTag, "\229\188\128\229\167\139\229\188\130\230\173\165GetUIObj...", UIName)
+    DebugPrint(LXYTag, "开始异步GetUIObj...", UIName)
     if not self.AsyncGetUIContexts[UIName] then
       self.AsyncGetUIContexts[UIName] = {}
     end
@@ -1628,7 +1628,7 @@ end
 function BP_UIManagerComponent_C:ShowCommonPopupUI_Interrupt(PopupId, Params, ParentWidget)
   local CommonDialog = self:GetUI("CommonDialog")
   if not CommonDialog then
-    DebugPrint("Tianyi@ ShowCommonPopupUI_Interrupt \229\143\170\232\131\189\229\156\168\233\128\154\231\148\168\229\188\185\231\170\151\230\152\190\231\164\186\229\135\186\230\157\165\231\154\132\230\151\182\229\128\153\232\176\131\231\148\168!")
+    DebugPrint("Tianyi@ ShowCommonPopupUI_Interrupt 只能在通用弹窗显示出来的时候调用!")
     return
   end
   CommonDialog:ShowPopupInterrupt(PopupId, Params, ParentWidget)
@@ -1661,12 +1661,12 @@ function BP_UIManagerComponent_C:ShowError(ErrCode, Duration, TipType, ...)
     local Content = ErrorCode:GetText(ErrCode)
     Content = string.format(Content or "", ...)
     if not Content or "" == Content then
-      self:ShowUITip(TipType, "Unconfigured ErrorCode\239\188\154" .. tostring(ErrCode), Duration)
+      self:ShowUITip(TipType, "Unconfigured ErrorCode：" .. tostring(ErrCode), Duration)
     else
       self:ShowUITip(TipType, Content, Duration)
     end
   else
-    self:ShowUITip(TipType, "Unknown ErrorCode\239\188\154" .. tostring(ErrCode), Duration)
+    self:ShowUITip(TipType, "Unknown ErrorCode：" .. tostring(ErrCode), Duration)
   end
 end
 
@@ -1842,7 +1842,7 @@ function BP_UIManagerComponent_C:ShowCommonBlackScreen(Params)
     self.CommonBlackScreenInstances = {}
   end
   if IsValid(self.CommonBlackScreenInstances[NewHandleName]) then
-    DebugPrint("Common_BlackScreen: \231\155\184\229\144\140\231\154\132HandleName\229\183\178\229\173\152\229\156\168\239\188\129")
+    DebugPrint("Common_BlackScreen: 相同的HandleName已存在！")
     return NewHandleName
   end
   local NewBlackScreen = self:LoadUINew("CommonBlackScreen", Params)
@@ -1859,7 +1859,7 @@ function BP_UIManagerComponent_C:RegisterBlackScreenInstance(NewHandleName, Blac
 end
 
 function BP_UIManagerComponent_C:HideCommonBlackScreen(BlackScreenHandle)
-  assert(BlackScreenHandle, "HideCommonBlackScreen\229\191\133\233\161\187\232\190\147\229\133\165BlackScreenHandle\239\188\129")
+  assert(BlackScreenHandle, "HideCommonBlackScreen必须输入BlackScreenHandle！")
   if self.CommonBlackScreenInstances == nil then
     self.CommonBlackScreenInstances = {}
   end
@@ -1878,7 +1878,7 @@ function BP_UIManagerComponent_C:OnCommonBlackScreenClosed(BlackScreenHandle)
 end
 
 function BP_UIManagerComponent_C:IsCommonBlackScreenExist(BlackScreenHandle)
-  assert(BlackScreenHandle, "IsCommonBlackScreenExist\229\191\133\233\161\187\232\190\147\229\133\165BlackScreenHandle\239\188\129")
+  assert(BlackScreenHandle, "IsCommonBlackScreenExist必须输入BlackScreenHandle！")
   if self.CommonBlackScreenInstances == nil then
     self.CommonBlackScreenInstances = {}
   end
@@ -1886,7 +1886,7 @@ function BP_UIManagerComponent_C:IsCommonBlackScreenExist(BlackScreenHandle)
 end
 
 function BP_UIManagerComponent_C:CloseCommonBlackScreenWithoutCB(BlackScreenHandle)
-  assert(BlackScreenHandle, "CloseCommonBlackScreenWithoutCB\229\191\133\233\161\187\232\190\147\229\133\165BlackScreenHandle\239\188\129")
+  assert(BlackScreenHandle, "CloseCommonBlackScreenWithoutCB必须输入BlackScreenHandle！")
   if self.CommonBlackScreenInstances == nil then
     self.CommonBlackScreenInstances = {}
   end
@@ -2176,7 +2176,7 @@ end
 function BP_UIManagerComponent_C:HideNpcById(NpcId, bHide, HideTag)
   local UINpcActor = self.AllUINpcActor and self.AllUINpcActor[NpcId]
   if not UINpcActor then
-    DebugPrint("HideNpcById  \230\137\190\228\184\141\229\136\176npc")
+    DebugPrint("HideNpcById  找不到npc")
     return
   end
   if UINpcActor.SetActorHideTag then
@@ -2391,7 +2391,7 @@ local FixedCameraCache = {}
 
 function BP_UIManagerComponent_C:SwitchFixedCamera(bInOut, NpcId, Hidetag, OriginSelf, UIName, Parms)
   if nil == NpcId then
-    ScreenPrint("SwitchFixedCamera:\232\183\179\232\189\172\233\149\156\229\164\180\229\164\177\232\180\165NpcId\228\184\186\231\169\186")
+    ScreenPrint("SwitchFixedCamera:跳转镜头失败NpcId为空")
     DebugPrint("SwitchFixedCamera Failed NpcId is nil ")
     return
   end
@@ -2399,8 +2399,8 @@ function BP_UIManagerComponent_C:SwitchFixedCamera(bInOut, NpcId, Hidetag, Origi
   local PlayerCharacter = UGameplayStatics.GetPlayerCharacter(self, 0)
   local SpawnNpcConfig, UINpcActorForCreate = DataMgr.SpawnNPC[NpcId]
   if nil == SpawnNpcConfig then
-    ScreenPrint("SwitchFixedCamera:\230\178\161\230\156\137\230\137\190\229\136\176\232\161\168\229\134\133\230\149\176\230\141\174\239\188\140\232\175\183\230\163\128\230\159\165NpcId" .. (NpcId or "NpcId\228\184\186\231\169\186"))
-    DebugPrint("SwitchFixedCamera:\230\178\161\230\156\137\230\137\190\229\136\176\232\161\168\229\134\133\230\149\176\230\141\174 SpawnNpcConfig \228\184\186\231\169\186 ")
+    ScreenPrint("SwitchFixedCamera:没有找到表内数据，请检查NpcId" .. (NpcId or "NpcId为空"))
+    DebugPrint("SwitchFixedCamera:没有找到表内数据 SpawnNpcConfig 为空 ")
     return
   end
   
@@ -2408,7 +2408,7 @@ function BP_UIManagerComponent_C:SwitchFixedCamera(bInOut, NpcId, Hidetag, Origi
     if UIName then
       self:SwitchUINpcCamera(bInOut, UIName, NpcId, Parms)
     else
-      ScreenPrint("\231\148\159\230\136\144NPC\233\149\156\229\164\180UIName\228\184\186\231\169\186")
+      ScreenPrint("生成NPC镜头UIName为空")
     end
   end
   
@@ -2419,7 +2419,7 @@ function BP_UIManagerComponent_C:SwitchFixedCamera(bInOut, NpcId, Hidetag, Origi
   elseif SpawnNpcConfig.FixedCamera then
     cameraPath = SpawnNpcConfig.FixedCamera
   else
-    DebugPrint("SwitchFixedCamera:\232\161\168\229\134\133\230\178\161\230\156\137\233\133\141\231\189\174\229\155\186\229\174\154\233\149\156\229\164\180\239\188\154\231\148\159\230\136\144NPC\233\149\156\229\164\180")
+    DebugPrint("SwitchFixedCamera:表内没有配置固定镜头：生成NPC镜头")
     CreatNpcAndSwitch()
     return
   end
@@ -2430,12 +2430,12 @@ function BP_UIManagerComponent_C:SwitchFixedCamera(bInOut, NpcId, Hidetag, Origi
     end
     local CameraClass = LoadClass(cameraPath)
     if not CameraClass then
-      ScreenPrint("SwitchFixedCamera:\230\151\160\230\179\149\229\138\160\232\189\189\231\155\184\230\156\186\232\147\157\229\155\190\231\177\187\239\188\140\232\175\183\230\163\128\230\159\165\232\183\175\229\190\132\230\152\175\229\144\166\230\173\163\231\161\174\239\188\154" .. cameraPath)
+      ScreenPrint("SwitchFixedCamera:无法加载相机蓝图类，请检查路径是否正确：" .. cameraPath)
       return nil
     end
     local actor = UGameplayStatics.GetActorOfClass(OriginSelf, CameraClass)
     if not actor then
-      ScreenPrint("SwitchFixedCamera:[WARNING] \230\156\170\230\137\190\229\136\176\231\155\184\230\156\186\229\174\158\228\190\139")
+      ScreenPrint("SwitchFixedCamera:[WARNING] 未找到相机实例")
       return
     end
     FixedCameraCache[cameraPath] = {class = CameraClass, actor = actor}
@@ -2444,7 +2444,7 @@ function BP_UIManagerComponent_C:SwitchFixedCamera(bInOut, NpcId, Hidetag, Origi
   
   local ShopCamera = GetOrCreateCamera()
   if not ShopCamera then
-    ScreenPrint("\230\156\170\230\137\190\229\136\176\231\155\184\230\156\186\229\174\158\228\190\139")
+    ScreenPrint("未找到相机实例")
     CreatNpcAndSwitch()
     return
   end
@@ -2466,7 +2466,7 @@ function BP_UIManagerComponent_C:SwitchFixedCamera(bInOut, NpcId, Hidetag, Origi
     if IsValid() then
       PlayerController:SetViewTargetWithBlend(OriginSelf.OriginalViewTarget, 0, UE4.EViewTargetBlendFunction.VTBlend_Linear, 0, false)
     else
-      DebugPrint("SwitchFixedCamera:UIState\231\154\132OriginalViewTarget\228\184\186\231\169\186  " .. (UIName or "UIName\228\184\186\231\169\186"))
+      DebugPrint("SwitchFixedCamera:UIState的OriginalViewTarget为空  " .. (UIName or "UIName为空"))
       OriginSelf:GetOwningPlayer():SetViewTargetWithBlend(PlayerCharacter, 0, UE4.EViewTargetBlendFunction.VTBlend_Linear, 0, false)
     end
     if PlayerCharacter and Hidetag then
@@ -2518,7 +2518,7 @@ function BP_UIManagerComponent_C:CalculatorCameraRotationbyResolution(SpawnNpcCo
     return CameraRotation
   end
   if not (type(CameraRotationDelta) == "table" and CameraRotationDelta[1] and CameraRotationDelta[2]) or not CameraRotationDelta[3] then
-    ScreenPrint("SpawnNpc\232\161\168\228\184\173\231\154\132CameraRotationDelta\230\149\176\230\141\174\230\156\137\232\175\175\239\188\140\230\178\161\230\137\190\229\136\176\229\175\185\229\186\148\231\154\1323\228\184\170\229\157\144\230\160\135")
+    ScreenPrint("SpawnNpc表中的CameraRotationDelta数据有误，没找到对应的3个坐标")
     return CameraRotation
   end
   local FinalCameraRotation = {
@@ -2718,7 +2718,7 @@ function BP_UIManagerComponent_C:ShowBossBattleOpenTitle(bIsShow)
   if BossBattleOpenUI then
     BossBattleOpenUI:ShowHardBossTitle(bIsShow)
   else
-    DebugPrint("\230\137\190\228\184\141\229\136\176Boss\230\136\152\229\188\128\230\136\152UI")
+    DebugPrint("找不到Boss战开战UI")
   end
 end
 
@@ -2775,20 +2775,20 @@ function BP_UIManagerComponent_C:ShowDispatchTip(DispatchId)
   local Condition = DataMgr.Region[RegionId].RegionDispCondition
   local Check = ConditionUtils.CheckCondition(Avatar, Condition)
   if false == Check then
-    DebugPrint("\228\186\139\228\187\182\230\137\128\229\156\168\229\140\186\229\159\159\230\156\170\232\167\163\233\148\129")
+    DebugPrint("事件所在区域未解锁")
     return
   end
   local DispatchUIId = DataMgr.Dispatch[DispatchId].DispatchUIId
   local DispatchName = DataMgr.DispatchUI[DispatchUIId].DispatchName
   self:AddTimer(1.8, function()
-    local Text = string.format(GText("UI_Dispatch_Toast_Unlock"), "\227\128\144" .. GText(DispatchName) .. "\227\128\145")
+    local Text = string.format(GText("UI_Dispatch_Toast_Unlock"), "【" .. GText(DispatchName) .. "】")
     UIManager(self):ShowUITip(UIConst.Tip_CommonTop, Text)
     DebugPrint("lkkkShowDispatchTip ", DispatchId)
   end, false, 0, nil, false)
 end
 
 function BP_UIManagerComponent_C:LaunchAfterLoadingMgr()
-  DebugPrint(WarningTag, "UIManager.AfterLoadingMgr, \229\144\175\229\138\168\231\138\182\230\128\129\230\156\186")
+  DebugPrint(WarningTag, "UIManager.AfterLoadingMgr, 启动状态机")
   self:DestroyAfterLoadingMgr()
   local AfterLoadingMgr = require("BluePrints.UI.Common.AfterLoadingMgr")
   self.AfterLoadingMgr = AfterLoadingMgr.New()
@@ -2805,7 +2805,7 @@ end
 
 function BP_UIManagerComponent_C:DestroyAfterLoadingMgr()
   if self.AfterLoadingMgr and not self.AfterLoadingMgr:IsEnd() then
-    DebugPrint(WarningTag, "UIManager.AfterLoadingMgr, \229\188\186\229\136\182\230\184\133\231\144\134\230\142\137\228\184\138\230\172\161\230\178\161\230\137\167\232\161\140\229\174\140\231\154\132\231\138\182\230\128\129\230\156\186")
+    DebugPrint(WarningTag, "UIManager.AfterLoadingMgr, 强制清理掉上次没执行完的状态机")
   end
   if self.AfterLoadingMgr then
     EventManager:RemoveEvent(EventID.OnGuideEnd, self.AfterLoadingMgr)
@@ -2819,7 +2819,7 @@ function BP_UIManagerComponent_C:TryPauseAfterLoadingMgr(PauseAfterLoadingState)
   end
   for _, State in ipairs(PauseAfterLoadingState) do
     if self.AfterLoadingMgr:IsCurrentState(State) then
-      DebugPrint(WarningTag, "UIManager.AfterLoadingMgr, UI\230\137\147\229\188\128\232\167\166\229\143\145\231\187\167\231\187\173\231\138\182\230\128\129\230\156\186\230\154\130\229\129\156")
+      DebugPrint(WarningTag, "UIManager.AfterLoadingMgr, UI打开触发继续状态机暂停")
       self.AfterLoadingMgr:Pause()
       return
     end
@@ -2833,7 +2833,7 @@ function BP_UIManagerComponent_C:FallbackAfterLoadingMgr()
   if self.AfterLoadingMgr.bPause then
     return
   end
-  DebugPrint(WarningTag, "UIManager.AfterLoadingMgr, \228\191\157\229\186\149\231\187\167\231\187\173\230\137\167\232\161\140\231\138\182\230\128\129\230\156\186\239\188\140\233\129\191\229\133\141\229\141\161\228\189\143")
+  DebugPrint(WarningTag, "UIManager.AfterLoadingMgr, 保底继续执行状态机，避免卡住")
   self.AfterLoadingMgr:Fallback()
 end
 
@@ -2845,7 +2845,7 @@ function BP_UIManagerComponent_C:TryResumeAfterLoadingMgr(PauseAfterLoadingState
     if self.AfterLoadingMgr:IsCurrentState(State) then
       self:AddTimer(0.01, function()
         if self.AfterLoadingMgr and not self.AfterLoadingMgr:IsEnd() then
-          DebugPrint(WarningTag, "UIManager.AfterLoadingMgr, UI\229\133\179\233\151\173\232\167\166\229\143\145\231\187\167\231\187\173\230\137\167\232\161\140\231\138\182\230\128\129\230\156\186")
+          DebugPrint(WarningTag, "UIManager.AfterLoadingMgr, UI关闭触发继续执行状态机")
           self.AfterLoadingMgr:Continue()
         end
         return
@@ -2885,12 +2885,12 @@ end
 function BP_UIManagerComponent_C:LoadTitleFrameWidget(TitleFrameID)
   local TitleConfig = DataMgr.TitleFrame[TitleFrameID]
   if not TitleConfig then
-    ScreenPrint("\231\167\176\229\143\183\229\138\160\232\189\189\229\164\177\232\180\165\239\188\154TitleFrame \232\161\168\229\134\133\230\178\161\230\156\137\233\133\141\231\189\174TitleFrameID=" .. TitleFrameID or "\231\169\186")
+    ScreenPrint("称号加载失败：TitleFrame 表内没有配置TitleFrameID=" .. TitleFrameID or "空")
     return
   end
   local BPPath = TitleConfig.FramePath
   if not BPPath then
-    ScreenPrint("\231\167\176\229\143\183\229\138\160\232\189\189\229\164\177\232\180\165\239\188\154TitleFrame \232\161\168\229\134\133\230\178\161\230\156\137\233\133\141\231\189\174\232\181\132\230\186\144\229\156\176\229\157\128\239\188\140\229\133\136\231\148\168\233\187\152\232\174\164\231\154\132=" .. TitleFrameID or "\231\169\186")
+    ScreenPrint("称号加载失败：TitleFrame 表内没有配置资源地址，先用默认的=" .. TitleFrameID or "空")
     BPPath = "WidgetBlueprint'/Game/UI/WBP/PersonalInfo/Widget/Title/Title/WBP_PersonalInfo_Title_01.WBP_PersonalInfo_Title_01'"
   end
   local Widget = self:CreateWidget(BPPath, false)
@@ -2912,7 +2912,7 @@ function BP_UIManagerComponent_C:TryOpenSystem(source)
     self.SystemOpenFrameFlag = currentFrame
     return true
   end
-  DebugPrint("\233\152\178\230\173\162\229\144\140\228\184\128\229\184\167\230\137\147\229\188\128\229\164\154\228\184\170\231\179\187\231\187\159:", "\230\157\165\230\186\144:", source, "\229\184\167\229\143\183:", currentFrame)
+  DebugPrint("防止同一帧打开多个系统:", "来源:", source, "帧号:", currentFrame)
   return false
 end
 

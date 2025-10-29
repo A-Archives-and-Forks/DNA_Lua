@@ -14,7 +14,7 @@ end
 
 function M:InitialTempleAndPartyInfo(Temples, TelepointIcon, RegionIcon)
   if #Temples >= 4 then
-    error("WBP_Map_Convey\228\184\173\232\166\129\229\138\160\232\189\189\231\154\132\231\165\158\229\186\153/\230\180\190\229\175\185\230\149\176\233\135\143\232\182\133\232\191\135\233\162\132\232\174\190\232\147\157\229\155\190\230\149\176")
+    error("WBP_Map_Convey中要加载的神庙/派对数量超过预设蓝图数")
   end
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
@@ -38,7 +38,7 @@ function M:InitialTempleAndPartyInfo(Temples, TelepointIcon, RegionIcon)
     local DungeonInfo = DataMgr.Dungeon[Temples[i]]
     if not DungeonInfo then
       self.Group_Temple:SetVisibility(ESlateVisibility.Collapsed)
-      error("Region\232\161\168\228\184\173\233\133\141\231\189\174\228\186\134\228\184\141\229\173\152\229\156\168\231\154\132\231\165\158\229\186\153ID\239\188\140\233\148\153\232\175\175\231\154\132\231\165\158\229\186\153ID\239\188\154" .. Temples[i])
+      error("Region表中配置了不存在的神庙ID，错误的神庙ID：" .. Temples[i])
     end
     local Conditions = DungeonInfo.Condition
     local CompleteCondition = true

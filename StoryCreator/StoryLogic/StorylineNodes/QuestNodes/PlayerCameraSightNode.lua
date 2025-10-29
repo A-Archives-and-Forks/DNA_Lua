@@ -20,7 +20,7 @@ function PlayerCameraSightNode:Execute(Callback)
     
     Player:StartCameraKeepSightOnActor(NewTargetPoint, self.KeepSightTime, self.ECameraAxisLockType, self.Speed, Func)
   else
-    print(_G.LogTag, "ERROR: \228\184\141\229\173\152\229\156\168NewTargetPoint\239\188\154" .. (self.TargetPointName or "") .. "\230\136\150PlayerCharacter\228\184\141\229\143\175\231\148\168")
+    print(_G.LogTag, "ERROR: 不存在NewTargetPoint：" .. (self.TargetPointName or "") .. "或PlayerCharacter不可用")
     Callback()
   end
 end

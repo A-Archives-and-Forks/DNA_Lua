@@ -74,7 +74,7 @@ function M:AddBlock(Block, TypingUserWidget)
     if "img" == BlockType then
     elseif "text" == BlockType then
       if 0 == #Block.Text or BlockSize.X <= 0 then
-        print(_G.LogTag, "Block \229\134\133\229\174\185\228\184\186\231\169\186\230\136\150\229\164\167\229\176\143\228\184\1860\239\188\140\232\162\171\228\184\162\229\188\131\227\128\130", "Block \229\164\167\229\176\143\239\188\154", BlockSize, "Block \229\134\133\229\174\185\239\188\154", Block:GetRichText())
+        print(_G.LogTag, "Block 内容为空或大小为0，被丢弃。", "Block 大小：", BlockSize, "Block 内容：", Block:GetRichText())
         return
       end
       local LText, RText = self:SplitText(Block, RemainSize, TypingUserWidget)
@@ -167,14 +167,14 @@ function M:AssignPunctuation(LText, RText)
   end
   local LLen = UE4.UKismetStringLibrary.Len(LText)
   local LLastChar = UE4.UKismetStringLibrary.GetSubstring(LText, LLen - 1, 1)
-  if string.find("([{\227\128\136\227\128\138\227\128\140\227\128\142\227\128\144\227\128\148\227\128\150\239\188\136\226\128\156\226\128\152", LLastChar, 1, true) then
+  if string.find("([{〈《「『【〔〖（“‘", LLastChar, 1, true) then
     LText = UE4.UKismetStringLibrary.GetSubstring(LText, 0, LLen - 1)
     RText = LLastChar .. RText
     return LText, RText
   end
   local RFirtChar = UE4.UKismetStringLibrary.GetSubstring(RText, 0, 1)
-  local NoBreakLinePunctuations = ",.?;~!%\239\188\140\227\128\129\227\128\130\239\188\155\239\188\154\239\188\159\239\188\129\194\183)]}\227\128\137\227\128\139\227\128\141\227\128\143\227\128\145\227\128\149\227\128\151\239\188\137\226\128\157\226\128\153"
-  local EllipsisAndDash = "\226\128\148\226\128\166"
+  local NoBreakLinePunctuations = ",.?;~!%，、。；：？！·)]}〉》」』】〕〗）”’"
+  local EllipsisAndDash = "—…"
   if string.find(EllipsisAndDash, RFirtChar, 1, true) then
     for i = LLen - 1, 1, -1 do
       local LChar = UE4.UKismetStringLibrary.GetSubstring(LText, i, 1)

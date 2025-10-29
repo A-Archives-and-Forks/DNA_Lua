@@ -35,7 +35,7 @@ function TalkAudioComp_C:PlayDialogue(DialogueData, TalkTaskData, TalkTask, Call
   local AssetPaths = self.SoundOralComponent:GetAssetPaths(AudioManager, DialogueData.VoiceName, NativeDialogueData.ExStoryInfo)
   if not AssetPaths or 0 == #AssetPaths then
     self:StopVOSound(TalkContext)
-    DebugPrint(string.format("Error:DialogueData.DialogueId: %d \231\154\132\233\159\179\233\162\145\232\181\132\230\186\144\228\184\141\229\173\152\229\156\168", DialogueData.DialogueId))
+    DebugPrint(string.format("Error:DialogueData.DialogueId: %d 的音频资源不存在", DialogueData.DialogueId))
     if Callback then
       Callback.Func(Callback.Obj)
     end
@@ -91,10 +91,10 @@ function TalkAudioComp_C:GetEventKey(TalkTaskData)
     self.AudioEventKey = "TalkAudio_" .. TalkTaskData.TalkType
     return self.AudioEventKey
   else
-    local Message = "TalkType\228\184\141\229\173\152\229\156\168\nTalkNodeId: " .. (TalkTaskData.TalkNodeId or "") .. [[
+    local Message = "TalkType不存在\nTalkNodeId: " .. (TalkTaskData.TalkNodeId or "") .. [[
 
 FirstDialogueId: ]] .. (TalkTaskData.FirstDialogueId or "")
-    local Title = "\229\175\185\232\175\157\232\175\173\233\159\179\233\148\153\232\175\175"
+    local Title = "对话语音错误"
     UStoryLogUtils.PrintToFeiShu(self, Title, Message)
     return
   end

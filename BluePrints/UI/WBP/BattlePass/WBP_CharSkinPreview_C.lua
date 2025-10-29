@@ -230,7 +230,7 @@ function M:BuildRoleItemContents()
               self.CharId2SkinId[CharId] = SkinId
             end
           else
-            DebugPrint("WBP_CharSkinPreview_C BuildRoleItemContents \229\165\150\229\138\177\232\191\135\230\187\164\230\142\146\233\153\164", SkinId, CharId)
+            DebugPrint("WBP_CharSkinPreview_C BuildRoleItemContents 奖励过滤排除", SkinId, CharId)
           end
         end
         DebugPrint("gmy@WBP_CharSkinPreview_C M:BuildRoleItemContents UseOptReward", self.SkinOptRewardId)
@@ -252,7 +252,7 @@ function M:BuildRoleItemContents()
           TargetCharIds[CharId] = true
           self.CharId2SkinId[CharId] = SkinId
         else
-          DebugPrint("WBP_CharSkinPreview_C BuildRoleItemContents \231\179\187\229\136\151\232\191\135\230\187\164\230\142\146\233\153\164", SkinId, CharId)
+          DebugPrint("WBP_CharSkinPreview_C BuildRoleItemContents 系列过滤排除", SkinId, CharId)
         end
       end
     end
@@ -1206,7 +1206,7 @@ function M:RefreshDetailPanel()
     end
     self.Item_Consume:SetIsGot(bHasSkin)
   else
-    DebugPrint("WBP_CharSkinPreview_C RefreshDetailPanel \231\154\174\232\130\164\231\188\186\229\176\145\229\155\190\230\160\135", SkinId)
+    DebugPrint("WBP_CharSkinPreview_C RefreshDetailPanel 皮肤缺少图标", SkinId)
   end
 end
 
@@ -1280,7 +1280,7 @@ function M:DoApplySkinOptReward(Context)
   DebugPrint("WBP_CharSkinPreview_C DoApplySkinOptReward", Context.CharId, Context.SkinId, Context.SkinOptRewardId, Context.bHasSkin)
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("WBP_CharSkinPreview_C DoApplySkinOptReward \230\151\160\230\179\149\232\142\183\229\143\150 Avatar")
+    DebugPrint("WBP_CharSkinPreview_C DoApplySkinOptReward 无法获取 Avatar")
     return
   end
   local ResourceId = Context.ResourceId
@@ -1288,12 +1288,12 @@ function M:DoApplySkinOptReward(Context)
   local SkinId = Context.SkinId
   local bHasSkin = Context.bHasSkin
   if not (ResourceId and SkinOptRewardId) or not SkinId then
-    DebugPrint("WBP_CharSkinPreview_C DoApplySkinOptReward \229\143\130\230\149\176\231\188\186\229\164\177", ResourceId, SkinOptRewardId, SkinId)
+    DebugPrint("WBP_CharSkinPreview_C DoApplySkinOptReward 参数缺失", ResourceId, SkinOptRewardId, SkinId)
     return
   end
   local OptCfg = DataMgr.OptReward and DataMgr.OptReward[SkinOptRewardId]
   if not OptCfg or not OptCfg.Id then
-    DebugPrint("WBP_CharSkinPreview_C DoApplySkinOptReward \230\137\190\228\184\141\229\136\176\232\135\170\233\128\137\229\165\150\229\138\177\233\133\141\231\189\174", SkinOptRewardId)
+    DebugPrint("WBP_CharSkinPreview_C DoApplySkinOptReward 找不到自选奖励配置", SkinOptRewardId)
     return
   end
   local ChooseIndex
@@ -1304,14 +1304,14 @@ function M:DoApplySkinOptReward(Context)
     end
   end
   if not ChooseIndex then
-    DebugPrint("WBP_CharSkinPreview_C DoApplySkinOptReward \230\156\170\230\137\190\229\136\176\229\175\185\229\186\148\231\154\174\232\130\164\231\180\162\229\188\149", SkinId)
+    DebugPrint("WBP_CharSkinPreview_C DoApplySkinOptReward 未找到对应皮肤索引", SkinId)
     return
   end
   local OptIdxList = {ChooseIndex}
-  DebugPrint("WBP_CharSkinPreview_C DoApplySkinOptReward \232\176\131\231\148\168RPC UseOptResourceInBag", ResourceId, ChooseIndex)
+  DebugPrint("WBP_CharSkinPreview_C DoApplySkinOptReward 调用RPC UseOptResourceInBag", ResourceId, ChooseIndex)
   
   local function OnFinish(ErrCode)
-    DebugPrint("WBP_CharSkinPreview_C DoApplySkinOptReward \229\155\158\232\176\131\230\136\144\229\138\159", ErrCode, ResourceId, SkinId, ChooseIndex, bHasSkin)
+    DebugPrint("WBP_CharSkinPreview_C DoApplySkinOptReward 回调成功", ErrCode, ResourceId, SkinId, ChooseIndex, bHasSkin)
     if ErrCode == ErrorCode.RET_SUCCESS then
       local BagMainPage = UIManager(self):GetUIObj("BagMain")
       if BagMainPage then

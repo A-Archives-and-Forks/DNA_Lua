@@ -29,7 +29,7 @@ return ReadOnly("Phantom", {
     Camp = "Player",
     UnitBPPath = "/Game/BluePrints/Char/BP_PlayerCharacterAI.BP_PlayerCharacterAI",
     UnitId = 1,
-    UnitName = "\232\183\145\230\181\139\230\156\186\229\153\168\228\186\186"
+    UnitName = "跑测机器人"
   },
   [10] = {
     BT = {
@@ -45,7 +45,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_NPCPhantom.BP_NPCPhantom",
     UnitId = 10,
-    UnitName = "NPC-\228\186\186\232\180\168"
+    UnitName = "NPC-人质"
   },
   [101] = {
     BT = {
@@ -55,7 +55,7 @@ return ReadOnly("Phantom", {
     Camp = "Player",
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 101,
-    UnitName = "\230\181\139\232\175\149\231\148\168\233\173\133\229\189\177",
+    UnitName = "测试用魅影",
     WearMeleeWeapon = 1,
     WearRangedWeapon = 1
   },
@@ -70,7 +70,7 @@ return ReadOnly("Phantom", {
     IsNPCPhantom = true,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_NPCPhantom.BP_NPCPhantom",
     UnitId = 110,
-    UnitName = "NPC-\229\186\143\231\171\160\233\187\145\230\161\131"
+    UnitName = "NPC-序章黑桃"
   },
   [111] = {
     BT = T.RT_2,
@@ -82,7 +82,7 @@ return ReadOnly("Phantom", {
     IsPlayerMapping = true,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_NPCPhantom.BP_NPCPhantom",
     UnitId = 111,
-    UnitName = "NPC-\229\186\143\231\171\160\229\165\179\228\184\187",
+    UnitName = "NPC-序章女主",
     WearMeleeWeapon = 1
   },
   [112] = {
@@ -95,7 +95,7 @@ return ReadOnly("Phantom", {
     IsPlayerMapping = true,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_NPCPhantom.BP_NPCPhantom",
     UnitId = 112,
-    UnitName = "NPC-\229\186\143\231\171\160\231\148\183\228\184\187",
+    UnitName = "NPC-序章男主",
     WearMeleeWeapon = 1
   },
   [201] = {
@@ -108,7 +108,7 @@ return ReadOnly("Phantom", {
     IsNPCPhantom = true,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_NPCPhantom.BP_NPCPhantom",
     UnitId = 201,
-    UnitName = "NPC-\233\152\191\231\147\166"
+    UnitName = "NPC-阿瓦"
   },
   [202] = {
     BT = {
@@ -121,7 +121,7 @@ return ReadOnly("Phantom", {
     IsNPCPhantom = true,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_NPCPhantom.BP_NPCPhantom",
     UnitId = 202,
-    UnitName = "NPC-\232\190\190\232\138\153\230\182\133"
+    UnitName = "NPC-达芙涅"
   },
   [203] = {
     BT = {
@@ -134,7 +134,7 @@ return ReadOnly("Phantom", {
     IsNPCPhantom = true,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_NPCPhantom.BP_NPCPhantom",
     UnitId = 203,
-    UnitName = "NPC-\232\157\182\229\166\185-\230\137\147\229\151\156\230\153\182\232\128\133",
+    UnitName = "NPC-蝶妹-打嗜晶者",
     WearMeleeWeapon = 1
   },
   [204] = {
@@ -148,7 +148,7 @@ return ReadOnly("Phantom", {
     IsNPCPhantom = true,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_NPCPhantom.BP_NPCPhantom",
     UnitId = 204,
-    UnitName = "NPC-\230\137\152\230\150\175\229\141\161",
+    UnitName = "NPC-托斯卡",
     WearMeleeWeapon = 1
   },
   [205] = {
@@ -161,7 +161,7 @@ return ReadOnly("Phantom", {
     IsPlayerMapping = true,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_NPCPhantom.BP_NPCPhantom",
     UnitId = 205,
-    UnitName = "NPC-\231\172\172\228\186\140\231\171\160\229\165\179\228\184\187",
+    UnitName = "NPC-第二章女主",
     WearMeleeWeapon = 1
   },
   [206] = {
@@ -174,7 +174,7 @@ return ReadOnly("Phantom", {
     IsPlayerMapping = true,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_NPCPhantom.BP_NPCPhantom",
     UnitId = 206,
-    UnitName = "NPC-\231\172\172\228\186\140\231\171\160\231\148\183\228\184\187",
+    UnitName = "NPC-第二章男主",
     WearMeleeWeapon = 1
   },
   [207] = {
@@ -186,7 +186,7 @@ return ReadOnly("Phantom", {
     IsNPCPhantom = true,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_NPCPhantom.BP_NPCPhantom",
     UnitId = 207,
-    UnitName = "NPC-\231\172\172\228\186\140\231\171\160\233\187\142\231\145\159",
+    UnitName = "NPC-第二章黎瑟",
     WearMeleeWeapon = 1
   },
   [210] = {
@@ -198,7 +198,7 @@ return ReadOnly("Phantom", {
     IsNPCPhantom = true,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_NPCPhantom.BP_NPCPhantom",
     UnitId = 210,
-    UnitName = "NPC-\228\184\156\229\155\189-\231\133\156\230\152\142\233\173\133\229\189\177",
+    UnitName = "NPC-东国-煜明魅影",
     WearMeleeWeapon = 1
   },
   [211] = {
@@ -210,7 +210,7 @@ return ReadOnly("Phantom", {
     IsNPCPhantom = true,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_NPCPhantom.BP_NPCPhantom",
     UnitId = 211,
-    UnitName = "NPC-\228\184\156\229\155\189-\230\137\182\231\150\143\233\173\133\229\189\177",
+    UnitName = "NPC-东国-扶疏魅影",
     WearMeleeWeapon = 1
   },
   [212] = {
@@ -222,7 +222,7 @@ return ReadOnly("Phantom", {
     IsNPCPhantom = true,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_NPCPhantom.BP_NPCPhantom",
     UnitId = 212,
-    UnitName = "NPC-\228\184\156\229\155\189-\229\136\187\232\136\159\233\173\133\229\189\177",
+    UnitName = "NPC-东国-刻舟魅影",
     WearMeleeWeapon = 1
   },
   [1101] = {
@@ -235,7 +235,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 1101,
-    UnitName = "\233\187\145\230\161\131-\233\173\133\229\189\177",
+    UnitName = "黑桃-魅影",
     WearMeleeWeapon = 1
   },
   [1103] = {
@@ -250,7 +250,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 1103,
-    UnitName = "\230\137\152\230\150\175\229\141\161-\233\173\133\229\189\177",
+    UnitName = "托斯卡-魅影",
     WearMeleeWeapon = 1
   },
   [1501] = {
@@ -265,7 +265,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 1501,
-    UnitName = "\230\154\180\230\128\146-\233\173\133\229\189\177",
+    UnitName = "暴怒-魅影",
     WearMeleeWeapon = 1
   },
   [1502] = {
@@ -280,7 +280,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 1502,
-    UnitName = "\229\166\174\229\188\151\229\176\148\229\164\171\228\186\186-\233\173\133\229\189\177",
+    UnitName = "妮弗尔夫人-魅影",
     WearMeleeWeapon = 1
   },
   [1503] = {
@@ -293,7 +293,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 1503,
-    UnitName = "\229\136\187\232\136\159-\233\173\133\229\189\177",
+    UnitName = "刻舟-魅影",
     WearRangedWeapon = 1
   },
   [1601] = {
@@ -306,7 +306,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 1601,
-    UnitName = "\229\165\179\228\184\187-\229\133\137-\233\173\133\229\189\177",
+    UnitName = "女主-光-魅影",
     WearMeleeWeapon = 1
   },
   [1801] = {
@@ -321,7 +321,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 1801,
-    UnitName = "\232\143\178\229\168\156-\233\173\133\229\189\177",
+    UnitName = "菲娜-魅影",
     WearMeleeWeapon = 1
   },
   [2101] = {
@@ -336,7 +336,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 2101,
-    UnitName = "\230\176\180\230\175\141-\233\173\133\229\189\177",
+    UnitName = "水母-魅影",
     WearMeleeWeapon = 1
   },
   [2301] = {
@@ -351,7 +351,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 2301,
-    UnitName = "\231\171\160\233\177\188-\233\173\133\229\189\177",
+    UnitName = "章鱼-魅影",
     WearRangedWeapon = 1
   },
   [2401] = {
@@ -364,7 +364,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 2401,
-    UnitName = "\231\153\189\232\152\133-\233\173\133\229\189\177",
+    UnitName = "白蘅-魅影",
     WearRangedWeapon = 1
   },
   [3101] = {
@@ -379,7 +379,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 3101,
-    UnitName = "\229\165\179\230\158\170-\233\173\133\229\189\177",
+    UnitName = "女枪-魅影",
     WearRangedWeapon = 1
   },
   [3102] = {
@@ -394,7 +394,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 3102,
-    UnitName = "\229\184\140\229\176\148\229\166\178-\233\173\133\229\189\177",
+    UnitName = "希尔妲-魅影",
     WearRangedWeapon = 1
   },
   [3103] = {
@@ -409,7 +409,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 3103,
-    UnitName = "\232\128\182\229\176\148-\233\173\133\229\189\177",
+    UnitName = "耶尔-魅影",
     WearRangedWeapon = 1
   },
   [3201] = {
@@ -424,7 +424,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 3201,
-    UnitName = "\229\133\184\231\139\177\233\149\191-\233\173\133\229\189\177",
+    UnitName = "典狱长-魅影",
     WearMeleeWeapon = 1
   },
   [3301] = {
@@ -439,7 +439,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 3301,
-    UnitName = "\231\142\155\229\176\148\230\180\129-\233\173\133\229\189\177",
+    UnitName = "玛尔洁-魅影",
     WearMeleeWeapon = 1
   },
   [4101] = {
@@ -452,7 +452,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 4101,
-    UnitName = "\233\187\142\231\145\159-\233\173\133\229\189\177",
+    UnitName = "黎瑟-魅影",
     WearMeleeWeapon = 1
   },
   [4102] = {
@@ -467,7 +467,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 4102,
-    UnitName = "\230\173\162\230\181\129-\233\173\133\229\189\177",
+    UnitName = "止流-魅影",
     WearMeleeWeapon = 1
   },
   [4201] = {
@@ -480,7 +480,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 4201,
-    UnitName = "\233\187\145\233\190\153-\233\173\133\229\189\177",
+    UnitName = "黑龙-魅影",
     WearMeleeWeapon = 1
   },
   [4202] = {
@@ -495,7 +495,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 4202,
-    UnitName = "\229\133\176\232\191\170-\233\173\133\229\189\177",
+    UnitName = "兰迪-魅影",
     WearMeleeWeapon = 1
   },
   [4301] = {
@@ -510,7 +510,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 4301,
-    UnitName = "\232\165\191\230\175\148-\233\173\133\229\189\177",
+    UnitName = "西比-魅影",
     WearMeleeWeapon = 1
   },
   [5101] = {
@@ -525,7 +525,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 5101,
-    UnitName = "\230\157\190\233\156\178-\233\173\133\229\189\177",
+    UnitName = "松露-魅影",
     WearMeleeWeapon = 1
   },
   [5102] = {
@@ -540,7 +540,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 5102,
-    UnitName = "\229\165\165\231\137\185\232\181\155\229\190\183-\233\173\133\229\189\177",
+    UnitName = "奥特赛德-魅影",
     WearMeleeWeapon = 1
   },
   [5301] = {
@@ -556,7 +556,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 5301,
-    UnitName = "\232\157\182\229\166\185-\233\173\133\229\189\177",
+    UnitName = "蝶妹-魅影",
     WearMeleeWeapon = 1
   },
   [5401] = {
@@ -571,7 +571,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 5401,
-    UnitName = "\232\190\190\232\138\153\230\182\133-\233\173\133\229\189\177",
+    UnitName = "达芙涅-魅影",
     WearRangedWeapon = 1
   },
   [160101] = {
@@ -584,7 +584,7 @@ return ReadOnly("Phantom", {
     RespawnUI = 20001,
     UnitBPPath = "/Game/BluePrints/Char/BP_Phantom/BP_PhantomCharacter.BP_PhantomCharacter",
     UnitId = 160101,
-    UnitName = "\231\148\183\228\184\187-\229\133\137-\233\173\133\229\189\177",
+    UnitName = "男主-光-魅影",
     WearMeleeWeapon = 1
   }
 })

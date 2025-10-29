@@ -106,7 +106,7 @@ function M:SendRequestEnterChatChannel(ChannelType)
     return
   end
   if not self:GetModel().EnteredChannels then
-    DebugPrint(ErrorTag, "\229\133\182\228\187\150\230\168\161\229\157\151\229\136\157\229\167\139\229\140\150\229\164\177\232\180\165\229\175\188\232\135\180\232\129\138\229\164\169\230\168\161\229\157\151\229\136\157\229\167\139\229\140\150\232\191\155\232\161\140\228\184\141\228\184\139\229\142\187\239\188\140\232\191\153\228\184\141\230\152\175\232\129\138\229\164\169\231\154\132\233\151\174\233\162\152!!!!\231\156\139\231\156\139\228\184\138\232\190\185\230\156\137\230\178\161\230\156\137trace!!!!!!!")
+    DebugPrint(ErrorTag, "其他模块初始化失败导致聊天模块初始化进行不下去，这不是聊天的问题!!!!看看上边有没有trace!!!!!!!")
     return
   end
   if not ChatCommon.WorldChannels[ChannelType] or self:GetModel().EnteredChannels[ChannelType] then
@@ -542,7 +542,7 @@ function M:ParseModSuitText(MsgWrap)
   end
   local TargetType = MsgWrap.ModSuitInfo.TargetInfo[1]
   local TargetId = MsgWrap.ModSuitInfo.TargetInfo[2]
-  local Name = "\232\167\146\232\137\178\230\136\150\230\173\166\229\153\168\232\162\171\229\136\160\233\153\164\228\186\134!!!!"
+  local Name = "角色或武器被删除了!!!!"
   local Conf = DataMgr[TargetType][TargetId]
   if "Char" == TargetType then
     Name = Conf.CharName

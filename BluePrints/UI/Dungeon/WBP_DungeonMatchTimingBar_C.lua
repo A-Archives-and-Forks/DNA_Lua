@@ -44,7 +44,7 @@ function M:OnLoaded(DungeonId, EnterState, bIsMatch)
   DebugPrint("gmy@WBP_DungeonMatchTimingBar_C:OnLoaded ", DungeonId, EnterState, debug.traceback())
   self.DungeonId = DungeonId
   local DungeonData = DataMgr.Dungeon[self.DungeonId]
-  assert(DungeonData, "\229\137\175\230\156\172ID\233\148\153\232\175\175" .. tostring(self.DungeonId))
+  assert(DungeonData, "副本ID错误" .. tostring(self.DungeonId))
   local MatchTitle = GText(DungeonData.DungeonName)
   local LevelIndex = self:GetDungeonIndex(DungeonId)
   local LevelText = GText(Const.RomanNum[LevelIndex])
@@ -255,7 +255,7 @@ function M:UpdateTimeProgress()
     CanvasSlot:SetSize(FVector2D((1 - Percent) * PROGRESS_PERCENT_SIZE_X, PROGRESS_PERCENT_SIZE_Y))
     self.Text_Timing:SetText(string.format(GText("DUNGEON_TIME_REMAIN_FMT"), RemainTime))
     if not self:HasFocusedDescendants() and TeamController:IsGamepad() then
-      DebugPrint(LXYTag, WarningTag, "\231\187\132\233\152\159\232\191\155\230\156\172\229\128\146\232\174\161\230\151\182UI\233\156\128\232\166\129\230\138\162\229\164\186\232\129\154\231\132\166\239\188\129\239\188\129\239\188\129\239\188\129\239\188\129\239\188\129")
+      DebugPrint(LXYTag, WarningTag, "组队进本倒计时UI需要抢夺聚焦！！！！！！")
       self:SetFocus()
     end
   end

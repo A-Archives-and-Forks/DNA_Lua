@@ -33,7 +33,7 @@ function M:InitItemList()
   self.KeyItemContents = {}
   local DungeonData = DataMgr.Synthesis[GameState(self).DungeonId]
   if not DungeonData then
-    GameState(self):ShowDungeonError("SynthesisComponent:Client \229\189\147\229\137\141\229\137\175\230\156\172ID\230\178\161\230\156\137\229\161\171\229\134\153\229\156\168\229\175\185\229\186\148\231\154\132\229\137\175\230\156\172\232\161\168\228\184\173, \232\175\187\232\161\168\229\164\177\232\180\165! \232\175\187\229\133\165Id\239\188\154" .. GameState(self).DungeonId)
+    GameState(self):ShowDungeonError("SynthesisComponent:Client 当前副本ID没有填写在对应的副本表中, 读表失败! 读入Id：" .. GameState(self).DungeonId)
     return
   end
   local CurKeySubmitNum = GameState(self).KeySubmitNum or 0

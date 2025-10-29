@@ -204,15 +204,15 @@ function WBP_Cinematic_Common:SwitchEnableTalkClick(bEnable)
 end
 
 function WBP_Cinematic_Common:OnPlayKeyActive()
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_Cinematic_Common:OnPlayKeyActive")
+  DebugPrint("Error: 未实现的函数WBP_Cinematic_Common:OnPlayKeyActive")
 end
 
 function WBP_Cinematic_Common:OnPlayKeyDeactive()
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_Cinematic_Common:OnPlayKeyDeactive")
+  DebugPrint("Error: 未实现的函数WBP_Cinematic_Common:OnPlayKeyDeactive")
 end
 
 function WBP_Cinematic_Common:InitPlayKey()
-  DebugPrint("Error: \230\156\170\229\174\158\231\142\176\231\154\132\229\135\189\230\149\176WBP_Cinematic_Common:InitPlayKey")
+  DebugPrint("Error: 未实现的函数WBP_Cinematic_Common:InitPlayKey")
 end
 
 return WBP_Cinematic_Common

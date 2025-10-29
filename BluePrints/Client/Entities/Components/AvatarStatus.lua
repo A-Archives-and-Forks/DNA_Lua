@@ -4,8 +4,8 @@ function Component:OnAvatarStatusUpdate(AvatarStatus)
   local OldStatus = self.AvatarStatus or {}
   self.AvatarStatus = AvatarStatus
   print(_G.LogTag, "AvatarStatus Update")
-  PrintTable(AvatarStatus, 1, LXYTag .. "\230\150\176\231\154\132AvatarStatus")
-  PrintTable(OldStatus, 1, LXYTag .. "\230\151\167\231\154\132AvatarStatus")
+  PrintTable(AvatarStatus, 1, LXYTag .. "新的AvatarStatus")
+  PrintTable(OldStatus, 1, LXYTag .. "旧的AvatarStatus")
   EventManager:FireEvent(EventID.OnAvatarStatusUpdate, OldStatus, AvatarStatus)
   self:PrintAvatarStatus()
 end
@@ -36,7 +36,7 @@ function Component:CheckCanSetStatus(InputAvatarStatus, status)
   local MaxPriority = self:GetCurrentMaxPriority(InputAvatarStatus)
   for StatusId, Status in pairs(InputAvatarStatus) do
     if Status and DataMgr.AvatarStatus[StatusId].Priority == MaxPriority and not DataMgr.AvatarStatusMachine.TurningMap[StatusId][status] then
-      DebugPrint(LXYTag, WarningTag, "\230\151\160\230\179\149\232\189\172\230\141\162\229\136\176\233\162\132\229\174\154\231\138\182\230\128\129\239\188\140\229\155\160\228\184\186 " .. DataMgr.AvatarStatus[StatusId].StatusName .. " \231\154\132turningMap\228\184\173\230\178\161\230\156\137 " .. DataMgr.AvatarStatus[status].StatusName)
+      DebugPrint(LXYTag, WarningTag, "无法转换到预定状态，因为 " .. DataMgr.AvatarStatus[StatusId].StatusName .. " 的turningMap中没有 " .. DataMgr.AvatarStatus[status].StatusName)
       return false
     end
   end

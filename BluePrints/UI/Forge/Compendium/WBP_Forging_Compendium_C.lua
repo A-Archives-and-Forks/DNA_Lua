@@ -281,7 +281,7 @@ function WBP_Forging_Compendium_C:OnTabItemSelected(TabWidget)
   self.TabIndex = TabWidget.Idx
   local TabType = self.TabIdx2TabType[self.TabIndex]
   if not TabType then
-    DebugPrint(LogTag.Error, "\230\137\190\228\184\141\229\136\176TabIndex\229\175\185\229\186\148\231\154\132TabType! TabIndex = ", self.TabIndex)
+    DebugPrint(LogTag.Error, "找不到TabIndex对应的TabType! TabIndex = ", self.TabIndex)
     return
   end
   self:UpdateCompendiumContent(TabType)

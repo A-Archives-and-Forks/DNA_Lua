@@ -14,7 +14,7 @@ function WBP_CommonToastScreenMiddleText_C:InitWidget(...)
     self.ShowText = b
     self.LastTime = c
   else
-    self.ShowText = "\232\175\183\229\161\171\229\134\153\230\150\135\230\156\172\229\134\133\229\174\185"
+    self.ShowText = "请填写文本内容"
   end
 end
 

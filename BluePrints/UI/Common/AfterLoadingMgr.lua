@@ -24,7 +24,7 @@ local State = {
       try({
         exec = FuncTable.OnEnter,
         catch = function(err)
-          DebugPrint(Traceback(ErrorTag, "AfterLoading\230\181\129\231\168\139\229\135\186\233\148\153\228\186\134,\231\156\139\230\151\165\229\191\151\230\156\137trace,\229\135\186\233\148\153\231\138\182\230\128\129\239\188\154%s", AfterLoadingMgr.FSM:Current()))
+          DebugPrint(Traceback(ErrorTag, "AfterLoading流程出错了,看日志有trace,出错状态：%s", AfterLoadingMgr.FSM:Current()))
           LogError(Traceback(ErrorTag, err, true))
           UIManager():DestroyAfterLoadingMgr()
         end
@@ -273,13 +273,13 @@ end
 
 function AfterLoadingMgr:Pause()
   self.bPause = true
-  DebugPrint(WarningTag, string.format("AfterLoadingMgr \231\138\182\230\128\129\230\156\186\230\154\130\229\129\156\239\188\140\229\189\147\229\137\141\231\138\182\230\128\129\239\188\154%s", self.FSM:Current()))
+  DebugPrint(WarningTag, string.format("AfterLoadingMgr 状态机暂停，当前状态：%s", self.FSM:Current()))
 end
 
 function AfterLoadingMgr:Fallback(State)
   State = State or self.FSM:Current()
   if not self.bPause and self:IsCurrentState(State) then
-    DebugPrint(WarningTag, string.format("AfterLoadingMgr \231\138\182\230\128\129\230\156\186\230\178\161\230\156\137\232\162\171\230\154\130\229\129\156\239\188\140\231\187\167\231\187\173\230\137\167\232\161\140 State: %s", State))
+    DebugPrint(WarningTag, string.format("AfterLoadingMgr 状态机没有被暂停，继续执行 State: %s", State))
     self:Continue()
   end
 end
@@ -295,26 +295,26 @@ end
 
 function AfterLoadingMgr:Continue()
   if self.bPause then
-    DebugPrint(WarningTag, string.format("AfterLoadingMgr \231\138\182\230\128\129\230\156\186\228\187\142\230\154\130\229\129\156\228\184\173\230\129\162\229\164\141, CurrState: %s", self.FSM:Current()))
+    DebugPrint(WarningTag, string.format("AfterLoadingMgr 状态机从暂停中恢复, CurrState: %s", self.FSM:Current()))
   end
   self.bPause = false
   if self:IsEnd() then
-    DebugPrint(WarningTag, "AfterLoadingMgr \231\138\182\230\128\129\230\156\186\230\137\167\232\161\140\229\174\140\230\175\149\239\188\129\239\188\129\239\188\129")
+    DebugPrint(WarningTag, "AfterLoadingMgr 状态机执行完毕！！！")
     return
   end
   local CurrState = self.FSM:Current()
   if not CurrState then
-    DebugPrint(WarningTag, "AfterLoadingMgr \231\138\182\230\128\129\230\156\186\229\188\128\229\167\139\230\137\167\232\161\140\239\188\129\239\188\129\239\188\129")
+    DebugPrint(WarningTag, "AfterLoadingMgr 状态机开始执行！！！")
     self.FSM:Enter("BeginState")
     return
   end
   local NextState = StateImpl[CurrState]:GetNextState(self)
   if NextState then
     if NextState == CurrState then
-      DebugPrint(WarningTag, string.format("AfterLoadingMgr GetNextState\228\191\157\230\140\129\229\142\159\231\138\182\239\188\140\230\154\130\229\129\156\229\136\135\230\141\162 CurrState:%s", CurrState))
+      DebugPrint(WarningTag, string.format("AfterLoadingMgr GetNextState保持原状，暂停切换 CurrState:%s", CurrState))
       return
     end
-    DebugPrint(WarningTag, string.format("AfterLoadingMgr \229\136\135\230\141\162\231\138\182\230\128\129\239\188\140\229\137\141\228\184\170\231\138\182\230\128\129\239\188\154%s\239\188\140\228\184\139\228\184\170\231\138\182\230\128\129\239\188\154%s", CurrState, NextState))
+    DebugPrint(WarningTag, string.format("AfterLoadingMgr 切换状态，前个状态：%s，下个状态：%s", CurrState, NextState))
     self.FSM:Enter(NextState)
   end
 end

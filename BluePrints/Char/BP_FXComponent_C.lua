@@ -59,7 +59,7 @@ function BP_FXComponent_C:PlayEffectByIDParams(EffectID, EffectParam)
 end
 
 function BP_FXComponent_C:GetPlayCircleFxDecalCNParamName(OutInnterRadiusName, OutOutsideRadiusName, OutAngelName)
-  return "\229\134\133\229\190\132", "\229\164\150\229\190\132", "\232\167\146\229\186\166"
+  return "内径", "外径", "角度"
 end
 
 return BP_FXComponent_C

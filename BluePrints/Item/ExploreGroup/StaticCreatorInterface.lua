@@ -192,7 +192,7 @@ function Component:RealActiveStaticCreator(ExtraInfo, bForceSync)
     Context:AddLuaTable("ExtraInfo", ExtraInfo)
   end
   if not self.IsFullRegionStore and self:IsActorNeedFullRegionStore(self.UnitType, self.UnitId) then
-    GWorld.logger.error("\233\156\128\232\166\129\229\139\190\233\128\137\229\133\168\229\140\186\229\159\159\229\173\152\229\130\168\231\154\132Actor\230\178\161\230\156\137\229\139\190\233\128\137 " .. "UnitType = " .. Context.UnitType .. "; UnitId = " .. Context.UnitId .. "; StaticCreatorId = " .. self.StaticCreatorId .. "; Map = " .. self:GetWorld():GetName())
+    GWorld.logger.error("需要勾选全区域存储的Actor没有勾选 " .. "UnitType = " .. Context.UnitType .. "; UnitId = " .. Context.UnitId .. "; StaticCreatorId = " .. self.StaticCreatorId .. "; Map = " .. self:GetWorld():GetName())
   end
   self:FillCreateUnitContext(Context, ExtraInfo)
   DebugPrint("RealActiveStaticCreator UnitType", self.UnitType, "UnitId", self.UnitId, "CreatorId", self.StaticCreatorId)

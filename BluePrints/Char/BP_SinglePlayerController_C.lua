@@ -463,13 +463,13 @@ function BP_SinglePlayerController_C:NotifyClientToCloseLoading_Lua(bInActivePla
   end
   local Player = self:GetMyPawn()
   if not Player then
-    DebugPrint("NotifyClientToCloseLoading \230\139\191\228\184\141\229\136\176Player")
+    DebugPrint("NotifyClientToCloseLoading 拿不到Player")
     return
   end
   Player:RemoveGravityModifier(UE4.EGravityModifierTag.LoadLevel)
   local GameState = UE4.UGameplayStatics.GetGameState(self)
   if GameState then
-    DebugPrint("NotifyClientToCloseLoading \232\167\166\229\143\145OnRep_DungeonEvent_Lua")
+    DebugPrint("NotifyClientToCloseLoading 触发OnRep_DungeonEvent_Lua")
     GameState.IsCanFreshDungeonEvent = true
     GameState:OnRep_DungeonEvent_Lua()
     GameState:OnRep_GuideEids()
@@ -478,7 +478,7 @@ function BP_SinglePlayerController_C:NotifyClientToCloseLoading_Lua(bInActivePla
       PlayerState:OnRep_PlayerGuideEids()
     end
   else
-    DebugPrint("NotifyClientToCloseLoading \230\139\191\228\184\141\229\136\176GameState")
+    DebugPrint("NotifyClientToCloseLoading 拿不到GameState")
   end
 end
 
@@ -672,7 +672,7 @@ end
 function BP_SinglePlayerController_C:SetForceFeedbackFromCache()
   local GamepadForceFeedback = EMCache:Get("ForceFeedback")
   local CurMode = self.GameInputModeSubsystem:GetCurrentInputType()
-  DebugPrint("@zyh \232\142\183\229\143\150\229\136\176\231\154\132GamepadForceFeedback", GamepadForceFeedback)
+  DebugPrint("@zyh 获取到的GamepadForceFeedback", GamepadForceFeedback)
   if nil == GamepadForceFeedback then
     local DefaultFeedback = DataMgr.Option.ForceFeedback.DefaultValue
     if "True" == DefaultFeedback then

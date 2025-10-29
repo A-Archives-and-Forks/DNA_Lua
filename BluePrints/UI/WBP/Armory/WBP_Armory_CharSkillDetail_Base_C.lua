@@ -423,7 +423,7 @@ function M:InitSkillDesc(SkillData)
         OnHyperLinkClicked = self.OnRichTextHyperLinkClicked
       })
     else
-      DebugPrint("Error: \230\137\190\228\184\141\229\136\176CombatTerm:" .. Item)
+      DebugPrint("Error: 找不到CombatTerm:" .. Item)
     end
   end
   self:UpdateDesc(SkillDescInfos)

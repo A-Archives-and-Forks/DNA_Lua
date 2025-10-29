@@ -51,15 +51,15 @@ end
 function M:BeginInvitation(CharacterId, TopicLevel, bIsReview, OnFailed, OnSucceed)
   self:TryInitialize()
   if self:IsInInvitation() then
-    DebugPrint(string.format("Error\239\188\154\233\130\128\231\186\166\229\173\144\231\179\187\231\187\159\239\188\154\229\188\128\229\167\139\233\130\128\231\186\166\229\164\177\232\180\165\239\188\140\229\183\178\229\164\132\228\186\142\233\130\128\231\186\166 %s \228\184\173\227\128\130", self.InvitationState))
+    DebugPrint(string.format("Error：邀约子系统：开始邀约失败，已处于邀约 %s 中。", self.InvitationState))
     return
   end
   local Avatar = GWorld:GetAvatar()
   self.PartyNPCData = DataMgr.PartyNpc[CharacterId]
-  assert(self.PartyNPCData, string.format("Error\239\188\154\233\130\128\231\186\166\229\173\144\231\179\187\231\187\159\239\188\154PartyNpc \232\161\168\228\184\141\229\173\152\229\156\168\233\148\174\239\188\154%d\227\128\130", CharacterId))
+  assert(self.PartyNPCData, string.format("Error：邀约子系统：PartyNpc 表不存在键：%d。", CharacterId))
   local PartyTopicId = self.PartyNPCData.PartyTopicList[TopicLevel]
   self.PartyTopicData = DataMgr.PartyTopic[PartyTopicId]
-  assert(self.PartyTopicData, string.format("Error\239\188\154\233\130\128\231\186\166\229\173\144\231\179\187\231\187\159\239\188\154PartyTopic \232\161\168\228\184\141\229\173\152\229\156\168\233\148\174\239\188\154%d\227\128\130", PartyTopicId))
+  assert(self.PartyTopicData, string.format("Error：邀约子系统：PartyTopic 表不存在键：%d。", PartyTopicId))
   self.TopicLevel = TopicLevel
   self.bIsReview = bIsReview
   self.InvitationState = EInvitationState.Going
@@ -70,7 +70,7 @@ function M:BeginInvitation(CharacterId, TopicLevel, bIsReview, OnFailed, OnSucce
       if OnFailed then
         OnFailed()
       end
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\130\128\231\186\166\229\143\145\232\181\183\230\156\141\229\138\161\229\153\168\232\191\148\229\155\158\229\164\177\232\180\165", string.format("\233\130\128\231\186\166\230\156\141\229\138\161\229\153\168\232\191\148\229\155\158\229\164\177\232\180\165 \233\130\128\231\186\166ID: %d \233\130\128\231\186\166\231\173\137\231\186\167: %d \233\148\153\232\175\175\231\160\129 %d", CharacterId or -1, TopicLevel or -1, Ret))
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "邀约发起服务器返回失败", string.format("邀约服务器返回失败 邀约ID: %d 邀约等级: %d 错误码 %d", CharacterId or -1, TopicLevel or -1, Ret))
       return
     end
     if not self:IsInInvitation() then
@@ -82,7 +82,7 @@ function M:BeginInvitation(CharacterId, TopicLevel, bIsReview, OnFailed, OnSucce
     if OnSucceed then
       OnSucceed()
     end
-    DebugPrint(string.format("\233\130\128\231\186\166\229\173\144\231\179\187\231\187\159\239\188\154\229\188\128\229\167\139\233\130\128\231\186\166 %d %d %s\227\128\130", CharacterId, TopicLevel, tostring(bIsReview)))
+    DebugPrint(string.format("邀约子系统：开始邀约 %d %d %s。", CharacterId, TopicLevel, tostring(bIsReview)))
     self:ListenEnterOtherRegion()
     self:StartStoryline()
   end)
@@ -96,7 +96,7 @@ function M:EndInvitation()
   local CharacterId = self.PartyNPCData.CharId
   local TopicLevel = self.TopicLevel
   local bIsReview = self.bIsReview
-  DebugPrint(string.format("\233\130\128\231\186\166\229\173\144\231\179\187\231\187\159\239\188\154\231\187\147\230\157\159\233\130\128\231\186\166 %d %d %s\227\128\130", CharacterId, TopicLevel, tostring(bIsReview)))
+  DebugPrint(string.format("邀约子系统：结束邀约 %d %d %s。", CharacterId, TopicLevel, tostring(bIsReview)))
   self:ClearInvitation()
   local FlowManager = USubsystemBlueprintLibrary.GetWorldSubsystem(GWorld.GameInstance, UGameFlowManager)
   local Flow = FlowManager:CreateFlow("AfterEntertainment")
@@ -120,7 +120,7 @@ function M:StopInvitation()
   local CharacterId = self.PartyNPCData.CharId
   local TopicLevel = self.TopicLevel
   local bIsReview = self.bIsReview
-  DebugPrint(string.format("\233\130\128\231\186\166\229\173\144\231\179\187\231\187\159\239\188\154\229\129\156\230\173\162\233\130\128\231\186\166 %d %d %s\227\128\130", CharacterId, TopicLevel, tostring(bIsReview)))
+  DebugPrint(string.format("邀约子系统：停止邀约 %d %d %s。", CharacterId, TopicLevel, tostring(bIsReview)))
   self:StopJumpToSubregion()
   self:StopStoryline()
   self:StopBlackScreen()
@@ -168,7 +168,7 @@ function M:OnGuideEnd(Guide)
 end
 
 function M:ClearInvitation()
-  DebugPrint("\233\130\128\231\186\166\229\173\144\231\179\187\231\187\159\239\188\154\230\184\133\231\144\134\233\130\128\231\186\166")
+  DebugPrint("邀约子系统：清理邀约")
   self.InvitationState = EInvitationState.None
   local CharacterId = self.PartyNPCData.CharId
   local TopicLevel = self.TopicLevel
@@ -183,7 +183,7 @@ function M:ClearInvitation()
   local Avatar = GWorld:GetAvatar()
   Avatar:ExitSojourns(CharacterId, TopicLevel, function(bSuccess, Ret)
     if not bSuccess then
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\130\128\231\186\166\231\187\147\230\157\159\230\156\141\229\138\161\229\153\168\232\191\148\229\155\158\229\164\177\232\180\165", string.format("\233\130\128\231\186\166\230\156\141\229\138\161\229\153\168\232\191\148\229\155\158\229\164\177\232\180\165 \233\130\128\231\186\166ID: %d \233\130\128\231\186\166\231\173\137\231\186\167: %d \233\148\153\232\175\175\231\160\129 %d", CharacterId or -1, TopicLevel or -1, Ret))
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "邀约结束服务器返回失败", string.format("邀约服务器返回失败 邀约ID: %d 邀约等级: %d 错误码 %d", CharacterId or -1, TopicLevel or -1, Ret))
     end
   end)
 end
@@ -206,9 +206,9 @@ function M:StartStoryline()
   end
   
   local Avatar = GWorld:GetAvatar()
-  DebugPrint(string.format("\233\130\128\231\186\166\229\173\144\231\179\187\231\187\159\239\188\154\228\188\160\233\128\129\232\135\179\229\156\176\231\130\185 %d\239\188\140\229\188\128\229\167\139\233\130\128\231\186\166\229\137\167\230\131\133 %s\227\128\130", Avatar.CurrentRegionId, StorylinePath))
+  DebugPrint(string.format("邀约子系统：传送至地点 %d，开始邀约剧情 %s。", Avatar.CurrentRegionId, StorylinePath))
   if not StorylinePath then
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\130\128\231\186\166\229\173\144\231\179\187\231\187\159\233\148\153\232\175\175", string.format("\233\130\128\231\186\166STL\233\133\141\231\189\174\228\184\186\231\169\186,\232\175\157\233\162\152ID %d", self.PartyTopicData.PartyTopicId))
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "邀约子系统错误", string.format("邀约STL配置为空,话题ID %d", self.PartyTopicData.PartyTopicId))
     OnCompleted()
     return
   end
@@ -218,7 +218,7 @@ end
 
 function M:CompleteInvite()
   local TargetSubregionId = self.HomebaseSubregionId
-  DebugPrint(string.format("\233\130\128\231\186\166\229\173\144\231\179\187\231\187\159\239\188\154\233\130\128\231\186\166\229\174\140\230\136\144\239\188\140\232\191\148\229\155\158 %d\227\128\130", TargetSubregionId))
+  DebugPrint(string.format("邀约子系统：邀约完成，返回 %d。", TargetSubregionId))
   self.InvitationState = EInvitationState.Backing
   self:JumpToSubregion(TargetSubregionId, function()
     self:BackFromInvite()
@@ -239,10 +239,10 @@ function M:RecordInvite()
   local TopicLevel = self.TopicLevel
   local Avatar = GWorld:GetAvatar()
   if nil == Avatar then
-    DebugPrint("Error: \233\130\128\231\186\166\229\173\144\231\179\187\231\187\159\239\188\154\232\174\176\229\189\149\233\130\128\231\186\166\229\164\177\232\180\165\239\188\140Avatar \228\184\186\231\169\186\227\128\130")
+    DebugPrint("Error: 邀约子系统：记录邀约失败，Avatar 为空。")
     return
   end
-  DebugPrint("\233\130\128\231\186\166\229\173\144\231\179\187\231\187\159\239\188\154\232\174\176\229\189\149\233\130\128\231\186\166\227\128\130")
+  DebugPrint("邀约子系统：记录邀约。")
   self.InvitationState = EInvitationState.Recording
   self:StartBlackScreen()
   self:SetPlayerInputEnabled(false)
@@ -264,7 +264,7 @@ end
 function M:JumpToSubregion(TargetSubregionId, OnSucceed, OnFailed)
   local Avatar = GWorld:GetAvatar()
   if nil == Avatar then
-    DebugPrint("Error: \232\183\179\232\189\172\229\136\176 %d \229\173\144\229\140\186\229\159\159\229\164\177\232\180\165\239\188\140Avatar \228\184\186\231\169\186\227\128\130", TargetSubregionId)
+    DebugPrint("Error: 跳转到 %d 子区域失败，Avatar 为空。", TargetSubregionId)
     if OnFailed then
       OnFailed()
     end
@@ -272,7 +272,7 @@ function M:JumpToSubregion(TargetSubregionId, OnSucceed, OnFailed)
   end
   local GameMode = UE4.UGameplayStatics.GetGameMode(self)
   if IsValid(GameMode) == false then
-    DebugPrint("Error: \232\183\179\232\189\172\229\136\176 %d \229\173\144\229\140\186\229\159\159\229\164\177\232\180\165\239\188\140GameMode \228\184\186\231\169\186\227\128\130", TargetSubregionId)
+    DebugPrint("Error: 跳转到 %d 子区域失败，GameMode 为空。", TargetSubregionId)
     if OnFailed then
       OnFailed()
     end
@@ -299,7 +299,7 @@ end
 function M:StopJumpToSubregion()
   local Avatar = GWorld:GetAvatar()
   if nil == Avatar then
-    DebugPrint("Error: \228\184\173\230\150\173\232\183\179\232\189\172 %d \229\173\144\229\140\186\229\159\159\229\164\177\232\180\165\239\188\140Avatar \228\184\186\231\169\186\227\128\130", self.TargetSubregionId)
+    DebugPrint("Error: 中断跳转 %d 子区域失败，Avatar 为空。", self.TargetSubregionId)
     return
   end
   Avatar:StopJumpRegion(self.TargetSubregionId)
@@ -334,7 +334,7 @@ end
 function M:StartBlackScreen()
   local UIManager = UIManager(self)
   if IsValid(UIManager) == false then
-    DebugPrint("Error: \233\130\128\231\186\166\229\173\144\231\179\187\231\187\159\239\188\154\229\188\128\229\167\139\233\187\145\229\177\143\229\164\177\232\180\165\239\188\140UIManager \228\184\186\231\169\186\227\128\130")
+    DebugPrint("Error: 邀约子系统：开始黑屏失败，UIManager 为空。")
     return
   end
   if self.BlackScreenHandle then
@@ -346,7 +346,7 @@ end
 function M:StopBlackScreen()
   local UIManager = UIManager(self)
   if IsValid(UIManager) == false then
-    DebugPrint("Error: \233\130\128\231\186\166\229\173\144\231\179\187\231\187\159\239\188\154\229\129\156\230\173\162\233\187\145\229\177\143\229\164\177\232\180\165\239\188\140UIManager \228\184\186\231\169\186\227\128\130")
+    DebugPrint("Error: 邀约子系统：停止黑屏失败，UIManager 为空。")
     return
   end
   if self.BlackScreenHandle then

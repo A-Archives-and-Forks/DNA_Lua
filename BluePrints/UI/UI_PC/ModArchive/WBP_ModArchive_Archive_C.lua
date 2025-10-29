@@ -174,7 +174,7 @@ end
 
 function WBP_ModArchive_Archive_C:CheckRewardRemain()
   for i, v in pairs(self.CanGetRewardGroups) do
-    DebugPrint("\230\163\128\230\159\165\228\184\173 ", i, v)
+    DebugPrint("检查中 ", i, v)
     if v then
       return true
     end
@@ -183,7 +183,7 @@ function WBP_ModArchive_Archive_C:CheckRewardRemain()
 end
 
 function WBP_ModArchive_Archive_C:RefreshBtnRewardState()
-  DebugPrint("zwkzwk \229\136\183\230\150\176\230\140\137\233\146\174\231\138\182\230\128\129 ")
+  DebugPrint("zwkzwk 刷新按钮状态 ")
   if self:CheckRewardRemain() then
     self.Group_GetAll:SetVisibility(ESlateVisibility.Visible)
     if self.CurInputDeviceType == ECommonInputType.Gamepad then
@@ -207,7 +207,7 @@ end
 
 function WBP_ModArchive_Archive_C:OnGamepadFirstSelect()
   if self.Widgets and self.Widgets[1] then
-    DebugPrint("\231\172\172\228\184\128\230\172\161Select Widget", self.Widgets[1]:GetName())
+    DebugPrint("第一次Select Widget", self.Widgets[1]:GetName())
     if self.Owner.ShouldShowTips then
       return
     end
@@ -466,7 +466,7 @@ end
 function WBP_ModArchive_Archive_C:SetAccessItem(ItemType, ItemId)
   self.Method:ClearChildren(ItemType, ItemId)
   local ItemInfo = DataMgr[ItemType][ItemId]
-  assert(ItemInfo, "\228\184\141\229\173\152\229\156\168\232\175\165\231\137\169\229\147\129\239\188\154", ItemType, ItemId)
+  assert(ItemInfo, "不存在该物品：", ItemType, ItemId)
   self.Panel_Method:SetVisibility(ESlateVisibility.Collapsed)
   self.Access = {}
   if ItemInfo.AccessKey then
@@ -513,7 +513,7 @@ function WBP_ModArchive_Archive_C:TryGetAllRewards()
 end
 
 function WBP_ModArchive_Archive_C:RefreshInfo()
-  DebugPrint("\232\129\154\231\132\166\229\155\158\230\157\165\228\186\134 WBP_ModArchive_Archive_C")
+  DebugPrint("聚焦回来了 WBP_ModArchive_Archive_C")
   local PreGroupId = 0
   if self.CurGroupIndex then
     PreGroupId = self.CurGroupId
@@ -714,7 +714,7 @@ function WBP_ModArchive_Archive_C:Handle_OnGamePadDown(InKeyName)
     return true
   elseif "Gamepad_FaceButton_Right" == InKeyName then
     if self.IsInViewTips and self.CurItemWidget then
-      DebugPrint("\232\191\148\229\155\158\232\129\154\231\132\166\239\188\154", self.CurItemWidget:GetName())
+      DebugPrint("返回聚焦：", self.CurItemWidget:GetName())
       self.CurItemWidget:SetFocus()
       self.IsInViewTips = false
       self.Owner:SwitchComKeyTipsState(7)
@@ -813,7 +813,7 @@ function WBP_ModArchive_Archive_C:ExitResourceSelectMode()
   if self.CurInputDeviceType == ECommonInputType.Gamepad then
     self.ArchiveTab.Key_Left:SetVisibility(UIConst.VisibilityOp.SelfHitTestInvisible)
     self.ArchiveTab.Key_Right:SetVisibility(UIConst.VisibilityOp.SelfHitTestInvisible)
-    DebugPrint("zwkkkkk \231\166\187\229\188\128\232\181\132\230\186\144\233\128\137\230\139\169", self.CurGroupIndex, self.CurSelectedItemIndex)
+    DebugPrint("zwkkkkk 离开资源选择", self.CurGroupIndex, self.CurSelectedItemIndex)
   end
 end
 

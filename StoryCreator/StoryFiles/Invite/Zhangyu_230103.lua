@@ -46,7 +46,7 @@ return {
       isStoryNode = true,
       key = "1749799188538622383",
       type = "StoryNode",
-      name = "\228\187\187\229\138\161\232\138\130\231\130\185",
+      name = "任务节点",
       pos = {x = 1208, y = 288},
       propsData = {
         QuestId = 0,
@@ -125,7 +125,7 @@ return {
           ["1749799188538622391"] = {
             key = "1749799188538622391",
             type = "TalkNode",
-            name = "\229\175\185\232\175\157\232\138\130\231\130\185",
+            name = "对话节点",
             pos = {x = 678.5487012987002, y = 275.48051948051966},
             propsData = {
               IsNpcNode = false,
@@ -183,7 +183,7 @@ return {
           ["176008451189530486205"] = {
             key = "176008451189530486205",
             type = "PlayOrStopBGMNode",
-            name = "BGM\232\138\130\231\130\185",
+            name = "BGM节点",
             pos = {x = 683.3385093167702, y = 446.3237713849841},
             propsData = {
               SoundStateType = 0,
@@ -199,7 +199,7 @@ return {
           ["176008451812530486432"] = {
             key = "176008451812530486432",
             type = "PlayOrStopBGMNode",
-            name = "BGM\232\138\130\231\130\185",
+            name = "BGM节点",
             pos = {x = 1000.8385093167703, y = 295.0737713849841},
             propsData = {
               SoundStateType = 3,

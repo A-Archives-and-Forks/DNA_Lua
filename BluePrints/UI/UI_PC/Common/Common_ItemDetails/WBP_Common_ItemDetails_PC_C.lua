@@ -84,7 +84,7 @@ function M:RefreshItemInfo(Content, bNotFocus)
     local ItemInfo
     if self.ItemId then
       ItemInfo = DataMgr[self.Type][self.ItemId]
-      assert(ItemInfo, "\230\178\161\230\156\137\230\137\190\229\136\176\231\137\169\229\147\129\228\191\161\230\129\175" .. self.Type .. "," .. self.ItemId)
+      assert(ItemInfo, "没有找到物品信息" .. self.Type .. "," .. self.ItemId)
     else
       ItemInfo = {
         Name = Content.Name
@@ -225,7 +225,7 @@ end
 function M:SetAccessItem(ItemType, ItemId)
   self.Method:ClearChildren(ItemType, ItemId)
   local ItemInfo = DataMgr[ItemType][ItemId]
-  assert(ItemInfo, "\228\184\141\229\173\152\229\156\168\232\175\165\231\137\169\229\147\129\239\188\154", ItemType, ItemId)
+  assert(ItemInfo, "不存在该物品：", ItemType, ItemId)
   self.Key_Controller_Method:SetVisibility(ESlateVisibility.Collapsed)
   self.Panel_Method:SetVisibility(ESlateVisibility.Collapsed)
   if ItemInfo.AccessKey then

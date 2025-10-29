@@ -42,7 +42,7 @@ function FSM:AddCustomChecker(CheckerName, Checker)
     return
   end
   if self.CustomCheckers[CheckerName] then
-    DebugPrint("Tianyi@ \232\175\165CustomChecker\229\183\178\230\179\168\229\134\140")
+    DebugPrint("Tianyi@ 该CustomChecker已注册")
     return
   end
   Checker.Name = CheckerName

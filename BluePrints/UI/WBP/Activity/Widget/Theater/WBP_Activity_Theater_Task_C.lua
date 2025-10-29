@@ -12,7 +12,7 @@ function M:Construct()
   self.ListView_Task.OnListViewScrolled:Add(self, self.OnListViewTaskScrolled)
   self.List_Delivery.BP_OnEntryInitialized:Add(self, self.OnListDeliveryItemInited)
   self.Btn_Auto.Button_Area.OnClicked:Add(self, self.OnBtnAutoClicked)
-  self.Btn_Auto:SetText(GText("\232\135\170\229\138\168\233\128\137\230\139\169"))
+  self.Btn_Auto:SetText(GText("自动选择"))
   self.Btn_Delivery.Button_Area.OnClicked:Add(self, self.OnBtnDeliveryClicked)
   self.Button_Hit.OnClicked:Add(self, self.OnButtonHitClicked)
   self.Panel_Bag:SetVisibility(ESlateVisibility.Collapsed)
@@ -366,7 +366,7 @@ function M:CopyItemToConsumeList(AddContent)
     local Content = Widget.Content
     if i == self.SelectedCount then
       local Target = Avatar.Resources[AddContent.Id]
-      assert(Target and Target.Count > 0, "\233\128\154\231\148\168\230\157\144\230\150\153\228\184\141\229\173\152\229\156\168\230\136\150\229\183\178\232\128\151\229\176\189")
+      assert(Target and Target.Count > 0, "通用材料不存在或已耗尽")
       Content = ArmoryUtils:NewResourceItemContent(Target)
       Content.Count = 1
       Content.Index = i

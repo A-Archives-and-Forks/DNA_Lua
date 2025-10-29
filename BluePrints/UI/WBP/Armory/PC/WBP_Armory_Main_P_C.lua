@@ -948,7 +948,7 @@ function M:GetDesiredFocusTarget()
   elseif IsValid(self.CurrentSubUI) and self.CurrentSubUI.bIsFocusable then
     return self.CurrentSubUI
   else
-    DebugPrint("Error: \230\149\180\229\164\135\232\129\154\231\132\166\231\138\182\230\128\129\233\148\153\232\175\175!")
+    DebugPrint("Error: 整备聚焦状态错误!")
     Traceback()
     return self
   end

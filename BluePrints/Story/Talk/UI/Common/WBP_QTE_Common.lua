@@ -161,9 +161,9 @@ function M:OnKeyUp(MyGeometry, InKeyEvent)
     return UE4.UWidgetBlueprintLibrary.Unhandled()
   end
   self.FaultClickCount = self.FaultClickCount + 1
-  DebugPrint("QTE: \230\140\137\233\148\174\233\148\153\232\175\175\239\188\140\233\148\153\232\175\175\230\172\161\230\149\176", self.FaultClickCount)
+  DebugPrint("QTE: 按键错误，错误次数", self.FaultClickCount)
   if self.FaultClickCount > self.QTEConfig.ClickFaultToleranceCount then
-    DebugPrint("QTE: \231\148\177\228\186\142\230\140\137\233\148\153\230\172\161\230\149\176\232\182\133\232\191\135\232\174\190\231\189\174\229\128\188\239\188\140QTE\229\164\177\232\180\165", self.QTEConfig.ClickFaultToleranceCount)
+    DebugPrint("QTE: 由于按错次数超过设置值，QTE失败", self.QTEConfig.ClickFaultToleranceCount)
     self:OnQTEFailed()
   else
     self:PlayQTEFaultPressAudio()
@@ -302,19 +302,19 @@ function M:PlayQTEFaultPressAudio()
 end
 
 function M:InitButtonPerformance()
-  DebugPrint("WBP_QTE_Common:InitButtonPerformance \230\156\170\229\174\158\231\142\176")
+  DebugPrint("WBP_QTE_Common:InitButtonPerformance 未实现")
 end
 
 function M:SwitchBindButtonClickEvents(bBind)
-  DebugPrint("WBP_QTE_Common:SwitchBindButtonClickEvents \230\156\170\229\174\158\231\142\176")
+  DebugPrint("WBP_QTE_Common:SwitchBindButtonClickEvents 未实现")
 end
 
 function M:AdaptPlatform()
-  DebugPrint("WBP_QTE_Common:AdaptPlatform \230\156\170\229\174\158\231\142\176")
+  DebugPrint("WBP_QTE_Common:AdaptPlatform 未实现")
 end
 
 function M:SwitchShowMouseCursorInPIE(bShow)
-  DebugPrint("WBP_QTE_Common:SwitchShowMouseCursorInPIE\230\156\170\229\174\158\231\142\176")
+  DebugPrint("WBP_QTE_Common:SwitchShowMouseCursorInPIE未实现")
   if URuntimeCommonFunctionLibrary.IsPlayInEditor(self) then
     local PlayerController = UGameplayStatics.GetPlayerController(self, 0)
     PlayerController.bShowMouseCursor = bShow

@@ -453,7 +453,7 @@ function Common_Key_PC:_AsyncLoadImgCallBack(Object, requestID)
     return
   end
   if not IsValid(Object) then
-    DebugPrint("Common_Key_PC_C:\231\188\186\229\176\145\229\155\190\231\137\135\232\181\132\230\186\144: ImgPath = " .. self.ImgPath)
+    DebugPrint("Common_Key_PC_C:缺少图片资源: ImgPath = " .. self.ImgPath)
     return
   end
   if self.Img then
@@ -487,7 +487,7 @@ function Common_Key_PC:_SetImageByInstruction(ImgShortPath, ImgLongPath)
     Img = LoadObject(ImgLongPath)
   end
   if not IsValid(Img) then
-    DebugPrint("\231\188\186\229\176\145\229\155\190\231\137\135\232\181\132\230\186\144: ImgPath = " .. ImgPath)
+    DebugPrint("缺少图片资源: ImgPath = " .. ImgPath)
     return
   end
   if self.Img then

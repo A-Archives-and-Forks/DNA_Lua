@@ -75,7 +75,7 @@ end
 
 function M:UpdateEntryInfos(Pet, beNotChangeView)
   if not Pet or not Pet.Entry then
-    error("\230\178\161\230\156\137\228\188\160\229\133\165\229\174\160\231\137\169")
+    error("没有传入宠物")
     return
   end
   local Data, EntryId
@@ -462,7 +462,7 @@ function M:OnEnhanceClicked()
     end
     self:BindToAnimationFinished(self[InAniStr], function()
       self:UnbindAllFromAnimationFinished(self[InAniStr])
-      ScreenPrint("\230\146\173\230\148\190out\229\138\168\231\148\187")
+      ScreenPrint("播放out动画")
       self:PlayAnimation(self[OutAniStr])
     end)
     self:UnbindAllFromAnimationFinished(self[OutAniStr])
@@ -470,7 +470,7 @@ function M:OnEnhanceClicked()
       self:ChanegeSelectEntry(true)
       if bIsMax then
         self:AddTimer(0.01, function()
-          ScreenPrint("\230\146\173\230\148\190out\229\138\168\231\148\187\229\174\140\230\175\149")
+          ScreenPrint("播放out动画完毕")
           local slot = UE4.UWidgetLayoutLibrary.SlotAsVerticalBoxSlot(self.WB_Item)
           if slot then
             slot:SetPadding(FMargin(0, 0, 0, 0))
@@ -505,7 +505,7 @@ function M:OnEnhanceClicked()
   
   self:BlockAllUIInput(true)
   self:AddTimer(1, function()
-    ScreenPrint("\232\167\163\233\153\164\232\190\147\229\133\165\233\153\144\229\136\182")
+    ScreenPrint("解除输入限制")
     self:BlockAllUIInput(false)
   end)
   Avatar:PetEntryUp(self.Pet.UniqueId, self.CurEntryContent.index, ConsumePetUniqueIds, Callback)

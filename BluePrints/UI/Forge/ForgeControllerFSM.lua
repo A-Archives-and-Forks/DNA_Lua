@@ -19,14 +19,14 @@ end
 
 function FSMMethods:Enter(NewState)
   if not self.States[NewState] then
-    DebugPrint("Tianyi@  \232\191\155\229\133\165\228\186\134\228\184\141\229\173\152\229\156\168\231\154\132\231\138\182\230\128\129")
+    DebugPrint("Tianyi@  进入了不存在的状态")
     return
   end
   if self.CurrentState and self.CurrentState.OnLeave then
     self.CurrentState.OnLeave(self.Owner, NewState)
   end
   self.CurrentStateName = NewState
-  DebugPrint("Tianyi@ ControllerFSM \232\191\155\229\133\165\231\138\182\230\128\129: ", self.CurrentStateName)
+  DebugPrint("Tianyi@ ControllerFSM 进入状态: ", self.CurrentStateName)
   self.CurrentState = self.States[NewState]
   if self.CurrentState.OnEnter then
     self.CurrentState.OnEnter(self.Owner)

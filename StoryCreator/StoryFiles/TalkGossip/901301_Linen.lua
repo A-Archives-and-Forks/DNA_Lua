@@ -1,5 +1,5 @@
 return {
-  storyName = "\231\144\179\230\129\169\231\156\139\230\157\191\229\168\152",
+  storyName = "琳恩看板娘",
   storyDescription = "",
   lineData = {
     {
@@ -46,7 +46,7 @@ return {
       isStoryNode = true,
       key = "story_1689144451613747",
       type = "StoryNode",
-      name = "\231\144\179\230\129\169\231\156\139\230\157\191\229\168\152",
+      name = "琳恩看板娘",
       pos = {x = 416.42082861958863, y = 119.40455158891598},
       propsData = {
         QuestId = 0,
@@ -104,7 +104,7 @@ return {
           quest_16917515547691597 = {
             key = "quest_16917515547691597",
             type = "SetNpcPoseNode",
-            name = "\232\174\190\231\189\174Npc\229\167\191\230\128\129",
+            name = "设置Npc姿态",
             pos = {x = 67.08048099364657, y = 130.6975057409552},
             propsData = {
               NpcInfos = {
@@ -115,7 +115,7 @@ return {
           quest_16917539926112562 = {
             key = "quest_16917539926112562",
             type = "SetNpcPoseNode",
-            name = "\232\174\190\231\189\174Npc\229\167\191\230\128\129",
+            name = "设置Npc姿态",
             pos = {x = 657.33563485988, y = 122.96001740579118},
             propsData = {
               NpcInfos = {

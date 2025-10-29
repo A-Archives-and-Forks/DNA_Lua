@@ -23,7 +23,7 @@ function M:JumpToTaskPanel()
 end
 
 function M:OnListItemObjectSet(Item)
-  self.Text_Name:SetText(Item.QuestTypeName .. "\239\188\154" .. Item.QuestChainName)
+  self.Text_Name:SetText(Item.QuestTypeName .. "：" .. Item.QuestChainName)
   self.QuestChainId = Item.QuestChainId
   local Avatar = GWorld:GetAvatar()
   if Avatar:IsQuestChainUnlock(self.QuestChainId) then

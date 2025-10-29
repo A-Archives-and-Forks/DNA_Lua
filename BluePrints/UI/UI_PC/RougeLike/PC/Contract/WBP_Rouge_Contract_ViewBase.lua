@@ -78,7 +78,7 @@ function WBP_Rouge_Contract_ViewBase:InitGamepadView()
       KeyInfoList = {
         {Type = "Img", ImgShortPath = "B"}
       },
-      Desc = "\232\191\148\229\155\158"
+      Desc = "返回"
     }
   })
   local ItemViews = self.List_Heat:GetDisplayedEntryWidgets()
@@ -137,7 +137,7 @@ function WBP_Rouge_Contract_ViewBase:OnContractItemNavigated(ItemObj, Widget)
         KeyInfoList = {
           {Type = "Img", ImgShortPath = "B"}
         },
-        Desc = "\232\191\148\229\155\158"
+        Desc = "返回"
       }
     })
   else

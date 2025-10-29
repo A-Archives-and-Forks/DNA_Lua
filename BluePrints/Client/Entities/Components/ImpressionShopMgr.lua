@@ -2,7 +2,7 @@ local Component = {}
 
 function Component:PurchaseImpressionShopItem(ClientDelegate, ImpressionShopId, DiceNum)
   if not ImpressionShopId then
-    Utils.ScreenPrint("\229\141\176\232\177\161\229\149\134\229\147\129Id\228\184\186\231\169\186\239\188\140\232\175\183\230\163\128\230\159\165\228\187\163\231\160\129\233\128\187\232\190\145")
+    Utils.ScreenPrint("印象商品Id为空，请检查代码逻辑")
   end
   
   local function Callback(Ret, IsCheckSuccess, rand1, rand2, PurchaseRewards)

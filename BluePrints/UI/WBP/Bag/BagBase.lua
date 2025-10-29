@@ -1084,7 +1084,7 @@ function M:OnClickGoToUseConsume(StuffConfigData)
   CommonDialogParams.Title = GText(StuffConfigData.ResourceName)
   if "ResourcePack" == UseEffectType then
     CommonDialogParams.Tips = {
-      string.format(ExtraString, "\230\157\144\230\150\153\229\140\133", 1, 1, 1)
+      string.format(ExtraString, "材料包", 1, 1, 1)
     }
   elseif "SelectResource" == UseEffectType then
     CommonDialogParams.Tips = {

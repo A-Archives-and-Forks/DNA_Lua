@@ -677,11 +677,11 @@ end
 
 function GM_Command:DedicatedServerGM(WorldContextObject, FunctionName, Args)
   local GameInstance = UE4.UGameplayStatics.GetGameInstance(WorldContextObject)
-  assert(GameInstance, "\230\137\190\228\184\141\229\136\176GameInstance")
+  assert(GameInstance, "找不到GameInstance")
   self.Player = UE4.UGameplayStatics.GetPlayerCharacter(GameInstance, 0)
   local _Battle = Battle(self.Player)
-  assert(_Battle, "\230\178\161\230\137\190\229\136\176Battle")
-  assert(not IsStandAlone(self.Player), "\228\184\141\232\131\189\229\156\168\229\141\149\230\156\186\230\131\133\229\134\181\228\184\139\228\189\191\231\148\168DSGM")
+  assert(_Battle, "没找到Battle")
+  assert(not IsStandAlone(self.Player), "不能在单机情况下使用DSGM")
   local EffectResults = require("BluePrints.Combat.BattleLogic.EffectResults")
   local Result = EffectResults.Result()
   Result:Add(FunctionName, Args)
@@ -703,7 +703,7 @@ function GM_Command:ClientGM(WorldContextObject, FunctionName, Args)
   end
   
   local GameInstance = UE4.UGameplayStatics.GetGameInstance(WorldContextObject) or GWorld.GameInstance
-  assert(GameInstance, "\230\137\190\228\184\141\229\136\176GameInstance")
+  assert(GameInstance, "找不到GameInstance")
   self.Player = UE4.UGameplayStatics.GetPlayerCharacter(GameInstance, 0)
   local Result
   local GMIntegrationData = DataMgr.GMIntegration[FunctionName]
@@ -715,7 +715,7 @@ function GM_Command:ClientGM(WorldContextObject, FunctionName, Args)
     local RealFunctionName = self.Commands[string.upper(FunctionName)]
     if RealFunctionName then
       local Func = self[RealFunctionName]
-      assert(Func, "\233\148\153\232\175\175\231\154\132\229\135\189\230\149\176\229\144\141:" .. RealFunctionName)
+      assert(Func, "错误的函数名:" .. RealFunctionName)
       FunctionName = RealFunctionName
       if Args then
         FunctionName = FunctionName .. " " .. tostring(Args)
@@ -747,7 +747,7 @@ function GM_Command:ClientGM(WorldContextObject, FunctionName, Args)
         ExecStr = "return function(self) " .. LocalFunctionStr .. FunctionName .. " end"
         Func = load(ExecStr)
       end
-      assert(Func, "\233\148\153\232\175\175\231\154\132\228\187\163\231\160\129:" .. ExecStr)
+      assert(Func, "错误的代码:" .. ExecStr)
       local RealFunc = Func()
       Result = RealFunc(self)
     end
@@ -755,7 +755,7 @@ function GM_Command:ClientGM(WorldContextObject, FunctionName, Args)
   if nil == Result then
     Result = "nil"
   end
-  PrintTable({FunctionName = FunctionName, Result = Result}, 1, "GM\230\140\135\228\187\164\230\137\167\232\161\140\231\187\147\230\158\156")
+  PrintTable({FunctionName = FunctionName, Result = Result}, 1, "GM指令执行结果")
 end
 
 function GM_Command:ServerGM(FunctionName, Args)
@@ -769,9 +769,9 @@ end
 
 function GM_Command:ServerBattleCommand(FunctionName, ...)
   local battle = Battle(self.Player)
-  assert(battle, "\230\178\161\230\137\190\229\136\176battle")
+  assert(battle, "没找到battle")
   local func = battle["GM_" .. FunctionName]
-  assert(func, "\230\178\161\230\137\190\229\136\176\229\135\189\230\149\176:GM_" .. FunctionName)
+  assert(func, "没找到函数:GM_" .. FunctionName)
   local Args = (...)
   if type(Args) ~= "table" then
     Args = {
@@ -791,9 +791,9 @@ end
 
 function GM_Command:DedicatedServerCommand(Func, ...)
   local MyPlayerController = UE4.UGameplayStatics.GetPlayerController(self:GetGameInstance(), 0)
-  assert(MyPlayerController, "\233\157\158\230\179\149PlayerController")
+  assert(MyPlayerController, "非法PlayerController")
   local func = MyPlayerController["GM_" .. Func]
-  assert(func, "\230\178\161\230\137\190\229\136\176\229\135\189\230\149\176:GM_" .. Func)
+  assert(func, "没找到函数:GM_" .. Func)
   local Args = {
     ...
   }
@@ -839,8 +839,8 @@ end
 
 function GM_Command:Hotfix(...)
   local HotfixData = require("Datas.HotfixData")
-  assert(HotfixData.index, "\233\156\128\232\166\129\229\161\171\229\134\153HotfixData.index")
-  assert(HotfixData.script, "\233\156\128\232\166\129\229\161\171\229\134\153HotfixData.script")
+  assert(HotfixData.index, "需要填写HotfixData.index")
+  assert(HotfixData.script, "需要填写HotfixData.script")
   local UnLuaHotReload = require("UnLuaHotReload")
   require("HotFix").ExecHotFix(HotfixData.index, HotfixData.script)
   GWorld.HotfixDataIndex = HotfixData.index
@@ -876,7 +876,7 @@ end
 
 function GM_Command:LowQuality()
   local GameInstance = self:GetGameInstance()
-  assert(GameInstance, "\230\137\190\228\184\141\229\136\176GameInstance")
+  assert(GameInstance, "找不到GameInstance")
   local Player = UE4.UGameplayStatics.GetPlayerCharacter(GameInstance, 0)
   local Controller = Player:GetController()
   Controller:ShowFlags("DynamicShadows", false)
@@ -889,7 +889,7 @@ end
 
 function GM_Command:ShowFlag(Name, bShow)
   local GameInstance = self:GetGameInstance()
-  assert(GameInstance, "\230\137\190\228\184\141\229\136\176GameInstance")
+  assert(GameInstance, "找不到GameInstance")
   local Player = UE4.UGameplayStatics.GetPlayerCharacter(GameInstance, 0)
   local Controller = Player:GetController()
   if "1" == bShow then
@@ -1178,7 +1178,7 @@ function GM_Command:ChangeToNewModel(RoleId)
   end
   local Avatar = GWorld:GetAvatar()
   if Avatar then
-    ScreenPrint("\232\191\158\230\142\165\230\156\141\229\138\161\229\153\168\230\131\133\229\134\181\228\184\139\239\188\140\232\175\183\229\156\168\229\134\155\230\162\176\229\186\147\230\155\180\230\141\162\232\167\146\232\137\178")
+    ScreenPrint("连接服务器情况下，请在军械库更换角色")
     return
   end
   RoleId = tonumber(RoleId)
@@ -1189,7 +1189,7 @@ end
 
 function GM_Command:ChangeWeapon(WeaponId)
   if not WeaponId then
-    ScreenPrint("\233\156\128\232\166\129\228\188\160\229\133\165\230\173\166\229\153\168\231\188\150\229\143\183\230\137\141\229\143\175\228\187\165\232\191\155\232\161\140\230\173\166\229\153\168\230\155\180\230\141\162\229\147\166~")
+    ScreenPrint("需要传入武器编号才可以进行武器更换哦~")
     return
   end
   if self.Player then
@@ -1200,7 +1200,7 @@ end
 
 function GM_Command:GetOrSetRangedWeaponBulletNum(BulletNum)
   if nil == BulletNum then
-    ScreenPrint(string.format("\229\189\147\229\137\141\232\191\156\231\168\139\230\173\166\229\153\168\229\137\169\228\189\153\229\173\144\229\188\185\230\149\176\233\135\143: %s", self.Player.RangedWeapon:GetAttr("BulletNum")))
+    ScreenPrint(string.format("当前远程武器剩余子弹数量: %s", self.Player.RangedWeapon:GetAttr("BulletNum")))
   else
     BulletNum = tonumber(BulletNum)
     self.Player.RangedWeapon:SetAttr("BulletNum", BulletNum)
@@ -1242,7 +1242,7 @@ end
 
 function GM_Command:GetOrSetPlayerAttr(AttrName, Value)
   if not AttrName then
-    ScreenPrint(string.format("\232\135\179\229\176\145\233\156\128\232\166\129\228\188\160\229\133\165\229\177\158\230\128\167\229\144\141\230\137\141\229\143\175\232\191\155\232\161\140\230\159\165\232\175\162\230\147\141\228\189\156"))
+    ScreenPrint(string.format("至少需要传入属性名才可进行查询操作"))
   else
     self:ServerBattleCommand("GetOrSetPlayerAttr", self.Player.Eid, AttrName, Value)
   end
@@ -1250,7 +1250,7 @@ end
 
 function GM_Command:GetOrSetPlayerWeaponAttr(WeaponId, AttrName, Value)
   if not WeaponId or not AttrName then
-    ScreenPrint(string.format("\232\135\179\229\176\145\233\156\128\232\166\129\228\188\160\229\133\165\230\173\166\229\153\168\231\188\150\229\143\183\229\146\140\229\177\158\230\128\167\229\144\141\230\137\141\229\143\175\232\191\155\232\161\140\230\159\165\232\175\162\230\147\141\228\189\156"))
+    ScreenPrint(string.format("至少需要传入武器编号和属性名才可进行查询操作"))
   else
     self:ServerBattleCommand("GetOrSetPlayerWeaponAttr", self.Player.Eid, WeaponId, AttrName, Value)
   end
@@ -1360,9 +1360,9 @@ function GM_Command:AddMod(ModId, ModLevel, ApplicationType)
   ModLevel = ModLevel or 0
   ApplicationType = ApplicationType or 1
   ModId = tonumber(ModId)
-  assert(DataMgr.Mod[ModId], "\230\137\190\228\184\141\229\136\176\231\188\150\229\143\183\228\184\186\227\128\144" .. tostring(ModId) .. "\227\128\145\231\154\132Mod")
+  assert(DataMgr.Mod[ModId], "找不到编号为【" .. tostring(ModId) .. "】的Mod")
   ApplicationType = tonumber(ApplicationType)
-  assert(ApplicationType >= 1 and ApplicationType <= 4, "\232\175\183\229\161\171\229\134\1531~4\228\185\139\233\151\180\231\154\132Type,1=\232\167\146\232\137\178\239\188\1402=\232\191\145\230\136\152\230\173\166\229\153\168\239\188\1403=\232\191\156\231\168\139\230\173\166\229\153\168, 4=\230\152\190\232\181\171\230\173\166\229\153\168")
+  assert(ApplicationType >= 1 and ApplicationType <= 4, "请填写1~4之间的Type,1=角色，2=近战武器，3=远程武器, 4=显赫武器")
   self:ServerBattleCommand("AddMod", tonumber(ModId), self.Player.Eid, ModLevel, ApplicationType)
 end
 
@@ -1403,7 +1403,7 @@ end
 function GM_Command:FireDanmaku(DanmakuTemplateId, Duration)
   DanmakuTemplateId = tonumber(DanmakuTemplateId)
   Duration = tonumber(Duration)
-  assert(DataMgr.DanmakuTemplate[DanmakuTemplateId], "\229\188\185\229\185\149\230\168\161\230\157\191\231\188\150\229\143\183\228\184\141\229\173\152\229\156\168")
+  assert(DataMgr.DanmakuTemplate[DanmakuTemplateId], "弹幕模板编号不存在")
   self:ServerBattleCommand("FireDanmaku", self.Player.Eid, DanmakuTemplateId, Duration, "")
 end
 
@@ -1535,7 +1535,7 @@ function GM_Command:FillScanLevelInfo(FinalMsgTable)
   end
   
   local level_ids = self.Player.CurrentLevelId
-  table.insert(FinalMsgTable, "\229\189\147\229\137\141\231\142\169\229\174\182\232\191\155\231\154\132\230\139\188\230\142\165\229\133\179\229\141\161 \t" .. Level_shortname .. "\n")
+  table.insert(FinalMsgTable, "当前玩家进的拼接关卡 \t" .. Level_shortname .. "\n")
   local LevelData = JsonLoads(Level_shortname)
   for _, point in pairs(LevelData.points) do
     for i = 1, level_ids:Length() do
@@ -1545,7 +1545,7 @@ function GM_Command:FillScanLevelInfo(FinalMsgTable)
         if "" == cur_artLevel then
           cur_artLevel = string.gsub(point.struct, "Data_Design", "Data_Art", 1)
         end
-        table.insert(FinalMsgTable, "\230\137\128\229\156\168\231\154\132\231\190\142\230\156\175\229\133\179\229\141\161 \t" .. cur_artLevel .. "\t\229\133\179\229\141\161id\t" .. cur_id .. "\n")
+        table.insert(FinalMsgTable, "所在的美术关卡 \t" .. cur_artLevel .. "\t关卡id\t" .. cur_id .. "\n")
       end
     end
   end
@@ -1555,7 +1555,7 @@ end
 function GM_Command:PrintPlayerInfoOnScreen()
   local ct = {}
   Battle(GWorld.GameInstance):FillBattleLog(ct)
-  local Message = "---------------\231\142\169\229\174\182\228\191\161\230\129\175-------------\n"
+  local Message = "---------------玩家信息-------------\n"
   for _, value in ipairs(ct) do
     Message = Message .. value
   end
@@ -1572,12 +1572,12 @@ function GM_Command:PrintPlayerInfoOnScreen()
     if GameState:IsInDungeon() then
     end
     local PlayerLocation = Player:K2_GetActorLocation()
-    Message = Message .. "\231\142\169\229\174\182\228\189\141\231\189\174" .. tostring(PlayerLocation) .. "\n"
+    Message = Message .. "玩家位置" .. tostring(PlayerLocation) .. "\n"
     local FrameRate = 1 / UE4.UGameplayStatics.GetWorldDeltaSeconds(Player)
-    Message = Message .. "\229\184\167\231\142\135" .. FrameRate .. "\n"
+    Message = Message .. "帧率" .. FrameRate .. "\n"
     local PlayerState = Player.PlayerState
     local PlayerPing = PlayerState:GetPlayerPing()
-    Message = Message .. "\229\187\182\232\191\159" .. PlayerPing .. "\n"
+    Message = Message .. "延迟" .. PlayerPing .. "\n"
   end
   URuntimeCommonFunctionLibrary.AddOnScreenDebugMessage(-1, 5, FColor(255, 255, 255), Message, false, FVector2D(1, 1))
   DebugPrint(Message)
@@ -1585,9 +1585,9 @@ end
 
 function GM_Command:PrintGameModeInfoOnScreen()
   local Message = "-------GameModeInfo----------\n"
-  Message = Message .. "\231\142\175\229\162\131\239\188\154\232\129\148\230\156\186"
+  Message = Message .. "环境：联机"
   if IsStandAlone(GWorld.GameInstance) then
-    Message = Message .. "\231\142\175\229\162\131\239\188\154\229\141\149\230\156\186\n"
+    Message = Message .. "环境：单机\n"
   end
   local GameState = UE.UGameplayStatics.GetGameState(GWorld.GameInstance)
   Message = Message .. "DungeonId: " .. GameState.DungeonId .. "\n"
@@ -1713,8 +1713,8 @@ function GM_Command:JTYTEST(Value)
     RightKey = "E",
     StyleName = "Text",
     Tabs = {
-      {Text = "\230\181\139\232\175\1491", TabId = 1},
-      {Text = "\230\181\139\232\175\1492", TabId = 2}
+      {Text = "测试1", TabId = 1},
+      {Text = "测试2", TabId = 2}
     },
     DynamicNode = {
       "Back",
@@ -1799,10 +1799,10 @@ end
 
 function GM_Command:AddBuff(BuffId, LastTime, Value)
   BuffId = tonumber(BuffId)
-  assert(BuffId, "BuffId\232\166\129\229\161\171\230\149\176\229\173\151")
-  assert(DataMgr.Buff[BuffId], "\230\137\190\228\184\141\229\136\176[" .. tostring(BuffId) .. "]\229\175\185\229\186\148\231\154\132Buff")
+  assert(BuffId, "BuffId要填数字")
+  assert(DataMgr.Buff[BuffId], "找不到[" .. tostring(BuffId) .. "]对应的Buff")
   LastTime = tonumber(LastTime)
-  assert(LastTime and 0 ~= LastTime, "LastTime\232\166\129\229\161\171\230\149\176\229\173\151\228\184\148\228\184\141\232\131\189\228\184\1860")
+  assert(LastTime and 0 ~= LastTime, "LastTime要填数字且不能为0")
   Value = Value and tonumber(Value)
   self:ServerBattleCommand("AddBuff", self.Player.Eid, BuffId, tonumber(LastTime), Value)
 end
@@ -1831,8 +1831,8 @@ end
 
 function GM_Command:RemoveBuff(BuffId)
   BuffId = tonumber(BuffId)
-  assert(BuffId, "BuffId\232\166\129\229\161\171\230\149\176\229\173\151")
-  assert(DataMgr.Buff[BuffId], "\230\137\190\228\184\141\229\136\176[" .. tostring(BuffId) .. "]\229\175\185\229\186\148\231\154\132Buff")
+  assert(BuffId, "BuffId要填数字")
+  assert(DataMgr.Buff[BuffId], "找不到[" .. tostring(BuffId) .. "]对应的Buff")
   self:ServerBattleCommand("RemoveBuff", self.Player.Eid, BuffId)
 end
 
@@ -1842,8 +1842,8 @@ end
 
 function GM_Command:AddMonsterBuffDuration(BuffId, LastTime, Value)
   BuffId = tonumber(BuffId)
-  assert(BuffId, "BuffId\232\166\129\229\161\171\230\149\176\229\173\151")
-  assert(DataMgr.Buff[BuffId], "\230\137\190\228\184\141\229\136\176[" .. tostring(BuffId) .. "]\229\175\185\229\186\148\231\154\132Buff")
+  assert(BuffId, "BuffId要填数字")
+  assert(DataMgr.Buff[BuffId], "找不到[" .. tostring(BuffId) .. "]对应的Buff")
   Value = Value and tonumber(Value)
   LastTime = tonumber(LastTime)
   self:ServerBattleCommand("AddMonsterBuff", BuffId, LastTime, Value)
@@ -1851,8 +1851,8 @@ end
 
 function GM_Command:RemoveMonsterBuff(BuffId)
   BuffId = tonumber(BuffId)
-  assert(BuffId, "BuffId\232\166\129\229\161\171\230\149\176\229\173\151")
-  assert(DataMgr.Buff[BuffId], "\230\137\190\228\184\141\229\136\176[" .. tostring(BuffId) .. "]\229\175\185\229\186\148\231\154\132Buff")
+  assert(BuffId, "BuffId要填数字")
+  assert(DataMgr.Buff[BuffId], "找不到[" .. tostring(BuffId) .. "]对应的Buff")
   self:ServerBattleCommand("RemoveMonsterBuff", BuffId)
 end
 
@@ -2355,7 +2355,7 @@ end
 
 function GM_Command:GameModeEnable(IsEnable)
   self:GetGameInstance().IsGameModeEnable = "false" ~= IsEnable
-  DebugPrint("GM_GameMode\233\128\187\232\190\145\232\174\190\231\189\174\230\152\175\229\144\166\229\144\175\231\148\168", self:GetGameInstance().IsGameModeEnable)
+  DebugPrint("GM_GameMode逻辑设置是否启用", self:GetGameInstance().IsGameModeEnable)
 end
 
 function GM_Command:MoveDebug(val)
@@ -2473,18 +2473,18 @@ function GM_Command:FinishImpressionTalk(TalkTriggerId)
   end
   
   if not TalkTriggerId then
-    ErrorCode = "TalkTriggerId\228\184\186\231\169\186"
+    ErrorCode = "TalkTriggerId为空"
     printError()
     return
   end
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    ErrorCode = "Avatar\228\184\141\229\173\152\229\156\168"
+    ErrorCode = "Avatar不存在"
     printError()
     return
   end
   if Avatar.ImpressionTalkTriggers[TalkTriggerId] then
-    ErrorCode = "\229\175\185\229\186\148\231\154\132\229\175\185\232\175\157\229\183\178\229\174\140\230\136\144\239\188\140\230\151\160\230\179\149\233\135\141\229\164\141\229\174\140\230\136\144"
+    ErrorCode = "对应的对话已完成，无法重复完成"
     printError()
     return
   end
@@ -2507,7 +2507,7 @@ function GM_Command:ImpressionCheckByEnumId(DialogueChain, CurrentDialogueId, Ta
   end
   
   if not Avatar then
-    ErrorCode = "Avatar\228\184\141\229\173\152\229\156\168"
+    ErrorCode = "Avatar不存在"
     printError()
   end
   DialogueChain = DialogueChain or {741148230}
@@ -2515,7 +2515,7 @@ function GM_Command:ImpressionCheckByEnumId(DialogueChain, CurrentDialogueId, Ta
   TalkTriggerId = TalkTriggerId or 74114730
   RegionId = RegionId or 1011
   if Avatar:IsImpressionCheckSuccess(CurrentDialogueId) then
-    ErrorCode = "\229\175\185\229\186\148\231\154\132\233\128\137\233\161\185\229\183\178\232\162\171\232\174\176\229\189\149\239\188\140\230\151\160\230\179\149\233\135\141\229\164\141\233\128\137\230\139\169"
+    ErrorCode = "对应的选项已被记录，无法重复选择"
     printError()
   end
   Avatar:ImpressionCheckByEnumId_New(DialogueChain, CurrentDialogueId, TalkTriggerId, RegionId)
@@ -2532,14 +2532,14 @@ function GM_Command:ImpressionAddByEnumId(DialogueChain, CurrentDialogueId)
   end
   
   if not Avatar then
-    ErrorCode = "Avatar\228\184\141\229\173\152\229\156\168"
+    ErrorCode = "Avatar不存在"
     printError()
     return
   end
   DialogueChain = DialogueChain or {741148229}
   CurrentDialogueId = CurrentDialogueId or 7411482291
   if Avatar:IsImpressionCheckSuccess(CurrentDialogueId) then
-    ErrorCode = "\229\175\185\229\186\148\231\154\132\233\128\137\233\161\185\229\183\178\232\162\171\232\174\176\229\189\149\239\188\140\230\151\160\230\179\149\233\135\141\229\164\141\233\128\137\230\139\169"
+    ErrorCode = "对应的选项已被记录，无法重复选择"
     printError()
     return
   end
@@ -2583,7 +2583,7 @@ function GM_Command:PlayTalk(FindKey, bIncludeFilterFiles)
     TalkNode.GuideUIEnable = false
     TalkNode:Execute(function()
       TalkNode:Finish()
-      DebugPrint("PlayTalk\230\137\167\232\161\140\231\187\147\230\157\159")
+      DebugPrint("PlayTalk执行结束")
     end)
   else
     UE4.UPlayTalkAsyncAction.PlayTalk(GWorld.GameInstance, tonumber(FindKey), nil)
@@ -2888,7 +2888,7 @@ function GM_Command:ScanLevel()
   end
   
   local level_ids = self.Player.CurrentLevelId
-  local LevelInfo = string.format("\229\189\147\229\137\141\231\142\169\229\174\182\232\191\155\231\154\132\230\139\188\230\142\165\229\133\179\229\141\161: %s", Level_shortname)
+  local LevelInfo = string.format("当前玩家进的拼接关卡: %s", Level_shortname)
   local LevelData = JsonLoads(Level_shortname)
   for _, point in pairs(LevelData.points) do
     for i = 1, level_ids:Length() do
@@ -2898,7 +2898,7 @@ function GM_Command:ScanLevel()
         if "" == cur_artLevel then
           cur_artLevel = string.gsub(point.struct, "Data_Design", "Data_Art", 1)
         end
-        LevelInfo = LevelInfo .. string.format("\239\188\140\230\137\128\229\156\168\231\154\132\231\190\142\230\156\175\229\133\179\229\141\161\230\152\175: %s\239\188\140 \229\133\179\229\141\161id\230\152\175\239\188\154 %s", cur_artLevel, cur_id)
+        LevelInfo = LevelInfo .. string.format("，所在的美术关卡是: %s， 关卡id是： %s", cur_artLevel, cur_id)
       end
     end
   end
@@ -2909,7 +2909,7 @@ function GM_Command:DebugAchvUI(AchvId)
   local UIManager = self:GetGameInstance():GetGameUIManager()
   AchvId = tonumber(AchvId)
   if not AchvId then
-    print(LogTag, "\229\191\133\232\166\129\229\143\130\230\149\176\231\188\186\229\164\177~")
+    print(LogTag, "必要参数缺失~")
     return
   end
   local Achv = DataMgr.Achievement[AchvId]
@@ -2984,7 +2984,7 @@ function GM_Command:EnableSplineMove(IsMove)
   local Player = self.Player
   local Splines = UE4.UGameplayStatics.GetAllActorsOfClass(Player, ACinemaMoveSpline:StaticClass())
   if 0 == Splines:Length() then
-    print(_G.LogTag, "\230\178\161\230\156\137\230\137\190\229\136\176CinemaMoveSpline")
+    print(_G.LogTag, "没有找到CinemaMoveSpline")
     return
   end
   local Spline = Splines[1]
@@ -3079,7 +3079,7 @@ PlayerNiagara
 end
 
 function GM_Command:GetSceneSoundPause(SoundType)
-  print(_G.LogTag, "GetSceneSoundPause \231\154\132\232\190\147\229\135\186\229\128\188\230\152\175", SoundType, AudioManager(self.Player):GetSceneSoundPause(tonumber(SoundType)))
+  print(_G.LogTag, "GetSceneSoundPause 的输出值是", SoundType, AudioManager(self.Player):GetSceneSoundPause(tonumber(SoundType)))
 end
 
 function GM_Command:EnterDungeon(DungeonId)
@@ -3180,7 +3180,7 @@ function GM_Command:SetEMPreviewMute(bMute)
 end
 
 function GM_Command:StartSpecialQuest(SpecialQuestId)
-  assert(SpecialQuestId, "\228\184\128\229\174\154\232\166\129\228\188\160\229\133\165\229\143\130\230\149\176:SpecialQuestId")
+  assert(SpecialQuestId, "一定要传入参数:SpecialQuestId")
   SpecialQuestId = tonumber(SpecialQuestId)
   local ClientEventUtils = require("BluePrints.Common.ClientEvent.ClientEventUtils")
   ClientEventUtils:StartSpecialQuestEvent(SpecialQuestId)
@@ -3189,16 +3189,16 @@ end
 function GM_Command:SuccessSpecialQuest()
   local ClientEventUtils = require("BluePrints.Common.ClientEvent.ClientEventUtils")
   local CurrentEvent = ClientEventUtils:GetCurrentEvent()
-  assert(CurrentEvent, "\229\174\162\230\136\183\231\171\175\228\184\141\229\173\152\229\156\168\231\137\185\230\174\138\228\187\187\229\138\161")
-  assert(CurrentEvent.Type == "SpecialQuest", "\229\174\162\230\136\183\231\171\175\228\184\141\229\173\152\229\156\168\231\137\185\230\174\138\228\187\187\229\138\161")
+  assert(CurrentEvent, "客户端不存在特殊任务")
+  assert(CurrentEvent.Type == "SpecialQuest", "客户端不存在特殊任务")
   CurrentEvent:TryFinishEvent(true)
 end
 
 function GM_Command:FailerSpecialQuest()
   local ClientEventUtils = require("BluePrints.Common.ClientEvent.ClientEventUtils")
   local CurrentEvent = ClientEventUtils:GetCurrentEvent()
-  assert(CurrentEvent, "\229\174\162\230\136\183\231\171\175\228\184\141\229\173\152\229\156\168\231\137\185\230\174\138\228\187\187\229\138\161")
-  assert(CurrentEvent.Type == "SpecialQuest", "\229\174\162\230\136\183\231\171\175\228\184\141\229\173\152\229\156\168\231\137\185\230\174\138\228\187\187\229\138\161")
+  assert(CurrentEvent, "客户端不存在特殊任务")
+  assert(CurrentEvent.Type == "SpecialQuest", "客户端不存在特殊任务")
   CurrentEvent:TryFinishEvent(false)
 end
 
@@ -3301,7 +3301,7 @@ end
 function GM_Command:PrintQuestData()
   local Avatar = GWorld:GetAvatar()
   for QuestId, QuestData in pairs(Avatar.QuestUpdateDatas) do
-    print(_G.LogTag, "ZJT_ \230\137\147\229\141\176\228\185\139\229\137\141\229\190\133\230\143\144\228\186\164\228\187\187\229\138\161\230\149\176\230\141\174\231\188\147\229\173\152 PrintQuestData QuestId ", QuestId)
+    print(_G.LogTag, "ZJT_ 打印之前待提交任务数据缓存 PrintQuestData QuestId ", QuestId)
     for WorldRegionEid, RegionBaseData in pairs(QuestData) do
       print(_G.LogTag, "ZJT_ PrintQuestData QuestData eid ", WorldRegionEid, RegionBaseData.Eid, RegionBaseData.QuestId, RegionBaseData.Id, RegionBaseData.SubRegionId, RegionBaseData.LevelName, RegionBaseData.CreatorId)
     end
@@ -3528,7 +3528,7 @@ function GM_Command:ResetTrollyLoc(NowId, NextId)
   local NextPathId = tonumber(NextId)
   local GameMode = UE.UGameplayStatics.GetGameMode(self.Player)
   if not GameMode:GetDungeonComponent() then
-    DebugPrint("\229\189\147\229\137\141\230\156\170\230\137\190\229\136\176\229\137\175\230\156\172\231\187\132\228\187\182")
+    DebugPrint("当前未找到副本组件")
     return
   end
   GameMode.EMGameState.NowPathId = NowPathId
@@ -3577,15 +3577,15 @@ function GM_Command:StartQuest(QuestId)
   print(_G.LogTag, "QuestChainId", QuestChainId)
   local QuestChain = Avatar.QuestChains[QuestChainId]
   if QuestChain and QuestChain:IsFinish() then
-    DebugPrint("ZJT_ \228\187\187\229\138\161\233\147\190\229\183\178\231\187\143\229\174\140\230\136\144 ", QuestChainId)
+    DebugPrint("ZJT_ 任务链已经完成 ", QuestChainId)
     return
   end
   if QuestChain and QuestChain:CheckQuestIdComplete(QuestId) then
-    DebugPrint("ZJT_ \228\187\187\229\138\161\229\183\178\231\187\143\229\174\140\230\136\144 ", QuestId)
+    DebugPrint("ZJT_ 任务已经完成 ", QuestId)
     return
   end
   if QuestChain and QuestChain.DoingQuestId == QuestId then
-    DebugPrint("\228\187\187\229\138\161\230\173\163\229\156\168\232\191\155\232\161\140 ", QuestId)
+    DebugPrint("任务正在进行 ", QuestId)
     return
   end
   Avatar:GMStartQuest(tonumber(QuestChainId), tonumber(QuestId), true)
@@ -3600,11 +3600,11 @@ function GM_Command:SuccQuest(QuestId)
   QuestId = tonumber(QuestId)
   local QuestChain = Avatar.QuestChains[QuestChainId]
   if QuestChain and QuestChain:IsFinish() then
-    DebugPrint("ZJT_ \228\187\187\229\138\161\233\147\190\229\183\178\231\187\143\229\174\140\230\136\144 ", QuestChainId)
+    DebugPrint("ZJT_ 任务链已经完成 ", QuestChainId)
     return
   end
   if QuestChain and QuestChain:CheckQuestIdComplete(QuestId) then
-    DebugPrint("ZJT_ \228\187\187\229\138\161\229\183\178\231\187\143\229\174\140\230\136\144 ", QuestId)
+    DebugPrint("ZJT_ 任务已经完成 ", QuestId)
     return
   end
   
@@ -3627,17 +3627,17 @@ function GM_Command:SkipCurrentRunningQuest()
   end
   local TrackingQuestChainId = Avatar.TrackingQuestChainId
   if 0 == TrackingQuestChainId then
-    DebugPrint("ZJT_ \229\189\147\229\137\141\230\156\170\232\191\189\232\184\170\228\187\187\228\189\149\228\187\187\229\138\161\233\147\190 ", TrackingQuestChainId)
+    DebugPrint("ZJT_ 当前未追踪任何任务链 ", TrackingQuestChainId)
     return
   end
   local QuestChain = Avatar.QuestChains[TrackingQuestChainId]
   if QuestChain and QuestChain:IsFinish() then
-    DebugPrint("ZJT_ \228\187\187\229\138\161\233\147\190\229\183\178\231\187\143\229\174\140\230\136\144 ", TrackingQuestChainId)
+    DebugPrint("ZJT_ 任务链已经完成 ", TrackingQuestChainId)
     return
   end
   local DoingQuestId = QuestChain.DoingQuestId
   if QuestChain and QuestChain:CheckQuestIdComplete(DoingQuestId) then
-    DebugPrint("ZJT_ \228\187\187\229\138\161\229\183\178\231\187\143\229\174\140\230\136\144 ", DoingQuestId)
+    DebugPrint("ZJT_ 任务已经完成 ", DoingQuestId)
     return
   end
   self:SuccQuest(DoingQuestId)
@@ -3665,12 +3665,12 @@ function GM_Command:ShowUseCountSkill()
     table.insert(NeedCountSkillTypeList, SkillType)
   end
   local Str = table.concat(NeedCountSkillTypeList, ",")
-  DebugPrint("CountSkillUsedTime->\229\189\147\229\137\141\232\167\146\232\137\178\231\154\132\230\156\172\229\156\176\229\173\152\229\130\168\229\133\129\232\174\184\229\147\170\228\186\155\230\138\128\232\131\189\231\177\187\228\188\188\229\143\175\228\187\165\232\174\161\231\174\151:", Str)
+  DebugPrint("CountSkillUsedTime->当前角色的本地存储允许哪些技能类似可以计算:", Str)
   local CountPlayerSkillUsedTimesList = EMCache:Get("CountPlayerSkillUsedTimesList", true) or {}
-  DebugPrint("CountSkillUsedTime->\229\189\147\229\137\141\230\138\128\232\131\189\231\154\132\228\189\191\231\148\168\230\172\161\230\149\176:")
+  DebugPrint("CountSkillUsedTime->当前技能的使用次数:")
   DebugPrint("CountSkillUsedTime->----------------------------")
   for SkillType, Count in pairs(CountPlayerSkillUsedTimesList) do
-    DebugPrint("CountSkillUsedTime->\230\138\128\232\131\189\231\177\187\229\158\139", SkillType, "\228\189\191\231\148\168\230\172\161\230\149\176", Count)
+    DebugPrint("CountSkillUsedTime->技能类型", SkillType, "使用次数", Count)
   end
   DebugPrint("CountSkillUsedTime->----------------------------")
 end
@@ -3682,12 +3682,12 @@ function GM_Command:ShowCacheUseCountSkill()
     table.insert(NeedCountSkillTypeList, SkillType)
   end
   local Str = table.concat(NeedCountSkillTypeList, ",")
-  DebugPrint("CountSkillUsedTime->\229\189\147\229\137\141\232\167\146\232\137\178\231\154\132\231\188\147\229\173\152\229\133\129\232\174\184\229\147\170\228\186\155\230\138\128\232\131\189\231\177\187\228\188\188\229\143\175\228\187\165\232\174\161\231\174\151:", Str)
+  DebugPrint("CountSkillUsedTime->当前角色的缓存允许哪些技能类似可以计算:", Str)
   local CountPlayerSkillUsedTimesList = self.Player and self.Player.CountPlayerSkillUsedTimesList or {}
-  DebugPrint("CountSkillUsedTime->\229\189\147\229\137\141\230\138\128\232\131\189\231\154\132\228\189\191\231\148\168\230\172\161\230\149\176:")
+  DebugPrint("CountSkillUsedTime->当前技能的使用次数:")
   DebugPrint("CountSkillUsedTime->----------------------------")
   for SkillType, Count in pairs(CountPlayerSkillUsedTimesList) do
-    DebugPrint("CountSkillUsedTime->\230\138\128\232\131\189\231\177\187\229\158\139", SkillType, "\228\189\191\231\148\168\230\172\161\230\149\176", Count)
+    DebugPrint("CountSkillUsedTime->技能类型", SkillType, "使用次数", Count)
   end
   DebugPrint("CountSkillUsedTime->----------------------------")
 end
@@ -3731,7 +3731,7 @@ function GM_Command:PrintCurrentSkillID()
       Type_2_Skills[Index] = ForceSkills:Find(Skill)
     end
   end
-  PrintTable(Type_2_Skills, 10, "\229\189\147\229\137\141\230\140\137\233\148\174\230\138\128\232\131\189\228\184\186")
+  PrintTable(Type_2_Skills, 10, "当前按键技能为")
 end
 
 function GM_Command:PrintMonsterSkill(Eid)
@@ -3739,7 +3739,7 @@ function GM_Command:PrintMonsterSkill(Eid)
   local PlayerCharacter = UE4.UGameplayStatics.GetPlayerCharacter(GameInstance, 0)
   local Entity = Battle(PlayerCharacter):GetEntity(tonumber(Eid))
   if not Entity then
-    DebugPrint("Tianyi@ \230\137\190\228\184\141\229\136\176\229\175\185\229\186\148\230\128\170\231\137\169")
+    DebugPrint("Tianyi@ 找不到对应怪物")
     return
   end
   Entity.DebugPrintSkillId = true
@@ -3867,42 +3867,42 @@ function GM_Command:ShowRealAttr()
   local SkillEfficiency = self.Player:GetAttr("SkillEfficiency")
   local StrongValue = string.format("%.2f", (1 + self.Player:GetAttr("StrongValue")) * 100)
   local EnmityValue = string.format("%.2f", (1 + self.Player:GetAttr("EnmityValue")) * 100)
-  ScreenPrint("\232\131\140\230\176\180\239\188\154" .. EnmityValue .. "%")
-  ScreenPrint("\230\152\130\230\137\172\239\188\154" .. StrongValue .. "%")
+  ScreenPrint("背水：" .. EnmityValue .. "%")
+  ScreenPrint("昂扬：" .. StrongValue .. "%")
   local Weapon = self.Player:GetCurrentWeapon()
   if Weapon then
     local CRI = string.format("%.2f", Weapon:GetAttr("CRI") * 100)
     local CRD = string.format("%.2f", Weapon:GetAttr("CRD") * 100)
     local TRI = string.format("%.2f", Weapon:GetAttr("TriggerProbability") * 100)
     local MultiShoot = string.format("%.2f", Weapon:GetAttr("MultiShoot") * 100)
-    ScreenPrint("\229\164\154\233\135\141\229\176\132\229\135\187\239\188\154" .. MultiShoot .. "%")
-    ScreenPrint("\232\167\166\229\143\145\230\166\130\231\142\135\239\188\154" .. TRI .. "%")
-    ScreenPrint("\231\136\134\228\188\164\239\188\154" .. CRD .. "%")
-    ScreenPrint("\230\154\180\229\135\187\239\188\154" .. CRI .. "%")
+    ScreenPrint("多重射击：" .. MultiShoot .. "%")
+    ScreenPrint("触发概率：" .. TRI .. "%")
+    ScreenPrint("爆伤：" .. CRD .. "%")
+    ScreenPrint("暴击：" .. CRI .. "%")
   end
-  ScreenPrint("\230\138\128\232\131\189\230\149\136\231\155\138\239\188\154" .. string.format("%.2f", SkillEfficiency * 100) .. "%")
-  ScreenPrint("\230\138\128\232\131\189\232\128\144\228\185\133\239\188\154" .. string.format("%.2f", SkillSustain * 100) .. "%")
-  ScreenPrint("\230\138\128\232\131\189\232\140\131\229\155\180\239\188\154" .. string.format("%.2f", SkillRange * 100) .. "%")
-  ScreenPrint("\230\138\128\232\131\189\229\188\186\229\186\166\239\188\154" .. string.format("%.2f", SkillIntensity * 100) .. "%")
-  ScreenPrint("\230\173\166\229\153\168\230\148\187\229\135\187\239\188\154" .. ATK_Wepon)
-  ScreenPrint("\232\167\146\232\137\178\230\148\187\229\135\187\239\188\154" .. ATK_Char)
-  ScreenPrint("\230\128\187\230\148\187\229\135\187\239\188\154" .. ATK)
+  ScreenPrint("技能效益：" .. string.format("%.2f", SkillEfficiency * 100) .. "%")
+  ScreenPrint("技能耐久：" .. string.format("%.2f", SkillSustain * 100) .. "%")
+  ScreenPrint("技能范围：" .. string.format("%.2f", SkillRange * 100) .. "%")
+  ScreenPrint("技能强度：" .. string.format("%.2f", SkillIntensity * 100) .. "%")
+  ScreenPrint("武器攻击：" .. ATK_Wepon)
+  ScreenPrint("角色攻击：" .. ATK_Char)
+  ScreenPrint("总攻击：" .. ATK)
 end
 
 function GM_Command:StatDamage()
   if not Const.bShowDamageDetails then
-    ScreenPrint("\230\156\170\229\188\128\229\144\175\228\188\164\229\174\179\232\175\166\231\187\134\228\191\161\230\129\175")
+    ScreenPrint("未开启伤害详细信息")
     return
   end
   if Const.bStatDamage then
     Const.bStatDamage = false
-    ScreenPrint("\232\175\165\230\172\161\231\187\159\232\174\161\230\128\187\232\174\161\228\188\164\229\174\179\239\188\154" .. string.format("%.5f", Const.TotalDamage))
+    ScreenPrint("该次统计总计伤害：" .. string.format("%.5f", Const.TotalDamage))
     if Const.EndTime and Const.StartTime then
-      ScreenPrint("\232\175\165\230\172\161\231\187\159\232\174\161\230\128\187\232\174\161\228\188\164\229\174\179\230\151\182\233\149\191\239\188\154" .. string.format("%.5f", Const.EndTime - Const.StartTime))
+      ScreenPrint("该次统计总计伤害时长：" .. string.format("%.5f", Const.EndTime - Const.StartTime))
     end
     Const.TotalDamage = 0
   else
-    ScreenPrint("\231\187\159\232\174\161\230\128\187\232\174\161\228\188\164\229\174\179\229\188\128\229\167\139\239\188\129\239\188\129\239\188\129")
+    ScreenPrint("统计总计伤害开始！！！")
     Const.TotalDamage = 0
     Const.bStatDamage = true
     Const.StartTime = nil
@@ -4138,7 +4138,7 @@ function GM_Command:CompleteSingleCondition(ConditionId)
             return
           end
         else
-          print(_G.LogTag, string.format("\230\157\161\228\187\182\229\174\140\230\136\144\229\135\189\230\149\176\227\128\144%s\227\128\145\228\184\141\229\173\152\229\156\168", k))
+          print(_G.LogTag, string.format("条件完成函数【%s】不存在", k))
         end
       end
     end
@@ -4248,7 +4248,7 @@ end
 function GM_Command:PlaySequence(Path)
   local SequenceAsset = LoadObject(Path)
   if not SequenceAsset then
-    DebugPrint("error GM\230\146\173\230\148\190sequence\228\188\160\229\133\165\232\183\175\229\190\132\233\148\153\232\175\175", Path)
+    DebugPrint("error GM播放sequence传入路径错误", Path)
     return
   end
   local SA, SP = UE4.ULevelSequencePlayer.CreateLevelSequencePlayer(self:GetGameInstance(), SequenceAsset, UE4.FMovieSceneSequencePlaybackSettings())
@@ -4283,18 +4283,18 @@ function GM_Command:CompleteImpressionSystem(TalkTriggerId, State)
   end
   
   if not TalkTriggerId then
-    ErrorCode = "TalkTriggerId\228\184\186\231\169\186"
+    ErrorCode = "TalkTriggerId为空"
     printError()
     return
   end
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    ErrorCode = "Avatar\228\184\141\229\173\152\229\156\168"
+    ErrorCode = "Avatar不存在"
     printError()
     return
   end
   if Avatar.ImpressionTalkTriggers[TalkTriggerId] then
-    ErrorCode = "\229\175\185\229\186\148\231\154\132\229\175\185\232\175\157\229\183\178\229\174\140\230\136\144\239\188\140\230\151\160\230\179\149\233\135\141\229\164\141\229\174\140\230\136\144"
+    ErrorCode = "对应的对话已完成，无法重复完成"
     printError()
     return
   end
@@ -4304,12 +4304,12 @@ end
 function GM_Command:SystemGuideSwitch(val)
   if "Open" == val then
     SystemGuideManager.Invalid = false
-    DebugPrint("\231\179\187\231\187\159\229\188\149\229\175\188\230\137\147\229\188\128")
+    DebugPrint("系统引导打开")
     return
   end
   if "Close" == val then
     SystemGuideManager.Invalid = true
-    DebugPrint("\231\179\187\231\187\159\229\188\149\229\175\188\229\133\179\233\151\173")
+    DebugPrint("系统引导关闭")
     return
   end
 end
@@ -4348,8 +4348,8 @@ function GM_Command:PrintGuideBook()
   local Avatar = GWorld:GetAvatar()
   if Avatar and Avatar.GuideBook then
     for i, v in pairs(Avatar.GuideBook) do
-      local info = 1 == v.Reward and "\230\156\170\233\162\134\229\143\150" or "\229\183\178\233\162\134\229\143\150"
-      DebugPrint("\230\149\153\229\173\166\230\157\161\231\155\174Id:", i, "\231\138\182\230\128\129:", info)
+      local info = 1 == v.Reward and "未领取" or "已领取"
+      DebugPrint("教学条目Id:", i, "状态:", info)
     end
   end
 end
@@ -4969,7 +4969,7 @@ function GM_Command:ShowHudReward(Type, Id, Count)
   end
   
   table.sort(Rewards, SortByRarity)
-  UIUtils.ShowHudReward("\230\181\139\232\175\149", Rewards)
+  UIUtils.ShowHudReward("测试", Rewards)
 end
 
 function GM_Command:FXPriorityTest()
@@ -5287,15 +5287,15 @@ function GM_Command:PrintCurrentTaskGuideInfo()
     local Index = 1
     for Name, Obj in pairs(Objs) do
       DebugPrint("========================")
-      local ShowText = "\230\138\152\229\143\160"
+      local ShowText = "折叠"
       if Obj.Visibility ~= UE4.ESlateVisibility.Collapsed and Obj.Guide_Node.Visibility == UE4.ESlateVisibility.SelfHitTestInvisible then
-        ShowText = "\230\152\190\231\164\186"
+        ShowText = "显示"
       end
       local STLNodeId = 0
       if Obj.GuideInfoCache and Obj.GuideInfoCache.QuestNode and Obj.GuideInfoCache.QuestNode.QuestId then
         STLNodeId = Obj.GuideInfoCache.QuestNode.QuestId
       end
-      DebugPrint("Indicator[" .. Index .. "]\239\188\154" .. ShowText)
+      DebugPrint("Indicator[" .. Index .. "]：" .. ShowText)
       DebugPrint("WidgetName:", Name)
       DebugPrint("STLIndicatorType:", Obj.STLIndicatorType)
       if Obj.GuideInfoCache then
@@ -5778,36 +5778,36 @@ function GM_Command:CommonActivitySettlement()
   local Params = {
     LevelScore = 500,
     IsWin = true,
-    LevelTitle = "\229\133\179\229\141\161\230\160\135\233\162\152",
-    Text_Title = "\230\160\135\233\162\152\230\150\135\230\156\172",
-    Text_GetReward = "\232\142\183\229\190\151\229\165\150\229\138\177111",
+    LevelTitle = "关卡标题",
+    Text_Title = "标题文本",
+    Text_GetReward = "获得奖励111",
     TitleColor = UE4.UUIFunctionLibrary.StringToSlateColor("FFFF00"),
     ScoreLineColor = UE4.UUIFunctionLibrary.StringToSlateColor("FFFF00"),
     ActivityId = 1030103
   }
   Params.ScoreInfo = {
     {
-      text = "\233\128\154\229\133\179\230\151\182\232\190\190\229\136\17612300",
+      text = "通关时达到12300",
       isFinish = true
     },
     {
-      text = "\233\128\154\229\133\179\230\151\182\232\190\190\229\136\17621330",
+      text = "通关时达到21330",
       isFinish = false
     },
     {
-      text = "\233\128\154\229\133\179\230\151\182\232\190\190\229\136\17631330",
+      text = "通关时达到31330",
       isFinish = true
     },
     {
-      text = "\233\128\154\229\133\179\230\151\182\232\190\190\229\136\17612",
+      text = "通关时达到12",
       isFinish = true
     },
     {
-      text = "\233\128\154\229\133\179\230\151\182\232\190\190\229\136\176210",
+      text = "通关时达到210",
       isFinish = false
     },
     {
-      text = "\233\128\154\229\133\179\230\151\182\232\190\190\229\136\1763130",
+      text = "通关时达到3130",
       isFinish = true
     }
   }
@@ -6128,7 +6128,7 @@ function GM_Command:GetWorldRegionEidByCreatorId(CreatorId)
     ScreenPrint("can not find Eid")
     return
   end
-  DebugPrint(CreatorId .. "\231\154\132Eid\228\184\186 " .. Eid)
+  DebugPrint(CreatorId .. "的Eid为 " .. Eid)
 end
 
 function GM_Command:GetWorldRegionEidByManualItemId(ManualItemId)
@@ -6148,7 +6148,7 @@ function GM_Command:GetWorldRegionEidByManualItemId(ManualItemId)
     ScreenPrint("can not find Eid")
     return
   end
-  DebugPrint(ManualItemId .. "\231\154\132Eid\228\184\186 " .. Eid)
+  DebugPrint(ManualItemId .. "的Eid为 " .. Eid)
 end
 
 function GM_Command:GetWorldRegionEidByRandomRuleId(RandomRuleId)
@@ -6168,7 +6168,7 @@ function GM_Command:GetWorldRegionEidByRandomRuleId(RandomRuleId)
     return
   end
   for _, value in pairs(EidTable) do
-    DebugPrint(RandomRuleId .. "\231\154\132Eid\228\184\186 " .. value)
+    DebugPrint(RandomRuleId .. "的Eid为 " .. value)
   end
 end
 
@@ -6279,28 +6279,28 @@ end
 function GM_Command:ShowBattleError(num)
   local battle = GWorld.Battle
   if not battle then
-    ScreenPrint("Error:\230\137\190\228\184\141\229\136\176GWorld.Battle")
+    ScreenPrint("Error:找不到GWorld.Battle")
     return
   end
   num = tonumber(num) or 1
   if num < 1 or num > 2 then
-    ScreenPrint("\229\143\130\230\149\176\233\148\153\232\175\175\239\188\140num\229\186\148\228\184\1861-2\228\185\139\233\151\180\231\154\132\230\149\180\230\149\176")
+    ScreenPrint("参数错误，num应为1-2之间的整数")
     return
   end
   if 1 == num then
-    battle:ShowBattleError("GM\230\181\139\232\175\149\232\135\170\229\174\154\228\185\137\228\191\161\230\129\175", false)
+    battle:ShowBattleError("GM测试自定义信息", false)
   else
-    battle:StandardShowBattleErrorLua(UE.EShowBattleErrorType.Weapon, "GM\230\181\139\232\175\149\229\176\143\231\177\187")
+    battle:StandardShowBattleErrorLua(UE.EShowBattleErrorType.Weapon, "GM测试小类")
   end
 end
 
 function GM_Command:ShowUIError(Text)
   local battle = GWorld.Battle
   if not battle then
-    ScreenPrint("Error:\230\137\190\228\184\141\229\136\176GWorld.Battle")
+    ScreenPrint("Error:找不到GWorld.Battle")
     return
   end
-  battle:ShowError_UI_Inner_Lua("GM\230\181\139\232\175\149: " .. Text)
+  battle:ShowError_UI_Inner_Lua("GM测试: " .. Text)
 end
 
 function GM_Command:ShowPersonalInfoPage(IsOtherPageKind)

@@ -19,8 +19,8 @@ function M:InitGraph(GraphPath, bNotRecall)
   self.Img_Recall:SetVisibility(UE4.ESlateVisibility.SelfHitTestInvisible)
   local DialogueImage = UStoryFunctionLibrary.LoadResourceWithGender(self, GraphPath, self)
   if not DialogueImage then
-    local Message = "\229\155\190\231\137\135\232\181\132\230\186\144\231\188\186\229\164\177" .. "\n\232\183\175\229\190\132:" .. GraphPath
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\181\132\230\186\144\231\188\186\229\164\177", Message)
+    local Message = "图片资源缺失" .. "\n路径:" .. GraphPath
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "资源缺失", Message)
     return
   end
   DebugPrint("WBP_Story_ImgRecall@InitGraph", GraphPath, bNotRecall)
@@ -34,8 +34,8 @@ function M:InitGraph(GraphPath, bNotRecall)
         self.Img_Recall:SetBrushFromMaterial(MaterialInstance)
       end
     else
-      local Message = "\230\157\144\232\180\168\232\181\132\230\186\144\231\188\186\229\164\177" .. "\n\232\183\175\229\190\132:" .. MatPath
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\232\181\132\230\186\144\231\188\186\229\164\177", Message)
+      local Message = "材质资源缺失" .. "\n路径:" .. MatPath
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "资源缺失", Message)
     end
   else
     self.Img_Recall:SetBrushResourceObject(DialogueImage)

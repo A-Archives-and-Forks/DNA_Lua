@@ -16,7 +16,7 @@ function M:OnLoaded(...)
     self.DefaultFishId = 101
   end
   if not self.DefaultFishingSpotId then
-    GWorld.logger.error("\230\178\161\230\156\137\230\137\190\229\136\176\233\146\147\233\177\188\231\130\185\230\149\176\230\141\174\239\188\140\233\177\188id\239\188\154" .. self.DefaultFishId .. "\239\188\140\232\175\183\230\163\128\230\159\165\233\177\188\231\130\185\232\161\168\231\154\132\233\177\188\231\177\187\229\136\151\232\161\168")
+    GWorld.logger.error("没有找到钓鱼点数据，鱼id：" .. self.DefaultFishId .. "，请检查鱼点表的鱼类列表")
     self.DefaultFishingSpotId = 10010101
   end
   self.RegionPointId = DataMgr.FishingSpot[self.DefaultFishingSpotId].RegionPointId
@@ -134,7 +134,7 @@ function M:UpdateFishMapItem()
   self.List_Item:ClearListItems()
   local SpotId = self.SpotList[self.CurrentTabIndex]
   if not DataMgr.FishingSpot[SpotId] or not DataMgr.FishingSpot[SpotId].FishId then
-    GWorld.logger.error("\233\177\188\231\130\185" .. SpotId .. "\230\178\161\230\156\137\230\149\176\230\141\174\239\188\140\230\136\150\232\128\133\230\178\161\230\156\137\233\177\188\231\154\132\230\149\176\230\141\174")
+    GWorld.logger.error("鱼点" .. SpotId .. "没有数据，或者没有鱼的数据")
     return
   end
   local List = {}
@@ -173,7 +173,7 @@ function M:OnClickTrackSpot()
   local SpotId = self.SpotList[self.CurrentTabIndex]
   self.RegionPointId = DataMgr.FishingSpot[SpotId].RegionPointId
   if not self.RegionPointId then
-    GWorld.logger.error("LXZ OnClickTrackSpot \233\177\188\231\130\185\228\184\141\229\173\152\229\156\168\229\156\176\229\155\190\229\155\190\230\160\135\231\188\150\229\143\183\239\188\140 \233\177\188\231\130\185Id:", self.DefaultFishingSpotId)
+    GWorld.logger.error("LXZ OnClickTrackSpot 鱼点不存在地图图标编号， 鱼点Id:", self.DefaultFishingSpotId)
     return
   end
   local ConditionId = DataMgr.RegionPoint[self.RegionPointId].UnlockConditionId
@@ -256,7 +256,7 @@ function M:OnKeyDown(MyGeometry, InKeyEvent)
 end
 
 function M:GetRewards(Content)
-  print(_G.LogTag, "LXZ Avatar\229\143\145\229\165\150", Content.ConfigData.ReceiveParm.AchievementId)
+  print(_G.LogTag, "LXZ Avatar发奖", Content.ConfigData.ReceiveParm.AchievementId)
   local AchievementId = Content.ConfigData.ReceiveParm.AchievementId
   local Avatar = GWorld:GetAvatar()
   if Avatar then
@@ -285,7 +285,7 @@ function M:GetRewards(Content)
 end
 
 function M:GetAllRewards(ReceiveAllParam)
-  print(_G.LogTag, "LXZ Avatar\229\133\168\233\131\168\229\143\145\229\165\150", ReceiveAllParam.AchievementId)
+  print(_G.LogTag, "LXZ Avatar全部发奖", ReceiveAllParam.AchievementId)
   local Avatar = GWorld:GetAvatar()
   if Avatar then
     local function CallBack(Ret, Reward)
@@ -296,7 +296,7 @@ function M:GetAllRewards(ReceiveAllParam)
         local AchievementId = Item.ConfigData.AchievementId
         local FishiAchv = Avatar.FishAchvs[AchievementId]
         local CanReceive = FishiAchv:IsComplete() and FishiAchv:CanRecvReward()
-        print(_G.LogTag, "LXZ Avatar\229\133\168\233\131\168\229\143\145\229\165\150 cb 1", AchievementId, CanReceive, ReceiveAllParam.SelfWidget.List_Item:GetNumItems())
+        print(_G.LogTag, "LXZ Avatar全部发奖 cb 1", AchievementId, CanReceive, ReceiveAllParam.SelfWidget.List_Item:GetNumItems())
         if CanReceive then
           HaveReWardToGet = true
         end

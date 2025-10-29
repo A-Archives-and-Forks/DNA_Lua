@@ -79,22 +79,22 @@ function KillMonsterNode:ShowMonterGuide(GameMode)
               self.MonsterCreatorIdList[StaticCreatorId] = true
               GameState:AddGuideEid(Monster.Eid)
               Monster:ActiveGuide("Add")
-              DebugPrint("KillMonsterNode: \230\183\187\229\138\160\230\140\135\229\188\149", Monster.Eid)
+              DebugPrint("KillMonsterNode: 添加指引", Monster.Eid)
             end
           end
         end
       end
     end
     local IsThisTimeAllActivated = IsAllActivated()
-    DebugPrint("KillMonsterNode: \233\129\141\229\142\134\230\172\161\230\149\176\239\188\154", CheckCounter, "\239\188\140\230\152\175\229\144\166\229\133\168\233\131\168\230\183\187\229\138\160\230\140\135\229\188\149\239\188\154", IsThisTimeAllActivated)
+    DebugPrint("KillMonsterNode: 遍历次数：", CheckCounter, "，是否全部添加指引：", IsThisTimeAllActivated)
     if IsThisTimeAllActivated or CheckCounter > 10 then
-      DebugPrint("KillMonsterNode: \231\167\187\233\153\164\230\183\187\229\138\160\230\140\135\229\188\149timer Handle Name: ", self.AddGuideTimer_Handle)
+      DebugPrint("KillMonsterNode: 移除添加指引timer Handle Name: ", self.AddGuideTimer_Handle)
       GWorld.GameInstance:RemoveTimer(self.AddGuideTimer_Handle)
     end
   end
   
   CheckAllMonsterToAddGuide()
-  DebugPrint("KillMonsterNode: \230\183\187\229\138\160\230\140\135\229\188\149timer Handle Name: ", self.AddGuideTimer_Handle)
+  DebugPrint("KillMonsterNode: 添加指引timer Handle Name: ", self.AddGuideTimer_Handle)
   GWorld.GameInstance:AddTimer(1, CheckAllMonsterToAddGuide, true, 0, self.AddGuideTimer_Handle)
 end
 
@@ -115,7 +115,7 @@ function KillMonsterNode:HideMonsterGuide(GameMode)
           self.MonsterCreatorIdList[StaticCreatorId] = false
           GameState:RemoveGuideEid(Eid)
           SceneMgrComponent:UpdateSceneGuideIcon(Eid, nil, nil, "Delete", true, Data)
-          DebugPrint("KillMonsterNode: \230\184\133\233\153\164\230\140\135\229\188\149 \233\157\153\230\128\129\231\130\185Id", StaticCreatorId, " \230\128\170\231\137\169Eid", Eid)
+          DebugPrint("KillMonsterNode: 清除指引 静态点Id", StaticCreatorId, " 怪物Eid", Eid)
         end
       end
     end
@@ -135,7 +135,7 @@ function KillMonsterNode:OnMonsterKilledByNums(Monster)
         self
       })
     end
-    DebugPrint("KillMonsterNode: \230\149\176\231\155\174\229\135\187\230\157\128\232\174\161\230\149\176 ", self.KillMonsterCnt, "STL Key", self.Key)
+    DebugPrint("KillMonsterNode: 数目击杀计数 ", self.KillMonsterCnt, "STL Key", self.Key)
     if self.KillMonsterCnt >= self.MonsterNeedNums then
       self.Callback()
     end
@@ -182,7 +182,7 @@ function KillMonsterNode:OnMonsterKilledByCreatorId(Monster)
           self
         })
       end
-      DebugPrint("KillMonsterNode: \233\157\153\230\128\129\231\130\185\229\135\187\230\157\128\232\174\161\230\149\176 ", self.KillMonsterCnt, "\232\162\171\229\135\187\230\157\128\230\128\170\231\137\169\233\157\153\230\128\129\231\130\185Id ", Monster.CreatorId, "STL Key", self.Key)
+      DebugPrint("KillMonsterNode: 静态点击杀计数 ", self.KillMonsterCnt, "被击杀怪物静态点Id ", Monster.CreatorId, "STL Key", self.Key)
     end
     Monster:DeactiveGuide()
     local GameState = UE4.UGameplayStatics.GetGameState(GWorld.GameInstance)
@@ -194,12 +194,12 @@ function KillMonsterNode:OnMonsterKilledByCreatorId(Monster)
 end
 
 function KillMonsterNode:Clear()
-  DebugPrint("KillMonsterNode: Clear\239\188\140\232\191\155\232\161\140\230\184\133\231\144\134")
+  DebugPrint("KillMonsterNode: Clear，进行清理")
   local GameMode = UE4.UGameplayStatics.GetGameMode(GWorld.GameInstance)
   if self.KillMonsterType == "Nums" then
     GameMode:STLUnRegisterKillMonsterNode(self.Key)
   else
-    DebugPrint("KillMonsterNode: \231\167\187\233\153\164\230\183\187\229\138\160\230\140\135\229\188\149timer Handle Name: ", self.AddGuideTimer_Handle)
+    DebugPrint("KillMonsterNode: 移除添加指引timer Handle Name: ", self.AddGuideTimer_Handle)
     GWorld.GameInstance:RemoveTimer(self.AddGuideTimer_Handle)
     self:HideMonsterGuide(GameMode)
     self.MonsterCreatorIdList = {}
@@ -218,7 +218,7 @@ function KillMonsterNode:Clear()
 end
 
 function KillMonsterNode:OnQuestlineFail()
-  DebugPrint("KillMonsterNode: \228\187\187\229\138\161\229\164\177\232\180\165\239\188\140\230\184\133\231\144\134\232\174\161\230\149\176", self.KillMonsterCnt)
+  DebugPrint("KillMonsterNode: 任务失败，清理计数", self.KillMonsterCnt)
   self.KillMonsterCnt = 0
   local Avatar = GWorld:GetAvatar()
   if Avatar then

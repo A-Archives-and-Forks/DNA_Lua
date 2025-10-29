@@ -237,7 +237,7 @@ function ForgePathController:OnItemSelected(RowIndex, ColIndex, bSelectedByGamep
     return
   end
   if CurRowSelectedIndex == ColIndex and not self.PathModel.RowSelectedIndex[RowIndex + 1] then
-    DebugPrint("Tianyi@ \229\183\178\231\187\143\233\128\137\228\184\173\228\186\134\232\191\153\228\184\170\232\138\130\231\130\185\228\186\134", RowIndex, ColIndex)
+    DebugPrint("Tianyi@ 已经选中了这个节点了", RowIndex, ColIndex)
     return
   end
   if 1 == RowIndex then
@@ -258,7 +258,7 @@ function ForgePathController:OnItemSelected(RowIndex, ColIndex, bSelectedByGamep
     local DraftInfo = DataMgr.Draft[ProductDraftId]
     if DraftInfo.Resource and #DraftInfo.Resource > 0 then
       if RowIndex == MaxRowNum then
-        DebugPrint("Tianyi@ \229\189\147\229\137\141\233\147\184\233\128\160\233\147\190\230\157\161\233\149\191\229\186\166\229\164\167\228\186\1424,\231\156\139\231\156\139\230\156\137\228\187\128\228\185\136\233\151\174\233\162\152", RowIndex, ColIndex)
+        DebugPrint("Tianyi@ 当前铸造链条长度大于4,看看有什么问题", RowIndex, ColIndex)
         return
       end
       local NextRowInfo = {}

@@ -24,7 +24,7 @@ function M:OnClicked()
   if self.ImportPanel then
     self.ImportPanel:ImportItemChanged(self.Index)
   else
-    DebugPrint("lhr@Armory_Mod_ImportItem:OnClicked\239\188\140\230\150\185\230\161\136\229\175\188\229\133\165\233\157\162\230\157\191\229\164\177\230\149\136")
+    DebugPrint("lhr@Armory_Mod_ImportItem:OnClicked，方案导入面板失效")
   end
 end
 

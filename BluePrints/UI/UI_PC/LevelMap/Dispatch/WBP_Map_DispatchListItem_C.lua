@@ -239,7 +239,7 @@ function M:OnDispatchItemClick()
     return
   end
   if self.Owner == nil then
-    DebugPrint("ItemOwner\228\184\141\229\173\152\229\156\168")
+    DebugPrint("ItemOwner不存在")
     return
   end
   AudioManager(self):PlayUISound(self, "event:/ui/common/click_mid", nil, nil)

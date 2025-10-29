@@ -75,14 +75,14 @@ function M:Start()
   self.SelectOptions = {}
   local DialogueFlowGraphComponent = self:TryGetFlowGraphComponent()
   if not DialogueFlowGraphComponent then
-    local Message = string.format("\229\189\147\229\137\141Option\232\138\130\231\130\185\239\188\140\230\179\168\229\134\140\231\154\132Task\228\184\141\229\173\152\229\156\168 DialogueFlowGraphComponent\239\188\140\232\175\183\230\179\168\229\134\140")
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157FLowNode\229\135\186\233\148\153", Message)
+    local Message = string.format("当前Option节点，注册的Task不存在 DialogueFlowGraphComponent，请注册")
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话FLowNode出错", Message)
     return
   end
   local DialogueRecordComponent = self:TryGetRecordComponent()
   if not DialogueRecordComponent then
-    local Message = string.format("\229\189\147\229\137\141Dialogue\232\138\130\231\130\185\239\188\140\230\179\168\229\134\140\231\154\132Task\228\184\141\229\173\152\229\156\168 DialogueRecordComponent\239\188\140\232\175\183\230\179\168\229\134\140")
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157FLowNode\229\135\186\233\148\153", Message)
+    local Message = string.format("当前Dialogue节点，注册的Task不存在 DialogueRecordComponent，请注册")
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话FLowNode出错", Message)
     return
   end
   self:IterForward()
@@ -97,8 +97,8 @@ function M:Skip()
     end
   end
   if not self:HasFinalDialogue() then
-    local Message = string.format("\229\189\147\229\137\141Option\232\138\130\231\130\185\239\188\140\232\183\179\232\191\135\230\151\182\228\184\141\229\173\152\229\156\168Final \229\135\186\229\143\163\239\188\140\230\151\160\230\179\149\230\173\163\229\184\184\232\183\179\232\191\135\239\188\140\232\175\183\230\163\128\230\159\165\239\188\140\230\136\150\232\128\133\228\184\141\232\166\129\233\135\141\229\164\141\232\191\158\230\142\165\229\136\176\232\175\165\232\138\130\231\130\185")
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157FLowNode\229\135\186\233\148\153", Message)
+    local Message = string.format("当前Option节点，跳过时不存在Final 出口，无法正常跳过，请检查，或者不要重复连接到该节点")
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话FLowNode出错", Message)
   end
 end
 

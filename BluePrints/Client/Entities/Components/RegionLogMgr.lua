@@ -15,7 +15,7 @@ end
 
 function Component:PrintCurrentQuestDataCache()
   if not self.QuestDatas then
-    DebugPrint("ZJT_ \229\189\147\229\137\141\228\184\141\229\173\152\229\156\168\229\190\133\230\143\144\228\186\164\230\156\141\229\138\161\231\171\175\228\187\187\229\138\161\231\188\147\229\173\152\230\149\176\230\141\174 ")
+    DebugPrint("ZJT_ 当前不存在待提交服务端任务缓存数据 ")
     return
   end
   DebugPrint("ZJT_ -------------------------- Start PrintCurrentQuestDataCache --------------------------")
@@ -34,7 +34,7 @@ end
 
 function Component:PrintCurrentRarelyDataCache()
   if not self.RarelyDatas then
-    DebugPrint("ZJT_ \229\189\147\229\137\141\228\184\141\229\173\152\229\156\168\229\190\133\230\143\144\228\186\164\230\156\141\229\138\161\231\171\175\230\142\162\231\180\162\231\188\147\229\173\152\230\149\176\230\141\174 ")
+    DebugPrint("ZJT_ 当前不存在待提交服务端探索缓存数据 ")
     return
   end
   DebugPrint("ZJT_ -------------------------- ***** Start ***** PrintCurrentRarelyDataCache --------------------------")
@@ -48,7 +48,7 @@ end
 
 function Component:PrintCurrentCommonDataCache()
   if not self.CommonDatas then
-    DebugPrint("ZJT_ \229\189\147\229\137\141\228\184\141\229\173\152\229\156\168\229\190\133\230\143\144\228\186\164\230\156\141\229\138\161\231\171\175\229\184\184\232\167\132\231\188\147\229\173\152\230\149\176\230\141\174 ")
+    DebugPrint("ZJT_ 当前不存在待提交服务端常规缓存数据 ")
     return
   end
   DebugPrint("ZJT_ -------------------- Start PrintCurrentCommonDataCache -------------------- ")
@@ -64,7 +64,7 @@ end
 
 function Component:PrintCurrentMistakeDataCache()
   if not self.MistakeDatas then
-    DebugPrint("ZJT_ \229\189\147\229\137\141\228\184\141\229\173\152\229\156\168\233\157\158\229\173\152\229\130\168\231\188\147\229\173\152\230\149\176\230\141\174 ")
+    DebugPrint("ZJT_ 当前不存在非存储缓存数据 ")
     return
   end
   DebugPrint("ZJT_ -------------------- Start PrintCurrentMistakeDataCache -------------------- ")
@@ -80,7 +80,7 @@ end
 
 function Component:PrintCurrentStaticCreatorCache()
   if not self.StaticIdControlCache then
-    DebugPrint("ZJT_ \229\189\147\229\137\141\228\184\141\229\173\152\229\156\168\233\157\153\230\128\129\229\136\183\230\150\176\231\130\185\231\188\147\229\173\152\230\149\176\230\141\174 ")
+    DebugPrint("ZJT_ 当前不存在静态刷新点缓存数据 ")
     return
   end
   DebugPrint("ZJT_ -------------------- Start PrintCurrentStaticCreatorCache -------------------- ")
@@ -124,10 +124,10 @@ function Component:PrintCurrentExplore()
   for RarelyId, Explore in pairs(self.Explores) do
     self.logger.debug("ZJT_  PrintCurrentExplore RarelyId, Blue ", RarelyId, Explore.RarelyId, Explore.ExploreState)
     if Explore:IsDoing() then
-      self.logger.debug("ZJT_ PrintExplore \230\173\163\229\156\168\230\137\167\232\161\140 ", RarelyId, Explore.RarelyId, Explore.ExploreState)
+      self.logger.debug("ZJT_ PrintExplore 正在执行 ", RarelyId, Explore.RarelyId, Explore.ExploreState)
     end
     if Explore:IsComplete() then
-      self.logger.debug("ZJT_ PrintExplore \230\137\167\232\161\140\229\174\140\230\136\144 ", RarelyId, Explore.RarelyId, Explore.ExploreState)
+      self.logger.debug("ZJT_ PrintExplore 执行完成 ", RarelyId, Explore.RarelyId, Explore.ExploreState)
     end
   end
 end

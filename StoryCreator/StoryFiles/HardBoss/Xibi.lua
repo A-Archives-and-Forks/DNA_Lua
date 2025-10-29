@@ -1,5 +1,5 @@
 return {
-  storyName = "\231\187\147\230\157\159\229\137\167\230\131\133",
+  storyName = "结束剧情",
   storyDescription = "",
   lineData = {
     {
@@ -58,7 +58,7 @@ return {
       isStoryNode = true,
       key = "1704175978725174814",
       type = "StoryNode",
-      name = "\229\188\128\229\156\186\229\137\167\230\131\133",
+      name = "开场剧情",
       pos = {x = 378, y = 130},
       propsData = {
         QuestId = 10100,
@@ -125,7 +125,7 @@ return {
           ["1704175978725174819"] = {
             key = "1704175978725174819",
             type = "BossBattleOpenNode",
-            name = "BOSS\230\136\152\229\188\128\229\156\186\230\146\173\231\137\135",
+            name = "BOSS战开场播片",
             pos = {x = 399, y = 129},
             propsData = {
               SequencePath = "LevelSequence'/Game/Asset/Cinematics/SystemShow/HardBoss/HardBoss_Xibi/HardBoss_Xibi_Start.HardBoss_Xibi_Start'",
@@ -145,7 +145,7 @@ return {
       isStoryNode = true,
       key = "1704175978725174815",
       type = "StoryNode",
-      name = "\231\187\147\230\157\159\229\137\167\230\131\133",
+      name = "结束剧情",
       pos = {x = 385, y = 292},
       propsData = {
         QuestId = 10199,

@@ -6,7 +6,7 @@ local BP_TempleComponent_C = Class({
 function BP_TempleComponent_C:InitTempleBaseInfo()
   self.GameMode = self:GetOwner().LevelGameMode
   self.TempleData = DataMgr.Temple[self.GameMode.DungeonId]
-  assert(self.TempleData, "TempleComponent: \231\165\158\229\186\153\231\142\169\230\179\149\232\175\187\232\161\168\229\164\177\232\180\165\239\188\140\228\188\160\229\133\165\231\154\132DungeonId: " .. tostring(self.GameMode.DungeonId))
+  assert(self.TempleData, "TempleComponent: 神庙玩法读表失败，传入的DungeonId: " .. tostring(self.GameMode.DungeonId))
   self.SuccessRule = self.TempleData.SucRule
   self.IsNoStarTemple = false
   local RewardId = self.TempleData.RewardId
@@ -106,7 +106,7 @@ function BP_TempleComponent_C:StartTempleDelay(Duration, DelayNode, ArchiveID, B
     Time
   }
   self:AddTimer(Duration, self.DelayTimerEnd, false, 0, Key, nil, Key, DelayNode, ShowUI)
-  DebugPrint("zwk \230\183\187\229\138\160\228\186\134\228\184\128\228\184\170DelayNode ", Key, self:GetName())
+  DebugPrint("zwk 添加了一个DelayNode ", Key, self:GetName())
   if ShowUI then
     EventManager:FireEvent(EventID.OnTempleDelayStart, Duration, Title)
     self.CurShowingKey = Key
@@ -114,7 +114,7 @@ function BP_TempleComponent_C:StartTempleDelay(Duration, DelayNode, ArchiveID, B
 end
 
 function BP_TempleComponent_C:DelayTimerEnd(Key, DelayNode, ShowUI)
-  DebugPrint("zwk \230\137\167\232\161\140DelayTimerEnd ", Key, self:GetName())
+  DebugPrint("zwk 执行DelayTimerEnd ", Key, self:GetName())
   if not IsValid(DelayNode) then
     return
   end
@@ -134,7 +134,7 @@ function BP_TempleComponent_C:InterruptAll()
     self:RemoveTimer(k)
     self.DelayKeys[k] = nil
   end
-  DebugPrint("zwk \230\137\147\230\150\173\229\133\168\233\131\168Delay\229\174\140\230\136\144")
+  DebugPrint("zwk 打断全部Delay完成")
 end
 
 function BP_TempleComponent_C:InterruptByBreakID(BreakID)
@@ -167,7 +167,7 @@ function BP_TempleComponent_C:InterruptByArchiveID(ArchiveID, UseTimes)
       self.DelayKeys[k] = nil
     end
   end
-  DebugPrint("zwk \230\160\185\230\141\174Archive\233\152\182\230\174\181\230\137\147\230\150\173Delay\229\174\140\230\136\144")
+  DebugPrint("zwk 根据Archive阶段打断Delay完成")
 end
 
 function BP_TempleComponent_C:StartTempleTimer()

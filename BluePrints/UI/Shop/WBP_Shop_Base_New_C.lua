@@ -15,7 +15,7 @@ function M:InitShop(MainTabIdx, SubTabIdx, ShopItemId, ShopType)
   Player:SetCanInteractiveTrigger(false)
   AudioManager(self):PlayUISound(self, "event:/ui/armory/open", "OpenShopMain", nil)
   if not ShopType then
-    DebugPrint("ShopType\231\188\186\229\164\177\239\188\140ZDX_\232\175\183\229\175\185\229\186\148\231\179\187\231\187\159\230\142\165\229\143\163\232\180\159\232\180\163\228\186\186\228\188\160\229\133\165\229\149\134\229\159\142\229\133\183\228\189\147\231\154\132SystemName")
+    DebugPrint("ShopType缺失，ZDX_请对应系统接口负责人传入商城具体的SystemName")
     ShopType = "Shop"
   end
   self.ShopType = ShopType
@@ -132,7 +132,7 @@ function M:LoadSubTabInfo(SubTabData)
   if SubTabData.TabCoin then
     self.TabCoinInfo = SubTabData.TabCoin
   else
-    assert(DataMgr.Shop[self.ShopType].ShopUIName, "\232\175\165\229\149\134\229\159\142\229\175\185\229\186\148\231\154\132\232\147\157\229\155\190\229\156\168SystemUI\228\184\173\228\184\141\229\173\152\229\156\168\239\188\154" .. self.ShopType)
+    assert(DataMgr.Shop[self.ShopType].ShopUIName, "该商城对应的蓝图在SystemUI中不存在：" .. self.ShopType)
     self.TabCoinInfo = DataMgr.SystemUI[DataMgr.Shop[self.ShopType].ShopUIName].TabCoin
   end
   self.Common_Tab:OverrideTopResource(self.TabCoinInfo)
@@ -559,7 +559,7 @@ function M:OnRechargeFinished(Result, GoodsId, ShopItems)
   if Result == ErrorCode.RET_SUCCESS then
     if ShopItems and DataMgr.PayGoods[GoodsId].ItemId then
       local ShopItemData = DataMgr.ShopItem[DataMgr.PayGoods[GoodsId].ItemId]
-      assert(ShopItemData, "\232\180\173\228\185\176\230\136\144\229\138\159\229\144\142\232\175\187\232\161\168ShopItemData\228\184\186\231\169\186", DataMgr.PayGoods[GoodsId].ItemId)
+      assert(ShopItemData, "购买成功后读表ShopItemData为空", DataMgr.PayGoods[GoodsId].ItemId)
       UIUtils.ShowGetItemPageAndOpenBagIfNeeded(nil, nil, nil, ShopItems, ShopItemData.IsSpPopup)
     end
   else

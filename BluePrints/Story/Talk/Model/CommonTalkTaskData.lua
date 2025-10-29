@@ -111,8 +111,8 @@ function CommonTalkTaskData_C.New(TalkNodeData)
     SequenceActor.CameraSettings.bOverrideAspectRatioAxisConstraint = false
     local Sequence = GetSequence(Obj.SequencePath)
     if not Sequence then
-      local Message = "\230\137\190\228\184\141\229\136\176Sequence\232\181\132\230\186\144" .. "\nSequence\232\183\175\229\190\132:" .. Obj.SequencePath .. "\n\229\175\185\232\175\157\232\138\130\231\130\185:" .. tostring(TalkNodeData.Name)
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Seqeuence\232\181\132\230\186\144\231\188\186\229\164\177/\233\133\141\231\189\174\233\148\153\232\175\175", Message)
+      local Message = "找不到Sequence资源" .. "\nSequence路径:" .. Obj.SequencePath .. "\n对话节点:" .. tostring(TalkNodeData.Name)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Seqeuence资源缺失/配置错误", Message)
     else
       SequenceActor:SetSequence(Sequence)
       Obj.Sequence = Sequence
@@ -128,8 +128,8 @@ function CommonTalkTaskData_C.New(TalkNodeData)
       FlowEditorSubSystem:CheckFlowAsset(FlowAsset)
     end
     if not FlowAsset then
-      local Message = "\230\137\190\228\184\141\229\136\176DialogueAsset\232\181\132\230\186\144" .. "\nSequence\232\183\175\229\190\132:" .. TalkNodeData.FlowAssetPath .. "\n\229\175\185\232\175\157\232\138\130\231\130\185:" .. tostring(TalkNodeData.Name)
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "DialogueAsset\232\181\132\230\186\144\231\188\186\229\164\177/\233\133\141\231\189\174\233\148\153\232\175\175", Message)
+      local Message = "找不到DialogueAsset资源" .. "\nSequence路径:" .. TalkNodeData.FlowAssetPath .. "\n对话节点:" .. tostring(TalkNodeData.Name)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "DialogueAsset资源缺失/配置错误", Message)
     elseif TS then
       Obj.FlowAsset = TS:CreateFlowTalkTask(TalkNodeData.FlowAssetPath, UE4.LoadObject(TalkNodeData.FlowAssetPath))
       Obj.FirstDialogueId = Obj.FlowAsset:GetFirstDialogueId()

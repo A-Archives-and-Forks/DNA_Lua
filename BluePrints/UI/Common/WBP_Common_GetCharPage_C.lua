@@ -106,7 +106,7 @@ function M:InitCharDetails()
     self:GetCharSpineUI(CharInfo.SpineBp)
   else
     self:GetCharSpineUI("WBP_Get_Avatar_WidgetMaer")
-    DebugPrint(ErrorTag, "----jzn---\229\189\147\229\137\141\232\167\146\232\137\178\230\151\160Spine\232\147\157\229\155\190\232\181\132\230\186\144----", self.TargetId)
+    DebugPrint(ErrorTag, "----jzn---当前角色无Spine蓝图资源----", self.TargetId)
   end
 end
 
@@ -138,7 +138,7 @@ function M:InitSkinDetails()
     end
   else
     self:GetCharSpineUI("WBP_Get_Avatar_WidgetMaer")
-    DebugPrint(ErrorTag, "----jzn---\229\189\147\229\137\141\231\154\174\232\130\164\230\151\160Spine\232\147\157\229\155\190\232\181\132\230\186\144----", self.TargetId)
+    DebugPrint(ErrorTag, "----jzn---当前皮肤无Spine蓝图资源----", self.TargetId)
   end
 end
 
@@ -165,7 +165,7 @@ function M:InitResourceDetails()
     self:PlayResourceVideo(ResourceInfo.DisplayPath)
   else
     self:GetCharSpineUI("WBP_Get_Avatar_WidgetMaer")
-    DebugPrint(ErrorTag, "----jzn---\229\189\147\229\137\141\232\189\174\231\155\152\229\138\168\228\189\156\230\151\160Spine\232\147\157\229\155\190\232\181\132\230\186\144----", self.TargetId)
+    DebugPrint(ErrorTag, "----jzn---当前轮盘动作无Spine蓝图资源----", self.TargetId)
   end
 end
 

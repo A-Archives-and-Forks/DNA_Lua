@@ -258,7 +258,7 @@ function WBP_SquadBuild_Main_P_C:AllSlotPlayAnimation(Animation, SlotIndex)
 end
 
 function WBP_SquadBuild_Main_P_C:CancelCreateSquadAndBackToSquadList()
-  DebugPrint("thy   \229\143\150\230\182\136\231\188\150\232\190\145\231\132\182\229\144\142\232\191\148\229\155\158\233\152\181\229\174\185\229\136\151\232\161\168")
+  DebugPrint("thy   取消编辑然后返回阵容列表")
   AudioManager(self):PlayUISound(nil, "event:/ui/common/click_btn_cancel", nil, nil)
   self.IsNeedSave = self:CheckChangeSquadInfo()
   self.IsNeedPlayRefreshAnimation = true
@@ -309,7 +309,7 @@ function WBP_SquadBuild_Main_P_C:UpdateBtnInfo(BtnWidget, Text, Callback)
 end
 
 function WBP_SquadBuild_Main_P_C:DeleteSquad()
-  DebugPrint("thy   \229\136\160\233\153\164\233\152\181\229\174\185")
+  DebugPrint("thy   删除阵容")
   local Params = {
     RightCallbackObj = self,
     RightCallbackFunction = self.RealDeleteSquad,
@@ -329,14 +329,14 @@ function WBP_SquadBuild_Main_P_C:RealDeleteSquad()
 end
 
 function WBP_SquadBuild_Main_P_C:EditorSquad()
-  DebugPrint("thy   \231\188\150\232\190\145\233\152\181\229\174\185")
+  DebugPrint("thy   编辑阵容")
   self:UpdateBtnInfo(self.Btn_Save, GText("UI_RegionMap_Save"), self.SaveSquad)
   self:ResetAllSlotsClickState()
   self.Character:OnClickCallback()
 end
 
 function WBP_SquadBuild_Main_P_C:SaveSquad()
-  DebugPrint("thy   \228\191\157\229\173\152\233\152\181\229\174\185")
+  DebugPrint("thy   保存阵容")
   AudioManager(self):PlayUISound(nil, "event:/ui/common/click_btn_confirm", nil, nil)
   local IsMainRoleSlotLack = false
   if self.Btn_Save.IsForbidden then
@@ -1176,7 +1176,7 @@ function WBP_SquadBuild_Main_P_C:CheckSquadListArr()
 end
 
 function WBP_SquadBuild_Main_P_C:ClickSelectSquadItem(Index)
-  DebugPrint("thy    \231\130\185\229\135\187\233\162\132\232\174\190\233\152\181\229\174\185\229\136\151\232\161\168\230\151\182\231\154\132\229\155\158\232\176\131", self.CurSelectSquadIndex, Index, self.IsDraging)
+  DebugPrint("thy    点击预设阵容列表时的回调", self.CurSelectSquadIndex, Index, self.IsDraging)
   if self.IsInEditor then
     return
   end
@@ -1200,7 +1200,7 @@ function WBP_SquadBuild_Main_P_C:ClickSelectSquadItem(Index)
 end
 
 function WBP_SquadBuild_Main_P_C:AddSquad()
-  DebugPrint("thy    \230\150\176\230\183\187\229\138\160\228\184\128\228\184\170\233\162\132\232\174\190\233\152\181\229\174\185\231\154\132\229\155\158\232\176\131")
+  DebugPrint("thy    新添加一个预设阵容的回调")
   self.SquadInfo = nil
   self:ClearAllSlots(true)
   self.CurSelectSquadIndex = self.SquadListLen + 1
@@ -1373,7 +1373,7 @@ end
 
 function WBP_SquadBuild_Main_P_C:GetWeaponTypeById(WeaponId)
   if not WeaponId then
-    DebugPrint("thy    GetWeaponTypeById \230\178\161\230\156\137\230\143\144\228\190\155\230\173\166\229\153\168Id")
+    DebugPrint("thy    GetWeaponTypeById 没有提供武器Id")
     return
   end
   local WeaponTypeList = DataMgr.BattleWeapon[WeaponId].WeaponTag
@@ -1384,7 +1384,7 @@ function WBP_SquadBuild_Main_P_C:GetWeaponTypeById(WeaponId)
       end
     end
   end
-  DebugPrint("thy    GetWeaponTypeById \230\178\161\230\156\137\230\137\190\229\136\176\230\173\166\229\153\168\231\177\187\229\158\139", WeaponId)
+  DebugPrint("thy    GetWeaponTypeById 没有找到武器类型", WeaponId)
   return "Melee"
 end
 

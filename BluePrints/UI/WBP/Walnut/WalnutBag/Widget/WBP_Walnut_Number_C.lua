@@ -5,7 +5,7 @@ local M = Class({
 
 function M:InitWalnutNumber(WalnutId)
   local WalnutData = DataMgr.Walnut[WalnutId]
-  assert(WalnutData, "ZDX_\230\160\184\230\161\131\228\191\161\230\129\175\228\184\141\229\173\152\229\156\168\239\188\154" .. WalnutId)
+  assert(WalnutData, "ZDX_核桃信息不存在：" .. WalnutId)
   local WalnutNum = WalnutData.WalnutNumber
   local WalnutIndex = WalnutData.WalnutIndex
   local WalnutType = WalnutData.WalnutType

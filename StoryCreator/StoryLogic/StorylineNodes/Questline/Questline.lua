@@ -41,7 +41,7 @@ function Questline:BuildQuestline()
     self:AddNode(NodeId, Node)
   end
   if not self:GetStartNode() then
-    local Message = "\228\187\187\229\138\161\230\178\161\230\156\137StartNode\232\191\158\231\186\191" .. [[
+    local Message = "任务没有StartNode连线" .. [[
 
 FileName:]] .. self.FileName .. [[
 
@@ -50,7 +50,7 @@ QuestChainId:]] .. self.QuestChainId .. [[
 QuestId:]] .. self.QuestId .. [[
 
 StoryNodeKey:]] .. self.Data.key
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\228\187\187\229\138\161\230\178\161\230\156\137StartNode\232\191\158\231\186\191", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "任务没有StartNode连线", Message)
     return
   end
   local LineData
@@ -66,7 +66,7 @@ end
 
 function Questline:StartQuest(NodeId)
   if self.Storyline.HasFinished then
-    local Message = "\229\188\128\229\167\139\228\187\187\229\138\161\230\151\182\239\188\140\228\187\187\229\138\161\233\147\190\229\183\178\231\187\147\230\157\159" .. [[
+    local Message = "开始任务时，任务链已结束" .. [[
 
 FileName:]] .. self.FileName .. [[
 
@@ -75,11 +75,11 @@ QuestChainId:]] .. self.QuestChainId .. [[
 QuestId:]] .. self.QuestId .. [[
 
 StoryNodeKey:]] .. self.Data.key
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\188\128\229\167\139\228\187\187\229\138\161\230\151\182\239\188\140\228\187\187\229\138\161\233\147\190\229\183\178\231\187\147\230\157\159", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "开始任务时，任务链已结束", Message)
     return
   end
   if self.HasStarted then
-    local Message = "\228\187\187\229\138\161\229\183\178\229\188\128\229\167\139" .. [[
+    local Message = "任务已开始" .. [[
 
 FileName:]] .. self.FileName .. [[
 
@@ -88,13 +88,13 @@ QuestChainId:]] .. self.QuestChainId .. [[
 QuestId:]] .. self.QuestId .. [[
 
 StoryNodeKey:]] .. self.Data.key
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\228\187\187\229\138\161\229\183\178\229\188\128\229\167\139", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "任务已开始", Message)
     return
   end
   if NodeId and 0 ~= NodeId then
     self.StartedNode = self:GetNode(NodeId)
     if not self.StartedNode then
-      local Message = "NodeId\228\184\141\229\173\152\229\156\168" .. [[
+      local Message = "NodeId不存在" .. [[
 
 FileName:]] .. self.FileName .. [[
 
@@ -105,7 +105,7 @@ QuestId:]] .. self.QuestId .. [[
 StoryNodeKey:]] .. self.Data.key .. [[
 
 QuestNodeKey:]] .. NodeId
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "NodeId\228\184\141\229\173\152\229\156\168", Message)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "NodeId不存在", Message)
       return
     end
   else
@@ -170,21 +170,21 @@ function Questline:StartNode(NextNode, InportInfo)
     local Message = string.format([[
 FileName: %s
 NodeInfo: %s]], self.FileName, NextNode:ToString())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Storyline \229\183\178\231\187\147\230\157\159\239\188\140\229\188\128\229\167\139\232\138\130\231\130\185\229\164\177\232\180\165", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Storyline 已结束，开始节点失败", Message)
     return
   end
   if self.HasFinished then
     local Message = string.format([[
 FileName: %s
 NodeInfo: %s]], self.FileName, NextNode:ToString())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Questline \229\183\178\231\187\147\230\157\159\239\188\140\229\188\128\229\167\139\232\138\130\231\130\185\229\164\177\232\180\165", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Questline 已结束，开始节点失败", Message)
     return
   end
   if self.bLockRunningNodeList then
     local Message = string.format([[
 FileName: %s
 NodeInfo: %s]], self.FileName, NextNode:ToString())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Questline \229\183\178\233\148\129\229\174\154\239\188\140\229\188\128\229\167\139\232\138\130\231\130\185\229\164\177\232\180\165", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Questline 已锁定，开始节点失败", Message)
     return
   end
   if NextNode.HasStopped then
@@ -209,28 +209,28 @@ function Questline:FinishNode(Node, OutPortNames, Result)
     local Message = string.format([[
 FileName: %s
 NodeInfo: %s]], self.FileName, Node:ToString())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Storyline \229\183\178\231\187\147\230\157\159\239\188\140\229\174\140\230\136\144\232\138\130\231\130\185\229\164\177\232\180\165", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Storyline 已结束，完成节点失败", Message)
     return
   end
   if self.HasFinished then
     local Message = string.format([[
 FileName: %s
 NodeInfo: %s]], self.FileName, Node:ToString())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Questline \229\183\178\231\187\147\230\157\159\239\188\140\229\174\140\230\136\144\232\138\130\231\130\185\229\164\177\232\180\165", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Questline 已结束，完成节点失败", Message)
     return
   end
   if self.bLockRunningNodeList then
     local Message = string.format([[
 FileName: %s
 NodeInfo: %s]], self.FileName, Node:ToString())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Questline \229\183\178\233\148\129\229\174\154\239\188\140\229\174\140\230\136\144\232\138\130\231\130\185\229\164\177\232\180\165", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "Questline 已锁定，完成节点失败", Message)
     return
   end
   if Node.HasFinished then
     local Message = string.format([[
 FileName: %s
 NodeInfo: %s]], self.FileName, Node:ToString())
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "QuestNode \229\183\178\231\187\147\230\157\159", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "QuestNode 已结束", Message)
     return
   end
   DebugPrint("----------------------------------------------------------FinishNode", Result, Node:ToString())
@@ -266,7 +266,7 @@ end
 
 function Questline:FinishQuest(OutPortName, bSucceeded)
   if self.Storyline.HasFinished then
-    local Message = "\231\187\147\230\157\159\228\187\187\229\138\161\230\151\182\239\188\140\228\187\187\229\138\161\233\147\190\229\183\178\231\187\147\230\157\159" .. [[
+    local Message = "结束任务时，任务链已结束" .. [[
 
 FileName:]] .. self.FileName .. [[
 
@@ -275,11 +275,11 @@ QuestChainId:]] .. self.QuestChainId .. [[
 QuestId:]] .. self.QuestId .. [[
 
 StoryNodeKey:]] .. self.Data.key
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\231\187\147\230\157\159\228\187\187\229\138\161\230\151\182\239\188\140\228\187\187\229\138\161\233\147\190\229\183\178\231\187\147\230\157\159", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "结束任务时，任务链已结束", Message)
     return
   end
   if self.HasFinished then
-    local Message = "\228\187\187\229\138\161\229\183\178\231\187\147\230\157\159" .. [[
+    local Message = "任务已结束" .. [[
 
 FileName:]] .. self.FileName .. [[
 
@@ -288,7 +288,7 @@ QuestChainId:]] .. self.QuestChainId .. [[
 QuestId:]] .. self.QuestId .. [[
 
 StoryNodeKey:]] .. self.Data.key
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\228\187\187\229\138\161\229\183\178\231\187\147\230\157\159", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "任务已结束", Message)
     return
   end
   self.HasFinished = true
@@ -372,7 +372,7 @@ end
 function Questline:PrintInfo()
   DebugPrint("---------------------------QuestInfo---------------------------")
   DebugPrint("QuestId: ", self.QuestId)
-  DebugPrint("\228\187\187\229\138\161\230\143\143\232\191\176: ", self.QuestDescriptionComment)
+  DebugPrint("任务描述: ", self.QuestDescriptionComment)
   for _, Node in pairs(self.RunningNodeList) do
     DebugPrint("---------------------------NodeInfo---------------------------")
     DebugPrint(Node:ToString())
@@ -442,14 +442,14 @@ end
 
 function Questline:CheckAfterSpecialQuestFailMark(Node)
   if Node.StartAfterSpecialQuestFail then
-    local Message = "\231\137\185\230\174\138\228\187\187\229\138\161\229\164\177\232\180\165\229\144\142\232\191\144\232\161\140\228\186\134\229\188\130\230\173\165\232\138\130\231\130\185" .. [[
+    local Message = "特殊任务失败后运行了异步节点" .. [[
 
 FileName:]] .. self.FileName .. [[
 
 SpecialQuestId:]] .. self:GetPayload("SpecialQuestId") .. [[
 
 NodeInfo:]] .. Node:ToString()
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\231\137\185\230\174\138\228\187\187\229\138\161\229\164\177\232\180\165\229\144\142\232\191\144\232\161\140\228\186\134\229\188\130\230\173\165\232\138\130\231\130\185", Message)
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "特殊任务失败后运行了异步节点", Message)
   end
 end
 

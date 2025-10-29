@@ -35,7 +35,7 @@ function BP_NetworkManager_C:DisconnectAndShowUI(info)
   local BanTime = info.BanTime
   local RetCode = info.RetCode
   if RetCode == CommonConst.KickAvatarType.KICK_AVATAR_FORCE_PATCH then
-    DebugPrint("\229\188\186\229\136\182patch \232\162\171\232\184\162\228\184\139\231\186\191")
+    DebugPrint("强制patch 被踢下线")
     local Params = {
       LeftCallbackObj = self,
       LeftCallbackFunction = self.TryToGoToLoginScene,
@@ -110,9 +110,9 @@ function BP_NetworkManager_C:SendResolutionTrack()
   local size = SceneManager:GetWindowSize()
   local NowInterfaceMode = UE4.UGameUserSettings:GetGameUserSettings():GetFullscreenMode()
   local ModeStr = {
-    [EWindowMode.Fullscreen] = "\229\133\168\229\177\143",
-    [EWindowMode.WindowedFullscreen] = "\230\151\160\232\190\185\230\161\134\231\170\151\229\143\163\229\140\150",
-    [EWindowMode.Windowed] = "\231\170\151\229\143\163\229\140\150"
+    [EWindowMode.Fullscreen] = "全屏",
+    [EWindowMode.WindowedFullscreen] = "无边框窗口化",
+    [EWindowMode.Windowed] = "窗口化"
   }
   local str = string.format("%dx%d", size.X, size.Y)
   NewTrack.display_mode = ModeStr[NowInterfaceMode]

@@ -4,7 +4,7 @@ function Component:ChangeRole(RoleId, AvatarInfo)
   DebugPrint("BuffLogic ChangeRole", tostring(RoleId))
   if not IsStandAlone(self) then
     PrintTable({
-      Error = "\229\164\154\228\186\186\232\129\148\230\156\186\230\168\161\229\188\143\228\184\141\232\131\189\230\141\162\228\186\186"
+      Error = "多人联机模式不能换人"
     })
     return
   end

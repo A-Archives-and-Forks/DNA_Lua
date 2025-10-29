@@ -67,7 +67,7 @@ function M:InitShop(MainTabIdx, ShopItemId, ShopType)
   end
   AudioManager(self):PlayUISound(self, "event:/ui/armory/open", "OpenShopMain", nil)
   if not ShopType then
-    DebugPrint("ShopType\231\188\186\229\164\177")
+    DebugPrint("ShopType缺失")
     ShopType = "Shop"
   end
   self:PlayAnimation(self.In)
@@ -96,7 +96,7 @@ function M:InitShopBG(ShopType)
     OverlaySlot:SetVerticalAlignment(EVerticalAlignment.VAlign_Fill)
     Widget:PlayAnimation(Widget.In)
   else
-    DebugPrint("Error: \230\151\160\230\179\149\229\138\160\232\189\189\229\149\134\229\186\151\232\131\140\230\153\175: " .. bgPath)
+    DebugPrint("Error: 无法加载商店背景: " .. bgPath)
   end
 end
 
@@ -105,7 +105,7 @@ function M:InitShopTabInfo(MainTabIdx, ShopType)
   self.SubTabData = "ShopTabSub"
   self.ShopType = ShopType
   local MainShopTabData = DataMgr.Shop[ShopType]
-  assert(MainShopTabData, "\232\142\183\229\143\150\229\149\134\229\186\151\231\177\187\229\158\139\228\191\161\230\129\175\229\164\177\232\180\165:" .. ShopType)
+  assert(MainShopTabData, "获取商店类型信息失败:" .. ShopType)
   local TabList = {}
   self.MainTabMap = {}
   local MainTabs = {}
@@ -696,7 +696,7 @@ end
 
 function M:OnUpdateUIStyleByInputTypeChange(CurInputDevice, CurGamepadName)
   if self.CurInputDeviceType == CurInputDevice then
-    DebugPrint("thy    \229\183\178\231\187\143\230\152\190\231\164\186\231\154\132\230\152\175\232\175\165\232\190\147\229\133\165\230\168\161\229\188\143\239\188\140\228\184\141\233\156\128\232\166\129\232\191\155\232\161\140\229\136\183\230\150\176")
+    DebugPrint("thy    已经显示的是该输入模式，不需要进行刷新")
     return
   end
   self.CurInputDeviceType = CurInputDevice
@@ -743,7 +743,7 @@ end
 
 function M:RefreshOpInfoByInputDevice(CurInputDevice, CurGamepadName)
   if self.CurInputDeviceType == CurInputDevice then
-    DebugPrint("thy    \229\183\178\231\187\143\230\152\190\231\164\186\231\154\132\230\152\175\232\175\165\232\190\147\229\133\165\230\168\161\229\188\143\239\188\140\228\184\141\233\156\128\232\166\129\232\191\155\232\161\140\229\136\183\230\150\176")
+    DebugPrint("thy    已经显示的是该输入模式，不需要进行刷新")
     return
   end
   self.CurInputDeviceType = CurInputDevice

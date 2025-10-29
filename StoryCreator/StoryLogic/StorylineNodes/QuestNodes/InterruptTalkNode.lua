@@ -8,7 +8,7 @@ function InterruptTalkNode:Execute()
   DebugPrint("InterruptTalkNode:Execute", self.FirstDialogueId)
   local TS = TalkSubsystem()
   if not TS then
-    DebugPrint("\232\142\183\229\143\150TalkSubsystem\229\164\177\232\180\165")
+    DebugPrint("获取TalkSubsystem失败")
     return
   end
   TalkSubsystem():ForceInterruptTalkTaskData(function(TaskData)

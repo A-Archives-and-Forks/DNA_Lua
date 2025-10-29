@@ -270,7 +270,7 @@ function BP_EMGameInstance_C:OnPlayerControllerGameEnd(IsWin, BattleInfo, SceneP
   self.DungeonIdCache = self:GetCurrentDungeonId()
   local GameState = UE4.UGameplayStatics.GetGameState(self)
   if GameState.GameModeType == "Training" or GameState.GameModeType == "Trial" then
-    DebugPrint("DungeonSettlement: \232\174\173\231\187\131\229\156\186\230\136\150\232\167\146\232\137\178\232\175\149\231\142\169\231\142\169\230\179\149\239\188\140\231\155\180\230\142\165\233\128\128\229\135\186\229\137\175\230\156\172")
+    DebugPrint("DungeonSettlement: 训练场或角色试玩玩法，直接退出副本")
     local Avatar = GWorld:GetAvatar()
     Avatar:ExitDungeonSettlement()
     return
@@ -527,7 +527,7 @@ end
 
 function BP_EMGameInstance_C:PushLogicServerCallbackInfo(...)
   if WorldTravelSubsystem() and 0 == WorldTravelSubsystem():GetCurrentSceneId() then
-    DebugPrint("TryDungeonSettlement SceneId\228\184\1860\239\188\140\228\184\162\229\188\131\230\173\164\230\172\161\233\128\187\232\190\145\230\156\141\231\187\147\231\174\151\230\149\176\230\141\174\239\188\129")
+    DebugPrint("TryDungeonSettlement SceneId为0，丢弃此次逻辑服结算数据！")
     return
   end
   self.LogicServerCallbackInfo = table.pack(...)
@@ -569,7 +569,7 @@ function BP_EMGameInstance_C:TryDungeonSettlement()
     self.bPlayerCharacterInitReady = nil
     local Avatar = GWorld:GetAvatar()
     if not Avatar then
-      DebugPrint("Error: DungeonSettlement: \230\137\190\228\184\141\229\136\176Avatar!")
+      DebugPrint("Error: DungeonSettlement: 找不到Avatar!")
     end
     local CurDungeonType = WorldTravelSubsystem():GetCurrentDungeonType()
     local LogicServerInfo = CommonUtils.DeepCopy(self.LogicServerCallbackInfo)
@@ -730,7 +730,7 @@ end
 function BP_EMGameInstance_C:LoadGameEventSettlementUI(CurrentDungeonId, CurDungeonType, LogicServerInfo)
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("Error: DungeonSettlement: \230\137\190\228\184\141\229\136\176Avatar!")
+    DebugPrint("Error: DungeonSettlement: 找不到Avatar!")
     return
   end
   local IsWin, BattleInfo, Rewards = table.unpack(LogicServerInfo)
@@ -1444,7 +1444,7 @@ function BP_EMGameInstance_C:UploadLuaCallError(ErrorMsg)
       if not LevelIds then
         return ""
       end
-      local LevelInfo = string.format("\229\189\147\229\137\141\231\142\169\229\174\182\232\191\155\231\154\132\230\139\188\230\142\165\229\133\179\229\141\161: %s", LevelShortName)
+      local LevelInfo = string.format("当前玩家进的拼接关卡: %s", LevelShortName)
       local LevelData = JsonLoads(LevelShortName)
       for _, point in pairs(LevelData.points) do
         for i = 1, LevelIds:Length() do
@@ -1454,7 +1454,7 @@ function BP_EMGameInstance_C:UploadLuaCallError(ErrorMsg)
             if "" == cur_artLevel then
               cur_artLevel = string.gsub(point.struct, "Data_Design", "Data_Art", 1)
             end
-            LevelInfo = LevelInfo .. string.format("\239\188\140\230\137\128\229\156\168\231\154\132\231\190\142\230\156\175\229\133\179\229\141\161\230\152\175: %s\239\188\140 \229\133\179\229\141\161id\230\152\175\239\188\154 %s", cur_artLevel, cur_id)
+            LevelInfo = LevelInfo .. string.format("，所在的美术关卡是: %s， 关卡id是： %s", cur_artLevel, cur_id)
           end
         end
       end
@@ -1833,10 +1833,10 @@ function BP_EMGameInstance_C:SendInputDiviceChangeMessage(CurInputDeviceType, Cu
     [ECommonInputType.Count] = "Count"
   }
   local NewTrack = {
-    device_type = DeviceTypeMap[CurInputDeviceType] or "\230\156\170\231\159\165\232\174\190\229\164\135\231\177\187\229\158\139"
+    device_type = DeviceTypeMap[CurInputDeviceType] or "未知设备类型"
   }
   if not DeviceTypeMap[CurInputDeviceType] then
-    DebugPrint("yklua \229\136\135\230\141\162\232\174\190\229\164\135\230\151\182\230\151\160\230\179\149\232\175\134\229\136\171\232\190\147\229\133\165\232\174\190\229\164\135\231\177\187\229\158\139")
+    DebugPrint("yklua 切换设备时无法识别输入设备类型")
   end
   HeroUSDKSubsystem(self):UploadTrackLog_Lua("input_device_change", NewTrack)
 end

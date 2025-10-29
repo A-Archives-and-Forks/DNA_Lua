@@ -111,7 +111,7 @@ function M:GetBlessingData(BlessingId)
   local BlessingData = {}
   local BlessingInfo = DataMgr.RougeLikeBlessing[BlessingId]
   if not BlessingInfo then
-    DebugPrint("RougeSettlement: Error! \230\137\190\228\184\141\229\136\176\229\175\185\229\186\148Blessing\232\161\168\233\135\140\231\154\132\230\149\176\230\141\174\239\188\140BlessingId:", BlessingId)
+    DebugPrint("RougeSettlement: Error! 找不到对应Blessing表里的数据，BlessingId:", BlessingId)
     return BlessingData
   end
   for k, v in pairs(BlessingInfo) do
@@ -125,7 +125,7 @@ function M:GetTreasueData(TreasureId)
   local TreasureData = {}
   local TreasureInfo = DataMgr.RougeLikeTreasure[TreasureId]
   if not TreasureInfo then
-    DebugPrint("RougeSettlement: Error! \230\137\190\228\184\141\229\136\176\229\175\185\229\186\148Treasue\232\161\168\233\135\140\231\154\132\230\149\176\230\141\174\239\188\140TreasureId:", TreasureId)
+    DebugPrint("RougeSettlement: Error! 找不到对应Treasue表里的数据，TreasureId:", TreasureId)
     return TreasureInfo
   end
   for k, v in pairs(TreasureInfo) do

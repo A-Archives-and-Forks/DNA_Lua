@@ -129,7 +129,7 @@ end
 function M:GetUniqueDatailedNumber(Key)
   print("GetUniqueDatailedNumber:", Key)
   if nil == DesignatedName2Func[Key] then
-    ScreenPrint("Key \228\184\141\229\173\152\229\156\168 Key=" .. Key)
+    ScreenPrint("Key 不存在 Key=" .. Key)
     for k, value in pairs(DataMgr.PersonalUniqueDetails) do
       ScreenPrint("Key=", Key, "value= ", value)
     end
@@ -175,7 +175,7 @@ function M:SortDetailedTabInfo()
         table.insert(self.DetailedTabInfo[value.TabID].Contents, copy)
       end
     else
-      ScreenPrint("PersonalDetailsTab \232\161\168\229\134\133TabID\228\184\186\231\169\186,Event\228\184\186\239\188\154" .. value.Event or "\231\169\186")
+      ScreenPrint("PersonalDetailsTab 表内TabID为空,Event为：" .. value.Event or "空")
     end
   end
 end

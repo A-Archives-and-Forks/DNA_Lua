@@ -61,7 +61,7 @@ function TalkTaskBase_C:StartWorking(TalkTaskData, TaskFinished_Callback)
 end
 
 function TalkTaskBase_C:GetDependencies()
-  DebugPrint("@@@ error GetDependencies\230\156\170\229\174\158\231\142\176", self:GetTalkType())
+  DebugPrint("@@@ error GetDependencies未实现", self:GetTalkType())
   return {}
 end
 
@@ -161,15 +161,15 @@ function TalkTaskBase_C:IsWorking()
 end
 
 function TalkTaskBase_C:OnInterrupted()
-  DebugPrint("@@@ error OnInterrupted\230\156\170\229\174\158\231\142\176/\228\184\141\230\148\175\230\140\129\232\162\171\230\137\147\230\150\173", self:GetTalkType())
+  DebugPrint("@@@ error OnInterrupted未实现/不支持被打断", self:GetTalkType())
 end
 
 function TalkTaskBase_C:OnPaused()
-  DebugPrint("@@@ error OnPaused\230\156\170\229\174\158\231\142\176/\228\184\141\230\148\175\230\140\129\232\162\171\230\154\130\229\129\156", self:GetTalkType())
+  DebugPrint("@@@ error OnPaused未实现/不支持被暂停", self:GetTalkType())
 end
 
 function TalkTaskBase_C:OnPauseResumed()
-  DebugPrint("@@@ error OnPauseResumed\230\156\170\229\174\158\231\142\176/\228\184\141\230\148\175\230\140\129\230\154\130\229\129\156\230\129\162\229\164\141", self:GetTalkType())
+  DebugPrint("@@@ error OnPauseResumed未实现/不支持暂停恢复", self:GetTalkType())
 end
 
 function TalkTaskBase_C:Clear()
@@ -178,7 +178,7 @@ function TalkTaskBase_C:Clear()
   if BasicType == ETalkType.FixSimple or BasicType == ETalkType.FreeSimple or BasicType == ETalkType.Black or BasicType == ETalkType.Cinematic or BasicType == ETalkType.Impression then
     self:ClearDefault()
   else
-    DebugPrint("@@@ error Clear\229\135\189\230\149\176\230\156\170\229\174\158\231\142\176", self:GetTalkType())
+    DebugPrint("@@@ error Clear函数未实现", self:GetTalkType())
   end
 end
 
@@ -232,7 +232,7 @@ function TalkTaskBase_C:OnExceptionInterruptedBySTL()
   if BasicType == ETalkType.FixSimple or BasicType == ETalkType.FreeSimple or BasicType == ETalkType.Black or BasicType == ETalkType.Cinematic or BasicType == ETalkType.Impression or BasicType == ETalkType.RougeLike then
     self:OnExceptionInterruptedBySTLDefault()
   else
-    DebugPrint("@@@ error OnExceptionInterruptedBySTL\229\135\189\230\149\176\230\156\170\229\174\158\231\142\176", self:GetTalkType())
+    DebugPrint("@@@ error OnExceptionInterruptedBySTL函数未实现", self:GetTalkType())
   end
 end
 
@@ -357,7 +357,7 @@ function TalkTaskBase_C:GetDialogueDataWithCheck(DialogueIterator)
   local CurrentDialogueId = DialogueIterator.DialogueId
   local DialogueData = self.DialogueDataDecorator_C.New(self, CurrentDialogueId)
   if not DialogueData.Content then
-    error("@@@ DialogueId\230\151\160\230\149\136", CurrentDialogueId)
+    error("@@@ DialogueId无效", CurrentDialogueId)
     return
   end
   return DialogueData
@@ -396,7 +396,7 @@ function TalkTaskBase_C:AddGuideUIForDialogue()
     self.DialogueGuideUI = GuideUI
     self.UI.Pos_Drive:AddChild(GuideUI)
   else
-    Utils.ScreenPrint("Error \229\175\185\232\175\157UI\228\184\173Pos_Drive\228\184\186\231\169\186\239\188\140\232\175\183\230\163\128\230\159\165\230\152\175\229\144\166\229\175\185\232\175\157\231\177\187\229\158\139\230\152\175\229\144\166\230\148\175\230\140\129\229\136\135\230\141\162\229\175\185\232\175\157UI\230\160\183\229\188\143" .. self:GetTalkType())
+    Utils.ScreenPrint("Error 对话UI中Pos_Drive为空，请检查是否对话类型是否支持切换对话UI样式" .. self:GetTalkType())
   end
 end
 
@@ -408,7 +408,7 @@ function TalkTaskBase_C:ClearDialogueGuideUI()
     if self.UI and self.UI.Pos_Drive then
       self.UI.Pos_Drive:ClearChildren()
     else
-      Utils.ScreenPrint("Error \229\175\185\232\175\157UI\228\184\173Pos_Drive\228\184\186\231\169\186\239\188\140\232\175\183\230\163\128\230\159\165\230\152\175\229\144\166\229\175\185\232\175\157\231\177\187\229\158\139\230\152\175\229\144\166\230\148\175\230\140\129\229\136\135\230\141\162\229\175\185\232\175\157UI\230\160\183\229\188\143" .. self:GetTalkType())
+      Utils.ScreenPrint("Error 对话UI中Pos_Drive为空，请检查是否对话类型是否支持切换对话UI样式" .. self:GetTalkType())
     end
   end
 end
@@ -430,7 +430,7 @@ function TalkTaskBase_C:TryShowStoryPanelUI(DialogueData, Callback)
   local Content = ShowStoryContent.Content
   local AnimationName = ShowStoryContent.AnimationName
   if not Topic or not Content then
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\229\175\185\232\175\157\228\184\173\229\188\185\229\135\186\233\152\133\232\175\187\233\148\153\232\175\175", string.format("\230\160\188\229\188\143\233\148\153\232\175\175\230\136\150\232\128\133content\227\128\129tpoic\228\184\186\231\169\186 DialogueId: \n            %d DialoguePanelType: %s", DialogueData.DialogueId, DialoguePanelType))
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "对话中弹出阅读错误", string.format("格式错误或者content、tpoic为空 DialogueId: \n            %d DialoguePanelType: %s", DialogueData.DialogueId, DialoguePanelType))
     Callback()
     return
   end
@@ -560,13 +560,13 @@ function TalkTaskBase_C:GetDebugMetaInfo()
   end
   self.DebugMetaInfo = {}
   if not self.TalkTaskData then
-    self.DebugMetaInfo["\228\187\187\229\138\161\230\149\176\230\141\174\228\184\186\231\169\186"] = self
+    self.DebugMetaInfo["任务数据为空"] = self
     return self.DebugMetaInfo
   end
   local Data = self.TalkTaskData
   if Data.TalkNodeName then
     table.insert(self.DebugMetaInfo, {
-      "\229\175\185\232\175\157\232\138\130\231\130\185\229\144\141\229\173\151",
+      "对话节点名字",
       Data.TalkNodeName
     })
   end
@@ -577,7 +577,7 @@ function TalkTaskBase_C:GetDebugMetaInfo()
     })
   end
   table.insert(self.DebugMetaInfo, {
-    "\229\175\185\232\175\157\231\177\187\229\158\139",
+    "对话类型",
     Data.TalkType
   })
   if Data.Key then
@@ -587,12 +587,12 @@ function TalkTaskBase_C:GetDebugMetaInfo()
     })
   end
   table.insert(self.DebugMetaInfo, {
-    "\233\166\150\229\143\165\229\143\176\232\175\141ID",
+    "首句台词ID",
     Data.FirstDialogueId
   })
   if Data.FlowAssetPath then
     table.insert(self.DebugMetaInfo, {
-      "\229\175\185\232\175\157Flow Path",
+      "对话Flow Path",
       Data.FlowAssetPath
     })
   end
@@ -623,8 +623,8 @@ function TalkTaskBase_C:GetUINameByTalkType()
   elseif "Black" == self.BasicTalkType then
     return "BlackTalkUI"
   else
-    local Title = "\232\142\183\229\143\150\229\175\185\232\175\157UI\229\144\141\229\173\151\233\148\153\232\175\175"
-    local Message = "GetUINameByTalkType\230\142\165\229\143\163\228\184\141\230\148\175\230\140\129\230\173\164\229\175\185\232\175\157\231\177\187\229\158\139\239\188\154" .. self.TalkType
+    local Title = "获取对话UI名字错误"
+    local Message = "GetUINameByTalkType接口不支持此对话类型：" .. self.TalkType
     UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, Title, Message)
     return "SimpleTalkUI"
   end

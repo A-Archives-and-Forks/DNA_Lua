@@ -242,7 +242,7 @@ function M:OnUpdatePartyTime(PartyTime)
   self.CurTime = PartyTime
   local RemainTime = self.TimeThreshold - self.CurTime
   if self.GameState and self.GameState.CurPlayerComplete then
-    DebugPrint("zzz \229\183\178\229\136\176\231\187\136\231\130\185")
+    DebugPrint("zzz 已到终点")
     return
   end
   if self.CurStar > 0 and RemainTime < self.TempleInfo.RatingRange[self.CurStar] then

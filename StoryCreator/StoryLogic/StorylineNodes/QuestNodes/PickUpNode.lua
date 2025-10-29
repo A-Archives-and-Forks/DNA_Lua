@@ -27,7 +27,7 @@ function PickUpNode:Execute(Callback)
   DebugPrint("------------ PickUpNode ------------------")
   if -1 ~= self.QuestPickupId then
     if not DataMgr.QuestPickup[self.QuestPickupId] then
-      local Message = "PickUpNode\229\161\171\228\186\134QuestPickupId\239\188\140QuestPickup\232\161\168\228\184\173\230\178\161\230\156\137\229\175\185\229\186\148\231\154\132\230\149\176\230\141\174" .. [[
+      local Message = "PickUpNode填了QuestPickupId，QuestPickup表中没有对应的数据" .. [[
 
 FileName:]] .. self.Context.FileName .. [[
 
@@ -36,11 +36,11 @@ QuestChainId:]] .. self.Context.QuestChainId .. [[
 QuestId:]] .. self.Context.QuestId .. [[
 
 StoryNodeKey:]] .. self.Context.Data.key
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "PickUpNode\229\161\171\228\186\134QuestPickupId\239\188\140QuestPickup\232\161\168\228\184\173\230\178\161\230\156\137\229\175\185\229\186\148\231\154\132\230\149\176\230\141\174", Message)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "PickUpNode填了QuestPickupId，QuestPickup表中没有对应的数据", Message)
       return
     end
     if self.Context.QuestChainId ~= DataMgr.QuestPickup[self.QuestPickupId].QuestChainId then
-      local Message = "PickUpNode\229\161\171\228\186\134QuestPickupId\239\188\140\228\189\134QuestPickup\232\161\168\228\184\173\231\154\132QuestChainId\228\184\142\232\175\165\228\187\187\229\138\161\231\154\132QuestChainId\228\184\141\228\184\128\232\135\180" .. [[
+      local Message = "PickUpNode填了QuestPickupId，但QuestPickup表中的QuestChainId与该任务的QuestChainId不一致" .. [[
 
 FileName:]] .. self.Context.FileName .. [[
 
@@ -49,7 +49,7 @@ QuestChainId:]] .. self.Context.QuestChainId .. [[
 QuestId:]] .. self.Context.QuestId .. [[
 
 StoryNodeKey:]] .. self.Context.Data.key
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "PickUpNode\229\161\171\228\186\134QuestPickupId\239\188\140\228\189\134QuestPickup\232\161\168\228\184\173\231\154\132QuestChainId\228\184\142\232\175\165\228\187\187\229\138\161\231\154\132QuestChainId\228\184\141\228\184\128\232\135\180", Message)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "PickUpNode填了QuestPickupId，但QuestPickup表中的QuestChainId与该任务的QuestChainId不一致", Message)
       return
     end
     self:ExecuteQuestPickup(Callback)

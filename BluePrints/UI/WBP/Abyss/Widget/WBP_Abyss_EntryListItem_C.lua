@@ -14,14 +14,14 @@ function M:Init(ConfigData)
   self.AbyssBuffDes = ConfigData.AbyssBuffDes
   self.BuffLockToast = ConfigData.BuffLockToast
   self.Unlocked = ConfigData.Unlocked
-  self.Text_Name:SetText(GText(self.AbyssBuffName) or "\230\151\160")
+  self.Text_Name:SetText(GText(self.AbyssBuffName) or "无")
   self.Islocked = ConfigData.Islocked
   self.Text_Lock:SetText(GText(self.BuffLockToast))
   if self.Islocked then
     self:PlayAnimation(self.Locked)
   else
     self.AbyssBuffDes = UIUtils.GenAbyssEntryDesc(GText(self.AbyssBuffDes), self.AbyssEntryConfig, 0)
-    self.Text_Descirbe:SetText(GText(self.AbyssBuffDes) or "\230\151\160")
+    self.Text_Descirbe:SetText(GText(self.AbyssBuffDes) or "无")
     if self.Unlocked then
       self:PlayAnimation(self.UnLock)
     else

@@ -48,7 +48,7 @@ function Component:UpdateSkillLevelUpInfo(Level, ComparedLevel)
   end
   local ExtraLevel = self.Skill.ExtraLevel or 0
   if ExtraLevel > 0 then
-    self.Text_Intensify_Level:SetText("\239\188\136" .. GText("UI_Armory_Trace") .. "+" .. ExtraLevel .. "\239\188\137")
+    self.Text_Intensify_Level:SetText("（" .. GText("UI_Armory_Trace") .. "+" .. ExtraLevel .. "）")
     self.Text_Intensify_Level:SetVisibility(UIConst.VisibilityOp.SelfHitTestInvisible)
   else
     self.Text_Intensify_Level:SetVisibility(UIConst.VisibilityOp.Collapsed)

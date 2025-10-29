@@ -14,7 +14,7 @@ function M:PlayInAnimation()
     elseif 5 == self.Rarity then
       self:PlayAnimation(self.Reward_In_Orange)
     else
-      DebugPrint("ZDX_\233\129\147\229\133\183\230\161\134\231\154\132\231\168\128\230\156\137\229\186\166\228\184\141\231\172\166\229\144\136\232\166\129\230\177\130")
+      DebugPrint("ZDX_道具框的稀有度不符合要求")
       return
     end
   end

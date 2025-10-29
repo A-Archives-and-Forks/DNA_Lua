@@ -505,7 +505,7 @@ function WBP_GameStartMainPage_C:OnGetAllAvatars()
     end
     if not self.ServerInfo then
       HeroUSDKSubsystem(self):UploadTrackLog_Lua("login_fail", {
-        fail_info = "ServerInfo\230\152\175nil"
+        fail_info = "ServerInfo是nil"
       })
       return
     end
@@ -525,7 +525,7 @@ function WBP_GameStartMainPage_C:OnGetAllAvatars()
   if not self.ServerInfo then
     HeroUSDKSubsystem(self):HeroSDKLogout()
     HeroUSDKSubsystem(self):UploadTrackLog_Lua("login_fail", {
-      fail_info = "ServerInfo\230\152\175nil"
+      fail_info = "ServerInfo是nil"
     })
     UIManager(self):ShowCommonPopupUI(100109)
   else
@@ -621,7 +621,7 @@ function WBP_GameStartMainPage_C:GetDefaultServerInfo()
 end
 
 function WBP_GameStartMainPage_C:Destruct()
-  DebugPrint("\231\153\187\229\189\149\231\149\140\233\157\162\230\158\144\230\158\132 Destruct \229\188\128\229\167\139\239\188\154", UE4.URuntimeCommonFunctionLibrary.GetInputMode(self:GetWorld()))
+  DebugPrint("登录界面析构 Destruct 开始：", UE4.URuntimeCommonFunctionLibrary.GetInputMode(self:GetWorld()))
   local HotUpdateSubsystem = USubsystemBlueprintLibrary.GetGameInstanceSubsystem(self, UHotUpdateSubsystem)
   HotUpdateSubsystem.AssetStartDownloadDelegate:Unbind()
   HotUpdateSubsystem.AssetDownloadProgressDelegate:Unbind()
@@ -642,7 +642,7 @@ function WBP_GameStartMainPage_C:Destruct()
   EventManager:RemoveEvent(EventID.OnLoginSuccess, self)
   EventManager:RemoveEvent(EventID.OnGetAllAvatars, self)
   EventManager:RemoveEvent(EventID.CloseLoading, self)
-  DebugPrint("\231\153\187\229\189\149\231\149\140\233\157\162\230\158\144\230\158\132 Destruct \231\187\147\230\157\159\239\188\154", UE4.URuntimeCommonFunctionLibrary.GetInputMode(self:GetWorld()))
+  DebugPrint("登录界面析构 Destruct 结束：", UE4.URuntimeCommonFunctionLibrary.GetInputMode(self:GetWorld()))
 end
 
 function WBP_GameStartMainPage_C:OnLoginSuccess()
@@ -750,7 +750,7 @@ function WBP_GameStartMainPage_C:OnHeroSDKLogin(Result, UserInfoStr, Msg)
   local Json = require("rapidjson")
   if 0 == Result then
     self:SetSwitchBtnVisable(true)
-    DebugPrint("HeroSDK\231\153\187\229\189\149\230\136\144\229\138\159: ", UserInfoStr, Msg)
+    DebugPrint("HeroSDK登录成功: ", UserInfoStr, Msg)
     DebugPrint("sdk user id", HeroUSDKUtils.GetUserInfo().sdkUserId, type(HeroUSDKUtils.GetUserInfo().sdkUserId))
     HeroUSDKSubsystem(self):SetNewBDCPublicAttriubuteOnInit()
     local BDCSubsystem = USubsystemBlueprintLibrary.GetGameInstanceSubsystem(GWorld.GameInstance, UNewBdcSubsystem)
@@ -808,7 +808,7 @@ function WBP_GameStartMainPage_C:OnHeroSDKLogin(Result, UserInfoStr, Msg)
   elseif -1 == Result then
     UIManager(self):ShowUITip(UIConst.Tip_CommonTop, GText("UI_Login_Fail"))
     HeroUSDKSubsystem(self):UploadTrackLog("sdk_login", Json.encode({login_state = 2}))
-    DebugPrint("HeroSDK\231\153\187\229\189\149\229\164\177\232\180\165: ", Msg)
+    DebugPrint("HeroSDK登录失败: ", Msg)
   end
 end
 
@@ -875,7 +875,7 @@ function WBP_GameStartMainPage_C:EMLogin()
   local function LoginFunc()
     if GWorld.IsDev then
       if not self.ServerInfo or type(self.ServerInfo) == "table" and next(self.ServerInfo) == nil then
-        DebugPrint("\229\188\128\229\143\145\230\168\161\229\188\143\228\184\139\239\188\140\230\156\170\233\128\137\230\139\169\230\156\141\229\138\161\229\153\168\239\188\129\239\188\129\239\188\129")
+        DebugPrint("开发模式下，未选择服务器！！！")
       else
         local hostnum = self.ServerInfo.hostnum
         local ip = self.ServerInfo.ip
@@ -1811,10 +1811,10 @@ function WBP_GameStartMainPage_C:SendInputDiviceChangeMessage()
     [ECommonInputType.Count] = "Count"
   }
   local NewTrack = {
-    device_type = DeviceTypeMap[CurInputDeviceType] or "\230\156\170\231\159\165\232\174\190\229\164\135\231\177\187\229\158\139"
+    device_type = DeviceTypeMap[CurInputDeviceType] or "未知设备类型"
   }
   if not DeviceTypeMap[CurInputDeviceType] then
-    DebugPrint("yklua \229\136\135\230\141\162\232\174\190\229\164\135\230\151\182\230\151\160\230\179\149\232\175\134\229\136\171\232\190\147\229\133\165\232\174\190\229\164\135\231\177\187\229\158\139")
+    DebugPrint("yklua 切换设备时无法识别输入设备类型")
   end
   HeroUSDKSubsystem(self):UploadTrackLog_Lua("input_device", NewTrack)
 end

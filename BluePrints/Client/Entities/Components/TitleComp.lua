@@ -10,7 +10,7 @@ end
 
 function Component:ChangeTitleBefore(TargetTitleId)
   local function Callback(Ret)
-    ScreenPrint(" Ret\228\184\186" .. Ret .. "\230\156\141\229\138\161\231\171\175\230\155\180\230\148\185\229\137\141\231\188\128\231\167\176\229\143\183" .. "  \228\191\174\230\148\185\229\144\142\231\154\132\231\167\176\229\143\183ID\228\184\186  " .. (TargetTitleId or " kong "))
+    ScreenPrint(" Ret为" .. Ret .. "服务端更改前缀称号" .. "  修改后的称号ID为  " .. (TargetTitleId or " kong "))
     
     EventManager:FireEvent(EventID.OnChangeTitle, self.TitleBefore, self.TitleAfter, self.TitleFrame)
   end
@@ -20,7 +20,7 @@ end
 
 function Component:ChangeTitleAfter(TargetTitleId)
   local function Callback(Ret)
-    ScreenPrint("\230\156\141\229\138\161\231\171\175\230\155\180\230\148\185\229\144\142\231\188\128\231\167\176\229\143\183" .. " kong " .. "  \229\143\152\230\136\144\228\186\134  " .. (TargetTitleId or " kong "))
+    ScreenPrint("服务端更改后缀称号" .. " kong " .. "  变成了  " .. (TargetTitleId or " kong "))
     
     EventManager:FireEvent(EventID.OnChangeTitle, self.TitleBefore, self.TitleAfter, self.TitleFrame)
   end
@@ -30,7 +30,7 @@ end
 
 function Component:ChangeTitleFrame(TitleFrameId)
   local function Callback(Ret)
-    ScreenPrint("\230\156\141\229\138\161\231\171\175\230\155\180\230\148\185\231\167\176\229\143\183\230\161\134" .. (OldTitleFrameId or " kong ") .. "  \229\143\152\230\136\144\228\186\134  " .. (TitleFrameId or " kong "))
+    ScreenPrint("服务端更改称号框" .. (OldTitleFrameId or " kong ") .. "  变成了  " .. (TitleFrameId or " kong "))
     
     EventManager:FireEvent(EventID.OnChangeTitle, self.TitleBefore, self.TitleAfter, self.TitleFrame)
   end

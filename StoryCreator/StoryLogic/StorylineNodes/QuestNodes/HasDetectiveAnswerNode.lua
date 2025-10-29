@@ -13,7 +13,7 @@ function HasDetectiveAnswerNode:Execute(Callback)
     TaskUtils:SetQuestExtraInfo(self.QuestChainId, self.QuestData.QuestId, {
       NodeKey = self.Key,
       Node = self,
-      Description = GText("\230\137\147\229\188\128\230\142\168\231\144\134\231\149\140\233\157\162")
+      Description = GText("打开推理界面")
     })
     self:OnChooseTrack()
     

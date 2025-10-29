@@ -1,5 +1,5 @@
 return {
-  storyName = "\230\156\170\229\145\189\229\144\141\230\149\133\228\186\139",
+  storyName = "未命名故事",
   storyDescription = "",
   lineData = {
     {
@@ -52,11 +52,11 @@ return {
       isStoryNode = true,
       key = "1704175979419216997",
       type = "StoryNode",
-      name = "\230\181\139\232\175\149\228\187\187\229\138\161\229\144\175\229\138\168",
+      name = "测试任务启动",
       pos = {x = 255.6737967914437, y = 297.1737967914442},
       propsData = {
         QuestId = 99010501,
-        QuestDescriptionComment = "\232\153\154\231\169\186\226\128\166\226\128\166",
+        QuestDescriptionComment = "虚空……",
         QuestDescription = "Description_100101_0",
         QuestDeatil = "Description_100101_0",
         TaskRegionReName = "",
@@ -131,7 +131,7 @@ return {
           ["1704175979419217002"] = {
             key = "1704175979419217002",
             type = "ShowGuideToastNode",
-            name = "Toast\230\152\190\231\164\186/\233\154\144\232\151\143\228\191\161\230\129\175",
+            name = "Toast显示/隐藏信息",
             pos = {x = 789.7368421052632, y = -46.746411483253645},
             propsData = {
               ShowEnable = true,
@@ -144,7 +144,7 @@ return {
           ["1704175979419217003"] = {
             key = "1704175979419217003",
             type = "GoToNode",
-            name = "\229\137\141\229\190\128",
+            name = "前往",
             pos = {x = 530.1606205411229, y = 147.7114012653126},
             propsData = {
               GuideUIEnable = true,
@@ -156,7 +156,7 @@ return {
           ["1704175979419217004"] = {
             key = "1704175979419217004",
             type = "WaitOfTimeNode",
-            name = "\229\187\182\232\191\159\231\173\137\229\190\133",
+            name = "延迟等待",
             pos = {x = 872.7921994884913, y = 157.18508547583895},
             propsData = {WaitTime = 0.5}
           }
@@ -168,11 +168,11 @@ return {
       isStoryNode = true,
       key = "1704175979419216998",
       type = "StoryNode",
-      name = "\230\181\139\232\175\149\228\187\187\229\138\161\229\144\175\229\138\168",
+      name = "测试任务启动",
       pos = {x = 546.0948533563623, y = 291.6803156461263},
       propsData = {
         QuestId = 99010502,
-        QuestDescriptionComment = "\232\153\154\231\169\186\226\128\166\226\128\166",
+        QuestDescriptionComment = "虚空……",
         QuestDescription = "Description_100101_0",
         QuestDeatil = "Description_100101_0",
         TaskRegionReName = "",
@@ -247,7 +247,7 @@ return {
           ["1704175979419217008"] = {
             key = "1704175979419217008",
             type = "ShowGuideToastNode",
-            name = "Toast\230\152\190\231\164\186/\233\154\144\232\151\143\228\191\161\230\129\175",
+            name = "Toast显示/隐藏信息",
             pos = {x = 789.7368421052632, y = -46.746411483253645},
             propsData = {
               ShowEnable = true,
@@ -260,7 +260,7 @@ return {
           ["1704175979419217009"] = {
             key = "1704175979419217009",
             type = "GoToNode",
-            name = "\229\137\141\229\190\128",
+            name = "前往",
             pos = {x = 530.1606205411229, y = 147.7114012653126},
             propsData = {
               GuideUIEnable = true,
@@ -272,7 +272,7 @@ return {
           ["1704175979419217010"] = {
             key = "1704175979419217010",
             type = "WaitOfTimeNode",
-            name = "\229\187\182\232\191\159\231\173\137\229\190\133",
+            name = "延迟等待",
             pos = {x = 872.7921994884913, y = 157.18508547583895},
             propsData = {WaitTime = 0.5}
           }

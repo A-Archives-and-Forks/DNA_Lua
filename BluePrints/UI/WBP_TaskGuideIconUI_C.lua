@@ -166,7 +166,7 @@ function Guide_Icon_Point_C:SetGuideImage(ImageName)
   if nil ~= ImagePath and nil ~= self.Img_GuidePoint_Icon then
     local IconImage = LoadObject(ImagePath)
     if nil == IconImage then
-      self:DebugPrint("InitConfigData: \230\140\135\229\188\149\231\130\185 Icon \229\155\190\231\137\135\228\184\141\229\173\152\229\156\168\239\188\129")
+      self:DebugPrint("InitConfigData: 指引点 Icon 图片不存在！")
       return
     end
     self.Img_GuidePoint_Icon:SetBrushResourceObject(IconImage)
@@ -238,7 +238,7 @@ end
 
 function Guide_Icon_Point_C:ChangeStyle(Style, Count)
   if self.ConfigData == nil or nil == self.ConfigData.GuideIconAni then
-    self:DebugPrint("ChangeStyle: \230\140\135\229\188\149\231\130\185\230\156\170\230\152\190\231\164\186")
+    self:DebugPrint("ChangeStyle: 指引点未显示")
     return
   end
   if Style == self.Styles.Single then
@@ -257,7 +257,7 @@ function Guide_Icon_Point_C:ChangeStyle(Style, Count)
       self.Panel_GuidePoint_More:SetVisibility(UE4.ESlateVisibility.SelfHitTestInvisible)
     end
   else
-    self:DebugPrint("ChangeStyle: \230\160\183\229\188\143\228\184\141\229\144\136\230\179\149")
+    self:DebugPrint("ChangeStyle: 样式不合法")
   end
 end
 
@@ -313,7 +313,7 @@ function Guide_Icon_Point_C:GetTargetPosition(SceneManager)
           if ClientGuideData.Entity and ClientGuideData.Entity.Loc then
             self.TargetPointPos = ClientGuideData.Entity.Loc
           else
-            self:DebugPrint("GetTargetPosition: Entity.Loc \230\151\160\230\149\136")
+            self:DebugPrint("GetTargetPosition: Entity.Loc 无效")
           end
         else
           local RealEntity = Battle(self):GetEntity(CurSceneGuideData.Entity)
@@ -326,7 +326,7 @@ function Guide_Icon_Point_C:GetTargetPosition(SceneManager)
       end
     end
   elseif not IsValid(self.TargetActor) then
-    self:DebugPrint("GetTargetPosition: \233\135\141\230\150\176\232\142\183\229\143\150 TargetActor \229\174\158\228\190\139")
+    self:DebugPrint("GetTargetPosition: 重新获取 TargetActor 实例")
     self.RequireLookUpEntity = true
   end
 end
@@ -481,12 +481,12 @@ end
 function Guide_Icon_Point_C:UpdateIndicator()
   local GameInstance = UE4.UGameplayStatics.GetGameInstance(self)
   if nil == GameInstance then
-    self:DebugPrint("UpdateIndicator: GameInstance \228\184\141\229\173\152\229\156\168")
+    self:DebugPrint("UpdateIndicator: GameInstance 不存在")
     return
   end
   local SceneManager = GameInstance:GetSceneManager()
   if nil == SceneManager then
-    self:DebugPrint("UpdateIndicator: SceneManager \228\184\141\229\173\152\229\156\168")
+    self:DebugPrint("UpdateIndicator: SceneManager 不存在")
     return
   end
   if self.GuideType == "Phantom" and self.Phantom then
@@ -501,7 +501,7 @@ function Guide_Icon_Point_C:UpdateIndicator()
   end
   local Player = UGameplayStatics.GetPlayerCharacter(self, 0)
   if not IsValid(Player) or nil == self.TargetPointPos then
-    self:DebugPrint("UpdateIndicator: Player \228\184\141\229\173\152\229\156\168")
+    self:DebugPrint("UpdateIndicator: Player 不存在")
     return
   end
   local Controller = Player:GetController()

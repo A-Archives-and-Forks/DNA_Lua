@@ -47,7 +47,7 @@ function M:LoadHtmlContent(Conf, Callback, ContentSize)
     end
     Conf.NoticeContent = M:ParseTimeOfContent(Conf.NoticeContent)
     HtmlText = string.format(AnnounceCommon.HtmlBody1, RootDir, Conf.NoticeContent)
-    DebugPrint(LXYTag, "\231\156\139\231\156\139HtmlText\n", HtmlText)
+    DebugPrint(LXYTag, "看看HtmlText\n", HtmlText)
     if not Conf.HtmlUrl or not UBlueprintPathsLibrary.FileExists(HtmlPath) then
       URuntimeCommonFunctionLibrary.SaveFile(HtmlPath, HtmlText)
     end
@@ -64,11 +64,11 @@ function M:LoadHtmlContent(Conf, Callback, ContentSize)
       FontPath = MiscUtils.CorrectUrl(FontPath)
       local FontUrl = URuntimeCommonFunctionLibrary.ConvertRelativePathToFull(FontPath)
       local FontFileParam = string.format("?fontUrl=file://%s", FontUrl)
-      DebugPrint("\231\156\139\231\156\139\229\133\172\229\145\138\233\161\181\233\157\162\231\154\132\229\173\151\228\189\147\229\164\167\229\176\143", ContentSize)
+      DebugPrint("看看公告页面的字体大小", ContentSize)
       local FontSizeParam = string.format("&ContentSize=%s", ContentSize)
       Conf.HtmlUrl = "file://" .. HtmlPath .. FontFileParam .. FontSizeParam
     end
-    DebugPrint(LXYTag, "\231\156\139\229\133\172\229\145\138\233\161\181\233\157\162\231\154\132URL", Conf.HtmlUrl)
+    DebugPrint(LXYTag, "看公告页面的URL", Conf.HtmlUrl)
     Callback(Conf.HtmlUrl, HtmlText)
   end
   
@@ -94,7 +94,7 @@ function M:LoadResource(bForceLoad, Cb)
     try({
       exec = function()
         if not Response or "" == Response then
-          DebugPrint(WarningTag, LXYTag, "\229\133\172\229\145\138\230\178\161\230\156\137\230\139\137\229\136\176\232\132\154\230\156\172", Url)
+          DebugPrint(WarningTag, LXYTag, "公告没有拉到脚本", Url)
           return
         end
         URuntimeCommonFunctionLibrary.SaveFile(Path, Response)
@@ -122,14 +122,14 @@ function M:LoadResource(bForceLoad, Cb)
   }, bForceLoad)
   local FontPath, ContentType, FontUrl = M:_GetFontPath()
   if not UBlueprintPathsLibrary.FileExists(FontPath) then
-    DebugPrint(LXYTag, "\230\163\128\230\181\139\229\136\176\229\173\151\228\189\147\228\184\141\229\173\152\229\156\168\239\188\140\233\128\154\232\191\135httpget\232\142\183\229\143\150\229\173\151\228\189\147")
+    DebugPrint(LXYTag, "检测到字体不存在，通过httpget获取字体")
     M.bFontLoading = true
     local Delegate = {
       GWorld.GameInstance,
       function(_, bSuccess)
         M.bFontLoading = false
         if not bSuccess then
-          DebugPrint(WarningTag, LXYTag, "\231\189\145\231\187\156\229\164\170\229\183\174\239\188\140\229\133\172\229\145\138\230\178\161\230\156\137\230\139\137\229\136\176\229\173\151\228\189\147", FontUrl)
+          DebugPrint(WarningTag, LXYTag, "网络太差，公告没有拉到字体", FontUrl)
           return
         end
         if Cb then
@@ -412,7 +412,7 @@ function M:GetAnnouncementDataAsync(ShowTag, Coroutine, HostId)
     if PlayerAvatar and PlayerAvatar.Hostnum then
       HostId = tonumber(PlayerAvatar.Hostnum)
     else
-      Utils.Traceback(ErrorTag, LXYTag .. "HostId\228\184\141\229\173\152\229\156\168\239\188\140\228\184\141\231\159\165\233\129\147\228\189\160\233\128\137\228\186\134\228\187\128\228\185\136\230\156\141...")
+      Utils.Traceback(ErrorTag, LXYTag .. "HostId不存在，不知道你选了什么服...")
       return
     end
   end
@@ -425,16 +425,16 @@ function M:GetAnnouncementDataAsync(ShowTag, Coroutine, HostId)
     M:_GetLocalAnnouncement()
   end
   M:_ResetReddot()
-  DebugPrint("[Laixiaoyang] M:GetAnnoucementDataAsync \230\139\137\229\143\150\229\144\142\229\143\176\230\184\184\230\136\143\229\133\172\229\145\138\230\149\176\230\141\174...")
+  DebugPrint("[Laixiaoyang] M:GetAnnoucementDataAsync 拉取后台游戏公告数据...")
   CdnTool:GetGameNotice(HostId, function(Infos)
     try({
       exec = function()
         if IsEmptyTable(Infos) then
-          DebugPrint(WarningTag, LXYTag, "\229\133\172\229\145\138Json\232\167\163\230\158\144\228\184\141\229\135\186\229\134\133\229\174\185")
+          DebugPrint(WarningTag, LXYTag, "公告Json解析不出内容")
           return
         end
         for Key, Info in pairs(Infos) do
-          DebugPrint(LogTag, LXYTag, "\232\167\163\230\158\144\229\133\172\229\145\138", Info.UniqueId)
+          DebugPrint(LogTag, LXYTag, "解析公告", Info.UniqueId)
           local Conf = {
             NoticeID = Info.UniqueId,
             StartTimestamp = Info.StartTimestamp or os.time(),
@@ -449,16 +449,16 @@ function M:GetAnnouncementDataAsync(ShowTag, Coroutine, HostId)
           }
           M:_ParseShowTag(Conf, Info)
           if not Conf.ShowTags[ShowTag] then
-            DebugPrint(LXYTag, Info.UniqueId .. "\229\133\172\229\145\138\228\184\141\229\156\168\232\191\153\228\184\170\229\156\186\229\144\136\230\152\190\231\164\186")
+            DebugPrint(LXYTag, Info.UniqueId .. "公告不在这个场合显示")
           elseif not M:CheckChannel(Info) then
-            DebugPrint(LXYTag, Info.UniqueId .. " \229\133\172\229\145\138\230\184\160\233\129\147\230\163\128\230\181\139\228\184\141\233\128\154\232\191\135")
+            DebugPrint(LXYTag, Info.UniqueId .. " 公告渠道检测不通过")
           else
             if not M:CheckSubChannel(Info) then
-              DebugPrint(LXYTag, Info.UniqueId .. " \229\133\172\229\145\138\229\173\144\230\184\160\233\129\147\230\163\128\230\181\139\228\184\141\233\128\154\232\191\135")
+              DebugPrint(LXYTag, Info.UniqueId .. " 公告子渠道检测不通过")
               return
             end
             if M:IsExpired(Conf) then
-              DebugPrint(LXYTag, Info.UniqueId .. " \229\133\172\229\145\138\229\183\178\232\191\135\230\156\159")
+              DebugPrint(LXYTag, Info.UniqueId .. " 公告已过期")
             else
               local timeZoneOffset = CommonUtils.GetTimeZone()
               local TimeZonePostfix = " (UTC+" .. timeZoneOffset .. ")"
@@ -467,7 +467,7 @@ function M:GetAnnouncementDataAsync(ShowTag, Coroutine, HostId)
               Conf.NoticeTitle, Conf.NoticeContent = "", ""
               for _, Text in pairs(Info.Content or {}) do
                 if CommonConst.SystemLanguage ~= CommonConst.SystemLanguages[Text.language] then
-                  DebugPrint(LXYTag, Info.UniqueId .. " \229\133\172\229\145\138\232\175\173\232\168\128\229\175\185\228\184\141\228\184\138 \232\183\179\232\191\135" .. Text.title)
+                  DebugPrint(LXYTag, Info.UniqueId .. " 公告语言对不上 跳过" .. Text.title)
                 else
                   Conf.NoticeTitle = Text.title or ""
                   Conf.NoticeContent = Text.body or ""
@@ -477,7 +477,7 @@ function M:GetAnnouncementDataAsync(ShowTag, Coroutine, HostId)
                 end
               end
               if "" == Conf.NoticeTitle or "" == Conf.NoticeContent then
-                print(_G.LogTag, Info.UniqueId .. " \229\133\172\229\145\138\229\189\147\229\137\141\232\175\173\232\168\128\231\154\132\230\150\135\230\156\172\228\184\186\231\169\186\239\188\129\239\188\129\229\189\147\229\137\141\232\175\173\232\168\128\239\188\154" .. CommonConst.SystemLanguage)
+                print(_G.LogTag, Info.UniqueId .. " 公告当前语言的文本为空！！当前语言：" .. CommonConst.SystemLanguage)
               else
                 M:_TryAddReddotCacheDetail(Conf)
                 table.insert(M.Confs, Conf)
@@ -507,7 +507,7 @@ end
 function M:MarkDirty(bDirty)
   M._AnnouncementDirty = bDirty
   if bDirty then
-    DebugPrint("[zhangyuhang] M:MakeDirty \229\135\134\229\164\135\233\135\141\230\150\176\232\175\183\230\177\130\229\133\172\229\145\138")
+    DebugPrint("[zhangyuhang] M:MakeDirty 准备重新请求公告")
   end
 end
 
@@ -555,7 +555,7 @@ function M:GetAnnouncementDataAsync_UseWeb(ShowTag, Coroutine, HostId)
     if PlayerAvatar and PlayerAvatar.Hostnum then
       HostId = tonumber(PlayerAvatar.Hostnum)
     else
-      Utils.Traceback(ErrorTag, LXYTag .. "HostId\228\184\141\229\173\152\229\156\168\239\188\140\228\184\141\231\159\165\233\129\147\228\189\160\233\128\137\228\186\134\228\187\128\228\185\136\230\156\141...")
+      Utils.Traceback(ErrorTag, LXYTag .. "HostId不存在，不知道你选了什么服...")
       return
     end
   end
@@ -565,12 +565,12 @@ function M:GetAnnouncementDataAsync_UseWeb(ShowTag, Coroutine, HostId)
   M.Confs = {}
   M.bInit = true
   M:_ResetReddot()
-  DebugPrint("[Laixiaoyang] M:GetAnnoucementDataAsync \230\139\137\229\143\150\229\144\142\229\143\176\230\184\184\230\136\143\229\133\172\229\145\138\230\149\176\230\141\174...")
+  DebugPrint("[Laixiaoyang] M:GetAnnoucementDataAsync 拉取后台游戏公告数据...")
   CdnTool:GetGameNotice(HostId, function(Infos)
     try({
       exec = function()
         if IsEmptyTable(Infos) then
-          DebugPrint(WarningTag, LXYTag, "\229\133\172\229\145\138Json\232\167\163\230\158\144\228\184\141\229\135\186\229\134\133\229\174\185")
+          DebugPrint(WarningTag, LXYTag, "公告Json解析不出内容")
           return
         end
         for Key, Info in pairs(Infos) do
@@ -596,7 +596,7 @@ function M:GetAnnouncementDataAsync_UseWeb(ShowTag, Coroutine, HostId)
 end
 
 function M:_AddNewConf(Info, ShowTag)
-  DebugPrint(LogTag, LXYTag, "\232\167\163\230\158\144\229\133\172\229\145\138", Info.UniqueId)
+  DebugPrint(LogTag, LXYTag, "解析公告", Info.UniqueId)
   local Conf = {
     NoticeID = Info.UniqueId,
     StartTimestamp = Info.StartTimestamp or os.time(),
@@ -613,24 +613,24 @@ function M:_AddNewConf(Info, ShowTag)
   }
   M:_ParseShowTag(Conf, Info)
   if not Conf.ShowTags[ShowTag] then
-    DebugPrint(LXYTag, Info.UniqueId .. "\229\133\172\229\145\138\228\184\141\229\156\168\232\191\153\228\184\170\229\156\186\229\144\136\230\152\190\231\164\186, \229\189\147\229\137\141\230\184\184\230\136\143\229\156\186\229\144\136\239\188\154" .. ShowTag)
+    DebugPrint(LXYTag, Info.UniqueId .. "公告不在这个场合显示, 当前游戏场合：" .. ShowTag)
     return
   end
   if not M:CheckChannel(Info) then
-    DebugPrint(LXYTag, Info.UniqueId .. " \229\133\172\229\145\138\230\184\160\233\129\147\230\163\128\230\181\139\228\184\141\233\128\154\232\191\135")
+    DebugPrint(LXYTag, Info.UniqueId .. " 公告渠道检测不通过")
     return
   end
   if not M:CheckSubChannel(Info) then
-    DebugPrint(LXYTag, Info.UniqueId .. " \229\133\172\229\145\138\229\173\144\230\184\160\233\129\147\230\163\128\230\181\139\228\184\141\233\128\154\232\191\135")
+    DebugPrint(LXYTag, Info.UniqueId .. " 公告子渠道检测不通过")
     return
   end
   if M:IsExpired(Conf) then
-    DebugPrint(LXYTag, Info.UniqueId .. " \229\133\172\229\145\138\229\183\178\232\191\135\230\156\159")
+    DebugPrint(LXYTag, Info.UniqueId .. " 公告已过期")
     return
   end
   if M:IsFutureNotice(Conf) then
     self.FutureConfs[Info.UniqueId] = {Info = Info, ShowTag = ShowTag}
-    DebugPrint(LXYTag, Info.UniqueId .. " \229\176\134\230\157\165\231\154\132\229\133\172\229\145\138\229\183\178\231\188\147\229\173\152")
+    DebugPrint(LXYTag, Info.UniqueId .. " 将来的公告已缓存")
     return
   end
   local timeZoneOffset = CommonUtils.GetTimeZone()
@@ -639,7 +639,7 @@ function M:_AddNewConf(Info, ShowTag)
   Conf.EndDate = Conf.EndTimestamp and GDate_YMD_Timestamp(math.floor(Conf.EndTimestamp + 0.5)) .. TimeZonePostfix
   M:_ParseContent(Conf, Info)
   if "" == Conf.NoticeTitle or "" == Conf.NoticeContent then
-    DebugPrint(LXYTag, ErrorTag, Info.UniqueId .. " \229\133\172\229\145\138\229\189\147\229\137\141\232\175\173\232\168\128\231\154\132\229\134\133\229\174\185\228\184\186\231\169\186\239\188\129\239\188\129\229\189\147\229\137\141\230\184\184\230\136\143\232\175\173\232\168\128\239\188\154" .. CommonConst.SystemLanguage)
+    DebugPrint(LXYTag, ErrorTag, Info.UniqueId .. " 公告当前语言的内容为空！！当前游戏语言：" .. CommonConst.SystemLanguage)
     return
   end
   M:_TryAddReddotCacheDetail(Conf)
@@ -682,11 +682,11 @@ function M:_ParseContent(Conf, Info)
       elseif Conf.NoticeStyle == AnnounceCommon.ContentUIStyle.ImageOnly then
         Conf.NoticeContent = string.format(AnnounceCommon.ImageOnlyContent, Text.noticeImageURL, Text.noticeImage)
       else
-        DebugPrint(LXYTag, ErrorTag, "\230\156\170\229\174\154\228\185\137\231\154\132\229\133\172\229\145\138\229\134\133\229\174\185\230\160\183\229\188\143\239\188\154" .. Conf.NoticeStyle)
+        DebugPrint(LXYTag, ErrorTag, "未定义的公告内容样式：" .. Conf.NoticeStyle)
       end
       return
     else
-      DebugPrint(LXYTag, Info.UniqueId .. " \229\133\172\229\145\138\232\175\173\232\168\128\229\175\185\228\184\141\228\184\138 \232\183\179\232\191\135" .. Text.title)
+      DebugPrint(LXYTag, Info.UniqueId .. " 公告语言对不上 跳过" .. Text.title)
     end
   end
 end
@@ -702,7 +702,7 @@ function M:_ParseShowTag(Conf, Info)
       Conf.ShowTags = {1, 1}
       break
     end
-    DebugPrint(LXYTag, "\229\133\172\229\145\138\229\133\129\232\174\184\230\152\190\231\164\186\231\154\132\229\156\186\229\144\136\239\188\154" .. ShowTag)
+    DebugPrint(LXYTag, "公告允许显示的场合：" .. ShowTag)
     Conf.ShowTags[tonumber(ShowTag)] = 1
   end
 end
@@ -712,28 +712,28 @@ M.bIndepChannel = false
 function M:CheckChannel(Info)
   local ChannelId = Utils.HeroUSDKSubsystem():GetChannelId()
   if not ChannelId then
-    DebugPrint(ErrorTag, "\230\156\172\229\140\133\230\178\161\230\156\137ChannelId\239\188\140\232\183\179\232\191\135\229\133\172\229\145\138\230\184\160\233\129\147\230\163\128\230\181\139")
+    DebugPrint(ErrorTag, "本包没有ChannelId，跳过公告渠道检测")
     return true
   end
   if not DataMgr.ChannelInfo[ChannelId] then
-    DebugPrint(ErrorTag, string.format("ChannelInfo\232\161\168\233\135\140\230\178\161\230\156\137\229\174\154\228\185\137\232\191\153\231\167\141ChannelId:%s, \232\183\179\232\191\135\229\133\172\229\145\138\230\184\160\233\129\147\230\163\128\230\181\139", ChannelId))
+    DebugPrint(ErrorTag, string.format("ChannelInfo表里没有定义这种ChannelId:%s, 跳过公告渠道检测", ChannelId))
     return true
   end
   local Provider = -1 ~= ChannelId and DataMgr.ChannelInfo[ChannelId].Provider
   if Info.Channels and type(Info.Channels) ~= "table" then
-    DebugPrint(ErrorTag, "AnnounceUtils:CheckChannel  Info.Channels \229\144\142\229\143\176\228\188\160\230\157\165\231\154\132\231\177\187\229\158\139\233\157\158\230\179\149\239\188\129\239\188\129\239\188\129\228\184\141\230\152\175Table !!!!!", Info.Channels)
+    DebugPrint(ErrorTag, "AnnounceUtils:CheckChannel  Info.Channels 后台传来的类型非法！！！不是Table !!!!!", Info.Channels)
     return true
   end
   if table.isempty(Info.Channels) then
-    DebugPrint(ErrorTag, "#Info.Channels \230\152\175\231\169\186\231\154\132 !!!!")
+    DebugPrint(ErrorTag, "#Info.Channels 是空的 !!!!")
     return true
   end
-  DebugPrint(TXTTag, "\231\156\139\231\156\139\232\191\153\228\184\170\229\140\133\231\154\132SdkChannelId\239\188\154" .. ChannelId .. " \229\146\140\229\185\179\229\143\176\239\188\154" .. AnnounceCommon.PlatformName)
+  DebugPrint(TXTTag, "看看这个包的SdkChannelId：" .. ChannelId .. " 和平台：" .. AnnounceCommon.PlatformName)
   if -1 == ChannelId then
-    DebugPrint(WarningTag, "\229\188\128\229\143\145\231\142\175\229\162\131\231\154\132ChannelId\230\152\175-1\239\188\140\232\183\179\232\191\135\230\184\160\233\129\147\230\163\128\230\181\139")
+    DebugPrint(WarningTag, "开发环境的ChannelId是-1，跳过渠道检测")
     return true
   end
-  PrintTable(Info.Channels, 2, "\231\156\139\231\156\139\229\133\172\229\145\138\232\135\170\232\186\171\231\154\132ChannelId ")
+  PrintTable(Info.Channels, 2, "看看公告自身的ChannelId ")
   for i, Channel in pairs(Info.Channels) do
     if Channel.code == Provider or Channel.code == ChannelId then
       if AnnounceCommon.SpecialChannelName[Provider] then
@@ -752,26 +752,26 @@ end
 
 function M:CheckSubChannel(Info)
   if M.bIndepChannel then
-    DebugPrint("\231\139\172\231\171\139\230\184\160\233\129\147\229\191\189\231\149\165\229\173\144\230\184\160\233\129\147\230\163\128\230\181\139...")
+    DebugPrint("独立渠道忽略子渠道检测...")
     M.bIndepChannel = false
     return true
   end
   local SubChannelId = Utils.HeroUSDKSubsystem():GetMirrorChannelId()
   local Provider = -1 ~= SubChannelId and DataMgr.ImgChannelInfo[SubChannelId].Provider
   if Info.img_channel_id and type(Info.img_channel_id) ~= "table" then
-    DebugPrint(ErrorTag, "AnnounceUtils:CheckSubChannel Info.img_channel_id \229\144\142\229\143\176\228\188\160\230\157\165\231\154\132\231\177\187\229\158\139\233\157\158\230\179\149\239\188\129\239\188\129\239\188\129\228\184\141\230\152\175Table !!!!!", Info.img_channel_id)
+    DebugPrint(ErrorTag, "AnnounceUtils:CheckSubChannel Info.img_channel_id 后台传来的类型非法！！！不是Table !!!!!", Info.img_channel_id)
     return true
   end
   if table.isempty(Info.img_channel_id) then
-    DebugPrint(ErrorTag, "Info.img_channel_id \230\152\175\231\169\186\231\154\132 !!!!!")
+    DebugPrint(ErrorTag, "Info.img_channel_id 是空的 !!!!!")
     return true
   end
-  DebugPrint(TXTTag, "\231\156\139\231\156\139\232\191\153\228\184\170\229\140\133\231\154\132(Sub)MirrorChannelId\239\188\154" .. SubChannelId)
+  DebugPrint(TXTTag, "看看这个包的(Sub)MirrorChannelId：" .. SubChannelId)
   if -1 == SubChannelId then
-    DebugPrint(WarningTag, "\229\188\128\229\143\145\231\142\175\229\162\131\231\154\132(Sub)MirrorChannelId\230\152\175-1\239\188\140\232\183\179\232\191\135\230\184\160\233\129\147\230\163\128\230\181\139")
+    DebugPrint(WarningTag, "开发环境的(Sub)MirrorChannelId是-1，跳过渠道检测")
     return true
   end
-  PrintTable(Info.img_channel_id, 2, "\231\156\139\231\156\139\229\133\172\229\145\138\232\135\170\232\186\171\231\154\132(Sub)MirrorChannelId")
+  PrintTable(Info.img_channel_id, 2, "看看公告自身的(Sub)MirrorChannelId")
   for i, SubChannel in pairs(Info.img_channel_id) do
     if tonumber(SubChannel.code) == SubChannelId or SubChannel.code == Provider then
       return true

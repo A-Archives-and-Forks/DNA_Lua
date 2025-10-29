@@ -41,7 +41,7 @@ function M:InitUI(SelectionInfo)
   end
   if not self.IsFromArchive then
     local Avatar = GWorld:GetAvatar()
-    assert(Avatar, "\230\137\190\228\184\141\229\136\176Avatar")
+    assert(Avatar, "找不到Avatar")
     local Currency = Avatar:GetCurrentRougeLikeToken()
     if self.SelectId then
       self.ChoicePrice = DataMgr.RougeLikeEventSelect[self.SelectId].Price
@@ -79,9 +79,9 @@ end
 function M:OnBtnClicked()
   if not self.IsFromArchive then
     local Avatar = GWorld:GetAvatar()
-    assert(Avatar, "\230\137\190\228\184\141\229\136\176Avatar")
+    assert(Avatar, "找不到Avatar")
     local UIManager = GWorld.GameInstance:GetGameUIManager()
-    assert(UIManager, "\230\137\190\228\184\141\229\136\176UIManager")
+    assert(UIManager, "找不到UIManager")
     local Currency = Avatar:GetCurrentRougeLikeToken()
     if self.ChoicePrice and Currency < self.ChoicePrice then
       UIManager:ShowUITip(UIConst.Tip_CommonToast, GText("RL_Event_CantSelect"))

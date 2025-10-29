@@ -28,7 +28,7 @@ function BP_NpcTalkInteractiveComponent_C:ReceiveBeginPlay()
     local PlayerCharacter = UE4.UGameplayStatics.GetPlayerCharacter(self, 0)
     local InteractiveTriggerComponent = PlayerCharacter and PlayerCharacter.InteractiveTriggerComponent
     if InteractiveTriggerComponent:GetInteractiveTriggerDistance() < self.InvitateBubbleDisplayDistance then
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\148\153\232\175\175\231\154\132\231\156\139\230\157\191\229\168\152\229\133\179\232\129\148\229\134\146\230\179\161\232\140\131\229\155\180", string.format("\229\133\168\229\177\128\229\143\152\233\135\143\232\161\168\231\156\139\230\157\191\229\168\152\229\133\179\232\129\148\229\134\146\230\179\161\232\183\157\231\166\187( %f )\229\176\143\228\186\142\228\184\187\232\167\146\232\167\166\229\143\145\229\175\185\232\175\157\232\183\157\231\166\187 ( %f )", self.InvitateBubbleDisplayDistance, InteractiveTriggerComponent:GetInteractiveTriggerDistance()))
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "错误的看板娘关联冒泡范围", string.format("全局变量表看板娘关联冒泡距离( %f )小于主角触发对话距离 ( %f )", self.InvitateBubbleDisplayDistance, InteractiveTriggerComponent:GetInteractiveTriggerDistance()))
     end
   end
   self.bIsInit = false

@@ -71,7 +71,7 @@ function M:IsPrerequisiteSatisfied()
   for _, QuestId in pairs(PrerequisiteQuestId) do
     local QuestChain = Avatar.QuestChains[QuestId]
     if not QuestChain then
-      ScreenPrint("\233\173\148\228\185\139\230\165\148 \233\133\141\231\189\174\228\186\134\228\184\128\228\184\170\228\184\141\229\173\152\229\156\168\231\154\132\228\187\187\229\138\161\233\147\190Id\239\188\129\232\175\183\231\173\150\229\136\146\230\163\128\230\159\165\239\188\129Id:" .. QuestId)
+      ScreenPrint("魔之楔 配置了一个不存在的任务链Id！请策划检查！Id:" .. QuestId)
       return false
     end
     if not QuestChain:IsFinish() then

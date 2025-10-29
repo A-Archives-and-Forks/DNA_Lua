@@ -235,7 +235,7 @@ function M:SetSingleBottomKeyInfo(KindIndex)
     "UI_CTL_Pet_Select"
   }
   if nil ~= KindIndex and nil == Keys[KindIndex] then
-    ScreenPrint("\228\188\160\229\133\165index\233\148\153\232\175\175\239\188\140\230\178\161\230\156\137\229\175\185\229\186\148\230\150\135\230\156\172")
+    ScreenPrint("传入index错误，没有对应文本")
     return
   end
   local AKeyInfo = {

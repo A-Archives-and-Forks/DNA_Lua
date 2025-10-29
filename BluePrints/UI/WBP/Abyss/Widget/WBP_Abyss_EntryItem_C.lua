@@ -6,7 +6,7 @@ function WBP_Abyss_EntryItem_C:OnListItemObjectSet(Content)
   if Content.IconPath then
     self:SetIcon(Content.IconPath)
   else
-    DebugPrint("lhr@WBP_Abyss_EntryItem_C:OnListItemObjectSet, Content IconPath \228\184\186 nil")
+    DebugPrint("lhr@WBP_Abyss_EntryItem_C:OnListItemObjectSet, Content IconPath 为 nil")
   end
 end
 

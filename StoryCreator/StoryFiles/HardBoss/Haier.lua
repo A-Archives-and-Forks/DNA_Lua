@@ -58,7 +58,7 @@ return {
       isStoryNode = true,
       key = "1736148734646948274",
       type = "StoryNode",
-      name = "\229\188\128\229\156\186\229\137\167\230\131\133",
+      name = "开场剧情",
       pos = {x = 1298.5, y = 307},
       propsData = {
         QuestId = 10100,
@@ -125,7 +125,7 @@ return {
           ["1736148734646948287"] = {
             key = "1736148734646948287",
             type = "BossBattleOpenNode",
-            name = "BOSS\230\136\152\229\188\128\229\156\186\230\146\173\231\137\135",
+            name = "BOSS战开场播片",
             pos = {x = 399, y = 127},
             propsData = {
               SequencePath = "LevelSequence'/Game/Asset/Cinematics/SystemShow/HardBoss/HardBoss_Haier/HardBoss_Haier_Start.HardBoss_Haier_Start'",
@@ -145,7 +145,7 @@ return {
       isStoryNode = true,
       key = "1736148734646948275",
       type = "StoryNode",
-      name = "\231\187\147\230\157\159\229\137\167\230\131\133",
+      name = "结束剧情",
       pos = {x = 1305.5, y = 469},
       propsData = {
         QuestId = 10199,

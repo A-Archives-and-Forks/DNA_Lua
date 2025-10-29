@@ -13,7 +13,7 @@ function BP_SurvivalProComponent_C:InitSurvivalProComponent()
   self.MaxSurvivalValue = DataMgr.GlobalConstant.SurvivalValue.ConstantValue
   self.SurvivalProInfo = DataMgr.SurvivalPro[self.GameMode.DungeonId]
   if not self.SurvivalProInfo then
-    GameState(self):ShowDungeonError("SurvivalProComponent:\229\189\147\229\137\141\229\137\175\230\156\172ID\230\178\161\230\156\137\229\161\171\229\134\153\229\156\168\229\175\185\229\186\148\231\154\132\229\137\175\230\156\172\232\161\168\228\184\173, \232\175\187\232\161\168\229\164\177\232\180\165! \232\175\187\229\133\165Id\239\188\154" .. self.GameMode.DungeonId)
+    GameState(self):ShowDungeonError("SurvivalProComponent:当前副本ID没有填写在对应的副本表中, 读表失败! 读入Id：" .. self.GameMode.DungeonId)
     return
   end
   self.RoundTime = self.SurvivalProInfo.RoundTime or 180.0
@@ -168,7 +168,7 @@ function BP_SurvivalProComponent_C:TriggerSpecialMonsterSpawn()
       self.GameMode:TriggerGameModeEvent("OnSpMonsterTimerEnd", SpMonsterId)
     end)
   else
-    GameState(self):ShowDungeonError("SurvivalProComponent:SurvivalPro\232\161\168\229\134\133\230\178\161\230\156\137\229\175\185\229\186\148\231\137\185\230\174\138\230\128\170\228\191\161\230\129\175\239\188\140Id\239\188\154" .. SpMonsterId .. ", " .. self.MonsterSpawnIndex)
+    GameState(self):ShowDungeonError("SurvivalProComponent:SurvivalPro表内没有对应特殊怪信息，Id：" .. SpMonsterId .. ", " .. self.MonsterSpawnIndex)
   end
   self.GameMode:CreateEmergencyMonsterEachWave("Butcher", self, self.SurvivalProInfo)
 end
@@ -189,7 +189,7 @@ function BP_SurvivalProComponent_C:RealSpMonsterSpawn(SpMonsterId)
     local SpMonsterSpawnId = SpMonsterSpawnRule.SpMonsterSpawnId
     self.GameMode:TriggerCreateMonsterSpawn(self:TableToTArray(SpMonsterSpawnId))
   else
-    GameState(self):ShowDungeonError("SurvivalProComponent:\231\137\185\230\174\138\230\128\170Id\233\148\153\232\175\175\239\188\140\230\163\128\230\159\165\232\147\157\229\155\190\239\188\129Id\239\188\154" .. SpMonsterId)
+    GameState(self):ShowDungeonError("SurvivalProComponent:特殊怪Id错误，检查蓝图！Id：" .. SpMonsterId)
   end
   self:ClearPreviousMonsterSpawnRule()
   self:AddTimer(self.MonsterSpawnDelay, self.UpdateNewMonsterSpawnRule, false, 0, "MonsterSpawnDelay")

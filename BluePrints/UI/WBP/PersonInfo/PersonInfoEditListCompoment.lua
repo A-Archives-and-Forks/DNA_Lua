@@ -457,13 +457,13 @@ function Component:GetFisrtEditItem()
       if firstItem.SelfWidget or ReturnWidget then
         return ReturnWidget
       else
-        DebugPrint("item\230\178\161\230\156\137\229\175\185\229\186\148ui")
+        DebugPrint("item没有对应ui")
       end
     else
-      DebugPrint("ListView \228\184\173\230\178\161\230\156\137 Item\227\128\130")
+      DebugPrint("ListView 中没有 Item。")
     end
   else
-    DebugPrint("ListView \229\188\149\231\148\168\230\151\160\230\149\136\227\128\130")
+    DebugPrint("ListView 引用无效。")
   end
 end
 

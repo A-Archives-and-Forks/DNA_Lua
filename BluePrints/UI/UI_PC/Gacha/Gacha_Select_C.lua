@@ -280,7 +280,7 @@ end
 
 function G:OnBtnTryOutClicked()
   if not self.CurContent then
-    DebugPrint("----jzn---\229\189\147\229\137\141\230\156\170\233\128\137\230\139\169\228\187\187\228\189\149\232\167\146\232\137\178---OnBtnTryOutClicked--")
+    DebugPrint("----jzn---当前未选择任何角色---OnBtnTryOutClicked--")
     return
   end
   local Index = self.CurContent.Index
@@ -321,7 +321,7 @@ function G:OnBtnConfirmClicked()
       Avatar:SetGachaSelfSelect(SelectGachaCallback, self.NowSelectGachaId, self.NowSelectTargetId)
     end
   else
-    DebugPrint("----jzn---\229\189\147\229\137\141\230\156\170\233\128\137\230\139\169\228\187\187\228\189\149\232\167\146\232\137\178---OnBtnConfirmClicked--")
+    DebugPrint("----jzn---当前未选择任何角色---OnBtnConfirmClicked--")
   end
 end
 

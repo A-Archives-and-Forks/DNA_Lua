@@ -6,8 +6,8 @@ function FSoundOralComponent.New()
 end
 
 function FSoundOralComponent:GetAssetPaths(AudioManager, VoiceName, ExStoryInfo)
-  assert(AudioManager, string.format("AudioManager \230\152\175\231\169\186\239\188\140\232\142\183\229\143\150\229\143\176\230\156\172\233\159\179\233\162\145\231\155\184\229\133\179\232\181\132\230\186\144\232\183\175\229\190\132\229\164\177\232\180\165\227\128\130VoiceName: %s", VoiceName))
-  assert(VoiceName, string.format("VoiceName \230\152\175\231\169\186\239\188\140\232\142\183\229\143\150\229\143\176\230\156\172\233\159\179\233\162\145\231\155\184\229\133\179\232\181\132\230\186\144\232\183\175\229\190\132\229\164\177\232\180\165\227\128\130\230\152\175\231\169\186\239\188\140\232\142\183\229\143\150\229\143\176\230\156\172\233\159\179\233\162\145\231\155\184\229\133\179\232\181\132\230\186\144\232\183\175\229\190\132\229\164\177\232\180\165\227\128\130VoiceName: %s", VoiceName))
+  assert(AudioManager, string.format("AudioManager 是空，获取台本音频相关资源路径失败。VoiceName: %s", VoiceName))
+  assert(VoiceName, string.format("VoiceName 是空，获取台本音频相关资源路径失败。是空，获取台本音频相关资源路径失败。VoiceName: %s", VoiceName))
   if not AudioManager:GetGender() then
     return
   end

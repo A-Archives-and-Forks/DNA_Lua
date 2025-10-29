@@ -27,7 +27,7 @@ function M:CleanUp()
     self.Parent.ListView_Box:RemoveItem(self.Content)
     self.Parent.ListView_Box:RequestRefresh()
   else
-    DebugPrint("ZDX_\230\142\137\232\144\189\231\137\169UI\230\156\170\233\148\128\230\175\129\230\136\144\229\138\159")
+    DebugPrint("ZDX_掉落物UI未销毁成功")
   end
 end
 
@@ -55,9 +55,9 @@ function M:UpdateTips(ItemId, ItemCount, Duration, TableName)
   self:StopAllAnimations()
   self.bNotCallAnimationDel = false
   local ItemInfo = DataMgr[TableName][ItemId]
-  assert(ItemInfo, "\230\142\137\232\144\189\231\137\169\228\184\141\229\173\152\229\156\168\239\188\154" .. TableName .. ItemId)
+  assert(ItemInfo, "掉落物不存在：" .. TableName .. ItemId)
   self.ICON:SetVisibility(ESlateVisibility.Collapsed)
-  local DisName = ItemUtils:GetDropName(ItemId, TableName) .. string.format(" \195\151%d", ItemCount)
+  local DisName = ItemUtils:GetDropName(ItemId, TableName) .. string.format(" ×%d", ItemCount)
   self.Text_Reward:SetText(DisName)
   local ImagePath = ItemInfo.Icon
   if string.find(ImagePath, "/Game/") == nil then
@@ -79,7 +79,7 @@ function M:AddItemCount(AddItemCount, Duration)
   Duration = Duration or 2.5
   AddItemCount = AddItemCount or 1
   self.Content.ItemCount = self.Content.ItemCount + AddItemCount
-  local DisName = ItemUtils:GetDropName(self.Content.ItemId, self.Content.TableName) .. string.format(" \195\151%d", self.Content.ItemCount)
+  local DisName = ItemUtils:GetDropName(self.Content.ItemId, self.Content.TableName) .. string.format(" ×%d", self.Content.ItemCount)
   self.Text_Reward:SetText(DisName)
   self.Content.Duration = Duration
   self:AddTimer(self.Content.Duration, function()
@@ -89,7 +89,7 @@ end
 
 function M:OnIconLoadFinish(Object, ResourceID)
   if not (Object and IsValid(self)) or self.LoadResourceID ~= ResourceID then
-    DebugPrint("ZDX_\230\142\137\232\144\189\231\137\169UIIcon\229\138\160\232\189\189\229\164\177\232\180\165")
+    DebugPrint("ZDX_掉落物UIIcon加载失败")
     self:CloseSelf()
     return
   end

@@ -22,7 +22,7 @@ end
 
 function WBP_RougeLike_Select_Item_Widget_C:OnBtn_SelectClicked()
   self.CurrentTime = UE4.UGameplayStatics.GetRealTimeSeconds(self)
-  DebugPrint("\230\163\128\230\181\139\229\136\176\230\140\137\233\148\174\230\140\137\228\184\139")
+  DebugPrint("检测到按键按下")
   if self.CurrentTime - self.StartTime < self.BtnCD then
     return
   end

@@ -524,7 +524,7 @@ function M:CompleteRandomCreatorData(DataTable)
   DataTable.Loc = FVector(DataTable.BornLocation.X, DataTable.BornLocation.Y, DataTable.BornLocation.Z)
   DataTable.Creator = GameMode.RandomActorManager:GetCreator(DataTable.RandomRuleId, "", DataTable.IdxInRule)
   if not DataTable.Creator or DataTable.Creator == {} then
-    DebugPrint("RandomCreator\228\184\173\228\184\141\229\173\152\229\156\168\229\166\130\228\184\139\230\149\176\230\141\174\239\188\154 Location = ", DataTable.Loc)
+    DebugPrint("RandomCreator中不存在如下数据： Location = ", DataTable.Loc)
   elseif DataTable.Creator.ExtraRegionInfo then
     DataTable.ExtraRegionInfo = {
       SpecialQuestId = DataTable.Creator.ExtraRegionInfo.SpecialQuestId,

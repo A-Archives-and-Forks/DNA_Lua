@@ -226,10 +226,10 @@ function BP_EnergySupply_C:OnBuffNumChange()
   local NewBuffNum = self.NowEnergy // self.BuffBase
   local Sub = math.floor(NewBuffNum - self.BuffNum)
   if Sub < 0 then
-    DebugPrint("\232\191\153\233\135\140\230\152\175BuffNumChangelxh1: " .. Sub)
+    DebugPrint("这里是BuffNumChangelxh1: " .. Sub)
     Battle(self):ReduceBuffLayerFromTarget(self, self, self.BuffId, -Sub, false)
   elseif Sub > 0 then
-    DebugPrint("\232\191\153\233\135\140\230\152\175BuffNumChangelxh2: " .. Sub)
+    DebugPrint("这里是BuffNumChangelxh2: " .. Sub)
     Battle(self):AddBuffToTarget(self, self, self.BuffId, -1, nil, nil, Sub)
   end
   self.BuffNum = NewBuffNum

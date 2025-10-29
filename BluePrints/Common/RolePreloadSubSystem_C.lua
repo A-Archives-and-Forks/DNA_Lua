@@ -159,7 +159,7 @@ function M:CacheDungeonGameAssetsOuter_Test(FinishCallback)
   end
   
   local function OutTimeFunc()
-    GWorld.logger.errorlog("wzj- \229\137\175\230\156\172\232\181\132\230\186\144\233\162\132\229\138\160\232\189\189\232\182\133\230\151\182, \232\182\133\230\151\182\230\151\182\233\151\180:" .. DungeonPreloadOutTime .. "\231\167\146")
+    GWorld.logger.errorlog("wzj- 副本资源预加载超时, 超时时间:" .. DungeonPreloadOutTime .. "秒")
     self:PreloadDungeonGameAssetsFinished_Lua()
   end
   

@@ -46,7 +46,7 @@ return {
       isStoryNode = true,
       key = "17510165522002300718",
       type = "StoryNode",
-      name = "\228\187\187\229\138\161\232\138\130\231\130\185",
+      name = "任务节点",
       pos = {x = 1920, y = 456},
       propsData = {
         QuestId = 0,
@@ -113,7 +113,7 @@ return {
           ["17510165606602300987"] = {
             key = "17510165606602300987",
             type = "TalkNode",
-            name = "\229\175\185\232\175\157\232\138\130\231\130\185",
+            name = "对话节点",
             pos = {x = 1748, y = 580},
             propsData = {
               IsNpcNode = false,

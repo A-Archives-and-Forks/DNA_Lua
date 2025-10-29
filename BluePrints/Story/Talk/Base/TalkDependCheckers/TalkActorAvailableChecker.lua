@@ -10,13 +10,13 @@ end
 
 function TalkActorAvailableChecker_C:OnEnabled(Task, TaskData)
   do return end
-  DebugPrint("@@@ \229\144\175\231\148\168TalkActorAvailableChecker_C", Task)
+  DebugPrint("@@@ 启用TalkActorAvailableChecker_C", Task)
   self:ListeningEvent(Task, TaskData)
 end
 
 function TalkActorAvailableChecker_C:OnDisabled(Task)
   do return end
-  DebugPrint("@@@ \229\133\179\233\151\173TalkActorAvailableChecker_C", Task)
+  DebugPrint("@@@ 关闭TalkActorAvailableChecker_C", Task)
   self:UnlisteningEvent(Task)
 end
 
@@ -42,7 +42,7 @@ function TalkActorAvailableChecker_C:CheckAnyTalkActorInAsyncCreate(TalkActorInf
       local bAsync = GameState:IsNpcInAsyncProcess(NpcId)
       bRes = bRes or bAsync
       if bAsync then
-        DebugPrint("TalkActorAvailableChecker_C:CheckAnyTalkActorInAsyncCreate  Npc\229\164\132\228\186\142\229\188\130\230\173\165\230\181\129\231\168\139\228\184\173(\229\186\143\229\136\151\229\140\150/\229\188\130\230\173\165\229\136\155\229\187\186\231\173\137)", NpcId)
+        DebugPrint("TalkActorAvailableChecker_C:CheckAnyTalkActorInAsyncCreate  Npc处于异步流程中(序列化/异步创建等)", NpcId)
       end
     end
   end
@@ -57,7 +57,7 @@ function TalkActorAvailableChecker_C:TryFireCompleteDelegate(Task, TaskData)
 end
 
 function TalkActorAvailableChecker_C:ListeningEvent(Task, TaskData)
-  DebugPrint("@@@ \231\155\145\229\144\172TalkActor\230\152\175\229\144\166\230\152\175\229\143\175\231\148\168\231\154\132 ", Task)
+  DebugPrint("@@@ 监听TalkActor是否是可用的 ", Task)
   self.WorkingTasks[Task] = Task
   for _, Info in pairs(TaskData.CreateTalkActors) do
     local NpcId = Info.TalkActorId
@@ -74,7 +74,7 @@ end
 
 function TalkActorAvailableChecker_C:UnlisteningEvent(Task)
   local TaskData = TalkSubsystem():GetTaskDataFromTalkTask(Task)
-  DebugPrint("@@@ \229\143\150\230\182\136\231\155\145\229\144\172TalkActor\230\152\175\229\144\166\230\152\175\229\143\175\231\148\168\231\154\132", Task, TaskData)
+  DebugPrint("@@@ 取消监听TalkActor是否是可用的", Task, TaskData)
   self.WorkingTasks[Task] = nil
   local GameState = UE4.URuntimeCommonFunctionLibrary.GetCurrentGameState(GWorld.GameInstance)
   for _, Info in pairs(TaskData.CreateTalkActors) do

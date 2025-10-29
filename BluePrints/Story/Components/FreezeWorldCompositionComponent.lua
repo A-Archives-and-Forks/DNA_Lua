@@ -6,10 +6,10 @@ function FFreezeWorldCompositionComponent:New()
 end
 
 function FFreezeWorldCompositionComponent:Execute()
-  DebugPrint("TalkComp_FreezeWorldComposition_C \229\134\187\231\187\147WC")
+  DebugPrint("TalkComp_FreezeWorldComposition_C 冻结WC")
   local GameMode = UE4.UGameplayStatics.GetGameMode(GWorld.GameInstance)
   if not GameMode then
-    DebugPrint("\230\151\160GameMode \230\151\160\230\179\149\229\134\187\231\187\147WC")
+    DebugPrint("无GameMode 无法冻结WC")
     return
   end
   local WorldCompositionSubsystem = GameMode:GetWCSubSystem()
@@ -19,10 +19,10 @@ function FFreezeWorldCompositionComponent:Execute()
 end
 
 function FFreezeWorldCompositionComponent:Resume()
-  DebugPrint("TalkComp_FreezeWorldComposition_C \232\167\163\229\134\187WC")
+  DebugPrint("TalkComp_FreezeWorldComposition_C 解冻WC")
   local GameMode = UE4.UGameplayStatics.GetGameMode(GWorld.GameInstance)
   if not GameMode then
-    DebugPrint("\230\151\160GameMode \230\151\160\230\179\149\232\167\163\229\134\187WC")
+    DebugPrint("无GameMode 无法解冻WC")
     return
   end
   local WorldCompositionSubsystem = GameMode:GetWCSubSystem()

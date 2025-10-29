@@ -10,12 +10,12 @@ local EBlendFuncMap = {
 
 local function GetCharacterData(CharacterId)
   if not CharacterId then
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\130\128\231\186\166\231\179\187\231\187\159\233\148\153\232\175\175", "\228\188\160\229\133\165\231\169\186\231\154\132\232\167\146\232\137\178 Id\239\188\140\231\148\159\230\136\144\233\130\128\231\186\166\232\167\146\232\137\178\228\191\161\230\129\175\229\164\177\232\180\165\227\128\130")
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "邀约系统错误", "传入空的角色 Id，生成邀约角色信息失败。")
     return
   end
   local NativeCharData = DataMgr.Char[CharacterId]
   if not NativeCharData then
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\130\128\231\186\166\231\179\187\231\187\159\233\148\153\232\175\175", string.format("\230\156\170\229\156\168 Char \232\161\168\230\137\190\229\136\176Id\239\188\154%d \231\154\132\230\149\176\230\141\174", CharacterId))
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "邀约系统错误", string.format("未在 Char 表找到Id：%d 的数据", CharacterId))
     return
   end
   local NativePartyNPCData = DataMgr.PartyNpc[CharacterId]
@@ -23,17 +23,17 @@ local function GetCharacterData(CharacterId)
   if not NativePartyNPCData then
     OldCharacterId = CharacterId
     CharacterId = 5301
-    DebugPrint(WarningTag, "CharacterId ", OldCharacterId, " \229\175\185\229\186\148\231\154\132\233\130\128\231\186\166\232\167\146\232\137\178\230\156\170\233\133\141\231\189\174\239\188\140\232\135\170\229\138\168\229\136\135\230\141\162\229\136\176 ", CharacterId, " \232\181\155\231\144\170\228\189\156\228\184\186\233\187\152\232\174\164\233\130\128\231\186\166\232\167\146\232\137\178")
+    DebugPrint(WarningTag, "CharacterId ", OldCharacterId, " 对应的邀约角色未配置，自动切换到 ", CharacterId, " 赛琪作为默认邀约角色")
   end
   local NativePartyNPCData = DataMgr.PartyNpc[CharacterId]
   if not NativePartyNPCData then
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\130\128\231\186\166\231\179\187\231\187\159\233\148\153\232\175\175", string.format("\230\156\170\229\156\168 PartyNpc \232\161\168\230\137\190\229\136\176Id\239\188\154%d \231\154\132\230\149\176\230\141\174 OldCharacterId %d", CharacterId, OldCharacterId or -1))
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "邀约系统错误", string.format("未在 PartyNpc 表找到Id：%d 的数据 OldCharacterId %d", CharacterId, OldCharacterId or -1))
     return
   end
   local UnitId = NativePartyNPCData.UnitId
   local NativeNpcData = DataMgr.Npc[UnitId]
   if nil == NativeNpcData then
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\130\128\231\186\166\231\179\187\231\187\159\233\148\153\232\175\175", string.format("\230\156\170\229\156\168 Npc \232\161\168\230\137\190\229\136\176Id\239\188\154%d \231\154\132\230\149\176\230\141\174", UnitId))
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "邀约系统错误", string.format("未在 Npc 表找到Id：%d 的数据", UnitId))
     return
   end
   local SpecialCharacterId = FEntertainmentUtils.GetPriorityCharacterId()
@@ -42,8 +42,8 @@ local function GetCharacterData(CharacterId)
     IconPath = NativeCharData.Icon,
     Rarity = NativeCharData.CharRarity,
     bPriority = SpecialCharacterId == CharacterId,
-    Name = GText(NativeNpcData.UnitName) or "\231\169\186",
-    WorldName = EnText(NativeNpcData.UnitName) or "\231\169\186",
+    Name = GText(NativeNpcData.UnitName) or "空",
+    WorldName = EnText(NativeNpcData.UnitName) or "空",
     AvatarIconPath = NativePartyNPCData.AvatarIconPath,
     PartyTopicIdArray = NativePartyNPCData.PartyTopicList,
     EscIcon = NativeCharData.EscIcon,
@@ -66,7 +66,7 @@ end
 local function GetAvatarCurrentCharacterData()
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\130\128\231\186\166\231\179\187\231\187\159\233\148\153\232\175\175", "\232\142\183\229\143\150\229\189\147\229\137\141\232\167\146\232\137\178\228\191\161\230\129\175\229\164\177\232\180\165\239\188\140avatar \228\184\186\231\169\186\227\128\130")
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "邀约系统错误", "获取当前角色信息失败，avatar 为空。")
     return
   end
   local CharacterId = Avatar:GetCurrentCharConfigID()
@@ -76,7 +76,7 @@ end
 local function GetAvatarOwnedCharacterDataMap()
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\130\128\231\186\166\231\179\187\231\187\159\233\148\153\232\175\175", "\232\142\183\229\143\150\230\139\165\230\156\137\232\167\146\232\137\178\228\191\161\230\129\175\229\164\177\232\180\165\239\188\140avatar \228\184\186\231\169\186\227\128\130")
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "邀约系统错误", "获取拥有角色信息失败，avatar 为空。")
     return
   end
   local OwnedCharacterDataMap = {}
@@ -551,7 +551,7 @@ function M:SetShowCharacterActionWithState(State)
   end
   local AnimInstance = self.ShowCharacter.Mesh:GetAnimInstance()
   if nil == AnimInstance then
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\233\130\128\231\186\166\231\179\187\231\187\159\233\148\153\232\175\175", string.format("\232\174\190\231\189\174 Id\239\188\154%d \232\167\146\232\137\178\229\138\168\228\189\156\229\164\177\232\180\165\239\188\140\229\138\168\231\148\187\229\174\158\228\190\139\228\184\186\231\169\186\227\128\130", self.ShowCharacterData.Id))
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "邀约系统错误", string.format("设置 Id：%d 角色动作失败，动画实例为空。", self.ShowCharacterData.Id))
     return
   end
   local ViewTarget = self.ViewTarget

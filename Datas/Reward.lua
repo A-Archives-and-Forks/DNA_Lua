@@ -8004,16 +8004,16 @@ return ReadOnly("Reward", {
   },
   [10003] = {
     Count = T.RT_5,
-    DetailDes = "\232\191\153\230\152\175\229\138\159\232\131\189\232\175\166\232\191\176",
+    DetailDes = "这是功能详述",
     FunctionDes = "UI_Pack",
     Icon = "/Game/UI/Texture/Dynamic/Atlas/Prop/Item/T_Reward_UnknownMod01.T_Reward_UnknownMod01",
     Id = {
       [1] = 20021,
       [2] = 20024
     },
-    IpDes = "\232\191\153\230\152\175IP\229\140\133\232\163\133",
+    IpDes = "这是IP包装",
     Mode = "Weight",
-    Name = "\233\171\152\231\186\167\233\147\184\233\128\160\231\180\160\230\157\144A\230\142\137\232\144\189\229\140\133",
+    Name = "高级铸造素材A掉落包",
     Param = T.RT_75,
     Rarity = 4,
     RewardId = 10003,
@@ -27031,7 +27031,7 @@ return ReadOnly("Reward", {
   },
   [4000001] = {
     Count = T.RT_144,
-    DetailDes = "\232\191\153\230\152\175\229\138\159\232\131\189\232\175\166\232\191\176",
+    DetailDes = "这是功能详述",
     FunctionDes = "UI_Pack",
     Icon = "/Game/UI/Texture/Dynamic/Atlas/Prop/Item/T_Reward_UnknownMod01.T_Reward_UnknownMod01",
     Id = {
@@ -27039,40 +27039,40 @@ return ReadOnly("Reward", {
       [2] = 3000009,
       [3] = 3000011
     },
-    IpDes = "\232\191\153\230\152\175IP\229\140\133\232\163\133",
+    IpDes = "这是IP包装",
     Mode = "Fixed",
-    Name = "\229\141\176\232\177\161-\231\186\184\230\152\159\230\152\159",
+    Name = "印象-纸星星",
     Rarity = 4,
     RewardId = 4000001,
     Type = T.RT_158
   },
   [4000002] = {
     Count = T.RT_5,
-    DetailDes = "\232\191\153\230\152\175\229\138\159\232\131\189\232\175\166\232\191\176",
+    DetailDes = "这是功能详述",
     FunctionDes = "UI_Pack",
     Icon = "/Game/UI/Texture/Dynamic/Atlas/Prop/Item/T_Reward_UnknownMod01.T_Reward_UnknownMod01",
     Id = {
       [1] = 3000002,
       [2] = 2000013
     },
-    IpDes = "\232\191\153\230\152\175IP\229\140\133\232\163\133",
+    IpDes = "这是IP包装",
     Mode = "Fixed",
-    Name = "\229\141\176\232\177\161-\229\185\179\230\176\145\232\161\163\230\156\141",
+    Name = "印象-平民衣服",
     Rarity = 4,
     RewardId = 4000002,
     Type = T.RT_50
   },
   [4000003] = {
     Count = T.RT_20,
-    DetailDes = "\232\191\153\230\152\175\229\138\159\232\131\189\232\175\166\232\191\176",
+    DetailDes = "这是功能详述",
     FunctionDes = "UI_Pack",
     Icon = "/Game/UI/Texture/Dynamic/Atlas/Prop/Item/T_Reward_UnknownMod01.T_Reward_UnknownMod01",
     Id = {
       [1] = 2000017
     },
-    IpDes = "\232\191\153\230\152\175IP\229\140\133\232\163\133",
+    IpDes = "这是IP包装",
     Mode = "Fixed",
-    Name = "\229\141\176\232\177\161-\229\174\137\229\166\174\231\154\132\228\191\161",
+    Name = "印象-安妮的信",
     Rarity = 4,
     RewardId = 4000003,
     Type = T.RT_19

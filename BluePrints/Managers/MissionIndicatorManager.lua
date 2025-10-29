@@ -19,12 +19,12 @@ function MissionIndicatorManager:ActiveMissionIndicatorByNode(InNode)
     self["SetIndicatorDataBy_" .. InNode.Type](self, IndicatorData, InNode)
   end
   if IndicatorData.GuideType == nil or nil == IndicatorData.PointKey then
-    GWorld.logger.errorlog("STL\232\138\130\231\130\185\230\140\135\229\188\149\230\149\176\230\141\174\230\156\137\232\175\175, STL\232\138\130\231\130\185Key", InNode.Key)
+    GWorld.logger.errorlog("STL节点指引数据有误, STL节点Key", InNode.Key)
     return
   end
   self:SetSTLIndicatorUniqueData(IndicatorData, InNode)
   if nil == IndicatorData.GuideTag then
-    GWorld.logger.errorlog("STL\230\140\135\229\188\149\232\138\130\231\130\185\231\148\159\230\136\144\231\154\132GuideTag\228\184\186\231\169\186, STL\232\138\130\231\130\185Key", InNode.Key)
+    GWorld.logger.errorlog("STL指引节点生成的GuideTag为空, STL节点Key", InNode.Key)
     return
   end
   local UIObj = self:LoadMissionIndicatorUI(IndicatorData, InNode)
@@ -49,7 +49,7 @@ function MissionIndicatorManager:ReactiveMissionIndicatorByNode(InNode)
   if MissionIndicatorManager.MissionIndicatorNames[UIName] then
     MissionIndicatorManager.MissionIndicatorNames[UIName] = nil
   else
-    GWorld.logger.errorlog("\229\136\160\233\153\164\228\186\134\228\184\141\229\173\152\229\156\168\231\154\132STL\230\140\135\229\188\149\231\130\185\239\188\140NodeKey:", InNode.Key)
+    GWorld.logger.errorlog("删除了不存在的STL指引点，NodeKey:", InNode.Key)
   end
   local UIObj = UIManager:GetUIObj(UIName)
   if UIObj then
@@ -256,7 +256,7 @@ function MissionIndicatorManager:SetSTLIndicatorUniqueData(InData, InNode)
   local Avatar = GWorld:GetAvatar()
   local GuideTag
   if not Avatar then
-    GWorld.logger.errorlog("STL\232\138\130\231\130\185\230\140\135\229\188\149\230\149\176\230\141\174\230\156\137\232\175\175, Avatar\228\184\186\231\169\186")
+    GWorld.logger.errorlog("STL节点指引数据有误, Avatar为空")
     return
   end
   if InData.GuideTag == nil then

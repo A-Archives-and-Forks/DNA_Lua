@@ -47,8 +47,8 @@ function BP_HeadWidgetComponent_C:GetOrCreateWidget(WidgetName)
     Widget = HeadUISubsystem:TryGetHeadWidget(self)
   end
   if not Widget then
-    local Title = "\232\142\183\229\143\150\229\164\180\233\161\182UI\229\164\177\232\180\165"
-    local Message = string.format("HeadWidgetComponent\232\142\183\229\143\150\229\164\180\233\161\182Widget\230\151\182\229\164\177\232\180\165 NPCId:%d", self:GetOwner().NpcId)
+    local Title = "获取头顶UI失败"
+    local Message = string.format("HeadWidgetComponent获取头顶Widget时失败 NPCId:%d", self:GetOwner().NpcId)
     UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, Title, Message)
     return
   end

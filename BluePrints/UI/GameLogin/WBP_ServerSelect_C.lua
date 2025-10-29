@@ -44,17 +44,17 @@ function WBP_ServerSelect_C:VerifyListViewCallBack()
     local obj = self:NewAreaItemContent(nil)
     CurrentArea = 0
     obj.Area = CurrentArea
-    obj.Name = "\230\142\168\232\141\144"
+    obj.Name = "推荐"
     self.ListView_Area:AddItem(obj)
     ServerList = {
       {
         area = 1,
-        name = "\229\188\128\229\143\145",
+        name = "开发",
         servers = nil
       },
       {
         area = 2,
-        name = "\229\188\128\229\143\1452",
+        name = "开发2",
         servers = nil
       },
       {
@@ -64,12 +64,12 @@ function WBP_ServerSelect_C:VerifyListViewCallBack()
       },
       {
         area = 4,
-        name = "\231\173\150\229\136\146",
+        name = "策划",
         servers = nil
       },
       {
         area = 5,
-        name = "\229\133\182\228\187\150",
+        name = "其他",
         servers = nil
       }
     }

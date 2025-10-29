@@ -147,7 +147,7 @@ function ServerListMgr:GetChanelProvider()
     local ChannelProvider = DataMgr.ChannelInfo[ChannelId].Provider
     return ChannelProvider
   else
-    print("\230\137\167\232\161\140GetCdnHideData\229\135\186\233\148\153\239\188\140\229\189\147\229\137\141ChannelId:" .. tostring(ChannelId) .. "\228\184\173\230\178\161\230\156\137\229\175\185\229\186\148\231\154\132Provider")
+    print("执行GetCdnHideData出错，当前ChannelId:" .. tostring(ChannelId) .. "中没有对应的Provider")
   end
 end
 

@@ -318,7 +318,7 @@ return ReadOnly("NpcBiography", {
   },
   [103101] = {
     ConditionId = 1080,
-    NpcAge = "\239\188\159\239\188\159",
+    NpcAge = "？？",
     NpcBiographyId = 103101,
     NpcInformation = "NpcBiography_Information_Beiguanjiaojiao",
     NpcName = "UI_CMNpc_Name_Beiguanjiaojiao",
@@ -334,7 +334,7 @@ return ReadOnly("NpcBiography", {
   },
   [103301] = {
     ConditionId = 1082,
-    NpcAge = "\239\188\159\239\188\159",
+    NpcAge = "？？",
     NpcBiographyId = 103301,
     NpcInformation = "NpcBiography_Information_Kongkongjiaojiao",
     NpcName = "UI_CMNpc_Name_Kongkongjiaojiao",

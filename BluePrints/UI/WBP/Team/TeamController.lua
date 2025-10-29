@@ -27,7 +27,7 @@ function M:IsTeamPopupBarOpenInGamepad()
 end
 
 function M:OnCloseLoading()
-  DebugPrint(" TeamSyncDebug   xxxTeamReconnectNotify   \230\137\139\229\138\168")
+  DebugPrint(" TeamSyncDebug   xxxTeamReconnectNotify   手动")
   TeamModel:DestoryTeamDataWithDs()
   if GWorld:IsStandAlone() then
     self:TrySyncTeamInSingleGame()
@@ -68,7 +68,7 @@ function M:GetEventName()
 end
 
 function M:ShowToast(Text, Duration)
-  DebugPrint(LXYTag, "\231\187\132\233\152\159Toast", Text)
+  DebugPrint(LXYTag, "组队Toast", Text)
   M.Super.ShowToast(self, Text, Duration, {bPopWait = true})
 end
 
@@ -447,7 +447,7 @@ function M:_ApplyRecvTeamRefresh(TeamInfo)
 end
 
 function M:TrySyncTeamInSingleGame()
-  DebugPrint(DebugTag, LXYTag, " TeamSyncDebug  \231\187\132\233\152\159\230\181\129\231\168\139\230\151\182\229\186\143 \229\141\149\228\186\186\230\156\172\230\136\150\229\164\167\228\184\150\231\149\140\239\188\140 TeamController::TrySyncTeamInBigWorld")
+  DebugPrint(DebugTag, LXYTag, " TeamSyncDebug  组队流程时序 单人本或大世界， TeamController::TrySyncTeamInBigWorld")
   if not TeamModel:GetTeam() then
     self:SendTeamRefresh()
   end
@@ -455,15 +455,15 @@ function M:TrySyncTeamInSingleGame()
 end
 
 function M:TrySyncTeamInMultiGame()
-  DebugPrint(DebugTag, LXYTag, " TeamSyncDebug \231\187\132\233\152\159\230\181\129\231\168\139\230\151\182\229\186\143 \229\164\154\228\186\186\229\137\175\230\156\172\239\188\140 TeamController::TrySyncTeamInMultiGame")
+  DebugPrint(DebugTag, LXYTag, " TeamSyncDebug 组队流程时序 多人副本， TeamController::TrySyncTeamInMultiGame")
   if not GameState(GWorld.GameInstance) then
-    DebugPrint(LXYTag, " TeamSyncDebug  \231\187\132\233\152\159\230\181\129\231\168\139\230\151\182\229\186\143 \229\164\154\228\186\186\229\137\175\230\156\172\228\184\173\239\188\140GameState\228\184\186\231\169\186, \230\151\160\230\179\149\229\136\164\230\150\173\230\152\175\229\144\166\230\156\137\229\164\154\229\144\141\231\142\169\229\174\182")
+    DebugPrint(LXYTag, " TeamSyncDebug  组队流程时序 多人副本中，GameState为空, 无法判断是否有多名玩家")
     return
   end
-  DebugPrint("TeamSyncDebug  \231\156\139\231\156\139PlayerArray\231\154\132\230\149\176\233\135\143", #GameState(GWorld.GameInstance).PlayerArray:ToTable())
-  DebugPrint("TeamSyncDebug  \231\156\139\231\156\139PhantomArray\231\154\132\229\128\188", #GameState(GWorld.GameInstance).PhantomArray:ToTable())
+  DebugPrint("TeamSyncDebug  看看PlayerArray的数量", #GameState(GWorld.GameInstance).PlayerArray:ToTable())
+  DebugPrint("TeamSyncDebug  看看PhantomArray的值", #GameState(GWorld.GameInstance).PhantomArray:ToTable())
   self:SendTeamRefresh()
-  PrintTable(TeamModel:GetTeam(), 3, LXYTag .. "TeamSyncDebug  \231\156\139\231\156\139TeamModel\231\154\132\233\152\159\228\188\141\229\128\188")
+  PrintTable(TeamModel:GetTeam(), 3, LXYTag .. "TeamSyncDebug  看看TeamModel的队伍值")
   self:NotifyEvent(TeamCommon.EventId.OnEnterMultiGame)
 end
 
@@ -481,20 +481,20 @@ function M:SetUpBeInviteTimer(Interval)
   local CurrInvite = TeamModel:GetBackInviteInfo()
   local InviteView = self:GetView(GWorld.GameInstance, TeamCommon.TipUIName)
   if not CurrInvite then
-    DebugPrint(LXYTag, "\233\152\159\229\136\151\231\169\186\228\186\134\239\188\140\233\130\128\232\175\183\230\181\129\231\168\139\233\128\128\229\135\186")
+    DebugPrint(LXYTag, "队列空了，邀请流程退出")
     if IsValid(InviteView) then
       InviteView:Close()
-      DebugPrint(LXYTag, "\229\133\179\233\151\173\233\130\128\232\175\183UI")
+      DebugPrint(LXYTag, "关闭邀请UI")
     end
     return
   end
-  DebugPrint(LXYTag, "\229\188\128\229\167\139\231\187\132\233\152\159\229\143\151\233\130\128\232\175\183\229\174\154\230\151\182\229\153\168")
+  DebugPrint(LXYTag, "开始组队受邀请定时器")
   if not self:GetUIMgr():GetUIObj("CommonChangeScene") then
     if not IsValid(InviteView) then
-      DebugPrint(LXYTag, "\230\137\147\229\188\128\233\130\128\232\175\183UI")
+      DebugPrint(LXYTag, "打开邀请UI")
       InviteView = self:OpenView(GWorld.GameInstance, TeamCommon.TipUIName, CurrInvite)
     else
-      DebugPrint(LXYTag, "\233\135\141\231\148\168\233\130\128\232\175\183UI")
+      DebugPrint(LXYTag, "重用邀请UI")
       InviteView:StopAllAnimations()
       InviteView:SetVisibility(UIConst.VisibilityOp.SelfHitTestInvisible)
       InviteView:Construct()
@@ -506,7 +506,7 @@ function M:SetUpBeInviteTimer(Interval)
   self:AddTimer(Interval, function()
     InviteRemainTime = InviteRemainTime - Interval
     if IsValid(InviteView) and not InviteView:HasFocusedDescendants() and self:IsGamepad() then
-      DebugPrint(LXYTag, WarningTag, "\231\187\132\233\152\159\233\130\128\232\175\183UI\233\156\128\232\166\129\230\138\162\229\164\186\232\129\154\231\132\166\239\188\129\239\188\129\239\188\129\239\188\129\239\188\129\239\188\129")
+      DebugPrint(LXYTag, WarningTag, "组队邀请UI需要抢夺聚焦！！！！！！")
       InviteView:SetFocus()
     end
     if InviteRemainTime > 0 then
@@ -530,17 +530,17 @@ function M:SetUpDoInviteTimer(Uid, Interval)
     if InviteRemainTime > 0 then
       return
     end
-    DebugPrint(DebugTag, "\229\143\145\229\135\186\229\142\187\231\154\132\231\187\132\233\152\159\233\130\128\232\175\183\229\183\178\231\187\143\232\182\133\230\151\182", Uid)
+    DebugPrint(DebugTag, "发出去的组队邀请已经超时", Uid)
     self:RecvTeamBeRefused(Uid)
   end, true, 0, nil)
 end
 
 function M:DelTeamMemberWithDs(Eid)
   if TeamModel:GetTeam() and TeamModel:GetTeam().bDsData then
-    DebugPrint(LXYTag, "TeamSyncDebug  TeamModel \229\176\157\232\175\149\231\167\187\233\153\164ds\233\152\159\229\143\139\230\149\176\230\141\174 ", Eid)
+    DebugPrint(LXYTag, "TeamSyncDebug  TeamModel 尝试移除ds队友数据 ", Eid)
     local Member = TeamModel:GetTeamMember(Eid)
     if Member and Member.bDsData then
-      DebugPrint(LXYTag, "TeamSyncDebug TeamModel Ds\233\152\159\229\143\139 \231\167\187\233\153\164\230\136\144\229\138\159 ", Eid)
+      DebugPrint(LXYTag, "TeamSyncDebug TeamModel Ds队友 移除成功 ", Eid)
       TeamModel:DelTeamMemberWithDs(Eid)
       self:NotifyEvent(TeamCommon.EventId.DsTeamOnDelPlayer, Member)
     end
@@ -548,12 +548,12 @@ function M:DelTeamMemberWithDs(Eid)
 end
 
 function M:AddTeamMemberWithDs(WorldContext, Eid)
-  DebugPrint(LXYTag, "TeamSyncDebug TeamModel \229\176\157\232\175\149\230\183\187\229\138\160ds\233\152\159\229\143\139\230\149\176\230\141\174 ", Eid)
+  DebugPrint(LXYTag, "TeamSyncDebug TeamModel 尝试添加ds队友数据 ", Eid)
   local Res = TeamModel:AddTeamMemberWithDs(WorldContext, Eid)
   if not Res then
     return
   end
-  DebugPrint(LXYTag, "TeamSyncDebug  Ds\233\152\159\229\143\139\230\183\187\229\138\160\230\136\144\229\138\159 ")
+  DebugPrint(LXYTag, "TeamSyncDebug  Ds队友添加成功 ")
   local TeamData = TeamModel:GetTeam()
   local TeamDataBackup = TeamModel:GetTeamBackup()
   if not TeamDataBackup or #TeamData.Members > #TeamDataBackup.Members then

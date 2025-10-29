@@ -187,7 +187,7 @@ end
 
 function ModSlotUIData:SetModEid(ModEid)
   if self:InState(ModCommon.SlotState.Lock) then
-    DebugPrint(WarningTag, LXYTag, "\230\167\189\228\189\141\228\184\138\233\148\129\228\184\173\239\188\140\228\184\141\232\131\189\232\174\190\231\189\174Mod")
+    DebugPrint(WarningTag, LXYTag, "槽位上锁中，不能设置Mod")
     return
   end
   if self.ModEid ~= nil then

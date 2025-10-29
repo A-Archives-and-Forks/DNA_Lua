@@ -4,22 +4,22 @@ end
 return ReadOnly("ImgChannelInfo", {
   [0] = {
     ImgChannelId = 0,
-    Name = "\229\174\152\230\150\185",
+    Name = "官方",
     Provider = "Hero"
   },
   [161] = {
     ImgChannelId = 161,
-    Name = "\229\165\189\230\184\184-\229\174\137\229\141\147",
+    Name = "好游-安卓",
     Provider = "HaoYouKuaiBao"
   },
   [167] = {
     ImgChannelId = 167,
-    Name = "TapTap-\229\174\137\229\141\147",
+    Name = "TapTap-安卓",
     Provider = "TapTap"
   },
   [259] = {
     ImgChannelId = 259,
-    Name = "\229\174\152\230\150\185\229\174\152\231\189\145PC",
+    Name = "官方官网PC",
     Provider = "Hero"
   },
   [287] = {
@@ -29,12 +29,12 @@ return ReadOnly("ImgChannelInfo", {
   },
   [288] = {
     ImgChannelId = 288,
-    Name = "\229\165\189\230\184\184\229\191\171\231\136\134-PC",
+    Name = "好游快爆-PC",
     Provider = "HaoYouKuaiBao"
   },
   [296] = {
     ImgChannelId = 296,
-    Name = "\230\138\150\233\159\179-\229\174\137\229\141\147",
+    Name = "抖音-安卓",
     Provider = "DouYin"
   }
 })

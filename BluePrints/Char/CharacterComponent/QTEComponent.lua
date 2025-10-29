@@ -64,7 +64,7 @@ function Component:CheckCanWorkingQTE(Config)
     return false
   end
   if self:IsQTEWorking() then
-    DebugPrint("QTE: \232\167\166\229\143\145\231\170\151\229\143\163\233\135\141\229\143\160/\229\144\140\228\184\128QTE\229\164\154\230\172\161\232\167\166\229\143\145")
+    DebugPrint("QTE: 触发窗口重叠/同一QTE多次触发")
     return false
   end
   return true
@@ -124,7 +124,7 @@ function Component:ClearQTE()
 end
 
 function Component:OnQTETimeOut()
-  DebugPrint("QTE: QTE\231\187\147\230\157\159")
+  DebugPrint("QTE: QTE结束")
   local Config = self.WorkingQTEConfig
   self:ResumeQTETimeDilation()
   self:SwitchPlayNextSequence()
@@ -159,7 +159,7 @@ function Component:EnableQTETimeDilation(Config)
   if 0 == Config.TimeDialation then
     Config.TimeDialation = 0.01
   end
-  DebugPrint("QTE: \230\155\180\230\148\185\229\133\168\229\177\128\230\151\182\233\151\180\232\134\168\232\131\128", Config.TimeDialation)
+  DebugPrint("QTE: 更改全局时间膨胀", Config.TimeDialation)
   Config.OriGlobalTimeDilation = UE4.UGameplayStatics.GetGlobalTimeDilation(self)
   UE4.UGameplayStatics.SetGlobalTimeDilation(self, Config.TimeDialation)
 end
@@ -171,7 +171,7 @@ function Component:ResumeQTETimeDilation()
   local Config = self.WorkingQTEConfig
   self.bHasResumeQTETimeDilation = true
   if Config and Config.OriGlobalTimeDilation then
-    DebugPrint("QTE: \230\129\162\229\164\141\229\133\168\229\177\128\230\151\182\233\151\180\232\134\168\232\131\128", Config.OriGlobalTimeDilation)
+    DebugPrint("QTE: 恢复全局时间膨胀", Config.OriGlobalTimeDilation)
     UE4.UGameplayStatics.SetGlobalTimeDilation(self, Config.OriGlobalTimeDilation)
   else
     DebugPrint("QTE: warning ResumeQTETimeDilation without ori TimeDilation, Use Default 1.0 GlobalTimeDilation")
@@ -196,13 +196,13 @@ function Component:IsQTEWorking()
 end
 
 function Component:OnQTESucceed()
-  DebugPrint("QTE: QTE\229\147\141\229\186\148\230\136\144\229\138\159")
+  DebugPrint("QTE: QTE响应成功")
   self.bQTESucceed = true
   self:ResumeQTETimeDilation()
 end
 
 function Component:OnQTEFailed()
-  DebugPrint("QTE: QTE\229\147\141\229\186\148\229\164\177\232\180\165")
+  DebugPrint("QTE: QTE响应失败")
   self.bQTESucceed = false
   self:ResumeQTETimeDilation()
 end

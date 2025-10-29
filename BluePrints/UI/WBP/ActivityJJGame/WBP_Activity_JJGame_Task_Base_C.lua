@@ -86,7 +86,7 @@ function M:UpdateEventDay()
   for _, Task in pairs(self._Avatar.MidTermTasks) do
     local TaskData = DataMgr.MidTermTask[Task.UniqueID]
     if not TaskData then
-      Utils.ScreenPrint("MidTermTask\232\161\168\228\184\173\228\184\141\229\173\152\229\156\168UniqueID\228\184\186" .. Task.UniqueID .. "\231\154\132\228\187\187\229\138\161\239\188\140\232\175\183\230\163\128\230\159\165\233\133\141\231\189\174")
+      Utils.ScreenPrint("MidTermTask表中不存在UniqueID为" .. Task.UniqueID .. "的任务，请检查配置")
     elseif TaskData.TaskType == TaskType.Daily[1] or TaskData.TaskType == TaskType.Daily[2] then
       enableDayEventDay = TaskData.EnableDay
       hasDailyTask = true
@@ -94,7 +94,7 @@ function M:UpdateEventDay()
     end
   end
   if hasDailyTask and calculatedEventDay ~= enableDayEventDay then
-    DebugPrint(TXTTag, "\232\173\166\229\145\138\239\188\154EventDay\232\174\161\231\174\151\228\184\141\228\184\128\232\135\180\239\188\129GetIntervalDay\230\150\185\230\179\149\239\188\154" .. calculatedEventDay .. "\239\188\140EnableDay\230\150\185\230\179\149\239\188\154" .. enableDayEventDay)
+    DebugPrint(TXTTag, "警告：EventDay计算不一致！GetIntervalDay方法：" .. calculatedEventDay .. "，EnableDay方法：" .. enableDayEventDay)
   end
   self.EventDay = calculatedEventDay
   if not hasDailyTask then
@@ -105,7 +105,7 @@ function M:UpdateEventDay()
   for _, Task in pairs(DataMgr.MidTermTask) do
     local TaskData = Task
     if not TaskData then
-      Utils.ScreenPrint("MidTermTask\232\161\168\228\184\173\228\184\141\229\173\152\229\156\168UniqueID\228\184\186" .. Task.UniqueID .. "\231\154\132\228\187\187\229\138\161\239\188\140\232\175\183\230\163\128\230\159\165\233\133\141\231\189\174")
+      Utils.ScreenPrint("MidTermTask表中不存在UniqueID为" .. Task.UniqueID .. "的任务，请检查配置")
     elseif TaskData and TaskData.TaskType == TaskType.Achievement and TaskData.EnableDay then
       local enableDay = TaskData.EnableDay
       if enableDay > self.EventDay and (not nextEnableDay or nextEnableDay > enableDay) then
@@ -220,7 +220,7 @@ function M:UpdateTabNewReddot()
   for TaskId, Task in pairs(self._Avatar.MidTermTasks) do
     local TaskData = DataMgr.MidTermTask[Task.UniqueID]
     if not TaskData then
-      Utils.ScreenPrint("MidTermTask\232\161\168\228\184\173\228\184\141\229\173\152\229\156\168UniqueID\228\184\186" .. Task.UniqueID .. "\231\154\132\228\187\187\229\138\161\239\188\140\232\175\183\230\163\128\230\159\165\233\133\141\231\189\174")
+      Utils.ScreenPrint("MidTermTask表中不存在UniqueID为" .. Task.UniqueID .. "的任务，请检查配置")
     else
       local CacheKey = Task.UniqueID
       if TaskData.TaskType == TaskType.Achievement then
@@ -245,7 +245,7 @@ function M:UpdateTabNewReddot()
       for TaskId, Task in pairs(self._Avatar.MidTermTasks) do
         local TaskData = DataMgr.MidTermTask[Task.UniqueID]
         if not TaskData then
-          Utils.ScreenPrint("MidTermTask\232\161\168\228\184\173\228\184\141\229\173\152\229\156\168UniqueID\228\184\186" .. Task.UniqueID .. "\231\154\132\228\187\187\229\138\161\239\188\140\232\175\183\230\163\128\230\159\165\233\133\141\231\189\174")
+          Utils.ScreenPrint("MidTermTask表中不存在UniqueID为" .. Task.UniqueID .. "的任务，请检查配置")
         elseif TaskData.TaskType ~= TaskType.Achievement then
           local TaskCacheKey = NormalRewardReddotName .. Task.UniqueID
           if NormalRewardCacheData[TaskCacheKey] then

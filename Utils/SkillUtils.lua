@@ -72,7 +72,7 @@ function SkillUtils.CalcSkillDesc(Desc, SkillLevel, Args)
   local ok, ret = pcall(SkillUtils.SplitEval, NewDesc, "$", Args)
   if not ok then
     if GWorld.GameInstance then
-      Battle(GWorld.GameInstance):ShowBattleError("\232\175\134\229\136\171\230\138\128\232\131\189\230\143\143\232\191\176\227\128\144" .. tostring(Desc) .. "\227\128\145\229\164\177\232\180\165!\229\174\158\233\153\133\230\143\143\232\191\176\228\184\186\227\128\144" .. tostring(NewDesc) .. "\227\128\145\232\175\183\231\173\150\229\136\146\230\163\128\230\159\165\232\161\168\230\160\188\229\161\171\229\134\153\nError:" .. tostring(ret))
+      Battle(GWorld.GameInstance):ShowBattleError("识别技能描述【" .. tostring(Desc) .. "】失败!实际描述为【" .. tostring(NewDesc) .. "】请策划检查表格填写\nError:" .. tostring(ret))
     end
     return NewDesc
   end
@@ -240,15 +240,15 @@ end
 
 function SkillUtils.GrowDescIndex(_FinalProxy, Key)
   local RawData = rawget(_FinalProxy, "RawData")
-  assert(RawData, "\230\137\190\228\184\141\229\136\176DataMgr." .. tostring(_FinalProxy.DataProxy._GrowType) .. "[" .. tostring(_FinalProxy.ID) .. "]\231\154\132\230\149\176\230\141\174")
+  assert(RawData, "找不到DataMgr." .. tostring(_FinalProxy.DataProxy._GrowType) .. "[" .. tostring(_FinalProxy.ID) .. "]的数据")
   local Value = RawData[Key]
-  assert(Value, "\230\137\190\228\184\141\229\136\176DataMgr." .. tostring(_FinalProxy.DataProxy._GrowType) .. "[" .. tostring(_FinalProxy.ID) .. "]\233\135\140\230\159\144\228\184\170Key[" .. tostring(Key) .. "]\231\154\132\230\149\176\230\141\174")
+  assert(Value, "找不到DataMgr." .. tostring(_FinalProxy.DataProxy._GrowType) .. "[" .. tostring(_FinalProxy.ID) .. "]里某个Key[" .. tostring(Key) .. "]的数据")
   local GrowData = rawget(_FinalProxy, "GrowData")
   if type(Value) == "string" and string.sub(Value, 1, 1) == "#" then
     assert(GrowData, tostring(rawget(_FinalProxy, "Error")))
     local Index = tonumber(string.sub(Value, 2, -1))
     local IndexData = GrowData[Index]
-    assert(IndexData, tostring(rawget(_FinalProxy, "Error")) .. "Index\228\184\186[" .. tostring(Index) .. "]")
+    assert(IndexData, tostring(rawget(_FinalProxy, "Error")) .. "Index为[" .. tostring(Index) .. "]")
     Value = IndexData.Value
   end
   if type(Value) ~= "table" then
@@ -303,17 +303,17 @@ end
 function SkillUtils.GetGrowData(GrowType, ID, SkillLevel)
   local _Data = DataMgr.SkillGrow[GrowType]
   if not _Data then
-    return nil, "\231\188\186\229\176\145\231\177\187\229\158\139\228\184\186[" .. tostring(GrowType) .. "]\231\154\132\230\136\144\233\149\191\230\149\176\230\141\174"
+    return nil, "缺少类型为[" .. tostring(GrowType) .. "]的成长数据"
   end
   _Data = _Data[ID]
   if not _Data then
-    return nil, "\231\188\186\229\176\145\231\177\187\229\158\139\228\184\186[" .. tostring(GrowType) .. "]\231\188\150\229\143\183\228\184\186[" .. tostring(ID) .. "]\231\154\132\230\136\144\233\149\191\230\149\176\230\141\174"
+    return nil, "缺少类型为[" .. tostring(GrowType) .. "]编号为[" .. tostring(ID) .. "]的成长数据"
   end
   _Data = _Data[SkillLevel]
   if not _Data then
-    return nil, "\231\188\186\229\176\145\231\177\187\229\158\139\228\184\186[" .. tostring(GrowType) .. "]\231\188\150\229\143\183\228\184\186[" .. tostring(ID) .. "]\231\173\137\231\186\167\228\184\186[" .. tostring(SkillLevel) .. "]\231\154\132\230\136\144\233\149\191\230\149\176\230\141\174"
+    return nil, "缺少类型为[" .. tostring(GrowType) .. "]编号为[" .. tostring(ID) .. "]等级为[" .. tostring(SkillLevel) .. "]的成长数据"
   end
-  return _Data, "\231\188\186\229\176\145\231\177\187\229\158\139\228\184\186[" .. tostring(GrowType) .. "]\231\188\150\229\143\183\228\184\186[" .. tostring(ID) .. "]\231\173\137\231\186\167\228\184\186[" .. tostring(SkillLevel) .. "]\231\154\132\230\136\144\233\149\191\230\149\176\230\141\174"
+  return _Data, "缺少类型为[" .. tostring(GrowType) .. "]编号为[" .. tostring(ID) .. "]等级为[" .. tostring(SkillLevel) .. "]的成长数据"
 end
 
 function SkillUtils.GrowProxyBySkillLevel(GrowType, ID, SkillLevel, RawData, Args)
@@ -485,7 +485,7 @@ function SkillUtils.CalcPetEntryEnhanceDesc(EntryId, NewEntryId)
   local Data = DataMgr.PetEntry[EntryId]
   local NewData = DataMgr.PetEntry[NewEntryId]
   if not Data or not NewData then
-    error("\230\178\161\230\156\137\232\142\183\229\143\150\229\136\176\232\175\141\230\157\161")
+    error("没有获取到词条")
     return
   end
   local BattePetData = DataMgr.BattlePet[Data.BattlePetID]
@@ -504,7 +504,7 @@ function SkillUtils.CalcPetEntryEnhanceDesc(EntryId, NewEntryId)
         if nil ~= NewvalueStr then
           Desc = Desc .. " -> " .. string.format("<H>%s</>", NewvalueStr)
         else
-          Debugprint("\230\178\161\230\137\190\229\136\176\229\141\135\231\186\167\229\144\142\231\154\132\232\175\141\230\157\161\230\149\176\230\141\174")
+          Debugprint("没找到升级后的词条数据")
         end
       end
     end

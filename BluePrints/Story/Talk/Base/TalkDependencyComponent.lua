@@ -47,7 +47,7 @@ function FTalkDependencyComponent:CheckDependValid(Target)
       return
     end
   end
-  error("\228\184\186Task\230\183\187\229\138\160\228\190\157\232\181\150\230\151\182\239\188\140 Task\231\154\132\228\190\157\232\181\150\228\184\141\229\156\168ETalkDependency\228\184\173,\228\190\157\232\181\150\228\184\186:" .. Target)
+  error("为Task添加依赖时， Task的依赖不在ETalkDependency中,依赖为:" .. Target)
 end
 
 function FTalkDependencyComponent:CheckDependenciesComplete(TalkTask, TaskData)
@@ -61,7 +61,7 @@ function FTalkDependencyComponent:CheckDependenciesComplete(TalkTask, TaskData)
     end
   end
   if not bRes then
-    DebugPrint("@@@ \230\156\170\229\174\140\230\136\144\231\154\132\228\190\157\232\181\150\239\188\154", TalkTask)
+    DebugPrint("@@@ 未完成的依赖：", TalkTask)
     DebugPrintTable(UncompleteDepends)
   end
   return bRes

@@ -449,14 +449,14 @@ function M:IsBugMod(ModUuid)
   local ModConf = Mod:Data()
   local GenDesc = ArmoryUtils:GenModPassiveEffectDesc(ModConf, Mod.Level)
   if GenDesc == ModConf.PassiveEffectsDesc then
-    GWorld.logger.error(string.format("ModId: %s \231\154\132\232\162\171\229\138\168\230\143\143\232\191\176\230\178\161\230\156\137\229\161\171\229\165\189 \230\143\143\232\191\176\230\150\135\230\156\172:%s", Mod.ModId, GenDesc))
+    GWorld.logger.error(string.format("ModId: %s 的被动描述没有填好 描述文本:%s", Mod.ModId, GenDesc))
     return true
   end
   for _, AddAttr in ipairs(ModConf.AddAttrs or {}) do
     AddAttr = SkillUtils.GrowProxyBySkillLevel("Mod", Mod.ModId, Mod.Level, AddAttr)
     local AttrVal = AddAttr.Value or AddAttr.Rate
     if type(AttrVal) ~= "number" then
-      GWorld.logger.error(string.format("ModId: %s \231\154\132\229\177\158\230\128\167\233\133\141\231\189\174\230\156\137\233\151\174\233\162\152\239\188\140\229\177\158\230\128\167\229\144\141%s\231\154\132\231\180\162\229\188\149%s\230\137\190\228\184\141\229\136\176\231\155\184\229\133\179\231\154\132\230\136\144\233\149\191\233\133\141\231\189\174\n(AllowModMultiplier:%s)", Mod.ModId, AddAttr.AttrName, AttrVal, AddAttr.AllowModMultiplier or "\230\151\160"))
+      GWorld.logger.error(string.format("ModId: %s 的属性配置有问题，属性名%s的索引%s找不到相关的成长配置\n(AllowModMultiplier:%s)", Mod.ModId, AddAttr.AttrName, AttrVal, AddAttr.AllowModMultiplier or "无"))
       return true
     end
   end
@@ -1033,7 +1033,7 @@ end
 
 function M:_GenerateModUserOverCostMsg(TargetMod, PreviewLevel, User, Res)
   if not User then
-    DebugPrint(ErrorTag, LXYTag, "Mod\231\154\132User\228\184\141\229\186\148\232\175\165\228\184\186\231\169\186\239\188\140Mod\231\154\132\229\143\141\229\144\145\229\188\149\231\148\168Uuid\229\136\151\232\161\168\230\156\137\233\151\174\233\162\152\239\188\140 Mod\239\188\154", TargetMod:GetName())
+    DebugPrint(ErrorTag, LXYTag, "Mod的User不应该为空，Mod的反向引用Uuid列表有问题， Mod：", TargetMod:GetName())
     return
   end
   local ExtraVolume = TargetMod:CalcExtralCharVolume(TargetMod:ExpectCost(PreviewLevel))

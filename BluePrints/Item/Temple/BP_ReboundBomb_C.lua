@@ -67,7 +67,7 @@ function M:Lanuch(DeltaSeconds)
     local HitResult = UE.FHitResult()
     self.Mesh:K2_AddWorldOffset(Offset, true, HitResult, false)
     if HitResult.bBlockingHit then
-      DebugPrint("zwk \230\146\158\229\136\176\231\137\169\228\189\147\229\141\179\229\176\134\229\143\141\229\188\185", HitResult.Actor:GetName())
+      DebugPrint("zwk 撞到物体即将反弹", HitResult.Actor:GetName())
       local Direction = UKismetMathLibrary.GetReflectionVector(self.Dir, HitResult.ImpactNormal)
       Direction.Z = 0
       Direction:Normalize()

@@ -77,7 +77,7 @@ function BP_EMGameMode_C:SetGameModeBaseInfo(DungeonId)
       self:InitDungeonRandomEvent()
     end
   else
-    DebugPrint("BP_EMGameMode_C: Warning!!! DungeonId \228\184\186", DungeonId)
+    DebugPrint("BP_EMGameMode_C: Warning!!! DungeonId 为", DungeonId)
   end
 end
 
@@ -183,18 +183,18 @@ function BP_EMGameMode_C:GetAlreadyInit()
 end
 
 function BP_EMGameMode_C:SetRegionSpecialQuest(Value, UIParamID)
-  assert(self:IsInRegion(), "SetRegionSpecialQuest \229\143\170\232\131\189\229\156\168\229\140\186\229\159\159\229\134\133\232\176\131\231\148\168")
+  assert(self:IsInRegion(), "SetRegionSpecialQuest 只能在区域内调用")
   self.EMGameState.CurDungeonUIParamID = UIParamID
   local TypeName = ERegionSpecialQuestType:GetNameByValue(Value)
   self:InitRegionDungeonComponent(TypeName)
   self.LevelGameMode:InitRegionSpecialQuestGameModeComponent()
   self.EMGameState:SetDungeonUIState(Const.EDungeonUIState.None)
   self.EMGameState:LoadDungeonUI(TypeName)
-  DebugPrint("SetRegionSpecialQuest \231\137\185\230\174\138\228\187\187\229\138\161GameModeComponent\229\136\157\229\167\139\229\140\150 \231\137\185\230\174\138\228\187\187\229\138\161:", TypeName)
+  DebugPrint("SetRegionSpecialQuest 特殊任务GameModeComponent初始化 特殊任务:", TypeName)
 end
 
 function BP_EMGameMode_C:ResetRegionSpecialQuest()
-  DebugPrint("ResetRegionSpecialQuest \231\137\185\230\174\138\228\187\187\229\138\161GameModeComponent\233\135\141\231\189\174 \231\137\185\230\174\138\228\187\187\229\138\161:", self.LevelGameMode.RegionSpecialQuest)
+  DebugPrint("ResetRegionSpecialQuest 特殊任务GameModeComponent重置 特殊任务:", self.LevelGameMode.RegionSpecialQuest)
   self.EMGameState:UnloadDungeonUI(self.LevelGameMode.RegionSpecialQuest)
   self.LevelGameMode:ClearRegionSpecialQuestGameModeComponent()
   self:ClearRegionDungeonComponent()
@@ -229,7 +229,7 @@ function BP_EMGameMode_C:OnInit()
     return
   end
   self:RegionOnInit()
-  DebugPrint("GameMode\232\191\155\232\161\140\230\191\128\230\180\187 OnInit")
+  DebugPrint("GameMode进行激活 OnInit")
   GWorld:DSBLog("Info", "GameMode:OnInit", "GameMode")
   self:AddDungeonEvent("OnInit")
   self.AlreadyInit = true
@@ -337,15 +337,15 @@ function BP_EMGameMode_C:MainGameModeOnBigWorldActive()
       local SubRegionId = self:GetRegionIdByLocation(ExploreGroup:K2_GetActorLocation())
       local ExploreId = ExploreGroup:GetExploreGroupId()
       if not DataMgr.SubRegion[SubRegionId] then
-        GWorld.logger.error("ZJT_ \229\147\166\230\136\145\231\154\132\228\184\138\229\184\157\239\188\140\232\191\153\233\135\140\230\156\137\228\184\128\228\184\170\230\142\162\231\180\162\231\187\132" .. ExploreId .. "\232\162\171\228\184\162\229\188\131\229\156\168\229\140\186\229\159\159\229\164\150" .. SubRegionId .. "\230\137\190\228\184\141\229\136\176\229\174\131\230\137\128\229\156\168\231\154\132\229\140\186\229\159\159")
+        GWorld.logger.error("ZJT_ 哦我的上帝，这里有一个探索组" .. ExploreId .. "被丢弃在区域外" .. SubRegionId .. "找不到它所在的区域")
       elseif ActiveExploreInfo[ExploreGroup:GetExploreGroupId()] then
-        GWorld.logger.error("ZJT_ \229\147\166\230\136\145\231\154\132\228\184\138\229\184\157\239\188\140\232\191\153\233\135\140\230\156\137\228\184\128\228\184\170\230\142\162\231\180\162\231\187\132\229\177\133\231\132\182\233\135\141\229\164\141\230\142\137\228\186\134" .. ExploreId .. ":SubRegionId:" .. SubRegionId .. "\230\137\128\229\156\168\231\154\132\229\140\186\229\159\159")
+        GWorld.logger.error("ZJT_ 哦我的上帝，这里有一个探索组居然重复掉了" .. ExploreId .. ":SubRegionId:" .. SubRegionId .. "所在的区域")
       else
         local Explore = Avatar.Explores[ExploreId]
         if Explore then
           if Explore:IsDoing() then
             if Explore.RegionId ~= SubRegionId then
-              GWorld.logger.error("ZJT_ \229\147\166\230\136\145\231\154\132\228\184\138\229\184\157\239\188\140\232\191\153\233\135\140\230\156\137\228\184\128\228\184\170\230\142\162\231\180\162\231\187\132\229\177\133\231\132\182\233\135\141\229\164\141\230\142\137\228\186\134 \228\184\141\229\144\140\229\140\186\229\159\159: " .. ExploreId .. ": \230\156\172\230\172\161\230\191\128\230\180\187 SubRegionId:" .. SubRegionId .. "\230\137\128\229\156\168\231\154\132\229\140\186\229\159\159" .. "\228\184\138\230\172\161\230\191\128\230\180\187\239\188\154" .. Explore.RegionId .. " \230\137\128\229\156\168\229\140\186\229\159\159\239\188\129")
+              GWorld.logger.error("ZJT_ 哦我的上帝，这里有一个探索组居然重复掉了 不同区域: " .. ExploreId .. ": 本次激活 SubRegionId:" .. SubRegionId .. "所在的区域" .. "上次激活：" .. Explore.RegionId .. " 所在区域！")
             end
           elseif Explore:IsInActive() then
             ActiveExploreInfo[ExploreId] = SubRegionId
@@ -464,7 +464,7 @@ function BP_EMGameMode_C:OnUnitDestoryEvent(MonsterC, CombatItemBase, DestroyRea
   elseif CombatItemBase then
     self:TriggerSTLEvent("OnSTLActorDestroyed", CombatItemBase, DestroyReason)
   else
-    DebugPrint("BP_EMGameMode_C:OnUnitDestoryEvent \228\188\160\229\133\165\231\154\132Monster\229\146\140CombatItemBase\229\157\135\228\184\186\231\169\186\239\188\129")
+    DebugPrint("BP_EMGameMode_C:OnUnitDestoryEvent 传入的Monster和CombatItemBase均为空！")
   end
 end
 
@@ -498,10 +498,10 @@ function BP_EMGameMode_C:STLRegisterKillMonsterNode(KillMonsterNode)
   end
   if _G.next(self.KillMonsterNodeMap) == nil then
     self.EMGameState:RegisterGameModeEvent("OnDead", self, self.STLOnMonsterKilled)
-    DebugPrint("KillMonsterNode: \230\179\168\229\134\140OnDead\228\186\139\228\187\182")
+    DebugPrint("KillMonsterNode: 注册OnDead事件")
   end
   self.KillMonsterNodeMap[KillMonsterNode.Key] = KillMonsterNode
-  DebugPrint("KillMonsterNode: \230\179\168\229\134\140\229\136\176GameMode. Key", KillMonsterNode.Key)
+  DebugPrint("KillMonsterNode: 注册到GameMode. Key", KillMonsterNode.Key)
 end
 
 function BP_EMGameMode_C:STLUnRegisterKillMonsterNode(KillMonsterNodeKey)
@@ -509,10 +509,10 @@ function BP_EMGameMode_C:STLUnRegisterKillMonsterNode(KillMonsterNodeKey)
     return
   end
   self.KillMonsterNodeMap[KillMonsterNodeKey] = nil
-  DebugPrint("KillMonsterNode: \228\187\142GameMode\231\167\187\233\153\164. Key", KillMonsterNodeKey)
+  DebugPrint("KillMonsterNode: 从GameMode移除. Key", KillMonsterNodeKey)
   if nil == _G.next(self.KillMonsterNodeMap) then
     self.EMGameState:RemoveGameModeEvent("OnDead", self, self.STLOnMonsterKilled)
-    DebugPrint("KillMonsterNode: \230\179\168\233\148\128OnDead\228\186\139\228\187\182")
+    DebugPrint("KillMonsterNode: 注销OnDead事件")
   end
 end
 
@@ -522,7 +522,7 @@ function BP_EMGameMode_C:STLOnMonsterKilled(Monster)
   end
   local DeepCopy_KillMonsterNodeMap = self:STLTableDeepCopy(self.KillMonsterNodeMap)
   for Key, KillMonsterNode in pairs(DeepCopy_KillMonsterNodeMap) do
-    DebugPrint("KillMonsterNode: \230\128\170\231\137\169\232\162\171\229\135\187\230\157\128\239\188\140Node Key", Key)
+    DebugPrint("KillMonsterNode: 怪物被击杀，Node Key", Key)
     KillMonsterNode:OnMonsterKilledByNums(Monster)
   end
 end
@@ -533,10 +533,10 @@ function BP_EMGameMode_C:STLRegisterKillMonsterNode_Creator(KillMonsterNode)
   end
   if _G.next(self.KillMonsterNodeMap_Creator) == nil then
     self.EMGameState:RegisterGameModeEvent("OnDeadStaticUnit", self, self.STLOnMonsterKilled_Creator)
-    DebugPrint("KillMonsterNode_Creator: \230\179\168\229\134\140OnDead\228\186\139\228\187\182")
+    DebugPrint("KillMonsterNode_Creator: 注册OnDead事件")
   end
   self.KillMonsterNodeMap_Creator[KillMonsterNode.Key] = KillMonsterNode
-  DebugPrint("KillMonsterNode_Creator: \230\179\168\229\134\140\229\136\176GameMode. Key", KillMonsterNode.Key)
+  DebugPrint("KillMonsterNode_Creator: 注册到GameMode. Key", KillMonsterNode.Key)
 end
 
 function BP_EMGameMode_C:STLUnRegisterKillMonsterNode_Creator(KillMonsterNodeKey)
@@ -544,10 +544,10 @@ function BP_EMGameMode_C:STLUnRegisterKillMonsterNode_Creator(KillMonsterNodeKey
     return
   end
   self.KillMonsterNodeMap_Creator[KillMonsterNodeKey] = nil
-  DebugPrint("KillMonsterNode_Creator: \228\187\142GameMode\231\167\187\233\153\164. Key", KillMonsterNodeKey)
+  DebugPrint("KillMonsterNode_Creator: 从GameMode移除. Key", KillMonsterNodeKey)
   if nil == _G.next(self.KillMonsterNodeMap_Creator) then
     self.EMGameState:RemoveGameModeEvent("OnDeadStaticUnit", self, self.STLOnMonsterKilled_Creator)
-    DebugPrint("KillMonsterNode_Creator: \230\179\168\233\148\128OnDead\228\186\139\228\187\182")
+    DebugPrint("KillMonsterNode_Creator: 注销OnDead事件")
   end
 end
 
@@ -557,7 +557,7 @@ function BP_EMGameMode_C:STLOnMonsterKilled_Creator(Monster)
   end
   local DeepCopy_KillMonsterNodeMap_Creator = self:STLTableDeepCopy(self.KillMonsterNodeMap_Creator)
   for Key, KillMonsterNode in pairs(DeepCopy_KillMonsterNodeMap_Creator) do
-    DebugPrint("KillMonsterNode_Creator: \230\128\170\231\137\169\232\162\171\229\135\187\230\157\128\239\188\140Node Key", Key)
+    DebugPrint("KillMonsterNode_Creator: 怪物被击杀，Node Key", Key)
     KillMonsterNode:OnMonsterKilledByCreatorId(Monster)
   end
 end
@@ -690,13 +690,13 @@ function BP_EMGameMode_C:InitBPBornActor()
         local Avatar = GWorld:GetAvatar()
         if Avatar then
           local ct = {
-            "\230\138\165\233\148\153\230\150\135\230\156\172:\n\t",
-            "\230\156\186\229\133\179\229\144\141\231\167\176\239\188\154",
+            "报错文本:\n\t",
+            "机关名称：",
             v:GetName(),
             "\n"
           }
           local FinalMsg = table.concat(ct)
-          Avatar:SendToFeiShuForRegionMgr(FinalMsg, "BPBorn\229\136\157\229\167\139\229\140\150\230\138\165\233\148\153 | \230\156\170\232\142\183\229\143\150\229\136\176GameState")
+          Avatar:SendToFeiShuForRegionMgr(FinalMsg, "BPBorn初始化报错 | 未获取到GameState")
         else
           DebugPrint("yxderror: InitBPBornActor, NoGameState From This :", v:GetName())
         end
@@ -726,7 +726,7 @@ function BP_EMGameMode_C:IsCanTriggerStaticCreator(StaticCreatorId, QuestChainId
     return true
   end
   if QuestChainId and QuestChainId > 0 and Avatar:IsQuestChainFinished(QuestChainId) then
-    DebugPrint("\229\136\183\230\150\176\231\130\185\227\128\144" .. tostring(StaticCreatorId) .. "\227\128\145\230\137\128\229\177\158\231\154\132\228\187\187\229\138\161\233\147\190\227\128\144" .. tostring(QuestChainId) .. "\227\128\145\229\183\178\231\187\143\229\174\140\230\136\144\228\186\134")
+    DebugPrint("刷新点【" .. tostring(StaticCreatorId) .. "】所属的任务链【" .. tostring(QuestChainId) .. "】已经完成了")
     return false
   end
   if IsStandAlone(self) then
@@ -864,8 +864,8 @@ function BP_EMGameMode_C:SwitchToQuestRole(QuestRoleID, bPlayFX)
   end
   local RoleInfo = DataMgr.QuestRoleInfo[QuestRoleID]
   if not RoleInfo then
-    local Message = "QuestRoleId\228\184\141\229\173\152\229\156\168" .. "\n\t\229\156\168\232\176\131\231\148\168SwitchToQuestRole\231\154\132\230\151\182\229\128\153\239\188\140\228\188\160\229\133\165\231\154\132\229\143\130\230\149\176QuestRoleId \227\128\144" .. tostring(QuestRoleID) .. "\227\128\145 \229\156\168QuestRoleInfo\232\161\168\228\184\173\228\184\141\229\173\152\229\156\168\239\188\140\232\175\183\230\159\165\233\152\133QuestRoleInfo\232\161\168\230\160\188"
-    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "QuestRoleId\228\184\141\229\173\152\229\156\168", Message)
+    local Message = "QuestRoleId不存在" .. "\n\t在调用SwitchToQuestRole的时候，传入的参数QuestRoleId 【" .. tostring(QuestRoleID) .. "】 在QuestRoleInfo表中不存在，请查阅QuestRoleInfo表格"
+    UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "QuestRoleId不存在", Message)
     return
   end
   local AvatarInfo = AvatarUtils:GetBattleInfoByQuestRoleId(QuestRoleID, Avatar)
@@ -902,7 +902,7 @@ function BP_EMGameMode_C:TriggerMechanism(StaticCreatorId, StateId, PrivateEnabl
   end
   local NeedUpdateRegionData = true
   if StaticCreator.ChildEids:Length() >= 2 then
-    DebugPrint("Warning: \232\191\153\228\184\170StaticCreator\229\136\183\230\150\176\228\186\134\229\164\154\228\184\170\230\156\186\229\133\179", StaticCreator.ChildEids:Length())
+    DebugPrint("Warning: 这个StaticCreator刷新了多个机关", StaticCreator.ChildEids:Length())
   end
   local bCanChange = false
   if StaticCreator.ChildEids:Length() > 0 then
@@ -980,22 +980,22 @@ end
 
 function BP_EMGameMode_C:TriggerPetMechanismState(StateId, PrivateEnable, QuestId)
   if self:IsSubGameMode() then
-    print(_G.LogTag, "Error \229\156\168\229\173\144GameMode\228\189\191\231\148\168\228\186\134TriggerPetMechanismState:", self:GetName())
+    print(_G.LogTag, "Error 在子GameMode使用了TriggerPetMechanismState:", self:GetName())
     return
   end
   if not IsValid(self.RandomPetCreator) then
-    print(_G.LogTag, "Error TriggerPetMechanismState RandomPetCreator\230\151\160\230\149\136:", self:GetName())
+    print(_G.LogTag, "Error TriggerPetMechanismState RandomPetCreator无效:", self:GetName())
   end
   self:TriggerMechanism(self.RandomPetCreator.StaticCreatorId, StateId, PrivateEnable, QuestId)
 end
 
 function BP_EMGameMode_C:TriggerPetStateChangeMain(TargetState, PrivateEnable)
   if self:IsSubGameMode() then
-    print(_G.LogTag, "Error \229\156\168\229\173\144GameMode\228\189\191\231\148\168\228\186\134TriggerPetStateChangeMain:", self:GetName())
+    print(_G.LogTag, "Error 在子GameMode使用了TriggerPetStateChangeMain:", self:GetName())
     return
   end
   if not IsValid(self.RandomPetCreator) then
-    print(_G.LogTag, "Error TriggerPetStateChangeMain RandomPetCreator\230\151\160\230\149\136:", self:GetName())
+    print(_G.LogTag, "Error TriggerPetStateChangeMain RandomPetCreator无效:", self:GetName())
   end
   for i = 1, self.RandomPetCreator.ChildEids:Length() do
     local Info = Battle(self):GetEntity(self.RandomPetCreator.ChildEids:GetRef(i))
@@ -1017,7 +1017,7 @@ function BP_EMGameMode_C:OnTriggerMechanismManualItem(ManualCombatId, ComponentS
   for i = 1, ManualCombatId:Length() do
     local CombatItem = self.EMGameState.ManualActiveCombat:Find(ManualCombatId[i])
     if not IsValid(CombatItem) then
-      GWorld.logger.error("\229\147\166\230\136\145\231\154\132\228\184\138\229\184\157\239\188\140\232\191\153\233\135\140\230\156\137\228\184\128\228\184\170ManualItemId" .. ManualCombatId[i] .. "\230\137\190\228\184\141\229\136\176\229\174\131\228\186\178\231\136\177\231\154\132\230\156\186\229\133\179\229\174\158\228\189\147\239\188\140\228\186\178\231\136\177\231\154\132\231\173\150\229\136\146\232\131\189\230\148\185\228\184\128\228\184\139gamemode\233\133\141\231\189\174\229\144\151")
+      GWorld.logger.error("哦我的上帝，这里有一个ManualItemId" .. ManualCombatId[i] .. "找不到它亲爱的机关实体，亲爱的策划能改一下gamemode配置吗")
     end
     if IsValid(CombatItem) then
       if CombatItem.ChangeToState then
@@ -1040,7 +1040,7 @@ function BP_EMGameMode_C:OnTriggerMechanismMonsterNest(ManualId, MonsterNum, Mon
   for key, value in pairs(ManualId) do
     local CombatItem = self.EMGameState.ManualActiveCombat:Find(value)
     if not IsValid(CombatItem) then
-      GWorld.logger.error("\229\147\166\230\136\145\231\154\132\228\184\138\229\184\157\239\188\140\232\191\153\233\135\140\230\156\137\228\184\128\228\184\170ManualItemId" .. ManualId .. "\230\137\190\228\184\141\229\136\176\229\174\131\228\186\178\231\136\177\231\154\132\230\156\186\229\133\179\229\174\158\228\189\147\239\188\140\228\186\178\231\136\177\231\154\132\231\173\150\229\136\146\232\131\189\230\148\185\228\184\128\228\184\139gamemode\233\133\141\231\189\174\229\144\151")
+      GWorld.logger.error("哦我的上帝，这里有一个ManualItemId" .. ManualId .. "找不到它亲爱的机关实体，亲爱的策划能改一下gamemode配置吗")
     end
     CombatItem.MonsterNum = MonsterNum
     CombatItem.MonsterSpawnInterval = MonsterSpawnInterval
@@ -1086,7 +1086,7 @@ function BP_EMGameMode_C:OnTriggerDestroyMonsterInMonsterNest(ManualCombatId)
   for i = 1, ManualCombatId:Length() do
     local MonsterNest = self.EMGameState.ManualActiveCombat:Find(ManualCombatId[i])
     if not IsValid(MonsterNest) or not MonsterNest:IsCombatItemBase("MonsterNest") then
-      GWorld.logger.error("\229\147\166\230\136\145\231\154\132\228\184\138\229\184\157\239\188\140\232\191\153\233\135\140\230\156\137\228\184\128\228\184\170ManualItemId" .. ManualCombatId[i] .. "\230\137\190\228\184\141\229\136\176\229\174\131\228\186\178\231\136\177\231\154\132MonsterNest\239\188\140\228\186\178\231\136\177\231\154\132\231\173\150\229\136\146\232\131\189\230\148\185\228\184\128\228\184\139gamemode\233\133\141\231\189\174\229\144\151")
+      GWorld.logger.error("哦我的上帝，这里有一个ManualItemId" .. ManualCombatId[i] .. "找不到它亲爱的MonsterNest，亲爱的策划能改一下gamemode配置吗")
     end
     if IsValid(MonsterNest) then
       MonsterNest:DestroyAllMonster()
@@ -1120,16 +1120,16 @@ end
 
 function BP_EMGameMode_C:InitCreateEmergencyMonsterProb(MonsterType, Component, DungeonInfo)
   if nil == Component then
-    DebugPrint("InitCreateEmergencyMonsterProb: GameMode Componet \228\184\141\229\173\152\229\156\168\239\188\129")
+    DebugPrint("InitCreateEmergencyMonsterProb: GameMode Componet 不存在！")
     return
   end
   if nil == DungeonInfo then
-    DebugPrint("InitCreateEmergencyMonsterProb: DungeonInfo \228\184\141\229\173\152\229\156\168\239\188\129")
+    DebugPrint("InitCreateEmergencyMonsterProb: DungeonInfo 不存在！")
     return
   end
   local ProbabilityInfo = DungeonInfo[MonsterType .. "MonsterSpawnProbability"]
   if nil == ProbabilityInfo then
-    DebugPrint("InitCreateEmergencyMonsterProb: " .. MonsterType .. "\230\128\170\228\191\161\230\129\175\228\184\141\229\173\152\229\156\168\239\188\129")
+    DebugPrint("InitCreateEmergencyMonsterProb: " .. MonsterType .. "怪信息不存在！")
     return
   end
   Component["Current" .. MonsterType .. "MonsterProb"] = ProbabilityInfo[1]
@@ -1187,7 +1187,7 @@ function BP_EMGameMode_C:TryCreateEmergencyMonster(MonsterType)
   end
   local OneRandomPlayer = self:GetOneRandomPlayer()
   if not IsValid(OneRandomPlayer) then
-    DebugPrint("TryCreateEmergencyMonster, \231\142\169\229\174\182\228\184\141\229\173\152\229\156\168, \230\156\172\230\172\161\228\184\141\229\136\155\229\187\186\239\188\129")
+    DebugPrint("TryCreateEmergencyMonster, 玩家不存在, 本次不创建！")
     return
   end
   local PlayerLocation = self:GetOneRandomPlayer().CurrentLocation
@@ -1252,7 +1252,7 @@ end
 
 function BP_EMGameMode_C:UpdateDungeonProgress()
   self.EMGameState:SetDungeonProgress(self.EMGameState.DungeonProgress + 1)
-  DebugPrint("DungeonProgress \229\137\175\230\156\172\232\189\174\230\172\161 +1\239\188\140\229\189\147\229\137\141\232\189\174\230\172\161:", self.EMGameState.DungeonProgress)
+  DebugPrint("DungeonProgress 副本轮次 +1，当前轮次:", self.EMGameState.DungeonProgress)
   local PlayerCharacter = UE4.UGameplayStatics.GetPlayerCharacter(GWorld.GameInstance, 0)
   if PlayerCharacter and PlayerCharacter.BattleAchievement then
     PlayerCharacter.BattleAchievement:UpdateTopProcessedValue()
@@ -1338,19 +1338,19 @@ end
 
 function BP_EMGameMode_C:IsDungeonInSettlement()
   if not self.EMGameState:CheckGameModeStateEnable() then
-    DebugPrint("BP_EMGameMode_C:\229\137\175\230\156\172\231\138\182\230\128\129\228\184\141\230\173\163\231\161\174 \229\164\154\230\172\161\232\167\166\229\143\145\229\137\175\230\156\172\231\187\147\231\174\151")
+    DebugPrint("BP_EMGameMode_C:副本状态不正确 多次触发副本结算")
     return true
   end
   local Avatar = GWorld:GetAvatar()
   if Avatar and Avatar:IsInHardBoss() and self.LevelGameMode.IsInHardBossSettlement then
-    DebugPrint("BP_EMGameMode_C:\230\173\163\229\164\132\228\186\142mycs \229\164\154\230\172\161\232\167\166\229\143\145\229\137\175\230\156\172\231\187\147\231\174\151")
+    DebugPrint("BP_EMGameMode_C:正处于mycs 多次触发副本结算")
     return true
   end
   return false
 end
 
 function BP_EMGameMode_C:TriggerDungeonWin()
-  DebugPrint("BP_EMGameMode_C:TriggerDungeonWin \229\137\175\230\156\172\232\131\156\229\136\169")
+  DebugPrint("BP_EMGameMode_C:TriggerDungeonWin 副本胜利")
   if self:IsDungeonInSettlement() then
     return
   end
@@ -1358,7 +1358,7 @@ function BP_EMGameMode_C:TriggerDungeonWin()
 end
 
 function BP_EMGameMode_C:TriggerDungeonFailed()
-  DebugPrint("BP_EMGameMode_C:TriggerDungeonFailed \229\137\175\230\156\172\229\164\177\232\180\165")
+  DebugPrint("BP_EMGameMode_C:TriggerDungeonFailed 副本失败")
   if self:IsDungeonInSettlement() then
     return
   end
@@ -1374,7 +1374,7 @@ function BP_EMGameMode_C:TriggerExitDungeon(IsWin)
 end
 
 function BP_EMGameMode_C:TriggerPlayerWin(AvatarEids, PlayerEids)
-  DebugPrint("BP_EMGameMode_C:TriggerPlayerWin \231\142\169\229\174\182\230\136\144\229\138\159 \230\146\164\231\166\187")
+  DebugPrint("BP_EMGameMode_C:TriggerPlayerWin 玩家成功 撤离")
   if self:IsDungeonInSettlement() then
     return
   end
@@ -1387,7 +1387,7 @@ function BP_EMGameMode_C:TriggerPlayerWin(AvatarEids, PlayerEids)
 end
 
 function BP_EMGameMode_C:TriggerPlayerFailed(AvatarEids)
-  DebugPrint("BP_EMGameMode_C:TriggerPlayerFailed \231\142\169\229\174\182\229\164\177\232\180\165 \230\146\164\231\166\187")
+  DebugPrint("BP_EMGameMode_C:TriggerPlayerFailed 玩家失败 撤离")
   if self:IsDungeonInSettlement() then
     return
   end
@@ -1430,7 +1430,7 @@ end
 
 function BP_EMGameMode_C:TriggerPlayerFinish(IsWin, AvatarEids)
   GWorld:DSBLog("Info", "TriggerPlayerFinish IsWin:" .. tostring(IsWin), "GameMode")
-  DebugPrint("TriggerPlayerFinish \231\142\169\229\174\182\231\187\147\231\174\151\239\188\140\231\187\147\231\174\151\231\138\182\230\128\129\239\188\154", IsWin)
+  DebugPrint("TriggerPlayerFinish 玩家结算，结算状态：", IsWin)
   if IsStandAlone(self) or MiscUtils.IsListenServer(self) then
     local Avatar = GWorld:GetAvatar()
     if Avatar then
@@ -1453,16 +1453,16 @@ function BP_EMGameMode_C:TriggerPlayerFinish(IsWin, AvatarEids)
 end
 
 function BP_EMGameMode_C:SendTimeDistCheatalert(PlayerChar, DungeonSpendTime, DungeonMoveDistance, MonitorType, SubId, DisThresh, TimeThresh)
-  local AlertString = "\230\163\128\230\181\139\229\136\176\233\157\158\230\179\149\228\191\161\230\129\175:  "
+  local AlertString = "检测到非法信息:  "
   local BaseAlertInfo = self:CollectAlertBaseInfo(PlayerChar)
   if BaseAlertInfo.DungeonId then
-    AlertString = AlertString .. "\229\137\175\230\156\172ID: " .. BaseAlertInfo.DungeonId .. "  "
+    AlertString = AlertString .. "副本ID: " .. BaseAlertInfo.DungeonId .. "  "
   end
   if BaseAlertInfo.DungeonLevel then
-    AlertString = AlertString .. "\229\137\175\230\156\172\231\173\137\231\186\167: " .. BaseAlertInfo.DungeonLevel .. "  "
+    AlertString = AlertString .. "副本等级: " .. BaseAlertInfo.DungeonLevel .. "  "
   end
   if BaseAlertInfo.CharLevel then
-    AlertString = AlertString .. "\232\167\146\232\137\178\231\173\137\231\186\167: " .. BaseAlertInfo.CharLevel .. "  "
+    AlertString = AlertString .. "角色等级: " .. BaseAlertInfo.CharLevel .. "  "
   end
   if MonitorType then
     AlertString = AlertString .. "MonitorType: " .. MonitorType .. "  "
@@ -1471,16 +1471,16 @@ function BP_EMGameMode_C:SendTimeDistCheatalert(PlayerChar, DungeonSpendTime, Du
     AlertString = AlertString .. "SubID: " .. SubId .. "  "
   end
   if DungeonSpendTime then
-    AlertString = AlertString .. "\229\137\175\230\156\172\232\128\151\230\151\182: " .. DungeonSpendTime .. "  "
+    AlertString = AlertString .. "副本耗时: " .. DungeonSpendTime .. "  "
   end
   if TimeThresh then
-    AlertString = AlertString .. "\230\151\182\233\151\180\233\152\136\229\128\188: " .. TimeThresh .. "  "
+    AlertString = AlertString .. "时间阈值: " .. TimeThresh .. "  "
   end
   if DungeonMoveDistance then
-    AlertString = AlertString .. "\228\184\187\230\142\167\232\167\146\232\137\178\231\167\187\229\138\168\232\183\157\231\166\187: " .. DungeonMoveDistance .. "  "
+    AlertString = AlertString .. "主控角色移动距离: " .. DungeonMoveDistance .. "  "
   end
   if DisThresh then
-    AlertString = AlertString .. "\232\183\157\231\166\187\233\152\136\229\128\188: " .. DisThresh .. "  "
+    AlertString = AlertString .. "距离阈值: " .. DisThresh .. "  "
   end
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
@@ -2136,7 +2136,7 @@ end
 
 function BP_EMGameMode_C:GetMonsterCustomLoc(Monster)
   if self:IsInRegion() then
-    DebugPrint("Error!!! \229\140\186\229\159\159\229\135\186\231\142\176Boss\232\162\171\229\141\184\232\189\189\231\158\172\231\167\187\239\188\129\232\175\183\230\163\128\230\159\165\239\188\129 ViewLocation : ", URuntimeCommonFunctionLibrary.GetViewPortLocation(Monster))
+    DebugPrint("Error!!! 区域出现Boss被卸载瞬移！请检查！ ViewLocation : ", URuntimeCommonFunctionLibrary.GetViewPortLocation(Monster))
     return FVector(0, 0, 0)
   end
   local PlayerTarget
@@ -2198,25 +2198,25 @@ end
 
 function BP_EMGameMode_C:TriggerSpawnPet()
   if self.EMGameState.PetDefenceFail == true then
-    self.EMGameState:ShowDungeonError("TriggerSpawnPet \229\174\160\231\137\169\233\152\178\229\190\161\229\183\178\231\187\143\229\164\177\232\180\165\239\188\140\228\184\141\229\134\141\229\136\155\229\187\186")
+    self.EMGameState:ShowDungeonError("TriggerSpawnPet 宠物防御已经失败，不再创建")
     return
   end
   if not self.RandomPetCreator or not IsValid(self.RandomPetCreator) then
     local PetCreatorInfos = self:GetPetStaticCreatorInfo()
     if 0 == PetCreatorInfos:Num() then
-      self.EMGameState:ShowDungeonError("TriggerSpawnPet \229\189\147\229\137\141\230\139\188\230\142\165\229\137\175\230\156\172\229\134\133\230\137\190\228\184\141\229\136\176\229\174\160\231\137\169\233\157\153\230\128\129\231\130\185\239\188\140\232\175\183\230\163\128\230\159\165\233\133\141\231\189\174\239\188\129")
+      self.EMGameState:ShowDungeonError("TriggerSpawnPet 当前拼接副本内找不到宠物静态点，请检查配置！")
       return
     end
     self.RandomPetCreator = self:GetPetCreatorNearestToFirstPlayer(PetCreatorInfos)
     if not IsValid(self.RandomPetCreator) then
-      self.EMGameState:ShowDungeonError("TriggerSpawnPet \233\128\137\230\139\169\229\174\160\231\137\169\233\157\153\230\128\129\231\130\185\229\164\177\232\180\165\239\188\129")
+      self.EMGameState:ShowDungeonError("TriggerSpawnPet 选择宠物静态点失败！")
       return
     end
   end
   local SubLevelName = self:GetActorLevelName(self.RandomPetCreator)
   local SubGameMode = self.SubGameModeInfo:FindRef(SubLevelName)
   if not IsValid(SubGameMode) then
-    self.EMGameState:ShowDungeonError("TriggerSpawnPet \229\136\155\229\187\186\229\174\160\231\137\169\233\157\153\230\128\129\231\130\185\230\137\190\228\184\141\229\136\176SubGameMode StaticCreatorId: " .. self.RandomPetCreator.StaticCreatorId .. "SubLevelName: " .. tostring(SubLevelName))
+    self.EMGameState:ShowDungeonError("TriggerSpawnPet 创建宠物静态点找不到SubGameMode StaticCreatorId: " .. self.RandomPetCreator.StaticCreatorId .. "SubLevelName: " .. tostring(SubLevelName))
     return
   end
   SubGameMode.PetActiveLevel = true
@@ -2224,11 +2224,11 @@ function BP_EMGameMode_C:TriggerSpawnPet()
   SubGameMode.RandomPetId = self.DungeonRandomEventPetId
   self.RandomPetCreator.UnitId = self.DungeonRandomEventPetId
   self.RandomPetCreator.UnitType = "Pet"
-  DebugPrint("BP_EMGameMode_C:TriggerSpawnPet \229\136\155\229\187\186\229\174\160\231\137\169 StaticCreatorId", self.RandomPetCreator.StaticCreatorId, "UnitId", self.RandomPetCreator.UnitId)
+  DebugPrint("BP_EMGameMode_C:TriggerSpawnPet 创建宠物 StaticCreatorId", self.RandomPetCreator.StaticCreatorId, "UnitId", self.RandomPetCreator.UnitId)
   self:TriggerActiveCustomStaticCreator(self.RandomPetCreator.StaticCreatorId, "DungeonPetSpawn", true, SubLevelName)
   self.RandomPetCreator.UnitId = self.DungeonRandomEventDefenceCoreId
   self.RandomPetCreator.UnitType = "Mechanism"
-  DebugPrint("BP_EMGameMode_C:TriggerSpawnPet \229\136\155\229\187\186\229\174\160\231\137\169\233\152\178\229\190\161\230\160\184\229\191\131 StaticCreatorId", self.RandomPetCreator.StaticCreatorId, "UnitId", self.RandomPetCreator.UnitId)
+  DebugPrint("BP_EMGameMode_C:TriggerSpawnPet 创建宠物防御核心 StaticCreatorId", self.RandomPetCreator.StaticCreatorId, "UnitId", self.RandomPetCreator.UnitId)
   self:TriggerActiveCustomStaticCreator(self.RandomPetCreator.StaticCreatorId, "DungeonPetDefSpawn", true, SubLevelName)
   self.PetMonsterCreated = true
 end
@@ -2236,7 +2236,7 @@ end
 function BP_EMGameMode_C:GetPetCreatorNearestToExit(PetCreatorInfos)
   local LevelLoader = self:GetLevelLoader()
   if not LevelLoader then
-    self.EMGameState:ShowDungeonError("TriggerSpawnPet \230\139\191\228\184\141\229\136\176LevelLoader")
+    self.EMGameState:ShowDungeonError("TriggerSpawnPet 拿不到LevelLoader")
     return nil
   end
   local ExitLevelLoc = LevelLoader:GetExitLevelLocation()
@@ -2259,12 +2259,12 @@ end
 function BP_EMGameMode_C:GetPetCreatorNearestToFirstPlayer(PetCreatorInfos)
   local LevelLoader = self:GetLevelLoader()
   if not LevelLoader then
-    self.EMGameState:ShowDungeonError("TriggerSpawnPet \230\139\191\228\184\141\229\136\176LevelLoader")
+    self.EMGameState:ShowDungeonError("TriggerSpawnPet 拿不到LevelLoader")
     return nil
   end
   local Players = self:GetAllPlayer()
   if not Players or Players:Length() <= 0 then
-    self.EMGameState:ShowDungeonError("TriggerSpawnPet \232\142\183\229\143\150\228\184\141\229\136\176Players")
+    self.EMGameState:ShowDungeonError("TriggerSpawnPet 获取不到Players")
     return nil
   end
   local Player = Players:GetRef(1)
@@ -2369,13 +2369,13 @@ function BP_EMGameMode_C:InitDungeonRandomEventPet(Detail)
     DSEntity:ServerMulticast("DungeonEventRealHappendPet", Detail.PetId)
   end
   if 0 == Detail.PetId then
-    DebugPrint("[BP_EMGameMode_C:InitDungeonRandomEventPet] PetId\228\184\1860")
+    DebugPrint("[BP_EMGameMode_C:InitDungeonRandomEventPet] PetId为0")
     return
   end
   self.NeedPetMonster = true
   self.DungeonRandomEventPetId = Detail.PetId
   if not DataMgr.Pet[Detail.PetId] then
-    ScreenPrint("[BP_EMGameMode_C:InitDungeonRandomEventPet] \228\188\160\229\133\165\231\154\132PetId\228\184\141\229\173\152\229\156\168\228\186\142Pet\232\161\168\228\184\173", Detail.PetId)
+    ScreenPrint("[BP_EMGameMode_C:InitDungeonRandomEventPet] 传入的PetId不存在于Pet表中", Detail.PetId)
     return
   end
   self.DungeonRandomEventDefenceCoreId = DataMgr.Pet[Detail.PetId].DefenceCoreID
@@ -2393,9 +2393,9 @@ end
 
 function BP_EMGameMode_C:JudgeEscapeMechanismArray(mechanisms)
   if mechanisms:Num() <= 0 then
-    DebugPrint("Error: \230\137\190\228\184\141\229\136\176\230\146\164\231\166\187\230\156\186\229\133\179\227\128\130")
+    DebugPrint("Error: 找不到撤离机关。")
   elseif mechanisms:Num() > 1 then
-    DebugPrint("Warning: \230\137\190\229\136\176\228\186\134\229\164\154\228\186\142\228\184\128\228\184\170\230\146\164\231\166\187\230\156\186\229\133\179\227\128\130")
+    DebugPrint("Warning: 找到了多于一个撤离机关。")
   end
 end
 
@@ -2432,7 +2432,7 @@ end
 function BP_EMGameMode_C:GetEscapeMechanismActor()
   local Mechanisms = self.EMGameState.MechanismMap:FindRef("ExitTrigger")
   if nil == Mechanisms then
-    DebugPrint("Error: \230\137\190\228\184\141\229\136\176\230\146\164\231\166\187\230\156\186\229\133\179\227\128\130")
+    DebugPrint("Error: 找不到撤离机关。")
     return nil
   end
   Mechanisms = Mechanisms.Array
@@ -2546,7 +2546,7 @@ end
 
 function BP_EMGameMode_C:ActiveNewTargetPointAOITrigger_Region(Type)
   if Type ~= Const.Hijack then
-    GWorld.logger.error("ActiveNewTargetPointAOITrigger_Region \230\142\165\229\143\163\229\189\147\229\137\141\229\143\170\230\148\175\230\140\129 Hijack Type")
+    GWorld.logger.error("ActiveNewTargetPointAOITrigger_Region 接口当前只支持 Hijack Type")
     return
   end
   if self.EMGameState == nil or nil == self.EMGameState.HijackPathInfo then
@@ -2594,7 +2594,7 @@ function BP_EMGameMode_C:GetPlayerEidByAvatarEidStr(AvatarEidStr)
   if PlayerState then
     return PlayerState.Eid
   else
-    DebugPrint("BP_EMGameMode_C: AvatarEidStr", AvatarEidStr, "\230\139\191\228\184\141\229\136\176\229\175\185\229\186\148\231\154\132PlayerState!")
+    DebugPrint("BP_EMGameMode_C: AvatarEidStr", AvatarEidStr, "拿不到对应的PlayerState!")
   end
 end
 

@@ -20,7 +20,7 @@ function Component:InitPassiveVars(Effect)
     for VarName, SkillId in pairs(VarSkillLevelSource) do
       local Skill = self:GetSkill(SkillId)
       if not Skill then
-        Battle(self):ShowBattleError("\229\136\157\229\167\139\229\140\150\232\162\171\229\138\168[" .. tostring(Effect.PassiveEffectId) .. "]\229\143\130\230\149\176Vars\231\154\132\230\151\182\229\128\153,\230\137\190\228\184\141\229\136\176\230\138\128\232\131\189[" .. tostring(SkillId) .. "]")
+        Battle(self):ShowBattleError("初始化被动[" .. tostring(Effect.PassiveEffectId) .. "]参数Vars的时候,找不到技能[" .. tostring(SkillId) .. "]")
         Skill = Effect
       end
       local LevelInfo = Skill:GetSkillLevelInfo()

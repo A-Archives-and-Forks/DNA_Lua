@@ -143,7 +143,7 @@ function M:OnAchvFinished(TaskId)
   if TaskId == self.TaskId then
     self.Content.CanGet = true
     self.WS_Btn:SetActiveWidgetIndex(2)
-    DebugPrint("\228\187\187\229\138\161", self.TaskId, "\229\183\178\229\174\140\230\136\144\239\188\140\229\143\175\228\187\165\233\162\134\229\143\150\229\165\150\229\138\177")
+    DebugPrint("任务", self.TaskId, "已完成，可以领取奖励")
     self:UpdateGetRewardNum()
     if self.Content.TaskType == TaskType.Cycle then
       self:AddTimer(0.1, function()

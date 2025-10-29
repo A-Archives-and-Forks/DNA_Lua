@@ -55,7 +55,7 @@ end
 function Component:CopyModToRealAvatar(TargetType, TargetUuid, ModSuitIndex, CallBack)
   local RealAvatar = GWorld:GetAvatar()
   if not RealAvatar then
-    DebugPrint("ModController@CopyModToRealAvatar: Avatar\230\151\160\230\149\136")
+    DebugPrint("ModController@CopyModToRealAvatar: Avatar无效")
     return
   end
   local Target = RealAvatar[TargetType .. "s"][TargetUuid]

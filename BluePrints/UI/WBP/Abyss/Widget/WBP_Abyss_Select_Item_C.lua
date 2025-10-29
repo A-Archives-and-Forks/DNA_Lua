@@ -76,7 +76,7 @@ end
 function WBP_Abyss_Select_Item_C:InitDungeonInfo(DungeonId)
   local DungeonInfo = DataMgr.AbyssDungeon[DungeonId]
   if not DungeonInfo then
-    DebugPrint("lhr@WBP_Abyss_Select_Item_C:InitDungeonInfo\229\164\177\232\180\165\239\188\140 DungeonIndex\229\175\185\229\186\148\231\154\132\229\164\167\231\167\152\229\162\131\229\137\175\230\156\172\228\191\161\230\129\175\228\184\141\229\173\152\229\156\168", DungeonId)
+    DebugPrint("lhr@WBP_Abyss_Select_Item_C:InitDungeonInfo失败， DungeonIndex对应的大秘境副本信息不存在", DungeonId)
     return
   end
   self.DungeonInfo = DungeonInfo
@@ -105,7 +105,7 @@ function WBP_Abyss_Select_Item_C:InitListEntry()
   local AbyssBuffs = DataMgr.AbyssBuff
   local DungeonEntries = self.DungeonInfo.AbyssBuffID
   if not DungeonEntries then
-    DebugPrint("lhr@WBP_Abyss_Lineup_Detail:InitListEntry \229\164\167\231\167\152\229\162\131\229\137\175\230\156\172\231\154\132\232\175\141\230\157\161\229\136\151\232\161\168\228\184\141\229\173\152\229\156\168")
+    DebugPrint("lhr@WBP_Abyss_Lineup_Detail:InitListEntry 大秘境副本的词条列表不存在")
     return
   end
   for _, EntryId in pairs(DungeonEntries) do
@@ -122,17 +122,17 @@ function WBP_Abyss_Select_Item_C:SetProgressAndAttribute()
   local AbyssId, LevelIndex = self.SelectPage.AbyssId, self.SelectPage.LevelIndex
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    DebugPrint("WBP_Abyss_Select_Item_C:SetProgressText, \233\133\141\231\189\174\233\157\162\230\157\191\229\136\157\229\167\139\229\140\150\229\164\177\232\180\165\239\188\140Avatar\230\151\160\230\149\136")
+    DebugPrint("WBP_Abyss_Select_Item_C:SetProgressText, 配置面板初始化失败，Avatar无效")
     return
   end
   local AbyssInfo = Avatar.Abysses[AbyssId]
   if not AbyssInfo then
-    DebugPrint("lhr@WBP_Abyss_Select_Item_C:InitLevelInfo, AbyssId", AbyssId, "\229\175\185\229\186\148\231\154\132\232\181\155\229\173\163\228\184\141\229\173\152\229\156\168")
+    DebugPrint("lhr@WBP_Abyss_Select_Item_C:InitLevelInfo, AbyssId", AbyssId, "对应的赛季不存在")
     return
   end
   local LevelInfo = AbyssInfo.AbyssLevelList[LevelIndex]
   if not LevelInfo then
-    DebugPrint("lhr@WBP_Abyss_Select_Item_C:InitLevelInfo, LevelIndex", LevelIndex, "\229\175\185\229\186\148\231\154\132\229\133\179\229\141\161\228\184\141\229\173\152\229\156\168")
+    DebugPrint("lhr@WBP_Abyss_Select_Item_C:InitLevelInfo, LevelIndex", LevelIndex, "对应的关卡不存在")
     return
   end
   self.AbyssId = AbyssId
@@ -181,7 +181,7 @@ function WBP_Abyss_Select_Item_C:SelectSlot(SlotName)
   if self.Slots[SlotName] then
     self.Slots[SlotName]:OnBtnClicked()
   else
-    DebugPrint("lhr@WBP_Abyss_Select_Item_C:SelectSlot, SlotName\229\175\185\229\186\148\231\154\132\230\167\189\228\189\141\228\184\141\229\173\152\229\156\168")
+    DebugPrint("lhr@WBP_Abyss_Select_Item_C:SelectSlot, SlotName对应的槽位不存在")
   end
 end
 
@@ -259,7 +259,7 @@ function WBP_Abyss_Select_Item_C:OnClicked()
   if self.SelectPage then
     self.SelectPage:DungeonSelectionChanged(self.DungeonIndex)
   else
-    DebugPrint("lhr@WBP_Abyss_Select_Item_C:OnClicked\239\188\140\233\152\181\229\174\185\233\133\141\231\189\174\231\149\140\233\157\162\229\164\177\230\149\136")
+    DebugPrint("lhr@WBP_Abyss_Select_Item_C:OnClicked，阵容配置界面失效")
   end
 end
 

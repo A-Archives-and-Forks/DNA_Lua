@@ -233,7 +233,7 @@ function Component:ShowImpressionPlusUI(ImprPlusId, Callback)
     })
     ImpressionDimensionResultUI:FadeIn()
   else
-    Utils.ScreenPrint("\230\152\190\231\164\186\229\141\176\232\177\161\229\138\160\229\128\188UI\230\151\182\239\188\140ID " .. ImprPlusId .. "\229\156\168ImpressionPlus\232\161\168\228\184\173\228\184\141\229\173\152\229\156\168\239\188\140\232\175\183\230\163\128\230\159\165")
+    Utils.ScreenPrint("显示印象加值UI时，ID " .. ImprPlusId .. "在ImpressionPlus表中不存在，请检查")
     Callback()
   end
 end
@@ -249,7 +249,7 @@ function Component:GetImpressionAreaIdFromRegionId(TargetRegionId)
       end
     end
   end
-  Utils.ScreenPrint("\230\156\170\230\137\190\229\136\176\229\141\176\232\177\161\229\140\186\229\159\159ID\239\188\140\232\175\183\230\163\128\230\159\165RegionId\230\152\175\229\144\166\229\156\168ImpressionRegion\232\161\168\228\184\173,SubRegionId:" .. TargetRegionId)
+  Utils.ScreenPrint("未找到印象区域ID，请检查RegionId是否在ImpressionRegion表中,SubRegionId:" .. TargetRegionId)
   return TargetRegionId
 end
 

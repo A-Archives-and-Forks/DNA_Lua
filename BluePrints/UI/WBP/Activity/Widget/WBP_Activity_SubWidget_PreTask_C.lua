@@ -7,7 +7,7 @@ function M:InitPage(EventId)
   self.EventId = EventId
   self.EventInfo = DataMgr.EventMain[self.EventId]
   if not self.EventInfo then
-    ScreenPrint("\229\136\157\229\167\139\229\140\150\229\137\141\231\189\174\228\187\187\229\138\161\231\187\132\228\187\182\232\175\187\232\161\168\229\164\177\232\180\165\239\188\129EventId:", self.EventId)
+    ScreenPrint("初始化前置任务组件读表失败！EventId:", self.EventId)
     return
   end
   self:UpdateVisibility()
@@ -119,7 +119,7 @@ function M:IsNeedShow()
   end
   local EventInfo = DataMgr.EventMain[self.EventId]
   if not EventInfo then
-    ScreenPrint("EventMain\232\161\168\228\184\173\230\137\190\228\184\141\229\136\176\230\173\162\230\181\129\230\180\187\229\138\168\231\155\184\229\133\179\228\191\161\230\129\175\239\188\129\232\175\187\229\143\150\231\154\132EventId:" .. self.EventId)
+    ScreenPrint("EventMain表中找不到止流活动相关信息！读取的EventId:" .. self.EventId)
     return false
   end
   local PrerequisiteQuestId = {}
@@ -177,7 +177,7 @@ function M:GetMainQuestInfo()
   end
   local ChapterName = DataMgr.QuestChain[ConfigedMainQuestChainId].ChapterName or ""
   local QuestChainName = DataMgr.QuestChain[ConfigedMainQuestChainId].QuestChainName or ""
-  Res.DisplayTextName = GText(ChapterName) .. "\194\183" .. GText(QuestChainName)
+  Res.DisplayTextName = GText(ChapterName) .. "·" .. GText(QuestChainName)
   return Res
 end
 
@@ -200,7 +200,7 @@ function M:GetSideQuestInfo()
   local LastQuestChainId = ConfigedSideQuestChainIds[#ConfigedSideQuestChainIds]
   local ChapterName = DataMgr.QuestChain[LastQuestChainId].ChapterName or ""
   local QuestChainName = DataMgr.QuestChain[LastQuestChainId].QuestChainName or ""
-  Res.DisplayTextName = GText(ChapterName) .. "\194\183" .. GText(QuestChainName)
+  Res.DisplayTextName = GText(ChapterName) .. "·" .. GText(QuestChainName)
   Res.IsShowLock = FirstDoingQuestChainId ~= LastQuestChainId
   Res.IsForbidClick = 0 == FirstDoingQuestChainId
   Res.JumpQuestChainId = FirstDoingQuestChainId

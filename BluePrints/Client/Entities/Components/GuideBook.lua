@@ -61,7 +61,7 @@ function Component:GMUnlockGuideBook(num)
 end
 
 function Component:NotifyGuideBookUnlock(GuideNoteId)
-  DebugPrint("\232\167\163\233\148\129\228\186\134" .. GuideNoteId .. "\229\143\183\230\149\153\229\173\166")
+  DebugPrint("解锁了" .. GuideNoteId .. "号教学")
   self:InitGuideBookReddotNode()
   self:ShowGuideBookTips(GuideNoteId)
 end
@@ -77,13 +77,13 @@ end
 function Component:GuideBookGetReward(Id)
   local function callback(ErrCode)
     if ErrorCode:Check(ErrCode) then
-      DebugPrint("\230\156\141\229\138\161\229\153\168\229\155\158\232\176\131:\229\165\150\229\138\177\233\162\134\229\143\150\230\136\144\229\138\159\239\188\129\239\188\129")
+      DebugPrint("服务器回调:奖励领取成功！！")
       
       EventManager:FireEvent(EventID.OnGetGuideBookReward, Id)
       self:SubGuideBookReddotCount(Id)
       self.GuideBook[Id].IsGettingReward = 0
     else
-      DebugPrint("\230\156\141\229\138\161\229\153\168\229\155\158\232\176\131:\229\165\150\229\138\177\233\162\134\229\143\150\229\164\177\232\180\165\239\188\129\239\188\129")
+      DebugPrint("服务器回调:奖励领取失败！！")
     end
   end
   

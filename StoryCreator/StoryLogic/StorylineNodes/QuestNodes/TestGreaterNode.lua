@@ -7,10 +7,10 @@ function TestGreaterNode:Init()
 end
 
 function TestGreaterNode:Execute(Callback)
-  ScreenPrint("\229\188\128\229\167\139\229\128\146\232\174\161\230\151\182:Delay:" .. tostring(self.Delay))
+  ScreenPrint("开始倒计时:Delay:" .. tostring(self.Delay))
   self.ExecuteTimer = GWorld.GameInstance:AddTimer(self.Delay, function(...)
     local Result = self.A > self.B
-    ScreenPrint("\232\174\161\230\151\182\231\187\147\230\157\159:A:" .. tostring(self.A) .. "\228\184\142B:" .. tostring(self.B) .. "\231\154\132\230\175\148\232\190\131\231\187\147\230\158\156\230\152\175:" .. tostring(Result))
+    ScreenPrint("计时结束:A:" .. tostring(self.A) .. "与B:" .. tostring(self.B) .. "的比较结果是:" .. tostring(Result))
     if Callback then
       Callback(Result)
     end

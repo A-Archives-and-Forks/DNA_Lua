@@ -690,7 +690,7 @@ function S:OnViewPortChanged()
   else
     self.NowMiniOptionId = 1
     self.WBP_Set_SuboptionUnfold.Text_Current:SetText(GText(self.MiniOptionTextList[self.NowMiniOptionId]))
-    DebugPrint("\229\136\134\232\190\168\231\142\135\232\162\171\230\137\139\229\138\168\228\191\174\230\148\185\239\188\140\232\174\190\231\189\174\228\184\186\232\135\170\229\174\154\228\185\137")
+    DebugPrint("分辨率被手动修改，设置为自定义")
   end
 end
 
@@ -1680,7 +1680,7 @@ function S:SetMobileResolutionOldOptionId()
       }
     }
   else
-    DebugPrint(ErrorTag, "----jzn---\231\167\187\229\138\168\231\171\175\229\136\134\232\190\168\231\142\135 \229\189\147\229\137\141\229\185\179\229\143\176\228\184\141\230\152\175Anroid\230\136\150IOS----", PlatformName)
+    DebugPrint(ErrorTag, "----jzn---移动端分辨率 当前平台不是Anroid或IOS----", PlatformName)
   end
   self.OldOptionId = self:GetEMCache(self.CacheName, self.EMCacheKey, tonumber(self.DefaultValue))
 end

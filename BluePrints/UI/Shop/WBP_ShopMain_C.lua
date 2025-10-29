@@ -125,7 +125,7 @@ function M:InitShopTabInfo(MainTabIdx, SubTabIdx)
     return
   end
   local MainShopTabData = DataMgr.Shop[self.ShopType]
-  assert(MainShopTabData, "\232\142\183\229\143\150\229\149\134\229\186\151\231\177\187\229\158\139\228\191\161\230\129\175\229\164\177\232\180\165:" .. self.ShopType)
+  assert(MainShopTabData, "获取商店类型信息失败:" .. self.ShopType)
   self:LoadShopTabInfo(MainShopTabData)
   self.Common_Tab:Init({
     DynamicNode = {
@@ -480,7 +480,7 @@ function M:InitBannerPage(SelectBannerId)
   end
   self.List_Recommend:ClearListItems()
   if not self.SelectBannerId then
-    assert(BannerData[1], "\230\156\137\230\149\136Banner\230\149\176\233\135\143\228\184\141\232\182\179\228\184\128\228\184\170")
+    assert(BannerData[1], "有效Banner数量不足一个")
     self.SelectBannerId = BannerData[1].Id
   end
   for i, BannerInfo in ipairs(BannerData) do

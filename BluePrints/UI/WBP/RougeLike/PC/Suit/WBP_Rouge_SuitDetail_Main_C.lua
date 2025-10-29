@@ -11,7 +11,7 @@ end
 
 function M:InitUIInfo(Name, IsInUIMode, EventList, ...)
   AudioManager(self):PlayUISound(self, "event:/ui/roguelike/affix_info_panel_show", "RougeSuitDetail", nil)
-  assert(GWorld.RougeLikeManager, "\230\137\190\228\184\141\229\136\176RougeLikeManager,\229\143\175\232\131\189\228\184\141\229\156\168\232\130\137\233\184\189\229\133\179\229\134\133")
+  assert(GWorld.RougeLikeManager, "找不到RougeLikeManager,可能不在肉鸽关内")
   local Param = (...)
   if Param and Param[1] then
     self.SelectedSuit = Param[1]

@@ -764,7 +764,7 @@ function M:OpenCommanderDetails()
 end
 
 function M:RefreshRewardInfoList(DungeonId)
-  assert(DataMgr.Dungeon[DungeonId], "\229\137\175\230\156\172\228\191\161\230\129\175\228\184\141\229\173\152\229\156\168:" .. DungeonId)
+  assert(DataMgr.Dungeon[DungeonId], "副本信息不存在:" .. DungeonId)
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
     return

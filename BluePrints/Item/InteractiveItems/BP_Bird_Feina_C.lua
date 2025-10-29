@@ -39,7 +39,7 @@ function M:AddNewPath()
   local PointList = GameMode:TriggerDungeonComponentFun("GetNextPathInfos", self.NowPathId)
   print(_G.LogTag, "LXZ AddNewPath", PointList, self.NowPathId)
   if not PointList then
-    GWorld.logger.error("\232\143\178\229\168\156\230\180\187\229\138\168\229\164\156\232\142\186 \228\184\141\229\173\152\229\156\168\228\184\139\228\184\128\230\174\181\232\183\175\229\190\132\239\188\140\229\189\147\229\137\141\232\183\175\229\190\132id\239\188\154" .. self.NowPathId)
+    GWorld.logger.error("菲娜活动夜莺 不存在下一段路径，当前路径id：" .. self.NowPathId)
     return
   end
   table.sort(PointList, function(a, b)

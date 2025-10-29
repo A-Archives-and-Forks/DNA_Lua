@@ -131,7 +131,7 @@ function Component:ServerStartQuest(Ret, QuestChainId, ClientVarParams)
   DebugPrint("ZJT_ ServerStartQuest ", Ret, QuestChainId, ClientVarParams)
   local CheckRet, GameMode, QuestChain = self:IsCanRunQuestConditionCheck(Ret, QuestChainId)
   if not self:CheckRegionErrorCode(CheckRet) then
-    self:OnPrintToFeiShu_Quest(CheckRet, Ret, " ServerStartQuest_\230\156\141\229\138\161\229\153\168\229\145\138\231\159\165\229\174\162\230\136\183\231\171\175\229\188\128\229\167\139\228\187\187\229\138\161 ", QuestChainId)
+    self:OnPrintToFeiShu_Quest(CheckRet, Ret, " ServerStartQuest_服务器告知客户端开始任务 ", QuestChainId)
     return
   end
   table.insert(self.DoingQuestIds, QuestChain.DoingQuestId)
@@ -200,7 +200,7 @@ function Component:QuestChainFinish(Ret, QuestChainId, RewardBox, TargetComplete
   local CheckRet, GameMode, QuestChain = self:IsCanRunQuestConditionCheck(Ret, QuestChainId)
   self:UpdateAllQuestChainReddotSetByFinishedQuestChain(QuestChainId)
   if not self:CheckRegionErrorCode(CheckRet) then
-    self:OnPrintToFeiShu_Quest(CheckRet, Ret, " QuestChainFinish_\228\187\187\229\138\161\233\147\190\229\174\140\230\136\144\229\164\177\232\180\165 ", QuestChainId, nil, RewardBox)
+    self:OnPrintToFeiShu_Quest(CheckRet, Ret, " QuestChainFinish_任务链完成失败 ", QuestChainId, nil, RewardBox)
     return
   end
   self:HandleNotifyQuestComplete(nil, QuestChainId, TargetCompleteQuestIds)
@@ -260,7 +260,7 @@ end
 
 function Component:IsQuestFinished(QuestId)
   local length = CommonUtils:GetIntNumLength(QuestId)
-  assert(length >= 6, "QuestId:" .. QuestId .. "\230\151\160\230\149\136")
+  assert(length >= 6, "QuestId:" .. QuestId .. "无效")
   local QuestChainId = CommonUtils:GetFrontNum(QuestId, 6)
   local QuestChain = self.QuestChains[QuestChainId]
   if QuestChain and (QuestChain:IsFinish() or QuestChain:CheckQuestIdComplete(QuestId)) then
@@ -296,20 +296,20 @@ function Component:CompleteQuestSuccess(QuestChainId, QuestId, ManualTrigger, Ta
   local QuestChain = self.QuestChains[QuestChainId]
   if QuestChain then
     if QuestChain:IsFinish() then
-      local Message = "\228\187\187\229\138\161\233\147\190\229\183\178\231\187\143\229\174\140\230\136\144" .. [[
+      local Message = "任务链已经完成" .. [[
 
 QuestChainId:]] .. QuestChainId .. [[
 
 QuestId:]] .. QuestId
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\228\187\187\229\138\161\233\147\190\229\183\178\231\187\143\229\174\140\230\136\144", Message)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "任务链已经完成", Message)
       return
     elseif QuestChain:CheckQuestIdComplete(QuestId) then
-      local Message = "\228\187\187\229\138\161\229\183\178\231\187\143\229\174\140\230\136\144" .. [[
+      local Message = "任务已经完成" .. [[
 
 QuestChainId:]] .. QuestChainId .. [[
 
 QuestId:]] .. QuestId
-      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "\228\187\187\229\138\161\229\183\178\231\187\143\229\174\140\230\136\144", Message)
+      UStoryLogUtils.PrintToFeiShu(GWorld.GameInstance, "任务已经完成", Message)
       return
     end
   end
@@ -431,15 +431,15 @@ function Component:GMStartQuestChain(QuestChainId)
   local QuestChain = self.QuestChains[QuestChainId]
   if QuestChain then
     if QuestChain:IsFinish() then
-      DebugPrint("ZJT_ \228\187\187\229\138\161\233\147\190\229\183\178\231\187\143\229\174\140\230\136\144 ", QuestChainId)
+      DebugPrint("ZJT_ 任务链已经完成 ", QuestChainId)
       return
     end
     if QuestChain:IsDoing() then
-      DebugPrint("\228\187\187\229\138\161\233\147\190\230\173\163\229\156\168\232\191\155\232\161\140 ", QuestChainId)
+      DebugPrint("任务链正在进行 ", QuestChainId)
       return
     end
     if QuestChain:IsUnlock() then
-      DebugPrint("\230\173\163\229\156\168\232\191\155\232\161\140\229\137\141\231\189\174\228\187\187\229\138\161 ", QuestChainId)
+      DebugPrint("正在进行前置任务 ", QuestChainId)
       return
     end
   end
@@ -448,7 +448,7 @@ function Component:GMStartQuestChain(QuestChainId)
     self.logger.debug("ServerCallClient GMStartQuestChain callback", Ret)
     local CheckRet, GameMode, QuestChain = self:IsCanRunQuestConditionCheck(Ret, QuestChainId)
     if not self:CheckRegionErrorCode(CheckRet) then
-      self:OnPrintToFeiShu_Quest(CheckRet, Ret, " GMStartQuestChain_GM\229\188\128\229\167\139\228\187\187\229\138\161\233\147\190\229\164\177\232\180\165 ", QuestChainId)
+      self:OnPrintToFeiShu_Quest(CheckRet, Ret, " GMStartQuestChain_GM开始任务链失败 ", QuestChainId)
       return
     end
     table.insert(self.CanReciveQuestChainIds, QuestChainId)
@@ -462,7 +462,7 @@ function Component:GMSuccQuestChain(QuestChainId, bIsTriggerQuestChain)
   self.logger.debug("GMSuccQuestChain", QuestChainId, type(QuestChainId), bIsTriggerQuestChain, type(bIsTriggerQuestChain))
   local QuestChain = self.QuestChains[QuestChainId]
   if QuestChain and QuestChain:IsFinish() then
-    DebugPrint("ZJT_ \228\187\187\229\138\161\233\147\190\229\183\178\231\187\143\229\174\140\230\136\144 ", QuestChainId)
+    DebugPrint("ZJT_ 任务链已经完成 ", QuestChainId)
     return
   end
   self:CallServerMethod("GMSuccQuestChain", QuestChainId)
@@ -550,7 +550,7 @@ end
 function Component:SetQuestTracking(QuestChainId, SubRegionId)
   local function Callback(Ret)
     if not self:CheckRegionErrorCode(Ret) then
-      self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " SetQuestTracking_\232\174\190\231\189\174\232\191\189\232\184\170\228\187\187\229\138\161\233\147\190\229\164\177\232\180\165 ", QuestChainId)
+      self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " SetQuestTracking_设置追踪任务链失败 ", QuestChainId)
       
       return
     end
@@ -605,7 +605,7 @@ end
 function Component:CancelQuestTracking(QuestChainId)
   local function Callback(Ret)
     if not self:CheckRegionErrorCode(Ret) then
-      self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " CancelQuestTracking_\229\143\150\230\182\136\232\191\189\232\184\170\228\187\187\229\138\161\233\147\190\229\164\177\232\180\165 ", QuestChainId)
+      self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " CancelQuestTracking_取消追踪任务链失败 ", QuestChainId)
       
       return
     end
@@ -637,7 +637,7 @@ end
 function Component:OnQuestTargetFinish(Ret)
   DebugPrint("ZJT_ OnQuestTargetFinish ", Ret)
   if not self:CheckRegionErrorCode(Ret) then
-    self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " OnQuestTargetUpdate_\230\155\180\230\150\176\229\174\140\230\136\144\232\191\155\229\186\166\233\148\153\232\175\175 ")
+    self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " OnQuestTargetUpdate_更新完成进度错误 ")
     return
   end
   EventManager:FireEvent(EventID.OnGameModeComplete)
@@ -646,7 +646,7 @@ end
 function Component:OnQuestTargetUpdate(Ret)
   DebugPrint("ZJT_ OnQuestTargetUpdate ", Ret)
   if not self:CheckRegionErrorCode(Ret) then
-    self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " OnQuestTargetUpdate_\230\155\180\230\150\176\232\191\155\229\186\166\233\148\153\232\175\175 ")
+    self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " OnQuestTargetUpdate_更新进度错误 ")
     return
   end
   EventManager:FireEvent(EventID.OnGameModeComplete)
@@ -659,7 +659,7 @@ function Component:ShowQuestChainRewardUI(RewardBox)
   local UIManager = GWorld.GameInstance:GetGameUIManager()
   local BattleMain = UIManager:GetUIObj("BattleMain")
   if not BattleMain then
-    print(WarningTag, "\229\189\147\229\137\141\229\156\168\230\141\174\231\130\185\228\184\173\239\188\140\231\155\174\229\137\141\230\141\174\231\130\185\228\184\187UI\228\184\142\233\135\142\229\164\150\228\184\187UI\228\184\141\231\187\159\228\184\128\239\188\140\230\141\174\231\130\185\230\154\130\230\151\182\228\184\141\230\152\190\231\164\186\228\187\187\229\138\161\233\147\190\229\174\140\230\136\144\229\165\150\229\138\177")
+    print(WarningTag, "当前在据点中，目前据点主UI与野外主UI不统一，据点暂时不显示任务链完成奖励")
     return
   end
   self:AddRewardsToCache(RewardBox)
@@ -683,7 +683,7 @@ function Component:FailerSpecialQuest(SpecialQuestId, infos, NodeCallback)
     if ErrorCode:Check(Ret) then
       NodeCallback()
     else
-      self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " FailerSpecialQuest_\231\137\185\230\174\138\228\187\187\229\138\161\229\164\177\232\180\165\233\148\153\232\175\175 ", SpecialQuestId)
+      self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " FailerSpecialQuest_特殊任务失败错误 ", SpecialQuestId)
     end
   end
   
@@ -697,7 +697,7 @@ function Component:SuccessSpecialQuest(SpecialQuestId, infos, NodeCallback)
     if ErrorCode:Check(Ret) then
       NodeCallback()
     else
-      self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " SuccessSpecialQuest_\230\136\144\229\138\159\231\137\185\230\174\138\228\187\187\229\138\161\229\164\177\232\180\165 ", SpecialQuestId)
+      self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " SuccessSpecialQuest_成功特殊任务失败 ", SpecialQuestId)
     end
   end
   
@@ -711,7 +711,7 @@ function Component:StartSpecialQuest(SpecialQuestId, infos, NodeCallback)
     if ErrorCode:Check(Ret) then
       NodeCallback()
     else
-      self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " StartSpecialQuest_\229\188\128\229\167\139\231\137\185\230\174\138\228\187\187\229\138\161\233\148\153\232\175\175 ", SpecialQuestId)
+      self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " StartSpecialQuest_开始特殊任务错误 ", SpecialQuestId)
     end
   end
   
@@ -737,7 +737,7 @@ function Component:HandleQuestChainDoing(QuestChainId, cb)
       cb(Ret)
     end
     if not self:CheckRegionErrorCode(Ret) then
-      self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " HandleQuestChainDoing_\230\137\139\229\138\168\229\188\128\229\167\139\228\187\187\229\138\161\233\148\153\232\175\175 ", QuestChainId)
+      self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " HandleQuestChainDoing_手动开始任务错误 ", QuestChainId)
       return
     end
   end
@@ -756,7 +756,7 @@ end
 function Component:RegisterQuestPickId(QuestPickId, CallbackFunc)
   local function Callback(Ret)
     if not self:CheckRegionErrorCode(Ret) then
-      self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " RegisterQuestPickId_\230\179\168\229\134\140\230\139\190\229\143\150\230\142\137\232\144\189\231\137\169\233\148\153\232\175\175 ", QuestPickId)
+      self:OnPrintToFeiShu_Quest(ErrorCode.RET_SUCCESS, Ret, " RegisterQuestPickId_注册拾取掉落物错误 ", QuestPickId)
       
       return
     end

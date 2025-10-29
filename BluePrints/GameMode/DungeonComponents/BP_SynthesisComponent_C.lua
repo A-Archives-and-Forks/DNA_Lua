@@ -11,7 +11,7 @@ function BP_SynthesisComponent_C:InitSynthesisComponent()
   self.TextTitle = "DUNGEON_SYNTHESIS_100"
   local SynthesisInfo = DataMgr.Synthesis[self.GameMode.DungeonId]
   if not SynthesisInfo then
-    GameState(self):ShowDungeonError("SynthesisComponent:\229\189\147\229\137\141\229\137\175\230\156\172ID\230\178\161\230\156\137\229\161\171\229\134\153\229\156\168\229\175\185\229\186\148\231\154\132\229\137\175\230\156\172\232\161\168\228\184\173, \232\175\187\232\161\168\229\164\177\232\180\165! \232\175\187\229\133\165Id\239\188\154" .. self.GameMode.DungeonId)
+    GameState(self):ShowDungeonError("SynthesisComponent:当前副本ID没有填写在对应的副本表中, 读表失败! 读入Id：" .. self.GameMode.DungeonId)
     return
   end
   self.MonAddRage = SynthesisInfo.MonAddRage or 1
@@ -73,7 +73,7 @@ end
 function BP_SynthesisComponent_C:SetMission(NewMission)
   local InitfuncName = "Init" .. NewMission .. "Mission"
   if not self[InitfuncName] then
-    GameState(self):ShowDungeonError("SynthesisComponent:SetMission \228\188\160\229\133\165\228\184\141\229\173\152\229\156\168\231\154\132\228\187\187\229\138\161\229\144\141\239\188\129\232\175\183\230\163\128\230\159\165 " .. self.GameMode.DungeonId .. " \228\188\160\229\133\165\228\187\187\229\138\161\229\144\141: ", NewMission)
+    GameState(self):ShowDungeonError("SynthesisComponent:SetMission 传入不存在的任务名！请检查 " .. self.GameMode.DungeonId .. " 传入任务名: ", NewMission)
     return
   end
   self.CurMission = NewMission
@@ -104,7 +104,7 @@ function BP_SynthesisComponent_C:InitDestructionMission()
       CreatorIdArray:Add(CreatorId)
       SubGameMode:TriggerActiveStaticCreator(CreatorIdArray, "DestructionSupervisor", true)
     else
-      GameState(self):ShowDungeonError("SynthesisComponent:\229\136\183\230\150\176\228\184\187\231\174\161\229\164\177\232\180\165\239\188\140\232\175\183\230\163\128\230\159\165\233\133\141\231\189\174  CreatorId: " .. tostring(CreatorId) .. "LevelName: " .. tostring(LevelName))
+      GameState(self):ShowDungeonError("SynthesisComponent:刷新主管失败，请检查配置  CreatorId: " .. tostring(CreatorId) .. "LevelName: " .. tostring(LevelName))
     end
   end
   self.GameMode:NotifyClientShowDungeonTaskNew("", self.TextTitle, "DUNGEON_SYNTHESIS_113")
@@ -136,7 +136,7 @@ function BP_SynthesisComponent_C:OnUnitDeadEvent_Destruction(MonsterCharacter)
     self.GameMode.EMGameState.DeadSupervisorEids:Add(MonsterCharacter.Eid)
     self.GameMode.EMGameState:MarkDeadSupervisorEidsAsDirtyData()
     if self.SupervisorDeadCount >= #self.SupervisorCreatorIds then
-      DebugPrint("SynthesisComponent: \230\137\128\230\156\137\228\184\187\231\174\161\230\173\187\228\186\161")
+      DebugPrint("SynthesisComponent: 所有主管死亡")
       self.GameMode:RemoveDungeonEvent("SynthesisDestruction")
       self.GameMode:TriggerGameModeEvent("Event_OnAllSupervisorDead")
       self.GameMode:NotifyClientShowDungeonToast("DUNGEON_SYNTHESIS_103", 2, EToastType.Success)
@@ -183,14 +183,14 @@ function BP_SynthesisComponent_C:OnMonsterGuideAdded_Destruction(Eid)
 end
 
 function BP_SynthesisComponent_C:OnSupervisorGuideAdded(Eid)
-  DebugPrint("SynthesisComponent: \228\184\187\231\174\161\230\183\187\229\138\160\230\140\135\229\188\149", Eid)
+  DebugPrint("SynthesisComponent: 主管添加指引", Eid)
   self.GameMode.EMGameState.GuideSupervisorEids:Add(Eid)
   self.GameMode.EMGameState:MarkGuideSupervisorEidsAsDirtyData()
   self.GameMode:NotifyClientShowDungeonToast("DUNGEON_SYNTHESIS_102", 2, EToastType.Warning)
   self.SupervisorInfo[Eid].IsGuide = true
   self.SupervisorGuideNum = self.SupervisorGuideNum + 1
   if self.SupervisorGuideNum == #self.SupervisorCreatorIds then
-    DebugPrint("SynthesisComponent: \230\137\128\230\156\137\228\184\187\231\174\161\230\183\187\229\138\160\230\140\135\229\188\149\229\174\140\230\136\144")
+    DebugPrint("SynthesisComponent: 所有主管添加指引完成")
     self.GameMode:NotifyClientShowDungeonTaskNew(self.IconPathSpecialEnemy, self.TextTitle, "DUNGEON_SYNTHESIS_114")
   end
 end
@@ -237,7 +237,7 @@ function BP_SynthesisComponent_C:TryAddGuideForSupervisor()
       end
     end
   end
-  DebugPrint("SynthesisComponent: TryAddGuideForSupervisor \228\184\141\229\173\152\229\156\168\230\180\187\231\157\128\231\154\132\228\184\187\231\174\161")
+  DebugPrint("SynthesisComponent: TryAddGuideForSupervisor 不存在活着的主管")
 end
 
 function BP_SynthesisComponent_C:InitOccupationMission()

@@ -146,9 +146,9 @@ function M:SetDesc()
     end
     Desc = UIUtils.GenRougeBlessingDesc(self.ItemId, self.Level)
     local GroupId = DataMgr.RougeLikeBlessing[self.ItemId].BlessingGroup
-    assert(GroupId, "\230\156\170\230\137\190\229\136\176\231\165\157\231\166\143\229\175\185\229\186\148\229\165\151\232\163\133Id\239\188\154" .. self.ItemId)
+    assert(GroupId, "未找到祝福对应套装Id：" .. self.ItemId)
     local GroupData = DataMgr.BlessingGroup[GroupId]
-    assert(GroupData, "\230\156\170\230\137\190\229\136\176\229\165\151\232\163\133\230\149\176\230\141\174\239\188\154" .. GroupId)
+    assert(GroupData, "未找到套装数据：" .. GroupId)
     self.Text_SuitName:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
     self.Text_SuitName:SetText(GText(GroupData.Name))
   elseif self.ItemType == "Treasure" then

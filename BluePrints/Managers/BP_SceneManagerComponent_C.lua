@@ -296,7 +296,7 @@ function BP_SceneManagerComponent_C:SetGuideActorInfo(GuideInfo)
   end
   
   if CheckEidIsValid(GuideInfo.SnapShotId) == false then
-    DebugPrint("BP_SceneManagerComponent_C:SetGuideActorInfo \229\186\143\229\136\151\229\140\150\230\149\176\230\141\174\231\154\132SnapShotId\228\184\141\229\144\136\230\179\149 SnapShotId: ", GuideInfo.SnapShotId)
+    DebugPrint("BP_SceneManagerComponent_C:SetGuideActorInfo 序列化数据的SnapShotId不合法 SnapShotId: ", GuideInfo.SnapShotId)
     return
   end
   local ConfigData = DataMgr[GuideInfo.UnitType][GuideInfo.UnitId]
@@ -1122,7 +1122,7 @@ function BP_SceneManagerComponent_C:RefreshAllGuideStyle()
     local TargetEid = math.tointeger(UIName)
     local GuideIcon = UIManager:GetUIObj(UIName)
     if nil == GuideIcon then
-      DebugPrint("RefreshAllGuideStyle: GuideIcon\228\184\186\231\169\186 UIName: ", UIName)
+      DebugPrint("RefreshAllGuideStyle: GuideIcon为空 UIName: ", UIName)
     else
       if nil ~= GuideIcon.TargetEid then
         TargetEid = GuideIcon.TargetEid
@@ -1205,7 +1205,7 @@ function BP_SceneManagerComponent_C:RealArrangeAllGuideIcons()
   local UIManager = GameInstance:GetGameUIManager()
   local Player = UE4.UGameplayStatics.GetPlayerCharacter(GameInstance, 0)
   if nil == Player then
-    DebugPrint("RealArrangeAllGuideIcons: Player \228\184\141\229\173\152\229\156\168")
+    DebugPrint("RealArrangeAllGuideIcons: Player 不存在")
     return
   end
   local UINames = self:GetAllKindsOfGuide()
@@ -1216,7 +1216,7 @@ function BP_SceneManagerComponent_C:RealArrangeAllGuideIcons()
     local TargetEid = math.tointeger(UIName)
     local GuideIcon = UIManager:GetUIObj(UIName)
     if nil == GuideIcon then
-      DebugPrint("RealArrangeAllGuideIcons: GuideIcon\228\184\186\231\169\186 UIName: ", UIName)
+      DebugPrint("RealArrangeAllGuideIcons: GuideIcon为空 UIName: ", UIName)
     else
       if nil ~= GuideIcon.TargetEid then
         TargetEid = GuideIcon.TargetEid
@@ -1398,7 +1398,7 @@ function BP_SceneManagerComponent_C:DelaySetFullScreen_Lua(Resolution, WindowMod
   self:AddTimer(0.1, function()
     local GameUserSettings = UE4.UGameUserSettings:GetGameUserSettings()
     if GameUserSettings then
-      DebugPrint("@zyh DelaySetFullScreen_Lua\230\137\167\232\161\140")
+      DebugPrint("@zyh DelaySetFullScreen_Lua执行")
       GameUserSettings:SetFullscreenMode(WindowMode)
       GameUserSettings:ApplySettings(false)
     end

@@ -37,7 +37,7 @@ function WBP_Abyss_Reward_C:OnClicked()
   if self.Func then
     self.Func(self.Parent, self.NowValue, self.MaxValue)
   else
-    DebugPrint("WBP_Abyss_Reward_C:OnClicked()\239\188\140self.Func\230\151\160\230\149\136")
+    DebugPrint("WBP_Abyss_Reward_C:OnClicked()，self.Func无效")
   end
 end
 

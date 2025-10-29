@@ -16,7 +16,7 @@ function M:Construct()
     self:SetRenderOpacity(0)
   end
   self:AddTimer(self.delta1 or 0.05, function()
-    ScreenPrint("\229\188\128\229\167\139\229\138\160\232\189\189\232\167\146\232\137\178")
+    ScreenPrint("开始加载角色")
     if PersonInfoController.CurPage == nil then
       return
     end
@@ -26,7 +26,7 @@ function M:Construct()
       ScreenPrint("[LUA_ERROR] Coroutine (model):\n" .. trace)
     end
     self:AddTimer(self.delta2 or 0.1, function()
-      ScreenPrint("\229\188\128\229\167\139\229\138\160\232\189\189\229\156\186\230\153\175")
+      ScreenPrint("开始加载场景")
       if PersonInfoController.CurPage == nil then
         return
       end
@@ -57,14 +57,14 @@ function M:OnLoaded(...)
     if self.HideBegin then
       self:SetRenderOpacity(1)
     end
-    ScreenPrint("\229\188\128\229\167\139\230\146\173\229\138\168\231\148\187")
+    ScreenPrint("开始播动画")
     self.WBP_Com_BgSwitch:PlayAnimationForward(self.WBP_Com_BgSwitch.In, self.AniSpeed or 1)
     self:PlayInAnim()
   end)
 end
 
 function M:Close()
-  ScreenPrint("\229\188\128\229\167\139\229\133\179\233\151\173")
+  ScreenPrint("开始关闭")
   self.Content:ClearChildren()
   self.PersonInfoMainPage:OnClose()
   PersonInfoController:OnClose()

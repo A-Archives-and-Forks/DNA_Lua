@@ -48,7 +48,7 @@ function BP_CombatItemBase_C:AuthorityInitInfo(Info)
   BP_CombatItemBase_C.Super.AuthorityInitInfo(self, Info)
   self:AdjustLocation(Info)
   if 0 ~= self.SourceEid and self.RegionDataType ~= ERegionDataType.RDT_None then
-    GWorld.logger.errorlog("Eid = " .. tostring(self.Eid) .. "\231\154\132\230\156\186\229\133\179 RegionDataType\228\184\141\228\184\186None, \229\143\175\232\131\189\229\175\188\232\135\180\230\156\186\229\133\179\230\129\162\229\164\141\228\184\164\228\187\189")
+    GWorld.logger.errorlog("Eid = " .. tostring(self.Eid) .. "的机关 RegionDataType不为None, 可能导致机关恢复两份")
   end
 end
 
@@ -165,7 +165,7 @@ function BP_CombatItemBase_C:ShowMechanism(Reason)
 end
 
 function BP_CombatItemBase_C:SetLifeTime(LifeTime, Reason)
-  DebugPrint("ZJT_ \229\189\147\229\137\141\230\173\187\228\186\161\231\154\132\230\156\186\229\133\179\229\144\141\231\167\176\228\184\186\239\188\154 ", self:GetName(), self.UnitType, LifeTime, Reason, self.IsCache)
+  DebugPrint("ZJT_ 当前死亡的机关名称为： ", self:GetName(), self.UnitType, LifeTime, Reason, self.IsCache)
   if self.IsCache then
     return
   end
@@ -380,7 +380,7 @@ function BP_CombatItemBase_C:CreateSpecialMonster(RuleId)
   
   local function Cb(ErrCode)
     if ErrCode ~= ErrorCode.RET_SUCCESS then
-      DebugPrint("ERROR! \230\156\186\229\133\179\229\136\155\229\187\186\231\137\185\230\174\138\230\128\170\229\164\177\232\180\165:   ", ErrorCode:Name(ErrCode))
+      DebugPrint("ERROR! 机关创建特殊怪失败:   ", ErrorCode:Name(ErrCode))
       return
     end
     local SpawnLocationType = DataMgr.SpecialMonsterSpawn[RuleId].SpawnLocation

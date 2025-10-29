@@ -114,7 +114,7 @@ function Avatar:OnBecomePlayer()
   if BP_Avatar then
     BP_Avatar:SetClientAvatar(self)
   else
-    assert(false, "\231\153\187\229\189\149\229\135\186\233\148\153\239\188\140Avatar\228\184\186\231\169\186\239\188\1408\230\136\144\228\189\160\230\152\175\231\148\168\230\137\147\229\140\133\231\142\175\229\162\131\229\142\187\232\191\144\232\161\140\229\183\165\231\168\139\228\186\134\239\188\140\229\155\158\233\128\128\228\189\160\231\154\132\228\187\147\229\186\147")
+    assert(false, "登录出错，Avatar为空，8成你是用打包环境去运行工程了，回退你的仓库")
   end
   MissionIndicatorManager.TrackingSpecialSideQuestChainId = nil
   SystemGuideManager:AddListenerSystemGuide()
@@ -370,7 +370,7 @@ end
 
 function Avatar:SendToFeiShuForMonster(msg, msg_title)
   local LocalUser = UE.UKismetSystemLibrary:GetPlatformUserName()
-  local res_msg = "\232\174\190\229\164\135\229\144\141\239\188\154" .. LocalUser .. "\n" .. msg
+  local res_msg = "设备名：" .. LocalUser .. "\n" .. msg
   self:CallServerMethod("SendToFeiShuForMonster", msg, msg_title)
 end
 

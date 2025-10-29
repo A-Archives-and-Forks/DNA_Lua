@@ -12,7 +12,7 @@ return ReadOnly("Channel", {
     MessageMax = 100,
     Name = "UI_Channel_Name_1",
     PlayerMax = 3000,
-    Remark = "\231\187\132\233\152\159\233\162\145\233\129\147",
+    Remark = "组队频道",
     SIcon = "/Game/UI/Texture/Dynamic/Atlas/Chat/T_Chat_ChannelRecruit_B"
   },
   [2] = {
@@ -25,7 +25,7 @@ return ReadOnly("Channel", {
     MessageMax = 100,
     Name = "UI_Channel_Name_2",
     PlayerMax = 3000,
-    Remark = "\231\150\145\233\154\190\232\167\163\231\173\148\233\162\145\233\129\147",
+    Remark = "疑难解答频道",
     SIcon = "/Game/UI/Texture/Dynamic/Atlas/Chat/T_ChatChannel_Question_B"
   },
   [3] = {
@@ -38,7 +38,7 @@ return ReadOnly("Channel", {
     MessageMax = 100,
     Name = "UI_Channel_Name_4",
     PlayerMax = 4,
-    Remark = "\229\176\143\233\152\159\233\162\145\233\129\147",
+    Remark = "小队频道",
     SIcon = "/Game/UI/Texture/Dynamic/Atlas/Chat/T_Chat_ChannelTeam_B"
   },
   [4] = {
@@ -51,7 +51,7 @@ return ReadOnly("Channel", {
     MessageMax = 50,
     Name = "UI_Channel_Name_5",
     PlayerMax = 2,
-    Remark = "\229\165\189\229\143\139\233\162\145\233\129\147",
+    Remark = "好友频道",
     SIcon = "/Game/UI/Texture/Dynamic/Atlas/Chat/T_Chat_ChannelFriend_B"
   },
   [5] = {
@@ -64,7 +64,7 @@ return ReadOnly("Channel", {
     MessageMax = 100,
     Name = "UI_Channel_Name_6",
     PlayerMax = 3000,
-    Remark = "\229\140\186\229\159\159\232\129\148\230\156\186",
+    Remark = "区域联机",
     SIcon = "/Game/UI/Texture/Dynamic/Atlas/Chat/T_ChatChannel_Area_B"
   },
   [6] = {
@@ -77,7 +77,7 @@ return ReadOnly("Channel", {
     MessageMax = 100,
     Name = "UI_Channel_Name_7",
     PlayerMax = 4,
-    Remark = "\228\184\180\230\151\182\229\176\143\233\152\159\233\162\145\233\129\147",
+    Remark = "临时小队频道",
     SIcon = "/Game/UI/Texture/Dynamic/Atlas/Chat/T_Chatchannel_Result_B"
   }
 })

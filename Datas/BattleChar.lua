@@ -1311,7 +1311,7 @@ return ReadOnly("BattleChar", {
     BTMotionParams = T.RT_1,
     BattleCharTag = T.RT_25,
     CapsuleInfo = T.RT_26,
-    CharName = "\232\142\137\229\133\185\232\180\157\229\176\148",
+    CharName = "莉兹贝尔",
     CondemnWeapon = 30,
     DEF = 255,
     DEFLevelGrow = "DEFS",

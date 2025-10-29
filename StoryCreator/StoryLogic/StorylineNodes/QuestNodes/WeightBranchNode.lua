@@ -28,7 +28,7 @@ function M:WeightedRandomSelection(WeightArray, RandomCount)
       end
     end
   end
-  assert(#SelectedArray == RandomCount, "\233\128\137\228\184\173\231\154\132\229\136\134\230\148\175\230\149\176\233\135\143\228\184\141\229\175\185")
+  assert(#SelectedArray == RandomCount, "选中的分支数量不对")
   return SelectedArray
 end
 

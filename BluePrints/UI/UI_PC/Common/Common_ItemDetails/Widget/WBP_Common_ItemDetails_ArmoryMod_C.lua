@@ -84,7 +84,7 @@ function M:OnInitItemInfo(ModInfo, ModServerData)
       else
         BtnUnEquip:SetText(GText("UI_Mod_QuickEquip"))
       end
-      DebugPrint(ErrorTag, "\231\187\145\229\174\154 ArmoryMod Tips \230\140\137\233\146\174\233\135\140\233\157\162\231\154\132\229\155\158\232\176\131", self.ModServerData:GetName())
+      DebugPrint(ErrorTag, "绑定 ArmoryMod Tips 按钮里面的回调", self.ModServerData:GetName())
       BtnUnEquip.ReleaseLogics = {}
       BtnUnEquip.PressLogics = {}
       BtnUnEquip:BindEventOnPressed(self, self.OnBtnPressed)
@@ -180,7 +180,7 @@ function M:Destruct()
   if not self.EnableBtn then
     return
   end
-  DebugPrint(ErrorTag, "\232\167\163\231\187\145 ArmoryMod Tips \230\140\137\233\146\174\233\135\140\233\157\162\231\154\132\229\155\158\232\176\131 Destruct", self.ModServerData:GetName())
+  DebugPrint(ErrorTag, "解绑 ArmoryMod Tips 按钮里面的回调 Destruct", self.ModServerData:GetName())
   self.ParentWidget.Btn02_Mod:UnBindEventOnReleased(self, self.OnBtnIntensifyClicked)
   self.ParentWidget.Btn02_Mod:UnBindEventOnPressed(self, self.OnBtnPressed)
   self.ParentWidget.Btn01_Mod:UnBindEventOnReleased(self, self.OnBtnUnEquipMod)
@@ -199,7 +199,7 @@ end
 
 function M:OnBtnUnEquipMod()
   self:OnBtnPressed()
-  DebugPrint(ErrorTag, "\232\167\166\229\143\145\228\186\134ArmoryMod Tips \230\140\137\233\146\174\233\135\140\233\157\162\231\154\132\229\155\158\232\176\131", self.ModServerData:GetName())
+  DebugPrint(ErrorTag, "触发了ArmoryMod Tips 按钮里面的回调", self.ModServerData:GetName())
   self.ParentWidget.Btn01_Mod:StopAllAnimations()
   local SelectStuff = ModModel:GetSelectStuff()
   if SelectStuff and SelectStuff:IsSlot() then

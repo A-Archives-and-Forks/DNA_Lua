@@ -680,14 +680,14 @@ function WBP_Bag_Detail_View_C:GetWeaponTypeName(WeaponId)
     end
   end
   if not WeaponType then
-    ScreenPrint("WeaponId" .. WeaponId .. "\231\154\132WeaponType\228\184\186\231\169\186\239\188\140\232\175\183\230\163\128\230\159\165WeaponTag\228\184\173\230\152\175\229\144\166\233\133\141\231\189\174\229\175\185\229\186\148\231\154\132WeaponTagfilter")
+    ScreenPrint("WeaponId" .. WeaponId .. "的WeaponType为空，请检查WeaponTag中是否配置对应的WeaponTagfilter")
     return ""
   end
   if not WeaponName then
-    ScreenPrint("WeaponId" .. WeaponId .. "\231\154\132WeaponName\228\184\186\231\169\186\239\188\140\232\175\183\230\163\128\230\159\165WeaponTag\228\184\173\230\152\175\229\144\166\233\133\141\231\189\174\229\175\185\229\186\148\231\154\132WeaponTagTextmap")
+    ScreenPrint("WeaponId" .. WeaponId .. "的WeaponName为空，请检查WeaponTag中是否配置对应的WeaponTagTextmap")
     return WeaponType
   end
-  return WeaponType .. "\239\188\154" .. WeaponName
+  return WeaponType .. "：" .. WeaponName
 end
 
 function WBP_Bag_Detail_View_C:UpdateUIStyleInPlatform(IsUseGamePad)

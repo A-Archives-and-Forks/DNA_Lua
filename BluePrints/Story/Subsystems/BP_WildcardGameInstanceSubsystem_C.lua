@@ -1,14 +1,14 @@
 local function CreateWildcardReplaceFunctionMap()
   return {
-    ["{\230\128\167\229\136\171[:\239\188\154]+.-|.-}"] = "ReplaceProtagonistGenderWildcard",
+    ["{性别[:：]+.-|.-}"] = "ReplaceProtagonistGenderWildcard",
     
-    ["{\230\128\167\229\136\1712[:\239\188\154]+.-|.-}"] = "ReplaceFormerProtagonistGenderWildcard",
+    ["{性别2[:：]+.-|.-}"] = "ReplaceFormerProtagonistGenderWildcard",
     ["{[Cc]+at[Nn]+ame}"] = "ReplaceCatNameWildcard",
     ["{[Nn]+ick[Nn]+ame}"] = "ReplaceNickNameWildcard",
     ["{[Nn]+ick[Nn]+ame2}"] = "ReplaceNickName2Wildcard",
     ["{%$.-%$|.-}"] = "ReplaceTagWildcard",
-    ["{\229\186\143\230\149\176[:\239\188\154]+.-}"] = "ReplaceNumberWildcard",
-    ["{\231\169\186\230\160\188}"] = "ReplaceSpaceWildcard",
+    ["{序数[:：]+.-}"] = "ReplaceNumberWildcard",
+    ["{空格}"] = "ReplaceSpaceWildcard",
     ["{[Qq]+uest%(.-%):.-|.-}"] = "ReplaceQuestWildcard",
     ["{[Qq]+uest[Cc]+hain%(.-%):.-|.-}"] = "ReplaceQuestChainWildcard"
   }
@@ -52,9 +52,9 @@ end
 function M:ReplaceProtagonistGenderWildcard(Wildcard)
   local Avatar = GWorld:GetAvatar()
   if nil == Avatar then
-    return "(\230\156\170\232\129\148\231\189\145)\228\184\187\232\167\146\230\128\167\229\136\171"
+    return "(未联网)主角性别"
   end
-  local LeftValue, RightValue = string.match(Wildcard, "{.-[\239\188\154:]+(.-)|(.-)}")
+  local LeftValue, RightValue = string.match(Wildcard, "{.-[：:]+(.-)|(.-)}")
   if 0 == Avatar.Sex then
     return LeftValue
   else
@@ -65,9 +65,9 @@ end
 function M:ReplaceFormerProtagonistGenderWildcard(Wildcard)
   local Avatar = GWorld:GetAvatar()
   if nil == Avatar then
-    return "(\230\156\170\232\129\148\231\189\145)\229\137\141\228\184\187\232\167\146\230\128\167\229\136\171"
+    return "(未联网)前主角性别"
   end
-  local LeftValue, RightValue = string.match(Wildcard, "{.-[\239\188\154:]+(.-)|(.-)}")
+  local LeftValue, RightValue = string.match(Wildcard, "{.-[：:]+(.-)|(.-)}")
   if 0 == Avatar.WeitaSex then
     return LeftValue
   else
@@ -86,7 +86,7 @@ end
 function M:ReplaceNickNameWildcard(Wildcard)
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    return "\229\164\156\232\136\170\228\184\187\232\167\146\229\144\141"
+    return "夜航主角名"
   end
   return Avatar.Nickname
 end
@@ -94,7 +94,7 @@ end
 function M:ReplaceNickName2Wildcard(Wildcard)
   local Avatar = GWorld:GetAvatar()
   if not Avatar then
-    return "\230\179\138\230\154\174\228\184\187\232\167\146\229\144\141"
+    return "泊暮主角名"
   end
   return Avatar.WeitaName
 end
@@ -130,7 +130,7 @@ function M:ReplaceTagWildcard(Wildcard)
 end
 
 function M:ReplaceNumberWildcard(Wildcard)
-  local Number = string.match(Wildcard, "{\229\186\143\230\149\176[\239\188\154:]+(.-)}")
+  local Number = string.match(Wildcard, "{序数[：:]+(.-)}")
   if CommonConst.SystemLanguage ~= CommonConst.SystemLanguages.EN then
     return Number
   end

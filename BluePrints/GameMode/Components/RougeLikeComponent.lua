@@ -5,7 +5,7 @@ local RougeLikeComponent = {}
 
 function RougeLikeComponent:TriggerRougeLikeEnd(IsWin)
   if not GWorld.RougeLikeManager then
-    self.EMGameState:ShowDungeonError("TriggerRougeLikeEnd \230\139\191\228\184\141\229\136\176 RougeLikeManager")
+    self.EMGameState:ShowDungeonError("TriggerRougeLikeEnd 拿不到 RougeLikeManager")
     return
   end
   DebugPrint("TriggerRougeLikeEnd RoomId", GWorld.RougeLikeManager.RoomId)
@@ -17,7 +17,7 @@ function RougeLikeComponent:TriggerRougeLikeEnd(IsWin)
       local TotalTime = self.LevelGameMode:StopAndGetRougeLikeTimer()
       Avatar:PassRoom(TotalTime)
     else
-      self.EMGameState:ShowDungeonError("TriggerRougeLikeEnd \230\139\191\228\184\141\229\136\176 Avatar")
+      self.EMGameState:ShowDungeonError("TriggerRougeLikeEnd 拿不到 Avatar")
     end
   end
   
@@ -75,7 +75,7 @@ end
 function RougeLikeComponent:OnRougeLikeEnterNextRoom()
   DebugPrint("RougeLike OnRougeLikeEnterNextRoom RoomIndex:", GWorld.RougeLikeManager.RoomIndex, "RoomId:", GWorld.RougeLikeManager.RoomId)
   if GWorld.RougeLikeManager.IsListeningDealRewardEvent then
-    self.EMGameState:ShowDungeonError("RougeLike Error! \232\191\155\229\133\165\228\184\139\228\184\128\230\136\191\233\151\180\230\151\182,ListeningDealRewardEvent\230\178\161\230\156\137\232\162\171\230\184\133\233\153\164\239\188\129\232\129\148\231\179\187ljl\230\163\128\230\159\165\239\188\129")
+    self.EMGameState:ShowDungeonError("RougeLike Error! 进入下一房间时,ListeningDealRewardEvent没有被清除！联系ljl检查！")
     GWorld.RougeLikeManager.IsListeningDealRewardEvent = false
   end
   GWorld.RougeLikeManager:RemoveDataManagerInfos(self.RougeLikeLastRoomId, true)
@@ -198,17 +198,17 @@ end
 function RougeLikeComponent:SetRougeLikeGameModeLevel()
   local RougeLikeManager = GWorld.RougeLikeManager
   if not IsValid(RougeLikeManager) then
-    self.EMGameState:ShowDungeonError("RougeLike Error! \230\137\190\228\184\141\229\136\176GWorld.RougeLikeManager")
+    self.EMGameState:ShowDungeonError("RougeLike Error! 找不到GWorld.RougeLikeManager")
     return
   end
   local DifficultyInfo = DataMgr.RougeLikeDifficulty[RougeLikeManager.DifficultyId]
   if not DifficultyInfo then
-    self.EMGameState:ShowDungeonError("RougeLike Error! \230\178\161\230\156\137\229\175\185\229\186\148RougeLikeDifficulty, DifficultyId: " .. RougeLikeManager.DifficultyId)
+    self.EMGameState:ShowDungeonError("RougeLike Error! 没有对应RougeLikeDifficulty, DifficultyId: " .. RougeLikeManager.DifficultyId)
     return
   end
   local RoomLevel = DifficultyInfo.RoomLevel
   if not RoomLevel then
-    self.EMGameState:ShowDungeonError("RougeLike Error! \230\178\161\230\156\137\229\175\185\229\186\148RoomLevel, DifficultyId: ", RougeLikeManager.DifficultyId)
+    self.EMGameState:ShowDungeonError("RougeLike Error! 没有对应RoomLevel, DifficultyId: ", RougeLikeManager.DifficultyId)
     return
   end
   local GameModeLevel = RoomLevel[RougeLikeManager.RoomIndex] or 0
@@ -268,7 +268,7 @@ end
 function RougeLikeComponent:ShowRougeLikeSubTask(IsShow, DisplayText)
   local TaskBar = TaskUtils:GetTaskBarWidget()
   if not TaskBar then
-    DebugPrint("RougeLikeComponent:ShowRougeLikeSubTask, \230\137\190\228\184\141\229\136\176\228\187\187\229\138\161\230\160\143")
+    DebugPrint("RougeLikeComponent:ShowRougeLikeSubTask, 找不到任务栏")
     return
   end
   if IsShow then
@@ -384,7 +384,7 @@ function RougeLikeComponent:StartRougeMiniGame(MiniGameName, MiniGameId)
     self.RougeMiniGameName = MiniGameName
     self[FunName](self, MiniGameId)
   else
-    self.EMGameState:ShowDungeonError("RougeLikeComponent:StartRougeMiniGame FunName", FunName, "\230\156\170\229\174\158\231\142\176 \230\136\150 \228\184\141\229\173\152\229\156\168\232\175\165\231\142\169\230\179\149")
+    self.EMGameState:ShowDungeonError("RougeLikeComponent:StartRougeMiniGame FunName", FunName, "未实现 或 不存在该玩法")
   end
 end
 
@@ -397,7 +397,7 @@ function RougeLikeComponent:EndRougeMiniGame(IsWin)
       self.EMGameState.RougeMiniGameProgressing = false
       self.RougeMiniGameName = nil
     else
-      self.EMGameState:ShowDungeonError("RougeLikeComponent:StartRougeMiniGame FunName", FunName, "\230\156\170\229\174\158\231\142\176 \230\136\150 \228\184\141\229\173\152\229\156\168\232\175\165\231\142\169\230\179\149")
+      self.EMGameState:ShowDungeonError("RougeLikeComponent:StartRougeMiniGame FunName", FunName, "未实现 或 不存在该玩法")
     end
   end
 end
@@ -545,13 +545,13 @@ end
 
 function RougeLikeComponent:StartRougeMorseMiniGame(MiniGameId)
   local MorseMiniGameInfo = DataMgr.MorseMiniGame[MiniGameId]
-  assert(MorseMiniGameInfo, "MorseMiniGame\232\175\187\232\161\168\228\184\141\229\173\152\229\156\168\239\188\140MiniGameId:" .. MiniGameId)
+  assert(MorseMiniGameInfo, "MorseMiniGame读表不存在，MiniGameId:" .. MiniGameId)
   self.CurMorseMiniGameId = MiniGameId
   UIManager(self):LoadUINew("Morse", MorseMiniGameInfo.Difficulty, MorseMiniGameInfo.TotalTime, self, self.EndRougeMiniGame)
 end
 
 function RougeLikeComponent:EndRougeMorseMiniGame(IsWin)
-  assert(self.CurMorseMiniGameId, "CurMorseMiniGameId\228\184\141\229\173\152\229\156\168\239\188\129")
+  assert(self.CurMorseMiniGameId, "CurMorseMiniGameId不存在！")
   local MorseMiniGameInfo = DataMgr.MorseMiniGame[self.CurMorseMiniGameId]
   local FinialScore = 0
   if IsWin then
@@ -563,23 +563,23 @@ function RougeLikeComponent:EndRougeMorseMiniGame(IsWin)
 end
 
 function RougeLikeComponent:FillRougeLikeErrorLog(MsgTable)
-  table.insert(MsgTable, "\229\137\175\230\156\172\231\138\182\230\128\129GameModeState: " .. EGameModeState:GetNameByValue(self.GameState.GameModeState) .. "\n")
-  table.insert(MsgTable, "\229\189\147\229\137\141\229\137\175\230\156\172\230\152\175\229\144\166\231\187\147\231\174\151: " .. tostring(self:IsDungeonInSettlement()) .. "\n")
-  table.insert(MsgTable, "\230\136\152\230\150\151\229\133\179\232\191\155\229\186\166\239\188\154" .. tostring(self.EMGameState.RougeBattleCount) .. "/" .. tostring(self.EMGameState.RougeBattleMaxNum) .. "\n")
-  table.insert(MsgTable, "\231\155\151\229\174\157\230\128\170\229\136\183\230\150\176\230\149\176: " .. tostring(self.TreasureMonsterCreatedNum) .. "\n")
-  table.insert(MsgTable, "\231\155\151\229\174\157\230\128\170\229\136\183\230\150\176\230\166\130\231\142\135: " .. tostring(self.TreasureMonsterSpawnProbability) .. "\n")
+  table.insert(MsgTable, "副本状态GameModeState: " .. EGameModeState:GetNameByValue(self.GameState.GameModeState) .. "\n")
+  table.insert(MsgTable, "当前副本是否结算: " .. tostring(self:IsDungeonInSettlement()) .. "\n")
+  table.insert(MsgTable, "战斗关进度：" .. tostring(self.EMGameState.RougeBattleCount) .. "/" .. tostring(self.EMGameState.RougeBattleMaxNum) .. "\n")
+  table.insert(MsgTable, "盗宝怪刷新数: " .. tostring(self.TreasureMonsterCreatedNum) .. "\n")
+  table.insert(MsgTable, "盗宝怪刷新概率: " .. tostring(self.TreasureMonsterSpawnProbability) .. "\n")
   local PlayerController = UE.UGameplayStatics.GetPlayerController(GWorld.GameInstance, 0)
   if PlayerController then
     local PlayerState = PlayerController.PlayerState
     if PlayerState then
-      table.insert(MsgTable, "\231\142\169\229\174\182\230\173\187\228\186\161(\229\164\141\230\180\187)\230\172\161\230\149\176 / \230\156\128\229\164\167\230\173\187\228\186\161(\229\164\141\230\180\187)\230\172\161\230\149\176\239\188\154" .. tostring(PlayerState.RecoveryCount) .. "/" .. tostring(PlayerState.RecoveryMaxCount) .. "\n")
+      table.insert(MsgTable, "玩家死亡(复活)次数 / 最大死亡(复活)次数：" .. tostring(PlayerState.RecoveryCount) .. "/" .. tostring(PlayerState.RecoveryMaxCount) .. "\n")
     end
   end
   local MiniGameName = ""
   for LevelName, SubGameMode in pairs(self.SubGameModeInfo) do
     MiniGameName = SubGameMode.RougeMiniGameName
   end
-  table.insert(MsgTable, "\229\189\147\229\137\141MiniGame\229\144\141\231\167\176: " .. tostring(MiniGameName) .. "\n")
+  table.insert(MsgTable, "当前MiniGame名称: " .. tostring(MiniGameName) .. "\n")
 end
 
 return RougeLikeComponent

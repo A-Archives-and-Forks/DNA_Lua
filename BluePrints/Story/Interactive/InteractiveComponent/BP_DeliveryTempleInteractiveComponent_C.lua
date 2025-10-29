@@ -87,7 +87,7 @@ function BP_DeliveryTempleInteractiveComponent_C:GetInteractiveName()
   if 0 ~= self.TempleId then
     local DungeonInfo = DataMgr.Dungeon[self.TempleId]
     if not DungeonInfo then
-      error("Region\232\161\168\228\184\173\233\133\141\231\189\174\228\186\134\228\184\141\229\173\152\229\156\168\231\154\132\231\165\158\229\186\153ID\239\188\140\n\233\148\153\232\175\175\231\154\132\231\165\158\229\186\153ID\239\188\154" .. self.TempleId)
+      error("Region表中配置了不存在的神庙ID，\n错误的神庙ID：" .. self.TempleId)
     end
     return GText(DungeonInfo.DungeonName)
   end

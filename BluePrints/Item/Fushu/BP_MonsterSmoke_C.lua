@@ -170,7 +170,7 @@ function M:OnMonsterKilled(Monster)
     self.SpawnedMonsters[Monster.Eid] = nil
     if self:getTableLength(self.SpawnedMonsters) <= 0 then
       self:ChangeState("Manual", 0, self.ClearMonsterStateId)
-      DebugPrint("zwkk \230\128\170\232\162\171\230\184\133\229\133\137")
+      DebugPrint("zwkk 怪被清光")
       local GameState = UE4.UGameplayStatics.GetGameState(self)
       if GameState and nil ~= GameState.MonsterSmokes[self.Eid] then
         GameState.MonsterSmokes[self.Eid] = false

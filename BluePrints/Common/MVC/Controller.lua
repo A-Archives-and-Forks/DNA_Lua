@@ -54,11 +54,11 @@ function M:GetAvatar()
 end
 
 function M:GetModel()
-  assert(false, "\232\175\183\229\156\168\228\189\160\231\187\167\230\137\191\231\154\132Controller\233\135\140\229\174\158\231\142\176\228\189\160\231\154\132 GetModel()")
+  assert(false, "请在你继承的Controller里实现你的 GetModel()")
 end
 
 function M:GetEventName()
-  assert(false, "\232\175\183\229\156\168\228\189\160\231\187\167\230\137\191\231\154\132Controller\233\135\140\229\174\158\231\142\176\228\189\160\231\154\132 GetEventName()")
+  assert(false, "请在你继承的Controller里实现你的 GetEventName()")
 end
 
 function M:OpenView(WorldContext, ViewNameOrMainUIId, ...)

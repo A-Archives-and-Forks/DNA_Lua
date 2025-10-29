@@ -1323,7 +1323,7 @@ return ReadOnly("Monster", {
     PreloadSummonNum = 2,
     UnitBPPath = "/Game/AssetDesign/Char/Mount/BP_Mount_Base.BP_Mount_Base",
     UnitId = 5,
-    UnitName = "\229\157\144\233\170\145\230\181\139\232\175\149"
+    UnitName = "坐骑测试"
   },
   [97] = {
     BT = "/Game/AssetDesign/AI/Z_Misc_Test/BT/BT_TestDps.BT_TestDps",
@@ -1340,7 +1340,7 @@ return ReadOnly("Monster", {
     NavAgentId = 0,
     UnitBPPath = "/Game/AssetDesign/Char/Monster/Jt_Ranger/BP_Mon_Jt_Ranger_DPSTest.BP_Mon_Jt_Ranger_DPSTest",
     UnitId = 97,
-    UnitName = "\231\155\174\230\160\135\229\129\135\228\186\186-10e\230\138\164\231\155\190",
+    UnitName = "目标假人-10e护盾",
     WeaponId = T.RT_3
   },
   [98] = {
@@ -1403,7 +1403,7 @@ return ReadOnly("Monster", {
     NavAgentId = 0,
     UnitBPPath = "/Game/AssetDesign/Char/Monster/Jt_Ranger/BP_Mon_Jt_Ranger_DPSTest.BP_Mon_Jt_Ranger_DPSTest",
     UnitId = 100,
-    UnitName = "\231\155\174\230\160\135\229\129\135\228\186\186-10e\232\161\128\233\135\143",
+    UnitName = "目标假人-10e血量",
     WeaponId = T.RT_3
   },
   [101] = {
@@ -1785,7 +1785,7 @@ return ReadOnly("Monster", {
     TeamMoveGroup = 6004,
     UnitBPPath = "/Game/AssetDesign/Char/Monster/BossOnline_Test/BP_Mon_Gr_Baotu_2.BP_Mon_Gr_Baotu_2",
     UnitId = 307,
-    UnitName = "\230\136\145\228\184\141\228\184\128\230\160\183"
+    UnitName = "我不一样"
   },
   [308] = {
     AlertId = 105,
@@ -1985,7 +1985,7 @@ return ReadOnly("Monster", {
     NavAgentId = 1,
     UnitBPPath = "/Game/AssetDesign/Char/Monster/BossOnline_Test/BP_Shield.BP_Shield",
     UnitId = 316,
-    UnitName = "\230\138\164\231\155\190"
+    UnitName = "护盾"
   },
   [110201] = {
     BattleRoleId = 110201,
@@ -1996,7 +1996,7 @@ return ReadOnly("Monster", {
     ModelId = 1101,
     UnitBPPath = "/Game/AssetDesign/Char/Player/Fuluo/BP_Fuluo_Summon.BP_Fuluo_Summon",
     UnitId = 110201,
-    UnitName = "\232\138\153\231\189\151\230\139\137\229\185\187\229\189\177"
+    UnitName = "芙罗拉幻影"
   },
   [180101] = {
     BattleRoleId = 180101,
@@ -2222,7 +2222,7 @@ return ReadOnly("Monster", {
     PreloadSummonNum = 1,
     UnitBPPath = "/Game/AssetDesign/Char/Player/Zhiliu/BP_Zhiliu_Summoned.BP_Zhiliu_Summoned",
     UnitId = 410201,
-    UnitName = "\230\173\162\230\181\129\233\190\153"
+    UnitName = "止流龙"
   },
   [420101] = {
     BattleRoleId = 420101,
@@ -2313,7 +2313,7 @@ return ReadOnly("Monster", {
     PreloadSummonNum = 1,
     UnitBPPath = "/Game/AssetDesign/Char/Player/Lilikou/BP_Lilikou_Summoned.BP_Lilikou_Summoned",
     UnitId = 540201,
-    UnitName = "\232\142\137\232\142\137\229\175\135\233\163\142"
+    UnitName = "莉莉寇风"
   },
   [6001001] = {
     AlertId = 102,

@@ -35,7 +35,7 @@ function M:OnEditTextChanged(Text)
     end
   elseif self.Group_BtnCancel:GetVisibility() ~= UIConst.VisibilityOp.Collapsed then
     self.Group_BtnCancel:SetVisibility(UIConst.VisibilityOp.Collapsed)
-    DebugPrint("\230\144\156\231\180\162\230\161\134\229\134\133\229\174\185\230\184\133\231\169\186")
+    DebugPrint("搜索框内容清空")
   end
   if self.Obj and self.Func then
     self.Func(self.Obj, Text)
