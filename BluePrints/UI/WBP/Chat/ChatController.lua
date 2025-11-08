@@ -348,7 +348,7 @@ function M:SelectPlayerToChat(Uid)
 end
 
 function M:OpenPlayerBtnList(WorldContext, AvatarInfo, FuncList)
-  if not FuncList then
+  if table.isempty(FuncList) then
     return nil
   end
   local HeadOptionWidget = UIManager(WorldContext):_CreateWidgetNew(DataMgr.WidgetUI.ChatHeadOption.UIName)

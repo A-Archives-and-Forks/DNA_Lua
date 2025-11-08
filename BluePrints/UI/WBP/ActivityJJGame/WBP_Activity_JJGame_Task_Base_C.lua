@@ -368,7 +368,9 @@ function M:OnAchvFinished(TaskId)
   if Task then
     local TaskData = DataMgr.MidTermTask[Task.UniqueID]
     if TaskData and TaskData.TaskType == TaskType.Achievement then
-      self:TryIncreaceChallengeTaskRewardReddot(TaskId)
+      if TaskData.EnableDay <= self.EventDay then
+        self:TryIncreaceChallengeTaskRewardReddot(TaskId)
+      end
     else
       self:TryIncreaceNormalRewardReddot(TaskId)
     end

@@ -933,7 +933,7 @@ function WBP_Battle_C:OpenSystemByAction(ActionName, bEscMenu, ...)
     return
   end
   local Avatar = GWorld:GetAvatar()
-  if Avatar and Avatar:IsInHardBoss() then
+  if Avatar and Avatar:IsInHardBoss() and "OpenChat" ~= ActionName then
     return
   end
   local Player = UE4.UGameplayStatics.GetPlayerCharacter(self, 0)

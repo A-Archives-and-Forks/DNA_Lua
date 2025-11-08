@@ -34,8 +34,7 @@ function M:OnRefreshWithActivityOpen(ActivityId)
 end
 
 function M:OnRefreshWithActivityClose(ActivityId)
-  local ReddotName = ActivityReddotHelper.GetEventMainNodeName(ActivityId)
-  ReddotManager.ClearLeafNodeCount(ReddotName, false, {bClearAll = true})
+  ActivityUtils.TryClearActivityReddotCommon(ActivityId)
 end
 
 function M:GetModel()

@@ -183,7 +183,7 @@ end
 M:LimitCall(1)
 
 function M:OnClickContinue()
-  if self.bClick then
+  if self.bClick or not self.VoteMain.AutoInEnd then
     return
   end
   self.bClick = true
@@ -247,7 +247,7 @@ end
 M:LimitCall(1)
 
 function M:OnClickLeave()
-  if self.bClick then
+  if self.bClick or not self.VoteMain.AutoInEnd then
     return
   end
   self.bClick = true

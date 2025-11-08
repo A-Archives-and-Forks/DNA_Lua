@@ -4,6 +4,10 @@ local GM_Command = require("BluePrints.Client.GM_Command")
 local MiscUtils = require("Utils.MiscUtils")
 
 function Component:DoBattleCommand(EffectStruct, bPrintToClient, EidFrom)
+  local bDistribution = UE4.URuntimeCommonFunctionLibrary.IsDistribution()
+  if bDistribution then
+    return
+  end
   if bPrintToClient and not IsDedicatedServer(self) then
     bPrintToClient = false
   end

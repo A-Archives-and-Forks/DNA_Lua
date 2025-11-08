@@ -131,56 +131,59 @@ function Component:OnAnchorGetUserMenuContent(Anchor)
   end
   
   local Switch = {}
-  local IsYourSelf = self._AvatarInfo.Uid == ChatController:GetAvatar().Uid
-  if IsYourSelf then
-    if GWorld:GetAvatar():IsInDungeon() then
-      Switch = nil
+  local Avatar = ChatController:GetAvatar()
+  local IsYourSelf = self._AvatarInfo.Uid == Avatar.Uid
+  local InBounsScene = GWorld.GameInstance.IsInTempScene and GWorld.GameInstance:IsInTempScene()
+  local IsInDungeon = GWorld:GetAvatar():IsInDungeon()
+  local IsInHardBoss = GWorld:GetAvatar():IsInHardBoss()
+  local bInTeam = TeamController:GetModel():GetInviteSendBox()[self._AvatarInfo.Uid] or Avatar:IsInTeam() or Avatar:IsInMultiDungeon()
+  local Channel = ChatController:GetModel():GetCurrentChannel()
+  local InviteTeamIdx
+  if IsInHardBoss then
+    if InBounsScene then
+      InviteTeamIdx = 2
+      Switch = IsYourSelf and {} or {
+        AddFriend,
+        InviteTeam,
+        AddBlackList
+      }
     else
-      Switch = {InitShowRecordBtn}
-    end
-  else
-    if GWorld:GetAvatar():IsInDungeon() then
-      if GWorld.GameInstance.IsInTempScene and GWorld.GameInstance:IsInTempScene() then
-        Switch = {InviteTeam, AddBlackList}
-      else
-        Switch = {InviteTeam, AddBlackList}
-      end
-    else
-      Switch = {
+      InviteTeamIdx = 3
+      Switch = IsYourSelf and {InitShowRecordBtn} or {
         AddFriend,
         InitShowRecordBtn,
         InviteTeam,
         AddBlackList
       }
     end
+  elseif InBounsScene or IsInDungeon then
+    InviteTeamIdx = 2
+    Switch = IsYourSelf and {} or {
+      AddFriend,
+      InviteTeam,
+      AddBlackList
+    }
+  else
+    InviteTeamIdx = 3
+    Switch = IsYourSelf and {InitShowRecordBtn} or {
+      AddFriend,
+      InitShowRecordBtn,
+      InviteTeam,
+      AddBlackList
+    }
+  end
+  if not IsYourSelf and not table.isempty(Switch) then
     if self._MessageContent then
       table.insert(Switch, AccusePlayer)
     end
-    local ForbidItemIdxList = self:GetForbidContentIdxList()
-    if #ForbidItemIdxList > 0 then
-      for i, v in ipairs(ForbidItemIdxList) do
-        table.remove(Switch, v)
-      end
+    if bInTeam then
+      table.remove(Switch, InviteTeamIdx)
     end
-    local bInviting = TeamController:GetModel():GetInviteSendBox()[self._AvatarInfo.Uid]
-    if not IsYourSelf and bInviting then
-      table.remove(Switch, GWorld:GetAvatar():IsInDungeon() and 2 or 3)
+    if Channel == ChatCommon.ChannelDef.InTeam or Channel == ChatCommon.ChannelDef.Friend then
+      table.remove(Switch, 1)
     end
   end
   return ChatController:OpenPlayerBtnList(self, self._AvatarInfo, Switch)
-end
-
-function Component:GetForbidContentIdxList()
-  local ResultList = {}
-  local PlayerAvatar = GWorld:GetAvatar()
-  if PlayerAvatar and PlayerAvatar:IsInTeam() then
-    local TeamData = TeamController:GetModel()
-    local TeamMember, PosIdx = TeamData:GetTeamMember(self._AvatarInfo.Uid)
-    if 0 ~= PosIdx then
-      table.insert(ResultList, GWorld:GetAvatar():IsInDungeon() and 2 or 3)
-    end
-  end
-  return ResultList
 end
 
 function Component:HeadMenuOpenChanged(bOpen)

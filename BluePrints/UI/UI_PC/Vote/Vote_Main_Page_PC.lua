@@ -17,6 +17,7 @@ function M:InitListenEvent()
       self:SetFocus()
       self.bIsFocusable = true
       self.bCanAutoFocus = true
+      self.AutoInEnd = true
       EventManager:FireEvent(EventID.OnVoteUIAutoInFinished)
     end
   })
@@ -24,6 +25,7 @@ end
 
 function M:Construct()
   print(_G.LogTag, "LXZ  Construct")
+  self.AutoInEnd = false
   self:InitListenEvent()
   self.DefenceWave = 0
   self.bCanAutoFocus = false

@@ -27,14 +27,24 @@ function ReddotTreeNode_JJGame:_Judge(ActivityID)
     end
   end
   for TaskId, Task in pairs(Avatar.MidTermTasks) do
+    local TaskData = DataMgr.MidTermTask[Task.UniqueID]
     if Avatar.MidTermTasksRecord[TaskId] and Avatar.MidTermTasksRecord[TaskId].FinishCount and Avatar.MidTermTasksRecord[TaskId].FinishCount > 0 then
       return true
     end
-    if Task.Progress >= Task.Target and Task.RewardsGot == false then
+    if Task.Progress >= Task.Target and Task.RewardsGot == false and TaskData.EnableDay <= self:CalEventDay() then
       return true
     end
   end
   return false
+end
+
+function ReddotTreeNode_JJGame:CalEventDay()
+  local MidTermGoalEventId = DataMgr.MidTermGoalConstant.MidTermGoalEventId.ConstantValue
+  local EventStartTime = DataMgr.EventMain[MidTermGoalEventId].EventStartTime
+  local currentTime = TimeUtils.NowTime()
+  local intervalDays = TimeUtils.GetIntervalDay(EventStartTime, currentTime)
+  local calculatedEventDay = intervalDays + 1
+  return calculatedEventDay
 end
 
 return ReddotTreeNode_JJGame

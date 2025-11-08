@@ -72,7 +72,8 @@ function M:Construct()
       end
       local Data = Dict[Uid]
       if not Data then
-        assert(false, "FriendCommon.Reason.AddFriend::Data nil is impossible")
+        DebugPrint(ErrorTag, "FriendCommon.Reason.AddFriend::Data nil is impossible")
+        return
       end
       self:RefreshListItem(Data, false)
     elseif Reason == FriendCommon.EventId.GetRecommandList then

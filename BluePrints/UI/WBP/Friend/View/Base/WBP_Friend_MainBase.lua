@@ -103,4 +103,7 @@ function M:Close()
   M.Super.Close(self)
 end
 
+function M:ShowCheckBtn(bShow)
+end
+
 return M

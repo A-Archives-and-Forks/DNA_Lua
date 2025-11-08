@@ -177,17 +177,27 @@ function ActivityUtils.GetCurQuestState(QuestServerData, PlayerPhaseId)
 end
 
 function ActivityUtils.GetCurrentAllActivity()
-  local AllActivityTabIdx = {}
+  local AllActivityTabIdx, InvaildEventIdList = {}, {}
   for key, TabConfigInfo in pairs(DataMgr.EventTab) do
     if type(TabConfigInfo.EventId) == "table" then
       local EventConfigData = DataMgr.EventMain[TabConfigInfo.EventId[1]]
       if ActivityUtils.CheckEventIsOpen(TabConfigInfo.EventId[1], EventConfigData, true, "GameEvent") then
         table.insert(AllActivityTabIdx, TabConfigInfo.EventTabId)
+      else
+        for _, InvalidEventId in ipairs(TabConfigInfo.EventId) do
+          local ActivityConfigData = DataMgr.EventMain[InvalidEventId]
+          local IsInActiveTime = ActivityUtils.CheckEventIsInActiveTime(InvalidEventId, ActivityConfigData)
+          if not IsInActiveTime then
+            table.insert(InvaildEventIdList, InvalidEventId)
+          end
+        end
       end
     else
       local EventConfigData = DataMgr.EventMain[TabConfigInfo.EventId]
       if ActivityUtils.CheckEventIsOpen(TabConfigInfo.EventId, EventConfigData, true, "GameEvent") then
         table.insert(AllActivityTabIdx, TabConfigInfo.EventTabId)
+      elseif not ActivityUtils.CheckEventIsInActiveTime(TabConfigInfo.EventId, EventConfigData) then
+        table.insert(InvaildEventIdList, TabConfigInfo.EventId)
       end
     end
   end
@@ -208,6 +218,10 @@ function ActivityUtils.GetCurrentAllActivity()
         EventConfigData.EventId
       })
     end
+  end
+  for index, InvalidCheckEventId in ipairs(InvaildEventIdList) do
+    local DataInfo = DataMgr.EventMain[InvalidCheckEventId]
+    ActivityUtils.TryClearActivityReddotCommon(InvalidCheckEventId)
   end
   return AllActivityID, AllActivityTabIdx
 end
@@ -302,6 +316,13 @@ end
 
 function ActivityUtils.TrySubActivityReddotCommon(CacheKey, ActivityID)
   ActivityReddotHelper.TrySubReddotCount(nil, ActivityID, CacheKey)
+end
+
+function ActivityUtils.TryClearActivityReddotCommon(ActivityID)
+  local ReddotName = ActivityReddotHelper.GetEventMainNodeName(ActivityID)
+  if ReddotName then
+    ReddotManager.ClearLeafNodeCount(ReddotName, false, {bClearAll = true})
+  end
 end
 
 function ActivityUtils.GetReddotCachInfoByKey(CacheKey, ActivityID)

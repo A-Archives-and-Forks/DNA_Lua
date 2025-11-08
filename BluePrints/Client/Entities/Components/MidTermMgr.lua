@@ -93,7 +93,14 @@ function Component:UpdateJJGameReddot(TaskId)
   if Task then
     local TaskData = DataMgr.MidTermTask[Task.UniqueID]
     if TaskData and TaskData.TaskType == TaskType.Achievement then
-      self:TryIncreaceChallengeTaskRewardReddot(TaskId)
+      local MidTermGoalEventId = DataMgr.MidTermGoalConstant.MidTermGoalEventId.ConstantValue
+      local EventStartTime = DataMgr.EventMain[MidTermGoalEventId].EventStartTime
+      local currentTime = TimeUtils.NowTime()
+      local intervalDays = TimeUtils.GetIntervalDay(EventStartTime, currentTime)
+      local calculatedEventDay = intervalDays + 1
+      if calculatedEventDay >= TaskData.EnableDay then
+        self:TryIncreaceChallengeTaskRewardReddot(TaskId)
+      end
     else
       self:TryIncreaceNormalRewardReddot(TaskId)
     end
